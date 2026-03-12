@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
 import { useGame } from '@/app'
 import { initBoardWasm } from '@/domain'
 import { GameBoard } from '@/ui/molecules'
+import { useEffect } from 'react'
 import './App.css'
 
 export default function App() {
@@ -9,7 +9,7 @@ export default function App() {
 
   // Initialize WASM module for board optimization
   useEffect(() => {
-    initBoardWasm().catch(err => console.warn('WASM init failed:', err))
+    initBoardWasm().catch((err) => console.warn('WASM init failed:', err))
   }, [])
 
   return (
@@ -42,9 +42,7 @@ export default function App() {
       </main>
 
       <footer className="app-footer">
-        <p>
-          Rules: Click a light to toggle it and its 4 neighbors (up, down, left, right).
-        </p>
+        <p>Rules: Click a light to toggle it and its 4 neighbors (up, down, left, right).</p>
       </footer>
     </div>
   )

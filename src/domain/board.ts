@@ -57,7 +57,7 @@ async function initWasm(): Promise<WasmModule | null> {
  */
 export function createBoard(): Board {
   return Array.from({ length: GRID_SIZE }, () =>
-    Array.from({ length: GRID_SIZE }, () => Math.random() > 0.5)
+    Array.from({ length: GRID_SIZE }, () => Math.random() > 0.5),
   )
 }
 
@@ -66,11 +66,11 @@ export function createBoard(): Board {
  * Creates new board without mutating original
  */
 export function toggleCell(board: Board, row: number, col: number): Board {
-  const newBoard = board.map(r => [...r])
-  
+  const newBoard = board.map((r) => [...r])
+
   // Toggle the cell itself
   newBoard[row][col] = !newBoard[row][col]
-  
+
   // Toggle neighbors: up, down, left, right
   const neighbors: Position[] = [
     { row: row - 1, col }, // up
@@ -78,14 +78,14 @@ export function toggleCell(board: Board, row: number, col: number): Board {
     { row, col: col - 1 }, // left
     { row, col: col + 1 }, // right
   ]
-  
+
   neighbors.forEach(({ row: r, col: c }) => {
     // Only toggle if neighbor is within bounds
     if (r >= 0 && r < GRID_SIZE && c >= 0 && c < GRID_SIZE) {
       newBoard[r][c] = !newBoard[r][c]
     }
   })
-  
+
   return newBoard
 }
 
@@ -93,7 +93,7 @@ export function toggleCell(board: Board, row: number, col: number): Board {
  * Check if all lights are off (solved)
  */
 export function isSolved(board: Board): boolean {
-  return board.every(row => row.every(light => !light))
+  return board.every((row) => row.every((light) => !light))
 }
 
 /**

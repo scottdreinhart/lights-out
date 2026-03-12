@@ -72,9 +72,7 @@ export async function wasmIsSolved(board: Uint8Array): Promise<boolean> {
  */
 export async function wasmCountLightsOn(board: Uint8Array): Promise<number> {
   const module = await getWasmModule()
-  const countLightsOn = module.instance.exports.countLightsOn as (
-    board: Uint8Array,
-  ) => number
+  const countLightsOn = module.instance.exports.countLightsOn as (board: Uint8Array) => number
   return countLightsOn(board)
 }
 
