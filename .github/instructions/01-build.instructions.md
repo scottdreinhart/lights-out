@@ -39,8 +39,8 @@ Defined in `package.json` under the `"build"` key:
 
 | Field | Value |
 |---|---|
-| `appId` | `com.scottreinhart.lightsout` |
-| `productName` | `Lights Out` |
+| `appId` | `com.scottreinhart.nim` |
+| `productName` | `Nim` |
 | `directories.output` | `release` |
 | `files` | `dist/**/*`, `electron/**/*` |
 | `win.target` | `portable` (unsigned) |
