@@ -1,9 +1,13 @@
 #!/bin/bash
-# Batch 4: Context & Worker Import Fixes
-# Autofixes context provider imports and worker imports to use hooks/barrels
+# Batch 2: UI Layer → App Layer Import Fixes
+# Autofixes cross-layer relative imports (../../app/) → @/app
 
-echo "🔧 Batch 4: Context & Worker Import Autofixes"
-echo "=============================================="
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+cd "$REPO_ROOT"
+
+echo "🔧 Batch 2: UI → App Import Autofixes"
+echo "======================================="
 echo ""
 
 # Run ESLint autofixes first
@@ -45,16 +49,15 @@ else
 fi
 echo ""
 
-echo "✅ Batch 4 COMPLETE"
+echo "✅ Batch 2 COMPLETE"
 echo "Files affected:"
-echo "  • src/app/SoundContext.tsx (context provider)"
-echo "  • src/app/ThemeContext.tsx (context provider)"
-echo "  • src/workers/ai.worker.ts (worker imports)"
-echo "  • src/wasm/wasm-loader.ts (WASM imports)"
-echo "  • src/app/index.ts (barrel verification)"
+echo "  • src/ui/molecules/GameBoard.tsx"
+echo "  • src/ui/molecules/HamburgerMenu.tsx"
+echo "  • src/ui/molecules/QuickThemePicker.tsx"
+echo "  • src/ui/organisms/App.tsx"
+echo "  • src/ui/organisms/ErrorBoundary.tsx"
+echo "  • src/ui/atoms/OfflineIndicator.tsx"
+echo "  • src/app/SoundContext.tsx"
+echo "  • src/app/ThemeContext.tsx"
 echo ""
-echo "==============================================$()"
-echo "🎉 ALL BATCHES COMPLETE!"
-echo "==============================================$"
-echo ""
-echo "Next: Run phase-a-validation.sh for full deployment validation"
+echo "Next: Run ./scripts/batch-3-ui-to-ui.sh"

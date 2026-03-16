@@ -4,6 +4,10 @@
 
 set -e  # Exit on first error
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+cd "$REPO_ROOT"
+
 echo ""
 echo "╔════════════════════════════════════════════════════════════════╗"
 echo "║         IMPORT REFACTORING: MASTER ORCHESTRATION              ║"
@@ -35,7 +39,7 @@ echo "BATCH 1: App Layer → Domain Layer (13 files)"
 echo "════════════════════════════════════════════════════════════════"
 echo ""
 
-./batch-1-app-to-domain.sh
+"$SCRIPT_DIR/batch-1-app-to-domain.sh"
 if [ $? -ne 0 ]; then
   echo "❌ Batch 1 failed - stopping orchestration"
   exit 1
@@ -53,7 +57,7 @@ echo "BATCH 2: UI Layer → App Layer (8 files)"
 echo "════════════════════════════════════════════════════════════════"
 echo ""
 
-./batch-2-ui-to-app.sh
+"$SCRIPT_DIR/batch-2-ui-to-app.sh"
 if [ $? -ne 0 ]; then
   echo "❌ Batch 2 failed - stopping orchestration"
   exit 1
@@ -71,7 +75,7 @@ echo "BATCH 3: UI Layer → UI Layer Barrels (15 files)"
 echo "════════════════════════════════════════════════════════════════"
 echo ""
 
-./batch-3-ui-to-ui.sh
+"$SCRIPT_DIR/batch-3-ui-to-ui.sh"
 if [ $? -ne 0 ]; then
   echo "❌ Batch 3 failed - stopping orchestration"
   exit 1
@@ -89,7 +93,7 @@ echo "BATCH 4: Contexts & Workers (5 files)"
 echo "════════════════════════════════════════════════════════════════"
 echo ""
 
-./batch-4-contexts-and-workers.sh
+"$SCRIPT_DIR/batch-4-contexts-and-workers.sh"
 if [ $? -ne 0 ]; then
   echo "❌ Batch 4 failed - stopping orchestration"
   exit 1

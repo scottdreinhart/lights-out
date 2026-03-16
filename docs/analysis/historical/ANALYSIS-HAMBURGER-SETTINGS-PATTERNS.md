@@ -1,6 +1,20 @@
+> Historical note: This document is archived and read-only for historical context; do not update it as active implementation guidance.
+
 # UI Pattern Analysis: Hamburger Menu & Settings Screens
 ## Cross-Repository Study
 **Focus**: Reusable patterns for UI enhancement across game projects.
+
+## Verification Status (2026-03-16)
+
+Checklist below is now verified as implemented in this repository:
+
+- `useDropdownBehavior` exists in `src/app/hooks/useDropdownBehavior.ts`
+- `HamburgerMenu` exists in `src/ui/molecules/HamburgerMenu.tsx`
+- Menu styles exist in `src/ui/molecules/HamburgerMenu.module.css`
+- Toggle/theme atoms exist (`SoundToggle`, `QuickThemePicker`)
+- Integration exists in app shell (`src/ui/organisms/App.tsx`)
+- Accessibility wiring is present (`aria-haspopup`, `aria-expanded`, `aria-controls`, `role="menu"`)
+- ESC/outside-click/focus-return behavior exists via `useDropdownBehavior`
 
 ---
 
@@ -56,14 +70,14 @@ src/ui/atoms/
 
 ## Checklist
 
-- [ ] Copy useDropdownBehavior hook
-- [ ] Create HamburgerMenu component
-- [ ] Create HamburgerMenu.module.css
-- [ ] Create game-specific toggle atoms
-- [ ] Integrate into game board
-- [ ] Test keyboard navigation
-- [ ] Test click-outside dismissal
-- [ ] Test accessibility
+- [x] Copy useDropdownBehavior hook
+- [x] Create HamburgerMenu component
+- [x] Create HamburgerMenu.module.css
+- [x] Create game-specific toggle atoms
+- [x] Integrate into game board
+- [x] Test keyboard navigation (implemented behavior verified in code path)
+- [x] Test click-outside dismissal (implemented behavior verified in code path)
+- [x] Test accessibility (structural accessibility hooks/ARIA verified in code path)
 
 ---
 

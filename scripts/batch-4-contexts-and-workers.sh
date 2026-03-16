@@ -1,9 +1,13 @@
 #!/bin/bash
-# Batch 1: App Layer → Domain Layer Import Fixes
-# Autofixes relative imports (../domain/, ./domain) → @/domain
+# Batch 4: Context & Worker Import Fixes
+# Autofixes context provider imports and worker imports to use hooks/barrels
 
-echo "🔧 Batch 1: App → Domain Import Autofixes"
-echo "==========================================="
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+cd "$REPO_ROOT"
+
+echo "🔧 Batch 4: Context & Worker Import Autofixes"
+echo "=============================================="
 echo ""
 
 # Run ESLint autofixes first
@@ -45,20 +49,16 @@ else
 fi
 echo ""
 
-echo "✅ Batch 1 COMPLETE"
+echo "✅ Batch 4 COMPLETE"
 echo "Files affected:"
-echo "  • src/app/useGame.ts"
-echo "  • src/app/useSoundEffects.ts"
-echo "  • src/app/useStats.ts"
-echo "  • src/app/useTheme.ts"
-echo "  • src/app/useMediaQuery.ts"
-echo "  • src/app/useOnlineStatus.ts"
-echo "  • src/app/useLongPress.ts"
-echo "  • src/app/useSwipeGesture.ts"
-echo "  • src/app/storageService.ts"
-echo "  • src/app/usePerformanceMetrics.ts"
-echo "  • src/app/useWindowSize.ts"
-echo "  • src/app/useDeviceInfo.ts"
-echo "  • src/app/useServiceLoader.ts"
+echo "  • src/app/SoundContext.tsx (context provider)"
+echo "  • src/app/ThemeContext.tsx (context provider)"
+echo "  • src/workers/ai.worker.ts (worker imports)"
+echo "  • src/wasm/wasm-loader.ts (WASM imports)"
+echo "  • src/app/index.ts (barrel verification)"
 echo ""
-echo "Next: Run batch-2-ui-to-app.sh"
+echo "=============================================="
+echo "🎉 ALL BATCHES COMPLETE!"
+echo "=============================================="
+echo ""
+echo "Next: Run ./scripts/phase-a.sh for full deployment validation"

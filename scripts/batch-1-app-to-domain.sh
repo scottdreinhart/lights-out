@@ -1,9 +1,13 @@
 #!/bin/bash
-# Batch 2: UI Layer → App Layer Import Fixes
-# Autofixes cross-layer relative imports (../../app/) → @/app
+# Batch 1: App Layer → Domain Layer Import Fixes
+# Autofixes relative imports (../domain/, ./domain) → @/domain
 
-echo "🔧 Batch 2: UI → App Import Autofixes"
-echo "======================================="
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+cd "$REPO_ROOT"
+
+echo "🔧 Batch 1: App → Domain Import Autofixes"
+echo "==========================================="
 echo ""
 
 # Run ESLint autofixes first
@@ -45,15 +49,20 @@ else
 fi
 echo ""
 
-echo "✅ Batch 2 COMPLETE"
+echo "✅ Batch 1 COMPLETE"
 echo "Files affected:"
-echo "  • src/ui/molecules/GameBoard.tsx"
-echo "  • src/ui/molecules/HamburgerMenu.tsx"
-echo "  • src/ui/molecules/QuickThemePicker.tsx"
-echo "  • src/ui/organisms/App.tsx"
-echo "  • src/ui/organisms/ErrorBoundary.tsx"
-echo "  • src/ui/atoms/OfflineIndicator.tsx"
-echo "  • src/app/SoundContext.tsx"
-echo "  • src/app/ThemeContext.tsx"
+echo "  • src/app/useGame.ts"
+echo "  • src/app/useSoundEffects.ts"
+echo "  • src/app/useStats.ts"
+echo "  • src/app/useTheme.ts"
+echo "  • src/app/useMediaQuery.ts"
+echo "  • src/app/useOnlineStatus.ts"
+echo "  • src/app/useLongPress.ts"
+echo "  • src/app/useSwipeGesture.ts"
+echo "  • src/app/storageService.ts"
+echo "  • src/app/usePerformanceMetrics.ts"
+echo "  • src/app/useWindowSize.ts"
+echo "  • src/app/useDeviceInfo.ts"
+echo "  • src/app/useServiceLoader.ts"
 echo ""
-echo "Next: Run batch-3-ui-to-ui.sh"
+echo "Next: Run ./scripts/batch-2-ui-to-app.sh"

@@ -1,7 +1,23 @@
+> Historical note: This document is archived and read-only for historical context; do not update it as active implementation guidance.
+
 # Relative Imports Refactoring — Fix Catalog
 
+## Fact Check (2026-03-16)
+
+This document is a historical planning snapshot and not a current-state report.
+
+Verified current state:
+
+- The repository no longer matches the original “91 relative imports” baseline.
+- Current `src/**/*.{ts,tsx}` includes a small set of internal `../` imports (5 matches), mostly intra-layer app internals.
+- No `from '../../'` style cross-layer relative imports were found in `src/**/*.{ts,tsx}` during this verification pass.
+- Path aliases (`@/domain`, `@/app`, `@/ui`) are in active use across the codebase.
+- Referenced batch scripts in this plan exist under `scripts/` (`scripts/batch-1-app-to-domain.sh` … `scripts/batch-4-contexts-and-workers.sh`, `scripts/orchestrate-all-batches.sh`).
+
+Use this file for historical rationale, not for current migration counts.
+
 ## Overview
-Found **91 relative imports** that need conversion to **path aliases** (@/domain, @/app, @/ui).
+Historical snapshot: originally found **91 relative imports** to convert to **path aliases** (@/domain, @/app, @/ui).
 
 ## By Category
 

@@ -2,6 +2,10 @@
 # Batch 3: UI Layer → UI Layer Barrel Imports
 # Autofixes internal UI imports to use barrels (@/ui)
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+cd "$REPO_ROOT"
+
 echo "🔧 Batch 3: UI → UI Barrel Import Autofixes"
 echo "============================================="
 echo ""
@@ -57,4 +61,4 @@ echo "  • src/ui/atoms/Cell.tsx"
 echo "  • src/ui/atoms/index.ts"
 echo "  • src/ui/index.ts (master barrel)"
 echo ""
-echo "Next: Run batch-4-contexts-and-workers.sh"
+echo "Next: Run ./scripts/batch-4-contexts-and-workers.sh"

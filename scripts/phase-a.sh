@@ -1,6 +1,10 @@
 #!/bin/bash
 # Phase A: Run all validation commands in sequence
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+cd "$REPO_ROOT"
+
 echo "🚀 Phase A: Pre-Deployment Validation"
 echo "======================================="
 echo ""

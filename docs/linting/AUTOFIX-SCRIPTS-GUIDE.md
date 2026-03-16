@@ -4,14 +4,14 @@
 
 ```bash
 # Run all 4 batches with auto-fix in one command:
-./orchestrate-all-batches.sh
+./scripts/orchestrate-all-batches.sh
 ```
 
 ## Individual Batch Scripts
 
 ### Batch 1: App → Domain Imports
 ```bash
-./batch-1-app-to-domain.sh
+./scripts/batch-1-app-to-domain.sh
 ```
 Fixes 13 files with relative imports to domain layer (../domain → @/domain)
 
@@ -34,7 +34,7 @@ Fixes 13 files with relative imports to domain layer (../domain → @/domain)
 
 ### Batch 2: UI → App Imports
 ```bash
-./batch-2-ui-to-app.sh
+./scripts/batch-2-ui-to-app.sh
 ```
 Fixes 8 files with cross-layer relative imports (../../app → @/app)
 
@@ -52,7 +52,7 @@ Fixes 8 files with cross-layer relative imports (../../app → @/app)
 
 ### Batch 3: UI → UI Barrel Imports
 ```bash
-./batch-3-ui-to-ui.sh
+./scripts/batch-3-ui-to-ui.sh
 ```
 Fixes 15 files with UI layer imports to use barrels (@/ui)
 
@@ -72,7 +72,7 @@ Fixes 15 files with UI layer imports to use barrels (@/ui)
 
 ### Batch 4: Contexts & Workers
 ```bash
-./batch-4-contexts-and-workers.sh
+./scripts/batch-4-contexts-and-workers.sh
 ```
 Fixes 5 files with context provider and worker imports
 
@@ -104,7 +104,7 @@ pnpm lint        # ← Stage 4: Final verification (should pass now)
 
 ### Option A: Run All Batches (Recommended)
 ```bash
-./orchestrate-all-batches.sh
+./scripts/orchestrate-all-batches.sh
 ```
 - Runs all 4 batches in sequence
 - Pauses between batches for review
@@ -113,11 +113,11 @@ pnpm lint        # ← Stage 4: Final verification (should pass now)
 
 ### Option B: Run Individual Batches
 ```bash
-./batch-1-app-to-domain.sh
-./batch-2-ui-to-app.sh
-./batch-3-ui-to-ui.sh
-./batch-4-contexts-and-workers.sh
-./phase-a.sh  # Full validation
+./scripts/batch-1-app-to-domain.sh
+./scripts/batch-2-ui-to-app.sh
+./scripts/batch-3-ui-to-ui.sh
+./scripts/batch-4-contexts-and-workers.sh
+./scripts/phase-a.sh  # Full validation
 ```
 
 ### Option C: Manual Step-by-Step
