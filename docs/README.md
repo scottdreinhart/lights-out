@@ -25,6 +25,11 @@ This folder contains active project documentation organized by topic.
 - [Deployment Guide (canonical)](deployment/DEPLOYMENT.md)
 - [Electron Packaging](deployment/ELECTRON-PACKAGING.md)
 
+## Monorepo Planning
+
+- [Monorepo Architecture Plan](monorepo/MONOREPO-ARCHITECTURE-PLAN.md)
+- [Monorepo Absorption Queue](monorepo/MONOREPO-ABSORPTION-QUEUE.md)
+
 ## Linting & Quality
 
 - [Autofix Scripts Guide](linting/AUTOFIX-SCRIPTS-GUIDE.md)
