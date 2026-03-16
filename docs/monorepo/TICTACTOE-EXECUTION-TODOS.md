@@ -16,8 +16,8 @@ Status values: `todo` | `in-progress` | `blocked` | `done`
 | T-008 | done | Validate core contract | @you | `pnpm --filter @games/tictactoe lint && pnpm --filter @games/tictactoe typecheck && pnpm --filter @games/tictactoe test && pnpm --filter @games/tictactoe validate` | all pass |
 | T-009 | done | Validate web/desktop build paths | @you | `pnpm --filter @games/tictactoe web:build` + desktop scripts | web + linux pass locally |
 | T-010 | done | Validate mobile contract scripts | @you | `pnpm --filter @games/tictactoe cap:sync && pnpm --filter @games/tictactoe cap:build:android` | scripts execute without contract errors |
-| T-011 | todo | Add CI matrix entry for app | @you | update workflow matrix with `@games/tictactoe` | CI runs tictactoe jobs |
-| T-012 | todo | Upload report artifacts in CI | @you | workflow artifact step for `apps/tictactoe/reports/**` | reports downloadable in CI |
+| T-011 | done | Add CI matrix entry for app | @you | update workflow matrix with `@games/tictactoe` | CI runs tictactoe jobs |
+| T-012 | done | Upload report artifacts in CI | @you | workflow artifact step for `apps/tictactoe/reports/**` | reports downloadable in CI |
 | T-013 | todo | PR review + merge gate | @you | open PR with checklist | all checks green, PR approved |
 
 ## First 5 Tasks (Do These Now)
@@ -33,5 +33,5 @@ Status values: `todo` | `in-progress` | `blocked` | `done`
 - [x] `pnpm --filter @games/tictactoe validate` passes
 - [x] Required scripts exist for web/iOS/android/linux/windows/macos routes
 - [x] Reports generated under `apps/tictactoe/reports/*`
-- [ ] CI matrix includes `tictactoe`
+- [x] CI matrix includes `tictactoe`
 - [ ] No boundary/lint/type regressions
