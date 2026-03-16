@@ -1,0 +1,39 @@
+{
+  "name": "Tic-Tac-Toe",
+  "short_name": "TicTacToe",
+  "description": "Classic Tic-Tac-Toe game — play against the CPU with multiple difficulty levels, themes, and accessibility options.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#667eea",
+  "theme_color": "#667eea",
+  "categories": ["games", "entertainment"],
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "form_factor": "narrow",
+      "label": "Game board"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

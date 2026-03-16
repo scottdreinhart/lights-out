@@ -1,0 +1,315 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Tic-Tac-Toe — Styles
+   • 8 color themes via data-theme attribute (including High Contrast + Chiba City)
+   • Light / Dark mode via data-mode (falls back to prefers-color-scheme)
+   • Colorblind-safe mark colors via data-colorblind
+   • SVG animated marks (draw-on effect)
+   • Reduced motion support
+   • Responsive media queries (phone → tablet → desktop → large)
+   • PWA / marketplace-ready (safe areas, touch targets, standalone mode)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COLOR THEMES — Light variants (default)
+   Each theme sets: accent, X/O colors, glows
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Classic (default) ── */
+:root,
+[data-theme='classic'] {
+  --bg: #667eea;
+  --bg-image: url('/backgrounds/matrix.png');
+  /* Layer Manager defaults (overridden by JS per theme) */
+  --layer-board-image-opacity: 0.9;
+  --layer-board-image-blend: normal;
+  --layer-board-image-visible: block;
+  --card-bg: #ffffff;
+  --card-shadow: rgba(0, 0, 0, 0.25);
+  --text-primary: #1a1a2e;
+  --text-secondary: #555;
+  --accent: #667eea;
+  --accent-glow: rgba(102, 126, 234, 0.4);
+  --cell-bg: #ffffff;
+  --cell-border: #d0d0d0;
+  --cell-hover-bg: #f0f4ff;
+  --board-bg: #e0e0e0;
+  --instructions-bg: #f0f4ff;
+  --x-color: #4a6cf7;
+  --o-color: #9b59b6;
+  --x-glow: rgba(74, 108, 247, 0.3);
+  --o-glow: rgba(155, 89, 182, 0.3);
+  --mark-stroke-width: 8;
+  --win-pulse-shadow: rgba(102, 126, 234, 0.6);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DARK MODE — System preference (fallback) + manual override
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* System-level dark preference (when data-mode is absent / 'system') */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-mode='light']) {
+    --card-bg: #1e2a3a;
+    --card-shadow: rgba(0, 0, 0, 0.5);
+    --text-primary: #e0e0e0;
+    --text-secondary: #aaa;
+    --cell-bg: #253347;
+    --cell-border: #3a4f6a;
+    --cell-hover-bg: #2e4460;
+    --board-bg: #152238;
+  }
+  /* Per-theme dark tweaks */
+  [data-theme='classic']:not([data-mode='light']),
+  :root:not([data-theme]):not([data-mode='light']) {
+    --bg: #1a1a2e;
+    --accent: #7b8cff;
+    --accent-glow: rgba(123, 140, 255, 0.35);
+    --instructions-bg: #253347;
+    --x-color: #6c8cff;
+    --o-color: #c084fc;
+    --x-glow: rgba(108, 140, 255, 0.35);
+    --o-glow: rgba(192, 132, 252, 0.35);
+    --win-pulse-shadow: rgba(123, 140, 255, 0.5);
+  }
+}
+
+/* Manual dark override (data-mode="dark") — regardless of system pref */
+[data-mode='dark'] {
+  --card-bg: #1e2a3a;
+  --card-shadow: rgba(0, 0, 0, 0.5);
+  --text-primary: #e0e0e0;
+  --text-secondary: #aaa;
+  --cell-bg: #253347;
+  --cell-border: #3a4f6a;
+  --cell-hover-bg: #2e4460;
+  --board-bg: #152238;
+}
+[data-mode='dark'][data-theme='classic'],
+[data-mode='dark']:not([data-theme]) {
+  --bg: #1a1a2e;
+  --accent: #7b8cff;
+  --accent-glow: rgba(123, 140, 255, 0.35);
+  --instructions-bg: #253347;
+  --x-color: #6c8cff;
+  --o-color: #c084fc;
+  --x-glow: rgba(108, 140, 255, 0.35);
+  --o-glow: rgba(192, 132, 252, 0.35);
+  --win-pulse-shadow: rgba(123, 140, 255, 0.5);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COLORBLIND-SAFE MARK COLORS
+   Override --x-color / --o-color with distinguishable pairs per condition.
+   Applied via data-colorblind attribute on <html>.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Protanopia (red-blind): blue vs orange */
+[data-colorblind='protanopia'] {
+  --x-color: #2563eb;
+  --o-color: #ea580c;
+  --x-glow: rgba(37, 99, 235, 0.3);
+  --o-glow: rgba(234, 88, 12, 0.3);
+}
+
+/* Deuteranopia (green-blind): blue vs orange-yellow */
+[data-colorblind='deuteranopia'] {
+  --x-color: #2563eb;
+  --o-color: #d97706;
+  --x-glow: rgba(37, 99, 235, 0.3);
+  --o-glow: rgba(217, 119, 6, 0.3);
+}
+
+/* Tritanopia (blue-blind): red vs cyan */
+[data-colorblind='tritanopia'] {
+  --x-color: #dc2626;
+  --o-color: #06b6d4;
+  --x-glow: rgba(220, 38, 38, 0.3);
+  --o-glow: rgba(6, 182, 212, 0.3);
+}
+
+/* Achromatopsia (total color blindness): high-contrast black vs gray */
+[data-colorblind='achromatopsia'] {
+  --x-color: #1a1a1a;
+  --o-color: #888888;
+  --x-glow: rgba(0, 0, 0, 0.2);
+  --o-glow: rgba(136, 136, 136, 0.2);
+}
+/* Dark-mode achromatopsia: invert for contrast */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-mode='light'])[data-colorblind='achromatopsia'] {
+    --x-color: #ffffff;
+    --o-color: #888888;
+    --x-glow: rgba(255, 255, 255, 0.2);
+  }
+}
+[data-mode='dark'][data-colorblind='achromatopsia'] {
+  --x-color: #ffffff;
+  --o-color: #888888;
+  --x-glow: rgba(255, 255, 255, 0.2);
+}
+
+/* ─── Reset ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  /* Prevent pull-to-refresh / rubber-banding in standalone PWA */
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  /* Minimal padding — safe areas only for notched devices */
+  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px)
+    env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+  min-height: 100%;
+  transition:
+    background-color 300ms ease,
+    color 300ms ease;
+  /* Prevent accidental text selection on UI chrome */
+  -webkit-user-select: none;
+  user-select: none;
+  /* Prevent callout / context menu on long-press (iOS) */
+  -webkit-touch-callout: none;
+}
+
+/* Block centering — no flex on body */
+#root {
+  width: 100%;
+  margin: 0 auto;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MEDIA QUERIES — Responsive Breakpoints
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Small phones (≤ 374px — iPhone SE, Galaxy S8) ─── */
+@media (max-width: 374px) {
+  body {
+    padding: 4px;
+  }
+}
+
+/* ─── Tablets portrait (600px – 899px) ─── */
+@media (min-width: 600px) and (max-width: 899px) {
+  :root {
+    --mark-stroke-width: 9;
+  }
+}
+
+/* ─── Tablets landscape & small desktops (900px – 1199px) ─── */
+@media (min-width: 900px) and (max-width: 1199px) {
+}
+
+/* ─── Desktops (1200px+) ─── */
+@media (min-width: 1200px) {
+  body {
+    padding: 32px;
+  }
+
+  :root {
+    --mark-stroke-width: 10;
+  }
+}
+
+/* ─── Landscape phones (short viewports) ─── */
+@media (max-height: 500px) and (orientation: landscape) {
+  body {
+    padding: 4px;
+  }
+}
+
+/* ─── High-DPI / Retina displays ─── */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  svg line,
+  svg circle {
+    shape-rendering: geometricPrecision;
+  }
+}
+
+/* ─── Print ─── */
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ACCESSIBILITY — Reduced Motion
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HIGH CONTRAST — forced-colors mode
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (forced-colors: active) {
+  button {
+    border: 2px solid ButtonText;
+  }
+
+  svg line {
+    stroke: LinkText;
+  }
+
+  svg circle {
+    stroke: VisitedText;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PWA STANDALONE MODE — Native-app feel when installed
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (display-mode: standalone) {
+  /* iOS standalone: account for status bar area */
+  body {
+    padding-top: max(env(safe-area-inset-top, 0px), 20px);
+  }
+}
+
+/* Also target iOS standalone specifically */
+@media (display-mode: standalone) and (max-width: 599px) {
+  body {
+    padding-bottom: max(env(safe-area-inset-bottom, 0px), 16px);
+  }
+}

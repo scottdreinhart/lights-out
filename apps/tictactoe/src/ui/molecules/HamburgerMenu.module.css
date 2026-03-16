@@ -1,0 +1,98 @@
+/**
+ * HamburgerMenu.module.css — Component-scoped styles
+ * 
+ * Scoped to HamburgerMenu component only.
+ * CSS Modules automatically generate unique class names to prevent collisions.
+ */
+
+.root {
+  position: relative;
+  display: inline-flex;
+}
+
+.button {
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  min-width: 48px;
+  min-height: 48px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color 200ms ease,
+    transform 200ms ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.button:hover {
+  background: var(--cell-hover-bg);
+  transform: scale(1.05);
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 20px;
+  height: 20px;
+}
+
+.line {
+  display: block;
+  height: 2.5px;
+  width: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition:
+    transform 300ms ease,
+    opacity 300ms ease;
+}
+
+/* Animate lines to X when open */
+.lineOpen:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.lineOpen:nth-child(2) {
+  opacity: 0;
+}
+
+.lineOpen:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* Menu panel dropdown — portaled to document.body, fixed position */
+.panel {
+  position: fixed;
+  z-index: 9999;
+  background: var(--card-bg);
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 8px 32px var(--card-shadow);
+  min-width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: panelEnter 250ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes panelEnter {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
