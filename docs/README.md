@@ -33,6 +33,7 @@ This folder contains active project documentation organized by topic.
 - [TicTacToe Readiness Matrix](monorepo/TICTACTOE-READINESS-MATRIX.md)
 - [PR1 TicTacToe Runbook](monorepo/PR1-TICTACTOE-RUNBOOK.md)
 - [TicTacToe Execution TODOs](monorepo/TICTACTOE-EXECUTION-TODOS.md)
+- [TicTacToe Code Merge Triage](monorepo/TICTACTOE-CODE-MERGE-TRIAGE.md)
 
 ## Linting & Quality
 
