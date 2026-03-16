@@ -31,6 +31,7 @@ This folder contains active project documentation organized by topic.
 - [Monorepo Absorption Queue](monorepo/MONOREPO-ABSORPTION-QUEUE.md)
 - [TicTacToe Execution PR Blueprint](monorepo/PR-BLUEPRINT-TICTACTOE.md)
 - [TicTacToe Readiness Matrix](monorepo/TICTACTOE-READINESS-MATRIX.md)
+- [PR1 TicTacToe Runbook](monorepo/PR1-TICTACTOE-RUNBOOK.md)
 
 ## Linting & Quality
 
