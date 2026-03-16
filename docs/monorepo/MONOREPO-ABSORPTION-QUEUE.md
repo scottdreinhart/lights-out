@@ -111,3 +111,39 @@ These provide the best early shared-package ROI for board logic, UI patterns, an
 - Current target: `tictactoe`
 - Current phase: script/reporting parity and platform build contract validation
 - Reference: `docs/monorepo/PR-BLUEPRINT-TICTACTOE.md`
+
+## TicTacToe Execution Checklist (PR1)
+
+### Phase 0 — Branch + Safety
+
+- [ ] Create migration branch and rollback tag
+- [ ] Freeze source repo changes during intake/copy
+
+### Phase 1 — Intake Audit
+
+- [ ] Script/dependency inventory completed
+- [ ] Electron/Capacitor routes validated
+- [ ] Reporting parity requirements captured
+
+### Phase 2 — Package Isolation
+
+- [ ] Source copied to `apps/tictactoe`
+- [ ] Package renamed to `@games/tictactoe`
+- [ ] App runs via filtered workspace commands
+
+### Phase 3 — Contract + Reporting
+
+- [ ] Full script contract implemented
+- [ ] Platform scripts for web/mobile/desktop implemented
+- [ ] Report scripts implemented and writing to `apps/tictactoe/reports/*`
+
+### Phase 4 — Verification + CI
+
+- [ ] `pnpm --filter @games/tictactoe validate` passes
+- [ ] CI matrix + report artifact upload configured
+- [ ] Merge gate checks all green
+
+### Phase 5 — Shared Code Improvement (Follow-up)
+
+- [ ] Low-risk shared modules extracted to `packages/*`
+- [ ] Cross-app refactor and coverage gains measured

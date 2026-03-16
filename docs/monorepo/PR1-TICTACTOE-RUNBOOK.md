@@ -1,5 +1,57 @@
 # PR1 Runbook — Execute `tictactoe` Absorption
 
+## Master TODO Queue
+
+### Phase 0 — Branch + Safety
+
+- [ ] Create branch: `feat/monorepo-absorb-tictactoe`
+- [ ] Tag rollback point on current monorepo main
+- [ ] Freeze source repo changes during copy window
+
+### Phase 1 — Intake Audit
+
+- [ ] Capture script/dependency inventory from source
+- [ ] Map Electron/Capacitor target paths
+- [ ] Map reporting outputs required for parity
+
+### Phase 2 — Package Isolation
+
+- [ ] Copy source into `apps/tictactoe` with exclusions
+- [ ] Set package identity to `@games/tictactoe`
+- [ ] Verify isolated app execution via `pnpm --filter`
+
+### Phase 3 — Script Contract Parity
+
+- [ ] Ensure `dev/build/preview/lint/typecheck/test/check/validate`
+- [ ] Add `web:build`, `cap:build:android`, `cap:build:ios`
+- [ ] Add all `report:*` scripts
+
+### Phase 4 — Reporting Parity
+
+- [ ] Create `apps/tictactoe/reports/*` folders
+- [ ] Verify each report script writes to expected location
+- [ ] Validate report artifact naming and consistency
+
+### Phase 5 — Build/Release Verification
+
+- [ ] Validate web build
+- [ ] Validate Linux desktop build path
+- [ ] Validate Windows desktop build route (PowerShell)
+- [ ] Validate macOS desktop/iOS route (macOS runner)
+- [ ] Validate Android sync/build path
+
+### Phase 6 — Shared Code Extraction (Controlled)
+
+- [ ] Identify duplicated low-risk modules (input/UI/domain helpers)
+- [ ] Extract to `packages/*` without boundary leaks
+- [ ] Replace app-local imports incrementally and re-validate
+
+### Phase 7 — CI + Merge Gate
+
+- [ ] Add `tictactoe` CI matrix entries and report artifact upload
+- [ ] Ensure `pnpm --filter @games/tictactoe validate` is green
+- [ ] Ensure platform contract + report parity + boundary checks pass
+
 ## Branch
 
 ```bash
