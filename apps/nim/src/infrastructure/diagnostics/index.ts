@@ -1,0 +1,1 @@
+export { crashLogger } from './crashLogger'

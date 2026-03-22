@@ -1,0 +1,30 @@
+/**
+ * SoundToggle.module.css — Component-scoped styles
+ * 
+ * Scoped to SoundToggle component only.
+ * CSS Modules automatically generate unique class names to prevent collisions.
+ */
+
+.root {
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 4px 10px;
+  min-width: 48px;
+  min-height: 48px;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    transform 200ms ease;
+  line-height: 1;
+}
+
+.root:hover {
+  background: var(--cell-hover-bg);
+  transform: scale(1.1);
+}
+
+.root:active {
+  transform: scale(0.95);
+}

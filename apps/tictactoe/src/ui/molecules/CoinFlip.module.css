@@ -1,0 +1,265 @@
+.container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  border-radius: inherit;
+  overflow: hidden;
+  animation: overlayEnter 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at top,
+      color-mix(in srgb, var(--accent) 12%, transparent) 0%,
+      transparent 44%
+    ),
+    rgba(0, 0, 0, 0.58);
+  backdrop-filter: blur(4px);
+  border-radius: inherit;
+  animation: backdropEnter 560ms ease both;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: min(100%, 360px);
+  padding: clamp(20px, 4vw, 28px);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 28px;
+  background: color-mix(in srgb, var(--surface) 84%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 12%, transparent),
+    0 24px 64px rgba(0, 0, 0, 0.4),
+    0 0 28px color-mix(in srgb, var(--accent) 12%, transparent);
+  backdrop-filter: blur(16px) saturate(1.1);
+  animation: panelEnter 620ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.title {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: 700;
+  margin: 0;
+  color: var(--accent);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hint {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  height: 1.25em;
+  text-align: center;
+}
+
+.coinWrapper {
+  perspective: 1000px;
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+  animation: coinDock 760ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+}
+
+.coinStatic {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.coinFlipping {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  animation: flipCoin 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+@keyframes flipCoin {
+  0% {
+    transform: rotateY(0deg) rotateX(5deg);
+  }
+  25% {
+    transform: rotateY(180deg) rotateX(15deg);
+  }
+  50% {
+    transform: rotateY(360deg) rotateX(5deg);
+  }
+  75% {
+    transform: rotateY(540deg) rotateX(15deg);
+  }
+  100% {
+    transform: rotateY(720deg) rotateX(5deg);
+  }
+}
+
+.coinFace,
+.coinBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 700;
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.coinFace {
+  background: #d4a017;
+  color: #7a5c00;
+  border: 3px solid rgba(255, 215, 0, 0.5);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(255, 255, 200, 0.5);
+}
+
+.coinBack {
+  background: #c8960c;
+  color: #7a5c00;
+  transform: rotateY(180deg);
+  border: 3px solid rgba(255, 215, 0, 0.5);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(255, 255, 200, 0.5);
+}
+
+.coinMark {
+  width: 60%;
+  height: 60%;
+}
+
+.coinMark line,
+.coinMark circle {
+  stroke: #5a3e00;
+  stroke-width: 10;
+  stroke-linecap: round;
+  fill: none;
+  filter: drop-shadow(0 1px 2px rgba(255, 255, 200, 0.4));
+  /* disable the draw-on animation on the coin */
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+  animation: none;
+}
+
+.result {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin: 0;
+  height: 1.5em;
+  animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
+}
+
+/* Reserve space for result text even before it appears */
+.resultPlaceholder {
+  height: 1.5em;
+  margin: 0;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes overlayEnter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes backdropEnter {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(4px);
+  }
+}
+
+@keyframes panelEnter {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes coinDock {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.88);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@media (max-height: 500px) {
+  .content {
+    gap: 0.5rem;
+    padding: 16px 18px;
+  }
+
+  .coinWrapper {
+    width: 80px;
+    height: 80px;
+  }
+
+  .coinFace,
+  .coinBack {
+    font-size: 2rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .result {
+    font-size: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .container,
+  .backdrop,
+  .content,
+  .coinWrapper,
+  .coinFlipping,
+  .result {
+    animation: none;
+  }
+}

@@ -1,0 +1,42 @@
+.card {
+  background: var(--color-surface, white);
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid var(--color-border, #e0e0e0);
+  transition: box-shadow 200ms ease;
+}
+
+.card.elevated {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card.elevated:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive padding */
+@media (max-width: 599px) {
+  .card {
+    padding: 0.75rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .card {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1800px) {
+  .card {
+    padding: 2rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .card {
+    background: var(--color-surface-dark, #1e1e1e);
+    border-color: var(--color-border-dark, #333);
+  }
+}

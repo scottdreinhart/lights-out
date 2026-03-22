@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <defs>
+    <style>
+      .light-on { fill: #ffd700; }
+      .light-off { fill: #333; }
+      .grid { stroke: #666; stroke-width: 2; fill: none; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="192" height="192" fill="#1a1a2e"/>
+  
+  <!-- Grid of lights -->
+  <g id="lights">
+    <!-- Row 1 -->
+    <circle cx="48" cy="48" r="20" class="light-on"/>
+    <circle cx="96" cy="48" r="20" class="light-off"/>
+    <circle cx="144" cy="48" r="20" class="light-on"/>
+    
+    <!-- Row 2 -->
+    <circle cx="48" cy="96" r="20" class="light-off"/>
+    <circle cx="96" cy="96" r="20" class="light-on"/>
+    <circle cx="144" cy="96" r="20" class="light-off"/>
+    
+    <!-- Row 3 -->
+    <circle cx="48" cy="144" r="20" class="light-on"/>
+    <circle cx="96" cy="144" r="20" class="light-on"/>
+    <circle cx="144" cy="144" r="20" class="light-off"/>
+  </g>
+  
+  <!-- Grid -->
+  <rect x="28" y="28" width="140" height="140" class="grid"/>
+  <line x1="28" y1="76" x2="168" y2="76" class="grid"/>
+  <line x1="28" y1="124" x2="168" y2="124" class="grid"/>
+  <line x1="76" y1="28" x2="76" y2="168" class="grid"/>
+  <line x1="124" y1="28" x2="124" y2="168" class="grid"/>
+</svg>

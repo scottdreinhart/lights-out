@@ -1,0 +1,5 @@
+
+> @games/monchola@1.0.0 lint /mnt/c/Users/scott/lights-out/apps/monchola
+> pnpm exec eslint src/
+
+ ELIFECYCLE  Command failed.

@@ -1,0 +1,79 @@
+.gameOver {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.1), rgba(102, 126, 234, 0.1));
+}
+.content {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+  border: 2px solid #4ade80;
+  border-radius: 16px;
+  padding: 3rem;
+  max-width: 600px;
+  width: 100%;
+}
+.title {
+  font-size: 2.5rem;
+  text-align: center;
+  color: #4ade80;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.winner {
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.2), rgba(34, 197, 94, 0.2));
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  border: 2px solid #4ade80;
+}
+.winnerBadge {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.winner h2 {
+  font-size: 2rem;
+  color: #4ade80;
+  margin-bottom: 0.5rem;
+}
+.leaderboard {
+  margin-bottom: 2rem;
+}
+.scoresList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.scoreRow {
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+.scoreRow.isWinner {
+  background: rgba(74, 222, 128, 0.2);
+  border-left-color: #4ade80;
+}
+.position {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #667eea;
+  text-align: center;
+}
+.playerName {
+  font-weight: 600;
+  color: #e0e0e0;
+}
+.finalScore {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffc800;
+  text-align: right;
+}

@@ -1,0 +1,171 @@
+/**
+ * ThemeSelector.module.css — Component-scoped styles
+ * 
+ * Scoped to ThemeSelector component only.
+ * CSS Modules automatically generate unique class names to prevent collisions.
+ */
+
+.root {
+  position: relative;
+}
+
+.toggle {
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 4px 10px;
+  min-width: 48px;
+  min-height: 48px;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    transform 200ms ease;
+  line-height: 1;
+}
+
+.toggle:hover {
+  background: var(--cell-hover-bg);
+  transform: scale(1.1);
+}
+
+.toggle:active {
+  transform: scale(0.95);
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  z-index: 100;
+  background: var(--card-bg);
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 8px 32px var(--card-shadow);
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* Default: right-aligned */
+  right: 0;
+  left: auto;
+}
+
+/* Left-aligned variant (when right would overflow) */
+.panelLeft {
+  composes: panel;
+  right: auto;
+  left: 0;
+}
+
+.section {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sectionLegend {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+/* Color theme swatches */
+.swatches {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.swatch {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 6px;
+  box-sizing: content-box;
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease;
+  /* 48px touch target via padding (36 + 6*2) */
+}
+
+.swatch:hover {
+  transform: scale(1.15);
+}
+
+.swatchActive {
+  border-color: var(--text-primary);
+  box-shadow:
+    0 0 0 2px var(--card-bg),
+    0 0 0 4px var(--text-primary);
+}
+
+/* Mode buttons */
+.modeGroup {
+  display: flex;
+  gap: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--cell-border);
+}
+
+.modeBtn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 12px 8px;
+  min-height: 48px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: background-color 200ms ease;
+}
+
+.modeBtn:hover:not(.modeActive) {
+  background: var(--cell-hover-bg);
+}
+
+.modeActive {
+  background: var(--accent);
+  color: #fff;
+  cursor: default;
+}
+
+/* Colorblind buttons */
+.colorblindGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.colorblindBtn {
+  background: transparent;
+  border: 1px solid var(--cell-border);
+  border-radius: 4px;
+  padding: 12px 12px;
+  min-height: 48px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease;
+}
+
+.colorblindBtn:hover:not(.colorblindActive) {
+  background: var(--cell-hover-bg);
+}
+
+.colorblindActive {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  cursor: default;
+}

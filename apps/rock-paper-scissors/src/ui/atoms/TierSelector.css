@@ -1,0 +1,99 @@
+.tier-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: rgba(26, 26, 46, 0.5);
+  border-radius: 12px;
+  border: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+.tier-selector h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.tier-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.25rem 1rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-radius: 8px;
+  color: #e0e0e0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-height: 120px;
+}
+
+.tier-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+  border-color: rgba(102, 126, 234, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.tier-button.selected {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+  border-color: #667eea;
+  box-shadow:
+    0 0 20px rgba(102, 126, 234, 0.5),
+    inset 0 0 10px rgba(102, 126, 234, 0.2);
+}
+
+.tier-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tier-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #667eea;
+}
+
+.tier-description {
+  font-size: 0.8rem;
+  color: #a0a0c0;
+}
+
+@media (max-width: 600px) {
+  .tier-selector {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .tier-grid {
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .tier-button {
+    padding: 1rem 0.75rem;
+    min-height: 100px;
+    gap: 0.25rem;
+  }
+
+  .tier-label {
+    font-size: 0.85rem;
+  }
+
+  .tier-description {
+    font-size: 0.7rem;
+  }
+}

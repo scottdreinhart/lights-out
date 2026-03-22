@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#4e342e"/>
+  <rect x="96" y="200" width="320" height="120" rx="12" fill="#795548"/>
+  <g font-family="system-ui,sans-serif" font-size="36" font-weight="700" text-anchor="middle">
+    <text x="140" y="275" fill="#fff">1</text><text x="185" y="275" fill="#fff">2</text><text x="230" y="275" fill="#fff">3</text><text x="275" y="275" fill="#d7ccc8">4</text><text x="320" y="275" fill="#fff">5</text><text x="365" y="275" fill="#d7ccc8">6</text>
+  </g>
+  <line x1="260" y1="200" x2="260" y2="210" stroke="#4e342e" stroke-width="3"/>
+  <line x1="305" y1="200" x2="305" y2="210" stroke="#4e342e" stroke-width="3"/>
+  <text x="256" y="170" text-anchor="middle" font-family="system-ui,sans-serif" font-size="36" font-weight="700" fill="white" letter-spacing="2">SHUT THE BOX</text>
+</svg>

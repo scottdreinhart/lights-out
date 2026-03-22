@@ -1,0 +1,93 @@
+.gameBoard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--wood-grain);
+  border-radius: 24px;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.5),
+    inset 0 0 40px rgba(0, 0, 0, 0.8);
+  border: 12px solid #3d2518;
+}
+
+.playingSurface {
+  background: var(--felt-green);
+  border-radius: 12px;
+  padding: 2rem;
+  min-height: 450px;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.tileBridge {
+  width: 100%;
+  background: #3d2518;
+  padding: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 1rem;
+  z-index: 10;
+}
+
+.playingSurface::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.currentPlayer {
+  text-align: center;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  border-radius: 50px;
+  border-bottom: 2px solid var(--gold-accent);
+  margin-bottom: 0.5rem;
+  color: var(--gold-accent);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.instruction {
+  text-align: center;
+  font-size: 1.1rem;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: 1rem;
+}
+@media (max-width: 640px) {
+  .gameBoard {
+    gap: 1rem;
+  }
+  .actions {
+    flex-direction: column;
+  }
+}

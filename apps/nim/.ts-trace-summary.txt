@@ -1,0 +1,38 @@
+48793.51ms	176	findSourceFile
+9433.02ms	1	processRootFiles
+6204.46ms	59	resolveModuleNamesWorker
+374.03ms	89	checkExpression
+332.13ms	55	checkDeferredNode
+164.22ms	1	processTypeReferenceDirective
+144.58ms	15	structuredTypeRelatedTo
+125.88ms	1	resolveTypeReferenceDirectiveNamesWorker
+82.40ms	15	checkVariableDeclaration
+48.80ms	15	resolveLibrary
+2.27ms	2	getVariancesWorker
+
+Top check-related events:
+27.17ms	checkExpression
+22.61ms	checkExpression
+21.88ms	checkDeferredNode
+21.07ms	checkDeferredNode
+19.95ms	checkDeferredNode
+18.95ms	checkDeferredNode
+18.38ms	checkExpression
+18.18ms	checkExpression
+17.52ms	checkDeferredNode
+16.28ms	checkDeferredNode
+15.96ms	checkVariableDeclaration
+15.52ms	checkDeferredNode
+14.31ms	checkVariableDeclaration
+14.31ms	checkExpression
+13.41ms	checkExpression
+12.83ms	checkExpression
+12.15ms	checkVariableDeclaration
+11.52ms	checkExpression
+11.14ms	checkExpression
+10.61ms	checkExpression
+10.57ms	checkDeferredNode
+10.52ms	checkDeferredNode
+10.26ms	checkExpression
+10.17ms	checkExpression
+10.15ms	checkDeferredNode

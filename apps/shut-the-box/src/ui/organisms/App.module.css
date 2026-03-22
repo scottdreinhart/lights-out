@@ -1,0 +1,204 @@
+.app {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* ── Splash Screen Animations ────────────────────────────── */
+@keyframes splashFloat {
+  0% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes splashGlow {
+  0% {
+    box-shadow:
+      0 0 10px rgba(253, 171, 41, 0.4),
+      0 0 30px rgba(253, 171, 41, 0.2),
+      inset 0 0 20px rgba(253, 171, 41, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 20px rgba(253, 171, 41, 0.8),
+      0 0 40px rgba(245, 127, 23, 0.4),
+      inset 0 0 30px rgba(253, 171, 41, 0.2);
+  }
+  100% {
+    box-shadow:
+      0 0 10px rgba(253, 171, 41, 0.4),
+      0 0 30px rgba(253, 171, 41, 0.2),
+      inset 0 0 20px rgba(253, 171, 41, 0.1);
+  }
+}
+
+@keyframes shimmerGrid {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes loadingDot {
+  0%,
+  20% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  80%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes landingRise {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes landingFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ── Splash Screen Styles ────────────────────────────────── */
+.stb-splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #1a1613 0%, #2d2219 42%, #1a1613 100%);
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.stb-splash__orb {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(253, 171, 41, 0.8), rgba(245, 127, 23, 0.4) 50%, transparent);
+  filter: blur(40px);
+  animation: splashGlow 3s ease-in-out infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.stb-splash__grid {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(253, 171, 41, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(253, 171, 41, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: shimmerGrid 6s linear infinite alternate;
+  opacity: 0.3;
+}
+
+.stb-splash__content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+.stb-splash__badge {
+  width: clamp(80px, 15vw, 120px);
+  height: clamp(80px, 15vw, 120px);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: splashFloat 2s ease-in-out infinite;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stb-splash__emoji {
+  font-size: clamp(40px, 8vw, 60px);
+}
+
+.stb-splash__eyebrow {
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(253, 171, 41, 0.8);
+  font-weight: 600;
+  margin: 0;
+}
+
+.stb-splash__title {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(180deg, #ffffff 0%, #fdd5ab 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -1px;
+}
+
+.stb-splash__subtitle {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 300px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.stb-splash__loading {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: clamp(0.5rem, 2vw, 1rem);
+}
+
+.stb-splash__dot {
+  width: clamp(6px, 1.5vw, 10px);
+  height: clamp(6px, 1.5vw, 10px);
+  border-radius: 50%;
+  background: rgba(253, 171, 41, 0.8);
+  animation: loadingDot 1.4s ease-in-out infinite;
+}
+
+.stb-splash__dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.stb-splash__dot:nth-child(3) {
+  animation-delay: 0.4s;
+}

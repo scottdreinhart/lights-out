@@ -1,0 +1,31 @@
+
+> nim-game@1.0.0 perf:ts:diag /mnt/c/Users/scott/nim
+> pnpm exec tsc --noEmit --extendedDiagnostics
+
+Files:                         187
+Lines of Library:            49896
+Lines of Definitions:        37378
+Lines of TypeScript:          5774
+Lines of JavaScript:             0
+Lines of JSON:                   0
+Lines of Other:                  0
+Identifiers:                 80337
+Symbols:                     71262
+Types:                       10548
+Instantiations:              11312
+Memory used:               115727K
+Assignability cache size:     3333
+Identity cache size:           410
+Subtype cache size:            206
+Strict subtype cache size:     100
+I/O Read time:               1.35s
+Parse time:                  0.20s
+ResolveModule time:          5.14s
+ResolveTypeReference time:   0.16s
+ResolveLibrary time:         0.19s
+Program time:                7.72s
+Bind time:                   0.09s
+Check time:                  0.52s
+printTime time:              0.00s
+Emit time:                   0.00s
+Total time:                  8.34s

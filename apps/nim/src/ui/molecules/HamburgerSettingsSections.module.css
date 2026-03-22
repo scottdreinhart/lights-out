@@ -1,0 +1,128 @@
+.hamburgerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hamburgerSectionTitle {
+  margin: 0;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--theme-fg);
+  opacity: 0.75;
+}
+
+.hamburgerPilesRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.hamburgerPileInput {
+  width: 100%;
+  border: 1px solid var(--theme-accent);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--theme-bg) 82%, transparent);
+  color: var(--theme-fg);
+  padding: 0.5rem 0.6rem;
+  font-size: 0.95rem;
+}
+
+.hamburgerPresetRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.hamburgerPresetBtn {
+  border: 1px solid var(--theme-accent);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--theme-fg);
+  padding: 0.35rem 0.7rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.hamburgerPresetBtnActive {
+  background: var(--theme-accent);
+  color: var(--theme-bg);
+  font-weight: 700;
+}
+
+.hamburgerLocaleRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+}
+
+.hamburgerLocaleBtn {
+  border: none;
+  background: transparent;
+  color: var(--theme-fg);
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  min-height: 48px;
+  border-radius: 0;
+}
+
+.hamburgerLocaleBtnActive {
+  transform: scale(1.03);
+}
+
+.hamburgerLocaleFlagPair {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: 0;
+}
+
+.hamburgerFlagIcon {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  max-width: 48px;
+  max-height: 48px;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none;
+  outline: none;
+  vertical-align: top;
+  border-radius: 2px;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px transparent;
+  transition: box-shadow 140ms ease, transform 140ms ease;
+}
+
+.hamburgerLocaleBtnActive .hamburgerFlagIcon {
+  box-shadow: 0 0 0 2px var(--theme-accent);
+}
+
+.hamburgerLocaleBtn:hover .hamburgerFlagIcon {
+  transform: translateY(-1px);
+}
+
+.hamburgerLocaleBtn:focus-visible .hamburgerFlagIcon {
+  box-shadow: 0 0 0 2px var(--theme-accent);
+}
+
+@media (pointer: coarse) {
+  .hamburgerPresetBtn:hover,
+  .hamburgerLocaleBtn:hover,
+  .hamburgerLocaleBtn:hover .hamburgerFlagIcon {
+    transform: none;
+  }
+}

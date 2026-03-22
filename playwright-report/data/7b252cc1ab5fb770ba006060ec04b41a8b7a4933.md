@@ -1,0 +1,50 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - heading "Lights Out" [level=1] [ref=e5]
+    - button "Open menu" [ref=e7] [cursor=pointer]
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - button "Cell 0, 0 - off" [ref=e14] [cursor=pointer]
+        - button "Cell 0, 1 - off" [ref=e15] [cursor=pointer]
+        - button "Cell 0, 2 - off" [ref=e16] [cursor=pointer]
+        - button "Cell 0, 3 - off" [ref=e17] [cursor=pointer]
+        - button "Cell 0, 4 - off" [ref=e18] [cursor=pointer]
+      - generic [ref=e19]:
+        - button "Cell 1, 0 - off" [ref=e20] [cursor=pointer]
+        - button "Cell 1, 1 - on" [ref=e21] [cursor=pointer]
+        - button "Cell 1, 2 - off" [ref=e22] [cursor=pointer]
+        - button "Cell 1, 3 - off" [ref=e23] [cursor=pointer]
+        - button "Cell 1, 4 - on" [ref=e24] [cursor=pointer]
+      - generic [ref=e25]:
+        - button "Cell 2, 0 - on" [ref=e26] [cursor=pointer]
+        - button "Cell 2, 1 - off" [ref=e27] [cursor=pointer]
+        - button "Cell 2, 2 - on" [ref=e28] [cursor=pointer]
+        - button "Cell 2, 3 - on" [ref=e29] [cursor=pointer]
+        - button "Cell 2, 4 - off" [ref=e30] [cursor=pointer]
+      - generic [ref=e31]:
+        - button "Cell 3, 0 - off" [ref=e32] [cursor=pointer]
+        - button "Cell 3, 1 - off" [ref=e33] [cursor=pointer]
+        - button "Cell 3, 2 - off" [ref=e34] [cursor=pointer]
+        - button "Cell 3, 3 - on" [ref=e35] [cursor=pointer]
+        - button "Cell 3, 4 - off" [ref=e36] [cursor=pointer]
+      - generic [ref=e37]:
+        - button "Cell 4, 0 - off" [ref=e38] [cursor=pointer]
+        - button "Cell 4, 1 - on" [ref=e39] [cursor=pointer]
+        - button "Cell 4, 2 - on" [ref=e40] [cursor=pointer]
+        - button "Cell 4, 3 - off" [ref=e41] [cursor=pointer]
+        - button "Cell 4, 4 - off" [ref=e42] [cursor=pointer]
+    - generic [ref=e43]:
+      - generic [ref=e44]:
+        - generic [ref=e45]: Moves
+        - generic [ref=e46]: "0"
+      - generic [ref=e47]:
+        - generic [ref=e48]: Wins
+        - generic [ref=e49]: "0"
+    - button "New Game" [ref=e50] [cursor=pointer]
+  - contentinfo [ref=e51]:
+    - paragraph [ref=e52]: "Rules: Click a light to toggle it and its 4 neighbors (up, down, left, right)."
+```

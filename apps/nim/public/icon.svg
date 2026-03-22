@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#1a237e"/>
+  <g transform="translate(256 280)">
+    <!-- Bottom coin -->
+    <ellipse cx="0" cy="40" rx="80" ry="18" fill="#ffc107" stroke="#ff8f00" stroke-width="2"/>
+    <ellipse cx="0" cy="36" rx="80" ry="18" fill="#ffd54f"/>
+    <!-- Middle coin -->
+    <ellipse cx="0" cy="4" rx="80" ry="18" fill="#ffc107" stroke="#ff8f00" stroke-width="2"/>
+    <ellipse cx="0" cy="0" rx="80" ry="18" fill="#ffd54f"/>
+    <!-- Top coin -->
+    <ellipse cx="0" cy="-32" rx="80" ry="18" fill="#ffc107" stroke="#ff8f00" stroke-width="2"/>
+    <ellipse cx="0" cy="-36" rx="80" ry="18" fill="#ffd54f"/>
+    <!-- Shine -->
+    <ellipse cx="-20" cy="-40" rx="30" ry="6" fill="rgba(255,255,255,0.3)"/>
+  </g>
+  <text x="256" y="170" text-anchor="middle" font-family="system-ui,sans-serif" font-size="72" font-weight="700" fill="white" letter-spacing="8">NIM</text>
+</svg>

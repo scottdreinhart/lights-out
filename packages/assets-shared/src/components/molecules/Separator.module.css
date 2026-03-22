@@ -1,0 +1,36 @@
+.separator {
+  margin: 1rem 0;
+  border: none;
+  background: var(--color-border, #e0e0e0);
+  height: 1px;
+}
+
+.line {
+  height: 1px;
+  background: var(--color-border, #e0e0e0);
+}
+
+.space {
+  height: 0.5rem;
+  background: transparent;
+}
+
+/* Responsive margins */
+@media (max-width: 599px) {
+  .separator {
+    margin: 0.75rem 0;
+  }
+}
+
+@media (min-width: 1800px) {
+  .separator {
+    margin: 1.5rem 0;
+  }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .line {
+    background: var(--color-border-dark, #333);
+  }
+}

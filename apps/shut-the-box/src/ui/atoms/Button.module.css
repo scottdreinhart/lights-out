@@ -1,0 +1,39 @@
+.button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.primary {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+}
+.primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+.secondary {
+  background: rgba(102, 126, 234, 0.2);
+  color: #667eea;
+  border: 2px solid #667eea;
+}
+.danger {
+  background: #ef4444;
+  color: white;
+}
+.success {
+  background: #4ade80;
+  color: white;
+}
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.fullWidth {
+  width: 100%;
+}

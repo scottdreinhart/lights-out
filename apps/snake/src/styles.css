@@ -1,0 +1,87 @@
+/* ─── Theme imports ──────────────────────────────────────── */
+@import '@games/assets-shared/themes/chiba-city.css';
+@import './themes/neon-core.css';
+@import '@games/assets-shared/themes/neon-arcade.css';
+@import '@games/assets-shared/themes/night-district.css';
+@import '@games/assets-shared/themes/gridline.css';
+@import '@games/assets-shared/themes/vaporwave.css';
+@import '@games/assets-shared/themes/synthwave.css';
+@import '@games/assets-shared/themes/high-contrast.css';
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #1a1a2e;
+  --fg: #e0e0e0;
+  --accent: #667eea;
+  --board-bg: #111;
+  --board-grid: rgba(255, 255, 255, 0.04);
+  --board-wall: rgba(255, 255, 255, 0.15);
+  --player-head: #00ff88;
+  --player-body: #00cc66;
+  --player-trail: rgba(0, 255, 136, 0.25);
+  --ai-head: #ff4488;
+  --ai-body: #cc3366;
+  --ai-trail: rgba(255, 68, 136, 0.25);
+  --pickup-food: #ffcc00;
+  --pickup-shield: #00bbff;
+  --pickup-phase: #aa66ff;
+  --pickup-boost: #ff6600;
+  --dead-player: #555;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  padding: 1rem;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.game-container canvas {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+}
+
+/* Focus styles for accessibility */
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

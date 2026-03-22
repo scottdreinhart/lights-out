@@ -1,0 +1,62 @@
+/**
+ * DifficultyToggle.module.css — Component-scoped styles
+ * 
+ * Scoped to DifficultyToggle component only.
+ * CSS Modules automatically generate unique class names to prevent collisions.
+ */
+
+.root {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.option {
+  background: var(--theme-card);
+  color: var(--theme-bg);
+  border: none;
+  border-right: 1px solid rgba(128, 128, 128, 0.3);
+  padding: 12px 20px;
+  min-height: 48px;
+  font-size: clamp(0.75rem, 2vw, 0.85rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+  letter-spacing: 0.02em;
+}
+
+.option:hover:not(.active) {
+  background: var(--cell-hover-bg);
+}
+
+.option:last-child {
+  border-right: none;
+}
+
+.easy {
+  border-radius: 8px 0 0 8px;
+  background: color-mix(in srgb, var(--theme-accent) 25%, var(--theme-bg));
+}
+
+.medium {
+  border-radius: 0;
+  background: color-mix(in srgb, var(--theme-accent) 50%, var(--theme-bg));
+}
+
+.hard {
+  border-radius: 0 8px 8px 0;
+  background: color-mix(in srgb, var(--theme-accent) 78%, var(--theme-bg));
+}
+
+.active {
+  box-shadow:
+    inset 0 0 0 2px color-mix(in srgb, var(--theme-fg) 35%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--theme-accent) 70%, var(--theme-bg));
+  filter: brightness(1.08);
+  cursor: default;
+}

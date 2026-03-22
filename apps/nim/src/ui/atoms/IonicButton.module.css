@@ -1,0 +1,46 @@
+/**
+ * IonicButton styles — minimal overrides for Ionic button theming
+ */
+
+.button {
+  /* Inherit theme colors from Ionic CSS variables */
+  --ion-color-primary: var(--color-primary, #0066cc);
+  --ion-color-secondary: var(--color-secondary, #00cc66);
+  --ion-color-danger: var(--color-danger, #ff0000);
+
+  /* Touch feedback on mobile */
+  @media (pointer: coarse) {
+    &:active {
+      opacity: 0.8;
+      transform: scale(0.98);
+    }
+  }
+
+  /* Hover on desktop */
+  @media (pointer: fine) {
+    &:hover:not(:disabled) {
+      transform: translateY(-1px);
+      opacity: 0.9;
+    }
+  }
+
+  /* Font sizing responsive to content density */
+  font-weight: 500;
+  letter-spacing: 0.5px;
+
+  /* Transition for hover/active states */
+  transition: all 200ms ease-out;
+
+  /* Min height for touch accessibility */
+  min-height: 44px;
+}
+
+/* Loading state spinner */
+.loading {
+  opacity: 0.6;
+  cursor: not-allowed;
+
+  ion-spinner {
+    margin-right: 0.5rem;
+  }
+}

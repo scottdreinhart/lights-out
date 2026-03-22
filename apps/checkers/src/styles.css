@@ -1,0 +1,212 @@
+:root {
+  color-scheme: dark;
+  font-family: 'Trebuchet MS', 'Gill Sans', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --text: #f5f0e6;
+  --muted: rgba(245, 240, 230, 0.72);
+  --accent: #c96f3b;
+  --accent-strong: #dd9658;
+  --page-top: #1c2a24;
+  --page-bottom: #0f1613;
+  --board-light: #e5d5bb;
+  --board-dark: #6f4d35;
+  --piece-red: #d56949;
+  --piece-red-edge: #8c311d;
+  --piece-black: #243131;
+  --piece-black-edge: #0f1717;
+}
+
+:root[data-theme='chiba-city'] {
+  --accent: #c96f3b;
+  --accent-strong: #dd9658;
+  --page-top: #1c2a24;
+  --page-bottom: #0f1613;
+  --board-light: #e5d5bb;
+  --board-dark: #6f4d35;
+}
+
+:root[data-theme='neon-core'] {
+  --accent: #976c2e;
+  --accent-strong: #c99d58;
+  --page-top: #231b15;
+  --page-bottom: #0f0a08;
+  --board-light: #efe3ca;
+  --board-dark: #6a4730;
+}
+
+:root[data-theme='neon-arcade'] {
+  --accent: #2ea3b0;
+  --accent-strong: #63d4de;
+  --page-top: #10252b;
+  --page-bottom: #071217;
+  --board-light: #d8ebf2;
+  --board-dark: #365f72;
+}
+
+:root[data-theme='night-district'] {
+  --accent: #d96845;
+  --accent-strong: #f0af52;
+  --page-top: #34151c;
+  --page-bottom: #130a10;
+  --board-light: #f3d6b7;
+  --board-dark: #8c4f3a;
+}
+
+:root[data-theme='gridline'] {
+  --accent: #7ba05b;
+  --accent-strong: #bad276;
+  --page-top: #152419;
+  --page-bottom: #091109;
+  --board-light: #d9dfc5;
+  --board-dark: #486143;
+}
+
+:root[data-theme='vaporwave'] {
+  --accent: #c86d85;
+  --accent-strong: #e4a0b2;
+  --page-top: #2e1720;
+  --page-bottom: #11090d;
+  --board-light: #f5dde2;
+  --board-dark: #835160;
+}
+
+:root[data-theme='synthwave'] {
+  --accent: #7db4ff;
+  --accent-strong: #b8d6ff;
+  --page-top: #10192d;
+  --page-bottom: #050913;
+  --board-light: #cbd6ea;
+  --board-dark: #30415e;
+}
+
+:root[data-theme='high-contrast'] {
+  --text: #ffffff;
+  --muted: rgba(255, 255, 255, 0.82);
+  --accent: #ffd84d;
+  --accent-strong: #fff5ae;
+  --page-top: #000000;
+  --page-bottom: #000000;
+  --board-light: #ffffff;
+  --board-dark: #111111;
+  --piece-red: #ff4d4d;
+  --piece-red-edge: #b30000;
+  --piece-black: #171717;
+  --piece-black-edge: #000000;
+}
+
+:root[data-colorblind='protanopia'],
+:root[data-colorblind='deuteranopia'] {
+  --piece-red: #f3b43f;
+  --piece-red-edge: #9a6b12;
+  --piece-black: #356fb4;
+  --piece-black-edge: #17385f;
+}
+
+:root[data-colorblind='tritanopia'] {
+  --piece-red: #cf6b79;
+  --piece-red-edge: #7e3340;
+  --piece-black: #3d8b57;
+  --piece-black-edge: #21472d;
+}
+
+:root[data-colorblind='achromatopsia'] {
+  --piece-red: #d0d0d0;
+  --piece-red-edge: #787878;
+  --piece-black: #4a4a4a;
+  --piece-black-edge: #111111;
+}
+
+:root[data-mode='light'] {
+  color-scheme: light;
+}
+
+:root[data-mode='dark'] {
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 34%),
+    linear-gradient(180deg, var(--page-top), var(--page-bottom));
+}
+
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: auto;
+  pointer-events: none;
+  filter: blur(18px);
+  opacity: 0.42;
+}
+
+body::before {
+  top: 4%;
+  left: 6%;
+  width: 280px;
+  height: 280px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+body::after {
+  right: 4%;
+  bottom: 6%;
+  width: 340px;
+  height: 340px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 26%, transparent);
+}
+
+a {
+  color: inherit;
+}
+
+button,
+select,
+input,
+textarea {
+  font: inherit;
+}
+
+button,
+select {
+  color: inherit;
+}
+
+button:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.84);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

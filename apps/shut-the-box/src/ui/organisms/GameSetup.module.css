@@ -1,0 +1,95 @@
+.setup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+.container {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  border: 2px solid #667eea;
+  border-radius: 16px;
+  padding: 3rem;
+  max-width: 500px;
+  width: 100%;
+}
+.container h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.subtitle {
+  text-align: center;
+  color: #999;
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+}
+.section {
+  margin-bottom: 2.5rem;
+}
+.section h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #e0e0e0;
+}
+.playerCount {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+.countButton {
+  width: 60px;
+  height: 60px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: 2px solid #667eea;
+  border-radius: 8px;
+  background: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.countButton:hover {
+  background: rgba(102, 126, 234, 0.2);
+}
+.countButton.active {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border-color: #764ba2;
+  box-shadow: 0 0 15px rgba(102, 126, 234, 0.5);
+}
+.playerNames {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.nameInput {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #667eea;
+  border-radius: 8px;
+  background: rgba(102, 126, 234, 0.1);
+  color: #e0e0e0;
+  transition: all 0.2s ease;
+}
+.nameInput:focus {
+  outline: none;
+  border-color: #764ba2;
+  background: rgba(118, 75, 162, 0.2);
+  box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+}
+.startButton {
+  margin-top: 1rem;
+}
+@media (max-width: 640px) {
+  .container {
+    padding: 2rem;
+  }
+  .container h1 {
+    font-size: 2rem;
+  }
+}

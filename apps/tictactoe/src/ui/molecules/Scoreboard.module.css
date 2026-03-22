@@ -1,0 +1,197 @@
+/**
+ * Scoreboard.module.css — Component-scoped styles
+ *
+ * Persistent score display between title and game board.
+ * Uses theme CSS custom properties for X/O colors.
+ */
+
+.root {
+  width: 100%;
+  max-width: var(--board-size);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 0;
+}
+
+.scoreRow {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--card-bg) 60%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    background-color 250ms ease,
+    box-shadow 250ms ease;
+  flex: 1;
+  justify-content: center;
+  min-height: 52px;
+}
+
+.activePlayer {
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.label {
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* SVG mark icons in score cards */
+.markIcon {
+  width: clamp(22px, 5vw, 30px);
+  height: clamp(22px, 5vw, 30px);
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.markX line {
+  stroke: color-mix(in srgb, var(--x-color) 50%, white);
+  stroke-width: 14;
+}
+
+.markX {
+  filter: drop-shadow(0 0 4px var(--x-color)) drop-shadow(0 0 8px var(--x-glow));
+}
+
+.markO circle {
+  stroke: color-mix(in srgb, var(--o-color) 50%, white);
+  stroke-width: 14;
+}
+
+.markO {
+  filter: drop-shadow(0 0 4px var(--o-color)) drop-shadow(0 0 8px var(--o-glow));
+}
+
+.playerX .label {
+  color: var(--x-color);
+}
+
+.playerO .label {
+  color: var(--o-color);
+}
+
+.value {
+  font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  min-width: 1.2em;
+  text-align: center;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  line-height: 1;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--card-bg) 60%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  flex: 1;
+  min-height: 52px;
+}
+
+.draws {
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.drawsLabel {
+  font-size: clamp(0.55rem, 1.5vw, 0.65rem);
+  color: var(--text-secondary);
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.turnIndicator {
+  font-size: clamp(0.65rem, 1.8vw, 0.75rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  animation: turnPulse 2s ease-in-out infinite;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.turnX {
+  color: var(--x-color);
+}
+
+.turnO {
+  color: var(--o-color);
+}
+
+@keyframes turnPulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.seriesInfo {
+  font-size: clamp(0.6rem, 1.6vw, 0.7rem);
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+
+.seriesResult {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.seriesWonText {
+  font-size: clamp(0.65rem, 1.8vw, 0.75rem);
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.newSeriesBtn {
+  font-size: clamp(0.6rem, 1.5vw, 0.7rem);
+  padding: 4px 10px;
+  min-height: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  font-weight: 600;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.newSeriesBtn:hover {
+  background: var(--accent);
+  color: #fff;
+}

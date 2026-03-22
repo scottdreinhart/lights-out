@@ -1,0 +1,98 @@
+/**
+ * GameOutcomeOverlay.module.css — Component-scoped styles
+ *
+ * Large animated outcome text with a scale-in / hold / fade-out lifecycle.
+ * Duration: ~3 seconds total (enter 20%, hold 55%, exit 25%).
+ */
+
+.root {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 11;
+  pointer-events: none;
+  animation: outcomeLifecycle 3s ease-in-out forwards;
+}
+
+.text {
+  font-size: clamp(4rem, 20vw, 7rem);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  -webkit-text-stroke: 3px rgba(0, 0, 0, 0.9);
+  paint-order: stroke fill;
+}
+
+/* Win — golden neon glow */
+.win .text {
+  color: #fbbf24;
+  -webkit-text-stroke: 3px rgba(0, 0, 0, 0.9);
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000,
+    0 0 20px rgba(251, 191, 36, 0.8),
+    0 0 40px rgba(251, 191, 36, 0.5),
+    0 0 60px rgba(251, 191, 36, 0.3);
+}
+
+/* Loss — theme O-color neon glow */
+.loss .text {
+  color: var(--o-color);
+  -webkit-text-stroke: 3px rgba(0, 0, 0, 0.9);
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000,
+    0 0 10px var(--o-glow),
+    0 0 25px var(--o-glow),
+    0 0 50px var(--o-glow),
+    0 0 80px color-mix(in srgb, var(--o-color) 40%, transparent);
+}
+
+/* Draw — bright theme-accent neon glow */
+.draw .text {
+  color: var(--accent);
+  -webkit-text-stroke: 3px rgba(0, 0, 0, 0.9);
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000,
+    0 0 10px var(--accent-glow),
+    0 0 25px var(--accent-glow),
+    0 0 50px var(--accent-glow),
+    0 0 80px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+@keyframes outcomeLifecycle {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(-8deg);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1.1) rotate(2deg);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(0.95) rotate(-1deg);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.85) translateY(-15px);
+  }
+}

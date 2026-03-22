@@ -1,0 +1,20 @@
+monchola:web:lint|0|(no output)
+monchola:web:typecheck|0|(no output)
+monchola:web:lint|0|(no output)
+monchola:web:typecheck|0|(no output)
+monchola:web:check|1| ELIFECYCLE  Command failed with exit code 1.
+monchola:web:build|0|✓ built in 2.27s
+monchola:wasm:build|0|✓ WASM AI engine: 25 bytes (0.0 KB) → src/wasm/ai-wasm.ts
+monchola:check:input|0|Input controls check passed (0 violations).
+monchola:web:check|1| ELIFECYCLE  Command failed with exit code 1.
+monchola:web:build|0|✓ built in 2.13s
+monchola:wasm:build|0|✓ WASM AI engine: 25 bytes (0.0 KB) → src/wasm/ai-wasm.ts
+monchola:check:input|0|Input controls check passed (0 violations).
+mancala:web:lint|0|(no output)
+mancala:web:typecheck|0|(no output)
+mancala:web:lint|0|(no output)
+mancala:web:typecheck|0|(no output)
+mancala:web:check|1| ELIFECYCLE  Command failed with exit code 1.
+mancala:web:build|0|✓ built in 1.96s
+mancala:web:check|1| ELIFECYCLE  Command failed with exit code 1.
+mancala:web:build|0|✓ built in 1.60s

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#3e2723"/>
+  <g transform="translate(136,200)">
+    <rect width="60" height="60" fill="#d7ccc8"/><rect x="60" width="60" height="60" fill="#5d4037"/><rect x="120" width="60" height="60" fill="#d7ccc8"/><rect x="180" width="60" height="60" fill="#5d4037"/>
+    <rect y="60" width="60" height="60" fill="#5d4037"/><rect x="60" y="60" width="60" height="60" fill="#d7ccc8"/><rect x="120" y="60" width="60" height="60" fill="#5d4037"/><rect x="180" y="60" width="60" height="60" fill="#d7ccc8"/>
+    <rect y="120" width="60" height="60" fill="#d7ccc8"/><rect x="60" y="120" width="60" height="60" fill="#5d4037"/><rect x="120" y="120" width="60" height="60" fill="#d7ccc8"/><rect x="180" y="120" width="60" height="60" fill="#5d4037"/>
+    <rect y="180" width="60" height="60" fill="#5d4037"/><rect x="60" y="180" width="60" height="60" fill="#d7ccc8"/><rect x="120" y="180" width="60" height="60" fill="#5d4037"/><rect x="180" y="180" width="60" height="60" fill="#d7ccc8"/>
+  </g>
+  <circle cx="226" cy="230" r="20" fill="#c62828"/><circle cx="346" cy="290" r="20" fill="#212121"/>
+  <text x="256" y="160" text-anchor="middle" font-family="system-ui,sans-serif" font-size="52" font-weight="700" fill="white" letter-spacing="4">CHECKERS</text>
+</svg>

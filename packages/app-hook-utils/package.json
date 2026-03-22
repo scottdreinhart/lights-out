@@ -1,0 +1,20 @@
+{
+  "name": "@games/app-hook-utils",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    }
+  },
+  "files": ["src"],
+  "dependencies": {
+    "@games/display-contract": "workspace:*",
+    "@games/stats-utils": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  }
+}

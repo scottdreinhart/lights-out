@@ -1,0 +1,402 @@
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--theme-bg, #0a0a0a);
+  color: var(--theme-fg, #e0e0e0);
+  padding-left: max(8px, env(safe-area-inset-left));
+  padding-right: max(8px, env(safe-area-inset-right));
+  padding-bottom: max(8px, env(safe-area-inset-bottom));
+}
+
+.appHeader {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: max(0.75rem, env(safe-area-inset-top)) 1rem 0.75rem;
+  gap: clamp(0.5rem, 1vw, 1rem);
+  background: linear-gradient(
+    135deg,
+    var(--theme-primary, #667eea) 0%,
+    var(--theme-secondary, #764ba2) 100%
+  );
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+  z-index: 300;
+}
+
+.headerTitle {
+  flex: 1;
+  margin: 0;
+  font-size: clamp(1.05rem, 3.8vw, 2rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.1;
+  color: var(--theme-bg, #0a0a0a);
+}
+
+.headerRight {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.appContent {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  padding: clamp(0.5rem, 2vh, 1rem) clamp(0.5rem, 2vw, 1rem);
+}
+
+.hamburgerPanelContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.menuSectionTitle {
+  margin: 0.2rem 0 0;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--theme-fg, #e0e0e0);
+  opacity: 0.75;
+}
+
+.menuHint {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: color-mix(in srgb, var(--theme-fg, #e0e0e0) 72%, transparent);
+}
+
+.hamburgerMenuButton {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  border-radius: 8px;
+  border: 2px solid var(--theme-accent, #667eea);
+  background: transparent;
+  color: var(--theme-fg, #e0e0e0);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.hamburgerMenuButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.gameStats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.8rem;
+  width: 100%;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  min-width: clamp(88px, 18vw, 140px);
+  padding: 0.45rem 0.7rem;
+  border: 2px solid var(--theme-accent, #667eea);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--theme-accent, #667eea) 15%, transparent);
+}
+
+.statLabel {
+  font-size: 0.78rem;
+  color: color-mix(in srgb, var(--theme-fg, #e0e0e0) 65%, transparent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.statValue {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--theme-accent, #667eea);
+}
+
+.winMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  background: color-mix(in srgb, var(--theme-accent, #667eea) 22%, transparent);
+  border: 2px solid var(--theme-accent, #667eea);
+  border-radius: 8px;
+  color: #ffd700;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.trophy {
+  font-size: 1.4rem;
+}
+
+.btnReset {
+  width: 100%;
+  padding: 0.75rem 2rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--theme-bg, #0a0a0a);
+  background: linear-gradient(
+    135deg,
+    var(--theme-primary, #667eea),
+    var(--theme-secondary, #764ba2)
+  );
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btnReset:hover {
+  transform: translateY(-1px);
+}
+
+.boardRules {
+  margin: 0.65rem 0 0;
+  text-align: center;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--theme-fg, #e0e0e0) 62%, transparent);
+}
+
+.appFooter {
+  text-align: center;
+  font-size: 0.88rem;
+  color: color-mix(in srgb, var(--theme-fg, #e0e0e0) 60%, transparent);
+  margin: 0.75rem 0 0.25rem;
+  max-width: 680px;
+  padding: 0 0.6rem;
+}
+
+.appFooter p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (pointer: coarse) {
+  .hamburgerMenuButton:hover,
+  .btnReset:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+@keyframes splashFloat {
+  0% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes splashGlow {
+  0% {
+    box-shadow:
+      0 0 10px rgba(76, 175, 80, 0.4),
+      0 0 30px rgba(76, 175, 80, 0.2),
+      inset 0 0 20px rgba(76, 175, 80, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 20px rgba(76, 175, 80, 0.8),
+      0 0 40px rgba(56, 142, 60, 0.4),
+      inset 0 0 30px rgba(76, 175, 80, 0.2);
+  }
+  100% {
+    box-shadow:
+      0 0 10px rgba(76, 175, 80, 0.4),
+      0 0 30px rgba(76, 175, 80, 0.2),
+      inset 0 0 20px rgba(76, 175, 80, 0.1);
+  }
+}
+
+@keyframes shimmerGrid {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes loadingDot {
+  0%,
+  20% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  80%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+}
+
+.loSplash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #1b5e20 0%, #2e7d32 42%, #1b5e20 100%);
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.loSplashOrb {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(76, 175, 80, 0.8),
+    rgba(56, 142, 60, 0.4) 50%,
+    transparent
+  );
+  filter: blur(40px);
+  animation: splashGlow 3s ease-in-out infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loSplashGrid {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(76, 175, 80, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(76, 175, 80, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: shimmerGrid 6s linear infinite alternate;
+  opacity: 0.3;
+}
+
+.loSplashContent {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+.loSplashBadge {
+  width: clamp(80px, 15vw, 120px);
+  height: clamp(80px, 15vw, 120px);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: splashFloat 2s ease-in-out infinite;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.loSplashEmoji {
+  font-size: clamp(40px, 8vw, 60px);
+}
+
+.loSplashEyebrow {
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(76, 175, 80, 0.8);
+  font-weight: 600;
+  margin: 0;
+}
+
+.loSplashTitle {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(180deg, #ffffff 0%, #c8e6c9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -1px;
+}
+
+.loSplashSubtitle {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 300px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.loSplashLoading {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: clamp(0.5rem, 2vw, 1rem);
+}
+
+.loSplashDot {
+  width: clamp(6px, 1.5vw, 10px);
+  height: clamp(6px, 1.5vw, 10px);
+  border-radius: 50%;
+  background: rgba(76, 175, 80, 0.8);
+  animation: loadingDot 1.4s ease-in-out infinite;
+}
+
+.loSplashDot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loSplashDot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loSplashBadge,
+  .loSplashOrb,
+  .loSplashGrid,
+  .loSplashDot {
+    animation: none;
+  }
+}

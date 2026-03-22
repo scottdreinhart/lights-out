@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="96" cy="96" r="96" fill="url(#grad)"/>
+  
+  <!-- Rock (left) - closed fist -->
+  <g transform="translate(35, 96)">
+    <circle cx="0" cy="0" r="18" fill="#ffffff" opacity="0.9"/>
+    <rect x="-5" y="-8" width="10" height="16" rx="2" fill="#667eea" opacity="0.8"/>
+  </g>
+  
+  <!-- Paper (middle) - open hand -->
+  <g transform="translate(96, 96)">
+    <circle cx="0" cy="0" r="20" fill="#ffffff" opacity="0.95"/>
+    <rect x="-8" y="-15" width="16" height="30" rx="3" fill="#764ba2" opacity="0.8"/>
+    <rect x="-13" y="-8" width="8" height="16" rx="2" fill="#764ba2" opacity="0.7"/>
+    <rect x="5" y="-8" width="8" height="16" rx="2" fill="#764ba2" opacity="0.7"/>
+  </g>
+  
+  <!-- Scissors (right) -->
+  <g transform="translate(157, 96)">
+    <circle cx="0" cy="0" r="18" fill="#ffffff" opacity="0.9"/>
+    <!-- Scissors blades -->
+    <line x1="-5" y1="-8" x2="-8" y2="-12" stroke="#667eea" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-5" y1="8" x2="-8" y2="12" stroke="#667eea" stroke-width="2" stroke-linecap="round"/>
+    <line x1="5" y1="-8" x2="8" y2="-12" stroke="#667eea" stroke-width="2" stroke-linecap="round"/>
+    <line x1="5" y1="8" x2="8" y2="12" stroke="#667eea" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>

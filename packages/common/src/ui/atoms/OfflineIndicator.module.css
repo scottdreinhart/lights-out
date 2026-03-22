@@ -1,0 +1,29 @@
+.banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: var(--accent, #ff6b6b);
+  color: white;
+  text-align: center;
+  font-weight: 500;
+  z-index: 1000;
+  animation: slideUp 300ms ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 599px) {
+  .banner {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+}

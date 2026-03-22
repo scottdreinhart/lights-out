@@ -1,0 +1,20 @@
+{
+  "name": "@games/common",
+  "version": "1.0.0",
+  "description": "Shared code, patterns, and utilities for all game applications",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    }
+  },
+  "dependencies": {
+    "@games/app-hook-utils": "workspace:*",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

@@ -1,0 +1,44 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+.themeButton {
+  width: 100%;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--theme-fg, #e0e0e0);
+  padding: 0.55rem 0.65rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease;
+}
+
+.themeButton:hover {
+  transform: translateY(-1px);
+}
+
+.themeButtonActive {
+  transform: none;
+}
+
+.swatch {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, #000 55%, transparent);
+  flex-shrink: 0;
+}
+
+@media (pointer: coarse) {
+  .themeButton:hover {
+    transform: none;
+  }
+}

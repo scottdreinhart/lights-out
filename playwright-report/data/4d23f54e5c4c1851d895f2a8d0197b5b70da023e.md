@@ -1,0 +1,102 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - heading "Lights Out" [level=1] [ref=e5]
+      - button "Close menu" [expanded] [ref=e7] [cursor=pointer]
+    - main [ref=e11]:
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - button "Cell 0, 0 - off" [ref=e14] [cursor=pointer]
+          - button "Cell 0, 1 - off" [ref=e15] [cursor=pointer]
+          - button "Cell 0, 2 - off" [ref=e16] [cursor=pointer]
+          - button "Cell 0, 3 - off" [ref=e17] [cursor=pointer]
+          - button "Cell 0, 4 - off" [ref=e18] [cursor=pointer]
+        - generic [ref=e19]:
+          - button "Cell 1, 0 - on" [ref=e20] [cursor=pointer]
+          - button "Cell 1, 1 - on" [ref=e21] [cursor=pointer]
+          - button "Cell 1, 2 - on" [ref=e22] [cursor=pointer]
+          - button "Cell 1, 3 - on" [ref=e23] [cursor=pointer]
+          - button "Cell 1, 4 - on" [ref=e24] [cursor=pointer]
+        - generic [ref=e25]:
+          - button "Cell 2, 0 - on" [ref=e26] [cursor=pointer]
+          - button "Cell 2, 1 - on" [ref=e27] [cursor=pointer]
+          - button "Cell 2, 2 - off" [ref=e28] [cursor=pointer]
+          - button "Cell 2, 3 - off" [ref=e29] [cursor=pointer]
+          - button "Cell 2, 4 - on" [ref=e30] [cursor=pointer]
+        - generic [ref=e31]:
+          - button "Cell 3, 0 - off" [ref=e32] [cursor=pointer]
+          - button "Cell 3, 1 - on" [ref=e33] [cursor=pointer]
+          - button "Cell 3, 2 - off" [ref=e34] [cursor=pointer]
+          - button "Cell 3, 3 - off" [ref=e35] [cursor=pointer]
+          - button "Cell 3, 4 - off" [ref=e36] [cursor=pointer]
+        - generic [ref=e37]:
+          - button "Cell 4, 0 - on" [ref=e38] [cursor=pointer]
+          - button "Cell 4, 1 - off" [ref=e39] [cursor=pointer]
+          - button "Cell 4, 2 - off" [ref=e40] [cursor=pointer]
+          - button "Cell 4, 3 - on" [ref=e41] [cursor=pointer]
+          - button "Cell 4, 4 - on" [ref=e42] [cursor=pointer]
+      - generic [ref=e43]:
+        - generic [ref=e44]:
+          - generic [ref=e45]: Moves
+          - generic [ref=e46]: "0"
+        - generic [ref=e47]:
+          - generic [ref=e48]: Wins
+          - generic [ref=e49]: "0"
+      - button "New Game" [ref=e50] [cursor=pointer]
+    - contentinfo [ref=e51]:
+      - paragraph [ref=e52]: "Rules: Click a light to toggle it and its 4 neighbors (up, down, left, right)."
+    - dialog [ref=e54]:
+      - generic [ref=e55]:
+        - generic [ref=e56]:
+          - heading [level=2] [ref=e57]: Settings
+          - button [ref=e58] [cursor=pointer]: ✕
+        - generic [ref=e59]:
+          - generic [ref=e60]:
+            - heading [level=3] [ref=e61]: Display & Theme
+            - generic [ref=e62]:
+              - paragraph [ref=e63]: Theme
+              - generic [ref=e64]:
+                - button [pressed] [ref=e65] [cursor=pointer]: Chiba City
+                - button [ref=e67] [cursor=pointer]: Neon Core
+                - button [ref=e69] [cursor=pointer]: Neon Arcade
+                - button [ref=e71] [cursor=pointer]: Night District
+                - button [ref=e73] [cursor=pointer]: Gridline
+                - button [ref=e75] [cursor=pointer]: Vaporwave
+                - button [ref=e77] [cursor=pointer]: Synthwave
+                - button [ref=e79] [cursor=pointer]: High Contrast
+          - generic [ref=e81]:
+            - heading [level=3] [ref=e82]: Accessibility
+            - generic [ref=e83]:
+              - generic [ref=e84] [cursor=pointer]:
+                - checkbox [checked] [ref=e85]
+                - generic [ref=e86]: Sound Effects
+              - paragraph [ref=e87]: Toggle sound effects on/off
+          - generic [ref=e88]:
+            - heading [level=3] [ref=e89]: About
+            - paragraph [ref=e91]: Lights Out - A minimal puzzle game
+        - generic [ref=e92]:
+          - button [ref=e93] [cursor=pointer]: Cancel
+          - button [ref=e94] [cursor=pointer]: OK
+  - menu "Game settings" [ref=e96]:
+    - generic [ref=e97]:
+      - button "Close menu" [ref=e99] [cursor=pointer]: ✕
+      - generic [ref=e100]:
+        - heading "Theme" [level=3] [ref=e101]
+        - generic [ref=e102]:
+          - button "Use Chiba City theme" [pressed] [ref=e103] [cursor=pointer]: Chiba City
+          - button "Use Neon Core theme" [ref=e105] [cursor=pointer]: Neon Core
+          - button "Use Neon Arcade theme" [ref=e107] [cursor=pointer]: Neon Arcade
+          - button "Use Night District theme" [ref=e109] [cursor=pointer]: Night District
+          - button "Use Gridline theme" [ref=e111] [cursor=pointer]: Gridline
+          - button "Use Vaporwave theme" [ref=e113] [cursor=pointer]: Vaporwave
+          - button "Use Synthwave theme" [ref=e115] [cursor=pointer]: Synthwave
+          - button "Use High Contrast theme" [ref=e117] [cursor=pointer]: High Contrast
+        - heading "Game" [level=3] [ref=e119]
+        - button "New Game" [ref=e120] [cursor=pointer]
+        - button "Reset Stats" [ref=e121] [cursor=pointer]
+        - heading "Settings" [level=3] [ref=e122]
+        - button "All Settings" [active] [ref=e123] [cursor=pointer]
+```

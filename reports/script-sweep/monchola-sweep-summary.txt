@@ -1,0 +1,108 @@
+RUN monchola:web:lint
+PASS monchola:web:lint
+LOG reports/script-sweep/monchola__web__lint.log
+---
+RUN monchola:web:typecheck
+PASS monchola:web:typecheck
+LOG reports/script-sweep/monchola__web__typecheck.log
+---
+RUN monchola:web:test
+PASS monchola:web:test
+LOG reports/script-sweep/monchola__web__test.log
+---
+RUN monchola:web:build
+PASS monchola:web:build
+LOG reports/script-sweep/monchola__web__build.log
+---
+RUN monchola:web:check
+SKIP monchola:web:test (already recorded)
+---
+SKIP monchola:web:build (already recorded)
+---
+RUN monchola:web:check
+RUN monchola:web:check
+PASS monchola:web:check
+LOG reports/script-sweep/monchola__web__check.log
+---
+RUN monchola:wasm:build
+PASS monchola:wasm:build
+LOG reports/script-sweep/monchola__wasm__build.log
+---
+RUN monchola:check:input
+PASS monchola:check:input
+LOG reports/script-sweep/monchola__check__input.log
+---
+RUN monchola:android:build
+FAIL monchola:web:check
+LOG reports/script-sweep/monchola__web__check.log
+---
+SKIP monchola:wasm:build (already recorded)
+---
+SKIP monchola:check:input (already recorded)
+---
+RUN monchola:android:build
+PASS monchola:android:build
+LOG reports/script-sweep/monchola__android__build.log
+---
+RUN moncala:web:lint
+PASS monchola:android:build
+LOG reports/script-sweep/monchola__android__build.log
+---
+RUN moncala:web:lint
+FAIL monchola:web:check
+LOG reports/script-sweep/monchola__web__check.log
+---
+RUN monchola:wasm:build
+PASS monchola:wasm:build
+LOG reports/script-sweep/monchola__wasm__build.log
+---
+RUN monchola:check:input
+PASS monchola:check:input
+LOG reports/script-sweep/monchola__check__input.log
+---
+RUN monchola:android:build
+PASS moncala:web:lint
+LOG reports/script-sweep/moncala__web__lint.log
+---
+RUN moncala:web:typecheck
+PASS moncala:web:typecheck
+LOG reports/script-sweep/moncala__web__typecheck.log
+---
+RUN moncala:web:test
+PASS monchola:android:build
+LOG reports/script-sweep/monchola__android__build.log
+---
+RUN moncala:web:lint
+PASS moncala:web:test
+LOG reports/script-sweep/moncala__web__test.log
+---
+RUN moncala:web:build
+PASS moncala:web:lint
+LOG reports/script-sweep/moncala__web__lint.log
+---
+SKIP moncala:web:typecheck (already recorded)
+---
+SKIP moncala:web:test (already recorded)
+---
+RUN moncala:web:build
+PASS moncala:web:build
+LOG reports/script-sweep/moncala__web__build.log
+---
+PASS moncala:web:build
+LOG reports/script-sweep/moncala__web__build.log
+---
+PASS moncala:web:lint
+LOG reports/script-sweep/moncala__web__lint.log
+---
+RUN moncala:web:typecheck
+PASS moncala:web:typecheck
+LOG reports/script-sweep/moncala__web__typecheck.log
+---
+RUN moncala:web:test
+PASS moncala:web:test
+LOG reports/script-sweep/moncala__web__test.log
+---
+RUN moncala:web:build
+PASS moncala:web:build
+LOG reports/script-sweep/moncala__web__build.log
+---

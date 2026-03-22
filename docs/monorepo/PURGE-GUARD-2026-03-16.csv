@@ -1,0 +1,14 @@
+root_path,app_path,root_exists,app_exists,root_size,app_size,root_sha256,app_sha256
+electron/main.js,apps/lights-out/electron/main.js,false,true,,3669,,a50ad916dc49fe9aa490cea5a907246bc1dcca989056c36b46f0ddec8733bc7a
+electron/preload.js,apps/lights-out/electron/preload.js,false,true,,1203,,3282f4daa40dbf69ad5e0b7522cbade921fdd636084e354b9221146bee513d6c
+electron/types.ts,apps/lights-out/electron/types.ts,false,true,,977,,d3a15e376adf1edb0ee5f2f1615c8008ce0c2f51bd5948c32ff472603ede5447
+capacitor.config.ts,apps/lights-out/capacitor.config.ts,false,true,,1506,,4fefdfc38c4905f45851739d746904e4966b0853d13b349a2d90141042683bbd
+assembly/index.ts,apps/lights-out/assembly/index.ts,false,true,,3068,,3def51bd82c2e13220054ef7238ce380570c23f1e27e50e83d4deccfbabf2e74
+assembly/tsconfig.json,apps/lights-out/assembly/tsconfig.json,false,true,,145,,8996fc85c0178bcf5ad01a88a864e731f4206efe8348eb353c9271e85cb63192
+tests/accessibility.spec.ts,apps/lights-out/tests/accessibility.spec.ts,false,true,,7672,,47b2f40e98c6458ce65f83d6dce067179bdc0b85e6123967d7656979dabc5920
+index.html,apps/lights-out/index.html,false,true,,980,,dd54b9b8e78efb04523b6d6cc460c0f12f088b75d00e59b29f1f07a5c13df5e2
+vite.config.js,apps/lights-out/vite.config.ts,false,true,,771,,704cf88a068667312e20c4639179584480ea6ff64bba69ff9df35b649e9c7796
+public/icon.svg,apps/lights-out/public/icon.svg,false,true,,1279,,12a510b523e6325dccb3f3415c702b51113e56612e0af1a9976f681667e01279
+public/manifest.json,apps/lights-out/public/manifest.json,false,true,,288,,f2948cf69c1338ac2ea8aa8fd193ebedee7315152bb300579b89157529adc9d3
+public/offline.html,apps/lights-out/public/offline.html,false,true,,766,,41bc4a79d078e19833879b9af9c024ece59ac26ebbf60d90ff44c53bfac4e67d
+public/sw.js,apps/lights-out/public/sw.js,false,true,,627,,32c137c62e6afe4b6fffb18c1ccd97b8c9667c9a406023c94feffd9eec6849ae

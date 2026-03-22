@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#01579b"/>
+  <g transform="translate(256,280)">
+    <rect x="-100" y="-50" width="90" height="90" rx="14" fill="#fff"/>
+    <rect x="10" y="-50" width="90" height="90" rx="14" fill="#fff"/>
+  </g>
+  <g fill="#01579b">
+    <circle cx="201" cy="260" r="8"/><circle cx="201" cy="300" r="8"/><circle cx="181" cy="280" r="8"/><circle cx="221" cy="280" r="8"/>
+    <circle cx="306" cy="255" r="8"/><circle cx="346" cy="255" r="8"/><circle cx="306" cy="280" r="8"/><circle cx="346" cy="280" r="8"/><circle cx="306" cy="305" r="8"/><circle cx="346" cy="305" r="8"/>
+  </g>
+  <text x="256" y="180" text-anchor="middle" font-family="system-ui,sans-serif" font-size="56" font-weight="700" fill="white" letter-spacing="4">CHICAGO</text>
+</svg>

@@ -1,0 +1,9 @@
+RUN|mancala|typecheck
+FAIL|mancala|typecheck|2| ELIFECYCLE  Command failed with exit code 2.|docs/monorepo/script-run/smoke/mancala_typecheck_rerun.log
+RUN|mancala|build
+PASS|mancala|build|0|docs/monorepo/script-run/smoke/mancala_build_rerun.log
+RUN|mancala|check:input
+PASS|mancala|check:input|0|docs/monorepo/script-run/smoke/mancala_check_input_rerun.log
+RUN|tictactoe|typecheck
+FAIL|tictactoe|typecheck|2| ELIFECYCLE  Command failed with exit code 2.|docs/monorepo/script-run/smoke/tictactoe_typecheck_rerun.log
+RUN|tictactoe|build

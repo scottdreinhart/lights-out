@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#b71c1c"/>
+  <g transform="translate(256,280)">
+    <rect x="-110" y="-50" width="95" height="95" rx="14" fill="#fff"/>
+    <rect x="15" y="-50" width="95" height="95" rx="14" fill="#fff"/>
+  </g>
+  <g fill="#b71c1c">
+    <circle cx="191" cy="260" r="8"/><circle cx="191" cy="300" r="8"/><circle cx="171" cy="280" r="8"/><circle cx="211" cy="280" r="8"/>
+    <circle cx="321" cy="257" r="8"/><circle cx="361" cy="257" r="8"/><circle cx="321" cy="303" r="8"/><circle cx="361" cy="303" r="8"/><circle cx="341" cy="280" r="8"/>
+  </g>
+  <text x="256" y="180" text-anchor="middle" font-family="system-ui,sans-serif" font-size="52" font-weight="700" fill="white" letter-spacing="4">CHO-HAN</text>
+</svg>

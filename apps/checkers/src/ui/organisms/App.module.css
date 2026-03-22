@@ -1,0 +1,174 @@
+.app {
+  position: relative;
+  min-height: 100vh;
+  padding: 28px;
+}
+
+.compact {
+  padding: 14px;
+}
+
+.short {
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.ultrawide .frame {
+  max-width: 1480px;
+}
+
+.frame {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(18px, 4vw, 34px);
+  border-radius: 36px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04)),
+    rgba(7, 13, 12, 0.64);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: end;
+  margin-bottom: 24px;
+}
+
+.titleBlock {
+  display: grid;
+  gap: 8px;
+}
+
+.eyebrow {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  font-family: 'Palatino Linotype', 'Book Antiqua', serif;
+  font-size: clamp(2.8rem, 6vw, 4.8rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.subtitle {
+  max-width: 56ch;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.layout {
+  display: grid;
+  gap: 24px;
+  align-items: start;
+}
+
+.layoutSplit {
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+}
+
+.layoutSidebar {
+  grid-template-columns: minmax(0, 1.25fr) minmax(360px, 420px);
+}
+
+.layoutStacked {
+  grid-template-columns: 1fr;
+}
+
+.boardColumn {
+  display: grid;
+  gap: 18px;
+}
+
+.notice {
+  display: flex;
+  gap: 12px;
+  align-items: start;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+}
+
+.notice strong {
+  color: var(--text);
+}
+
+.touchOptimized .heroBadge {
+  align-self: stretch;
+  justify-content: center;
+  text-align: center;
+}
+
+.compact .frame,
+.short .frame {
+  padding: 18px;
+  border-radius: 28px;
+}
+
+.compact .header,
+.short .header {
+  margin-bottom: 18px;
+}
+
+.compact .title {
+  font-size: clamp(2.2rem, 9vw, 3.1rem);
+}
+
+.short .subtitle {
+  font-size: 0.94rem;
+}
+
+.short .boardColumn {
+  gap: 12px;
+}
+
+@media (max-width: 1020px) {
+  .layoutSplit,
+  .layoutSidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .app {
+    padding: 12px;
+  }
+
+  .frame {
+    padding: 16px;
+    border-radius: 26px;
+  }
+
+  .heroBadge {
+    width: 100%;
+    justify-content: center;
+  }
+}

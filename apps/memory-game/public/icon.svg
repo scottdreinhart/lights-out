@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#00695c"/>
+  <g transform="translate(136,190)">
+    <rect width="70" height="90" rx="8" fill="#26a69a"/><rect x="85" width="70" height="90" rx="8" fill="#fff"/><rect x="170" width="70" height="90" rx="8" fill="#26a69a"/>
+    <rect y="105" width="70" height="90" rx="8" fill="#fff"/><rect x="85" y="105" width="70" height="90" rx="8" fill="#26a69a"/><rect x="170" y="105" width="70" height="90" rx="8" fill="#fff"/>
+  </g>
+  <text x="221" y="260" text-anchor="middle" font-family="system-ui,sans-serif" font-size="36" font-weight="700" fill="#00695c">&#9733;</text>
+  <text x="306" y="370" text-anchor="middle" font-family="system-ui,sans-serif" font-size="36" font-weight="700" fill="#00695c">&#9733;</text>
+  <text x="256" y="150" text-anchor="middle" font-family="system-ui,sans-serif" font-size="40" font-weight="700" fill="white" letter-spacing="2">MEMORY</text>
+</svg>

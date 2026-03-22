@@ -1,0 +1,162 @@
+import { createContext, type ReactNode, useCallback, useContext, useEffect, useState } from 'react'
+
+import { createSharedThemeLoaders } from '@games/assets-shared'
+
+import {
+  COLOR_THEMES,
+  DEFAULT_SETTINGS,
+  getBackgroundCssValue,
+  getLayerStack,
+  layerStackToCssVars,
+  preloadAllSprites,
+} from '@/domain'
+import type { ThemeSettings } from '@/domain'
+import { load, save } from './storageService.ts'
+
+const STORAGE_KEY = 'connect-four-theme-settings'
+
+const themeLoaders = createSharedThemeLoaders()
+
+let activeThemeStyle: HTMLStyleElement | null = null
+const preloadedThemes = new Map<string, string>()
+
+const preloadTheme = async (themeId: string): Promise<void> => {
+  if (preloadedThemes.has(themeId) || themeId === 'neon-core') {
+    return
+  }
+
+  const loader = themeLoaders[`../themes/${themeId}.css`]
+  if (loader) {
+    try {
+      const css = await loader()
+      preloadedThemes.set(themeId, css)
+    } catch {
+      // Theme file not found — skip preload
+    }
+  }
+}
+
+const preloadAllThemes = (): void => {
+  COLOR_THEMES.forEach(({ id }) => {
+    if (id !== 'neon-core') {
+      preloadTheme(id).catch(() => {})
+    }
+  })
+}
+
+const applyThemeCSS = async (themeId: string): Promise<void> => {
+  if (activeThemeStyle) {
+    activeThemeStyle.remove()
+    activeThemeStyle = null
+  }
+  if (themeId === 'neon-core') {
+    return
+  }
+
+  let css = preloadedThemes.get(themeId)
+  if (!css) {
+    const loader = themeLoaders[`../themes/${themeId}.css`]
+    if (!loader) {
+      return
+    }
+    css = await loader()
+  }
+
+  const el = document.createElement('style')
+  el.setAttribute('data-theme-chunk', themeId)
+  el.textContent = css
+  document.head.appendChild(el)
+  activeThemeStyle = el
+}
+
+const loadSettings = (): ThemeSettings => {
+  const parsed = load<ThemeSettings>(STORAGE_KEY, DEFAULT_SETTINGS)
+  return { ...DEFAULT_SETTINGS, ...parsed }
+}
+
+const saveSettings = (settings: ThemeSettings): void => {
+  save(STORAGE_KEY, settings)
+}
+
+const applyToDOM = (settings: ThemeSettings): void => {
+  const root = document.documentElement
+
+  root.setAttribute('data-theme', settings.colorTheme)
+
+  if (settings.mode === 'system') {
+    root.removeAttribute('data-mode')
+  } else {
+    root.setAttribute('data-mode', settings.mode)
+  }
+
+  if (settings.colorblind === 'none') {
+    root.removeAttribute('data-colorblind')
+  } else {
+    root.setAttribute('data-colorblind', settings.colorblind)
+  }
+
+  root.style.setProperty('--bg-image', getBackgroundCssValue(settings.colorTheme))
+
+  const layerVars = layerStackToCssVars(getLayerStack(settings.colorTheme))
+  for (const [prop, value] of Object.entries(layerVars)) {
+    root.style.setProperty(prop, value)
+  }
+}
+
+export interface UseThemeReturn {
+  settings: ThemeSettings
+  setColorTheme: (id: string) => void
+  setMode: (mode: string) => void
+  setColorblind: (id: string) => void
+}
+
+const ThemeContext = createContext<UseThemeReturn | null>(null)
+
+/**
+ * ThemeProvider — provides theme settings via React Context.
+ * Persists to localStorage and syncs data attributes to the document root.
+ */
+export function ThemeProvider({ children }: { children: ReactNode }) {
+  const [settings, setSettings] = useState<ThemeSettings>(loadSettings)
+
+  useEffect(() => {
+    preloadAllThemes()
+    preloadAllSprites()
+  }, [])
+
+  useEffect(() => {
+    applyToDOM(settings)
+    applyThemeCSS(settings.colorTheme)
+    saveSettings(settings)
+  }, [settings])
+
+  const setColorTheme = useCallback((id: string) => {
+    setSettings((prev) => ({ ...prev, colorTheme: id }))
+  }, [])
+
+  const setMode = useCallback((mode: string) => {
+    setSettings((prev) => ({ ...prev, mode }))
+  }, [])
+
+  const setColorblind = useCallback((id: string) => {
+    setSettings((prev) => ({ ...prev, colorblind: id }))
+  }, [])
+
+  return (
+    <ThemeContext.Provider value={{ settings, setColorTheme, setMode, setColorblind }}>
+      {children}
+    </ThemeContext.Provider>
+  )
+}
+
+/**
+ * useThemeContext — access theme settings anywhere in the tree.
+ * Must be called inside a <ThemeProvider>.
+ */
+export function useThemeContext(): UseThemeReturn {
+  const ctx = useContext(ThemeContext)
+  if (!ctx) {
+    throw new Error('useThemeContext must be used within a <ThemeProvider>')
+  }
+  return ctx
+}

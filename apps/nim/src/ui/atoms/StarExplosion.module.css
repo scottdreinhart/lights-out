@@ -1,0 +1,68 @@
+.explosionContainer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.starsWrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.star {
+  position: absolute;
+  font-size: var(--star-size);
+  font-weight: 900;
+  color: currentColor;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 8px rgba(255, 200, 0, 0.4));
+  animation:
+    explode var(--star-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards var(--star-delay),
+    opacityOscillate var(--star-duration) ease-in-out forwards var(--star-delay),
+    spin calc(var(--star-duration) * 0.8) linear forwards var(--star-delay);
+  transform-origin: var(--star-size);
+}
+
+@keyframes explode {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(var(--star-vx), var(--star-vy)) scale(0.1);
+  }
+}
+
+@keyframes opacityOscillate {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(var(--star-rotation));
+  }
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .star {
+    animation: none !important;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,47 @@
+/**
+ * SeriesSelector.module.css — Component-scoped styles
+ *
+ * Pill-shaped toggle for Best-of-N series selection.
+ * Same visual pattern as DifficultyToggle.
+ */
+
+.root {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.option {
+  background: transparent;
+  color: var(--text-primary);
+  border: none;
+  border-right: 1px solid rgba(128, 128, 128, 0.3);
+  padding: 12px 20px;
+  min-height: 48px;
+  font-size: clamp(0.75rem, 2vw, 0.85rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+  letter-spacing: 0.02em;
+}
+
+.option:hover:not(.active) {
+  background: var(--cell-hover-bg);
+}
+
+.option:last-child {
+  border-right: none;
+}
+
+.active {
+  background: var(--accent);
+  color: #fff;
+  cursor: default;
+}

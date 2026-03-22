@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#1b5e20"/>
+  <g transform="translate(156,200)">
+    <rect width="200" height="200" fill="#2e7d32" stroke="#1b5e20" stroke-width="2"/>
+    <line x1="50" y1="0" x2="50" y2="200" stroke="#1b5e20" stroke-width="2"/>
+    <line x1="100" y1="0" x2="100" y2="200" stroke="#1b5e20" stroke-width="2"/>
+    <line x1="150" y1="0" x2="150" y2="200" stroke="#1b5e20" stroke-width="2"/>
+    <line x1="0" y1="50" x2="200" y2="50" stroke="#1b5e20" stroke-width="2"/>
+    <line x1="0" y1="100" x2="200" y2="100" stroke="#1b5e20" stroke-width="2"/>
+    <line x1="0" y1="150" x2="200" y2="150" stroke="#1b5e20" stroke-width="2"/>
+    <circle cx="75" cy="75" r="18" fill="#fff"/><circle cx="125" cy="75" r="18" fill="#212121"/>
+    <circle cx="75" cy="125" r="18" fill="#212121"/><circle cx="125" cy="125" r="18" fill="#fff"/>
+    <circle cx="75" cy="175" r="18" fill="#fff"/><circle cx="175" cy="75" r="18" fill="#212121"/>
+  </g>
+  <text x="256" y="160" text-anchor="middle" font-family="system-ui,sans-serif" font-size="56" font-weight="700" fill="white" letter-spacing="4">REVERSI</text>
+</svg>

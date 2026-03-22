@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#212121"/>
+  <g transform="translate(256,280)">
+    <path d="M-8,-8 L-8,-100 A100,100 0 0,1 85,-50 Z" fill="#f44336"/>
+    <path d="M8,-8 L100,-8 A100,100 0 0,1 50,85 Z" fill="#2196f3"/>
+    <path d="M8,8 L8,100 A100,100 0 0,1 -85,50 Z" fill="#ffeb3b"/>
+    <path d="M-8,8 L-100,8 A100,100 0 0,1 -50,-85 Z" fill="#4caf50"/>
+    <circle cx="0" cy="0" r="20" fill="#424242"/>
+  </g>
+  <text x="256" y="140" text-anchor="middle" font-family="system-ui,sans-serif" font-size="44" font-weight="700" fill="white" letter-spacing="3">SIMON SAYS</text>
+</svg>

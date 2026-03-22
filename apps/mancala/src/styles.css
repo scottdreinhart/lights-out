@@ -1,0 +1,36 @@
+/* ─── Theme imports ──────────────────────────────────────── */
+@import '@games/assets-shared/themes/chiba-city.css';
+@import './themes/neon-core.css';
+@import '@games/assets-shared/themes/neon-arcade.css';
+@import '@games/assets-shared/themes/night-district.css';
+@import '@games/assets-shared/themes/gridline.css';
+@import '@games/assets-shared/themes/vaporwave.css';
+@import '@games/assets-shared/themes/synthwave.css';
+@import '@games/assets-shared/themes/high-contrast.css';
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+}
+
+select {
+  font-family: inherit;
+}

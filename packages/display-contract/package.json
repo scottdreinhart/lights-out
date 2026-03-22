@@ -1,0 +1,12 @@
+{
+  "name": "@games/display-contract",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./layers": "./src/layers.ts",
+    "./responsive": "./src/responsive.ts"
+  }
+}

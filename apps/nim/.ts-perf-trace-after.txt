@@ -1,0 +1,4 @@
+
+> nim-game@1.0.0 perf:ts:trace /mnt/c/Users/scott/nim
+> pnpm exec rimraf .ts-trace && pnpm exec tsc --noEmit --incremental false --generateTrace .ts-trace
+
