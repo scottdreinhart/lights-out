@@ -1,9 +1,8 @@
 import { useGame, useSoundContext, useStats, useThemeContext } from '@/app'
-import { useKeyboardControls } from '@games/app-hook-utils'
 import { COLOR_THEMES, initBoardWasm } from '@/domain'
-import { SoundToggle } from '@/ui/atoms'
-import { OfflineIndicator } from '@/ui/atoms'
+import { OfflineIndicator, SoundToggle } from '@/ui/atoms'
 import { GameBoard, HamburgerMenu, QuickThemePicker } from '@/ui/molecules'
+import { useKeyboardControls } from '@games/app-hook-utils'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import styles from './App.module.css'

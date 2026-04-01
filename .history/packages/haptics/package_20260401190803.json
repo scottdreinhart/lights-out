@@ -1,0 +1,26 @@
+{
+  "name": "@games/haptics",
+  "version": "1.0.0",
+  "description": "Cross-platform haptics/vibration utility for game platform",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "haptics",
+    "vibration",
+    "accessibility"
+  ]
+}

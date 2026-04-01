@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 
 import { createSharedThemeLoaders } from '@games/assets-shared'
 
+import type { ThemeSettings } from '@/domain'
 import {
   COLOR_THEMES,
   DEFAULT_SETTINGS,
@@ -10,7 +11,6 @@ import {
   layerStackToCssVars,
   preloadAllSprites,
 } from '@/domain'
-import type { ThemeSettings } from '@/domain'
 import { load, save } from '../services/storageService.ts'
 
 const STORAGE_KEY = 'lights-out-theme-settings'

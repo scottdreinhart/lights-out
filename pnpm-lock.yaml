@@ -2532,17 +2532,34 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
 
+  packages/crash-logger: {}
+
   packages/crash-utils: {}
 
   packages/display-contract: {}
 
   packages/domain-shared: {}
 
+  packages/haptics: {}
+
+  packages/shared-hooks:
+    dependencies:
+      react:
+        specifier: 19.2.4
+        version: 19.2.4
+      react-dom:
+        specifier: 19.2.4
+        version: 19.2.4(react@19.2.4)
+
+  packages/sound-context: {}
+
   packages/sprite-contract: {}
 
   packages/stats-utils: {}
 
   packages/storage-utils: {}
+
+  packages/theme-context: {}
 
   packages/theme-contract: {}
 

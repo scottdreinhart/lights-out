@@ -1,5 +1,6 @@
 // Import consolidat hooks from shared packages
 export {
+  logWebVitals,
   useAppScreens,
   useDeviceInfo,
   useDropdownBehavior,
@@ -8,11 +9,10 @@ export {
   useMediaQuery,
   useOnlineStatus,
   usePerformanceMetrics,
-  logWebVitals,
+  usePlayableSoundActions,
   useResponsiveState,
   useServiceLoader,
   useSoundController,
-  usePlayableSoundActions,
   useWindowSize,
 } from '@games/app-hook-utils'
 
