@@ -41,6 +41,12 @@
       ],
       "@games/storage-utils": [
         "../../packages/storage-utils/src"
+      ],
+      "@games/sound-context": [
+        "../../packages/sound-context/src"
+      ],
+      "@games/theme-context": [
+        "../../packages/theme-context/src"
       ]
     }
   },

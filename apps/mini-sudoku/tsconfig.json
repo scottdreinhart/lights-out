@@ -3,11 +3,28 @@
   "compilerOptions": {
     "ignoreDeprecations": "5.0",
     "paths": {
-      "@/*": ["./src/*"],
-      "@games/common": ["../../packages/common/src"],
-      "@games/domain-shared": ["../../packages/domain-shared/src"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@games/common": [
+        "../../packages/common/src"
+      ],
+      "@games/domain-shared": [
+        "../../packages/domain-shared/src"
+      ],
+      "@games/sound-context": [
+        "../../packages/sound-context/src"
+      ],
+      "@games/theme-context": [
+        "../../packages/theme-context/src"
+      ]
     }
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
