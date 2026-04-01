@@ -6,9 +6,9 @@
  */
 
 // Context providers
-export { I18nProvider, useI18nContext } from './context'
 export { SoundProvider, useSoundContext } from './SoundContext'
 export { ThemeProvider, useThemeContext } from './ThemeContext'
+export { I18nProvider, useI18nContext } from './context'
 
 // Hooks
 export * from './hooks'
