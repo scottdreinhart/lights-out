@@ -1,0 +1,42 @@
+{
+  "name": "@games/crossclimb",
+  "version": "1.0.0",
+  "description": "Crossclimb - Graph Search Puzzle Game",
+  "main": "src/index.tsx",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "typecheck": "tsc --noEmit",
+    "check": "pnpm lint && pnpm format:check && pnpm typecheck",
+    "fix": "pnpm lint:fix && pnpm format",
+    "format": "prettier --write src/**/*.{ts,tsx,css}",
+    "format:check": "prettier --check src/**/*.{ts,tsx,css}",
+    "validate": "pnpm check && pnpm build"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.4",
+    "@types/react-dom": "^19.2.4",
+    "@typescript-eslint/eslint-plugin": "^8.57.0",
+    "@typescript-eslint/parser": "^8.57.0",
+    "@vitejs/plugin-react": "^4.3.3",
+    "eslint": "^10.0.3",
+    "eslint-plugin-boundaries": "^1.1.0",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vitest": "^4.0.18"
+  },
+  "engines": {
+    "node": ">=24.14.0",
+    "pnpm": ">=10.31.0"
+  }
+}

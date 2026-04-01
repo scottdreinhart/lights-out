@@ -1,5 +1,16 @@
 {
   "terminal.integrated.defaultProfile.windows": "Ubuntu (WSL)",
+  "terminal.integrated.shellIntegration.enabled": true,
+  "terminal.integrated.shellIntegration.decorationsEnabled": "both",
+  "terminal.integrated.shellIntegration.showCommandGuide": true,
+  "terminal.integrated.stickyScroll.enabled": true,
+  "terminal.integrated.suggest.enabled": true,
+  "terminal.integrated.suggest.quickSuggestions": true,
+  "terminal.integrated.suggest.suggestOnTriggerCharacters": true,
+  "terminal.integrated.suggest.showStatusBar": true,
+  "terminal.integrated.cwd": "${workspaceFolder}",
+  "terminal.integrated.splitCwd": "inherited",
+  "terminal.integrated.defaultProfile.linux": "bash",
   "terminal.integrated.profiles.windows": {
     "Ubuntu (WSL)": {
       "path": "C:\\WINDOWS\\System32\\wsl.exe",
@@ -10,5 +21,24 @@
       "source": "PowerShell",
       "icon": "terminal-powershell"
     }
-  }
+  },
+  "terminal.integrated.automationProfile.windows": {
+    "path": "C:\\WINDOWS\\System32\\wsl.exe",
+    "args": ["-d", "Ubuntu"]
+  },
+  "terminal.integrated.env.windows": {
+    "BASH_ENV": "/mnt/c/Users/scott/game-platform/.vscode/terminal-bootstrap.sh"
+  },
+  "continue.inlineCompletions.enabled": true,
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+  "github.copilot.chat.agent.thinkingTool": true,
+  "github.copilot.chat.reviewSelection.enabled": true,
+  "github.copilot.chat.languageModels": [
+    {
+      "id": "ollama/qwen3:30b-coder",
+      "model": "qwen3:30b-coder",
+      "apiBase": "http://localhost:11434",
+      "provider": "ollama"
+    }
+  ]
 }

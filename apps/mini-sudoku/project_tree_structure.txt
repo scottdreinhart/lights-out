@@ -1,0 +1,74 @@
+.
+├── .prettierignore
+├── capacitor.config.ts
+├── dist
+│   ├── assets
+│   │   ├── index-DkldFp4s.js
+│   │   └── index-r7456Tu6.css
+│   └── index.html
+├── index.html
+├── package.json
+├── project_tree_structure.txt
+├── src
+│   ├── App.css
+│   ├── App.tsx
+│   ├── __tests__
+│   │   ├── domain.test.ts
+│   │   └── hooks.test.ts
+│   ├── app
+│   │   ├── commands
+│   │   │   └── miniSudokuCommandHandlers.ts
+│   │   ├── hooks
+│   │   │   └── useMiniSudoku.ts
+│   │   ├── index.ts
+│   │   ├── queries
+│   │   │   └── miniSudokuQueryHandlers.ts
+│   │   ├── useGame.ts
+│   │   └── useResponsiveState.ts
+│   ├── domain
+│   │   ├── __tests__
+│   │   ├── ai.ts
+│   │   ├── constants.ts
+│   │   ├── constraints.ts
+│   │   ├── index.ts
+│   │   ├── rules.ts
+│   │   ├── templates.ts
+│   │   └── types.ts
+│   ├── index.css
+│   ├── index.tsx
+│   ├── styles.css
+│   ├── styles.module.css
+│   ├── ui
+│   │   ├── atoms
+│   │   │   ├── Button
+│   │   │   │   ├── Button.module.css
+│   │   │   │   └── Button.tsx
+│   │   │   ├── Card
+│   │   │   │   ├── Card.module.css
+│   │   │   │   └── Card.tsx
+│   │   │   ├── SudokuCell
+│   │   │   │   ├── SudokuCell.module.css
+│   │   │   │   └── SudokuCell.tsx
+│   │   │   ├── SudokuCell.module.css
+│   │   │   ├── SudokuCell.tsx
+│   │   │   └── index.ts
+│   │   ├── index.ts
+│   │   ├── molecules
+│   │   │   ├── NumberPad
+│   │   │   ├── SudokuBoard
+│   │   │   │   ├── SudokuBoard.module.css
+│   │   │   │   └── SudokuBoard.tsx
+│   │   │   └── index.ts
+│   │   └── organisms
+│   │       ├── SudokuBoard.module.css
+│   │       ├── SudokuBoard.tsx
+│   │       ├── SudokuGame
+│   │       │   ├── SudokuGame.module.css
+│   │       │   └── SudokuGame.tsx
+│   │       └── index.ts
+│   └── vite-env.d.ts
+├── tsconfig.json
+├── vite.config.js
+└── vitest.config.ts
+
+21 directories, 51 files

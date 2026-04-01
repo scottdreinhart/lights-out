@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useReducer } from 'react'
 
-import { applyMove, createEmptyBoard, getGameState, isCellEmpty, TOKENS } from '@/domain'
 import type { Board, GameState, Token } from '@/domain'
+import { applyMove, createEmptyBoard, getGameState, isCellEmpty, TOKENS } from '@/domain'
 
 // ── Actions ──────────────────────────────────────────────────────────────────
 

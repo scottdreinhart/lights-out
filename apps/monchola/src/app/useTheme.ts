@@ -2,10 +2,11 @@
  * Theme / mode / colorblind persistence + DOM sync.
  */
 
-import { createSharedThemeLoaders } from '@games/assets-shared'
 import { createUseThemeHook } from '@games/app-hook-utils'
+import { createSharedThemeLoaders } from '@games/assets-shared'
 import { SHARED_THEME_COLORS } from '@games/domain-shared'
 
+import type { ThemeSettings } from '@/domain'
 import {
   COLOR_THEMES,
   DEFAULT_SETTINGS,
@@ -14,7 +15,6 @@ import {
   layerStackToCssVars,
   preloadAllSprites,
 } from '@/domain'
-import type { ThemeSettings } from '@/domain'
 import { load, save } from './storageService.ts'
 
 const STORAGE_KEY = 'monchola-theme-settings'

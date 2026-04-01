@@ -1,0 +1,869 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "generatedAt": "2026-03-31T00:00:00Z",
+    "description": "Platform × Game Coverage Matrix - tracks deployment across 10 platforms and 7 CSP games",
+    "totalCells": 70,
+    "games": 7,
+    "platforms": 10,
+    "completionPercentage": 5.7
+  },
+  "games": ["queens", "tango", "zip", "crossclimb", "pinpoint", "mini-sudoku", "patches"],
+  "platforms": ["web", "meta", "ios", "android", "electron", "itch", "crazygames", "discord", "telegram", "steam"],
+  "matrix": {
+    "queens": {
+      "web": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 6 queued"
+      },
+      "meta": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 6 queued"
+      },
+      "ios": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 6 queued"
+      },
+      "android": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 6 queued"
+      },
+      "electron": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 6 queued"
+      },
+      "itch": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 6 queued"
+      },
+      "crazygames": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 6 queued"
+      },
+      "discord": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 6 queued"
+      },
+      "telegram": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 6 queued"
+      },
+      "steam": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 6 queued"
+      }
+    },
+    "tango": {
+      "web": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 7 queued"
+      },
+      "meta": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 7 queued"
+      },
+      "ios": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 7 queued"
+      },
+      "android": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 7 queued"
+      },
+      "electron": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 7 queued"
+      },
+      "itch": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 7 queued"
+      },
+      "crazygames": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 7 queued"
+      },
+      "discord": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 7 queued"
+      },
+      "telegram": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 7 queued"
+      },
+      "steam": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 7 queued"
+      }
+    },
+    "zip": {
+      "web": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 8 queued"
+      },
+      "meta": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 8 queued"
+      },
+      "ios": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 8 queued"
+      },
+      "android": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 8 queued"
+      },
+      "electron": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 8 queued, high path solver complexity"
+      },
+      "itch": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 8 queued"
+      },
+      "crazygames": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 8 queued"
+      },
+      "discord": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 8 queued, bundle size constraint"
+      },
+      "telegram": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 8 queued, bundle size constraint"
+      },
+      "steam": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 8 queued, path solver optimized needed"
+      }
+    },
+    "crossclimb": {
+      "web": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 9 queued, needs english dictionary"
+      },
+      "meta": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 9 queued"
+      },
+      "ios": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 9 queued"
+      },
+      "android": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 9 queued"
+      },
+      "electron": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 9 queued"
+      },
+      "itch": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 9 queued"
+      },
+      "crazygames": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 9 queued"
+      },
+      "discord": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 9 queued"
+      },
+      "telegram": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 9 queued"
+      },
+      "steam": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 9 queued"
+      }
+    },
+    "pinpoint": {
+      "web": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 10 queued"
+      },
+      "meta": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 10 queued"
+      },
+      "ios": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 10 queued"
+      },
+      "android": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 10 queued"
+      },
+      "electron": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 10 queued"
+      },
+      "itch": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 10 queued"
+      },
+      "crazygames": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 10 queued"
+      },
+      "discord": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 10 queued"
+      },
+      "telegram": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 10 queued"
+      },
+      "steam": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 10 queued"
+      }
+    },
+    "mini-sudoku": {
+      "web": {
+        "status": "partial",
+        "appExists": true,
+        "rulesVerified": true,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 40,
+        "notes": "Task 5 in progress: domain + app + ui complete, tests pending",
+        "phases": {
+          "domain": "complete",
+          "app": "complete",
+          "ui": "complete",
+          "tests": "in-progress",
+          "validation": "pending"
+        }
+      },
+      "meta": {
+        "status": "partial",
+        "appExists": true,
+        "rulesVerified": true,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 40,
+        "notes": "Task 5 in progress: domain + app + ui complete, tests pending",
+        "phases": {
+          "domain": "complete",
+          "app": "complete",
+          "ui": "complete",
+          "tests": "in-progress",
+          "validation": "pending"
+        }
+      },
+      "ios": {
+        "status": "partial",
+        "appExists": true,
+        "rulesVerified": true,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 40,
+        "notes": "Task 5 in progress: domain + app + ui complete, tests pending",
+        "phases": {
+          "domain": "complete",
+          "app": "complete",
+          "ui": "complete",
+          "tests": "in-progress",
+          "validation": "pending"
+        }
+      },
+      "android": {
+        "status": "partial",
+        "appExists": true,
+        "rulesVerified": true,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 40,
+        "notes": "Task 5 in progress: domain + app + ui complete, tests pending",
+        "phases": {
+          "domain": "complete",
+          "app": "complete",
+          "ui": "complete",
+          "tests": "in-progress",
+          "validation": "pending"
+        }
+      },
+      "electron": {
+        "status": "partial",
+        "appExists": true,
+        "rulesVerified": true,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 40,
+        "notes": "Task 5 in progress: domain + app + ui complete, tests pending",
+        "phases": {
+          "domain": "complete",
+          "app": "complete",
+          "ui": "complete",
+          "tests": "in-progress",
+          "validation": "pending"
+        }
+      },
+      "itch": {
+        "status": "partial",
+        "appExists": true,
+        "rulesVerified": true,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 40,
+        "notes": "Task 5 in progress: domain + app + ui complete, tests pending",
+        "phases": {
+          "domain": "complete",
+          "app": "complete",
+          "ui": "complete",
+          "tests": "in-progress",
+          "validation": "pending"
+        }
+      },
+      "crazygames": {
+        "status": "partial",
+        "appExists": true,
+        "rulesVerified": true,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 40,
+        "notes": "Task 5 in progress: domain + app + ui complete, tests pending",
+        "phases": {
+          "domain": "complete",
+          "app": "complete",
+          "ui": "complete",
+          "tests": "in-progress",
+          "validation": "pending"
+        }
+      },
+      "discord": {
+        "status": "partial",
+        "appExists": true,
+        "rulesVerified": true,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 40,
+        "notes": "Task 5 in progress: domain + app + ui complete, tests pending. Bundle size may be blocker.",
+        "phases": {
+          "domain": "complete",
+          "app": "complete",
+          "ui": "complete",
+          "tests": "in-progress",
+          "validation": "pending"
+        }
+      },
+      "telegram": {
+        "status": "partial",
+        "appExists": true,
+        "rulesVerified": true,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 40,
+        "notes": "Task 5 in progress: domain + app + ui complete, tests pending. Bundle size may be blocker.",
+        "phases": {
+          "domain": "complete",
+          "app": "complete",
+          "ui": "complete",
+          "tests": "in-progress",
+          "validation": "pending"
+        }
+      },
+      "steam": {
+        "status": "partial",
+        "appExists": true,
+        "rulesVerified": true,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 40,
+        "notes": "Task 5 in progress: domain + app + ui complete, tests pending",
+        "phases": {
+          "domain": "complete",
+          "app": "complete",
+          "ui": "complete",
+          "tests": "in-progress",
+          "validation": "pending"
+        }
+      }
+    },
+    "patches": {
+      "web": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 11 queued, polyomino placement algorithm"
+      },
+      "meta": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 11 queued"
+      },
+      "ios": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 11 queued"
+      },
+      "android": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 11 queued"
+      },
+      "electron": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 11 queued"
+      },
+      "itch": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 11 queued"
+      },
+      "crazygames": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 11 queued"
+      },
+      "discord": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 11 queued"
+      },
+      "telegram": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 11 queued"
+      },
+      "steam": {
+        "status": "not-started",
+        "appExists": false,
+        "rulesVerified": false,
+        "platformAdapter": false,
+        "performanceCompliance": false,
+        "uiCompliance": false,
+        "blockersFree": false,
+        "completionPercentage": 0,
+        "notes": "Task 11 queued"
+      }
+    }
+  }
+}

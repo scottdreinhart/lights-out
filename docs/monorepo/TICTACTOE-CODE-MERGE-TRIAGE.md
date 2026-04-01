@@ -4,7 +4,7 @@
 
 Track same-name file comparisons between:
 
-- current app: `src/**` (lights-out)
+- current app: `src/**` (game-platform root app layer)
 - absorbed app: `apps/tictactoe/src/**`
 
 Goal: identify where to keep, merge, or extract shared code.
@@ -66,7 +66,7 @@ For each divergent file:
 
 1. Compare feature sets and bug fixes in both versions.
 2. Decide one action:
-   - `keep-lights-out`
+   - `keep-platform-root`
    - `keep-tictactoe`
    - `merge-both`
    - `extract-shared-package`

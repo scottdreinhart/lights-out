@@ -1,0 +1,47 @@
+{
+    "name": "@games/blackjack",
+    "version": "1.0.0",
+    "description": "Blackjack - Classic Card Game",
+    "type": "module",
+    "private": true,
+    "license": "PROPRIETARY",
+    "author": "Scott Reinhart",
+    "packageManager": "pnpm@10.31.0",
+    "engines": {
+        "node": "24.14.1",
+        "pnpm": "10.31.0"
+    },
+    "main": "electron/main.js",
+    "scripts": {
+        "start": "pnpm exec vite --host",
+        "dev": "pnpm exec kill-port 5173 || true; pnpm exec vite --host",
+        "build": "pnpm exec vite build",
+        "preview": "pnpm exec vite preview",
+        "build:preview": "pnpm build && pnpm preview",
+        "lint": "pnpm exec eslint src/",
+        "lint:fix": "pnpm exec eslint src/ --fix",
+        "format": "pnpm exec prettier --write src/",
+        "format:check": "pnpm exec prettier --check src/",
+        "typecheck": "pnpm exec tsc",
+        "check": "pnpm lint && pnpm format:check && pnpm typecheck",
+        "fix": "pnpm lint:fix && pnpm format",
+        "validate": "pnpm check && pnpm build",
+        "clean": "pnpm exec rimraf dist release",
+        "clean:node": "pnpm exec rimraf node_modules",
+        "clean:all": "pnpm exec rimraf dist release node_modules"
+    },
+    "dependencies": {
+        "react": "19.2.4",
+        "react-dom": "19.2.4",
+        "@games/domain-shared": "workspace:*"
+    },
+    "devDependencies": {
+        "@types/react": "19.2.14",
+        "@types/react-dom": "19.2.3",
+        "@vitejs/plugin-react": "6.0.1",
+        "eslint": "10.0.3",
+        "prettier": "3.8.1",
+        "typescript": "5.9.3",
+        "vite": "8.0.0"
+    }
+}

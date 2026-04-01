@@ -136,7 +136,7 @@ All runtime decisions are subordinate to **AGENTS.md**. Refer to AGENTS.md for c
 - **§ 11**: Standard Application Shell Architecture — splash, landing, main content, results/history screens
 - **§ 12**: Responsive Design & Device-Aware UI Governance — 5-tier semantics, content density, touch optimization
 - **§ 13**: Menu & Settings Architecture Governance — hamburger menu, full-screen settings modal, dual-menu system, useDropdownBehavior hook, portal rendering, TicTacToe reference implementation
-- **§ 14**: Electron & Desktop Build Governance — apps/lights-out/electron/main.js, preload.js, platform targets, key dependencies
+- **§ 14**: Electron & Desktop Build Governance — app-specific electron/main.js, preload.js, platform targets, key dependencies
 - **§ 15**: Capacitor & Mobile Build Governance — iOS/Android scripts, environment routing, key dependencies
 - **§ 16**: WASM & AI Engine Governance — AssemblyScript, build pipeline, worker integration, anti-orphan-script policy
 - **§ 17**: Responsive Design & Mobile-First Patterns — 5-tier device architecture, CSS media queries, content density

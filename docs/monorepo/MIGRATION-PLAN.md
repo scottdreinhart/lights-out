@@ -6,7 +6,7 @@ Complete monorepo normalization by moving app-specific assets/config/runtime fil
 
 ## Program Context (2026-03-16)
 
-- Active apps in this repository: `apps/tictactoe` and `apps/lights-out`.
+- Active apps in this repository: Multiple game apps across `apps/` including `tictactoe`, `nim`, `lights-out`, and 22+ others.
 - Current program includes migration/ingestion/restructuring of Nim artifacts into app-local and shared-package boundaries.
 - Root remains orchestration/governance-first; runtime/build assets should live in app directories unless intentionally shared.
 
@@ -39,7 +39,7 @@ Complete monorepo normalization by moving app-specific assets/config/runtime fil
 ## Current Peer Status
 
 - `lights-out` has completed root duplicate purge with app-local runtime/build assets retained.
-- Root scripts delegate to `apps/lights-out` for runtime/build/test workflows.
+- Root scripts delegate to game apps in `apps/` for runtime/build/test workflows.
 - No permanent baseline repo is designated; next intake is selected by peer comparison and merge quality.
 
 ## Phase 1 — Stabilize Current Shared Packages

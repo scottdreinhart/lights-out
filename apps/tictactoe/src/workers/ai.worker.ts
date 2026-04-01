@@ -1,3 +1,4 @@
+import type { Board, CellValue, Token, WorkerMessage, WorkerResponse } from '@/domain'
 import {
   chooseCpuMoveMedium,
   chooseCpuMoveRandom,
@@ -5,7 +6,6 @@ import {
   getEmptyCells,
   getWinnerToken,
 } from '@/domain'
-import type { Board, CellValue, Token, WorkerMessage, WorkerResponse } from '@/domain'
 import { AI_WASM_BASE64 } from '../wasm/ai-wasm.ts'
 
 // ============================================================================

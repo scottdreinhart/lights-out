@@ -1,8 +1,5 @@
-import {
-  chooseCpuMoveMedium,
-  chooseCpuMoveRandom,
-} from '@/domain'
 import type { Board, Difficulty, Token } from '@/domain'
+import { chooseCpuMoveMedium, chooseCpuMoveRandom } from '@/domain'
 
 interface AiResult {
   index: number
@@ -44,7 +41,7 @@ export const computeAiMove = (
   board: Board,
   difficulty: Difficulty,
   cpuToken: Token,
-  humanToken: Token
+  humanToken: Token,
 ): AiResult => {
   let index: number
 
@@ -77,7 +74,7 @@ export const computeAiMoveAsync = async (
   board: Board,
   difficulty: Difficulty,
   cpuToken: Token,
-  humanToken: Token
+  humanToken: Token,
 ): Promise<AiResult> => {
   // For TicTacToe, sync computation is fast enough
   // This is available for future expansion or testing

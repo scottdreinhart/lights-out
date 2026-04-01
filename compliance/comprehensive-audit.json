@@ -1,0 +1,3311 @@
+{
+  "games": [
+    {
+      "name": "battleship",
+      "engineFamily": "Board/Strategy",
+      "path": "/mnt/c/Users/scott/game-platform/apps/battleship",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useGame.ts",
+          "useSoundEffects.ts",
+          "useStats.ts",
+          "useTheme.ts"
+        ],
+        "hasUseGame": true,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "@games/battleship",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "bunco",
+      "engineFamily": "Dice/Probability",
+      "path": "/mnt/c/Users/scott/game-platform/apps/bunco",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useGame.ts",
+          "useGameEvents.ts",
+          "useSoundEffects.ts",
+          "useStats.ts",
+          "useTheme.ts"
+        ],
+        "hasUseGame": true,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "bunco-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "cee-lo",
+      "engineFamily": "Dice/Probability",
+      "path": "/mnt/c/Users/scott/game-platform/apps/cee-lo",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useGame.ts",
+          "useSoundEffects.ts",
+          "useStats.ts",
+          "useTheme.ts"
+        ],
+        "hasUseGame": true,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "@games/cee-lo",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "checkers",
+      "engineFamily": "Board/Strategy",
+      "path": "/mnt/c/Users/scott/game-platform/apps/checkers",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useGame.ts",
+          "useResponsiveState.test.ts",
+          "useSoundEffects.ts",
+          "useStats.ts",
+          "useTheme.ts"
+        ],
+        "hasUseGame": true,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "checkers-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "chicago",
+      "engineFamily": "Dice/Probability",
+      "path": "/mnt/c/Users/scott/game-platform/apps/chicago",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useGame.ts",
+          "useSoundEffects.ts",
+          "useStats.ts",
+          "useTheme.ts"
+        ],
+        "hasUseGame": true,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "chicago-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "cho-han",
+      "engineFamily": "Dice/Probability",
+      "path": "/mnt/c/Users/scott/game-platform/apps/cho-han",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useGame.ts",
+          "useSoundEffects.ts",
+          "useStats.ts",
+          "useTheme.ts"
+        ],
+        "hasUseGame": true,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "cho-han-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "connect-four",
+      "engineFamily": "Board/Strategy",
+      "path": "/mnt/c/Users/scott/game-platform/apps/connect-four",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.test.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useGame.ts",
+          "useSoundEffects.ts",
+          "useStats.ts",
+          "useTheme.ts"
+        ],
+        "hasUseGame": true,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "connect-four-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "crossclimb",
+      "engineFamily": "UNKNOWN",
+      "path": "/mnt/c/Users/scott/game-platform/apps/crossclimb",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": false,
+        "wasmExists": false,
+        "themeExists": false,
+        "typescriptConfig": false,
+        "packageJson": true,
+        "indexTsx": false,
+        "domainFiles": [
+          "ai.ts",
+          "constants.ts",
+          "index.ts",
+          "rules.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useCrossclimbGame.ts"
+        ],
+        "hasUseGame": false,
+        "hasUseStats": false,
+        "uiHasAtoms": false,
+        "uiHasMolecules": false,
+        "uiHasOrganisms": false
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "crossclimb-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing tsconfig.json",
+            "Vite requires src/index.tsx"
+          ]
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing tsconfig.json",
+            "Vite requires src/index.tsx"
+          ]
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing tsconfig.json",
+            "Mobile needs responsive UI (atoms)"
+          ]
+        },
+        "android": {
+          "platform": "android",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing tsconfig.json",
+            "Mobile needs responsive UI (atoms)"
+          ]
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing tsconfig.json"
+          ]
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing tsconfig.json"
+          ]
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing tsconfig.json"
+          ]
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing tsconfig.json",
+            "Vite requires src/index.tsx"
+          ]
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing tsconfig.json",
+            "Vite requires src/index.tsx"
+          ]
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing tsconfig.json",
+            "Vite requires src/index.tsx"
+          ]
+        }
+      }
+    },
+    {
+      "name": "farkle",
+      "engineFamily": "Dice/Probability",
+      "path": "/mnt/c/Users/scott/game-platform/apps/farkle",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useGame.ts",
+          "useSoundEffects.ts",
+          "useStats.ts",
+          "useTheme.ts"
+        ],
+        "hasUseGame": true,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "farkle-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "hangman",
+      "engineFamily": "Word/NLP",
+      "path": "/mnt/c/Users/scott/game-platform/apps/hangman",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useGame.ts",
+          "useSoundEffects.ts",
+          "useStats.ts",
+          "useTheme.ts"
+        ],
+        "hasUseGame": true,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "hangman-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "liars-dice",
+      "engineFamily": "Dice/Probability",
+      "path": "/mnt/c/Users/scott/game-platform/apps/liars-dice",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useGame.ts",
+          "useSoundEffects.ts",
+          "useStats.ts",
+          "useTheme.ts"
+        ],
+        "hasUseGame": true,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "liars-dice-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "lights-out",
+      "engineFamily": "Constraint Satisfaction",
+      "path": "/mnt/c/Users/scott/game-platform/apps/lights-out",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [],
+        "hasUseGame": false,
+        "hasUseStats": false,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "lights-out-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "mancala",
+      "engineFamily": "Board/Strategy",
+      "path": "/mnt/c/Users/scott/game-platform/apps/mancala",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": true,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.test.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useGameState.ts",
+          "useSoundEffects.ts",
+          "useStats.ts"
+        ],
+        "hasUseGame": true,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "mancala-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "memory-game",
+      "engineFamily": "State/Transition",
+      "path": "/mnt/c/Users/scott/game-platform/apps/memory-game",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useSoundEffects.ts",
+          "useStats.ts",
+          "useTheme.ts"
+        ],
+        "hasUseGame": false,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "memory-game-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "mexico",
+      "engineFamily": "Dice/Probability",
+      "path": "/mnt/c/Users/scott/game-platform/apps/mexico",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useGame.ts",
+          "useSoundEffects.ts",
+          "useStats.ts",
+          "useTheme.ts"
+        ],
+        "hasUseGame": true,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "@games/mexico",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "minesweeper",
+      "engineFamily": "Constraint Satisfaction",
+      "path": "/mnt/c/Users/scott/game-platform/apps/minesweeper",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.test.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.test.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useGame.ts",
+          "useSoundEffects.ts",
+          "useStats.ts",
+          "useTheme.ts"
+        ],
+        "hasUseGame": true,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "minesweeper-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "mini-sudoku",
+      "engineFamily": "Constraint Satisfaction",
+      "path": "/mnt/c/Users/scott/game-platform/apps/mini-sudoku",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": false,
+        "wasmExists": false,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "__tests__",
+          "ai.ts",
+          "constants.ts",
+          "constraints.ts",
+          "index.ts",
+          "rules.ts",
+          "templates.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useGame.ts",
+          "useResponsiveState.ts"
+        ],
+        "hasUseGame": true,
+        "hasUseStats": false,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "mini-sudoku-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "monchola",
+      "engineFamily": "Dice/Probability",
+      "path": "/mnt/c/Users/scott/game-platform/apps/monchola",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useSoundEffects.ts",
+          "useTheme.ts"
+        ],
+        "hasUseGame": false,
+        "hasUseStats": false,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "@games/monchola",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "nim",
+      "engineFamily": "Board/Strategy",
+      "path": "/mnt/c/Users/scott/game-platform/apps/nim",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "i18n.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [],
+        "hasUseGame": false,
+        "hasUseStats": false,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "nim-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "pig",
+      "engineFamily": "Dice/Probability",
+      "path": "/mnt/c/Users/scott/game-platform/apps/pig",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useGame.ts",
+          "useSoundEffects.ts",
+          "useStats.ts",
+          "useTheme.ts"
+        ],
+        "hasUseGame": true,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "pig-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "pinpoint",
+      "engineFamily": "UNKNOWN",
+      "path": "/mnt/c/Users/scott/game-platform/apps/pinpoint",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": false,
+        "wasmExists": false,
+        "themeExists": false,
+        "typescriptConfig": false,
+        "packageJson": true,
+        "indexTsx": false,
+        "domainFiles": [
+          "ai.ts",
+          "constants.ts",
+          "index.ts",
+          "rules.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "usePinpointGame.ts"
+        ],
+        "hasUseGame": false,
+        "hasUseStats": false,
+        "uiHasAtoms": false,
+        "uiHasMolecules": false,
+        "uiHasOrganisms": false
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "pinpoint-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing tsconfig.json",
+            "Vite requires src/index.tsx"
+          ]
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing tsconfig.json",
+            "Vite requires src/index.tsx"
+          ]
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing tsconfig.json",
+            "Mobile needs responsive UI (atoms)"
+          ]
+        },
+        "android": {
+          "platform": "android",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing tsconfig.json",
+            "Mobile needs responsive UI (atoms)"
+          ]
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing tsconfig.json"
+          ]
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing tsconfig.json"
+          ]
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing tsconfig.json"
+          ]
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing tsconfig.json",
+            "Vite requires src/index.tsx"
+          ]
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing tsconfig.json",
+            "Vite requires src/index.tsx"
+          ]
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing tsconfig.json",
+            "Vite requires src/index.tsx"
+          ]
+        }
+      }
+    },
+    {
+      "name": "queens",
+      "engineFamily": "UNKNOWN",
+      "path": "/mnt/c/Users/scott/game-platform/apps/queens",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": false,
+        "wasmExists": false,
+        "themeExists": false,
+        "typescriptConfig": false,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "constants.ts",
+          "index.ts",
+          "rules.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useQueensGame.ts"
+        ],
+        "hasUseGame": false,
+        "hasUseStats": false,
+        "uiHasAtoms": false,
+        "uiHasMolecules": false,
+        "uiHasOrganisms": false
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "queens-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "⚠️",
+          "issues": [
+            "Missing tsconfig.json"
+          ]
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "⚠️",
+          "issues": [
+            "Missing tsconfig.json"
+          ]
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "⚠️",
+          "issues": [
+            "Missing tsconfig.json",
+            "Mobile needs responsive UI (atoms)"
+          ]
+        },
+        "android": {
+          "platform": "android",
+          "status": "⚠️",
+          "issues": [
+            "Missing tsconfig.json",
+            "Mobile needs responsive UI (atoms)"
+          ]
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "⚠️",
+          "issues": [
+            "Missing tsconfig.json"
+          ]
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "⚠️",
+          "issues": [
+            "Missing tsconfig.json"
+          ]
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "⚠️",
+          "issues": [
+            "Missing tsconfig.json"
+          ]
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "⚠️",
+          "issues": [
+            "Missing tsconfig.json"
+          ]
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "⚠️",
+          "issues": [
+            "Missing tsconfig.json"
+          ]
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "⚠️",
+          "issues": [
+            "Missing tsconfig.json"
+          ]
+        }
+      }
+    },
+    {
+      "name": "reversi",
+      "engineFamily": "Board/Strategy",
+      "path": "/mnt/c/Users/scott/game-platform/apps/reversi",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useSoundEffects.ts",
+          "useStats.ts",
+          "useTheme.ts"
+        ],
+        "hasUseGame": false,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "@games/reversi",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "rock-paper-scissors",
+      "engineFamily": "Dice/Probability",
+      "path": "/mnt/c/Users/scott/game-platform/apps/rock-paper-scissors",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "tiers.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useGame.ts",
+          "useSoundEffects.ts",
+          "useStats.ts",
+          "useTheme.ts"
+        ],
+        "hasUseGame": true,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "rock-paper-scissors-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "ship-captain-crew",
+      "engineFamily": "Dice/Probability",
+      "path": "/mnt/c/Users/scott/game-platform/apps/ship-captain-crew",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useGame.ts",
+          "useSoundEffects.ts",
+          "useStats.ts",
+          "useTheme.ts"
+        ],
+        "hasUseGame": true,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "@games/ship-captain-crew",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "shut-the-box",
+      "engineFamily": "Dice/Probability",
+      "path": "/mnt/c/Users/scott/game-platform/apps/shut-the-box",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useSoundEffects.ts",
+          "useStats.ts",
+          "useTheme.ts"
+        ],
+        "hasUseGame": false,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "shut-the-box-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "simon-says",
+      "engineFamily": "State/Transition",
+      "path": "/mnt/c/Users/scott/game-platform/apps/simon-says",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useSoundEffects.ts",
+          "useStats.ts",
+          "useTheme.ts"
+        ],
+        "hasUseGame": false,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "simon-says-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "snake",
+      "engineFamily": "Graph/Path Finding",
+      "path": "/mnt/c/Users/scott/game-platform/apps/snake",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": true,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "board.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.test.ts",
+          "responsive.ts",
+          "rules.ts",
+          "sprites.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useGame.ts",
+          "useSoundEffects.ts",
+          "useStats.ts"
+        ],
+        "hasUseGame": true,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "snake-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "sudoku",
+      "engineFamily": "Constraint Satisfaction",
+      "path": "/mnt/c/Users/scott/game-platform/apps/sudoku",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": false,
+        "wasmExists": false,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "constants.ts",
+          "index.ts",
+          "rules.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": false,
+        "hasSolver": false,
+        "appHooks": [
+          "useGame.ts",
+          "useResponsiveState.ts"
+        ],
+        "hasUseGame": true,
+        "hasUseStats": false,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "sudoku-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "tango",
+      "engineFamily": "UNKNOWN",
+      "path": "/mnt/c/Users/scott/game-platform/apps/tango",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": false,
+        "wasmExists": false,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": false,
+        "domainFiles": [
+          "ai.ts",
+          "constants.ts",
+          "index.ts",
+          "rules.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useTangoGame.ts"
+        ],
+        "hasUseGame": false,
+        "hasUseStats": false,
+        "uiHasAtoms": false,
+        "uiHasMolecules": false,
+        "uiHasOrganisms": false
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "@games/tango",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Vite requires src/index.tsx"
+          ]
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Vite requires src/index.tsx"
+          ]
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Mobile needs responsive UI (atoms)"
+          ]
+        },
+        "android": {
+          "platform": "android",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Mobile needs responsive UI (atoms)"
+          ]
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx"
+          ]
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx"
+          ]
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx"
+          ]
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Vite requires src/index.tsx"
+          ]
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Vite requires src/index.tsx"
+          ]
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Vite requires src/index.tsx"
+          ]
+        }
+      }
+    },
+    {
+      "name": "tictactoe",
+      "engineFamily": "Board/Strategy",
+      "path": "/mnt/c/Users/scott/game-platform/apps/tictactoe",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": true,
+        "wasmExists": true,
+        "themeExists": false,
+        "typescriptConfig": true,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.test.ts",
+          "ai.ts",
+          "board.test.ts",
+          "board.ts",
+          "constants.test.ts",
+          "constants.ts",
+          "index.ts",
+          "layers.ts",
+          "responsive.test.ts",
+          "responsive.ts",
+          "rules.test.ts",
+          "rules.ts",
+          "themes.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useAutoReset.ts",
+          "useCoinFlipAnimation.ts",
+          "useCpuPlayer.ts",
+          "useGameBoard.ts",
+          "useGameOrchestration.ts",
+          "useGameStats.ts",
+          "useGridKeyboard.ts",
+          "useNotificationQueue.ts",
+          "usePrevious.ts",
+          "useSeries.ts",
+          "useSmartPosition.ts",
+          "useSoundEffects.ts",
+          "useStats.ts",
+          "useTicTacToe.ts",
+          "useWebWorker.ts"
+        ],
+        "hasUseGame": true,
+        "hasUseStats": true,
+        "uiHasAtoms": true,
+        "uiHasMolecules": true,
+        "uiHasOrganisms": true
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "@games/tictactoe",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "✅"
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "✅"
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "✅"
+        },
+        "android": {
+          "platform": "android",
+          "status": "✅"
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "✅"
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "✅"
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "✅"
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "✅"
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "✅"
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "✅"
+        }
+      }
+    },
+    {
+      "name": "ui",
+      "engineFamily": "UNKNOWN",
+      "path": "/mnt/c/Users/scott/game-platform/apps/ui",
+      "architecture": {
+        "domainLayerExists": false,
+        "appLayerExists": false,
+        "uiLayerExists": false,
+        "workersExists": false,
+        "wasmExists": false,
+        "themeExists": false,
+        "typescriptConfig": false,
+        "packageJson": false,
+        "indexTsx": false
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {},
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing package.json",
+            "Missing tsconfig.json",
+            "Vite requires src/index.tsx"
+          ]
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing package.json",
+            "Missing tsconfig.json",
+            "Vite requires src/index.tsx"
+          ]
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing package.json",
+            "Missing tsconfig.json",
+            "Mobile needs responsive UI (atoms)"
+          ]
+        },
+        "android": {
+          "platform": "android",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing package.json",
+            "Missing tsconfig.json",
+            "Mobile needs responsive UI (atoms)"
+          ]
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing package.json",
+            "Missing tsconfig.json"
+          ]
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing package.json",
+            "Missing tsconfig.json"
+          ]
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing package.json",
+            "Missing tsconfig.json"
+          ]
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing package.json",
+            "Missing tsconfig.json",
+            "Vite requires src/index.tsx"
+          ]
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing package.json",
+            "Missing tsconfig.json",
+            "Vite requires src/index.tsx"
+          ]
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "⚠️",
+          "issues": [
+            "Missing src/index.tsx",
+            "Missing package.json",
+            "Missing tsconfig.json",
+            "Vite requires src/index.tsx"
+          ]
+        }
+      }
+    },
+    {
+      "name": "zip",
+      "engineFamily": "UNKNOWN",
+      "path": "/mnt/c/Users/scott/game-platform/apps/zip",
+      "architecture": {
+        "domainLayerExists": true,
+        "appLayerExists": true,
+        "uiLayerExists": true,
+        "workersExists": false,
+        "wasmExists": false,
+        "themeExists": false,
+        "typescriptConfig": false,
+        "packageJson": true,
+        "indexTsx": true,
+        "domainFiles": [
+          "ai.ts",
+          "constants.ts",
+          "index.ts",
+          "rules.ts",
+          "types.ts"
+        ],
+        "hasTypes": true,
+        "hasRules": true,
+        "hasConstants": true,
+        "hasAi": true,
+        "hasSolver": false,
+        "appHooks": [
+          "useZipGame.ts"
+        ],
+        "hasUseGame": false,
+        "hasUseStats": false,
+        "uiHasAtoms": false,
+        "uiHasMolecules": false,
+        "uiHasOrganisms": false
+      },
+      "testCoverage": {
+        "testFilesExist": false
+      },
+      "packageInfo": {
+        "name": "zip-game",
+        "version": "1.0.0",
+        "hasScripts": true,
+        "hasDevDependencies": true
+      },
+      "platformSupport": {
+        "web": {
+          "platform": "web",
+          "status": "⚠️",
+          "issues": [
+            "Missing tsconfig.json"
+          ]
+        },
+        "meta-instant-games": {
+          "platform": "meta-instant-games",
+          "status": "⚠️",
+          "issues": [
+            "Missing tsconfig.json"
+          ]
+        },
+        "ios": {
+          "platform": "ios",
+          "status": "⚠️",
+          "issues": [
+            "Missing tsconfig.json",
+            "Mobile needs responsive UI (atoms)"
+          ]
+        },
+        "android": {
+          "platform": "android",
+          "status": "⚠️",
+          "issues": [
+            "Missing tsconfig.json",
+            "Mobile needs responsive UI (atoms)"
+          ]
+        },
+        "electron-win": {
+          "platform": "electron-win",
+          "status": "⚠️",
+          "issues": [
+            "Missing tsconfig.json"
+          ]
+        },
+        "electron-mac": {
+          "platform": "electron-mac",
+          "status": "⚠️",
+          "issues": [
+            "Missing tsconfig.json"
+          ]
+        },
+        "electron-linux": {
+          "platform": "electron-linux",
+          "status": "⚠️",
+          "issues": [
+            "Missing tsconfig.json"
+          ]
+        },
+        "itch-io": {
+          "platform": "itch-io",
+          "status": "⚠️",
+          "issues": [
+            "Missing tsconfig.json"
+          ]
+        },
+        "discord-activities": {
+          "platform": "discord-activities",
+          "status": "⚠️",
+          "issues": [
+            "Missing tsconfig.json"
+          ]
+        },
+        "telegram-mini-apps": {
+          "platform": "telegram-mini-apps",
+          "status": "⚠️",
+          "issues": [
+            "Missing tsconfig.json"
+          ]
+        }
+      }
+    }
+  ],
+  "timestamp": "2026-04-01T19:32:44.601Z"
+}

@@ -1,0 +1,37 @@
+{
+  "name": "@games/card-deck-core",
+  "version": "1.0.0",
+  "description": "Shared card deck system for all card games - handles standard 52/53/54 card decks, suits, ranks, values, jokers, and multi-shoe operations",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "workspace:*"
+  },
+  "keywords": [
+    "cards",
+    "deck",
+    "playing-cards",
+    "card-games",
+    "suits",
+    "ranks",
+    "jokers",
+    "shoe"
+  ],
+  "author": "Scott Reinhart",
+  "license": "Proprietary"
+}

@@ -65,7 +65,7 @@ Observed semantic/tier drift:
 ### 4) CSS Standard Consistency
 - Most apps use CSS Modules in `src/ui` consistently.
 - Outliers:
-  - `lights-out`: plain CSS in UI (`plain=2`)
+  - `lights-out`: plain CSS in UI (heritage app pattern)
   - `rock-paper-scissors`: plain CSS in UI (`plain=5`)
 
 Interpretation:
@@ -77,7 +77,7 @@ Theme file baseline:
 - `mancala` and `snake`: **8** theme files (extra variants)
 
 Menu/settings pattern coverage:
-- Fuller menu/settings stack present in a subset (`battleship`, `nim`, `tictactoe`, partial in `snake`, `lights-out`, `minesweeper`)
+- Fuller menu/settings stack present in multiple apps (`battleship`, `nim`, `tictactoe`, partial in `snake`, `lights-out`, `minesweeper`)
 - Many apps still have minimal/no hamburger + settings surface pattern
 
 Interpretation:

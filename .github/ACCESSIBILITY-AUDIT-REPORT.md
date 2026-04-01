@@ -150,7 +150,7 @@ Comprehensive accessibility audit of all new settings UI components. **6 issues 
 <button
   aria-haspopup="true"
   aria-expanded="true/false"
-  aria-controls="lights-out-menu-panel"
+  aria-controls="game-platform-menu-panel"
   aria-label="Open menu / Close menu"
 >
   ☰ (icon)

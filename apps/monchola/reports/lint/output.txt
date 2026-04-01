@@ -1,5 +1,7 @@
+ WARN  Unsupported engine: wanted: {"node":"24.14.0"} (current: {"node":"v20.11.1","pnpm":"10.31.0"})
 
-> @games/monchola@1.0.0 lint /mnt/c/Users/scott/lights-out/apps/monchola
-> pnpm exec eslint src/
+> @games/monchola@1.0.0 lint /mnt/c/Users/scott/game-platform/apps/monchola
+> cd ../../ && pnpm exec eslint apps/monchola/src/
 
- ELIFECYCLE  Command failed.
+./node_modules/.bin/eslint: 15: exec: node: Permission denied
+ ELIFECYCLE  Command failed with exit code 126.

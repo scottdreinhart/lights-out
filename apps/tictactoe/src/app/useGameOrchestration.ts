@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
-import { TOKENS } from '@/domain'
 import type { Board, GameState, Notification, Outcome } from '@/domain'
+import { TOKENS } from '@/domain'
 import usePrevious from './usePrevious.ts'
 
 interface Sounds {

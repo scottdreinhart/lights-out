@@ -1,0 +1,14 @@
+{
+  "name": "@games/card-deck-system",
+  "version": "1.0.0",
+  "description": "Shared card deck system for all card games—handles standard 52-card decks, jokers, multiple shoes, and card operations.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "files": [
+    "src"
+  ],
+  "dependencies": {},
+  "devDependencies": {}
+}

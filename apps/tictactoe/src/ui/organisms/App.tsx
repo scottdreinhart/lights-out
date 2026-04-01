@@ -5,7 +5,7 @@
  * Plus: settings, help, stats overlays accessible from menu and during play
  */
 
-import { useStats, useSoundEffects } from '@/app'
+import { useSoundEffects, useStats } from '@/app'
 import type { Difficulty } from '@/domain'
 import {
   GameOverOverlay,

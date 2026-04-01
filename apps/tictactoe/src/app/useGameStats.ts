@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
-import { TOKENS } from '@/domain'
 import type { GameState, Score } from '@/domain'
+import { TOKENS } from '@/domain'
 import usePrevious from './usePrevious.ts'
 
 interface UseGameStatsReturn {

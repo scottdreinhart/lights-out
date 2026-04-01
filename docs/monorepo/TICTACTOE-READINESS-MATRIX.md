@@ -58,7 +58,7 @@ Required report scripts for parity with your current detailed reporting approach
 
 ## 4) Dependency/Tooling Alignment Notes
 
-- Strong alignment with current `lights-out` stack (React/Vite/Electron/Capacitor/AssemblyScript).
+- Strong alignment with platform reference apps (`lights-out`, `nim`, `tictactoe`) stack (React/Vite/Electron/Capacitor/AssemblyScript).
 - Minor version drift exists for some packages (e.g., `vite`, `electron`, `wait-on`), to normalize in follow-up.
 - Optional Linux binary deps in source should be reviewed for monorepo portability.
 

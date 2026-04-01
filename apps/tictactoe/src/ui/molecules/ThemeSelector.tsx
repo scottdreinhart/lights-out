@@ -1,9 +1,9 @@
 import React, { useCallback, useRef, useState } from 'react'
 
+import type { ThemeSettings } from '@/domain'
+import { COLOR_THEMES, COLORBLIND_MODES, MODES } from '@/domain'
 import { useDropdownBehavior } from '@games/assets-shared'
 import useSmartPosition from '../../app/useSmartPosition.ts'
-import { COLOR_THEMES, COLORBLIND_MODES, MODES } from '@/domain'
-import type { ThemeSettings } from '@/domain'
 import { THEME_PANEL_LABEL } from '../ui-constants.ts'
 import { cx } from '../utils/cssModules.ts'
 import styles from './ThemeSelector.module.css'

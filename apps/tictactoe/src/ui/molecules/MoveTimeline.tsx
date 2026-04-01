@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react'
 
-import { useDropdownBehavior } from '@games/assets-shared'
 import type { Board, Score } from '@/domain'
+import { useDropdownBehavior } from '@games/assets-shared'
 import { cx } from '../utils/cssModules.ts'
 import styles from './MoveTimeline.module.css'
 

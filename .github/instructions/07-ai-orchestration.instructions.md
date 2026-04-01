@@ -24,7 +24,7 @@ Games need efficient AI computation that:
 ├─ SIMPLE (<10ms decision time)
 │  └─ Use sync main-thread WASM (lowest overhead)
 │     Fallback: JS implementation (guaranteed available)
-│     Examples: 3×3 tic-tac-toe, 4×4 lights-out, simple match-3
+│     Examples: 3×3 tic-tac-toe, 4×4 grid puzzle, simple match-3
 │
 ├─ MEDIUM (10–100ms decision time)
 │  └─ Use optional async via Web Worker (prevents UI jank)
@@ -160,7 +160,7 @@ Must validate:
 
 **Projects ready:**
 - Snake (already has `aiService` with workers)
-- Lights-out, Minesweeper (simple heuristics, no worker needed)
+- Grid puzzles, Minesweeper (simple heuristics, no worker needed)
 - Battleship, Farkle, Connect-four (have worker scaffolding)
 
 ### Advanced Adoption (Recommended)

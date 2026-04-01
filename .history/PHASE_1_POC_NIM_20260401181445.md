@@ -1,0 +1,283 @@
+# Phase 1 Execution: Standardize Shared Hook Factories
+
+**Date**: 2026-04-01 - STARTING POC  
+**Status**: 🎯 EXECUTING - TicTacToe as Gold Standard
+
+---
+
+## Real Phase 1 Issue (Discovered)
+
+### Not "missing shared package"
+
+**NOT**: Apps have no access to shared hooks
+
+### Actual Issue
+
+**IS**: Apps inconsistently use shared hook factories
+
+**Example**:
+
+- **tictactoe**: ✅ Correctly uses `createUseStatsHook` from @games/app-hook-utils
+
+  ```ts
+  // tictactoe/src/app/useStats.ts - TEMPLATE (DO THIS)
+  export const useStats = createUseStatsHook({
+    storageKey: 'tictactoe-stats',
+    defaultStats: DEFAULT_STATS,
+    load,
+    save,
+  })
+  ```
+
+- **nim**: ❌ Duplicates logic instead of using factory
+  ```ts
+  // nim/src/app/hooks/useStats.ts - WRONG (DON'T DO THIS)
+  export const useStats = () => {
+    const [stats, setStats] = useState<GameStats>(loadStats)
+    // ... duplicated implementation
+  }
+  ```
+
+### The Fix
+
+Update apps like nim to use the pattern like tictactoe does
+
+---
+
+## Phase 1 PoC: NIM → TicTacToe Pattern
+
+### Current State
+
+- nim has 17 hooks in `src/app/hooks/`
+- Many duplicate shared factory patterns unnecessarily
+- useStats in nim: ~30 lines of duplicated code
+- useSoundEffects in nim: custom but could use factory
+
+### Target State
+
+- nim's hooks use consistent factories from @games/app-hook-utils
+- Eliminate ~10+ lines of duplicated implementation per hook
+- Maintain game-specific logic in game-specific hooks
+- Follow tictactoe as the reference implementation
+
+### Execution Steps (Line by Line)
+
+#### Step 1: Audit nim's hooks (20 min)
+
+```bash
+cd apps/nim/src/app/hooks
+ls -la  # See all 17 hooks
+wc -l *.ts | sort -n | tail -5  # Find biggest duplications
+```
+
+#### Step 2: Identify which hooks can use factories (30 min)
+
+**Candidates for factory pattern**:
+
+- useStats → use createUseStatsHook (like tictactoe)
+- useDarkMode → might use useThemeControl or similar
+- useLocalStorage → check app-hook-utils
+- useToggle → check app-hook-utils
+
+**Check what factories exist**:
+
+```bash
+grep "create\|factory" packages/app-hook-utils/src/index.ts
+```
+
+#### Step 3: Update nim's useStats to use factory (20 min)
+
+**BEFORE** (nim/src/app/hooks/useStats.ts - 40 lines):
+
+```ts
+export const useStats = () => {
+  const [stats, setStats] = useState<GameStats>(loadStats)
+  const persist = useCallback(...)
+  // ... 30 lines duplicated from other apps
+}
+```
+
+**AFTER** (nim/src/app/hooks/useStats.ts - 10 lines):
+
+```ts
+import { createUseStatsHook } from '@games/app-hook-utils'
+import { DEFAULT_STATS } from '@/domain'
+import { load, save } from '../services/storageService'
+
+export const useStats = createUseStatsHook({
+  storageKey: 'nim-stats',
+  defaultStats: DEFAULT_STATS,
+  load,
+  save,
+})
+```
+
+**Result**: 30 lines removed, 1 factory call added
+
+#### Step 4: Update nim's hooks/index.ts barrel (10 min)
+
+**Verify exports remain same**:
+
+```ts
+export { useStats } from './useStats' // Same export, same behavior
+```
+
+#### Step 5: Verify no component changes needed (30 min)
+
+Hooks barrel exports unchanged, so component imports work as-is:
+
+```ts
+// In nim components - NO CHANGES needed
+import { useStats } from '@/app' // Still works
+const stats = useStats() // Still works
+```
+
+#### Step 6: Test (30 min)
+
+```bash
+cd apps/nim
+pnpm typecheck  # Should pass
+pnpm lint       # Should pass
+pnpm dev        # Launch game, verify stats work
+```
+
+#### Step 7: Commit (5 min)
+
+```bash
+git add apps/nim/src/app/hooks/useStats.ts
+git commit "refactor(apps/nim): Use createUseStatsHook factory"
+```
+
+---
+
+## Week 1 Execution Plan (Revised)
+
+### **Mon 4/1 (1 hr)**
+
+Verify tictactoe as reference, document pattern
+
+### **Mon 4/1 (2-3 hrs)**
+
+Update nim using tictactoe pattern (PoC app #1)
+
+### **Tue 4/2 (2-3 hrs)**
+
+Update snake using same pattern (PoC app #2)
+
+### **Tue-Thu 4/2-4**
+
+Identify and update other apps following pattern
+
+### **Fri 4/5**
+
+Full validation: all 26 apps standardized, 150+ lines removed
+
+---
+
+## Which Apps Need Updating?
+
+**Already Correct** (using factory pattern):
+
+- ✅ tictactoe
+- ✅ lights-out (if it follows same pattern)
+
+**Need Updating** (custom implementations):
+
+- ❌ nim
+- ❌ snake
+- ❌ minesweeper
+- ❌ battleship
+- ❌ And others (need audit)
+
+**Command to identify**:
+
+```bash
+#Find apps with non-factory useStats implementations
+for app in apps/*/; do
+  stats_file=$(find "$app" -name useStats.ts 2>/dev/null | head -1)
+  if [ -f "$stats_file" ]; then
+    if ! grep -q "createUseStatsHook" "$stats_file"; then
+      echo "$(basename $app): NEEDS UPDATE"
+    else
+      echo "$(basename $app): Already correct"
+    fi
+  fi
+done
+```
+
+---
+
+## Generic Hook Factory Pattern Template
+
+**For Any Shared Hook You Want to Consolidate**:
+
+1. **Check if factory exists** in @games/app-hook-utils:
+
+   ```bash
+   grep "export.*create" packages/app-hook-utils/src/index.ts | grep -i "hookname"
+   ```
+
+2. **If NO factory, check if hook exists**:
+
+   ```bash
+   grep "export.*useHookName" packages/app-hook-utils/src/index.ts
+   ```
+
+3. **If YES hook exists, use directly** (don't duplicate):
+
+   ```ts
+   // OLD (in app)
+   export function useHookName() { ... }
+
+   // NEW (in app)
+   export { useHookName } from '@games/app-hook-utils'
+   ```
+
+4. **If NO factory and app-specific logic needed**, create factory:
+
+   ```ts
+   // In app-hook-utils
+   export function createUseHookNameHook(config: Config) {
+     return () => { ... }
+   }
+
+   // In app
+   import { createUseHookNameHook } from '@games/app-hook-utils'
+   export const useHookName = createUseHookNameHook({ app: 'nim', ... })
+   ```
+
+---
+
+## Success Criteria - Phase 1 Complete
+
+✅ **nim**: useStats uses createUseStatsHook factory  
+✅ **snake**: useStats uses createUseStatsHook factory  
+✅ **minesweeper**: useStats uses createUseStatsHook factory  
+✅ **10+ apps**: Migrated to factory pattern  
+✅ **Code reduction**: 150-200 lines of duplicated code eliminated  
+✅ **Tests**: All apps still pass typecheck + lint + dev mode  
+✅ **No behavior change**: Games play identically
+
+---
+
+## What Happens Next (Phase 2-7)
+
+After Phase 1 (Hook factories standardized):
+
+- **Phase 2**: Apply same pattern to services (storageService, etc.)
+- **Phase 3**: Apply to context providers
+- **Phase 4-7**: Continue consolidation pattern
+
+---
+
+## Critical Insight
+
+**This is NOT about creating new packages.**
+
+**This is about STANDARDIZING USAGE of existing packages.**
+
+tictactoe already does it right. nim needs to copy that pattern. Same for 24 other apps.
+
+---
+
+**Ready to audit nim and apply the pattern? I'll walk through step-by-step.**

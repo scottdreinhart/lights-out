@@ -1,0 +1,224 @@
+/* CrossclimbGame.module.css */
+
+.crossclimbGame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  min-height: 100vh;
+  background: var(--bg-color, #f5f5f5);
+}
+
+.gameHeader {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--text-color, #333);
+  margin: 0 0 1rem 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.gameInfo {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.score,
+.checkpoints,
+.difficulty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--card-bg, #fff);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-width: 100px;
+}
+
+.label {
+  font-size: 0.875rem;
+  color: var(--text-secondary, #666);
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.value {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--text-color, #333);
+}
+
+.gameBoard {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+}
+
+.gameControls {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.controlButton {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: var(--primary-color, #007bff);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.controlButton:hover:not(:disabled) {
+  background: var(--primary-hover, #0056b3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.controlButton:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.controlButton:disabled {
+  background: var(--disabled-color, #ccc);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.completionMessage {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--success-color, #28a745);
+  background: var(--success-bg, #d4edda);
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  border: 2px solid var(--success-border, #c3e6cb);
+  animation: celebrate 0.5s ease-out;
+}
+
+@keyframes celebrate {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.instructions {
+  max-width: 600px;
+  text-align: center;
+  color: var(--text-secondary, #666);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-top: 1rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .crossclimbGame {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .gameInfo {
+    gap: 1rem;
+  }
+
+  .score,
+  .checkpoints,
+  .difficulty {
+    padding: 0.5rem 0.75rem;
+    min-width: 80px;
+  }
+
+  .value {
+    font-size: 1rem;
+  }
+
+  .controlButton {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  .completionMessage {
+    font-size: 1.25rem;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .instructions {
+    font-size: 0.8125rem;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gameInfo {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .gameControls {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .controlButton {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .controlButton {
+    border: 2px solid;
+  }
+
+  .completionMessage {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .controlButton {
+    transition: none;
+  }
+
+  .controlButton:hover {
+    transform: none;
+  }
+
+  .completionMessage {
+    animation: none;
+  }
+}

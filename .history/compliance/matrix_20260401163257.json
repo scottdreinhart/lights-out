@@ -1,0 +1,183 @@
+{
+  "lastUpdated": "2026-04-01T20:45:00Z",
+  "summary": {
+    "total": 32,
+    "passed": 2,
+    "fixed": 31,
+    "failed": 0
+  },
+  "apps": {
+    "battleship": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "bunco": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "tsconfig: +@games/domain-shared alias"
+    },
+    "cee-lo": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "checkers": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "chicago": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "cho-han": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "connect-four": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "crossclimb": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "farkle": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "hangman": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "liars-dice": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "lights-out": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "mancala": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "memory-game": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "mexico": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "minesweeper": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "mini-sudoku": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "monchola": {
+      "status": "passed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "✅ Full validation passing"
+    },
+    "nim": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "pig": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "pinpoint": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "queens": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "reversi": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "rock-paper-scissors": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "ship-captain-crew": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "shut-the-box": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "simon-says": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "snake": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "tsconfig: +@games/domain-shared alias"
+    },
+    "sudoku": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "tango": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    },
+    "tictactoe": {
+      "status": "passed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "✅ Full validation passing"
+    },
+    "zip": {
+      "status": "fixed",
+      "timestamp": "2026-04-01T20:45:00Z",
+      "notes": "Package standardized"
+    }
+  },
+  "governance": {
+    "packageManager": "pnpm@10.31.0",
+    "nodeVersion": "24.14.0",
+    "lastComplianceRun": "2026-04-01T20:45:00Z",
+    "standardsApplied": [
+      "Pinned versions: React 19.2.4, Vite 7.3.1, TypeScript 5.9.3",
+      "No app-level pnpm config overrides",
+      "Shared path aliases: @games/domain-shared, ui-utils, theme-contract",
+      "ESLint + Prettier compliance",
+      "Standard build scripts: lint, format, typecheck, build"
+    ]
+  }
+}

@@ -1,0 +1,212 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - heading "🎮 Game Platform Compliance Dashboard" [level=1] [ref=e4]
+    - paragraph [ref=e5]: Track deployment readiness across 44 games and 10 platforms
+    - generic [ref=e6]:
+      - generic [ref=e56]:
+        - heading "Complete" [level=3] [ref=e57]
+        - generic [ref=e58]: "0"
+      - generic [ref=e59]:
+        - heading "Partial" [level=3] [ref=e60]
+        - generic [ref=e61]: "0"
+      - generic [ref=e62]:
+        - heading "Not Started" [level=3] [ref=e63]
+        - generic [ref=e64]: "440"
+      - generic [ref=e65]:
+        - heading "Overall Progress" [level=3] [ref=e66]
+        - generic [ref=e67]: 0.0%
+    - generic [ref=e8]:
+      - generic [ref=e11]: Complete (100%)
+      - generic [ref=e14]: Partial (40-99%)
+      - generic [ref=e17]: Not Started (0-39%)
+  - generic [ref=e18]:
+    - button "📊 Coverage Matrix" [ref=e19] [cursor=pointer]
+    - button "🔧 Code Reuse" [ref=e20] [cursor=pointer]
+    - button "⚡ WASM Status" [ref=e21] [cursor=pointer]
+    - button "🌐 Platform Ready" [active] [ref=e22] [cursor=pointer]
+    - button "🎮 Game Types" [ref=e23] [cursor=pointer]
+  - generic [ref=e1929]:
+    - heading "🌐 Platform Readiness" [level=2] [ref=e1930]
+    - generic [ref=e1931]:
+      - generic [ref=e1932]:
+        - heading "web" [level=3] [ref=e1933]
+        - generic [ref=e1934]: 0%
+        - generic [ref=e1935]:
+          - generic [ref=e1936]: "✓ Complete: 0/44"
+          - generic [ref=e1937]: "→ Partial: 0/44"
+          - generic [ref=e1938]: "○ Not Started: 44/44"
+      - generic [ref=e1939]:
+        - heading "meta" [level=3] [ref=e1940]
+        - generic [ref=e1941]: 0%
+        - generic [ref=e1942]:
+          - generic [ref=e1943]: "✓ Complete: 0/44"
+          - generic [ref=e1944]: "→ Partial: 0/44"
+          - generic [ref=e1945]: "○ Not Started: 44/44"
+      - generic [ref=e1946]:
+        - heading "ios" [level=3] [ref=e1947]
+        - generic [ref=e1948]: 0%
+        - generic [ref=e1949]:
+          - generic [ref=e1950]: "✓ Complete: 0/44"
+          - generic [ref=e1951]: "→ Partial: 0/44"
+          - generic [ref=e1952]: "○ Not Started: 44/44"
+      - generic [ref=e1953]:
+        - heading "android" [level=3] [ref=e1954]
+        - generic [ref=e1955]: 0%
+        - generic [ref=e1956]:
+          - generic [ref=e1957]: "✓ Complete: 0/44"
+          - generic [ref=e1958]: "→ Partial: 0/44"
+          - generic [ref=e1959]: "○ Not Started: 44/44"
+      - generic [ref=e1960]:
+        - heading "electron" [level=3] [ref=e1961]
+        - generic [ref=e1962]: 0%
+        - generic [ref=e1963]:
+          - generic [ref=e1964]: "✓ Complete: 0/44"
+          - generic [ref=e1965]: "→ Partial: 0/44"
+          - generic [ref=e1966]: "○ Not Started: 44/44"
+      - generic [ref=e1967]:
+        - heading "itch" [level=3] [ref=e1968]
+        - generic [ref=e1969]: 0%
+        - generic [ref=e1970]:
+          - generic [ref=e1971]: "✓ Complete: 0/44"
+          - generic [ref=e1972]: "→ Partial: 0/44"
+          - generic [ref=e1973]: "○ Not Started: 44/44"
+      - generic [ref=e1974]:
+        - heading "crazygames" [level=3] [ref=e1975]
+        - generic [ref=e1976]: 0%
+        - generic [ref=e1977]:
+          - generic [ref=e1978]: "✓ Complete: 0/44"
+          - generic [ref=e1979]: "→ Partial: 0/44"
+          - generic [ref=e1980]: "○ Not Started: 44/44"
+      - generic [ref=e1981]:
+        - heading "discord" [level=3] [ref=e1982]
+        - generic [ref=e1983]: 0%
+        - generic [ref=e1984]:
+          - generic [ref=e1985]: "✓ Complete: 0/44"
+          - generic [ref=e1986]: "→ Partial: 0/44"
+          - generic [ref=e1987]: "○ Not Started: 44/44"
+      - generic [ref=e1988]:
+        - heading "telegram" [level=3] [ref=e1989]
+        - generic [ref=e1990]: 0%
+        - generic [ref=e1991]:
+          - generic [ref=e1992]: "✓ Complete: 0/44"
+          - generic [ref=e1993]: "→ Partial: 0/44"
+          - generic [ref=e1994]: "○ Not Started: 44/44"
+      - generic [ref=e1995]:
+        - heading "steam" [level=3] [ref=e1996]
+        - generic [ref=e1997]: 0%
+        - generic [ref=e1998]:
+          - generic [ref=e1999]: "✓ Complete: 0/44"
+          - generic [ref=e2000]: "→ Partial: 0/44"
+          - generic [ref=e2001]: "○ Not Started: 44/44"
+  - generic [ref=e47]:
+    - heading "🚨 Known Blockers" [level=2] [ref=e48]
+    - generic [ref=e49]:
+      - button "All (13)" [ref=e1048] [cursor=pointer]
+      - button "🔴 High (7)" [ref=e1049] [cursor=pointer]
+      - button "🟡 Medium (5)" [ref=e1050] [cursor=pointer]
+      - button "🔵 Low (1)" [ref=e1051] [cursor=pointer]
+    - generic [ref=e54]:
+      - generic [ref=e1052]:
+        - generic [ref=e1054]: medium
+        - generic [ref=e1055]: sudoku-discord-bundle-1
+        - generic [ref=e1056]: 🎮 mini-sudoku
+        - generic [ref=e1057]: 🌐 discord
+        - generic [ref=e1058]: Discord Activities have 10MB bundle size limit; mini-sudoku with all constraints may exceed this
+        - generic [ref=e1059]: 💡 Lazy-load constraint propagation, tree-shake unused code, analyze bundle composition
+        - generic [ref=e1060]: "Status: pending-analysis"
+      - generic [ref=e1061]:
+        - generic [ref=e1063]: medium
+        - generic [ref=e1064]: sudoku-telegram-bundle-1
+        - generic [ref=e1065]: 🎮 mini-sudoku
+        - generic [ref=e1066]: 🌐 telegram
+        - generic [ref=e1067]: Telegram Mini Apps have 8MB bundle size limit; may be tight with full CSP implementation
+        - generic [ref=e1068]: 💡 Minification, code splitting, worker lazy-loading
+        - generic [ref=e1069]: "Status: pending-analysis"
+      - generic [ref=e1070]:
+        - generic [ref=e1072]: medium
+        - generic [ref=e1073]: zip-pathsolver-1
+        - generic [ref=e1074]: 🎮 zip
+        - generic [ref=e1075]: 🌐 electron
+        - generic [ref=e1076]: Numberlink path solver is NP-complete; large boards will block main thread without optimization
+        - generic [ref=e1077]: 💡 Move solver to Web Worker, implement iterative deepening, add solve time limits
+        - generic [ref=e1078]: "Status: design-phase"
+      - generic [ref=e1079]:
+        - generic [ref=e1081]: high
+        - generic [ref=e1082]: zip-discord-bundle-2
+        - generic [ref=e1083]: 🎮 zip
+        - generic [ref=e1084]: 🌐 discord
+        - generic [ref=e1085]: Path solver + graph algorithms will exceed Discord 10MB bundle limit
+        - generic [ref=e1086]: 💡 Lazy-load solver, implement streaming solution validation, use worker-based computation
+        - generic [ref=e1087]: "Status: design-phase"
+      - generic [ref=e1088]:
+        - generic [ref=e1090]: high
+        - generic [ref=e1091]: zip-telegram-bundle-2
+        - generic [ref=e1092]: 🎮 zip
+        - generic [ref=e1093]: 🌐 telegram
+        - generic [ref=e1094]: Path solver will likely exceed Telegram 8MB bundle limit
+        - generic [ref=e1095]: 💡 Aggressive tree-shaking, solver-only worker, minimal UI bundle
+        - generic [ref=e1096]: "Status: design-phase"
+      - generic [ref=e1097]:
+        - generic [ref=e1099]: high
+        - generic [ref=e1100]: crossclimb-dictionary-1
+        - generic [ref=e1101]: 🎮 crossclimb
+        - generic [ref=e1102]: 🌐 web
+        - generic [ref=e1103]: Word ladder requires english dictionary; loading full dictionary into bundle is infeasible (500KB+)
+        - generic [ref=e1104]: 💡 Use trie data structure, load dictionary dynamically, consider server-side validation option
+        - generic [ref=e1105]: "Status: design-phase"
+      - generic [ref=e1106]:
+        - generic [ref=e1108]: high
+        - generic [ref=e1109]: crossclimb-dictionary-2
+        - generic [ref=e1110]: 🎮 crossclimb
+        - generic [ref=e1111]: 🌐 mobile
+        - generic [ref=e1112]: Dictionary handling on mobile requires careful memory management and offline access
+        - generic [ref=e1113]: 💡 IndexedDB caching, compressed dictionary, lazy-load by word length
+        - generic [ref=e1114]: "Status: design-phase"
+      - generic [ref=e1115]:
+        - generic [ref=e1117]: high
+        - generic [ref=e1118]: crossclimb-offline-1
+        - generic [ref=e1119]: 🎮 crossclimb
+        - generic [ref=e1120]: 🌐 discord
+        - generic [ref=e1121]: Discord Activities require full offline capability; word ladder needs dictionary in offline context
+        - generic [ref=e1122]: 💡 Embed compressed dictionary, sync on connection restore, cache known words
+        - generic [ref=e1123]: "Status: design-phase"
+      - generic [ref=e1124]:
+        - generic [ref=e1126]: high
+        - generic [ref=e1127]: patches-algorithm-1
+        - generic [ref=e1128]: 🎮 patches
+        - generic [ref=e1129]: 🌐 All Platforms
+        - generic [ref=e1130]: Polyomino placement (exact cover problem) is NP-complete; large puzzles need optimization
+        - generic [ref=e1131]: 💡 Implement DLX (Dancing Links) algorithm, use constraint propagation, consider multiple solvers by difficulty
+        - generic [ref=e1132]: "Status: design-phase"
+      - generic [ref=e1133]:
+        - generic [ref=e1135]: high
+        - generic [ref=e1136]: patches-generation-1
+        - generic [ref=e1137]: 🎮 patches
+        - generic [ref=e1138]: 🌐 All Platforms
+        - generic [ref=e1139]: Polyomino puzzle generation from scratch is difficult; reverse process (remove shapes) preferred
+        - generic [ref=e1140]: "💡 Method: generate solved tiling → identify contiguous regions → create puzzle. Verify solvability."
+        - generic [ref=e1141]: "Status: design-phase"
+      - generic [ref=e1142]:
+        - generic [ref=e1144]: medium
+        - generic [ref=e1145]: queens-performance-1
+        - generic [ref=e1146]: 🎮 queens
+        - generic [ref=e1147]: 🌐 meta
+        - generic [ref=e1148]: N-Queens with N>12 can take >3s without optimization; Meta loading target is 3s
+        - generic [ref=e1149]: 💡 Start with N=8 default, optimize backtracking with constraint propagation, profile on target device
+        - generic [ref=e1150]: "Status: design-phase"
+      - generic [ref=e1151]:
+        - generic [ref=e1153]: low
+        - generic [ref=e1154]: tango-liveupdate-1
+        - generic [ref=e1155]: 🎮 tango
+        - generic [ref=e1156]: 🌐 discord
+        - generic [ref=e1157]: Real-time collaborative Takuzu not in initial scope; single-player only
+        - generic [ref=e1158]: 💡 Deferred to phase 2; architecture designed to support later
+        - generic [ref=e1159]: "Status: accepted"
+      - generic [ref=e1160]:
+        - generic [ref=e1162]: medium
+        - generic [ref=e1163]: pinpoint-ui-challenge-1
+        - generic [ref=e1164]: 🎮 pinpoint
+        - generic [ref=e1165]: 🌐 mobile
+        - generic [ref=e1166]: Pinpoint requires selection of 4 groups; mobile UI needs careful tap target sizing
+        - generic [ref=e1167]: 💡 Min 48px tap target, visual feedback, undo available, preview grouping before confirm
+        - generic [ref=e1168]: "Status: design-phase"

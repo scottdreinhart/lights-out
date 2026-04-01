@@ -9,7 +9,7 @@
 
 Capacitor wraps the Vite `dist/` output in native Android and iOS app shells. The web code runs in a native WebView — no code changes are needed between web and mobile builds.
 
-Configuration: `apps/lights-out/capacitor.config.ts`.
+Configuration: `apps/<game-app>/capacitor.config.ts`.
 
 ---
 
@@ -78,7 +78,7 @@ Default to Bash for `cap:sync` and general Capacitor setup.
 
 ## Language Guardrails
 
-Capacitor configuration uses **TypeScript** (`apps/lights-out/capacitor.config.ts`).
+Capacitor configuration uses **TypeScript** (`apps/<game-app>/capacitor.config.ts`).
 Do not introduce orphaned helper scripts or alternate runtimes for Capacitor workflows.
 Prefer existing `package.json` scripts and repository-native tooling.
 Do not create parallel build paths or duplicate tooling.

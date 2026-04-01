@@ -1,27 +1,14 @@
-export const load = <T>(key: string, fallback: T | null = null): T | null => {
-  try {
-    const raw = localStorage.getItem(key)
-    if (raw !== null) {
-      return JSON.parse(raw) as T
-    }
-  } catch {
-    /* corrupt JSON or storage unavailable */
-  }
-  return fallback
-}
+/**
+ * Storage Service — Persistent state via localStorage
+ * 
+ * Re-exports generic utilities from @games/storage-utils for consistency.
+ * Provides: load, save, remove — all with error handling and type safety.
+ */
 
-export const save = (key: string, value: unknown): void => {
-  try {
-    localStorage.setItem(key, JSON.stringify(value))
-  } catch {
-    /* storage full or unavailable — silently ignore */
-  }
-}
-
-export const remove = (key: string): void => {
-  try {
-    localStorage.removeItem(key)
-  } catch {
-    /* storage unavailable — silently ignore */
-  }
-}
+// Re-export shared utilities with familiar names
+export {
+  loadWithFallback as load,
+  loadNullable,
+  removeKey as remove,
+  saveJson as save,
+} from '@games/storage-utils'

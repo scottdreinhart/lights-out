@@ -3,11 +3,11 @@
  */
 
 export {
-  getThemeSprites,
-  getBackgroundCssValue,
   getAllSpriteSources,
-  preloadSprite,
+  getBackgroundCssValue,
+  getThemeSprites,
   preloadAllSprites,
+  preloadSprite,
   type SpriteAsset,
   type ThemeSpriteSet,
 } from '@games/assets-shared'

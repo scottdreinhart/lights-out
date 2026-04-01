@@ -1,0 +1,11 @@
+.difficultyButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-sm);
+}
+
+@media (max-width: 599px) {
+  .difficultyButtons {
+    grid-template-columns: 1fr 1fr;
+  }
+}

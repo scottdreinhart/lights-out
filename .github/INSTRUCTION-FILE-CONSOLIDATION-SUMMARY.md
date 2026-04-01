@@ -49,7 +49,7 @@ Successfully consolidated and distributed merged instruction files (01–08) to 
 
 ### File Coverage: 25/25 Projects ✅
 - ✅ 2048, Battleship, Bunco, Cee-Lo, Checkers, Chicago, Cho-Han, Connect-Four
-- ✅ Farkle, Hangman, Liars-Dice, Lights-Out, Mancala, Memory, Mexico, Minesweeper
+- ✅ Farkle, Hangman, Liars-Dice, Lights-Out, Mancala, Memory, Mexico, Minesweeper (game apps)
 - ✅ Monchola, Nim (master), Pig, Reversi, Rock-Paper-Scissors, Ship-Captain-Crew
 - ✅ Shut-The-Box, Simon-Says, Snake, Tic-Tac-Toe
 
@@ -108,7 +108,7 @@ Project: snake
 ✅ farkle (8/8 files)
 ✅ hangman (8/8 files)
 ✅ liars-dice (8/8 files)
-✅ lights-out (8/8 files)
+✅ lights-out (8/8 files, reference legacy app)
 ✅ mancala (8/8 files)
 ✅ memory-game (8/8 files)
 ✅ mexico (8/8 files)

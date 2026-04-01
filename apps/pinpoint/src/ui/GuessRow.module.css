@@ -1,0 +1,63 @@
+/* GuessRow.module.css */
+
+.guessRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 12px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  transition: all 0.2s ease;
+}
+
+.guessRow:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.current {
+  background: #e3f2fd;
+  border-color: #2196f3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}
+
+.guessPegs {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .guessRow {
+    gap: 12px;
+    padding: 6px 8px;
+  }
+
+  .guessPegs {
+    gap: 6px;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .guessRow {
+    border: 2px solid;
+  }
+
+  .current {
+    border-color: #000;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .guessRow {
+    transition: none;
+  }
+
+  .guessRow:hover {
+    box-shadow: none;
+  }
+}

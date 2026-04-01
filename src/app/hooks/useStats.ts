@@ -5,7 +5,7 @@ import type { GameStats } from '@/domain/types'
 
 import { load, save } from '../services/storageService.ts'
 
-const STORAGE_KEY = 'lights-out-stats'
+const STORAGE_KEY = 'game-platform-stats'
 
 export function useStats() {
   const [stats, setStats] = useState<GameStats>(() => load(STORAGE_KEY, DEFAULT_STATS))

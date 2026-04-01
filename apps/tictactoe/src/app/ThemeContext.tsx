@@ -1,10 +1,14 @@
 import { createContext, type ReactNode, useCallback, useContext, useEffect, useState } from 'react'
 
-import { createSharedThemeLoaders, getBackgroundCssValue, preloadAllSprites } from '@games/assets-shared'
 import { getLayerStack, layerStackToCssVars } from '@/domain'
+import {
+  createSharedThemeLoaders,
+  getBackgroundCssValue,
+  preloadAllSprites,
+} from '@games/assets-shared'
 
-import { COLOR_THEMES, DEFAULT_SETTINGS } from '@/domain'
 import type { ThemeSettings } from '@/domain'
+import { COLOR_THEMES, DEFAULT_SETTINGS } from '@/domain'
 import { load, save } from './storageService.ts'
 
 const STORAGE_KEY = 'ttt-theme-settings'

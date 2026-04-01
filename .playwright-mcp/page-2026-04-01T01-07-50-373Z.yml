@@ -1,0 +1,306 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - heading "🎮 Game Platform Compliance Dashboard" [level=1] [ref=e4]
+    - paragraph [ref=e5]: Track deployment readiness across 44 games and 10 platforms
+    - generic [ref=e6]:
+      - generic [ref=e56]:
+        - heading "Complete" [level=3] [ref=e57]
+        - generic [ref=e58]: "0"
+      - generic [ref=e59]:
+        - heading "Partial" [level=3] [ref=e60]
+        - generic [ref=e61]: "0"
+      - generic [ref=e62]:
+        - heading "Not Started" [level=3] [ref=e63]
+        - generic [ref=e64]: "440"
+      - generic [ref=e65]:
+        - heading "Overall Progress" [level=3] [ref=e66]
+        - generic [ref=e67]: 0.0%
+    - generic [ref=e8]:
+      - generic [ref=e11]: Complete (100%)
+      - generic [ref=e14]: Partial (40-99%)
+      - generic [ref=e17]: Not Started (0-39%)
+  - generic [ref=e18]:
+    - button "📊 Coverage Matrix" [ref=e19] [cursor=pointer]
+    - button "🔧 Code Reuse" [ref=e20] [cursor=pointer]
+    - button "⚡ WASM Status" [active] [ref=e21] [cursor=pointer]
+    - button "🌐 Platform Ready" [ref=e22] [cursor=pointer]
+    - button "🎮 Game Types" [ref=e23] [cursor=pointer]
+  - generic [ref=e1762]:
+    - heading "⚡ WASM Optimization Status" [level=2] [ref=e1763]
+    - generic [ref=e1764]:
+      - heading "✓ Has WASM Implementation (2)" [level=3] [ref=e1765]
+      - generic [ref=e1766]:
+        - generic [ref=e1767]:
+          - heading "sudoku" [level=4] [ref=e1768]
+          - generic [ref=e1769]:
+            - generic [ref=e1770]: "Type: puzzle-logic"
+            - generic [ref=e1771]: "Maturity: reference"
+            - generic [ref=e1772]: "Completion: 95%"
+        - generic [ref=e1773]:
+          - heading "tictactoe" [level=4] [ref=e1774]
+          - generic [ref=e1775]:
+            - generic [ref=e1776]: "Type: board-game"
+            - generic [ref=e1777]: "Maturity: developing"
+            - generic [ref=e1778]: "Completion: 85%"
+    - generic [ref=e1779]:
+      - heading "🟡 Needs WASM (CSP/Logic Puzzles) (14)" [level=3] [ref=e1780]
+      - generic [ref=e1781]:
+        - generic [ref=e1782]:
+          - heading "minesweeper" [level=4] [ref=e1783]
+          - generic [ref=e1784]:
+            - generic [ref=e1785]: "Type: puzzle-logic"
+            - generic [ref=e1786]: "Priority: High"
+            - generic [ref=e1787]: "Completion: 70%"
+        - generic [ref=e1788]:
+          - heading "mini-sudoku" [level=4] [ref=e1789]
+          - generic [ref=e1790]:
+            - generic [ref=e1791]: "Type: puzzle-logic"
+            - generic [ref=e1792]: "Priority: High"
+            - generic [ref=e1793]: "Completion: 0%"
+        - generic [ref=e1794]:
+          - heading "flow" [level=4] [ref=e1795]
+          - generic [ref=e1796]:
+            - generic [ref=e1797]: "Type: graph-puzzle"
+            - generic [ref=e1798]: "Priority: High"
+            - generic [ref=e1799]: "Completion: 0%"
+        - generic [ref=e1800]:
+          - heading "hashi" [level=4] [ref=e1801]
+          - generic [ref=e1802]:
+            - generic [ref=e1803]: "Type: graph-puzzle"
+            - generic [ref=e1804]: "Priority: High"
+            - generic [ref=e1805]: "Completion: 0%"
+        - generic [ref=e1806]:
+          - heading "hitori" [level=4] [ref=e1807]
+          - generic [ref=e1808]:
+            - generic [ref=e1809]: "Type: csp-puzzle"
+            - generic [ref=e1810]: "Priority: High"
+            - generic [ref=e1811]: "Completion: 0%"
+        - generic [ref=e1812]:
+          - heading "kakuro" [level=4] [ref=e1813]
+          - generic [ref=e1814]:
+            - generic [ref=e1815]: "Type: csp-puzzle"
+            - generic [ref=e1816]: "Priority: High"
+            - generic [ref=e1817]: "Completion: 0%"
+        - generic [ref=e1818]:
+          - heading "kenken" [level=4] [ref=e1819]
+          - generic [ref=e1820]:
+            - generic [ref=e1821]: "Type: csp-puzzle"
+            - generic [ref=e1822]: "Priority: High"
+            - generic [ref=e1823]: "Completion: 0%"
+        - generic [ref=e1824]:
+          - heading "nonogram" [level=4] [ref=e1825]
+          - generic [ref=e1826]:
+            - generic [ref=e1827]: "Type: csp-puzzle"
+            - generic [ref=e1828]: "Priority: High"
+            - generic [ref=e1829]: "Completion: 0%"
+        - generic [ref=e1830]:
+          - heading "nurikabe" [level=4] [ref=e1831]
+          - generic [ref=e1832]:
+            - generic [ref=e1833]: "Type: csp-puzzle"
+            - generic [ref=e1834]: "Priority: High"
+            - generic [ref=e1835]: "Completion: 0%"
+        - generic [ref=e1836]:
+          - heading "patches" [level=4] [ref=e1837]
+          - generic [ref=e1838]:
+            - generic [ref=e1839]: "Type: csp-puzzle"
+            - generic [ref=e1840]: "Priority: High"
+            - generic [ref=e1841]: "Completion: 0%"
+        - generic [ref=e1842]:
+          - heading "queens" [level=4] [ref=e1843]
+          - generic [ref=e1844]:
+            - generic [ref=e1845]: "Type: csp-puzzle"
+            - generic [ref=e1846]: "Priority: High"
+            - generic [ref=e1847]: "Completion: 0%"
+        - generic [ref=e1848]:
+          - heading "slitherlink" [level=4] [ref=e1849]
+          - generic [ref=e1850]:
+            - generic [ref=e1851]: "Type: csp-puzzle"
+            - generic [ref=e1852]: "Priority: High"
+            - generic [ref=e1853]: "Completion: 0%"
+        - generic [ref=e1854]:
+          - heading "tango" [level=4] [ref=e1855]
+          - generic [ref=e1856]:
+            - generic [ref=e1857]: "Type: csp-puzzle"
+            - generic [ref=e1858]: "Priority: High"
+            - generic [ref=e1859]: "Completion: 0%"
+        - generic [ref=e1860]:
+          - heading "zip" [level=4] [ref=e1861]
+          - generic [ref=e1862]:
+            - generic [ref=e1863]: "Type: graph-puzzle"
+            - generic [ref=e1864]: "Priority: High"
+            - generic [ref=e1865]: "Completion: 0%"
+    - generic [ref=e1866]:
+      - heading "🔵 Candidates (13)" [level=3] [ref=e1867]
+      - generic [ref=e1868]:
+        - generic [ref=e1869]:
+          - heading "battleship" [level=4] [ref=e1870]
+          - generic [ref=e1871]:
+            - generic [ref=e1872]: "Type: board-game"
+            - generic [ref=e1873]: "Completion: 65%"
+            - generic [ref=e1874]: "Consider if: AI solver, complex algorithm needed"
+        - generic [ref=e1875]:
+          - heading "bunco" [level=4] [ref=e1876]
+          - generic [ref=e1877]:
+            - generic [ref=e1878]: "Type: dice-game"
+            - generic [ref=e1879]: "Completion: 60%"
+            - generic [ref=e1880]: "Consider if: AI solver, complex algorithm needed"
+        - generic [ref=e1881]:
+          - heading "checkers" [level=4] [ref=e1882]
+          - generic [ref=e1883]:
+            - generic [ref=e1884]: "Type: board-game"
+            - generic [ref=e1885]: "Completion: 70%"
+            - generic [ref=e1886]: "Consider if: AI solver, complex algorithm needed"
+        - generic [ref=e1887]:
+          - heading "connect-four" [level=4] [ref=e1888]
+          - generic [ref=e1889]:
+            - generic [ref=e1890]: "Type: board-game"
+            - generic [ref=e1891]: "Completion: 75%"
+            - generic [ref=e1892]: "Consider if: AI solver, complex algorithm needed"
+        - generic [ref=e1893]:
+          - heading "farkle" [level=4] [ref=e1894]
+          - generic [ref=e1895]:
+            - generic [ref=e1896]: "Type: dice-game"
+            - generic [ref=e1897]: "Completion: 65%"
+            - generic [ref=e1898]: "Consider if: AI solver, complex algorithm needed"
+        - generic [ref=e1899]:
+          - heading "hangman" [level=4] [ref=e1900]
+          - generic [ref=e1901]:
+            - generic [ref=e1902]: "Type: word-game"
+            - generic [ref=e1903]: "Completion: 60%"
+            - generic [ref=e1904]: "Consider if: AI solver, complex algorithm needed"
+        - generic [ref=e1905]:
+          - heading "liars-dice" [level=4] [ref=e1906]
+          - generic [ref=e1907]:
+            - generic [ref=e1908]: "Type: dice-game"
+            - generic [ref=e1909]: "Completion: 70%"
+            - generic [ref=e1910]: "Consider if: AI solver, complex algorithm needed"
+        - generic [ref=e1911]:
+          - heading "lights-out" [level=4] [ref=e1912]
+          - generic [ref=e1913]:
+            - generic [ref=e1914]: "Type: puzzle-game"
+            - generic [ref=e1915]: "Completion: 80%"
+            - generic [ref=e1916]: "Consider if: AI solver, complex algorithm needed"
+        - generic [ref=e1917]:
+          - heading "mancala" [level=4] [ref=e1918]
+          - generic [ref=e1919]:
+            - generic [ref=e1920]: "Type: board-game"
+            - generic [ref=e1921]: "Completion: 75%"
+            - generic [ref=e1922]: "Consider if: AI solver, complex algorithm needed"
+        - generic [ref=e1923]:
+          - heading "minesweeper" [level=4] [ref=e1924]
+          - generic [ref=e1925]:
+            - generic [ref=e1926]: "Type: puzzle-logic"
+            - generic [ref=e1927]: "Completion: 70%"
+            - generic [ref=e1928]: "Consider if: AI solver, complex algorithm needed"
+  - generic [ref=e47]:
+    - heading "🚨 Known Blockers" [level=2] [ref=e48]
+    - generic [ref=e49]:
+      - button "All (13)" [ref=e1048] [cursor=pointer]
+      - button "🔴 High (7)" [ref=e1049] [cursor=pointer]
+      - button "🟡 Medium (5)" [ref=e1050] [cursor=pointer]
+      - button "🔵 Low (1)" [ref=e1051] [cursor=pointer]
+    - generic [ref=e54]:
+      - generic [ref=e1052]:
+        - generic [ref=e1054]: medium
+        - generic [ref=e1055]: sudoku-discord-bundle-1
+        - generic [ref=e1056]: 🎮 mini-sudoku
+        - generic [ref=e1057]: 🌐 discord
+        - generic [ref=e1058]: Discord Activities have 10MB bundle size limit; mini-sudoku with all constraints may exceed this
+        - generic [ref=e1059]: 💡 Lazy-load constraint propagation, tree-shake unused code, analyze bundle composition
+        - generic [ref=e1060]: "Status: pending-analysis"
+      - generic [ref=e1061]:
+        - generic [ref=e1063]: medium
+        - generic [ref=e1064]: sudoku-telegram-bundle-1
+        - generic [ref=e1065]: 🎮 mini-sudoku
+        - generic [ref=e1066]: 🌐 telegram
+        - generic [ref=e1067]: Telegram Mini Apps have 8MB bundle size limit; may be tight with full CSP implementation
+        - generic [ref=e1068]: 💡 Minification, code splitting, worker lazy-loading
+        - generic [ref=e1069]: "Status: pending-analysis"
+      - generic [ref=e1070]:
+        - generic [ref=e1072]: medium
+        - generic [ref=e1073]: zip-pathsolver-1
+        - generic [ref=e1074]: 🎮 zip
+        - generic [ref=e1075]: 🌐 electron
+        - generic [ref=e1076]: Numberlink path solver is NP-complete; large boards will block main thread without optimization
+        - generic [ref=e1077]: 💡 Move solver to Web Worker, implement iterative deepening, add solve time limits
+        - generic [ref=e1078]: "Status: design-phase"
+      - generic [ref=e1079]:
+        - generic [ref=e1081]: high
+        - generic [ref=e1082]: zip-discord-bundle-2
+        - generic [ref=e1083]: 🎮 zip
+        - generic [ref=e1084]: 🌐 discord
+        - generic [ref=e1085]: Path solver + graph algorithms will exceed Discord 10MB bundle limit
+        - generic [ref=e1086]: 💡 Lazy-load solver, implement streaming solution validation, use worker-based computation
+        - generic [ref=e1087]: "Status: design-phase"
+      - generic [ref=e1088]:
+        - generic [ref=e1090]: high
+        - generic [ref=e1091]: zip-telegram-bundle-2
+        - generic [ref=e1092]: 🎮 zip
+        - generic [ref=e1093]: 🌐 telegram
+        - generic [ref=e1094]: Path solver will likely exceed Telegram 8MB bundle limit
+        - generic [ref=e1095]: 💡 Aggressive tree-shaking, solver-only worker, minimal UI bundle
+        - generic [ref=e1096]: "Status: design-phase"
+      - generic [ref=e1097]:
+        - generic [ref=e1099]: high
+        - generic [ref=e1100]: crossclimb-dictionary-1
+        - generic [ref=e1101]: 🎮 crossclimb
+        - generic [ref=e1102]: 🌐 web
+        - generic [ref=e1103]: Word ladder requires english dictionary; loading full dictionary into bundle is infeasible (500KB+)
+        - generic [ref=e1104]: 💡 Use trie data structure, load dictionary dynamically, consider server-side validation option
+        - generic [ref=e1105]: "Status: design-phase"
+      - generic [ref=e1106]:
+        - generic [ref=e1108]: high
+        - generic [ref=e1109]: crossclimb-dictionary-2
+        - generic [ref=e1110]: 🎮 crossclimb
+        - generic [ref=e1111]: 🌐 mobile
+        - generic [ref=e1112]: Dictionary handling on mobile requires careful memory management and offline access
+        - generic [ref=e1113]: 💡 IndexedDB caching, compressed dictionary, lazy-load by word length
+        - generic [ref=e1114]: "Status: design-phase"
+      - generic [ref=e1115]:
+        - generic [ref=e1117]: high
+        - generic [ref=e1118]: crossclimb-offline-1
+        - generic [ref=e1119]: 🎮 crossclimb
+        - generic [ref=e1120]: 🌐 discord
+        - generic [ref=e1121]: Discord Activities require full offline capability; word ladder needs dictionary in offline context
+        - generic [ref=e1122]: 💡 Embed compressed dictionary, sync on connection restore, cache known words
+        - generic [ref=e1123]: "Status: design-phase"
+      - generic [ref=e1124]:
+        - generic [ref=e1126]: high
+        - generic [ref=e1127]: patches-algorithm-1
+        - generic [ref=e1128]: 🎮 patches
+        - generic [ref=e1129]: 🌐 All Platforms
+        - generic [ref=e1130]: Polyomino placement (exact cover problem) is NP-complete; large puzzles need optimization
+        - generic [ref=e1131]: 💡 Implement DLX (Dancing Links) algorithm, use constraint propagation, consider multiple solvers by difficulty
+        - generic [ref=e1132]: "Status: design-phase"
+      - generic [ref=e1133]:
+        - generic [ref=e1135]: high
+        - generic [ref=e1136]: patches-generation-1
+        - generic [ref=e1137]: 🎮 patches
+        - generic [ref=e1138]: 🌐 All Platforms
+        - generic [ref=e1139]: Polyomino puzzle generation from scratch is difficult; reverse process (remove shapes) preferred
+        - generic [ref=e1140]: "💡 Method: generate solved tiling → identify contiguous regions → create puzzle. Verify solvability."
+        - generic [ref=e1141]: "Status: design-phase"
+      - generic [ref=e1142]:
+        - generic [ref=e1144]: medium
+        - generic [ref=e1145]: queens-performance-1
+        - generic [ref=e1146]: 🎮 queens
+        - generic [ref=e1147]: 🌐 meta
+        - generic [ref=e1148]: N-Queens with N>12 can take >3s without optimization; Meta loading target is 3s
+        - generic [ref=e1149]: 💡 Start with N=8 default, optimize backtracking with constraint propagation, profile on target device
+        - generic [ref=e1150]: "Status: design-phase"
+      - generic [ref=e1151]:
+        - generic [ref=e1153]: low
+        - generic [ref=e1154]: tango-liveupdate-1
+        - generic [ref=e1155]: 🎮 tango
+        - generic [ref=e1156]: 🌐 discord
+        - generic [ref=e1157]: Real-time collaborative Takuzu not in initial scope; single-player only
+        - generic [ref=e1158]: 💡 Deferred to phase 2; architecture designed to support later
+        - generic [ref=e1159]: "Status: accepted"
+      - generic [ref=e1160]:
+        - generic [ref=e1162]: medium
+        - generic [ref=e1163]: pinpoint-ui-challenge-1
+        - generic [ref=e1164]: 🎮 pinpoint
+        - generic [ref=e1165]: 🌐 mobile
+        - generic [ref=e1166]: Pinpoint requires selection of 4 groups; mobile UI needs careful tap target sizing
+        - generic [ref=e1167]: 💡 Min 48px tap target, visual feedback, undo available, preview grouping before confirm
+        - generic [ref=e1168]: "Status: design-phase"

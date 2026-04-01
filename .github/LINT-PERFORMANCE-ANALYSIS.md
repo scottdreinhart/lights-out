@@ -1,7 +1,7 @@
 # ESLint Performance Analysis & Findings
 
 **Date**: 2026-03-15  
-**Project**: lights-out  
+**Project**: game-platform  
 **Scope**: Lint timing, startup overhead, per-file behavior
 
 ## Summary
@@ -75,6 +75,6 @@ timeout 240s env DEBUG=eslint:* pnpm exec eslint src/app/context/SoundContext.ts
 
 ## Conclusion
 
-**The lights-out lint infrastructure is healthy.** The 60s bucket timeouts were time-budget pressure under startup overhead, not code quality issues. All files lint successfully without errors; warnings are expected and documented.
+**The game-platform lint infrastructure is healthy.** The 60s bucket timeouts were time-budget pressure under startup overhead, not code quality issues. All files lint successfully without errors; warnings are expected and documented.
 
 Proceed with active development using `pnpm lint:scope:*` or `pnpm lint` for comprehensive checks.

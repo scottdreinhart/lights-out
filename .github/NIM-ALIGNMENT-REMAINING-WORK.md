@@ -1,14 +1,14 @@
 # Nim Architecture Alignment — Remaining Work
 
 **Date**: 2026-03-15  
-**Project**: lights-out  
+**Project**: game-platform  
 **Status**: In Progress
 
 ---
 
 ## Summary
 
-lights-out has adopted the Nim-parity layered architecture and barrel pattern system. ESLint linting infrastructure is healthy and well-understood. Remaining work focuses on **UI pattern unification** (specifically hamburger menu/settings modal) and minor architectural refinements.
+The game-platform has adopted the Nim-parity layered architecture and barrel pattern system. ESLint linting infrastructure is healthy and well-understood. Remaining work focuses on **UI pattern unification** (specifically hamburger menu/settings modal) and minor architectural refinements.
 
 ## Completed ✓
 

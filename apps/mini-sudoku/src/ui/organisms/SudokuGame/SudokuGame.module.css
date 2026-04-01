@@ -1,0 +1,65 @@
+.gameCard {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.gameContainer {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-lg);
+  overflow: auto;
+  height: 100%;
+}
+
+.boardSection {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  min-width: 0;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  min-width: 160px;
+  padding: var(--spacing-md);
+  background: #f5f5f5;
+  border-radius: var(--border-radius);
+}
+
+@media (max-width: 599px) {
+  .gameContainer {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .sidebar {
+    min-width: auto;
+    padding: var(--spacing-md);
+  }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+  .gameContainer {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+  }
+
+  .difficultyButtons {
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    gap: var(--spacing-sm);
+  }
+}

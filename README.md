@@ -13,7 +13,7 @@
 [![ESLint](https://img.shields.io/badge/ESLint-10-4B32C3?logo=eslint&logoColor=white)](https://github.com/eslint/eslint)
 [![Prettier](https://img.shields.io/badge/Prettier-3-F7B93E?logo=prettier&logoColor=black)](https://github.com/prettier/prettier)
 [![All Rights Reserved](https://img.shields.io/badge/License-All%20Rights%20Reserved-red.svg)](LICENSE)
-[![GitHub](https://img.shields.io/badge/GitHub-scottdreinhart%2Flights--out-181717?logo=github&logoColor=white)](https://github.com/scottdreinhart/lights-out)
+[![GitHub](https://img.shields.io/badge/GitHub-scottdreinhart%2Fgame--platform-181717?logo=github&logoColor=white)](https://github.com/scottdreinhart/game-platform)
 
 Toggle a 5×5 grid of lights; goal is to turn them all off
 
@@ -60,7 +60,7 @@ lights-out/
 │   ├── farkle/                       # Farkle dice-rolling game
 │   ├── hangman/                      # Hangman word-guessing game
 │   ├── liars-dice/                   # Liar's Dice bluffing game
-│   ├── lights-out/                   # Lights Out grid puzzle (root app, reference)
+│   ├── lights-out/                   # Lights Out grid puzzle (reference legacy app)
 │   ├── mancala/                      # Mancala pit-and-capture game
 │   ├── memory-game/                  # Memory / Concentration matching game
 │   ├── mexico/                       # Mexico elimination dice game
@@ -383,7 +383,7 @@ This project enforces nine complementary design principles:
    - **Benefit**: CLEAN layer violations are caught at lint time, not at code review
 
 6. **Path Aliases** (`@/domain`, `@/app`, `@/ui`)
-   - Configured in `tsconfig.json` (`paths`) and `apps/lights-out/vite.config.js` (`resolve.alias`)
+   - Configured in `tsconfig.json` (`paths`) and per-app `vite.config.ts` (`resolve.alias`)
    - Eliminates fragile `../../` relative imports across layers
    - **Benefit**: Imports are self-documenting (`@/domain/rules` vs `../../domain/rules`) and resilient to file moves
 
@@ -482,7 +482,7 @@ All games in this portfolio share the same React + Vite + TypeScript + CLEAN arc
 | **[Mancala (Kalah)](https://github.com/scottdreinhart/mancala)** | Two-row pit-and-stones capture game; simple rules, satisfying chain moves | Slightly higher — seed-sowing animation |
 | **[Connect Four](https://github.com/scottdreinhart/connect-four)** | Drop discs into a 7×6 grid; first to four in a row wins | Similar — larger grid, same win-check pattern |
 | **[Simon Says](https://github.com/scottdreinhart/simon-says)** | Repeat a growing sequence of colors/sounds; memory challenge | Similar — leverages existing Web Audio API |
-| **[Lights Out](https://github.com/scottdreinhart/lights-out)** | Toggle a 5×5 grid of lights; goal is to turn them all off | Similar — grid + toggle logic |
+| **[Lights Out](https://github.com/scottdreinhart/game-platform)** | Toggle a 5×5 grid of lights; goal is to turn them all off | Similar — grid + toggle logic |
 | **[Nim](https://github.com/scottdreinhart/nim)** | Players take turns removing objects from piles; last to take loses | Simpler — minimal UI, pure strategy |
 | **[Hangman](https://github.com/scottdreinhart/hangman)** | Guess letters to reveal a hidden word before the stick figure completes | Similar — alphabet grid + SVG drawing |
 | **[Memory / Concentration](https://github.com/scottdreinhart/memory-game)** | Flip cards to find matching pairs on a grid | Similar — grid + flip animation |
@@ -548,4 +548,4 @@ This project is proprietary software. No permission is granted to use, copy, mod
 
 ---
 
-[⬆ Back to top](#-lights-out)
+[⬆ Back to top](#-game-platform)

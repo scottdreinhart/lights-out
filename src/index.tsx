@@ -82,7 +82,7 @@ const EARLY_THEME_COLORS: Record<string, Record<string, string>> = {
 }
 
 function initializeThemeEarly(): void {
-  const STORAGE_KEY = 'lights-out-theme-settings'
+  const STORAGE_KEY = 'game-platform-theme-settings'
   const settings = load<ThemeSettings>(STORAGE_KEY, DEFAULT_SETTINGS)
   const themeId = settings.colorTheme
   const colors = EARLY_THEME_COLORS[themeId] || EARLY_THEME_COLORS['chiba-city']

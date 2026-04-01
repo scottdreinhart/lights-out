@@ -1,0 +1,26 @@
+{
+  "appId": "com.scottreinhart.sudoku",
+  "productName": "Sudoku",
+  "directories": {
+    "buildResources": "public"
+  },
+  "files": [
+    "dist/**/*",
+    "electron/**/*"
+  ],
+  "win": {
+    "target": [
+      "portable"
+    ]
+  },
+  "linux": {
+    "target": [
+      "AppImage"
+    ]
+  },
+  "mac": {
+    "target": [
+      "dmg"
+    ]
+  }
+}

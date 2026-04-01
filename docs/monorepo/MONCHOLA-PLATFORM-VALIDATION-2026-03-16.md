@@ -6,7 +6,7 @@ Validation evidence for PR1 Monchola platform routing/checks under monorepo gove
 
 ## Environment
 
-- Workspace: `c:/Users/scott/lights-out`
+- Workspace: `c:/Users/scott/game-platform`
 - App package: `@games/monchola`
 - Shell state marker: `.node-platform.md` = `platform: linux`
 - Date: 2026-03-16
@@ -19,7 +19,7 @@ Command:
 
 Observed output:
 
-- `/mnt/c/Users/scott/lights-out/apps/monchola`
+- `/mnt/c/Users/scott/game-platform/apps/monchola`
 
 Result:
 

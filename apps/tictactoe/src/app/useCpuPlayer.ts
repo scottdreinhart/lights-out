@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { CPU_DELAY_MS, TOKENS } from '@/domain'
 import type { Board, Difficulty } from '@/domain'
+import { CPU_DELAY_MS, TOKENS } from '@/domain'
 import { computeAiMove, ensureWasmReady } from './aiEngine.ts'
 
 interface UseCpuPlayerConfig {

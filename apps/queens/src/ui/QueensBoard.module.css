@@ -1,0 +1,73 @@
+/* QueensBoard.module.css */
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(var(--board-size), 1fr);
+  gap: 2px;
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #8B4513;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cell {
+  aspect-ratio: 1;
+  background-color: #F5DEB3;
+  border: 1px solid #D2B48C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  position: relative;
+}
+
+.cell:hover {
+  background-color: #E6D7B3;
+  transform: scale(1.05);
+}
+
+.cell.queen {
+  background-color: #FFD700;
+  color: #8B0000;
+  font-weight: bold;
+}
+
+.cell.conflict {
+  background-color: #FF6B6B;
+  color: white;
+}
+
+.cell.selected {
+  background-color: #87CEEB;
+  box-shadow: inset 0 0 0 3px #4682B4;
+}
+
+.cell.hint {
+  background-color: #98FB98;
+  box-shadow: inset 0 0 0 2px #32CD32;
+}
+
+.queenIcon {
+  font-size: 2.5rem;
+  line-height: 1;
+  user-select: none;
+}
+
+@media (max-width: 600px) {
+  .board {
+    max-width: 90vw;
+    padding: 5px;
+  }
+
+  .cell {
+    font-size: 1.5rem;
+  }
+
+  .queenIcon {
+    font-size: 2rem;
+  }
+}

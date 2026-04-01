@@ -1,12 +1,12 @@
 import {
-  createStorageService,
+  createCrashLoggerService,
   createHapticsService,
   createSoundsService,
-  createCrashLoggerService,
+  createStorageService,
 } from '@games/common'
 
 // Game-specific AI engine (not in common)
-export { ensureWasmReady, computeAiMove, computeAiMoveAsync } from './aiEngine'
+export { computeAiMove, computeAiMoveAsync, ensureWasmReady } from './aiEngine'
 
 // Create singleton instances of common services
 const storage = createStorageService()

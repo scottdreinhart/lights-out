@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
 import { useWindowSize } from '@games/app-hook-utils'
+import { useEffect, useState } from 'react'
 
 type Alignment = 'left' | 'right'
 

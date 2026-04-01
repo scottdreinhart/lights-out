@@ -463,4 +463,4 @@ export default defineConfig({
 - **AGENTS.md § 4** (Path Discipline)
 - **AGENTS.md § 21** (File Organization Governance)
 - **copilot-instructions.md** (Architecture rules)
-- **Reference Apps**: `apps/cee-lo/`, `apps/battleship/`, `apps/lights-out/`
+- **Reference Apps**: `apps/cee-lo/`, `apps/battleship/`, `apps/nim/`, `apps/tictactoe/` (or any game app for architectural patterns)

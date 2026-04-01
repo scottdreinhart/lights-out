@@ -238,4 +238,4 @@ Per AGENTS.md § 17 (Responsive Design & Mobile-First Patterns):
 
 ## Author Notes
 
-This implementation is a **reference-grade** component that can be copied to other projects in the lights-out ecosystem (or any React + TypeScript project using the same CLEAN architecture pattern). The `useDropdownBehavior` hook is completely decoupled from HamburgerMenu and can be reused for any dropdown/select/combobox pattern.
+This implementation is a **reference-grade** component that can be copied to other projects in the game-platform ecosystem (or any React + TypeScript project using the same CLEAN architecture pattern). The `useDropdownBehavior` hook is completely decoupled from HamburgerMenu and can be reused for any dropdown/select/combobox pattern.

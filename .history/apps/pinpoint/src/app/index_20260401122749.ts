@@ -1,0 +1,1 @@
+export { usePinpointGame } from './usePinpointGame'

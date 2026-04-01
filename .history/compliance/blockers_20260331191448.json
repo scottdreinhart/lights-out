@@ -1,0 +1,195 @@
+{
+    "metadata": {
+        "version": "1.0.0",
+        "description": "Known blockers preventing cells from completion. Track by severity: high=blocks deployment, medium=requires mitigation, low=nice to have",
+        "lastUpdated": "2026-03-31"
+    },
+    "blockers": [
+        {
+            "id": "sudoku-discord-bundle-1",
+            "game": "mini-sudoku",
+            "platform": "discord",
+            "severity": "medium",
+            "issue": "Discord Activities have 10MB bundle size limit; mini-sudoku with all constraints may exceed this",
+            "resolution": "Lazy-load constraint propagation, tree-shake unused code, analyze bundle composition",
+            "status": "pending-analysis",
+            "discoveredAt": "2026-03-31"
+        },
+        {
+            "id": "sudoku-telegram-bundle-1",
+            "game": "mini-sudoku",
+            "platform": "telegram",
+            "severity": "medium",
+            "issue": "Telegram Mini Apps have 8MB bundle size limit; may be tight with full CSP implementation",
+            "resolution": "Minification, code splitting, worker lazy-loading",
+            "status": "pending-analysis",
+            "discoveredAt": "2026-03-31"
+        },
+        {
+            "id": "zip-pathsolver-1",
+            "game": "zip",
+            "platform": "electron",
+            "severity": "medium",
+            "issue": "Numberlink path solver is NP-complete; large boards will block main thread without optimization",
+            "resolution": "Move solver to Web Worker, implement iterative deepening, add solve time limits",
+            "status": "design-phase",
+            "discoveredAt": "2026-03-31"
+        },
+        {
+            "id": "zip-discord-bundle-2",
+            "game": "zip",
+            "platform": "discord",
+            "severity": "high",
+            "issue": "Path solver + graph algorithms will exceed Discord 10MB bundle limit",
+            "resolution": "Lazy-load solver, implement streaming solution validation, use worker-based computation",
+            "status": "design-phase",
+            "discoveredAt": "2026-03-31"
+        },
+        {
+            "id": "zip-telegram-bundle-2",
+            "game": "zip",
+            "platform": "telegram",
+            "severity": "high",
+            "issue": "Path solver will likely exceed Telegram 8MB bundle limit",
+            "resolution": "Aggressive tree-shaking, solver-only worker, minimal UI bundle",
+            "status": "design-phase",
+            "discoveredAt": "2026-03-31"
+        },
+        {
+            "id": "crossclimb-dictionary-1",
+            "game": "crossclimb",
+            "platform": "web",
+            "severity": "high",
+            "issue": "Word ladder requires english dictionary; loading full dictionary into bundle is infeasible (500KB+)",
+            "resolution": "Use trie data structure, load dictionary dynamically, consider server-side validation option",
+            "status": "design-phase",
+            "discoveredAt": "2026-03-31"
+        },
+        {
+            "id": "crossclimb-dictionary-2",
+            "game": "crossclimb",
+            "platform": "mobile",
+            "severity": "high",
+            "issue": "Dictionary handling on mobile requires careful memory management and offline access",
+            "resolution": "IndexedDB caching, compressed dictionary, lazy-load by word length",
+            "status": "design-phase",
+            "discoveredAt": "2026-03-31"
+        },
+        {
+            "id": "crossclimb-offline-1",
+            "game": "crossclimb",
+            "platform": "discord",
+            "severity": "high",
+            "issue": "Discord Activities require full offline capability; word ladder needs dictionary in offline context",
+            "resolution": "Embed compressed dictionary, sync on connection restore, cache known words",
+            "status": "design-phase",
+            "discoveredAt": "2026-03-31"
+        },
+        {
+            "id": "patches-algorithm-1",
+            "game": "patches",
+            "platform": "all",
+            "severity": "high",
+            "issue": "Polyomino placement (exact cover problem) is NP-complete; large puzzles need optimization",
+            "resolution": "Implement DLX (Dancing Links) algorithm, use constraint propagation, consider multiple solvers by difficulty",
+            "status": "design-phase",
+            "discoveredAt": "2026-03-31"
+        },
+        {
+            "id": "patches-generation-1",
+            "game": "patches",
+            "platform": "all",
+            "severity": "high",
+            "issue": "Polyomino puzzle generation from scratch is difficult; reverse process (remove shapes) preferred",
+            "resolution": "Method: generate solved tiling → identify contiguous regions → create puzzle. Verify solvability.",
+            "status": "design-phase",
+            "discoveredAt": "2026-03-31"
+        },
+        {
+            "id": "queens-performance-1",
+            "game": "queens",
+            "platform": "meta",
+            "severity": "medium",
+            "issue": "N-Queens with N>12 can take >3s without optimization; Meta loading target is 3s",
+            "resolution": "Start with N=8 default, optimize backtracking with constraint propagation, profile on target device",
+            "status": "design-phase",
+            "discoveredAt": "2026-03-31"
+        },
+        {
+            "id": "tango-liveupdate-1",
+            "game": "tango",
+            "platform": "discord",
+            "severity": "low",
+            "issue": "Real-time collaborative Takuzu not in initial scope; single-player only",
+            "resolution": "Deferred to phase 2; architecture designed to support later",
+            "status": "accepted",
+            "discoveredAt": "2026-03-31"
+        },
+        {
+            "id": "pinpoint-ui-challenge-1",
+            "game": "pinpoint",
+            "platform": "mobile",
+            "severity": "medium",
+            "issue": "Pinpoint requires selection of 4 groups; mobile UI needs careful tap target sizing",
+            "resolution": "Min 48px tap target, visual feedback, undo available, preview grouping before confirm",
+            "status": "design-phase",
+            "discoveredAt": "2026-03-31"
+        }
+    ],
+    "blockerSummary": {
+        "highSeverity": 5,
+        "mediumSeverity": 7,
+        "lowSeverity": 1,
+        "total": 13,
+        "blockedCells": 20,
+        "blockedPercentage": 28.6,
+        "criticalPaths": [
+            "zip: path solver NP-complete, bundle constraints on Discord/Telegram",
+            "crossclimb: dictionary management and offline capability",
+            "patches: algorithm selection (DLX vs backtracking) and puzzle generation",
+            "mini-sudoku: bundle size on Discord/Telegram platforms"
+        ]
+    },
+    "resolutionStrategy": {
+        "phase1": {
+            "title": "Algorithm + Architecture Design",
+            "timeline": "Week 1-2 per game",
+            "focus": [
+                "Performance modeling",
+                "Bundle estimation",
+                "Worker strategy"
+            ],
+            "deliverable": "Design doc + profiling results"
+        },
+        "phase2": {
+            "title": "Core Implementation + Optimization",
+            "timeline": "Week 3-4 per game",
+            "focus": [
+                "Algorithm optimization",
+                "Code splitting",
+                "Worker integration"
+            ],
+            "deliverable": "Feature-complete game with blockers resolved or mitigated"
+        },
+        "phase3": {
+            "title": "Platform Adaptation",
+            "timeline": "Week 5 per game",
+            "focus": [
+                "Bundle tuning per platform",
+                "API constraints",
+                "Performance gates"
+            ],
+            "deliverable": "All platform cells passing validation"
+        },
+        "phase4": {
+            "title": "Launch + Monitoring",
+            "timeline": "Ongoing",
+            "focus": [
+                "Real user metrics",
+                "Refinement",
+                "A/B testing"
+            ],
+            "deliverable": "All cells marked complete with SLO tracking"
+        }
+    }
+}

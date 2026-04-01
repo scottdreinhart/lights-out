@@ -139,7 +139,7 @@ Content-Security-Policy:
 
 ### For Electron/Capacitor:
 ```javascript
-// apps/lights-out/electron/main.js
+// apps/<game-app>/electron/main.js
 mainWindow.webPreferences = {
   preload: path.join(__dirname, 'preload.js'),
   sandbox: true,

@@ -1,0 +1,50 @@
+/* FeedbackPegs.module.css */
+
+.feedbackPegs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 2px;
+  width: 24px;
+  height: 24px;
+  padding: 2px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+}
+
+.feedbackPeg {
+  border-radius: 50%;
+  border: 1px solid #ccc;
+}
+
+.correctPosition {
+  background-color: #000; /* Black peg */
+}
+
+.correctColor {
+  background-color: #fff; /* White peg */
+  border: 1px solid #000;
+}
+
+.empty {
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .feedbackPegs {
+    border: 2px solid #000;
+  }
+
+  .correctPosition {
+    background-color: #000;
+    border: 2px solid #fff;
+  }
+
+  .correctColor {
+    background-color: #fff;
+    border: 2px solid #000;
+  }
+}

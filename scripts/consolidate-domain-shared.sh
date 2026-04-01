@@ -8,7 +8,7 @@ APPS=(
   reversi rock-paper-scissors ship-captain-crew shut-the-box simon-says snake tictactoe
 )
 
-ROOT_DIR="/mnt/c/Users/scott/lights-out"
+ROOT_DIR="/mnt/c/Users/scott/game-platform"
 
 for app in "${APPS[@]}"; do
   APP_DIR="$ROOT_DIR/apps/$app"

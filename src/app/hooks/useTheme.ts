@@ -6,7 +6,7 @@ import { COLOR_THEMES, DEFAULT_SETTINGS } from '../../domain/themes.ts'
 import type { ThemeSettings } from '../../domain/types.ts'
 import { load, save } from '../services/storageService.ts'
 
-const STORAGE_KEY = 'lights-out-theme-settings'
+const STORAGE_KEY = 'game-platform-theme-settings'
 
 const themeLoaders = import.meta.glob('../../themes/*.css', {
   query: '?inline',

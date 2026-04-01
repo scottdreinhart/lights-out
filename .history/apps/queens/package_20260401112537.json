@@ -1,0 +1,40 @@
+{
+  "name": "@games/queens",
+  "version": "1.0.0",
+  "description": "N-Queens puzzle solver - place 8 queens on a chessboard so no queen attacks another",
+  "main": "src/index.tsx",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "typecheck": "tsc --noEmit",
+    "validate": "pnpm typecheck && pnpm lint && pnpm test:run",
+    "fix": "pnpm lint:fix && pnpm format"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "@games/domain-shared": "workspace:*",
+    "@games/common": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.3",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vitest": "^4.0.18",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/jest-dom": "^6.1.4",
+    "jsdom": "^24.0.0",
+    "eslint": "^10.0.3",
+    "@typescript-eslint/eslint-plugin": "^8.57.0",
+    "@typescript-eslint/parser": "^8.57.0",
+    "prettier": "^3.8.1"
+  }
+}

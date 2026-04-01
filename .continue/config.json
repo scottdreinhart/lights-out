@@ -1,0 +1,30 @@
+{
+  "models": [
+    {
+      "title": "Ollama Qwen3-Coder 30B",
+      "provider": "ollama",
+      "model": "qwen3:30b-coder",
+      "apiBase": "http://localhost:11434",
+      "completionOptions": {
+        "maxTokens": 256
+      }
+    },
+    {
+      "title": "Ollama Llama2 Chat",
+      "provider": "ollama",
+      "model": "llama2",
+      "apiBase": "http://localhost:11434"
+    }
+  ],
+  "tabAutocompleteModel": {
+    "title": "Ollama Qwen3-Coder 30B",
+    "provider": "ollama",
+    "model": "qwen3:30b-coder",
+    "apiBase": "http://localhost:11434"
+  },
+  "embeddingsProvider": {
+    "provider": "ollama",
+    "model": "nomic-embed-text",
+    "apiBase": "http://localhost:11434"
+  }
+}

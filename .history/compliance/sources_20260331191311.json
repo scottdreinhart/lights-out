@@ -1,0 +1,314 @@
+{
+  "gameRules": {
+    "queens": {
+      "title": "N-Queens Problem",
+      "category": "Constraint Satisfaction",
+      "sources": [
+        {
+          "title": "N-queens problem",
+          "url": "https://en.wikipedia.org/wiki/Eight_queens_puzzle",
+          "type": "wiki"
+        },
+        {
+          "title": "Constraint Satisfaction Problem",
+          "url": "https://en.wikipedia.org/wiki/Constraint_satisfaction_problem",
+          "type": "wiki"
+        }
+      ],
+      "coreRules": [
+        "Place N queens on N×N board",
+        "No two queens on same row",
+        "No two queens on same column",
+        "No two queens on same diagonal",
+        "All queens must be placed for solved state"
+      ],
+      "complexity": "NP-complete",
+      "implementation": "CSP with backtracking + constraint propagation"
+    },
+    "tango": {
+      "title": "Takuzu (Binary Puzzle)",
+      "category": "Logic Puzzle",
+      "sources": [
+        {
+          "title": "Takuzu",
+          "url": "https://en.wikipedia.org/wiki/Takuzu",
+          "type": "wiki"
+        }
+      ],
+      "coreRules": [
+        "Fill grid with 0s and 1s",
+        "No more than 2 consecutive same digits",
+        "Each row and column must have equal 0s and 1s",
+        "No duplicate rows or columns"
+      ],
+      "complexity": "NP-complete",
+      "implementation": "CSP with constraint propagation"
+    },
+    "zip": {
+      "title": "Numberlink / Zip",
+      "category": "Path Finding",
+      "sources": [
+        {
+          "title": "Numberlink",
+          "url": "https://en.wikipedia.org/wiki/Numberlink",
+          "type": "wiki"
+        },
+        {
+          "title": "Hamiltonian path",
+          "url": "https://en.wikipedia.org/wiki/Hamiltonian_path_problem",
+          "type": "wiki"
+        }
+      ],
+      "coreRules": [
+        "Connect matching pairs with paths",
+        "Paths cannot cross or branch",
+        "Each cell used at most once",
+        "All cells in grid must be used"
+      ],
+      "complexity": "NP-complete",
+      "implementation": "Backtracking with adjacency constraints"
+    },
+    "crossclimb": {
+      "title": "Word Ladder / Cross Climb",
+      "category": "Word Puzzle",
+      "sources": [
+        {
+          "title": "Word ladder",
+          "url": "https://en.wikipedia.org/wiki/Word_ladder",
+          "type": "wiki"
+        }
+      ],
+      "coreRules": [
+        "Transform start word to end word",
+        "Each step changes exactly one letter",
+        "All intermediate words must be valid English",
+        "No repeated words in path"
+      ],
+      "complexity": "Search / BFS",
+      "implementation": "Graph search with dictionary validation"
+    },
+    "pinpoint": {
+      "title": "Pinpoint / Clustering",
+      "category": "Spatial Reasoning",
+      "sources": [
+        {
+          "title": "Clustering",
+          "url": "https://en.wikipedia.org/wiki/Cluster_analysis",
+          "type": "wiki"
+        }
+      ],
+      "coreRules": [
+        "Group elements by category",
+        "Each group has defining connection",
+        "4 groups of 4 elements each",
+        "One element can belong to multiple implicit categories"
+      ],
+      "complexity": "NP-hard (grouping problem)",
+      "implementation": "Combinatorial search with constraint validation"
+    },
+    "mini-sudoku": {
+      "title": "4×4 Sudoku",
+      "category": "Constraint Satisfaction",
+      "sources": [
+        {
+          "title": "Sudoku",
+          "url": "https://en.wikipedia.org/wiki/Sudoku",
+          "type": "wiki"
+        }
+      ],
+      "coreRules": [
+        "Fill 4×4 grid with digits 1-4",
+        "Each digit appears once per row",
+        "Each digit appears once per column",
+        "Each digit appears once per 2×2 box",
+        "Some clues given (no solution to remove one clue)"
+      ],
+      "complexity": "NP-complete",
+      "implementation": "CSP with AC-3 constraint propagation"
+    },
+    "patches": {
+      "title": "Polyomino Tiling",
+      "category": "Spatial Reasoning",
+      "sources": [
+        {
+          "title": "Polyomino",
+          "url": "https://en.wikipedia.org/wiki/Polyomino",
+          "type": "wiki"
+        },
+        {
+          "title": "Tiling problem",
+          "url": "https://en.wikipedia.org/wiki/Tiling_problem",
+          "type": "wiki"
+        }
+      ],
+      "coreRules": [
+        "Tile grid with polyominoes (shapes made of unit squares)",
+        "Each polyomino used exactly once",
+        "No overlaps or gaps",
+        "All cells in grid covered",
+        "Some cells pre-colored to show polyomino boundaries"
+      ],
+      "complexity": "NP-complete",
+      "implementation": "Backtracking with shape placement constraints"
+    }
+  },
+  "platforms": {
+    "web": {
+      "title": "Web (PWA)",
+      "type": "browser",
+      "constraints": {
+        "forbiddenAPIs": ["Node.js APIs", "Electron APIs", "native binaries"],
+        "allowedAPIs": ["Web APIs", "Service Workers", "IndexedDB", "localStorage"],
+        "minBundleSize": "0",
+        "maxBundleSize": "500KB",
+        "performance": "LCP < 2.5s, FID < 100ms, CLS < 0.1"
+      },
+      "touchSafe": true,
+      "offlineCapable": true
+    },
+    "meta": {
+      "title": "Meta Instant Games",
+      "type": "social",
+      "constraints": {
+        "forbiddenAPIs": ["Node.js", "local filesystem", "Electron", "Capacitor"],
+        "allowedAPIs": ["FBInstant", "Web APIs", "IndexedDB"],
+        "minBundleSize": "0",
+        "maxBundleSize": "4MB",
+        "performance": "load < 3s, game ready < 10s"
+      },
+      "touchSafe": true,
+      "offlineCapable": false
+    },
+    "ios": {
+      "title": "iOS (App Store)",
+      "type": "mobile",
+      "constraints": {
+        "forbiddenAPIs": ["Node.js", "Electron", "unsupported webkit APIs"],
+        "allowedAPIs": ["Capacitor", "Web APIs", "native bridge"],
+        "minBundleSize": "0",
+        "maxBundleSize": "100MB",
+        "performance": "launch < 3s"
+      },
+      "touchSafe": true,
+      "offlineCapable": true
+    },
+    "android": {
+      "title": "Android (Google Play)",
+      "type": "mobile",
+      "constraints": {
+        "forbiddenAPIs": ["Node.js", "Electron", "iOS-only APIs"],
+        "allowedAPIs": ["Capacitor", "Web APIs", "native bridge"],
+        "minBundleSize": "0",
+        "maxBundleSize": "200MB",
+        "performance": "launch < 5s"
+      },
+      "touchSafe": true,
+      "offlineCapable": true
+    },
+    "electron": {
+      "title": "Electron (Desktop)",
+      "type": "desktop",
+      "constraints": {
+        "forbiddenAPIs": ["unsupported Node.js versions", "dangerous native modules"],
+        "allowedAPIs": ["Node.js", "Electron API", "filesystem", "native modules"],
+        "minBundleSize": "0",
+        "maxBundleSize": "300MB",
+        "performance": "launch < 2s"
+      },
+      "touchSafe": false,
+      "offlineCapable": true,
+      "platforms": ["Windows", "macOS", "Linux"]
+    },
+    "itch": {
+      "title": "itch.io",
+      "type": "web",
+      "constraints": {
+        "forbiddenAPIs": ["Node.js", "Electron"],
+        "allowedAPIs": ["Web APIs", "ServiceWorker"],
+        "minBundleSize": "0",
+        "maxBundleSize": "50MB",
+        "performance": "load < 3s"
+      },
+      "touchSafe": true,
+      "offlineCapable": false
+    },
+    "crazygames": {
+      "title": "CrazyGames",
+      "type": "web",
+      "constraints": {
+        "forbiddenAPIs": ["Node.js", "Electron"],
+        "allowedAPIs": ["Web APIs", "CrazyGames SDK"],
+        "minBundleSize": "0",
+        "maxBundleSize": "50MB",
+        "performance": "load < 3s"
+      },
+      "touchSafe": true,
+      "offlineCapable": false
+    },
+    "discord": {
+      "title": "Discord Activities",
+      "type": "social",
+      "constraints": {
+        "forbiddenAPIs": ["Node.js", "Electron", "local filesystem"],
+        "allowedAPIs": ["Discord SDK", "Web APIs"],
+        "minBundleSize": "0",
+        "maxBundleSize": "10MB",
+        "performance": "load < 2s"
+      },
+      "touchSafe": true,
+      "offlineCapable": false
+    },
+    "telegram": {
+      "title": "Telegram Mini Apps",
+      "type": "social",
+      "constraints": {
+        "forbiddenAPIs": ["Node.js", "Electron", "payments without Telegram SDK"],
+        "allowedAPIs": ["Telegram Web Apps SDK", "Web APIs"],
+        "minBundleSize": "0",
+        "maxBundleSize": "8MB",
+        "performance": "load < 2s"
+      },
+      "touchSafe": true,
+      "offlineCapable": false
+    },
+    "steam": {
+      "title": "Steam",
+      "type": "desktop",
+      "constraints": {
+        "forbiddenAPIs": ["unsupported Chromium versions"],
+        "allowedAPIs": ["Electron", "Node.js", "Steam API"],
+        "minBundleSize": "0",
+        "maxBundleSize": "500MB",
+        "performance": "launch < 3s"
+      },
+      "touchSafe": false,
+      "offlineCapable": true
+    }
+  },
+  "validationRules": {
+    "appExists": {
+      "description": "App folder exists in /apps with entry point",
+      "check": "folder exists && entry point present"
+    },
+    "rulesVerified": {
+      "description": "Core rules match canonical source",
+      "check": "rules in code match sources.json"
+    },
+    "platformAdapter": {
+      "description": "Platform-specific adapter/entry point",
+      "check": "platform entry present && no forbidden APIs"
+    },
+    "performanceCompliance": {
+      "description": "Bundle size, load time, solve time within limits",
+      "check": "metrics match platform constraints"
+    },
+    "uiCompliance": {
+      "description": "Responsive, touch-safe, accessible",
+      "check": "mobile breakpoints + touch handling + a11y"
+    },
+    "blockersFree": {
+      "description": "No high-severity blockers",
+      "check": "all high-severity issues resolved or mitigated"
+    }
+  }
+}

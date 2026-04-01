@@ -1,7 +1,7 @@
 export {
+  COLORBLIND_MODES,
   COLOR_THEMES,
+  DEFAULT_SETTINGS,
   MODES,
   type Mode,
-  COLORBLIND_MODES,
-  DEFAULT_SETTINGS,
 } from '@games/theme-contract'

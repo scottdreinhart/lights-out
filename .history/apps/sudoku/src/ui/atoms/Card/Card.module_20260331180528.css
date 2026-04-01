@@ -1,0 +1,19 @@
+.card {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.title {
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  padding: var(--spacing-lg);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  margin: 0;
+}
+
+.content {
+  padding: var(--spacing-lg);
+}

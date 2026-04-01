@@ -43,7 +43,7 @@ Then choose:
 
 ## Executed This Pass
 
-### Migrated superior root web-shell content into `apps/lights-out`
+### Migrated superior root web-shell content into `apps/<game-apps>` (reference: lights-out)
 
 Added app-local files:
 

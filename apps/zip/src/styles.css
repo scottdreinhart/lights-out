@@ -1,0 +1,85 @@
+/**
+ * Global Styles for Zip Game
+ * CSS resets, theme variables, and base styles
+ */
+
+/* CSS Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8f9fa;
+  color: #333;
+  line-height: 1.5;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Theme Variables */
+:root {
+  /* Colors */
+  --primary-color: #3498db;
+  --primary-hover: #2980b9;
+  --secondary-bg: #95a5a6;
+  --secondary-hover: #7f8c8d;
+  --danger-bg: #e74c3c;
+  --danger-hover: #c0392b;
+  --success-bg: #d4edda;
+  --success-text: #155724;
+  --success-border: #c3e6cb;
+  --success-color: #27ae60;
+  --info-bg: #d1ecf1;
+  --info-text: #0c5460;
+  --info-border: #bee5eb;
+  --bg-color: #f8f9fa;
+  --text-color: #333;
+  --text-secondary: #666;
+  --border-color: #ddd;
+  --input-bg: #fff;
+  --stat-bg: #fff;
+  --instructions-bg: #fff;
+
+  /* High contrast mode */
+  --high-contrast-bg: #000;
+  --high-contrast-text: #fff;
+  --high-contrast-success: #000;
+  --high-contrast-success-text: #0f0;
+  --high-contrast-info: #000;
+  --high-contrast-info-text: #0ff;
+
+  /* Fonts */
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Button reset */
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Input reset */
+select {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}

@@ -1,0 +1,7 @@
+*.webp
+*.ico
+public/
+dist/
+build/
+release/
+node_modules/

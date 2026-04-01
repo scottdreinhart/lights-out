@@ -1,0 +1,45 @@
+/* Peg.module.css */
+
+.peg {
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.clickable:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .peg {
+    border: 2px solid;
+  }
+
+  .clickable:hover {
+    transform: none;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .peg {
+    transition: none;
+  }
+
+  .clickable:hover {
+    transform: none;
+  }
+}

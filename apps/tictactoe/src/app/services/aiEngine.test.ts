@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest'
-import { createEmptyBoard, TOKENS } from '@/domain'
 import type { Board } from '@/domain'
+import { createEmptyBoard, TOKENS } from '@/domain'
+import { describe, expect, it } from 'vitest'
 import { computeAiMove } from './aiEngine.ts'
 
 describe('aiEngine', () => {
@@ -14,9 +14,15 @@ describe('aiEngine', () => {
 
     it('should avoid occupied cells', () => {
       const board: Board = [
-        TOKENS.HUMAN, TOKENS.CPU, TOKENS.HUMAN,
-        null, null, null,
-        null, null, null,
+        TOKENS.HUMAN,
+        TOKENS.CPU,
+        TOKENS.HUMAN,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
       ]
 
       const result = computeAiMove(board, 'medium', TOKENS.CPU, TOKENS.HUMAN)
@@ -38,11 +44,7 @@ describe('aiEngine', () => {
     })
 
     it('should block opponent from winning', () => {
-      const board: Board = [
-        TOKENS.HUMAN, TOKENS.HUMAN, null,
-        null, null, null,
-        null, null, null,
-      ]
+      const board: Board = [TOKENS.HUMAN, TOKENS.HUMAN, null, null, null, null, null, null, null]
 
       const result = computeAiMove(board, 'hard', TOKENS.CPU, TOKENS.HUMAN)
       // Hard difficulty (medium strategy) should block the win

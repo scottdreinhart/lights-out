@@ -134,7 +134,7 @@ export default function App() {
   }
 
   return (
-    <div id="lights-out-main-content" className={styles.appContainer}>
+    <div id="game-platform-main-content" className={styles.appContainer}>
       <OfflineIndicator />
 
       <header className={styles.appHeader}>

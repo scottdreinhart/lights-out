@@ -8,22 +8,22 @@
  */
 
 export {
-  RESPONSIVE_BREAKPOINTS,
   HEIGHT_THRESHOLDS,
   MEDIA_QUERIES,
+  RESPONSIVE_BREAKPOINTS,
   deriveBreakpointFlags,
-  deriveDeviceCategory,
-  deriveNavMode,
   deriveContentDensity,
+  deriveDeviceCategory,
   deriveDialogMode,
-  deriveInteractionMode,
   deriveGridColumns,
+  deriveInteractionMode,
+  deriveNavMode,
   deriveResponsiveState,
   type BreakpointName,
-  type NavMode,
   type ContentDensity,
   type DialogMode,
   type InteractionMode,
+  type NavMode,
   type ResponsiveCapabilities,
   type ResponsiveState,
 } from '@games/domain-shared'

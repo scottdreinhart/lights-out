@@ -1,0 +1,152 @@
+Analyzing 27 games...
+ 
+Done!
+
+
+
+════════════════════════════════════════════════════════════════════════════════════════════════════
+COMPREHENSIVE VALIDATION AUDIT - ALL 27 GAMES
+════════════════════════════════════════════════════════════════════════════════════════════════════
+Analysis Date: 2026-03-31
+Total Games Analyzed: 27
+════════════════════════════════════════════════════════════════════════════════════════════════════
+
+## ENGINE CLASSIFICATION
+
+| Engine Family | Count | Games |
+|---|---|---|
+| Constraint Satisfaction | 4 | lights-out, minesweeper, mini-sudoku, sudoku |
+| Graph/Path Finding | 1 | snake |
+| Word/NLP | 1 | hangman |
+| State/Transition | 2 | memory-game, simon-says |
+| Board/Strategy | 7 | battleship, checkers, connect-four, mancala, nim, reversi, tictactoe |
+| Dice/Probability | 12 | bunco, cee-lo, chicago, cho-han, farkle, liars-dice, mexico, monchola, pig, rock-paper-scissors, ship-captain-crew, shut-the-box |
+
+## ARCHITECTURE COMPLIANCE
+
+| Game | Domain | App | UI | Tests | WASM | Workers | Status |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|---|
+| battleship | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| bunco | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| cee-lo | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| checkers | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| chicago | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| cho-han | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| connect-four | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| farkle | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| hangman | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| liars-dice | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| lights-out | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| mancala | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| memory-game | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| mexico | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| minesweeper | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| mini-sudoku | ✅ | ✅ | ✅ | ❌ | — | — | ✅ PASS |
+| monchola | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| nim | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| pig | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| reversi | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| rock-paper-scissors | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| ship-captain-crew | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| shut-the-box | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| simon-says | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| snake | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+| sudoku | ✅ | ✅ | ✅ | ❌ | — | — | ✅ PASS |
+| tictactoe | ✅ | ✅ | ✅ | ❌ | ⚙️ | ⚙️ | ✅ PASS |
+
+## PLATFORM SUPPORT MATRIX (10 Platforms × 27 Games)
+
+| Game | Web | Meta | iOS | Android | Win | Mac | Linux | Itch | Discord | Telegram |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| battleship | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| bunco | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| cee-lo | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| checkers | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| chicago | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| cho-han | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| connect-four | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| farkle | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| hangman | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| liars-dice | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| lights-out | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| mancala | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| memory-game | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| mexico | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| minesweeper | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| mini-sudoku | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| monchola | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| nim | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| pig | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| reversi | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| rock-paper-scissors | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| ship-captain-crew | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| shut-the-box | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| simon-says | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| snake | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| sudoku | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| tictactoe | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+
+## BLOCKERS IDENTIFIED (4)
+
+| Game | Issue | Severity | Type | Hours |
+|---|---|---|---|---|
+| lights-out | CSP game missing test infrastructure | high | testing | 6 |
+| minesweeper | CSP game missing test infrastructure | high | testing | 6 |
+| mini-sudoku | CSP game missing test infrastructure | high | testing | 6 |
+| sudoku | CSP game missing test infrastructure | high | testing | 6 |
+
+## DUPLICATION OPPORTUNITIES (3)
+
+**CSP**: lights-out, minesweeper, mini-sudoku, sudoku (4 games, ~51% code reduction)
+**BOARD**: battleship, checkers, connect-four, mancala, nim, reversi, tictactoe (7 games, ~65% code reduction)
+**DICE**: bunco, cee-lo, chicago, cho-han, farkle, liars-dice, mexico, monchola, pig, rock-paper-scissors, ship-captain-crew, shut-the-box (12 games, ~53% code reduction)
+
+## PER-ENGINE-FAMILY SUMMARY
+
+
+### Constraint Satisfaction (4 games)
+- Architecture Compliance: 4/4 ✅
+- Average Platform Support: 4/10 platforms
+- AI Integration: 3 have AI
+
+### Graph/Path Finding (1 games)
+- Architecture Compliance: 1/1 ✅
+- Average Platform Support: 1/10 platforms
+- AI Integration: 1 have AI
+
+### Word/NLP (1 games)
+- Architecture Compliance: 1/1 ✅
+- Average Platform Support: 1/10 platforms
+- AI Integration: 1 have AI
+
+### State/Transition (2 games)
+- Architecture Compliance: 2/2 ✅
+- Average Platform Support: 2/10 platforms
+- AI Integration: 2 have AI
+
+### Board/Strategy (7 games)
+- Architecture Compliance: 7/7 ✅
+- Average Platform Support: 7/10 platforms
+- AI Integration: 7 have AI
+
+### Dice/Probability (12 games)
+- Architecture Compliance: 12/12 ✅
+- Average Platform Support: 12/10 platforms
+- AI Integration: 12 have AI
+
+## STATISTICS
+
+- totalGames: 27/27 (100%)
+- withDomainLayer: 27/27 (100%)
+- withAppLayer: 27/27 (100%)
+- withUILayer: 27/27 (100%)
+- withTests: 0/27 (0%)
+- withAI: 26/27 (96%)
+- withWASM: 25/27 (93%)
+- withWorkers: 25/27 (93%)
+
+════════════════════════════════════════════════════════════════════════════════════════════════════
+END OF REPORT
+════════════════════════════════════════════════════════════════════════════════════════════════════
+
+✅ Detailed report saved to: C:\Users\scott\game-platform\compliance\comprehensive-audit.json

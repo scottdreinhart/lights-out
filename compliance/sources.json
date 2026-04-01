@@ -1,0 +1,2387 @@
+{
+  "metadata": {
+    "version": "2.0.0",
+    "generatedAt": "2026-04-01T20:56:12.995Z",
+    "description": "Game-by-platform deployment matrix and platform support data",
+    "gameCount": 32,
+    "platformCount": 10,
+    "lastAudit": "2026-04-01T20:56:12.995Z"
+  },
+  "games": [
+    "battleship",
+    "bunco",
+    "cee-lo",
+    "checkers",
+    "chicago",
+    "cho-han",
+    "connect-four",
+    "crossclimb",
+    "farkle",
+    "hangman",
+    "liars-dice",
+    "lights-out",
+    "mancala",
+    "memory-game",
+    "mexico",
+    "minesweeper",
+    "mini-sudoku",
+    "monchola",
+    "nim",
+    "pig",
+    "pinpoint",
+    "queens",
+    "reversi",
+    "rock-paper-scissors",
+    "ship-captain-crew",
+    "shut-the-box",
+    "simon-says",
+    "snake",
+    "sudoku",
+    "tango",
+    "tictactoe",
+    "zip"
+  ],
+  "platforms": [
+    "Web",
+    "Electron",
+    "iOS",
+    "Android",
+    "Discord",
+    "Telegram",
+    "Windows",
+    "macOS",
+    "Steam",
+    "itch.io"
+  ],
+  "matrix": {
+    "battleship": {
+      "Web": {
+        "status": "partial",
+        "completion": 76,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 63,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 54,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 51,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "bunco": {
+      "Web": {
+        "status": "partial",
+        "completion": 64,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 58,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 41,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 54,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "partial",
+        "completion": 47,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "cee-lo": {
+      "Web": {
+        "status": "partial",
+        "completion": 47,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 59,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 45,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 45,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "partial",
+        "completion": 68,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "checkers": {
+      "Web": {
+        "status": "partial",
+        "completion": 63,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 74,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 50,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 72,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "chicago": {
+      "Web": {
+        "status": "partial",
+        "completion": 60,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 51,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "cho-han": {
+      "Web": {
+        "status": "partial",
+        "completion": 63,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 51,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 41,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 39,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "partial",
+        "completion": 39,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "connect-four": {
+      "Web": {
+        "status": "partial",
+        "completion": 53,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 70,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 54,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 50,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "crossclimb": {
+      "Web": {
+        "status": "partial",
+        "completion": 50,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 53,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 59,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 51,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "partial",
+        "completion": 60,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "partial",
+        "completion": 45,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "farkle": {
+      "Web": {
+        "status": "partial",
+        "completion": 62,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 32,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 54,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 46,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "partial",
+        "completion": 66,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "hangman": {
+      "Web": {
+        "status": "partial",
+        "completion": 60,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 36,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 67,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 35,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "partial",
+        "completion": 52,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "partial",
+        "completion": 53,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "liars-dice": {
+      "Web": {
+        "status": "partial",
+        "completion": 34,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 57,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 66,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 66,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "lights-out": {
+      "Web": {
+        "status": "partial",
+        "completion": 85,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 96,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 87,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 96,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "partial",
+        "completion": 80,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "partial",
+        "completion": 94,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "mancala": {
+      "Web": {
+        "status": "partial",
+        "completion": 60,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 70,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 58,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 52,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "memory-game": {
+      "Web": {
+        "status": "partial",
+        "completion": 38,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 44,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 47,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 69,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "mexico": {
+      "Web": {
+        "status": "partial",
+        "completion": 33,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 31,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 65,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 45,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "partial",
+        "completion": 38,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "minesweeper": {
+      "Web": {
+        "status": "partial",
+        "completion": 67,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 66,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 69,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 69,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "partial",
+        "completion": 72,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "partial",
+        "completion": 79,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "mini-sudoku": {
+      "Web": {
+        "status": "partial",
+        "completion": 89,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 68,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 78,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 88,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "partial",
+        "completion": 89,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "partial",
+        "completion": 85,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "monchola": {
+      "Web": {
+        "status": "partial",
+        "completion": 58,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 56,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 60,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 68,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "partial",
+        "completion": 69,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "partial",
+        "completion": 31,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "nim": {
+      "Web": {
+        "status": "partial",
+        "completion": 36,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 50,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 56,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 67,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "partial",
+        "completion": 30,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "partial",
+        "completion": 35,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "pig": {
+      "Web": {
+        "status": "partial",
+        "completion": 57,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 48,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 39,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 60,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "partial",
+        "completion": 47,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "pinpoint": {
+      "Web": {
+        "status": "partial",
+        "completion": 54,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 39,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 34,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 67,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "queens": {
+      "Web": {
+        "status": "partial",
+        "completion": 68,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 35,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 64,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 68,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "reversi": {
+      "Web": {
+        "status": "partial",
+        "completion": 71,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 55,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 50,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 50,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "rock-paper-scissors": {
+      "Web": {
+        "status": "partial",
+        "completion": 65,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 57,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 58,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 68,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "ship-captain-crew": {
+      "Web": {
+        "status": "partial",
+        "completion": 35,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 37,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 69,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 44,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "partial",
+        "completion": 63,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "shut-the-box": {
+      "Web": {
+        "status": "partial",
+        "completion": 46,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 32,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 51,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 56,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "partial",
+        "completion": 67,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "simon-says": {
+      "Web": {
+        "status": "partial",
+        "completion": 62,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 52,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 39,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 58,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "snake": {
+      "Web": {
+        "status": "partial",
+        "completion": 32,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 48,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 52,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 39,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "sudoku": {
+      "Web": {
+        "status": "partial",
+        "completion": 93,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 82,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 64,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 89,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "partial",
+        "completion": 89,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "partial",
+        "completion": 84,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "tango": {
+      "Web": {
+        "status": "partial",
+        "completion": 66,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 49,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 34,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 52,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "tictactoe": {
+      "Web": {
+        "status": "partial",
+        "completion": 89,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 65,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 91,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 63,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    },
+    "zip": {
+      "Web": {
+        "status": "partial",
+        "completion": 69,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Electron": {
+        "status": "partial",
+        "completion": 38,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "iOS": {
+        "status": "partial",
+        "completion": 53,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Android": {
+        "status": "partial",
+        "completion": 50,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Discord": {
+        "status": "partial",
+        "completion": 67,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Telegram": {
+        "status": "partial",
+        "completion": 52,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Windows": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "macOS": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "Steam": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      },
+      "itch.io": {
+        "status": "not-started",
+        "completion": 0,
+        "lastUpdated": "2026-04-01T20:56:12.996Z"
+      }
+    }
+  },
+  "gameMetadata": {
+    "battleship": {
+      "name": "battleship",
+      "family": "Board/Strategy",
+      "description": "Board/Strategy game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android"
+      ],
+      "platformCount": 4,
+      "progress": {
+        "started": true,
+        "inProgress": false,
+        "launched": true
+      }
+    },
+    "bunco": {
+      "name": "bunco",
+      "family": "Dice Games",
+      "description": "Dice Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android",
+        "Discord"
+      ],
+      "platformCount": 5,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": true
+      }
+    },
+    "cee-lo": {
+      "name": "cee-lo",
+      "family": "Dice Games",
+      "description": "Dice Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android",
+        "Discord"
+      ],
+      "platformCount": 5,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "checkers": {
+      "name": "checkers",
+      "family": "Board/Strategy",
+      "description": "Board/Strategy game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android"
+      ],
+      "platformCount": 4,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "chicago": {
+      "name": "chicago",
+      "family": "Other",
+      "description": "Other game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron"
+      ],
+      "platformCount": 2,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "cho-han": {
+      "name": "cho-han",
+      "family": "Dice Games",
+      "description": "Dice Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android",
+        "Discord"
+      ],
+      "platformCount": 5,
+      "progress": {
+        "started": true,
+        "inProgress": false,
+        "launched": false
+      }
+    },
+    "connect-four": {
+      "name": "connect-four",
+      "family": "Board/Strategy",
+      "description": "Board/Strategy game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android"
+      ],
+      "platformCount": 4,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "crossclimb": {
+      "name": "crossclimb",
+      "family": "Puzzle Games",
+      "description": "Puzzle Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android",
+        "Discord",
+        "Telegram"
+      ],
+      "platformCount": 6,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "farkle": {
+      "name": "farkle",
+      "family": "Dice Games",
+      "description": "Dice Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android",
+        "Discord"
+      ],
+      "platformCount": 5,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": true
+      }
+    },
+    "hangman": {
+      "name": "hangman",
+      "family": "Puzzle Games",
+      "description": "Puzzle Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android",
+        "Discord",
+        "Telegram"
+      ],
+      "platformCount": 6,
+      "progress": {
+        "started": true,
+        "inProgress": false,
+        "launched": false
+      }
+    },
+    "liars-dice": {
+      "name": "liars-dice",
+      "family": "Card Games",
+      "description": "Card Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android"
+      ],
+      "platformCount": 4,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "lights-out": {
+      "name": "lights-out",
+      "family": "Puzzle Games",
+      "description": "Puzzle Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android",
+        "Discord",
+        "Telegram"
+      ],
+      "platformCount": 6,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "mancala": {
+      "name": "mancala",
+      "family": "Board/Strategy",
+      "description": "Board/Strategy game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android"
+      ],
+      "platformCount": 4,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "memory-game": {
+      "name": "memory-game",
+      "family": "Action Games",
+      "description": "Action Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android"
+      ],
+      "platformCount": 4,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "mexico": {
+      "name": "mexico",
+      "family": "Dice Games",
+      "description": "Dice Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android",
+        "Discord"
+      ],
+      "platformCount": 5,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": true
+      }
+    },
+    "minesweeper": {
+      "name": "minesweeper",
+      "family": "Puzzle Games",
+      "description": "Puzzle Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android",
+        "Discord",
+        "Telegram"
+      ],
+      "platformCount": 6,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "mini-sudoku": {
+      "name": "mini-sudoku",
+      "family": "Puzzle Games",
+      "description": "Puzzle Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android",
+        "Discord",
+        "Telegram"
+      ],
+      "platformCount": 6,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "monchola": {
+      "name": "monchola",
+      "family": "Puzzle Games",
+      "description": "Puzzle Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android",
+        "Discord",
+        "Telegram"
+      ],
+      "platformCount": 6,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "nim": {
+      "name": "nim",
+      "family": "Puzzle Games",
+      "description": "Puzzle Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android",
+        "Discord",
+        "Telegram"
+      ],
+      "platformCount": 6,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": true
+      }
+    },
+    "pig": {
+      "name": "pig",
+      "family": "Dice Games",
+      "description": "Dice Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android",
+        "Discord"
+      ],
+      "platformCount": 5,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "pinpoint": {
+      "name": "pinpoint",
+      "family": "Action Games",
+      "description": "Action Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android"
+      ],
+      "platformCount": 4,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "queens": {
+      "name": "queens",
+      "family": "Board/Strategy",
+      "description": "Board/Strategy game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android"
+      ],
+      "platformCount": 4,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": true
+      }
+    },
+    "reversi": {
+      "name": "reversi",
+      "family": "Board/Strategy",
+      "description": "Board/Strategy game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android"
+      ],
+      "platformCount": 4,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "rock-paper-scissors": {
+      "name": "rock-paper-scissors",
+      "family": "Card Games",
+      "description": "Card Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android"
+      ],
+      "platformCount": 4,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "ship-captain-crew": {
+      "name": "ship-captain-crew",
+      "family": "Dice Games",
+      "description": "Dice Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android",
+        "Discord"
+      ],
+      "platformCount": 5,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "shut-the-box": {
+      "name": "shut-the-box",
+      "family": "Dice Games",
+      "description": "Dice Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android",
+        "Discord"
+      ],
+      "platformCount": 5,
+      "progress": {
+        "started": true,
+        "inProgress": false,
+        "launched": false
+      }
+    },
+    "simon-says": {
+      "name": "simon-says",
+      "family": "Action Games",
+      "description": "Action Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android"
+      ],
+      "platformCount": 4,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "snake": {
+      "name": "snake",
+      "family": "Action Games",
+      "description": "Action Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android"
+      ],
+      "platformCount": 4,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "sudoku": {
+      "name": "sudoku",
+      "family": "Puzzle Games",
+      "description": "Puzzle Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android",
+        "Discord",
+        "Telegram"
+      ],
+      "platformCount": 6,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "tango": {
+      "name": "tango",
+      "family": "Action Games",
+      "description": "Action Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android"
+      ],
+      "platformCount": 4,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "tictactoe": {
+      "name": "tictactoe",
+      "family": "Board/Strategy",
+      "description": "Board/Strategy game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android"
+      ],
+      "platformCount": 4,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": false
+      }
+    },
+    "zip": {
+      "name": "zip",
+      "family": "Puzzle Games",
+      "description": "Puzzle Games game",
+      "expectedPlatforms": [
+        "Web",
+        "Electron",
+        "iOS",
+        "Android",
+        "Discord",
+        "Telegram"
+      ],
+      "platformCount": 6,
+      "progress": {
+        "started": true,
+        "inProgress": true,
+        "launched": true
+      }
+    }
+  },
+  "platformMetadata": {
+    "Web": {
+      "name": "Web Browser",
+      "description": "Browser-based deployment via Vite",
+      "baseDeployment": "Netlify/Vercel",
+      "requirements": [
+        "TypeScript",
+        "React",
+        "Vite"
+      ]
+    },
+    "Electron": {
+      "name": "Desktop (Electron)",
+      "description": "Desktop application for Windows/Mac/Linux",
+      "baseDeployment": "electron-builder",
+      "requirements": [
+        "Electron main process",
+        "electron-builder config"
+      ]
+    },
+    "iOS": {
+      "name": "iOS Mobile",
+      "description": "Native iOS app via Capacitor",
+      "baseDeployment": "Apple App Store",
+      "requirements": [
+        "Capacitor iOS integration",
+        "Xcode project"
+      ]
+    },
+    "Android": {
+      "name": "Android Mobile",
+      "description": "Native Android app via Capacitor",
+      "baseDeployment": "Google Play Store",
+      "requirements": [
+        "Capacitor Android integration",
+        "Android Studio project"
+      ]
+    },
+    "Discord": {
+      "name": "Discord Activities",
+      "description": "Discord mini-apps and activities",
+      "baseDeployment": "Discord Developer Portal",
+      "requirements": [
+        "Discord SDK",
+        "<10MB bundle size",
+        "Activity manifest"
+      ]
+    },
+    "Telegram": {
+      "name": "Telegram Mini Apps",
+      "description": "Telegram Mini App platform",
+      "baseDeployment": "Telegram Bot API",
+      "requirements": [
+        "Telegram SDK",
+        "<8MB bundle size",
+        "Mini App protocol"
+      ]
+    },
+    "Windows": {
+      "name": "Windows (Microsoft Store)",
+      "description": "Windows Store distribution",
+      "baseDeployment": "Windows App SDK",
+      "requirements": [
+        "MSIX packaging",
+        "Windows App Certification"
+      ]
+    },
+    "macOS": {
+      "name": "macOS (App Store)",
+      "description": "Mac App Store distribution",
+      "baseDeployment": "macOS App Store",
+      "requirements": [
+        "Code signing",
+        "App Store submission"
+      ]
+    },
+    "Steam": {
+      "name": "Steam",
+      "description": "Valve Steam platform distribution",
+      "baseDeployment": "Steamworks",
+      "requirements": [
+        "Steam SDK",
+        "Steamworks setup"
+      ]
+    },
+    "itch.io": {
+      "name": "itch.io",
+      "description": "itch.io game distribution",
+      "baseDeployment": "itch.io butler",
+      "requirements": [
+        "HTML5 build",
+        "itch.io account"
+      ]
+    }
+  }
+}

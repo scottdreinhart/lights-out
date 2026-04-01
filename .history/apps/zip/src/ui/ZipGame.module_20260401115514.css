@@ -1,0 +1,391 @@
+/* ZipGame.module.css */
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: var(--font-family, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
+  color: var(--text-color, #333);
+  background: var(--bg-color, #f8f9fa);
+  min-height: 100vh;
+  outline: none; /* Remove focus outline for keyboard navigation */
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: var(--primary-color, #2c3e50);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary, #666);
+  margin: 0;
+  font-weight: 400;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-color, #333);
+}
+
+.select {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--border-color, #ddd);
+  border-radius: 8px;
+  background: var(--input-bg, #fff);
+  color: var(--text-color, #333);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--primary-color, #3498db);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.status {
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.status.success {
+  background: var(--success-bg, #d4edda);
+  color: var(--success-text, #155724);
+  border: 1px solid var(--success-border, #c3e6cb);
+}
+
+.status.info {
+  background: var(--info-bg, #d1ecf1);
+  color: var(--info-text, #0c5460);
+  border: 1px solid var(--info-border, #bee5eb);
+}
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.progressBar {
+  flex: 1;
+  height: 12px;
+  background: var(--progress-bg, #e9ecef);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color, #3498db), var(--success-color, #27ae60));
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.progressText {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-color, #333);
+  min-width: 80px;
+  text-align: right;
+}
+
+.stats {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem;
+  background: var(--stat-bg, #fff);
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  min-width: 80px;
+}
+
+.statLabel {
+  font-size: 0.8rem;
+  color: var(--text-secondary, #666);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color, #2c3e50);
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 3px rgba(52, 152, 219, 0.3);
+}
+
+.button.primary {
+  background: var(--primary-color, #3498db);
+  color: white;
+}
+
+.button.primary:hover {
+  background: var(--primary-hover, #2980b9);
+}
+
+.button.secondary {
+  background: var(--secondary-bg, #95a5a6);
+  color: white;
+}
+
+.button.secondary:hover {
+  background: var(--secondary-hover, #7f8c8d);
+}
+
+.button.danger {
+  background: var(--danger-bg, #e74c3c);
+  color: white;
+}
+
+.button.danger:hover {
+  background: var(--danger-hover, #c0392b);
+}
+
+.instructions {
+  background: var(--instructions-bg, #fff);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+}
+
+.instructions h3 {
+  margin: 0 0 1rem 0;
+  color: var(--primary-color, #2c3e50);
+  font-size: 1.2rem;
+}
+
+.instructions ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.instructions li {
+  margin-bottom: 0.5rem;
+  color: var(--text-color, #555);
+  line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 599px) {
+  .game {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .controls {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .stats {
+    gap: 1rem;
+  }
+
+  .stat {
+    padding: 0.5rem 0.75rem;
+    min-width: 60px;
+  }
+
+  .statValue {
+    font-size: 1.2rem;
+  }
+
+  .button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .instructions {
+    padding: 1rem;
+  }
+
+  .instructions ul {
+    padding-left: 1.25rem;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+  .game {
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .title {
+    font-size: 2.25rem;
+  }
+
+  .controls {
+    gap: 0.75rem;
+  }
+
+  .stats {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .game {
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .controls {
+    gap: 1rem;
+  }
+
+  .stats {
+    gap: 2.5rem;
+  }
+
+  .button {
+    padding: 0.8rem 1.75rem;
+  }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+  .button:hover {
+    transform: none;
+  }
+
+  .select:hover {
+    border-color: var(--border-color, #ddd);
+  }
+
+  .game {
+    /* Ensure touch targets are adequate */
+    min-height: 100vh;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .game {
+    background: var(--high-contrast-bg, #000);
+    color: var(--high-contrast-text, #fff);
+  }
+
+  .status.success {
+    background: var(--high-contrast-success, #000);
+    color: var(--high-contrast-success-text, #0f0);
+    border: 2px solid var(--high-contrast-success-text, #0f0);
+  }
+
+  .status.info {
+    background: var(--high-contrast-info, #000);
+    color: var(--high-contrast-info-text, #0ff);
+    border: 2px solid var(--high-contrast-info-text, #0ff);
+  }
+
+  .button {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+
+  .select {
+    transition: none;
+  }
+
+  .progressFill {
+    transition: none;
+  }
+
+  .button:hover {
+    transform: none;
+  }
+}

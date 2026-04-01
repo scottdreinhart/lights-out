@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "ignoreDeprecations": "5.0",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@games/common": ["../../packages/common/src"],
+      "@games/domain-shared": ["../../packages/domain-shared/src"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

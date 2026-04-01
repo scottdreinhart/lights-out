@@ -3,10 +3,24 @@
   "compilerOptions": {
     "ignoreDeprecations": "5.0",
     "paths": {
-      "@/*": ["./src/*"],
-      "@games/common": ["../../packages/common/src"],
-      "@games/ui-utils": ["../../packages/ui-utils/src"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@games/common": [
+        "../../packages/common/src"
+      ],
+      "@games/ui-utils": [
+        "../../packages/ui-utils/src"
+      ],
+      "@games/domain-shared": [
+        "../../packages/domain-shared/src"
+      ],
+      "@games/storage-utils": [
+        "../../packages/storage-utils/src"
+      ]
     }
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ]
 }

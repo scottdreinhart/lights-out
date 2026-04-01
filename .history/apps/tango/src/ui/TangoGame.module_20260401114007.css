@@ -1,0 +1,246 @@
+/**
+ * TangoGame Component Styles
+ * Responsive slide puzzle game interface
+ */
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin: 0.5rem 0 0 0;
+  opacity: 0.9;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.select {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.select:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-1px);
+}
+
+.select:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+.status {
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-align: center;
+  max-width: 600px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.status.success {
+  background: linear-gradient(135deg, #4caf50, #45a049);
+  color: white;
+}
+
+.status.info {
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+}
+
+.stats {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  min-width: 80px;
+  backdrop-filter: blur(10px);
+}
+
+.statLabel {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin-bottom: 0.25rem;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  min-width: 120px;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+.button.primary {
+  background: linear-gradient(135deg, #4a90e2, #357abd);
+  color: white;
+}
+
+.button.secondary {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.button.secondary:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.button.danger {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+}
+
+.instructions {
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  margin-top: 1rem;
+}
+
+.instructions h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+}
+
+.instructions ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.instructions li {
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 599px) {
+  .game {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .controls {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .stats {
+    gap: 1rem;
+  }
+
+  .stat {
+    padding: 0.75rem;
+    min-width: 60px;
+  }
+
+  .statValue {
+    font-size: 1.2rem;
+  }
+
+  .button {
+    padding: 0.6rem 1.2rem;
+    min-width: 100px;
+    font-size: 0.9rem;
+  }
+
+  .instructions {
+    padding: 1rem;
+  }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+  .button:hover {
+    transform: none;
+  }
+
+  .select:hover {
+    transform: none;
+  }
+}

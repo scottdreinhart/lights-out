@@ -1,0 +1,181 @@
+/**
+ * NumberPad Layout Styles
+ * 
+ * Grid layout: 3x3 number buttons + action buttons row
+ * Touch-optimized: 58px × 58px square buttons (mobile/tablet standard)
+ * Responsive: adapts spacing per device tier
+ */
+
+.numberPad {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+}
+
+/* Numbers Grid: 3×3 layout */
+.numberGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 58px);
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.numberButton {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  transition: all 200ms ease;
+}
+
+/* Hover effect for fine-pointer devices */
+.numberButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Touch device fallback (no hover animations) */
+@media (pointer: coarse) {
+  .numberButton:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Active/pressed state for touch */
+  .numberButton:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Action Buttons Row: Clear, Undo, Hint */
+.actionButtons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.actionButton {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 200ms ease;
+  white-space: nowrap;
+}
+
+.actionButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+@media (pointer: coarse) {
+  .actionButton:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .actionButton:active:not(:disabled) {
+    transform: scale(0.95);
+  }
+}
+
+/* Disabled state */
+.actionButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Tablet (md: 600–899px) — increase button size slightly */
+@media (min-width: 600px) {
+  .numberGrid {
+    grid-template-columns: repeat(3, 64px);
+    gap: 0.6rem;
+  }
+
+  .numberButton,
+  .actionButton {
+    width: 64px;
+    height: 64px;
+  }
+
+  .actionButton {
+    font-size: 0.8rem;
+  }
+}
+
+/* Desktop (lg: 900–1199px) — more generous spacing */
+@media (min-width: 900px) {
+  .numberGrid {
+    grid-template-columns: repeat(3, 70px);
+    gap: 0.75rem;
+  }
+
+  .numberButton,
+  .actionButton {
+    width: 70px;
+    height: 70px;
+  }
+
+  .numberButton {
+    font-size: 1.1rem;
+  }
+
+  .actionButton {
+    font-size: 0.85rem;
+  }
+}
+
+/* Widescreen (xl: 1200–1799px) — spacious */
+@media (min-width: 1200px) {
+  .numberGrid {
+    grid-template-columns: repeat(3, 76px);
+    gap: 0.8rem;
+  }
+
+  .numberButton,
+  .actionButton {
+    width: 76px;
+    height: 76px;
+  }
+
+  .numberButton {
+    font-size: 1.2rem;
+  }
+
+  .actionButton {
+    font-size: 0.9rem;
+  }
+}
+
+/* Ultrawide (xxl: 1800px+) — maximum refinement */
+@media (min-width: 1800px) {
+  .numberGrid {
+    grid-template-columns: repeat(3, 82px);
+    gap: 0.9rem;
+  }
+
+  .numberButton,
+  .actionButton {
+    width: 82px;
+    height: 82px;
+  }
+
+  .numberButton {
+    font-size: 1.3rem;
+  }
+
+  .actionButton {
+    font-size: 0.95rem;
+  }
+}

@@ -1,0 +1,18 @@
+.completion {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  text-align: center;
+}
+
+.completionMessage {
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  margin-bottom: var(--spacing-sm);
+}
+
+.completionTime {
+  font-size: var(--font-size-md);
+  display: block;
+}

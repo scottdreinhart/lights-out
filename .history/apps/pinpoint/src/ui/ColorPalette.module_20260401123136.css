@@ -1,0 +1,33 @@
+/* ColorPalette.module.css */
+
+.colorPalette {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .colorPalette {
+    gap: 8px;
+    padding: 12px;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .colorPalette {
+    border: 2px solid #000;
+    background: #fff;
+  }
+}

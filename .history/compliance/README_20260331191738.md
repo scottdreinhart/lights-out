@@ -1,0 +1,267 @@
+# Compliance & Coverage Matrix
+
+This directory contains the **Platform × Game Coverage Matrix**, a comprehensive governance system that tracks deployment readiness across all 7 CSP games and 10 distribution platforms.
+
+## 📊 Dashboard
+
+**Quick Start:**
+
+```bash
+pnpm dashboard
+```
+
+This opens an interactive HTML dashboard showing:
+
+- Real-time coverage metrics (% complete by game/platform)
+- Filterable matrix grid with color-coded status
+- Known blockers with severity levels and resolutions
+- Platform-specific requirements and constraints
+- Game rule verification against canonical sources
+
+## 📁 Files
+
+### `matrix.json`
+
+**Purpose**: Central source of truth for deployment status
+
+**Structure**:
+
+```json
+{
+  "metadata": { /* totals, completion %, generated timestamp */ },
+  "games": [7 CSP games],
+  "platforms": [10 distribution platforms],
+  "matrix": {
+    "game_name": {
+      "platform_name": {
+        "status": "complete|partial|not-started",
+        "completionPercentage": 0-100,
+        "appExists": boolean,
+        "rulesVerified": boolean,
+        "platformAdapter": boolean,
+        "performanceCompliance": boolean,
+        "uiCompliance": boolean,
+        "blockersFree": boolean,
+        "notes": "human-readable status"
+      }
+    }
+  }
+}
+```
+
+**Each cell requires validation**:
+
+- ✅ App exists in `/apps/game-name`
+- ✅ Core rules match canonical sources (documented in `sources.json`)
+- ✅ Platform adapter present (no forbidden APIs)
+- ✅ Performance metrics within platform constraints
+- ✅ UI responsive and touch-safe
+- ✅ No high-severity blockers
+
+### `sources.json`
+
+**Purpose**: Game rules and platform constraints reference
+
+**Contents**:
+
+- `gameRules`: Core rules + sources for all 7 CSP games
+  - Takuzu, N-Queens, Numberlink, Word Ladder, Pinpoint, Sudoku, Polyomino
+  - Links to Wikipedia for canonical definitions
+  - Complexity classification (NP-complete, NP-hard, P, etc.)
+  - Implementation guidelines
+- `platforms`: Definition of 10 distribution targets
+  - Bundle size limits (Meta: 4MB, Discord: 10MB, etc.)
+  - Forbidden API restrictions
+  - Performance targets
+  - Touch-safety requirements
+- `validationRules`: Checklist for each cell
+
+### `blockers.json`
+
+**Purpose**: Track impediments preventing cells from passing
+
+**Structure**:
+
+```json
+{
+  "blockers": [
+    {
+      "id": "unique-identifier",
+      "game": "game-name",
+      "platform": "platform-name|all",
+      "severity": "high|medium|low",
+      "issue": "Human description",
+      "resolution": "Action to resolve",
+      "status": "pending-analysis|design-phase|in-progress|resolved",
+      "discoveredAt": "ISO date"
+    }
+  ],
+  "blockerSummary": {
+    /* counts by severity */
+  },
+  "resolutionStrategy": {
+    /* 4-phase roadmap */
+  }
+}
+```
+
+### `dashboard.html`
+
+**Purpose**: Interactive web UI for compliance visualization
+
+**Features**:
+
+- Real-time stats (complete, partial, not-started)
+- Filterable matrix (by game, platform, status)
+- Blocker viewer with severity filtering
+- Click cells for detailed requirements
+- Mobile-responsive design
+- No server required (loads JSON files)
+
+### `validate-matrix.mjs` (in `../scripts/`)
+
+**Purpose**: Automated validation
+
+**Run**:
+
+```bash
+pnpm validate:matrix
+```
+
+**Checks**:
+
+1. All apps exist in `/apps`
+2. All platforms configured in `sources.json`
+3. No invalid game/platform references in blockers
+4. All matrix cells populated
+5. Blocker severity counts
+6. Overall coverage percentage
+
+## 🎮 Games (Current Status)
+
+| Game            | Status            | Notes                                                                 |
+| --------------- | ----------------- | --------------------------------------------------------------------- |
+| **queens**      | not-started       | Task 6 queued, N-Queens CSP                                           |
+| **tango**       | not-started       | Task 7 queued, Takuzu puzzle                                          |
+| **zip**         | not-started       | Task 8 queued, Numberlink path solver (HIGH BLOCKER: bundle size)     |
+| **crossclimb**  | not-started       | Task 9 queued, Word ladder (HIGH BLOCKER: dictionary management)      |
+| **pinpoint**    | not-started       | Task 10 queued, Clustering puzzle                                     |
+| **mini-sudoku** | **partial** (40%) | Task 5 IN PROGRESS: domain+app+ui complete, tests pending             |
+| **patches**     | not-started       | Task 11 queued, Polyomino tiling (HIGH BLOCKER: DLX algorithm choice) |
+
+## 🌐 Platforms (10 Targets)
+
+| Platform       | Type    | Bundle Limit | Notes                       |
+| -------------- | ------- | ------------ | --------------------------- |
+| **Web**        | PWA     | 500KB        | Desktop + mobile responsive |
+| **Meta**       | Social  | 4MB          | 3s load target              |
+| **iOS**        | Mobile  | 100MB        | App Store deployment        |
+| **Android**    | Mobile  | 200MB        | Google Play deployment      |
+| **Electron**   | Desktop | 300MB        | Windows/macOS/Linux         |
+| **itch.io**    | Web     | 50MB         | Game portal                 |
+| **CrazyGames** | Web     | 50MB         | Game portal                 |
+| **Discord**    | Social  | **10MB**     | Activities platform ⚠️      |
+| **Telegram**   | Social  | **8MB**      | Mini Apps ⚠️                |
+| **Steam**      | Desktop | 500MB        | Desktop distribution        |
+
+⚠️ = Potential blocker (tight bundle constraints)
+
+## 🚨 Critical Blockers
+
+**High Severity (blocks deployment)**:
+
+1. **zip/Discord** — Path solver + bundle = 10MB+ → exceed 10MB limit
+2. **zip/Telegram** — Same issue, 8MB limit
+3. **crossclimb/Web** — English dictionary (~500KB) bloats bundle
+4. **crossclimb/Mobile** — Dictionary + offline capability coordination
+5. **patches/All** — Polyomino exact cover (DLX algorithm) performance modeling
+
+**Medium Severity (requires mitigation)**:
+
+- mini-sudoku bundle on Discord/Telegram
+- queens performance on Meta (N>12 → >3s solve)
+- pinpoint mobile UI tap target sizing
+
+## 📋 Validation Checklist (Per Cell)
+
+```
+☐ appExists          — /apps/<game> folder + entry point
+☐ rulesVerified      — Code rules match canonical sources (Wikipedia, etc.)
+☐ platformAdapter    — Platform-specific entry (no forbidden APIs)
+☐ performanceCompliance  — Bundle size, load time, solve time pass
+☐ uiCompliance       — Responsive (5-tier), touch-safe, accessible
+☐ blockersFree       — All high-severity blockers resolved/mitigated
+```
+
+None of the cells can be marked **complete** until all 6 checks pass.
+
+## 🔄 Workflow
+
+### Update Matrix (After Each Task)
+
+```bash
+# After completing domain + app + ui + tests for a game:
+# 1. Edit matrix.json to update cell status
+# 2. If new blockers discovered, add to blockers.json
+# 3. Run validation
+pnpm validate:matrix
+
+# 4. View dashboard
+pnpm dashboard
+```
+
+### Resolve a Blocker
+
+1. Edit `blockers.json` entry: change `status` from `pending-analysis` → `design-phase` → `in-progress` → `resolved`
+2. Update corresponding cell in `matrix.json`:
+   - If blocker was blocking `performanceCompliance`, now it passes
+   - Update `completionPercentage`
+   - Re-run `pnpm validate:matrix`
+3. View dashboard to confirm update
+
+## 🔗 Integration Points
+
+- **CI/CD**: `pnpm validate:matrix` runs on PR (fails if cell incomplete)
+- **Dev Tools**: `@coding-assist-framework` queries matrix.json for deployment readiness
+- **QA**: Dashboard used to track platform rollout
+- **Planning**: Blockers inform task prioritization
+
+## 📈 Coverage Target
+
+| Phase       | Timeline | Target                                                |
+| ----------- | -------- | ----------------------------------------------------- |
+| **Phase 1** | Week 1-2 | 50% cells partial (all games have domain+app+ui)      |
+| **Phase 2** | Week 3-4 | 75% cells partial (all games + web platform complete) |
+| **Phase 3** | Month 2  | 80% cells complete (5-6 games × 3-4 platforms)        |
+| **Phase 4** | Month 3  | 95%+ cells complete (all games × all platforms)       |
+| **Launch**  | Month 4  | 100% complete, all blockers resolved                  |
+
+## 🛠️ Scripts
+
+```bash
+# View dashboard
+pnpm dashboard
+
+# View dashboard with server (better for remote access)
+pnpm dashboard:serve
+# Then open: http://localhost:8000/compliance/dashboard.html
+
+# Validate matrix
+pnpm validate:matrix
+
+# Check specific platform blocker count
+grep -c '"platform": "discord"' blockers.json
+```
+
+## 📝 Notes
+
+- **No manual cell updates**: Dashboard reads `matrix.json` directly
+- **Blockers are immutable**: Add to history, don't delete
+- **Sources are canonical**: Game rule changes → update sources.json + re-validate all cells
+- **Platform constraints evolve**: Update sources.json when platform vendors change limits
+
+---
+
+**Last Updated**: 2026-03-31  
+**Maintained By**: Scott Reinhart  
+**Authority**: AGENTS.md § 20 (Build & Deployment Governance)
