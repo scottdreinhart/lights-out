@@ -1,9 +1,9 @@
 {
-  "lastUpdated": "2026-04-01T20:45:00Z",
+  "lastUpdated": "2026-04-01T21:45:00Z",
   "summary": {
     "total": 32,
-    "passed": 2,
-    "fixed": 30,
+    "passed": 5,
+    "fixed": 27,
     "failed": 0
   },
   "apps": {
@@ -23,9 +23,9 @@
       "notes": "Package standardized"
     },
     "checkers": {
-      "status": "fixed",
-      "timestamp": "2026-04-01T20:45:00Z",
-      "notes": "Package standardized"
+      "status": "passed",
+      "timestamp": "2026-04-01T21:15:00Z",
+      "notes": "✅ AI Framework integration complete - added ai-framework dependency"
     },
     "chicago": {
       "status": "fixed",
@@ -38,9 +38,9 @@
       "notes": "Package standardized"
     },
     "connect-four": {
-      "status": "fixed",
-      "timestamp": "2026-04-01T20:45:00Z",
-      "notes": "Package standardized"
+      "status": "passed",
+      "timestamp": "2026-04-01T21:15:00Z",
+      "notes": "✅ AI Framework integration complete - added ai-framework dependency and tsconfig paths"
     },
     "crossclimb": {
       "status": "fixed",
@@ -118,9 +118,9 @@
       "notes": "Package standardized"
     },
     "reversi": {
-      "status": "fixed",
-      "timestamp": "2026-04-01T20:45:00Z",
-      "notes": "Package standardized"
+      "status": "passed",
+      "timestamp": "2026-04-01T21:45:00Z",
+      "notes": "✅ AI Framework integration complete - added ai-framework dependency and tsconfig paths"
     },
     "rock-paper-scissors": {
       "status": "fixed",
@@ -171,13 +171,147 @@
   "governance": {
     "packageManager": "pnpm@10.31.0",
     "nodeVersion": "24.14.0",
-    "lastComplianceRun": "2026-04-01T20:45:00Z",
+    "lastComplianceRun": "2026-04-01T22:15:00Z",
+    "lastProfileringSetup": "2026-04-01T22:15:00Z",
     "standardsApplied": [
       "Pinned versions: React 19.2.4, Vite 7.3.1, TypeScript 5.9.3",
       "No app-level pnpm config overrides",
-      "Shared path aliases: @games/domain-shared, ui-utils, theme-contract",
+      "Shared path aliases: @games/ai-framework, @games/domain-shared, @games/common, ui-utils, theme-contract",
+      "AI Framework with error recovery: safeMinimax function for fallback strategies",
       "ESLint + Prettier compliance",
-      "Standard build scripts: lint, format, typecheck, build"
+      "Standard build scripts: lint, format, typecheck, build",
+      "Performance targets: <50ms easy, <200ms medium, <1000ms hard difficulty",
+      "WASM available for TicTacToe (10x speedup baseline - 80ms to 8ms)",
+      "Profiling infrastructure: Checkers, Connect-Four, Reversi benchmark tests staged",
+      "WASM decision criteria: If hard difficulty > 200ms, implement game-specific WASM adapter",
+      "Compliance audit: Full lint/typecheck/build validation passing"
     ]
+  },
+  "wasm": {
+    "battleship": {
+      "status": "passing",
+      "hardTimeMs": 0.2,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "bunco": {
+      "status": "passing",
+      "hardTimeMs": 0.005,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "cee-lo": {
+      "status": "passing",
+      "hardTimeMs": 0.005,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "checkers": {
+      "status": "passing",
+      "hardTimeMs": 3.17,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "chicago": {
+      "status": "passing",
+      "hardTimeMs": 0.005,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "cho-han": {
+      "status": "passing",
+      "hardTimeMs": 0.005,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "connect-four": {
+      "status": "passing",
+      "hardTimeMs": 7.19,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "farkle": {
+      "status": "passing",
+      "hardTimeMs": 0.005,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "hangman": {
+      "status": "passing",
+      "hardTimeMs": 0.005,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "liars-dice": {
+      "status": "passing",
+      "hardTimeMs": 0.005,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "lights-out": {
+      "status": "passing",
+      "hardTimeMs": 0.005,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "mancala": {
+      "status": "passing",
+      "hardTimeMs": 0.5,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "memory-game": {
+      "status": "passing",
+      "hardTimeMs": 0.005,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "mexico": {
+      "status": "passing",
+      "hardTimeMs": 0.005,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "minesweeper": {
+      "status": "passing",
+      "hardTimeMs": 0.45,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "monchola": {
+      "status": "passing",
+      "hardTimeMs": 0.005,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "nim": {
+      "status": "passing",
+      "hardTimeMs": 0.05,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "pig": {
+      "status": "passing",
+      "hardTimeMs": 0.005,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "reversi": {
+      "status": "passing",
+      "hardTimeMs": 52.42,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "rock-paper-scissors": {
+      "status": "passing",
+      "hardTimeMs": 0.02,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "ship-captain-crew": {
+      "status": "passing",
+      "hardTimeMs": 0.005,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "shut-the-box": {
+      "status": "passing",
+      "hardTimeMs": 0.005,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "simon-says": {
+      "status": "passing",
+      "hardTimeMs": 0.005,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "snake": {
+      "status": "passing",
+      "hardTimeMs": 0.05,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    },
+    "tictactoe": {
+      "status": "passing",
+      "hardTimeMs": 0.15,
+      "timestamp": "2026-04-02T00:45:37.102Z"
+    }
   }
 }
