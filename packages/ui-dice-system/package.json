@@ -1,0 +1,21 @@
+{
+    "name": "@games/ui-dice-system",
+    "version": "1.0.0",
+    "description": "Shared dice UI system for dice-based games (Farkle, Bunco, Pig, Cee-lo, etc.)",
+    "type": "module",
+    "private": true,
+    "license": "PROPRIETARY",
+    "author": "Scott Reinhart",
+    "exports": {
+        ".": "./src/index.ts"
+    },
+    "peerDependencies": {
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
+    },
+    "dependencies": {
+        "@games/common": "workspace:*",
+        "@games/app-hook-utils": "workspace:*",
+        "@games/theme-contract": "workspace:*"
+    }
+}

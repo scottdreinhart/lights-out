@@ -1,0 +1,22 @@
+{
+  "name": "@games/ai-framework",
+  "version": "1.0.0",
+  "description": "Generic minimax + alpha-beta pruning framework for turn-based strategic games",
+  "type": "module",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "files": [
+    "src"
+  ],
+  "keywords": ["ai", "minimax", "alpha-beta", "game-engine", "strategic-games"],
+  "homepage": "https://github.com/scottreinhardsen/game-platform",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scottreinhardsen/game-platform.git",
+    "directory": "packages/ai-framework"
+  },
+  "author": "Scott Reinhardt",
+  "license": "MIT"
+}

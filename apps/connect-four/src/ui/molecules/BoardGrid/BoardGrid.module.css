@@ -1,0 +1,66 @@
+/* Connect-Four Board Grid Styles */
+
+.connectFourBoard {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile: <600px */
+@media (max-width: 599px) {
+  .connectFourBoard {
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+}
+
+/* Tablet: 600–899px */
+@media (min-width: 600px) and (max-width: 899px) {
+  .connectFourBoard {
+    gap: 0.6rem;
+    padding: 1.2rem;
+  }
+}
+
+/* Desktop: 900–1199px */
+@media (min-width: 900px) {
+  .connectFourBoard {
+    gap: 0.8rem;
+    padding: 1.5rem;
+  }
+}
+
+/* Ultrawide: 1800px+ */
+@media (min-width: 1800px) {
+  .connectFourBoard {
+    gap: 1rem;
+    padding: 2rem;
+  }
+}
+
+/* Touch device fallback */
+@media (pointer: coarse) {
+  .connectFourBoard {
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: more) {
+  .connectFourBoard {
+    border: 3px solid currentColor;
+    background: #1a1a1a;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .connectFourBoard {
+    transition: none;
+  }
+}

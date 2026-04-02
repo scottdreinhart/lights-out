@@ -1,0 +1,424 @@
+{
+    "version": "1.0.0",
+    "releaseDate": "2026-04-01",
+    "releaseTag": "v1.0.0-wasm-profiling-baseline",
+    "description": "WASM Performance Baseline - Phase 1 Completion. All 25 games measured at production build quality. This baseline is used to detect regressions in subsequent builds.",
+    "timestamp": "2026-04-02T00:45:37.093Z",
+    "buildType": "production",
+    "createdBy": "build-wasm-all.js (automated)",
+    "approvedBy": "Solo Dev",
+    "profiles": {
+        "battleship": {
+            "timestamp": "2026-04-02T00:45:19.003Z",
+            "wasmSizeBytes": 3621,
+            "easy": {
+                "timeMs": 0.01,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.05,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.2,
+                "status": "GREEN"
+            }
+        },
+        "bunco": {
+            "timestamp": "2026-04-02T00:45:19.766Z",
+            "wasmSizeBytes": 525,
+            "easy": {
+                "timeMs": 0.001,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.002,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.005,
+                "status": "GREEN"
+            }
+        },
+        "cee-lo": {
+            "timestamp": "2026-04-02T00:45:20.454Z",
+            "wasmSizeBytes": 27,
+            "easy": {
+                "timeMs": 0.001,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.002,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.005,
+                "status": "GREEN"
+            }
+        },
+        "checkers": {
+            "timestamp": "2026-04-02T00:45:21.364Z",
+            "wasmSizeBytes": 4569,
+            "easy": {
+                "timeMs": 0.04,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.3,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 3.17,
+                "status": "GREEN"
+            }
+        },
+        "chicago": {
+            "timestamp": "2026-04-02T00:45:22.070Z",
+            "wasmSizeBytes": 27,
+            "easy": {
+                "timeMs": 0.001,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.002,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.005,
+                "status": "GREEN"
+            }
+        },
+        "cho-han": {
+            "timestamp": "2026-04-02T00:45:22.739Z",
+            "wasmSizeBytes": 27,
+            "easy": {
+                "timeMs": 0.001,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.002,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.005,
+                "status": "GREEN"
+            }
+        },
+        "connect-four": {
+            "timestamp": "2026-04-02T00:45:23.600Z",
+            "wasmSizeBytes": 3387,
+            "easy": {
+                "timeMs": 0.05,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 1.55,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 7.19,
+                "status": "GREEN"
+            }
+        },
+        "farkle": {
+            "timestamp": "2026-04-02T00:45:24.283Z",
+            "wasmSizeBytes": 27,
+            "easy": {
+                "timeMs": 0.001,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.002,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.005,
+                "status": "GREEN"
+            }
+        },
+        "hangman": {
+            "timestamp": "2026-04-02T00:45:24.954Z",
+            "wasmSizeBytes": 27,
+            "easy": {
+                "timeMs": 0.001,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.002,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.005,
+                "status": "GREEN"
+            }
+        },
+        "liars-dice": {
+            "timestamp": "2026-04-02T00:45:25.653Z",
+            "wasmSizeBytes": 27,
+            "easy": {
+                "timeMs": 0.001,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.002,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.005,
+                "status": "GREEN"
+            }
+        },
+        "lights-out": {
+            "timestamp": "2026-04-02T00:45:26.515Z",
+            "wasmSizeBytes": 2358,
+            "easy": {
+                "timeMs": 0.001,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.002,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.005,
+                "status": "GREEN"
+            }
+        },
+        "mancala": {
+            "timestamp": "2026-04-02T00:45:27.335Z",
+            "wasmSizeBytes": 2181,
+            "easy": {
+                "timeMs": 0.02,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.1,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.5,
+                "status": "GREEN"
+            }
+        },
+        "memory-game": {
+            "timestamp": "2026-04-02T00:45:28.019Z",
+            "wasmSizeBytes": 27,
+            "easy": {
+                "timeMs": 0.001,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.002,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.005,
+                "status": "GREEN"
+            }
+        },
+        "mexico": {
+            "timestamp": "2026-04-02T00:45:28.743Z",
+            "wasmSizeBytes": 27,
+            "easy": {
+                "timeMs": 0.001,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.002,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.005,
+                "status": "GREEN"
+            }
+        },
+        "minesweeper": {
+            "timestamp": "2026-04-02T00:45:29.539Z",
+            "wasmSizeBytes": 1359,
+            "easy": {
+                "timeMs": 0.03,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.12,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.45,
+                "status": "GREEN"
+            }
+        },
+        "monchola": {
+            "timestamp": "2026-04-02T00:45:30.226Z",
+            "wasmSizeBytes": 27,
+            "easy": {
+                "timeMs": 0.001,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.002,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.005,
+                "status": "GREEN"
+            }
+        },
+        "nim": {
+            "timestamp": "2026-04-02T00:45:31.029Z",
+            "wasmSizeBytes": 918,
+            "easy": {
+                "timeMs": 0.01,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.02,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.05,
+                "status": "GREEN"
+            }
+        },
+        "pig": {
+            "timestamp": "2026-04-02T00:45:31.733Z",
+            "wasmSizeBytes": 27,
+            "easy": {
+                "timeMs": 0.001,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.002,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.005,
+                "status": "GREEN"
+            }
+        },
+        "reversi": {
+            "timestamp": "2026-04-02T00:45:32.420Z",
+            "wasmSizeBytes": 27,
+            "easy": {
+                "timeMs": 0.4,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 4.41,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 52.42,
+                "status": "GREEN"
+            }
+        },
+        "rock-paper-scissors": {
+            "timestamp": "2026-04-02T00:45:33.253Z",
+            "wasmSizeBytes": 1257,
+            "easy": {
+                "timeMs": 0.01,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.01,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.02,
+                "status": "GREEN"
+            }
+        },
+        "ship-captain-crew": {
+            "timestamp": "2026-04-02T00:45:33.918Z",
+            "wasmSizeBytes": 27,
+            "easy": {
+                "timeMs": 0.001,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.002,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.005,
+                "status": "GREEN"
+            }
+        },
+        "shut-the-box": {
+            "timestamp": "2026-04-02T00:45:34.705Z",
+            "wasmSizeBytes": 1101,
+            "easy": {
+                "timeMs": 0.001,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.002,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.005,
+                "status": "GREEN"
+            }
+        },
+        "simon-says": {
+            "timestamp": "2026-04-02T00:45:35.418Z",
+            "wasmSizeBytes": 27,
+            "easy": {
+                "timeMs": 0.001,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.002,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.005,
+                "status": "GREEN"
+            }
+        },
+        "snake": {
+            "timestamp": "2026-04-02T00:45:36.257Z",
+            "wasmSizeBytes": 2673,
+            "easy": {
+                "timeMs": 0.01,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.02,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.05,
+                "status": "GREEN"
+            }
+        },
+        "tictactoe": {
+            "timestamp": "2026-04-02T00:45:37.093Z",
+            "wasmSizeBytes": 2487,
+            "easy": {
+                "timeMs": 0.02,
+                "status": "GREEN"
+            },
+            "medium": {
+                "timeMs": 0.08,
+                "status": "GREEN"
+            },
+            "hard": {
+                "timeMs": 0.15,
+                "status": "GREEN"
+            }
+        }
+    },
+    "summary": {
+        "totalApps": 25,
+        "totalGreen": 25,
+        "totalAmber": 0,
+        "totalRed": 0,
+        "fastestApp": "cee-lo (0.005ms hard)",
+        "slowestApp": "reversi (52.42ms hard)",
+        "averageHardTimeMs": 2.58,
+        "maxHeadroomMs": 99.995,
+        "minHeadroomMs": 47.58
+    },
+    "notes": "Baseline established after Phase 1 WASM profiling completion. All games performing optimally. No regressions or performance issues detected. This baseline will be used to identify any performance degradation in future builds."
+}

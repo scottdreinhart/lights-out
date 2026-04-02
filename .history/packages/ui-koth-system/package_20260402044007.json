@@ -1,0 +1,23 @@
+{
+  "name": "@games/ui-koth-system",
+  "version": "1.0.0",
+  "description": "Shared KotH (King of the Hill) ranking screen system for all games",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    }
+  },
+  "keywords": ["koth", "ranking", "leaderboard", "games"],
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "peerDependencies": {
+    "react": ">=19.0.0",
+    "react-dom": ">=19.0.0"
+  }
+}

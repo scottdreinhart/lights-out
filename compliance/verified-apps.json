@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "description": "Central registry of browser-verified game applications",
+    "last-updated": "2026-04-02T05:54:49.978Z",
+    "total-apps": 38,
+    "verified-count": 1,
+    "verification-status": "in-progress"
+  },
+  "verified-apps": [
+    "checkers"
+  ],
+  "pending-apps": [
+    "battleship",
+    "bingo",
+    "blackjack",
+    "bunco",
+    "cee-lo",
+    "chicago",
+    "cho-han",
+    "connect-four",
+    "crossclimb",
+    "dominoes",
+    "farkle",
+    "go-fish",
+    "hangman",
+    "liars-dice",
+    "lights-out",
+    "mancala",
+    "memory-game",
+    "mexico",
+    "minesweeper",
+    "mini-sudoku",
+    "monchola",
+    "nim",
+    "pig",
+    "pinpoint",
+    "queens",
+    "reversi",
+    "rock-paper-scissors",
+    "ship-captain-crew",
+    "shut-the-box",
+    "simon-says",
+    "snakes-and-ladders",
+    "snake",
+    "sudoku",
+    "tango",
+    "tictactoe",
+    "war",
+    "zip"
+  ]
+}

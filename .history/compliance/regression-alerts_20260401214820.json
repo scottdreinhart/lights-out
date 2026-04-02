@@ -1,0 +1,55 @@
+{
+  "_comment": "WASM Regression Alerts Log - Phase 2 Regression Detection",
+  "_description": "This file is automatically updated by scripts/check-wasm-regressions.js when regressions are detected. Each entry represents a comparison between baseline and current build profiles.",
+  "createdDate": "2026-04-01",
+  "alerts": [
+    {
+      "_example": "Example entry - shows the structure and fields",
+      "timestamp": "2026-04-15T14:32:18.905Z",
+      "buildNumber": 1,
+      "baselineFile": "compliance/wasm-profiles-baseline.json",
+      "baselineVersion": "v1.0.0",
+      "currentFile": "compliance/wasm-profiles.json",
+      "totalAppsCompared": 25,
+      "regressions": [
+        {
+          "app": "sudoku",
+          "difficulty": "hard",
+          "baselineMs": 52.42,
+          "currentMs": 58.88,
+          "regressionMs": 6.46,
+          "regressionPercent": 12.3,
+          "severity": "FIX_REQUIRED",
+          "threshold": 10
+        },
+        {
+          "app": "minesweeper",
+          "difficulty": "hard",
+          "baselineMs": 25.10,
+          "currentMs": 26.50,
+          "regressionMs": 1.4,
+          "regressionPercent": 5.6,
+          "severity": "INVESTIGATE",
+          "threshold": 5
+        }
+      ],
+      "summary": {
+        "fixRequired": 1,
+        "investigate": 1,
+        "ok": 23
+      },
+      "acknowledgedBy": null,
+      "acknowledgedAt": null,
+      "justification": null,
+      "notes": "Example regression detection. This entry does not represent real data."
+    }
+  ],
+  "summary": {
+    "totalAlerts": 1,
+    "totalFixRequired": 1,
+    "totalInvestigate": 1,
+    "totalOk": 23,
+    "lastAlertDate": "2026-04-15T14:32:18.905Z",
+    "trend": "No recent regressions (all alerts are examples)"
+  }
+}

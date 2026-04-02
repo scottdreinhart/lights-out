@@ -1,0 +1,66 @@
+/* TicTacToe Board Grid Styles */
+
+.tictactoeBoard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile: <600px */
+@media (max-width: 599px) {
+  .tictactoeBoard {
+    gap: 0.4rem;
+    padding: 0.75rem;
+  }
+}
+
+/* Tablet: 600–899px */
+@media (min-width: 600px) and (max-width: 899px) {
+  .tictactoeBoard {
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+}
+
+/* Desktop: 900–1199px */
+@media (min-width: 900px) {
+  .tictactoeBoard {
+    gap: 0.6rem;
+    padding: 1.25rem;
+  }
+}
+
+/* Ultrawide: 1800px+ */
+@media (min-width: 1800px) {
+  .tictactoeBoard {
+    gap: 0.75rem;
+    padding: 1.5rem;
+  }
+}
+
+/* Touch device fallback */
+@media (pointer: coarse) {
+  .tictactoeBoard {
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: more) {
+  .tictactoeBoard {
+    border: 3px solid currentColor;
+    background: #1a1a1a;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .tictactoeBoard {
+    transition: none;
+  }
+}

@@ -1,0 +1,444 @@
+/**
+ * Regression Dashboard Styles
+ * 
+ * Provides styling for:
+ * - Alert banners (critical, warning)
+ * - Regression tables with severity indicators
+ * - Trend charts with bar visualization
+ * - Log viewers with history
+ */
+
+/* ==================== Alert Banner ==================== */
+
+.regression-alert-banner {
+  padding: 16px;
+  margin: 16px 0;
+  border-radius: 8px;
+  border-left: 4px solid;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.regression-alert-banner.alert-warning {
+  background-color: #fff3cd;
+  border-color: #ffc107;
+  color: #856404;
+}
+
+.regression-alert-banner.alert-critical {
+  background-color: #f8d7da;
+  border-color: #dc3545;
+  color: #721c24;
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+}
+
+.regression-alert-banner .alert-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.regression-alert-banner .alert-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.regression-alert-banner .alert-emoji {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.regression-alert-banner .alert-title {
+  flex: 1;
+  font-size: 16px;
+}
+
+.regression-alert-banner .alert-dismiss {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.regression-alert-banner .alert-dismiss:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.regression-alert-banner .alert-summary {
+  font-size: 14px;
+  margin-left: 28px;
+}
+
+.regression-alert-banner .alert-apps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-left: 28px;
+}
+
+.regression-alert-banner .alert-app-tag {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.regression-alert-banner .alert-app-tag.severity-ok {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.regression-alert-banner .alert-app-tag.severity-investigate {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.regression-alert-banner .alert-app-tag.severity-critical {
+  background-color: #f8d7da;
+  color: #721c24;
+  font-weight: 600;
+}
+
+/* ==================== Regression Table ==================== */
+
+.regression-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 13px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.regression-table thead {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.regression-table th {
+  padding: 12px;
+  text-align: left;
+  color: #495057;
+}
+
+.regression-table tbody tr {
+  border-bottom: 1px solid #dee2e6;
+  transition: background-color 0.2s;
+}
+
+.regression-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.regression-table td {
+  padding: 12px;
+}
+
+.regression-table .severity-badge {
+  font-size: 16px;
+  text-align: center;
+  width: 40px;
+}
+
+.regression-table .app-name {
+  font-weight: 500;
+  color: #212529;
+}
+
+.regression-table .metric {
+  font-family: 'Monaco', 'Courier New', monospace;
+  color: #6c757d;
+}
+
+.regression-table .regression-ms {
+  color: #dc3545;
+  font-weight: 500;
+}
+
+.regression-table .regression-percent {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.regression-table .threshold {
+  color: #6c757d;
+  font-size: 12px;
+}
+
+/* Row severity styling */
+.regression-table tr.severity-ok {
+  background-color: #f0fff4;
+}
+
+.regression-table tr.severity-investigate {
+  background-color: #fffbf0;
+}
+
+.regression-table tr.severity-critical {
+  background-color: #fff5f5;
+}
+
+/* ==================== Trend Chart ==================== */
+
+.trend-chart {
+  margin: 24px 0;
+  padding: 16px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.trend-chart h3 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  color: #212529;
+}
+
+.trend-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  height: 200px;
+  padding: 16px 0;
+  border-bottom: 2px solid #dee2e6;
+  margin-bottom: 12px;
+  overflow-x: auto;
+}
+
+.trend-bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 0 0 60px;
+}
+
+.trend-bar {
+  width: 100%;
+  min-height: 5%;
+  border-radius: 4px 4px 0 0;
+  transition: opacity 0.2s;
+  cursor: pointer;
+}
+
+.trend-bar:hover {
+  opacity: 0.8;
+}
+
+.trend-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #495057;
+  white-space: nowrap;
+}
+
+.trend-time {
+  font-size: 10px;
+  color: #6c757d;
+  white-space: nowrap;
+}
+
+.trend-legend {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  padding: 12px 0 0 0;
+}
+
+.trend-legend .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #495057;
+}
+
+.trend-legend .legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* ==================== Log Viewer ==================== */
+
+.log-viewer {
+  margin: 24px 0;
+}
+
+.log-viewer h3 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  color: #212529;
+}
+
+.log-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.log-entry {
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  background-color: white;
+  transition: box-shadow 0.2s;
+}
+
+.log-entry:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.log-header {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #495057;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.log-build {
+  color: #212529;
+  font-weight: 600;
+}
+
+.log-timestamp {
+  color: #6c757d;
+}
+
+.log-baseline {
+  color: #6c757d;
+  margin-left: auto;
+}
+
+.log-summary {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.log-stat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #495057;
+}
+
+.log-stat.ok {
+  color: #28a745;
+}
+
+.log-stat.investigate {
+  color: #ffc107;
+}
+
+.log-stat.critical {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.log-regressions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 8px;
+  border-top: 1px solid #e9ecef;
+}
+
+.log-regression {
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.log-regression.severity-ok {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.log-regression.severity-investigate {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.log-regression.severity-critical {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* ==================== No Data State ==================== */
+
+.no-data {
+  padding: 32px 16px;
+  text-align: center;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+/* ==================== Responsive Design ==================== */
+
+@media (max-width: 768px) {
+  .regression-alert-banner .alert-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .regression-alert-banner .alert-dismiss {
+    align-self: flex-end;
+    margin-top: -28px;
+  }
+
+  .regression-alert-banner .alert-apps {
+    margin-left: 0;
+  }
+
+  .regression-table {
+    font-size: 11px;
+  }
+
+  .regression-table th,
+  .regression-table td {
+    padding: 8px;
+  }
+
+  .trend-chart {
+    overflow-x: auto;
+  }
+
+  .log-header {
+    flex-wrap: wrap;
+  }
+
+  .log-baseline {
+    margin-left: 0;
+    width: 100%;
+  }
+}

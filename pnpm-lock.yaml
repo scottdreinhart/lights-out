@@ -105,6 +105,9 @@ importers:
       lighthouse:
         specifier: 13.0.3
         version: 13.0.3
+      nodemailer:
+        specifier: ^6.9.13
+        version: 6.10.1
       playwright:
         specifier: 1.59.1
         version: 1.59.1
@@ -404,6 +407,24 @@ importers:
 
   apps/checkers:
     dependencies:
+      '@games/ai-framework':
+        specifier: workspace:*
+        version: link:../../packages/ai-framework
+      '@games/common':
+        specifier: workspace:*
+        version: link:../../packages/common
+      '@games/sound-context':
+        specifier: workspace:*
+        version: link:../../packages/sound-context
+      '@games/storage-utils':
+        specifier: workspace:*
+        version: link:../../packages/storage-utils
+      '@games/theme-context':
+        specifier: workspace:*
+        version: link:../../packages/theme-context
+      '@games/ui-board-core':
+        specifier: workspace:*
+        version: link:../../packages/ui-board-core
       react:
         specifier: 19.2.4
         version: 19.2.4
@@ -605,6 +626,24 @@ importers:
 
   apps/connect-four:
     dependencies:
+      '@games/ai-framework':
+        specifier: workspace:*
+        version: link:../../packages/ai-framework
+      '@games/common':
+        specifier: workspace:*
+        version: link:../../packages/common
+      '@games/sound-context':
+        specifier: workspace:*
+        version: link:../../packages/sound-context
+      '@games/storage-utils':
+        specifier: workspace:*
+        version: link:../../packages/storage-utils
+      '@games/theme-context':
+        specifier: workspace:*
+        version: link:../../packages/theme-context
+      '@games/ui-board-core':
+        specifier: workspace:*
+        version: link:../../packages/ui-board-core
       react:
         specifier: 19.2.4
         version: 19.2.4
@@ -773,6 +812,24 @@ importers:
 
   apps/farkle:
     dependencies:
+      '@games/app-hook-utils':
+        specifier: workspace:*
+        version: link:../../packages/app-hook-utils
+      '@games/common':
+        specifier: workspace:*
+        version: link:../../packages/common
+      '@games/sound-context':
+        specifier: workspace:*
+        version: link:../../packages/sound-context
+      '@games/storage-utils':
+        specifier: workspace:*
+        version: link:../../packages/storage-utils
+      '@games/theme-contract':
+        specifier: workspace:*
+        version: link:../../packages/theme-contract
+      '@games/ui-dice-system':
+        specifier: workspace:*
+        version: link:../../packages/ui-dice-system
       react:
         specifier: 19.2.4
         version: 19.2.4
@@ -1276,6 +1333,21 @@ importers:
 
   apps/minesweeper:
     dependencies:
+      '@games/common':
+        specifier: workspace:*
+        version: link:../../packages/common
+      '@games/sound-context':
+        specifier: workspace:*
+        version: link:../../packages/sound-context
+      '@games/theme-contract':
+        specifier: workspace:*
+        version: link:../../packages/theme-contract
+      '@games/ui-board-core':
+        specifier: workspace:*
+        version: link:../../packages/ui-board-core
+      '@games/ui-utils':
+        specifier: workspace:*
+        version: link:../../packages/ui-utils
       react:
         specifier: 19.2.4
         version: 19.2.4
@@ -1678,6 +1750,21 @@ importers:
 
   apps/queens:
     dependencies:
+      '@games/common':
+        specifier: workspace:*
+        version: link:../../packages/common
+      '@games/sound-context':
+        specifier: workspace:*
+        version: link:../../packages/sound-context
+      '@games/theme-contract':
+        specifier: workspace:*
+        version: link:../../packages/theme-contract
+      '@games/ui-board-core':
+        specifier: workspace:*
+        version: link:../../packages/ui-board-core
+      '@games/ui-utils':
+        specifier: workspace:*
+        version: link:../../packages/ui-utils
       react:
         specifier: 19.2.4
         version: 19.2.4
@@ -1745,6 +1832,21 @@ importers:
 
   apps/reversi:
     dependencies:
+      '@games/ai-framework':
+        specifier: workspace:*
+        version: link:../../packages/ai-framework
+      '@games/common':
+        specifier: workspace:*
+        version: link:../../packages/common
+      '@games/sound-context':
+        specifier: workspace:*
+        version: link:../../packages/sound-context
+      '@games/storage-utils':
+        specifier: workspace:*
+        version: link:../../packages/storage-utils
+      '@games/theme-context':
+        specifier: workspace:*
+        version: link:../../packages/theme-context
       react:
         specifier: 19.2.4
         version: 19.2.4
@@ -2181,6 +2283,24 @@ importers:
 
   apps/sudoku:
     dependencies:
+      '@games/ai-framework':
+        specifier: workspace:*
+        version: link:../../packages/ai-framework
+      '@games/common':
+        specifier: workspace:*
+        version: link:../../packages/common
+      '@games/domain-shared':
+        specifier: workspace:*
+        version: link:../../packages/domain-shared
+      '@games/storage-utils':
+        specifier: workspace:*
+        version: link:../../packages/storage-utils
+      '@games/theme-context':
+        specifier: workspace:*
+        version: link:../../packages/theme-context
+      '@games/ui-board-core':
+        specifier: workspace:*
+        version: link:../../packages/ui-board-core
       react:
         specifier: 19.2.4
         version: 19.2.4
@@ -2315,6 +2435,24 @@ importers:
 
   apps/tictactoe:
     dependencies:
+      '@games/ai-framework':
+        specifier: workspace:*
+        version: link:../../packages/ai-framework
+      '@games/common':
+        specifier: workspace:*
+        version: link:../../packages/common
+      '@games/sound-context':
+        specifier: workspace:*
+        version: link:../../packages/sound-context
+      '@games/storage-utils':
+        specifier: workspace:*
+        version: link:../../packages/storage-utils
+      '@games/theme-context':
+        specifier: workspace:*
+        version: link:../../packages/theme-context
+      '@games/ui-board-core':
+        specifier: workspace:*
+        version: link:../../packages/ui-board-core
       react:
         specifier: 19.2.4
         version: 19.2.4
@@ -2481,6 +2619,8 @@ importers:
         specifier: 8.0.1
         version: 8.0.1
 
+  packages/ai-framework: {}
+
   packages/app-hook-utils:
     dependencies:
       '@games/display-contract':
@@ -2562,6 +2702,35 @@ importers:
   packages/theme-context: {}
 
   packages/theme-contract: {}
+
+  packages/ui-board-core: {}
+
+  packages/ui-dice-system:
+    dependencies:
+      '@games/app-hook-utils':
+        specifier: workspace:*
+        version: link:../app-hook-utils
+      '@games/common':
+        specifier: workspace:*
+        version: link:../common
+      '@games/theme-contract':
+        specifier: workspace:*
+        version: link:../theme-contract
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+
+  packages/ui-koth-system:
+    dependencies:
+      react:
+        specifier: ^19.2.4
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.2.4
+        version: 19.2.4(react@19.2.4)
 
   packages/ui-utils: {}
 
@@ -5937,6 +6106,10 @@ packages:
 
   node-releases@2.0.36:
     resolution: {integrity: sha512-TdC8FSgHz8Mwtw9g5L4gR/Sh9XhSP/0DEkQxfEFXOpiul5IiHgHan2VhYYb6agDSfp4KuvltmGApc8HMgUrIkA==}
+
+  nodemailer@6.10.1:
+    resolution: {integrity: sha512-Z+iLaBGVaSjbIzQ4pX6XV41HrooLsQ10ZWPUehGmuantvzWoDVBnmsdUcOIDM1t+yPor5pDhVlDESgOMEGxhHA==}
+    engines: {node: '>=6.0.0'}
 
   nopt@8.1.0:
     resolution: {integrity: sha512-ieGu42u/Qsa4TFktmaKEwM6MQH0pOWnaB3htzh0JRtx84+Mebc0cbZYN5bC+6WTZ4+77xrL9Pn5m7CV6VIkV7A==}
@@ -11081,6 +11254,8 @@ snapshots:
       - supports-color
 
   node-releases@2.0.36: {}
+
+  nodemailer@6.10.1: {}
 
   nopt@8.1.0:
     dependencies:

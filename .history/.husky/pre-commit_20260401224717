@@ -1,0 +1,32 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo ""
+echo "🚀 Pre-commit Quality Gate"
+echo "════════════════════════════════════════════════════════"
+echo ""
+
+# Run lint-staged first (auto-fix formatting issues)
+echo "📋 Auto-fixing staged files..."
+pnpm exec lint-staged 2>/dev/null || {
+  echo "⚠️  lint-staged issues found"
+}
+
+echo ""
+echo "🔍 Running quick quality gate..."
+
+# Run quick quality gate (security + boundaries - ~5 seconds)
+if pnpm lint:gate:quick; then
+  echo ""
+  echo "✅ Pre-commit check passed!"
+  echo ""
+  exit 0
+else
+  echo ""
+  echo "❌ Pre-commit check failed!"
+  echo ""
+  echo "To bypass this check (NOT RECOMMENDED):"
+  echo "  git commit --no-verify"
+  echo ""
+  exit 1
+fi

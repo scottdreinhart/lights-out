@@ -1,0 +1,213 @@
+name: Quality Gates - ESLint + Tests
+
+# Trigger on all PRs and pushes to main
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+env:
+  NODE_VERSION: 24.14.1
+  PNPM_VERSION: 10.31.0
+
+jobs:
+  # STAGE 1: Quick validation (fail-fast on critical issues)
+  quick-gate:
+    name: 🚀 Quick Quality Gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🔐 Security check
+        run: pnpm lint:type:security
+        continue-on-error: false
+
+      - name: 🏗️  Boundaries check
+        run: pnpm lint:type:boundaries
+        continue-on-error: false
+
+  # STAGE 2: Full ESLint validation
+  full-gate:
+    name: 🔍 Full Quality Gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [quick-gate]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run full quality gate
+        run: pnpm lint:gate:full
+
+  # STAGE 3: Type checking
+  typecheck:
+    name: 📘 TypeScript Checking
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Type check
+        run: pnpm typecheck
+
+  # STAGE 4: Format checking
+  format:
+    name: 💄 Format Checking
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check formatting
+        run: pnpm format:check
+
+  # STAGE 5: Build validation
+  build:
+    name: 🔨 Build Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: [full-gate, typecheck]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build project
+        run: pnpm build
+
+  # STAGE 6: Summary and reporting
+  summary:
+    name: ✅ Quality Gates Summary
+    runs-on: ubuntu-latest
+    needs: [quick-gate, full-gate, typecheck, format, build]
+    if: always()
+
+    steps:
+      - name: Check job status
+        run: |
+          if [ "${{ needs.quick-gate.result }}" != "success" ]; then
+            echo "❌ Quick Gate failed"
+            exit 1
+          fi
+          if [ "${{ needs.full-gate.result }}" != "success" ]; then
+            echo "❌ Full Gate failed"
+            exit 1
+          fi
+          if [ "${{ needs.typecheck.result }}" != "success" ]; then
+            echo "❌ TypeScript check failed"
+            exit 1
+          fi
+          if [ "${{ needs.format.result }}" != "success" ]; then
+            echo "❌ Format check failed"
+            exit 1
+          fi
+          if [ "${{ needs.build.result }}" != "success" ]; then
+            echo "❌ Build failed"
+            exit 1
+          fi
+          echo "✅ All quality gates passed!"
+
+      - name: Post success comment
+        if: success() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ **Quality Gates Passed!**\n\n- 🚀 Quick Gate: PASSED\n- 🔍 Full Gate: PASSED\n- 📘 TypeScript: PASSED\n- 💄 Format: PASSED\n- 🔨 Build: PASSED\n\nReady for review! 🎉'
+            })
+
+      - name: Post failure comment
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '❌ **Quality Gates Failed**\n\nPlease review the workflow logs and fix the issues before pushing again.\n\nTo run checks locally:\n```bash\npnpm lint:gate:full\npnpm typecheck\npnpm format:check\npnpm build\n```'
+            })

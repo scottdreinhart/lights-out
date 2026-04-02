@@ -1,0 +1,108 @@
+# WASM Baseline History
+
+This directory (`compliance/baselines/`) stores historical snapshots of WASM performance baselines. Each baseline represents the performance state at a specific release version.
+
+## Baseline Index
+
+### v1.0.0 Baseline
+
+**File**: `v1.0.0-wasm-profiles-baseline.json` (created in parent directory)  
+**Release Date**: April 1, 2026  
+**Total Apps**: 25  
+**Status**: 25 GREEN / 0 AMBER / 0 RED  
+**Performance Summary**:
+
+- Fastest: cee-lo (0.005ms hard)
+- Slowest: reversi (52.42ms hard)
+- Average hard: 2.58ms
+- Notes: Initial Phase 1 completion baseline. All games performing optimally.
+
+### Future Baselines
+
+_Will be added as new release versions are tagged._
+
+Example entries (for reference):
+
+```
+v1.1.0-wasm-profiles-baseline.json
+- Release Date: 2026-05-15
+- Total Apps: 25
+- Status: 25 GREEN / 0 AMBER / 0 RED
+- Performance: Optimized sudoku algorithm, improved average hard time to 2.1ms
+
+v1.2.0-wasm-profiles-baseline.json
+- Release Date: 2026-07-01
+- Total Apps: 30 (added 5 new games)
+- Status: 30 GREEN / 0 AMBER / 0 RED
+- Performance: New games integrated, baseline established
+
+v2.0.0-wasm-profiles-baseline.json
+- Release Date: 2026-10-01
+- Total Apps: 30
+- Status: 30 GREEN / 0 AMBER / 0 RED
+- Performance: Framework upgrade, WASM compiler v0.30, performance improved 15%
+```
+
+## How to Use Historical Baselines
+
+**Compare against a specific historical baseline**:
+
+```bash
+# Compare current build against v1.0.0 baseline
+node scripts/check-wasm-regressions.js --baseline compliance/baselines/v1.0.0-wasm-profiles-baseline.json
+
+# Compare against v1.1.0
+node scripts/check-wasm-regressions.js --baseline compliance/baselines/v1.1.0-wasm-profiles-baseline.json
+```
+
+**Analyze performance trends**:
+
+```bash
+# View performance history across releases
+# 1. Load v1.0.0 baseline → note average hard time
+# 2. Load v1.1.0 baseline → compare improvement
+# 3. Calculate trend: Has performance improved or degraded over releases?
+```
+
+**Investigate regressions against older versions**:
+
+```bash
+# If recent change caused regression, compare against older baseline
+# to determine when regression was introduced
+node scripts/check-wasm-regressions.js --baseline compliance/baselines/v1.0.0-wasm-profiles-baseline.json
+```
+
+## Baseline Management Policy
+
+**When to Archive a Baseline**:
+
+- ✅ After each major release (v1.0.0, v2.0.0, v3.0.0)
+- ✅ After significant performance optimization affecting all apps
+- ✅ When adding new games to the platform
+- ❌ Not for every build (too much noise)
+- ❌ Not for patch releases (v1.0.0 → v1.0.1 → v1.0.2)
+
+**Archiving Process**:
+
+1. After building and releasing a new version
+2. Copy active baseline to this directory
+3. Rename to `vX.Y.Z-wasm-profiles-baseline.json`
+4. Commit to git with tag `vX.Y.Z-wasm-baseline`
+5. Update this README with new entry
+
+**Cleanup Policy**:
+
+- Keep all baselines (storage is minimal, JSON files ~50KB each)
+- Archive indefinitely for historical analysis
+- Never delete a baseline once archived
+
+## Version History
+
+| Version | Date       | Apps | Status       | Notes                    |
+| ------- | ---------- | ---- | ------------ | ------------------------ |
+| v1.0.0  | 2026-04-01 | 25   | ✅ All GREEN | Initial Phase 1 baseline |
+| v1.1.0  | TBD        | TBD  | TBD          | Next release             |
+| v2.0.0  | TBD        | TBD  | TBD          | Future major release     |
+
+**Updated**: April 1, 2026  
+**Status**: 1 baseline archived, monitoring for next release

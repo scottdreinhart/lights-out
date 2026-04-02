@@ -1,0 +1,188 @@
+.row {
+  display: grid;
+  grid-template-columns: 50px 1fr 120px auto 90px;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.875rem 1rem;
+  background: var(--color-surface, #fff);
+  border-radius: 8px;
+  border-left: 4px solid transparent;
+  transition: all 200ms ease;
+}
+
+.row:hover {
+  background: var(--color-surface-hover, #f5f5f5);
+  transform: translateX(4px);
+}
+
+.row.currentPlayer {
+  background: linear-gradient(90deg, rgba(0, 135, 190, 0.1), transparent);
+  border-left-color: currentColor;
+  font-weight: 500;
+}
+
+.rank {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-text-secondary, #666);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-text-primary, #000);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  word-break: break-word;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--color-primary, #0087be);
+  color: #fff;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.meta {
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary, #999);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: right;
+}
+
+.scoreValue {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-primary, #0087be);
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.wins {
+  text-align: center;
+}
+
+.winsValue {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-text-secondary, #666);
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.time {
+  text-align: right;
+}
+
+.timeAgo {
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary, #999);
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Mobile */
+@media (max-width: 599px) {
+  .row {
+    grid-template-columns: 40px 1fr 80px;
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .rank {
+    font-size: 0.9rem;
+  }
+
+  .name {
+    font-size: 0.95rem;
+  }
+
+  .scoreValue {
+    font-size: 1rem;
+  }
+
+  .badge {
+    font-size: 0.6rem;
+    padding: 0.1rem 0.4rem;
+  }
+
+  .meta {
+    display: none; /* Hide difficulty on mobile */
+  }
+
+  .winsValue,
+  .time {
+    display: none; /* Hide wins/time on mobile */
+  }
+}
+
+/* Tablet */
+@media (min-width: 600px) and (max-width: 899px) {
+  .row {
+    grid-template-columns: 45px 1fr 100px 70px;
+    gap: 1rem;
+    padding: 0.875rem;
+  }
+
+  .time {
+    display: none; /* Hide time on tablet */
+  }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .row {
+    background: var(--color-surface-dark, #1a1a1a);
+  }
+
+  .row:hover {
+    background: var(--color-surface-dark-hover, #222);
+  }
+
+  .row.currentPlayer {
+    background: linear-gradient(90deg, rgba(0, 135, 190, 0.2), transparent);
+  }
+
+  .rank {
+    color: var(--color-text-secondary-dark, #999);
+  }
+
+  .name {
+    color: var(--color-text-primary-dark, #fff);
+  }
+
+  .meta {
+    color: var(--color-text-tertiary-dark, #666);
+  }
+
+  .winsValue {
+    color: var(--color-text-secondary-dark, #999);
+  }
+
+  .timeAgo {
+    color: var(--color-text-tertiary-dark, #666);
+  }
+}
