@@ -22,7 +22,7 @@
 .title {
   font-size: 2rem;
   margin: 0;
-  background: linear-gradient(135deg, var(--accent, #667eea), #764ba2);
+  background: linear-gradient(135deg, var(--theme-accent, #667eea), #764ba2);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -51,7 +51,7 @@
 @media (hover: hover) {
   .btn:hover {
     background: rgba(255, 255, 255, 0.12);
-    border-color: var(--accent, #667eea);
+    border-color: var(--theme-accent, #667eea);
   }
 }
 
@@ -62,9 +62,7 @@
 
 .boards {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 2rem;
 }
 
 .boardColumn {
@@ -74,12 +72,22 @@
   gap: 1rem;
 }
 
+.scoreboardContainer {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(0, 150, 255, 0.1);
+}
+
 .newGameBtn {
   padding: 0.75rem 2rem;
   border: none;
   border-radius: 8px;
-  background: var(--accent, #667eea);
-  color: #fff;
+  background: var(--theme-accent, #667eea);
+  color: #1a1a1a;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 700;
@@ -119,6 +127,11 @@
   flex-direction: column;
   align-items: center;
   gap: 1.25rem;
+}
+
+.compact .scoreboardContainer {
+  gap: 1.5rem;
+  padding: 1rem 0;
 }
 
 .compact.app {

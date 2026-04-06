@@ -51,11 +51,11 @@ const shipCells = new StaticArray<i32>(256) // flat ship data buffer
 let shipDataLen: i32 = 0
 
 export function setCell(index: i32, value: i32): void {
-  unchecked(board[index] = value)
+  unchecked((board[index] = value))
 }
 
 export function setShipData(index: i32, value: i32): void {
-  unchecked(shipCells[index] = value)
+  unchecked((shipCells[index] = value))
 }
 
 export function setShipDataLength(len: i32): void {
@@ -92,7 +92,7 @@ const sunkMask = new StaticArray<i32>(TOTAL_CELLS)
 
 function computeSunkMask(): void {
   for (let i: i32 = 0; i < TOTAL_CELLS; i++) {
-    unchecked(sunkMask[i] = 0)
+    unchecked((sunkMask[i] = 0))
   }
 
   let ptr: i32 = 0
@@ -104,7 +104,7 @@ function computeSunkMask(): void {
       ptr++
       if (isShipSunk(ptr, sLen)) {
         for (let c: i32 = 0; c < sLen; c++) {
-          unchecked(sunkMask[unchecked(shipCells[ptr + c])] = 1)
+          unchecked((sunkMask[unchecked(shipCells[ptr + c])] = 1))
         }
       }
       ptr += sLen
@@ -126,8 +126,8 @@ function findUnsunkHits(): void {
     for (let col: i32 = 0; col < GRID_SIZE; col++) {
       const idx = row * GRID_SIZE + col
       if (unchecked(board[idx]) === CELL_HIT && unchecked(sunkMask[idx]) === 0) {
-        unchecked(unsunkHitRows[unsunkHitCount] = row)
-        unchecked(unsunkHitCols[unsunkHitCount] = col)
+        unchecked((unsunkHitRows[unsunkHitCount] = row))
+        unchecked((unsunkHitCols[unsunkHitCount] = col))
         unsunkHitCount++
       }
     }
@@ -148,7 +148,7 @@ function findRemainingShipLengths(): void {
       const sLen = unchecked(shipCells[ptr])
       ptr++
       if (!isShipSunk(ptr, sLen)) {
-        unchecked(remainingLens[remainingCount] = sLen)
+        unchecked((remainingLens[remainingCount] = sLen))
         remainingCount++
       }
       ptr += sLen
@@ -174,7 +174,7 @@ function canHostShip(row: i32, col: i32): bool {
 
 function computeDensity(): void {
   for (let i: i32 = 0; i < TOTAL_CELLS; i++) {
-    unchecked(density[i] = 0)
+    unchecked((density[i] = 0))
   }
 
   for (let s: i32 = 0; s < remainingCount; s++) {
@@ -194,7 +194,7 @@ function computeDensity(): void {
           for (let k: i32 = 0; k < len; k++) {
             if (isUntried(row, col + k)) {
               const idx = row * GRID_SIZE + col + k
-              unchecked(density[idx] = unchecked(density[idx]) + 1)
+              unchecked((density[idx] = unchecked(density[idx]) + 1))
             }
           }
         }
@@ -215,7 +215,7 @@ function computeDensity(): void {
           for (let k: i32 = 0; k < len; k++) {
             if (isUntried(row + k, col)) {
               const idx = (row + k) * GRID_SIZE + col
-              unchecked(density[idx] = unchecked(density[idx]) + 1)
+              unchecked((density[idx] = unchecked(density[idx]) + 1))
             }
           }
         }
@@ -231,23 +231,23 @@ const adjCols = new StaticArray<i32>(4)
 function getAdjacentUntried(row: i32, col: i32): i32 {
   let count: i32 = 0
   if (isUntried(row - 1, col)) {
-    unchecked(adjRows[count] = row - 1)
-    unchecked(adjCols[count] = col)
+    unchecked((adjRows[count] = row - 1))
+    unchecked((adjCols[count] = col))
     count++
   }
   if (isUntried(row + 1, col)) {
-    unchecked(adjRows[count] = row + 1)
-    unchecked(adjCols[count] = col)
+    unchecked((adjRows[count] = row + 1))
+    unchecked((adjCols[count] = col))
     count++
   }
   if (isUntried(row, col - 1)) {
-    unchecked(adjRows[count] = row)
-    unchecked(adjCols[count] = col - 1)
+    unchecked((adjRows[count] = row))
+    unchecked((adjCols[count] = col - 1))
     count++
   }
   if (isUntried(row, col + 1)) {
-    unchecked(adjRows[count] = row)
-    unchecked(adjCols[count] = col + 1)
+    unchecked((adjRows[count] = row))
+    unchecked((adjCols[count] = col + 1))
     count++
   }
   return count
@@ -275,8 +275,12 @@ function tryLineTarget(): i32 {
         for (let k: i32 = 0; k < unsunkHitCount; k++) {
           if (unchecked(unsunkHitRows[k]) === r1) {
             const ck = unchecked(unsunkHitCols[k])
-            if (ck < minCol) { minCol = ck }
-            if (ck > maxCol) { maxCol = ck }
+            if (ck < minCol) {
+              minCol = ck
+            }
+            if (ck > maxCol) {
+              maxCol = ck
+            }
           }
         }
         if (isUntried(r1, minCol - 1)) {
@@ -292,8 +296,12 @@ function tryLineTarget(): i32 {
         for (let k: i32 = 0; k < unsunkHitCount; k++) {
           if (unchecked(unsunkHitCols[k]) === c1) {
             const rk = unchecked(unsunkHitRows[k])
-            if (rk < minRow) { minRow = rk }
-            if (rk > maxRow) { maxRow = rk }
+            if (rk < minRow) {
+              minRow = rk
+            }
+            if (rk > maxRow) {
+              maxRow = rk
+            }
           }
         }
         if (isUntried(minRow - 1, c1)) {
@@ -306,6 +314,167 @@ function tryLineTarget(): i32 {
     }
   }
   return -1
+}
+
+// ── Board Validation & Fire Operations ───────────────────────────────────
+// Entry points for ship placement validation and fire resolution.
+
+const shipRows = new StaticArray<i32>(64)
+const shipCols = new StaticArray<i32>(64)
+let shipCount: i32 = 0
+
+/**
+ * Validate if a ship can be placed at (row, col) with given orientation + length.
+ * Returns 1 if valid, 0 if invalid (out of bounds or overlaps).
+ */
+export function validateShipPlacement(
+  row: i32,
+  col: i32,
+  orientation: i32, // 0 = horizontal, 1 = vertical
+  length: i32,
+): i32 {
+  if (orientation === 0) {
+    // Horizontal
+    if (col + length > GRID_SIZE) {
+      return 0
+    }
+    for (let c = col; c < col + length; c++) {
+      const cellVal = cellAt(row, c)
+      if (cellVal === CELL_SHIP) {
+        return 0 // Overlap detected
+      }
+    }
+  } else {
+    // Vertical
+    if (row + length > GRID_SIZE) {
+      return 0
+    }
+    for (let r = row; r < row + length; r++) {
+      const cellVal = cellAt(r, col)
+      if (cellVal === CELL_SHIP) {
+        return 0 // Overlap detected
+      }
+    }
+  }
+  return 1 // Valid placement
+}
+
+/**
+ * Place a ship on the board (mark cells as CELL_SHIP).
+ * Must call validateShipPlacement first to ensure validity.
+ * Returns the starting index of the placed ship in shipCells (for tracking).
+ */
+export function placeShipOnBoard(
+  row: i32,
+  col: i32,
+  orientation: i32, // 0 = horizontal, 1 = vertical
+  length: i32,
+): i32 {
+  const startIdx: i32 = shipCount
+  let idx: i32 = 0
+
+  if (orientation === 0) {
+    // Horizontal
+    for (let c = col; c < col + length; c++) {
+      unchecked((board[row * GRID_SIZE + c] = CELL_SHIP))
+      unchecked((shipRows[shipCount] = row))
+      unchecked((shipCols[shipCount] = c))
+      shipCount++
+    }
+  } else {
+    // Vertical
+    for (let r = row; r < row + length; r++) {
+      unchecked((board[r * GRID_SIZE + col] = CELL_SHIP))
+      unchecked((shipRows[shipCount] = r))
+      unchecked((shipCols[shipCount] = col))
+      shipCount++
+    }
+  }
+
+  return startIdx
+}
+
+/**
+ * Fire at a cell and return the result.
+ * Returns: 0 = miss, 1 = hit, 2 = already shot, 3 = sunk ship
+ * Modifies board grid in-place.
+ */
+export function fireAtCell(row: i32, col: i32, shooter: i32): i32 {
+  // shooter: 0 = player, 1 = cpu
+  if (row < 0 || row >= GRID_SIZE || col < 0 || col >= GRID_SIZE) {
+    return 2 // Invalid cell
+  }
+
+  const cellVal = cellAt(row, col)
+
+  // Check if already shot
+  if (cellVal === CELL_HIT || cellVal === CELL_MISS) {
+    return 2 // Already shot
+  }
+
+  const isHitCell = cellVal === CELL_SHIP
+  const hitValue = shooter === 0 ? CELL_HIT : CELL_HIT // Both mark as HIT; we track shooter separately
+  const missValue = shooter === 0 ? CELL_MISS : CELL_MISS
+
+  const idx = row * GRID_SIZE + col
+  if (isHitCell) {
+    unchecked((board[idx] = CELL_HIT))
+
+    // Check if all cells of all ships are hit (for sunk detection)
+    for (let s = 0; s < shipCount; s++) {
+      const shipRow = unchecked(shipRows[s])
+      const shipCol = unchecked(shipCols[s])
+      if (shipRow === row && shipCol === col) {
+        // This cell belongs to a ship; check if all cells are now hit
+        let allHit: bool = true
+        for (let c = 0; c < shipCount; c++) {
+          const cr = unchecked(shipRows[c])
+          const cc = unchecked(shipCols[c])
+          const cellIdx = cr * GRID_SIZE + cc
+          if (unchecked(board[cellIdx]) !== CELL_HIT) {
+            allHit = false
+            break
+          }
+        }
+        if (allHit) {
+          return 3 // Ship sunk
+        }
+      }
+    }
+
+    return 1 // Hit but not sunk
+  } else {
+    unchecked((board[idx] = CELL_MISS))
+    return 0 // Miss
+  }
+}
+
+/**
+ * Get cell value at encoded position.
+ * Returns: 0 = empty, 1 = ship, 2 = hit, 3 = miss
+ */
+export function getCellValue(index: i32): i32 {
+  if (index < 0 || index >= TOTAL_CELLS) {
+    return 0
+  }
+  return unchecked(board[index])
+}
+
+/**
+ * Decode index to row and col. Returns encoded as row * 256 + col
+ * (Caller will need to extract: row = result / 256, col = result % 256)
+ */
+export function decodeCoord(index: i32): i32 {
+  const row = index / GRID_SIZE
+  const col = index % GRID_SIZE
+  return row * 256 + col
+}
+
+/**
+ * Encode row, col to index.
+ */
+export function encodeCoord(row: i32, col: i32): i32 {
+  return row * GRID_SIZE + col
 }
 
 // ── Main AI entry point ──────────────────────────────────────────────────
@@ -332,10 +501,7 @@ export function getCpuMove(): i32 {
     let bestDensity: i32 = -1
 
     for (let i: i32 = 0; i < unsunkHitCount; i++) {
-      const adjCount = getAdjacentUntried(
-        unchecked(unsunkHitRows[i]),
-        unchecked(unsunkHitCols[i]),
-      )
+      const adjCount = getAdjacentUntried(unchecked(unsunkHitRows[i]), unchecked(unsunkHitCols[i]))
       for (let j: i32 = 0; j < adjCount; j++) {
         const r = unchecked(adjRows[j])
         const c = unchecked(adjCols[j])

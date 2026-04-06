@@ -50,10 +50,11 @@ export interface Ship {
   readonly origin: Coord
   readonly orientation: Orientation
   readonly cells: readonly Coord[]
+  readonly owner: 'player' | 'cpu' // Which player controls this ship
 }
 
 /** State of a single cell on the board */
-export type CellState = 'empty' | 'ship' | 'hit' | 'miss'
+export type CellState = 'empty' | 'ship' | 'playerHit' | 'playerMiss' | 'cpuHit' | 'cpuMiss'
 
 /** Full board state */
 export interface Board {
@@ -68,6 +69,9 @@ export type GamePhase = 'placement' | 'battle' | 'gameOver'
 /** Which player's turn it is during battle */
 export type Turn = 'player' | 'cpu'
 
+/** Game difficulty — affects CPU AI strategy depth */
+export type Difficulty = 'easy' | 'medium' | 'hard'
+
 /** Outcome of firing at a cell */
 export type ShotResult = 'hit' | 'miss' | 'already'
 
@@ -77,14 +81,24 @@ export interface FireResult {
   readonly sunkShip: Ship | null
 }
 
-/** Complete game state */
+/** Complete game state — unified single-ocean model */
 export interface GameState {
   readonly phase: GamePhase
   readonly turn: Turn
-  readonly playerBoard: Board
-  readonly cpuBoard: Board
+  readonly board: Board // Single unified ocean (all ships, both players)
   readonly winner: Turn | null
   readonly placementShipIndex: number
   readonly placementOrientation: Orientation
   readonly message: string
+  readonly difficulty: Difficulty
+  readonly startTime: number | null
+  readonly endTime: number | null
+  readonly stats: GameStats
+}
+
+/** Cell visibility rules for rendering */
+export interface CellVisibility {
+  showMyShips: boolean // Show player's own ships
+  showEnemyShips: boolean // Show CPU's ships (false until game over or hit)
+  showHits: boolean // Show hit/miss markers (always true during battle)
 }

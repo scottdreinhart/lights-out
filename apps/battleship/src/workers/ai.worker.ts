@@ -3,9 +3,8 @@
  * WASM-first with JS fallback. Keeps UI at 60 FPS.
  */
 
-import { getCpuMove as getCpuMoveJS } from '@/domain'
-import { GRID_SIZE } from '@/domain'
-import type { Board, Coord } from '@/domain'
+import type { Board, Coord, Difficulty } from '@/domain'
+import { getCpuMove as getCpuMoveJS, GRID_SIZE } from '@/domain'
 
 // ── Cell encoding (must match assembly/index.ts) ─────────────────────────
 const CELL_MAP: Record<string, number> = {
@@ -17,14 +16,60 @@ const CELL_MAP: Record<string, number> = {
 
 // ── WASM instance ────────────────────────────────────────────────────────
 interface WasmExports {
+  // AI move selection
   setCell(index: number, value: number): void
   setShipData(index: number, value: number): void
   setShipDataLength(len: number): void
   seedRng(seed: number): void
   getCpuMove(): number
+
+  // Board validation & placement
+  validateShipPlacement(row: number, col: number, orientation: number, length: number): number
+  placeShipOnBoard(row: number, col: number, orientation: number, length: number): number
+
+  // Fire operations
+  fireAtCell(row: number, col: number, shooter: number): number
+  getCellValue(index: number): number
+
+  // Coordinate helpers
+  encodeCoord(row: number, col: number): number
+  decodeCoord(index: number): number
 }
 
 let wasmExports: WasmExports | null = null
+
+// ── AssemblyScript runtime helpers ───────────────────────────────────────
+// These are required by AssemblyScript compiled code for memory management
+const wasmMemory = new WebAssembly.Memory({ initial: 256, maximum: 512 })
+
+function createWasmEnv() {
+  return {
+    // Memory and abort
+    memory: wasmMemory,
+    abort: (_messagePtr?: number, _filePtr?: number, line?: number, column?: number) => {
+      console.error(`WASM abort: line ${line}:${column}`)
+    },
+    trace: (_args: unknown[]) => {
+      // WASM trace logging (disabled to avoid console spam)
+      // console.warn('[WASM]', _args)
+    },
+
+    // AssemblyScript runtime: memory allocation
+    __alloc: (size: number) => {
+      // Simple allocator: increment pointer
+      if (!createWasmEnv.__allocPtr) {
+        createWasmEnv.__allocPtr = 0
+      }
+      const ptr = createWasmEnv.__allocPtr
+      createWasmEnv.__allocPtr += Math.ceil(size / 8) * 8
+      return ptr
+    },
+    __retain: (_obj: number) => _obj,
+    __release: (_obj: number) => {},
+    __rtti_base: 0,
+  }
+}
+createWasmEnv.__allocPtr = 0
 
 async function initWasm(): Promise<void> {
   try {
@@ -34,10 +79,11 @@ async function initWasm(): Promise<void> {
     }
     const binary = Uint8Array.from(atob(AI_WASM_BASE64), (c) => c.charCodeAt(0))
     const compiled = await WebAssembly.compile(binary)
-    const instance = await WebAssembly.instantiate(compiled, { env: { abort: () => {} } })
+    const instance = await WebAssembly.instantiate(compiled, { env: createWasmEnv() })
     wasmExports = instance.exports as unknown as WasmExports
-  } catch {
+  } catch (err) {
     // WASM unavailable — JS fallback will be used
+    console.error('WASM init failed:', err)
   }
 }
 
@@ -72,21 +118,110 @@ function loadBoardIntoWasm(board: Board): void {
 }
 
 // ── Message handler ──────────────────────────────────────────────────────
-self.onmessage = async (e: MessageEvent<{ board: Board }>) => {
+self.onmessage = async (
+  e: MessageEvent<
+    | { type: 'getMove'; board: Board; difficulty: Difficulty }
+    | { type: 'validatePlacement'; row: number; col: number; orientation: number; length: number }
+    | { type: 'fireAt'; row: number; col: number; shooter: 'player' | 'cpu' }
+    | { type: 'getCellValue'; index: number }
+  >,
+) => {
   await wasmReady
 
-  const { board } = e.data
-  let move: Coord
+  const message = e.data
 
-  if (wasmExports) {
-    loadBoardIntoWasm(board)
-    const encoded = wasmExports.getCpuMove()
-    move = { row: Math.floor(encoded / GRID_SIZE), col: encoded % GRID_SIZE }
+  if (message.type === 'getMove') {
+    // New format with difficulty and requestId
+    const { board, difficulty, requestId } = message as unknown as {
+      board: Board
+      difficulty: Difficulty
+      requestId: string
+    }
+    const startTime = performance.now()
+    let move: Coord
+
+    if (wasmExports) {
+      loadBoardIntoWasm(board)
+      const encoded = wasmExports.getCpuMove()
+      move = { row: Math.floor(encoded / GRID_SIZE), col: encoded % GRID_SIZE }
+    } else {
+      move = getCpuMoveJS(board, difficulty)
+    }
+
+    const timeTaken = performance.now() - startTime
+    self.postMessage({ type: 'moveReady', requestId, move, timeTaken })
+  } else if ('board' in message) {
+    // Legacy format: { board } → fallback for backwards compatibility
+    const { board, requestId } = message as { board: Board; requestId?: string }
+    const startTime = performance.now()
+    let move: Coord
+
+    if (wasmExports) {
+      loadBoardIntoWasm(board)
+      const encoded = wasmExports.getCpuMove()
+      move = { row: Math.floor(encoded / GRID_SIZE), col: encoded % GRID_SIZE }
+    } else {
+      // Fallback to medium difficulty if not specified
+      move = getCpuMoveJS(board, 'medium')
+    }
+
+    const timeTaken = performance.now() - startTime
+    self.postMessage({ type: 'moveReady', requestId: requestId || '', move, timeTaken })
   } else {
-    move = getCpuMoveJS(board)
-  }
+    // New format with type
+    const typedMsg = message as
+      | { type: 'validatePlacement'; row: number; col: number; orientation: number; length: number }
+      | { type: 'fireAt'; row: number; col: number; shooter: 'player' | 'cpu' }
+      | { type: 'getCellValue'; index: number }
 
-  self.postMessage({ row: move.row, col: move.col })
+    switch (typedMsg.type) {
+      case 'validatePlacement': {
+        const { row, col, orientation, length } = typedMsg
+        if (wasmExports) {
+          const result = wasmExports.validateShipPlacement(row, col, orientation, length)
+          self.postMessage({ type: 'validationResult', valid: result === 1 })
+        } else {
+          self.postMessage({ type: 'validationResult', valid: false })
+        }
+        break
+      }
+
+      case 'fireAt': {
+        const { row, col, shooter } = typedMsg
+        if (wasmExports) {
+          const shooterVal = shooter === 'player' ? 0 : 1
+          const result = wasmExports.fireAtCell(row, col, shooterVal)
+          // 0 = miss, 1 = hit, 2 = already shot, 3 = sunk
+          let resultType: 'miss' | 'hit' | 'already' | 'sunk' = 'miss'
+          if (result === 1) {
+            resultType = 'hit'
+          } else if (result === 2) {
+            resultType = 'already'
+          } else if (result === 3) {
+            resultType = 'sunk'
+          }
+          self.postMessage({ type: 'fireResult', result: resultType })
+        } else {
+          self.postMessage({ type: 'fireResult', result: 'miss' })
+        }
+        break
+      }
+
+      case 'getCellValue': {
+        const { index } = typedMsg
+        if (wasmExports) {
+          const value = wasmExports.getCellValue(index)
+          self.postMessage({ type: 'cellValueResult', value })
+        } else {
+          self.postMessage({ type: 'cellValueResult', value: 0 })
+        }
+        break
+      }
+
+      default:
+        break
+    }
+  }
 }
 
 export {}

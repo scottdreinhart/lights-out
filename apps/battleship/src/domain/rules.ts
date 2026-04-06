@@ -3,28 +3,42 @@
  * Pure functions operating on domain types only.
  */
 
-import type { Board } from './types'
+import type { Board, CellState } from './types'
 
-/** Check if all ships on a board have been sunk */
-export function allShipsSunk(board: Board): boolean {
+/** Check if a cell is a hit (made by either player or CPU) */
+function isHit(state: CellState): boolean {
+  return state === 'playerHit' || state === 'cpuHit'
+}
+
+/** Check if a cell is a shot (hit or miss) */
+function isShot(state: CellState): boolean {
   return (
-    board.ships.length > 0 &&
-    board.ships.every((ship) => ship.cells.every((c) => board.grid[c.row][c.col] === 'hit'))
+    state === 'playerHit' || state === 'playerMiss' || state === 'cpuHit' || state === 'cpuMiss'
   )
 }
 
-/** Count how many ships have been sunk */
-export function sunkCount(board: Board): number {
-  return board.ships.filter((ship) => ship.cells.every((c) => board.grid[c.row][c.col] === 'hit'))
-    .length
+/** Check if all ships for a specific owner have been sunk */
+export function allShipsSunk(board: Board, owner: 'player' | 'cpu'): boolean {
+  const ownerShips = board.ships.filter((ship) => ship.owner === owner)
+  return (
+    ownerShips.length > 0 &&
+    ownerShips.every((ship) => ship.cells.every((c) => isHit(board.grid[c.row][c.col])))
+  )
 }
 
-/** Count total hits on a board */
-export function hitCount(board: Board): number {
+/** Count how many ships for a specific owner have been sunk */
+export function sunkCount(board: Board, owner: 'player' | 'cpu'): number {
+  return board.ships
+    .filter((ship) => ship.owner === owner)
+    .filter((ship) => ship.cells.every((c) => isHit(board.grid[c.row][c.col]))).length
+}
+
+/** Count total hits on a specific owner's ships */
+export function hitCount(board: Board, owner: 'player' | 'cpu'): number {
   let count = 0
-  for (const row of board.grid) {
-    for (const cell of row) {
-      if (cell === 'hit') {
+  for (const ship of board.ships.filter((s) => s.owner === owner)) {
+    for (const c of ship.cells) {
+      if (isHit(board.grid[c.row][c.col])) {
         count++
       }
     }
@@ -32,12 +46,12 @@ export function hitCount(board: Board): number {
   return count
 }
 
-/** Count total shots taken against a board */
+/** Count total shots taken on the board */
 export function shotCount(board: Board): number {
   let count = 0
   for (const row of board.grid) {
     for (const cell of row) {
-      if (cell === 'hit' || cell === 'miss') {
+      if (isShot(cell)) {
         count++
       }
     }

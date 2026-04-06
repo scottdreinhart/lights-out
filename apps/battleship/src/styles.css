@@ -6,6 +6,19 @@
   box-sizing: border-box;
 }
 
+:root {
+  /* Cell styling for hover and selection patterns */
+  --cell-bg: #bdbdbd;
+  --cell-hover-bg: #c9c9c9;
+  --cell-hover-shadow: rgba(0, 0, 0, 0.15);
+  --cell-selected-outline: #71ffd6;
+  --cell-selected-glow: rgba(113, 255, 214, 0.3);
+  --cell-selected-bg: rgba(113, 255, 214, 0.15);
+  --cell-hint-glow: rgba(255, 200, 87, 0.3);
+  --cell-hint-bg: rgba(255, 204, 0, 0.1);
+  --hint-color: #ffc857;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: #1a1a2e;

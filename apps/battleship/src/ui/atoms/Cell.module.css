@@ -25,6 +25,11 @@
 
 /* Touch: active press feedback instead of hover */
 @media (pointer: coarse) {
+  .cell {
+    min-width: 58px;
+    min-height: 58px;
+  }
+
   .cell:active:not(.disabled) {
     transform: scale(0.95);
     z-index: 1;
@@ -36,6 +41,27 @@
   outline-offset: 1px;
 }
 
+/**
+ * Keyboard selection state
+ * 
+ * Applied when cell is selected via arrow keys
+ */
+.selected {
+  outline: 2px solid var(--cell-selected-outline, #71ffd6);
+  outline-offset: -2px;
+  box-shadow: inset 0 0 0 3px var(--cell-selected-glow, rgba(113, 255, 214, 0.3));
+  background: var(--cell-selected-bg, rgba(113, 255, 214, 0.15));
+}
+
+/**
+ * Hint/highlighted state
+ */
+.hint {
+  box-shadow: inset 0 0 0 2px var(--hint-color, #ffc857),
+              inset 0 0 6px var(--cell-hint-glow, rgba(255, 200, 87, 0.3));
+  background: var(--cell-hint-bg, rgba(255, 204, 0, 0.1));
+}
+
 .empty {
   background: var(--cell-empty, rgba(255, 255, 255, 0.05));
 }
@@ -44,12 +70,29 @@
   background: var(--cell-ship, rgba(102, 126, 234, 0.5));
 }
 
-.hit {
+@keyframes blink {
+  0% {
+    background: var(--cell-ship, rgba(102, 126, 234, 0.5));
+  }
+  50% {
+    background: var(--cell-ship-blink, rgba(255, 193, 7, 0.8));
+  }
+  100% {
+    background: var(--cell-ship, rgba(102, 126, 234, 0.5));
+  }
+}
+
+.shipBlinking {
+  animation: blink 0.5s ease-in-out 5;
+}
+
+/* Player's shots (red) */
+.playerHit {
   background: var(--cell-hit, #e74c3c);
   position: relative;
 }
 
-.hit::after {
+.playerHit::after {
   content: '\00D7';
   font-size: 1.2rem;
   color: #fff;
@@ -60,15 +103,48 @@
   justify-content: center;
 }
 
-.miss {
+.playerMiss {
   background: var(--cell-miss, rgba(255, 255, 255, 0.15));
   position: relative;
 }
 
-.miss::after {
+.playerMiss::after {
   content: '\2022';
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.4);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CPU's shots (blue) */
+.cpuHit {
+  background: var(--cell-cpu-hit, #3498db);
+  position: relative;
+}
+
+.cpuHit::after {
+  content: '\00D7';
+  font-size: 1.2rem;
+  color: #fff;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cpuMiss {
+  background: var(--cell-cpu-miss, rgba(52, 152, 219, 0.2));
+  position: relative;
+}
+
+.cpuMiss::after {
+  content: '\2022';
+  font-size: 1rem;
+  color: rgba(52, 152, 219, 0.6);
   position: absolute;
   inset: 0;
   display: flex;
@@ -81,8 +157,39 @@
   opacity: 0.8;
 }
 
+.cellDisabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  filter: saturate(0.7);
+}
+
 /* Touch-optimized: larger cells for coarse pointers */
 .touchOptimized {
-  min-width: 32px;
-  min-height: 32px;
+  min-width: 58px;
+  min-height: 58px;
+}
+
+/**
+ * Keyboard selection state
+ *
+ * Applied when cell is selected via arrow keys or WASD
+ * Distinguished from hover state with a different color and outline
+ */
+.selected {
+  outline: 2px solid var(--cell-selected-outline, #71ffd6);
+  outline-offset: -2px;
+  box-shadow: inset 0 0 0 3px var(--cell-selected-glow, rgba(113, 255, 214, 0.3));
+  background: var(--cell-selected-bg, rgba(113, 255, 214, 0.15));
+}
+
+/**
+ * Hint/highlighted state
+ *
+ * Applied when cell is suggested as a hint in gameplay
+ * Distinct from selection to avoid confusion
+ */
+.hint {
+  box-shadow: inset 0 0 0 2px var(--hint-color, #ffc857), 
+              inset 0 0 6px var(--cell-hint-glow, rgba(255, 200, 87, 0.3));
+  background: var(--cell-hint-bg, rgba(255, 204, 0, 0.1));
 }

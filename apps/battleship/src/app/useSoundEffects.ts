@@ -5,7 +5,7 @@
 
 import { createUseSoundEffectsHook, type StandardSoundEffects } from '@games/app-hook-utils'
 
-import { useSoundContext } from './SoundContext'
+import { useSoundContext } from '@games/sound-context'
 import { playClick, playConfirm, playCpuMove, playLose, playSelect, playWin } from './sounds'
 
 export type SoundEffects = StandardSoundEffects

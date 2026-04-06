@@ -41,6 +41,23 @@ export const layerStackToCssVars = (stack: LayerStack): Record<string, string> =
   return vars
 }
 
+/**
+ * Get game-specific CSS variables for Battleship UI
+ * Includes grid sizing, colors, and cell states
+ */
+export const getGameboardCssVars = (): Record<string, string> => {
+  return {
+    '--grid-size': '10',
+    '--grid-bg': 'rgba(255, 255, 255, 0.03)',
+    '--grid-border': 'rgba(255, 255, 255, 0.1)',
+    '--accent': '#667eea',
+    '--cell-empty': 'rgba(255, 255, 255, 0.05)',
+    '--cell-ship': 'rgba(102, 126, 234, 0.5)',
+    '--cell-hit': 'rgba(239, 68, 68, 0.6)',
+    '--cell-miss': 'rgba(100, 200, 255, 0.4)',
+  }
+}
+
 export const LAYER_Z = {
   base: 1,
   board: 10,

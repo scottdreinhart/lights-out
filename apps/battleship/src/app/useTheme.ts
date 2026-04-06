@@ -10,6 +10,7 @@ import {
   COLOR_THEMES,
   DEFAULT_SETTINGS,
   getBackgroundCssValue,
+  getGameboardCssVars,
   getLayerStack,
   layerStackToCssVars,
   preloadAllSprites,
@@ -44,6 +45,7 @@ const useTheme = createUseThemeHook<ThemeSettings>({
   layerStackToCssVars,
   getBackgroundCssValue,
   preloadAllSprites,
+  gameboardCssVars: getGameboardCssVars(),
 })
 
 export default useTheme

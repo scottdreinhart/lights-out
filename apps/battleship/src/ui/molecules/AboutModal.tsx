@@ -2,8 +2,8 @@ import { useEffect, useRef } from 'react'
 import styles from './AboutModal.module.css'
 
 export interface AboutModalProps {
-  isOpen: boolean
-  onClose: () => void
+  readonly isOpen: boolean
+  readonly onClose: () => void
 }
 
 /**
@@ -21,8 +21,25 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
   }, [isOpen])
 
   return (
-    <dialog ref={dialogRef} className={styles.modal} onClick={onClose}>
-      <div className={styles.content} onClick={(e) => e.stopPropagation()}>
+    <dialog
+      ref={dialogRef}
+      className={styles.modal}
+      onClick={onClose}
+      onKeyDown={(e) => {
+        if (e.key === 'Escape') {
+          onClose()
+        }
+      }}
+    >
+      <div
+        className={styles.content}
+        onClick={(e) => e.stopPropagation()}
+        onKeyDown={(e) => {
+          // Prevent closing on inner element keyboard events
+          e.stopPropagation()
+        }}
+        role="document"
+      >
         <button
           type="button"
           className={styles.closeBtn}

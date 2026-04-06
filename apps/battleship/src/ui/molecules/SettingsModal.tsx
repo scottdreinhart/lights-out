@@ -4,8 +4,8 @@ import { COLOR_THEMES } from '@/domain'
 import styles from './SettingsModal.module.css'
 
 export interface SettingsModalProps {
-  isOpen: boolean
-  onClose: () => void
+  readonly isOpen: boolean
+  readonly onClose: () => void
 }
 
 /**
@@ -42,8 +42,25 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
   }
 
   return (
-    <dialog ref={dialogRef} className={styles.modal} onClick={handleClose}>
-      <div className={styles.content} onClick={(e) => e.stopPropagation()}>
+    <dialog
+      ref={dialogRef}
+      className={styles.modal}
+      onClick={handleClose}
+      onKeyDown={(e) => {
+        if (e.key === 'Escape') {
+          handleClose()
+        }
+      }}
+    >
+      <div
+        className={styles.content}
+        onClick={(e) => e.stopPropagation()}
+        onKeyDown={(e) => {
+          // Prevent closing on inner element keyboard events
+          e.stopPropagation()
+        }}
+        role="document"
+      >
         <div className={styles.header}>
           <h2 className={styles.title}>Settings</h2>
           <button
