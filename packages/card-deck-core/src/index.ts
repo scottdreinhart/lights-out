@@ -28,6 +28,8 @@
 // Types
 export type {
   Card,
+  CardAssetId,
+  CardBackType,
   CardShoe,
   CardValue,
   Deck,
@@ -35,6 +37,7 @@ export type {
   DeckStatistics,
   DrawResult,
   JokerColor,
+  JokerVariant,
   Rank,
   Suit,
 } from './types'

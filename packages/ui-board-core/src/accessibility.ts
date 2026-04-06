@@ -147,7 +147,7 @@ export function getKeyboardHelpText(
  * </div>
  */
 export function announcePositionChange(
-  from: Position | null,
+  _from: Position | null,
   to: Position,
   context = 'Moved to',
 ): string {
@@ -180,7 +180,7 @@ export function buildGridAriaAttributes(rows: number, cols: number) {
 /**
  * Check if two positions are equal (utility for comparisons)
  */
-export function positionsEqual(a: Position | null, b: Position | null): boolean {
+export function positionsEqual(a: Position | null | undefined, b: Position | null | undefined): boolean {
   if (!a || !b) return false
   return a.row === b.row && a.col === b.col
 }

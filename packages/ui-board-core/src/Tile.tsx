@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import styles from './Tile.module.css'
 
 /**
  * Generic tile content that can be customized per game
@@ -182,6 +183,7 @@ export function Tile({
   }
 
   const allClasses = [
+    styles.tile, // Foundational: 58px × 58px minimum (marketplace requirement)
     'tile',
     isDarkSquare ? 'tile--dark' : 'tile--light',
     isPlayable ? 'tile--playable' : 'tile--unplayable',

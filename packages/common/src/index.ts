@@ -32,12 +32,23 @@ export { createHapticsService } from './services/createHapticsService'
 export { createSoundsService } from './services/createSoundsService'
 export { createStorageService } from './services/createStorageService'
 
+// ── Platform (Conditional Capacitor, Electron, Web) ─────────────────────────
+export { capacitor } from './platform/capacitorAdapter'
+export type { CapacitorAdapter } from './platform/capacitorAdapter'
+
 // ── UI Components ───────────────────────────────────────────────────────────
 export { ErrorBoundary } from './ui/atoms/ErrorBoundary'
 export { OfflineIndicator } from './ui/atoms/OfflineIndicator'
 export { default as SoundToggle } from './ui/atoms/SoundToggle'
 export { SudokuCell } from './ui/atoms/SudokuCell'
+export { GameLogo } from './ui/atoms/GameLogo'
+export type { GameLogoProps } from './ui/atoms/GameLogo'
 export { HamburgerMenu } from './ui/molecules/HamburgerMenu'
-
+export type { MenuItem } from './ui/molecules/HamburgerMenu'
+export { SplashScreen } from './organisms/SplashScreen'
+export type { SplashScreenProps } from './organisms/SplashScreen'
+// ── Re-exports from app-hook-utils (for convenience) ───────────────────
+export { useResponsiveState } from '@games/app-hook-utils'
+export type { ResponsiveState } from '@games/app-hook-utils'
 // ── Types ───────────────────────────────────────────────────────────────────
 export type { DieValue, GameState, GameStats } from './types'

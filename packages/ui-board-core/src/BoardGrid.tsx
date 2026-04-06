@@ -117,9 +117,9 @@ function positionsEqual(a: Position | null, b: Position | null): boolean {
 export function BoardGrid({
   rows,
   cols,
-  cells,
-  keyboardFocus,
-  selectedPosition,
+  cells = [],
+  keyboardFocus = null,
+  selectedPosition = null,
   onCellClick,
   onCellDoubleClick,
   className = '',

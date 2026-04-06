@@ -1,0 +1,85 @@
+/**
+ * GameLogo styling — used by all splash screens
+ * Responsive and theme-aware
+ */
+
+.gameLogoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.gameLogoIcon {
+  font-size: 5rem;
+  line-height: 1;
+  animation: iconBounce 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.gameLogoTitle {
+  margin: 0;
+  font-size: 2.75rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.gameLogoSubtitle {
+  margin: 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+@keyframes iconBounce {
+  0% {
+    transform: scale(0.8) translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive: compact viewports */
+@media (max-width: 600px) {
+  .gameLogoContainer {
+    gap: 0.8rem;
+  }
+
+  .gameLogoIcon {
+    font-size: 3.5rem;
+  }
+
+  .gameLogoTitle {
+    font-size: 2rem;
+  }
+
+  .gameLogoSubtitle {
+    font-size: 0.85rem;
+  }
+}
+
+/* Responsive: ultra-compact (mobile landscape) */
+@media (max-width: 400px) {
+  .gameLogoContainer {
+    gap: 0.5rem;
+  }
+
+  .gameLogoIcon {
+    font-size: 2.5rem;
+  }
+
+  .gameLogoTitle {
+    font-size: 1.5rem;
+  }
+
+  .gameLogoSubtitle {
+    font-size: 0.75rem;
+  }
+}

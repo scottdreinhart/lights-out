@@ -125,3 +125,62 @@
     max-width: 380px;
   }
 }
+
+/* Items-based menu pattern (callback-driven) */
+.menuItems {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--text, #e0e0e0);
+  font-size: 0.95rem;
+  text-align: left;
+  transition: all 150ms ease;
+}
+
+.menuItem:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.menuItem:focus {
+  outline: 2px solid var(--primary, #667eea);
+  outline-offset: -2px;
+}
+
+.menuItem:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (pointer: coarse) {
+  .menuItem:hover:not(:disabled) {
+    background: transparent;
+    border-color: transparent;
+  }
+}
+
+.itemIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+  min-width: 20px;
+  opacity: 0.8;
+}
+
+.itemLabel {
+  flex: 1;
+  font-weight: 500;
+}

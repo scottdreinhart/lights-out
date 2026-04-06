@@ -38,6 +38,34 @@ export type Rank =
 export type JokerColor = 'red' | 'black'
 
 /**
+ * Card back type — selects which back design asset to display
+ * Used for face-down cards
+ *
+ * - '1B' = Black-backed cards (standard Bicycle/poker-style black back)
+ * - '2B' = Red-backed cards (alternative variant)
+ *
+ * Reference: CARD_NOMENCLATURE_STANDARD.md
+ */
+export type CardBackType = '1B' | '2B'
+
+/**
+ * Joker variant — selects which joker design asset to display
+ * Used only when rendering joker cards
+ *
+ * - '1J' = Joker variant #1 (primary joker design)
+ * - '2J' = Joker variant #2 (alternate joker design)
+ *
+ * Reference: CARD_NOMENCLATURE_STANDARD.md
+ */
+export type JokerVariant = '1J' | '2J'
+
+/**
+ * Asset identifier for cards, backs, and jokers
+ * Can be a rank, card back type, or joker variant
+ */
+export type CardAssetId = Rank | CardBackType | JokerVariant
+
+/**
  * Unique Card identifier
  * Combines suit, rank, and optional joker variant
  * Examples: { suit: 'hearts', rank: '5'}, { rank: 'joker', color: 'red' }
