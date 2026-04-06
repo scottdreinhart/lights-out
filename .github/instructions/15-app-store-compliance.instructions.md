@@ -1,6 +1,8 @@
 # App Store & Google Play Compliance Governance
 
-**Authority**: This document is subordinate to `AGENTS.md`. Defines all app store submission requirements and compliance verification steps.
+**Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules). Defines all app store submission requirements and compliance verification steps.
+
+**BASELINE**: Before submitting to app stores, read `AGENTS.md` § 0. No fake compliance. Preserve all required features. Quality gates mandatory.
 
 **Scope**: iOS (App Store), Android (Google Play). Both require identical baseline compliance.
 

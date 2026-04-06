@@ -1,7 +1,8 @@
 # Capacitor Instructions
 
 > **Scope**: Capacitor mobile/tablet app development, native platform setup, and deployment.
-> Subordinate to `AGENTS.md` §5 (shell routing).
+> Subordinate to `AGENTS.md` §0 (Non-Negotiable Rules) and §5 (shell routing).
+> **BASELINE**: Before deploying with Capacitor, read `AGENTS.md` § 0. Minimal edits. Preserve web-first architecture. Shell routing mandatory.
 
 ---
 

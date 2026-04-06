@@ -1,5 +1,8 @@
 # § 14. Performance Optimization Governance
 
+> **Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules) and § 25 (Performance Governance)
+> **BASELINE**: Before optimizing, read `AGENTS.md` § 0. Profile first, not guesswork. Preserve behavior. Quality gates mandatory.
+
 This section documents proven performance optimization patterns for the Nim project and its sibling applications. These are binding guardrails, not suggestions.
 
 ## Hook Consolidation Policy

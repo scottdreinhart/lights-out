@@ -1,5 +1,8 @@
 # Ionic React Integration Guide
 
+> **Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules).
+> **BASELINE**: Before using Ionic components, read `AGENTS.md` § 0. Preserve cross-platform behavior. Minimal component customization. Quality gates mandatory.
+
 ## Overview
 
 This project integrates **Ionic React** to provide a uniform cross-platform UI layer across:

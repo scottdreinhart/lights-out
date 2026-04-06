@@ -6,6 +6,248 @@
 
 ---
 
+## 0. Non-Negotiable AI Operating Rules
+
+**CRITICAL**: These rules govern all AI-assisted development in this repository. Violating them defeats the purpose of this codebase architecture.
+
+### 0.1 Governance Must Be Read First
+
+Before making ANY changes:
+
+- [ ] Read AGENTS.md (this file)
+- [ ] Read `.github/copilot-instructions.md`
+- [ ] Read scoped `.github/instructions/*.md` files relevant to your task
+- [ ] Inspect `package.json`, `tsconfig.json`, `eslint.config.js`, `vite.config.js`
+- [ ] Inspect folder structure and identify existing implementations
+
+**No exceptions. Governance reading is non-negotiable.**
+
+### 0.2 Reuse Before Creation
+
+Before creating ANY new code:
+
+- [ ] Search for existing components, hooks, utilities, types, services, stores, styles, test helpers
+- [ ] Search for existing patterns, abstractions, and scaffolding in the repo
+- [ ] Extend existing implementations rather than building parallel code
+- [ ] Do not create duplicate functionality, duplicate abstractions, or parallel implementations
+
+**Reuse first. Duplication is a code smell.**
+
+### 0.3 Minimal Change Principle
+
+- Make the **smallest correct change set** possible
+- Prefer **surgical edits** over rewrites
+- **Preserve existing** naming, structure, conventions, behavior, and file layout unless the task explicitly requires change
+- **Update existing files** instead of creating replacement files where possible
+- **Do not remove** existing comments, documentation, or guardrails unless explicitly instructed
+
+**Minimal edits. Big rewrites are a risk.**
+
+### 0.4 Architecture Is Sacred
+
+- **Respect all boundaries, layering, separation of concerns, and import rules** defined in AGENTS.md § 3–4
+- Do **not bypass architecture** for convenience
+- Do **not collapse or flatten** domain/app/ui separation or equivalent repo layering
+- Do **not introduce cross-layer shortcuts** or violate barrel/import conventions
+- Do **not move files or rename files** unless required
+
+**Architecture violations break the entire system. Do not do this.**
+
+### 0.5 No Fake Completion
+
+- **Do not claim work is complete** without running relevant checks
+- **Do not leave placeholder wiring**, fake handlers, mock flows, incomplete integration, TODO-based implementations, or stubbed logic unless explicitly requested
+- **Do not treat partial scaffolding as finished** implementation
+- **Do not mark tasks done** if required tests, validation, or verification have been skipped
+
+**Real completion is verified. Fake completion is a trap.**
+
+### 0.6 Quality Gates Are Mandatory
+
+After making changes, run ALL relevant checks defined by the repo:
+
+- `pnpm check` (lint + format:check + typecheck)
+- `pnpm test` (unit/integration/component/api tests)
+- `pnpm test:e2e` (end-to-end tests if applicable)
+- `pnpm validate` (full gate: check + build)
+- `pnpm test:names` (test naming validation)
+- Any app-specific or platform-specific checks (Electron, Capacitor, WASM)
+
+**If checks fail, fix the code. Do not weaken rules, disable lint, suppress errors, or comment out tests.**
+
+**Self-Correction Loop (Mandatory)**:
+When checks fail, you MUST:
+
+1. **Read the error output carefully** — Identify the root cause, not just the symptom
+2. **Fix the root cause** — Address the underlying issue in your code or configuration
+3. **Rerun the failing command** — Verify the fix actually resolved the problem
+4. **Repeat until green** — Keep fixing and retesting until all checks pass
+5. **Do not stop early** — Code that "looks right" is not done until checks pass
+
+**Forbidden Actions When Checks Fail**:
+
+- ❌ Do NOT disable lint rules to force a pass
+- ❌ Do NOT loosen type safety to force a pass
+- ❌ Do NOT delete or skip failing tests to force a pass
+- ❌ Do NOT use `// eslint-disable` suppression comments
+- ❌ Do NOT use `// @ts-ignore` type ignore comments
+- ❌ Do NOT comment out failing code sections
+- ❌ Do NOT claim work is complete if checks still fail
+- ❌ Do NOT bypass architecture checks or boundary validation
+
+The only acceptable outcome is green checks. If you cannot achieve green checks, state the blocker explicitly and ask for guidance.
+
+### 0.7 Preserve Governance
+
+- **Do not erase, replace, or dilute** repo-specific instructions
+- **Expand and harmonize governance surgically** rather than rewriting it
+- **Do not conflict** with existing AGENTS.md or instruction files
+- Governance updates are **only made when explicitly requested**
+
+**Governance is the foundation. Preserve it.**
+
+### 0.8 Favor Deterministic Validation Over Guesswork
+
+- **Prefer type safety, linting, schema validation, tests, and explicit verification** over model intuition
+- **Keep nullability, edge cases, error handling, and security concerns explicit**
+- **Avoid hidden side effects** and implicit behavior
+- **Use repo-provided tools** (typecheck, lint, tests, build) as the source of truth
+
+**The machine is right. Your intuition is wrong without proof.**
+
+### 0.9 Control Dependencies Strictly
+
+- **Do not add new dependencies** unless absolutely necessary
+- **Prefer existing installed packages** and repo tooling
+- **Preserve the existing package manager** (pnpm) and workspace conventions
+- **Justify briefly** in your output summary any new dependency proposed
+
+**Each dependency is a liability. Only add when blocking.**
+
+### 0.10 Match Repo Conventions Exactly
+
+- **Follow established file structure, naming conventions, folder layout exactly**
+- **Use existing export/import patterns, barrel conventions, path aliases**
+- **Match existing state patterns, data flow, and error handling**
+- **Reuse existing shared hooks, shared components, shared utilities** wherever applicable
+- **Match accessibility practices, keyboard navigation, focus behavior, modal/dialog patterns** if applicable
+
+**Consistency is not optional. Mismatch creates confusion and breaks assumptions.**
+
+---
+
+## 0.A Runtime Validation & Self-Correction Governance
+
+**CRITICAL**: After making ANY change, deterministic validation is non-negotiable. The self-correction loop replaces guesswork and intuition with mechanical precision.
+
+### Validation Command Priority
+
+1. **Prefer repo-defined umbrella scripts** (if they exist):
+   - `pnpm validate` — Full gate (check + build)
+   - `pnpm check` — Lint + format + typecheck
+   - `pnpm verify` — Alternative full gate
+   - `pnpm quality-gate` — Alternative full gate
+
+2. **If umbrella script exists, run it first** — Let it fail completely before drilling into individual components
+3. **If no umbrella, run individually**:
+   - `pnpm lint` (or `pnpm format:check` if format errors block lint)
+   - `pnpm typecheck`
+   - `pnpm test` (unit/integration/component/api)
+   - `pnpm build`
+   - `pnpm test:e2e` (if E2E tests exist)
+   - `pnpm test:names` (if test naming validation exists)
+   - App-specific checks: Electron, Capacitor, WASM, mobile, etc.
+
+4. **Determine correct commands by inspecting**:
+   - Root `package.json` scripts
+   - App-level `package.json` scripts (in `apps/[app]/package.json`)
+   - Workspace `pnpm-workspace.yaml` configuration
+   - Relevant scoped instruction files in `.github/instructions/`
+
+### The Self-Correction Loop (Mandatory)
+
+Every validation failure requires explicit self-correction:
+
+```
+┌────────────────────────────────────────────────────────────┐
+│ 1. INSPECT OUTPUT: Read error carefully                   │
+│    - Identify the ROOT CAUSE (not the symptom)            │
+│    - Note file path, line number, rule violated           │
+│    - Understand WHY the check failed                      │
+└────────────────────────────────────────────────────────────┘
+                          │
+                          ▼
+┌────────────────────────────────────────────────────────────┐
+│ 2. FIX ROOT CAUSE: Update code or configuration           │
+│    - Address the underlying issue                         │
+│    - Do NOT disable/suppress/ignore the rule              │
+│    - Do NOT decrease strictness (type, lint, etc.)        │
+│    - For build failures: understand dependency/config     │
+└────────────────────────────────────────────────────────────┘
+                          │
+                          ▼
+┌────────────────────────────────────────────────────────────┐
+│ 3. RERUN THE COMMAND: Verify the fix                      │
+│    - Run the exact same command that failed               │
+│    - Capture the output                                   │
+│    - Did it pass? → Go to Step 4                          │
+│    - Still failing? → Go to Step 1 (new analysis)         │
+└────────────────────────────────────────────────────────────┘
+                          │
+                          ▼
+┌────────────────────────────────────────────────────────────┐
+│ 4. REPEAT UNTIL GREEN: All checks must pass               │
+│    - ✅ If this check passes, move to the next check      │
+│    - ✅ If all checks pass, work is complete              │
+│    - ❌ If ANY check fails, restart at Step 1             │
+│    - Do NOT stop early (code that "looks right" is NOT   │
+│      done until the machine verifies it)                  │
+└────────────────────────────────────────────────────────────┘
+```
+
+### Forbidden Actions (Non-Negotiable)
+
+When validation fails, you MUST **NOT**:
+
+| Action                                | Why It's Forbidden                            | What To Do Instead                     |
+| ------------------------------------- | --------------------------------------------- | -------------------------------------- |
+| Disable lint rules                    | Suppresses real problems; breaks architecture | Fix the code to satisfy the rule       |
+| Use `// eslint-disable`               | Hides violations; breaks governance           | Address the underlying issue           |
+| Loosen TypeScript strictness          | Reduces type safety; introduces bugs          | Add proper types or refactor code      |
+| Comment out failing tests             | Loses test coverage; masks bugs               | Fix the code to pass the test          |
+| Delete failing tests                  | Same as commenting out                        | Make the test pass; never delete       |
+| Use `// @ts-ignore`                   | Bypasses type checking; hides errors          | Fix the type error properly            |
+| Skip validation checks                | Claims completion without proof               | Run ALL checks and fix failures        |
+| Bypass architecture checks            | Violates separation of concerns               | Respect boundaries; refactor if needed |
+| Weaken build output validation        | Hides problems; breaks reliability            | Fix the real issue in code/config      |
+| Claim "it looks right" without checks | Intuition != verification                     | Wait for machine verification          |
+
+### Mandatory Self-Correction Directive
+
+If you encounter a validation failure:
+
+1. **Do not stop** — Self-correct the code
+2. **Do not claim success** — Until all checks pass
+3. **Do not suppress errors** — Fix the root cause
+4. **Do not weaken rules** — Tighten your code instead
+5. **Do not skip steps** — Run the full loop
+6. **Do not work around issues** — Fix them directly
+7. **Do not assume** — Read the error, follow the loop
+8. **Do not give up** — Keep self-correcting until green
+
+### When a Real Blocker Is Found
+
+If you encounter a legitimate blocker — something that cannot be fixed without external input or reveals a fundamental issue — then:
+
+1. **State the blocker explicitly** — "I cannot proceed because [specific reason]"
+2. **Explain why it blocks** — What would need to change to unblock
+3. **Provide evidence** — Command output, stack trace, file listing, etc.
+4. **Ask for guidance** — Request clarification or permission from the human before proceeding
+
+**This is the ONLY acceptable condition for incomplete work.** All other validation failures require self-correction.
+
+---
+
 ## 1. Governance Precedence
 
 1. **AGENTS.md** (this file) — supreme authority; overrides all other governance files.
@@ -312,6 +554,7 @@ export * from './responsive'
 ## 5. Cross-platform Shell Governance (MANDATORY)
 
 **CRITICAL PROJECT INVARIANT:**
+
 - **Bash / POSIX shell is the mandatory default** for all development, build, and operational tasks.
 - **PowerShell is opt-in only** and must never be assumed as a default.
 - **This rule is non-negotiable** and applies at all layers of project governance.
@@ -376,12 +619,12 @@ Use an **Android-capable environment** (with Android SDK) only for:
 
 ### Shell Routing Summary
 
-| Environment                 | Tasks                                                                                                | DEFAULT? |
-| --------------------------- | ---------------------------------------------------------------------------------------------------- | -------- |
-| **Bash** (WSL / Linux / CI) | All general development, builds, quality checks, WASM, Electron dev, Linux packaging, Capacitor sync | ✅ YES   |
-| **PowerShell**              | `electron:build:win` only                                                                            | ❌ OPT-IN|
-| **macOS**                   | `electron:build:mac`, iOS Capacitor tasks                                                            | ❌ OPT-IN|
-| **Android SDK**             | Android Capacitor tasks                                                                              | ❌ OPT-IN|
+| Environment                 | Tasks                                                                                                | DEFAULT?  |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- | --------- |
+| **Bash** (WSL / Linux / CI) | All general development, builds, quality checks, WASM, Electron dev, Linux packaging, Capacitor sync | ✅ YES    |
+| **PowerShell**              | `electron:build:win` only                                                                            | ❌ OPT-IN |
+| **macOS**                   | `electron:build:mac`, iOS Capacitor tasks                                                            | ❌ OPT-IN |
+| **Android SDK**             | Android Capacitor tasks                                                                              | ❌ OPT-IN |
 
 ### Non-Negotiable Hard-Stop Rules
 
@@ -4772,26 +5015,28 @@ All applications enforce strict testing standards with mandatory validation, con
 
 ### 8-Test-Type Taxonomy (Mandatory)
 
-| Type       | Framework  | Purpose                                  | File Extension | Use Case                                    |
-| ---------- | ---------- | ---------------------------------------- | -------------- | ------------------------------------------- |
-| **unit**   | Vitest     | Pure function/utility testing            | `.test.ts`     | Domain logic, rules, calculations           |
-| **integration** | Vitest | Multi-unit behavior testing              | `.test.ts`     | Hooks with multiple dependencies, services  |
-| **component** | Vitest   | React component rendering & interaction  | `.test.tsx`    | Atoms, molecules, organisms in isolation    |
-| **api**    | Vitest     | HTTP client / server responses           | `.test.ts`     | API calls, response handling, mocking       |
-| **e2e**    | Playwright | Full user flows & critical paths         | `.spec.ts`     | Gameplay loops, navigation, results         |
-| **a11y**   | Playwright | Accessibility (WCAG 2.1 AA)             | `.spec.ts`     | Keyboard nav, focus, contrast, semantics    |
-| **visual** | Playwright | Visual regression & styling               | `.spec.ts`     | Cross-browser rendering, theme variations   |
-| **perf**   | Vitest     | Performance benchmarks & profiling       | `.test.ts`     | Build size, runtime speed, memory usage     |
+| Type            | Framework  | Purpose                                 | File Extension | Use Case                                   |
+| --------------- | ---------- | --------------------------------------- | -------------- | ------------------------------------------ |
+| **unit**        | Vitest     | Pure function/utility testing           | `.test.ts`     | Domain logic, rules, calculations          |
+| **integration** | Vitest     | Multi-unit behavior testing             | `.test.ts`     | Hooks with multiple dependencies, services |
+| **component**   | Vitest     | React component rendering & interaction | `.test.tsx`    | Atoms, molecules, organisms in isolation   |
+| **api**         | Vitest     | HTTP client / server responses          | `.test.ts`     | API calls, response handling, mocking      |
+| **e2e**         | Playwright | Full user flows & critical paths        | `.spec.ts`     | Gameplay loops, navigation, results        |
+| **a11y**        | Playwright | Accessibility (WCAG 2.1 AA)             | `.spec.ts`     | Keyboard nav, focus, contrast, semantics   |
+| **visual**      | Playwright | Visual regression & styling             | `.spec.ts`     | Cross-browser rendering, theme variations  |
+| **perf**        | Vitest     | Performance benchmarks & profiling      | `.test.ts`     | Build size, runtime speed, memory usage    |
 
 ### File Naming Convention (STRICTLY ENFORCED)
 
 **Pattern**: `<featureName>.<type>.{test|spec}.ts{x}`
 
 **Framework Mapping**:
+
 - `.test.ts(x)` = Vitest (unit, integration, component, api)
 - `.spec.ts` = Playwright (e2e, a11y, visual)
 
 **Examples** ✅:
+
 - `auth.unit.test.ts` — Auth utilities unit test
 - `button.component.test.tsx` — Button component test
 - `form.integration.test.ts` — Form + validation interaction
@@ -4802,6 +5047,7 @@ All applications enforce strict testing standards with mandatory validation, con
 - `board.perf.test.ts` — Board rendering performance
 
 **Invalid Names** ❌:
+
 - `test.ts` — No feature name
 - `auth.spec.ts` — Missing type
 - `unit.auth.test.ts` — Type NOT second
@@ -4815,6 +5061,7 @@ All applications enforce strict testing standards with mandatory validation, con
 **Integration**: Runs as part of `pnpm validate` (full pre-push gate)
 
 **Behavior**:
+
 - ✅ PASS: All test files match pattern and framework
 - ❌ FAIL: Blocks `pnpm validate`; must fix before commit
 
@@ -4830,26 +5077,28 @@ All applications enforce strict testing standards with mandatory validation, con
 
 ### Running Tests
 
-| Command                  | What It Does                                  | Framework | When to Run              |
-| ------------------------ | --------------------------------------------- | --------- | ------------------------ |
-| `pnpm test`              | Run all unit/integration/component/api tests  | Vitest    | Local development        |
-| `pnpm test:watch`        | Watch mode (re-run on file change)            | Vitest    | Development loop         |
-| `pnpm test:e2e`          | Run all e2e/a11y/visual tests                 | Playwright | Before pushing          |
-| `pnpm test:e2e:ui`       | E2E tests with interactive UI                 | Playwright | Debugging test failures  |
-| `pnpm test:names`        | Validate all test filenames                   | Node      | Pre-commit check         |
-| `pnpm test:coverage`     | Generate coverage report                      | Vitest    | Coverage analysis        |
-| `pnpm validate`          | Full gate: lint + typecheck + test:names + build | All | Pre-push validation      |
+| Command              | What It Does                                     | Framework  | When to Run             |
+| -------------------- | ------------------------------------------------ | ---------- | ----------------------- |
+| `pnpm test`          | Run all unit/integration/component/api tests     | Vitest     | Local development       |
+| `pnpm test:watch`    | Watch mode (re-run on file change)               | Vitest     | Development loop        |
+| `pnpm test:e2e`      | Run all e2e/a11y/visual tests                    | Playwright | Before pushing          |
+| `pnpm test:e2e:ui`   | E2E tests with interactive UI                    | Playwright | Debugging test failures |
+| `pnpm test:names`    | Validate all test filenames                      | Node       | Pre-commit check        |
+| `pnpm test:coverage` | Generate coverage report                         | Vitest     | Coverage analysis       |
+| `pnpm validate`      | Full gate: lint + typecheck + test:names + build | All        | Pre-push validation     |
 
 ### Quality Gate Integration
 
 **Tests are MANDATORY** for all 25 applications.
 
 Testing failures block:
+
 - ❌ Local commit (via pre-commit hook)
 - ❌ CI/CD pipeline
 - ❌ Merge to main branch
 
 **Gates**:
+
 1. `pnpm test:names` — Naming convention validation
 2. `pnpm test` — Unit/integration/component/api pass
 3. `pnpm test:e2e` — E2E/a11y/visual pass (optional for some apps, mandatory for shells)
@@ -4861,13 +5110,14 @@ Testing failures block:
 ✅ **Playwright Framework**: 1.59.1 (e2e, a11y, visual)  
 ✅ **Validator Script**: `validate-test-names.mjs` (enforces naming)  
 ✅ **All 25 Apps**: Standardized testing, consolidated instruction file  
-✅ **CI/CD Integration**: `pnpm validate` includes test:names gate  
+✅ **CI/CD Integration**: `pnpm validate` includes test:names gate
 
 ### Testing Standards Reference
 
 **Primary Authority**: This section (AGENTS.md § 28)
 
 **Secondary Authority** (subordinate to this section):
+
 - `.github/copilot-instructions.md` — AI tool expectations
 - `.github/instructions/17-testing.instructions.md` — Detailed implementation guide per app
 - `docs/TEST_NAMING_CONVENTION.md` — Full reference with examples
@@ -4884,6 +5134,173 @@ All AI code generation must:
 5. ❌ **Never create** — Generic test files (`test.ts`, `generic.spec.ts`) without feature names
 6. ❌ **Never mix** — Vitest and Playwright in same file
 7. ❌ **Never ignore** — Test name validation failures; suggest fixes explicitly
+
+---
+
+## § 29. Node.js Best Practices (Frontend Adaptation)
+
+**Authority**: AGENTS.md § 0 (Non-Negotiable Rules), § 29  
+**Primary Documentation**: `.github/instructions/19-nodejs-frontend-best-practices.instructions.md`  
+**Source**: https://github.com/goldbergyoni/nodebestpractices (102+ items, adapted for React/TypeScript)
+
+### Scope & Relevance
+
+This section synthesizes Node.js best practices for frontend React/TypeScript/Vite applications. While Node.js best practices originated from backend server development, core principles apply directly:
+
+- **Async/await discipline** — Error handling, promise safety, rejection patterns
+- **Code style & naming** — Clear intent, TypeScript strictness, convention over configuration
+- **Testing best practices** — Test structure (AAA), meaningful names, coverage targets
+- **Error handling** — Classification, recovery paths, logging with context
+- **Configuration** — Environment-driven config, secrets management, validation at startup
+- **Code quality gates** — Pre-commit automation, CI/CD enforcement, quality metrics
+
+### What's Covered
+
+| Topic                        | Where           | Priority  |
+| ---------------------------- | --------------- | --------- |
+| **Async/Await Discipline**   | Instruction § 1 | HIGH      |
+| **Promise Safety**           | Instruction § 2 | HIGH      |
+| **Naming Conventions**       | Instruction § 3 | HIGH      |
+| **Code Style Standards**     | Instruction § 4 | MEDIUM    |
+| **Testing Best Practices**   | Instruction § 5 | HIGH      |
+| **Configuration Discipline** | Instruction § 6 | MEDIUM    |
+| **Error Handling Summary**   | Instruction § 7 | HIGH      |
+| **Quality Gates Review**     | Instruction § 8 | MANDATORY |
+
+### Key Rules
+
+1. **Always handle promise rejections** — No fire-and-forget async operations
+2. **Classify errors explicitly** — User error vs recoverable vs fatal
+3. **Use async/await over promise chains** — Clearer, easier to debug
+4. **Name functions by intent** — Async verbs (load, save, init); booleans (is, has); handlers (on, handle)
+5. **Strict TypeScript** — No implicit any, no loose nullability
+6. **Test naming convention** — `<feature>.<type>.test.ts(x)` (enforced by `pnpm test:names`)
+7. **Environment-driven config** — Never hardcode sensitive values or environment-specific settings
+8. **Quality gates mandatory** — `pnpm validate` must pass before commit
+
+### Quick Checklist
+
+After every code change:
+
+- [ ] Async operations wrapped in try/catch
+- [ ] Promise rejections handled explicitly
+- [ ] Errors classified (user/recoverable/fatal)
+- [ ] Variable names clear and meaningful
+- [ ] Test files follow naming convention
+- [ ] `pnpm fix` passes (auto-fixes lint + format)
+- [ ] `pnpm check` passes (lint + format:check + typecheck)
+- [ ] `pnpm test` passes (all tests pass)
+- [ ] `pnpm validate` passes (full gate: check + build)
+
+### Read First
+
+**Start here**: `.github/instructions/19-nodejs-frontend-best-practices.instructions.md`  
+**Then read**: `AGENTS.md` § 0 (Non-Negotiable Rules)  
+**Reference**: `AGENTS.md` § 26 (Error Handling), § 28 (Testing)
+
+### Governance Precedence
+
+1. `AGENTS.md` § 0 — Supreme authority (non-negotiable rules)
+2. `AGENTS.md` § 29 — This section (Node.js best practices summary)
+3. `.github/instructions/19-nodejs-frontend-best-practices.instructions.md` — Detailed guidance
+4. Related sections: § 26 (error handling), § 28 (testing), § 12 (responsive design)
+
+---
+
+---
+
+## § 30. CSS Performance & Rendering Optimization (MANDATORY)
+
+**Authority**: AGENTS.md § 0 (Non-Negotiable Rules), Primary source: `.github/instructions/20-css-performance-rendering-optimization.instructions.md`
+
+### CRITICAL RULE: ALL CSS MUST RESPECT THE CRITICAL RENDERING PATH
+
+The browser executes these steps in order. EVERY step must be optimized:
+
+1. **Download HTML** → 2. **Parse HTML + Discover Assets** → 3. **Download & Parse Critical CSS** ⚠️ **RENDER-BLOCKING** → 4. **Download & Execute Critical JS** ⚠️ **PARSER-BLOCKING** → 5. **Build Render Tree** → 6. **Layout** → 7. **Paint** → 8. **Composite**
+
+CSS construction is **ALL-OR-NOTHING** (not incremental). Browser WAITS until entire CSSOM is parsed before rendering anything.
+
+### 13 SUPER PROMPTS ENFORCEMENT
+
+All CSS optimization derives from 13 maximum-density super prompts. See `.github/instructions/20-css-performance-rendering-optimization.instructions.md` for complete enforcement rules.
+
+**Quick Reference**:
+
+| Super Prompt | Rule | Target |
+|---|---|---|
+| 1. CRP | HTML → CSS (blocked) → JS → Paint | Optimize browser sequence |
+| 2. Render-Blocking CSS | CSS blocks rendering by default | Every KB costs 1-3ms parse |
+| 3. Critical CSS Strategy | Inline <14KB above-fold; defer non-critical | FCP timing |
+| 4. CSS Size Optimization | Minify + remove unused | <50KB critical path |
+| 5. Non-Blocking CSS | Load non-critical AFTER FCP | media="print" pattern |
+| 6. HEAD Optimization | Only critical resources | Minimal blocking |
+| 7. Layout/Reflow/Paint | transform/opacity only for animations | No layout thrashing |
+| 8. CLS Prevention | Reserve space for images | CLS <0.1 |
+| 9. Font Performance | font-display: swap; preload LCP font | Text renders immediately |
+| 10. CSS Architecture | BEM naming, split by feature | Clean, reusable CSS |
+| 11. Resource Prioritization | LCP ≤2.5s; fetchpriority="high" | User perception |
+| 12. Validation + Tooling | Lighthouse ≥90, DevTools, PageSpeed | No guessing |
+| 13. Core Web Vitals | FCP <1.8s, LCP <2.5s, CLS <0.1 | 75th percentile field data |
+
+### MANDATORY THRESHOLDS (Hard Limits)
+
+| Metric | Good | Fail |
+|---|---|---|
+| **Lighthouse** | ≥90 | <80 |
+| **FCP** | <1.8s | >3s |
+| **LCP** | <2.5s | >4s |
+| **CLS** | <0.1 | >0.25 |
+| **CSS Critical Path** | <50KB | >100KB |
+| **DevTools Coverage** | >80% used | <70% |
+
+### SELF-CORRECTION LOOP (MANDATORY)
+
+When CSS performance issue identified:
+
+1. **Measure**: Run Lighthouse, DevTools, PageSpeed
+2. **Identify**: Which super prompt applies?
+3. **Analyze**: Which metric is failing? (FCP/LCP/CLS/blocking resources)
+4. **Fix**: Apply super prompt solution
+5. **Validate**: Rerun tools until green
+6. **Document**: What was the issue + fix
+
+### ENFORCEMENT CHECKLIST (Every Commit)
+
+- [ ] Lighthouse score ≥80 (target ≥90)
+- [ ] No render-blocking CSS >critical path
+- [ ] No parser-blocking JS in `<head>`
+- [ ] DevTools Coverage: CSS usage >80%
+- [ ] LCP ≤2.5s (field data if available)
+- [ ] CLS ≤0.1 (no unexpected shifts)
+- [ ] Core Web Vitals passing (FCP, LCP, CLS)
+- [ ] Waterfall: Critical resources downloaded first
+- [ ] No unused CSS shipped
+- [ ] All validation tools passing
+
+### INTEGRATION POINTS
+
+- **AGENTS.md § 0**: Non-negotiable rules (quality gates mandatory, self-correction loop)
+- **AGENTS.md § 0.A**: Runtime validation & self-correction (applies to CSS changes)
+- **`.github/copilot-instructions.md`**: Added enforcement directive + link to § 30
+- **`CLAUDE.md`**: Added CSS performance quality gate requirement
+- **`.github/instructions/02-frontend.instructions.md`**: Added React CSS optimization rules
+- **`.github/instructions/01-build.instructions.md`**: Added Lighthouse audit to `pnpm validate`
+- **`.github/instructions/17-testing.instructions.md`**: Added performance test requirements
+- **`.github/instructions/20-css-performance-rendering-optimization.instructions.md`**: Complete authoritative reference (13 super prompts)
+
+### AUTHORITATIVE SOURCES (All Embedded with URLs)
+
+- ✅ MDN Critical Rendering Path
+- ✅ web.dev/CRP, CSS Vitals, LCP
+- ✅ Chrome Lighthouse Audit Docs
+- ✅ SpeedCurve Web Performance Guide
+- ✅ web.dev/Field Measurement Best Practices
+- ✅ web.dev/Resource Loading
+- ✅ Google Web Vitals Library
+- ✅ PageSpeed Insights API
+
+**See § 30 complete reference**: `.github/instructions/20-css-performance-rendering-optimization.instructions.md`
 
 ---
 

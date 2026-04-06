@@ -1,7 +1,8 @@
 # Responsive UI/UX Instructions
 
 > **Scope**: Responsive design, viewport adaptation, breakpoints, device-aware hooks.
-> Subordinate to `AGENTS.md` §3 (architecture) — domain logic is framework-agnostic.
+> Subordinate to `AGENTS.md` §0 (Non-Negotiable Rules) and §3 (architecture).
+> **BASELINE**: Before implementing responsive UI, read `AGENTS.md` § 0. Use useResponsiveState hook. Preserve 5-tier architecture. Quality gates mandatory.
 
 ---
 

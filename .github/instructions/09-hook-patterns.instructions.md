@@ -1,6 +1,8 @@
 # Hook Patterns & Architecture Governance
 
-**Authority**: This document is subordinate to `AGENTS.md`. Defines React hook patterns and best practices across all projects.
+**Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules). Defines React hook patterns and best practices across all projects.
+
+**BASELINE**: Before designing hooks, read `AGENTS.md` § 0. Reuse before creating. Minimal edits. No duplication across apps. Quality gates mandatory.
 
 ---
 

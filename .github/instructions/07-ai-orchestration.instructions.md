@@ -1,7 +1,8 @@
 # Architecture Governance: 07-Scale-Aware AI Orchestration
 
 > **Scope**: Repository-wide pattern for all app projects (30+ apps)
-> **Authority**: Complements AGENTS.md and 01-build.instructions.md
+> **Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules); complements AGENTS.md and 01-build.instructions.md
+> **BASELINE**: Before orchestrating AI computation, read `AGENTS.md` § 0. Preserve three-tier decision tree. No lossy refactors. Quality gates mandatory.
 > **Stability**: Mature pattern (implemented in tictactoe, ready for all projects)
 
 ---

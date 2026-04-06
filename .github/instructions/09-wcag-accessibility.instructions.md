@@ -1,6 +1,7 @@
 # WCAG 2.1 AA Accessibility Governance
 
-> **Authority**: Subordinate to AGENTS.md § 23
+> **Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules) and § 23 (Accessibility Governance)
+> **BASELINE**: Before making accessibility changes, read `AGENTS.md` § 0. Preserve existing behavior and semantics. Minimal edits only.
 > **Scope**: Keyboard navigation, screen readers, semantic HTML, contrast
 
 ---
@@ -8,11 +9,13 @@
 ## 1. ESLint Enforcement
 
 ### Enabled Rules
+
 - `jsx-a11y/*` — 30+ accessibility rules auto-checked
 - `react/no-danger` — Prevents dangerouslySetInnerHTML
 - `react/no-unescaped-entities` — Prevents HTML entity issues
 
 ### What's Enforced
+
 - ✅ All buttons must be keyboard accessible (Tab)
 - ✅ All interactive elements have focus indicators
 - ✅ Links have descriptive text (not "click here")
@@ -22,6 +25,7 @@
 - ✅ No positive tabIndex (natural tab order)
 
 ### Run checks:
+
 ```bash
 pnpm lint  # ESLint a11y rules
 ```
@@ -31,21 +35,25 @@ pnpm lint  # ESLint a11y rules
 ## 2. Keyboard Navigation (Manual Testing)
 
 ### Required: Tab Order
+
 - All interactive elements reachable via Tab
 - Logical tab order (usually DOM order, test with Tab key)
 - Focus indicator visible (CSS `:focus-visible` styled)
 
 ### Required: Escape Key
+
 - Modals close on Escape
 - Menus close on Escape
 - Focus returns to trigger element
 
 ### Required: Arrow Keys
+
 - Menu navigation: up/down/left/right arrows
 - List navigation: up/down arrows
 - Not required for single inputs
 
 ### Implementation:
+
 ```tsx
 <button
   onKeyDown={(e) => {
@@ -63,6 +71,7 @@ pnpm lint  # ESLint a11y rules
 ## 3. Screen Readers (ARIA)
 
 ### Required: aria-label (Icon Buttons Only)
+
 ```tsx
 // ❌ INACCESSIBLE
 <button>☰</button>
@@ -72,6 +81,7 @@ pnpm lint  # ESLint a11y rules
 ```
 
 ### Required: aria-labelledby (Complex Elements)
+
 ```tsx
 <div id="instructions">How to play</div>
 <div aria-labelledby="instructions">
@@ -80,6 +90,7 @@ pnpm lint  # ESLint a11y rules
 ```
 
 ### Required: role (When Semantic HTML Insufficient)
+
 ```tsx
 // ❌ BAD: generic div for button
 <div onClick={...}>Submit</div>
@@ -89,10 +100,11 @@ pnpm lint  # ESLint a11y rules
 ```
 
 ### Required: aria-live (Dynamic Content)
+
 ```tsx
 // Status updates on game board
 <div aria-live="polite" aria-atomic="true">
-  {gameStatus}  {/* Screen reader announces changes */}
+  {gameStatus} {/* Screen reader announces changes */}
 </div>
 ```
 
@@ -101,10 +113,12 @@ pnpm lint  # ESLint a11y rules
 ## 4. Contrast Compliance (WCAG AA = 4.5:1)
 
 ### ESLint Cannot Detect Contrast
+
 - Manual review or external tool required
 - Use: WebAIM Contrast Checker, aXe DevTools, WAVE
 
 ### All Color Pairs Must Pass:
+
 - Text on background: 4.5:1 minimum (AA), 7:1 (AAA)
 - Large text (18pt+): 3:1 minimum (AA), 4.5:1 (AAA)
 - UI components (borders, edges): 3:1 minimum
@@ -114,6 +128,7 @@ pnpm lint  # ESLint a11y rules
 ## 5. Semantic HTML
 
 ### Required: Proper Heading Hierarchy
+
 ```tsx
 // ✅ GOOD
 <h1>Main Title</h1>
@@ -126,6 +141,7 @@ pnpm lint  # ESLint a11y rules
 ```
 
 ### Required: Form Labels
+
 ```tsx
 // ✅ GOOD
 <label htmlFor="username">Username</label>
@@ -136,6 +152,7 @@ pnpm lint  # ESLint a11y rules
 ```
 
 ### Required: Alt Text on Images
+
 ```tsx
 // ✅ GOOD
 <img src="board.png" alt="3x3 game board with pieces" />
@@ -149,15 +166,27 @@ pnpm lint  # ESLint a11y rules
 ## 6. Color-Alone Semantics (Forbidden)
 
 ### ❌ INACCESSIBLE
+
 ```css
-.success { color: green; }
-.error { color: red; }
+.success {
+  color: green;
+}
+.error {
+  color: red;
+}
 ```
 
 ### ✅ ACCESSIBLE
+
 ```css
-.success::before { content: '✓'; color: green; }
-.error::before { content: '✗'; color: red; }
+.success::before {
+  content: '✓';
+  color: green;
+}
+.error::before {
+  content: '✗';
+  color: red;
+}
 ```
 
 ---
@@ -165,6 +194,7 @@ pnpm lint  # ESLint a11y rules
 ## 7. Focus Indicators
 
 ### All :focus Elements Must be Visible
+
 ```css
 button:focus-visible {
   outline: 3px solid var(--color-focus);

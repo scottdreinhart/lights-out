@@ -1,6 +1,8 @@
 # Mobile Testing Governance — Capacitor Deployment Readiness
 
-**Authority**: This file governs all mobile testing and validation workflows for Capacitor (iOS + Android) deployment.
+**Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules) for all mobile testing decisions.
+
+**BASELINE**: Before mobile testing, read `AGENTS.md` § 0. No fake completion. Preserve safe-area behavior. Quality gates mandatory.
 
 **Scope**: Applies to all Nim project code targeting iOS/Android via Capacitor WebView bridge.
 

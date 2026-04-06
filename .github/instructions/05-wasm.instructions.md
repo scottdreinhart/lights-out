@@ -1,7 +1,8 @@
 # WASM Instructions — AssemblyScript / WebAssembly
 
 > **Scope**: AssemblyScript source, WASM build pipeline, runtime loader, and AI worker integration.
-> Subordinate to `AGENTS.md` §6 (language governance) and `01-build.instructions.md` for general build rules.
+> Subordinate to `AGENTS.md` §0 (Non-Negotiable Rules), §6 (language governance), and `01-build.instructions.md`.
+> **BASELINE**: Before building WASM, read `AGENTS.md` § 0. No parallel build paths. Preserve fallback logic. Bash mandatory.
 
 ---
 

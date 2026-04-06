@@ -1,6 +1,7 @@
 # Error Handling & Recovery Patterns
 
-> **Authority**: AGENTS.md § 26
+> **Authority**: `AGENTS.md` § 0 (Non-Negotiable Rules) and § 26 (Error Handling Governance)
+> **BASELINE**: Before removing error handling, read `AGENTS.md` § 0. No fake completion. Preserve fallback logic. Quality gates mandatory.
 > **Scope**: Error boundaries, recovery UI, error classification
 
 ---
@@ -13,7 +14,7 @@ Import and wrap your application with ErrorBoundary to catch rendering errors:
 import { ErrorBoundary } from '@/ui/organisms'
 import { crashLogger } from '@/app'
 
-<ErrorBoundary
+;<ErrorBoundary
   onError={(error, info) => {
     crashLogger.error('React Error Boundary', error.message, {
       stack: error.stack,
@@ -27,12 +28,14 @@ import { crashLogger } from '@/app'
 ```
 
 ### What It Catches
+
 - ✅ Rendering errors (any component in tree)
 - ✅ Lifecycle method errors
 - ❌ Event handler errors (use try/catch)
 - ❌ Async errors (use async try/catch)
 
 ### What It Doesn't Catch
+
 ```typescript
 // ❌ Not caught by error boundary — handle in event handler
 const handler = async () => {
@@ -50,6 +53,7 @@ const handler = async () => {
 ## 2. Error Classification
 
 ### User Error (Form Validation)
+
 ```typescript
 // User entered invalid data
 const error = validateForm(formData)
@@ -60,6 +64,7 @@ if (error) {
 ```
 
 ### Recoverable System Error (Network)
+
 ```typescript
 // Network timeout, server 5xx
 try {
@@ -74,6 +79,7 @@ try {
 ```
 
 ### Fatal Error (Data Corruption)
+
 ```typescript
 // Invalid state, security violation
 if (!validateGameState(state)) {
@@ -87,19 +93,20 @@ if (!validateGameState(state)) {
 
 ## 3. Error Recovery Actions
 
-| Type | Recovery | Message |
-|------|----------|---------|
-| Form validation | Fix inputs | "Please fill all fields" |
-| Network timeout | Retry | "Connection lost. Retry?" |
-| Server error (500) | Retry later | "Server error. Try later." |
-| Data corruption | Restart app | "Data corrupted. Starting over." |
-| Out of memory | Clear cache | "Memory full. Clearing cache." |
+| Type               | Recovery    | Message                          |
+| ------------------ | ----------- | -------------------------------- |
+| Form validation    | Fix inputs  | "Please fill all fields"         |
+| Network timeout    | Retry       | "Connection lost. Retry?"        |
+| Server error (500) | Retry later | "Server error. Try later."       |
+| Data corruption    | Restart app | "Data corrupted. Starting over." |
+| Out of memory      | Clear cache | "Memory full. Clearing cache."   |
 
 ---
 
 ## 4. Best Practices
 
 ### Always Log Errors
+
 ```typescript
 // Use crashLogger (already integrated)
 import { crashLogger } from '@/app'
@@ -115,9 +122,11 @@ try {
 ```
 
 ### Provide User Feedback
+
 Never silently fail. Always tell user what happened and next step.
 
 ### Graceful Degradation
+
 If feature fails, app should still be usable with reduced functionality.
 
 ---

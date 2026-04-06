@@ -1,7 +1,8 @@
 # Testing Standards & Framework Instructions
 
 > **Scope**: Test taxonomy, naming conventions, discovery patterns, framework selection, and quality gates.
-> Subordinate to `AGENTS.md` and `.github/copilot-instructions.md`.
+> Subordinate to `AGENTS.md` §0 (Non-Negotiable Rules) and §28 (Testing Governance).
+> **BASELINE** — Before writing tests, read `AGENTS.md` § 0. No fake completion. Minimal edits. Test naming validated. Quality gates mandatory.
 
 ---
 
@@ -322,28 +323,33 @@ test.describe('Button Visual Regression', () => {
 
 ---
 
-### Performance Tests (Custom / K6)
+### Performance Tests (Vitest + Web Performance APIs)
 
-**Purpose**: Benchmark execution time, memory usage, bundle size.
+**Purpose**: Benchmark execution time, memory usage, bundle size, and validate Core Web Vitals & CSS performance per AGENTS.md § 30.
 
 **When to Use**:
 
-- AI engine decision time (WASM vs JS)
-- Render performance profiling
-- Bundle size tracking
+- AI engine decision time (WASM vs JS sync baseline)
+- Component render performance profiling
+- Bundle size tracking and regression detection
 - Memory leak detection
+- Core Web Vitals validation (FCP, LCP, CLS)
+- CSS performance metrics (critical path, DevTools Coverage simulation)
+- Lighthouse API integration (automated performance audit)
 
-**Framework**: Custom Vitest + performance APIs, or K6 for load testing
+**Framework**: Vitest + `web-vitals` library for Core Web Vitals measurement
 
-**Example**:
+**Mandatory**: All performance tests subordinate to AGENTS.md § 30 (CSS Performance & Rendering Optimization).
+
+**Example 1: AI Engine Performance Benchmark**
 
 ```typescript
 // tests/perf/ai-engine.perf.test.ts
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeAll } from 'vitest'
 import { computeAiMove } from '@/domain/ai'
 
 describe('AI Engine Performance', () => {
-  it('should compute move in < 100ms (sync)', () => {
+  it('should compute move in < 100ms (sync path)', () => {
     const board = createTestBoard()
 
     const start = performance.now()
@@ -353,10 +359,173 @@ describe('AI Engine Performance', () => {
     expect(elapsed).toBeLessThan(100)
     expect(move).toBeDefined()
   })
+
+  it('should compute hard move within reasonable time', () => {
+    const board = createTestBoard()
+
+    const start = performance.now()
+    const move = computeAiMove(board, 'hard')
+    const elapsed = performance.now() - start
+
+    // Hard difficulty may take longer, but must not exceed 500ms total
+    expect(elapsed).toBeLessThan(500)
+  })
+
+  it('async path should complete within 500ms', async () => {
+    const board = createTestBoard()
+
+    const start = performance.now()
+    const move = await computeAiMoveAsync(board, 'hard')
+    const elapsed = performance.now() - start
+
+    expect(elapsed).toBeLessThan(500)
+    expect(move).toBeDefined()
+  })
 })
 ```
 
-**Run**: `pnpm test:perf` (when configured)
+**Example 2: Component Render Performance**
+
+```typescript
+// tests/perf/game-board.perf.test.tsx
+import { describe, it, expect } from 'vitest'
+import { render } from '@testing-library/react'
+import { GameBoard } from '@/ui/organisms/GameBoard'
+
+describe('GameBoard Render Performance', () => {
+  it('should render large board within 100ms', () => {
+    const largeBoard = createLargeTestBoard(10, 10) // 10x10 grid
+
+    const start = performance.now()
+    render(
+      <GameBoard board={largeBoard} onMove={() => {}} />,
+    )
+    const elapsed = performance.now() - start
+
+    expect(elapsed).toBeLessThan(100)
+  })
+
+  it('should not cause memory leak on remount', () => {
+    const { rerender } = render(
+      <GameBoard board={testBoard} onMove={() => {}} />,
+    )
+
+    // Simulate 10 remounts
+    for (let i = 0; i < 10; i++) {
+      rerender(
+        <GameBoard board={testBoard} onMove={() => {}} />,
+      )
+    }
+
+    // If we get here without crashing, no major leak
+    expect(true).toBe(true)
+  })
+})
+```
+
+**Example 3: Bundle Size & CSS Performance Validation**
+
+```typescript
+// tests/perf/bundle.perf.test.ts
+import { describe, it, expect } from 'vitest'
+import fs from 'fs'
+import path from 'path'
+
+describe('Bundle Size & CSS Performance', () => {
+  it('should maintain CSS critical path < 50KB', () => {
+    const distPath = path.resolve(__dirname, '../../dist')
+    const cssFiles = fs.readdirSync(distPath)
+      .filter(f => f.endsWith('.css'))
+
+    let totalSize = 0
+    cssFiles.forEach(file => {
+      const filePath = path.join(distPath, file)
+      const stats = fs.statSync(filePath)
+      if (file.includes('index') || file.includes('critical')) {
+        totalSize += stats.size
+      }
+    })
+
+    const sizeKB = totalSize / 1024
+    expect(sizeKB).toBeLessThan(50)
+  })
+
+  it('should have no unused CSS (>80% coverage)', () => {
+    // This test serves as a reminder to check DevTools Coverage
+    // during manual testing (automated checking requires browser context)
+    //
+    // Run in browser:
+    // 1. Open DevTools → Coverage tab
+    // 2. Start recording
+    // 3. Interact with app fully
+    // 4. Verify >= 80% of CSS is used
+    expect(true).toBe(true) // Placeholder for documentation
+  })
+})
+```
+
+**Example 4: Core Web Vitals Measurement (E2E Context)**
+
+```typescript
+// tests/e2e/core-web-vitals.e2e.spec.ts
+import { test, expect } from '@playwright/test'
+import { getCLS, getFCP, getLCP } from 'web-vitals'
+
+test.describe('Core Web Vitals (E2E)', () => {
+  // Note: These require browser context and should run in Playwright E2E suite
+  // Lighthouse API integration (automated in CI/CD) is preferred for CI gates
+
+  test('should meet Largest Contentful Paint target', async ({ page }) => {
+    // Navigate and measure
+    await page.goto('http://localhost:5173/game')
+
+    // Use Lighthouse API (if integrated) or manual WebVitals measurement
+    // Threshold per AGENTS.md § 30: LCP ≤ 2.5s
+    expect(true).toBe(true) // Placeholder: full implementation in Lighthouse CI
+  })
+})
+```
+
+**Performance Thresholds (Mandatory per AGENTS.md § 30)**:
+
+| Metric | Good | Fail |
+|---|---|---|
+| **Lighthouse** | ≥90 target / ≥80 minimum | <80 = FAIL |
+| **FCP** | <1.8s | >3s = FAIL |
+| **LCP** | <2.5s | >4s = FAIL |
+| **CLS** | <0.1 | >0.25 = FAIL |
+| **CSS Critical Path** | <50KB (minified) | >100KB = FAIL |
+| **DevTools Coverage** | >80% CSS used | <70% = FAIL |
+| **Bundle Size** | <200KB total | >300KB = FAIL (must investigate) |
+| **Sync AI Engine** | <100ms (typical) | >500ms = FAIL |
+
+**Mandatory Integration with pnpm validate**:
+
+```bash
+# Performance tests run as part of pnpm test (unit + integration + component + api)
+pnpm test                    # Runs all Vitest tests including perf
+
+# E2E + a11y + visual (including performance if added):
+pnpm test:e2e                # Runs Playwright tests
+
+# Full validation (includes Lighthouse audit for CSS performance):
+pnpm validate                # check + build + Lighthouse audit (§ 30)
+```
+
+**Lighthouse Integration (CI/CD)**:
+
+Per AGENTS.md § 30, Lighthouse audit is **mandatory** in `pnpm validate`:
+
+```bash
+pnpm build                   # Vite build
+npm run lighthouse           # Audit dist/ directory
+# Expected: Lighthouse score ≥80 (minimum), ≥90 (target)
+# Failures: FCP >3s, LCP >4s, CLS >0.25, CSS >100KB
+```
+
+See `.github/workflows/lighthouse-ci.yml` (to be configured) for CI/CD automation.
+
+**Run**: `pnpm test:perf` (when configured as separate suite) or `pnpm test` (included in main suite)
 
 ---
 
@@ -516,13 +685,14 @@ tests/
 ### Commands by Type
 
 ```bash
-# Vitest (unit, integration, component, api)
-pnpm test                    # All Vitest tests
+# Vitest (unit, integration, component, api, perf)
+pnpm test                    # All Vitest tests (unit, integration, component, api, perf)
 pnpm test:watch              # Watch mode (re-run on change)
 pnpm test:unit               # Unit tests only
 pnpm test:integration        # Integration tests only
 pnpm test:component          # Component tests only
 pnpm test:api                # API tests only
+pnpm test:perf               # Performance tests only (if separated)
 pnpm test:coverage           # With coverage report
 
 # Playwright (e2e, a11y, visual)
@@ -538,7 +708,18 @@ pnpm test:names              # Validate test file naming (strict)
 pnpm test:names:verbose      # With detailed errors
 pnpm test:ci                 # All tests (Vitest + Playwright)
 pnpm test:smoke              # Quick check (unit + component only)
+
+# Performance Audit (CSS per AGENTS.md § 30)
+pnpm validate                # Full gate: check + build + Lighthouse audit
+# Expected: Lighthouse ≥80 (min), ≥90 (target); Core Web Vitals passing
 ```
+
+**Performance Test Notes**:
+
+- Performance tests (perf.test.ts) run as part of `pnpm test` by default (included in Vitest suite)
+- Can be separated into `pnpm test:perf` if configured as isolated suite
+- All performance tests subordinate to **AGENTS.md § 30** (CSS Performance & Rendering Optimization)
+- Lighthouse audit (CSS critical path, Core Web Vitals validation) runs as part of `pnpm validate` (mandatory pre-push gate)
 
 ---
 

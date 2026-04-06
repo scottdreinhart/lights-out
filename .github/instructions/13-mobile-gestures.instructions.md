@@ -1,6 +1,7 @@
 # Mobile Gesture Patterns
 
-> **Authority**: AGENTS.md § 27
+> **Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules) and § 27 (Mobile Gesture Governance)
+> **BASELINE**: Before implementing mobile gestures, read `AGENTS.md` § 0. Preserve haptic feedback. Platform-aware behavior required. Quality gates mandatory.
 > **Scope**: Swipe, long-press, haptic feedback
 
 ---

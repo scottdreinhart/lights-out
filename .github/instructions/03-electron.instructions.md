@@ -1,7 +1,8 @@
 # Electron Instructions
 
 > **Scope**: Electron desktop app development, builds, preview, and platform-specific packaging.
-> Subordinate to `AGENTS.md` §5 (shell routing).
+> Subordinate to `AGENTS.md` §0 (Non-Negotiable Rules) and §5 (shell routing).
+> **BASELINE**: Before developing Electron apps, read `AGENTS.md` § 0. Preserve cross-platform behavior. Shell routing mandatory. Quality gates required.
 
 ---
 

@@ -1,6 +1,7 @@
 # Security Governance
 
-> **Authority**: AGENTS.md § 6
+> **Authority**: `AGENTS.md` § 0 (Non-Negotiable Rules) and § 24 (Security Governance)
+> **BASELINE**: Before touching security code, read `AGENTS.md` § 0. No shortcuts. Minimal edits. Quality gates mandatory.
 > **Scope**: XSS prevention, input sanitization, secrets management, CSP
 
 ---
@@ -10,6 +11,7 @@
 ESLint security rules (`eslint-plugin-security`) automatically catch many vulnerabilities.
 
 ### Rule: react/no-danger (Error)
+
 ```tsx
 // ❌ FORBIDDEN: dangerouslySetInnerHTML
 <div dangerouslySetInnerHTML={{ __html: userContent }} />
@@ -19,15 +21,17 @@ ESLint security rules (`eslint-plugin-security`) automatically catch many vulner
 ```
 
 ### Rule: security/detect-unsafe-regex (Error)
+
 ```typescript
 // ❌ FORBIDDEN: Regex DoS vulnerability
-const regex = /(a+)+$/  // Exponential backtracking
+const regex = /(a+)+$/ // Exponential backtracking
 
 // ✅ SAFE: No exponential patterns
 const regex = /^[a-z]+$/
 ```
 
 ### Rule: security/detect-unvalidated-redirect (Error)
+
 ```tsx
 // ❌ FORBIDDEN: User input controls redirect
 window.location = userProvidedUrl
@@ -44,6 +48,7 @@ if (ALLOWED_URLS.includes(url)) {
 ## 2. Input Sanitization
 
 ### Rule: Always Escape User Input (React Default)
+
 ```tsx
 // ✅ SAFE: React escapes all string interpolation
 const username = props.username
@@ -57,9 +62,10 @@ element.innerHTML = userInput  // XSS vulnerability!
 ```
 
 ### Rule: Validate URLs
+
 ```tsx
 // ❌ UNSAFE: User URL without validation
-<a href={userProvidedUrl}>Click</a>
+;<a href={userProvidedUrl}>Click</a>
 
 // ✅ SAFE: Validate protocol
 const isSafeUrl = (url: string) => {
@@ -72,11 +78,12 @@ const isSafeUrl = (url: string) => {
 }
 
 if (isSafeUrl(url)) {
-  <a href={url}>Click</a>
+  ;<a href={url}>Click</a>
 }
 ```
 
 ### Rule: JSON.parse() — Validate First
+
 ```typescript
 // ❌ RISKY: Parsing untrusted JSON
 const data = JSON.parse(userInput)
@@ -87,7 +94,7 @@ const schema = z.object({
   name: z.string(),
   score: z.number(),
 })
-const data = schema.parse(JSON.parse(userInput))  // Throws if invalid
+const data = schema.parse(JSON.parse(userInput)) // Throws if invalid
 ```
 
 ---
@@ -95,6 +102,7 @@ const data = schema.parse(JSON.parse(userInput))  // Throws if invalid
 ## 3. Secrets Management
 
 ### Rule: No API Keys in Source Code
+
 ```typescript
 // ❌ FORBIDDEN
 const API_KEY = 'sk-1234567890abcdef'
@@ -104,6 +112,7 @@ const API_KEY = import.meta.env.VITE_API_KEY
 ```
 
 ### Rule: .env.local Gitignored (Already Done)
+
 ```bash
 # .gitignore
 .env.local
@@ -111,6 +120,7 @@ const API_KEY = import.meta.env.VITE_API_KEY
 ```
 
 ### Accessing Secrets:
+
 ```typescript
 // .env
 VITE_API_BASE_URL=https://api.example.com
@@ -126,6 +136,7 @@ export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localho
 ## 4. Content Security Policy (Optional)
 
 ### Recommended CSP Header:
+
 ```
 Content-Security-Policy:
   default-src 'self';
@@ -138,6 +149,7 @@ Content-Security-Policy:
 ```
 
 ### For Electron/Capacitor:
+
 ```javascript
 // apps/<game-app>/electron/main.js
 mainWindow.webPreferences = {
@@ -156,6 +168,7 @@ mainWindow.webPreferences = {
 All backend `POST`, `PUT`, `PATCH`, and `DELETE` routes must be protected against CSRF.
 
 Recommended backend controls:
+
 - CSRF token verification for authenticated state-changing endpoints.
 - Strict Origin/Referer validation for browser requests where applicable.
 - `SameSite` cookie strategy aligned to product requirements (`Lax`/`Strict` preferred when possible).
@@ -167,6 +180,7 @@ Recommended backend controls:
 - If short-lived browser-accessible tokens are unavoidable, keep lifetime minimal and enforce backend rotation/revocation.
 
 Example backend cookie policy (conceptual):
+
 ```text
 Set-Cookie: session=<opaque>; HttpOnly; Secure; SameSite=Lax; Path=/
 ```
@@ -192,6 +206,7 @@ Content-Security-Policy:
 ```
 
 Operational guidance:
+
 - Start with report-only mode in staging to detect breaks.
 - Remove unnecessary allowances over time.
 - Keep CSP policy in version control and review alongside security changes.

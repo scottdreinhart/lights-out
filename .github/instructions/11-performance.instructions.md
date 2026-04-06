@@ -1,6 +1,7 @@
 # Performance & Web Vitals Governance
 
-> **Authority**: AGENTS.md § 25
+> **Authority**: `AGENTS.md` § 0 (Non-Negotiable Rules) and § 25 (Performance Governance)
+> **BASELINE**: Before optimizing performance, read `AGENTS.md` § 0. Use profiling, not guesswork. Preserve behavior. Quality gates mandatory.
 > **Scope**: Performance budgets, Web Vitals targets, bundle analysis
 
 ---
@@ -9,15 +10,16 @@
 
 ### Google Core Web Vitals (2024 Standards)
 
-| Metric | Target | Tool |
-|--------|--------|------|
-| **LCP** (Largest Contentful Paint) | < 2.5s | DevTools > Performance |
-| **INP** (Interaction to Next Paint) | < 200ms | Web Vitals library |
-| **CLS** (Cumulative Layout Shift) | < 0.1 | Web Vitals library |
-| **TTFB** (Time to First Byte) | < 500ms | DevTools > Network |
-| **FCP** (First Contentful Paint) | < 1.8s | DevTools > Performance |
+| Metric                              | Target  | Tool                   |
+| ----------------------------------- | ------- | ---------------------- |
+| **LCP** (Largest Contentful Paint)  | < 2.5s  | DevTools > Performance |
+| **INP** (Interaction to Next Paint) | < 200ms | Web Vitals library     |
+| **CLS** (Cumulative Layout Shift)   | < 0.1   | Web Vitals library     |
+| **TTFB** (Time to First Byte)       | < 500ms | DevTools > Network     |
+| **FCP** (First Contentful Paint)    | < 1.8s  | DevTools > Performance |
 
 ### Current Project Targets:
+
 - **LCP**: 2.0s (aim for 80th percentile)
 - **INP**: 150ms (interactive components)
 - **CLS**: 0.05 (prevent jank)
@@ -28,6 +30,7 @@
 ## 2. Bundle Size Budgets
 
 ### Monitor with:
+
 ```bash
 # Build production assets
 pnpm build
@@ -41,12 +44,14 @@ ls -lh dist/assets/
 ## 3. ESLint Performance Rules (Enforced)
 
 ### Rules That Prevent Regressions
+
 - `react-hooks/exhaustive-deps: 'error'` — Finds missing deps, prevents stale closures
 - `@typescript-eslint/no-explicit-any: 'error'` — Type safety = bundle predictability
 - `no-console: ['error']` — Removed in production (tree-shakes cleanly)
 - `react/no-array-index-key: 'warn'` — Bad key strategy causes re-renders
 
 ### Violations Caught:
+
 ```typescript
 // ❌ ERROR: Missing dependency in useMemo
 const value = useMemo(() => cheapCalc(data), [])  // Forgot data!
@@ -63,15 +68,18 @@ const handler = (x: any) => x * 2
 ## 4. React Performance Patterns
 
 ### Use useCallback When:
+
 1. Function passed to memoized child
 2. Function used in dependency array
 
 ### Use useMemo When:
+
 1. Expensive computation (profile first!)
 2. Memoized child depends on it
 3. Default: DON'T use (premature optimization)
 
 ### Rule: Profile Before Optimizing
+
 ```typescript
 // Bad: Premature optimization
 const value = useMemo(() => doSomething(x), [x])
@@ -88,21 +96,35 @@ const value = useMemo(() => doSomething(x), [x])
 ## 5. Animation Performance
 
 ### GPU-Accelerated Only
+
 ```css
 /* ✅ GOOD: GPU-accelerated (transform, opacity) */
 @keyframes slide {
-  from { transform: translateX(-100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 /* ❌ BAD: Repaints (avoid) */
 @keyframes slide {
-  from { width: 0; margin-left: 100%; }
-  to { width: 100%; margin-left: 0; }
+  from {
+    width: 0;
+    margin-left: 100%;
+  }
+  to {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 ```
 
 ### Respect prefers-reduced-motion
+
 ```css
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -118,6 +140,7 @@ const value = useMemo(() => doSomething(x), [x])
 ## 6. Code Splitting Strategy
 
 ### Lazy Load Heavy Features
+
 ```tsx
 import { lazy, Suspense } from 'react'
 

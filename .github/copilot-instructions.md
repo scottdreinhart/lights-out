@@ -11,6 +11,28 @@ Default development shell for this repository: **Bash (WSL Ubuntu)**.
 
 ---
 
+## MANDATORY: Copilot Operating Rules
+
+Before making ANY changes, you MUST:
+
+1. **Read AGENTS.md first** — Especially § 0 (Non-Negotiable Rules), § 0.A (Runtime Validation & Self-Correction), § 3 (Architecture), § 4 (Path Discipline), § 29 (Node.js Best Practices), § 30 (CSS Performance)
+2. **Inspect existing code** — Search for similar components, hooks, utilities, and patterns before creating anything new
+3. **Reuse before creating** — Extend existing implementations instead of building parallel code
+4. **Make minimal edits** — Prefer surgical changes over rewrites; preserve file structure and naming
+5. **Respect architecture** — Never bypass layering, import rules, or barrel conventions
+6. **No fake completion** — Do not leave placeholders, mock wiring, or incomplete integrations; run all checks before finishing
+7. **Run quality gates** — After edits, execute `pnpm check`, `pnpm test`, and `pnpm validate` and fix any failures
+8. **Self-correct failures** — When checks fail, read errors carefully, fix root cause, rerun, and repeat until all checks pass
+9. **Match conventions** — Follow existing patterns: naming, folder layout, state management, exports, accessibility
+10. **Apply Node.js best practices** — See AGENTS.md § 29 and `.github/instructions/19-nodejs-frontend-best-practices.instructions.md` for async/await discipline, error handling, naming conventions, testing standards
+11. **CSS Performance mandatory** — All CSS must respect AGENTS.md § 30 (Critical Rendering Path). Lighthouse ≥90, Core Web Vitals passing. See `.github/instructions/20-css-performance-rendering-optimization.instructions.md` for complete enforcement
+
+**Violations of these rules create technical debt and break the codebase. Do not do this.**
+
+**See AGENTS.md § 0 for full non-negotiable rules and § 0.A for mandatory self-correction loop.**
+
+---
+
 ## Package Manager
 
 **pnpm only.** Never use npm, npx, yarn, or generate non-pnpm lockfiles.
@@ -19,13 +41,13 @@ Default development shell for this repository: **Bash (WSL Ubuntu)**.
 
 ## Architecture (CLEAN + Atomic Design)
 
-| Layer | Path | May Import |
-|---|---|---|
-| Domain | `src/domain/` | `domain/` only |
-| App | `src/app/` | `domain/`, `app/` |
-| UI | `src/ui/` | `domain/`, `app/`, `ui/` |
-| Workers | `src/workers/` | `domain/` only |
-| Themes | `src/themes/` | nothing (pure CSS) |
+| Layer   | Path           | May Import               |
+| ------- | -------------- | ------------------------ |
+| Domain  | `src/domain/`  | `domain/` only           |
+| App     | `src/app/`     | `domain/`, `app/`        |
+| UI      | `src/ui/`      | `domain/`, `app/`, `ui/` |
+| Workers | `src/workers/` | `domain/` only           |
+| Themes  | `src/themes/`  | nothing (pure CSS)       |
 
 **Component hierarchy**: `atoms/ → molecules/ → organisms/`
 **Data flow**: Hooks → Organism → Molecules → Atoms (unidirectional)
@@ -42,14 +64,14 @@ Default development shell for this repository: **Bash (WSL Ubuntu)**.
 
 ## Key Scripts
 
-| Task | Script |
-|---|---|
-| Dev server | `pnpm start` or `pnpm dev` |
-| Build | `pnpm build` |
-| Quality gate | `pnpm check` (lint + format:check + typecheck) |
-| Auto-fix | `pnpm fix` (lint:fix + format) |
-| Full validation | `pnpm validate` (check + build) |
-| Clean | `pnpm clean` / `pnpm clean:node` / `pnpm clean:all` / `pnpm reinstall` |
+| Task            | Script                                                                 | CSS Performance |
+| --------------- | ---------------------------------------------------------------------- | --- |
+| Dev server      | `pnpm start` or `pnpm dev`                                             | Use DevTools Coverage |
+| Build           | `pnpm build`                                                           | Triggers Lighthouse audit |
+| Quality gate    | `pnpm check` (lint + format:check + typecheck)                         | Lint includes CSS rules |
+| Auto-fix        | `pnpm fix` (lint:fix + format)                                         | Fixes CSS violations |
+| Full validation | `pnpm validate` (check + build + Lighthouse)                           | MUST pass ≥80 score |
+| Clean           | `pnpm clean` / `pnpm clean:node` / `pnpm clean:all` / `pnpm reinstall` | — |
 
 ---
 
@@ -58,6 +80,7 @@ Default development shell for this repository: **Bash (WSL Ubuntu)**.
 All UI components support 5 semantic device tiers using centralized `useResponsiveState()` hook.
 
 **Device Tiers:**
+
 - **Mobile** (xs/sm: <600px) — phones, compact layout
 - **Tablet** (md: 600–899px) — tablets, balanced layout
 - **Desktop** (lg: 900–1199px) — laptops, full layout
@@ -65,6 +88,7 @@ All UI components support 5 semantic device tiers using centralized `useResponsi
 - **Ultrawide** (xxl: 1800px+) — multi-monitor, premium refinement
 
 **Pattern:**
+
 - Extract responsive state: `const responsive = useResponsiveState()`
 - Use inline styles for dynamic layout changes (flexDirection, maxWidth, padding based on contentDensity)
 - Use CSS media queries for static typography and spacing variants per tier
@@ -72,6 +96,7 @@ All UI components support 5 semantic device tiers using centralized `useResponsi
 - Apply content density awareness to spacing: compact/comfortable/spacious
 
 **References:**
+
 - Detailed patterns: `.github/instructions/06-responsive.instructions.md`
 - Governance rules: `AGENTS.md` § 12
 
@@ -82,6 +107,7 @@ All UI components support 5 semantic device tiers using centralized `useResponsi
 Applications implement a **dual-menu system**: in-app hamburger (quick access) + full-screen modal (comprehensive).
 
 **Hamburger Menu Pattern:**
+
 - Portal-rendered dropdown (`createPortal()` to `document.body`)
 - Fixed positioning at z-index 9999+ (above game)
 - Position calculated from button bounding rect via `useLayoutEffect`
@@ -95,6 +121,7 @@ Applications implement a **dual-menu system**: in-app hamburger (quick access) +
 - Keyboard nav: ESC closes, focus returns to button, tab-trapped while open
 
 **Full-Screen Settings Modal:**
+
 - Triggered from home screen (MainMenu), not during gameplay
 - Organized sections: game settings, theme/display, accessibility
 - Uses same atoms as hamburger for consistency
@@ -106,6 +133,7 @@ Applications implement a **dual-menu system**: in-app hamburger (quick access) +
 **Related Governance:** `AGENTS.md` § 13 — Menu & Settings Architecture Governance features comprehensive specifications, implementation patterns, and checklists.
 
 ---
+
 ---
 
 ## Shell Routing (Mandatory Policy)
@@ -117,6 +145,7 @@ Applications implement a **dual-menu system**: in-app hamburger (quick access) +
 ### Default: Bash
 
 Default to **Bash (WSL: Ubuntu)** for all development work:
+
 - `pnpm install`, `pnpm dev`, `pnpm build`, `pnpm check`, `pnpm fix`, `pnpm validate`
 - All linting, formatting, typechecking
 - WASM builds, Electron development, Capacitor sync
@@ -125,6 +154,7 @@ Default to **Bash (WSL: Ubuntu)** for all development work:
 ### Explicit Opt-In: PowerShell
 
 Use **PowerShell** only when:
+
 - User explicitly requests PowerShell, OR
 - The task is `pnpm run electron:build:win` (Windows Electron packaging, explicitly Windows-native)
 
@@ -153,9 +183,9 @@ Never suggest iOS tasks as feasible from Windows/WSL without explicit macOS hard
 When this repo is on NTFS and used from both WSL Bash and Windows PowerShell, native binaries in `node_modules/` can become incompatible across shells.
 
 - Before running commands in **Bash/WSL**, check `.node-platform.md`.
-	- If `platform: windows`, run `pnpm clean:node && pnpm install`, then set marker to `platform: linux`.
+  - If `platform: windows`, run `pnpm clean:node && pnpm install`, then set marker to `platform: linux`.
 - Before running commands in **PowerShell**, check `.node-platform.md`.
-	- If `platform: linux`, run `pnpm clean:node && pnpm install`, then set marker to `platform: windows`.
+  - If `platform: linux`, run `pnpm clean:node && pnpm install`, then set marker to `platform: windows`.
 - If `.bin` shims/symlinks are missing after reinstall, run `pnpm rebuild`.
 
 ---
@@ -221,23 +251,27 @@ Do not introduce orphaned helper scripts or alternate runtimes.
 All test files MUST follow strict naming convention and validation:
 
 **File Naming Pattern** (STRICTLY ENFORCED):
+
 - Unit/integration/component/api: `<feature-name>.<type>.test.ts`
 - E2E/a11y/visual: `<feature-name>.<type>.spec.ts`
 - Valid types: `unit`, `integration`, `component`, `api`, `e2e`, `a11y`, `visual`, `perf`
 
 **Examples**:
+
 - ✅ `auth.unit.test.ts` — Authentication utilities unit test
 - ✅ `button.component.test.tsx` — Button component test
 - ✅ `checkout.e2e.spec.ts` — Checkout flow E2E test
 - ✅ `keyboard-nav.a11y.spec.ts` — Keyboard navigation accessibility test
 
 **Invalid** (will fail validation):
+
 - ❌ `test.auth.ts` — Feature NOT first
 - ❌ `unit.auth.test.ts` — Type NOT second
 - ❌ `auth.spec.ts` — Missing type
 - ❌ `test.ts` — No feature name
 
 **What You Must Do**:
+
 1. Name test files using approved pattern (see examples above)
 2. Validate before committing: `pnpm test:names --verbose`
 3. Ensure test runs with correct framework:
@@ -247,6 +281,7 @@ All test files MUST follow strict naming convention and validation:
 5. Ask user which test type if unclear (unit vs integration vs e2e)
 
 **What You MUST NOT Do**:
+
 - ❌ Create `test.ts` or `generic.spec.ts` files without feature name
 - ❌ Mix Vitest and Playwright in same file
 - ❌ Skip test naming validation before suggesting code
@@ -254,11 +289,13 @@ All test files MUST follow strict naming convention and validation:
 - ❌ Ignore `pnpm test:names` validation failures
 
 **Validation & Enforcement**:
+
 - `pnpm test:names` — Validates all test filenames (runs in `pnpm validate`)
 - `pnpm validate` — Full gate: lint + typecheck + test:names + build
 - Failures block merge; must be fixed before commit
 
 **Reference Documents**:
+
 - Comprehensive rules: `.github/instructions/17-testing.instructions.md`
 - Quick start: `docs/CONTRIBUTING_TESTS.md`
 - Full reference: `docs/TEST_NAMING_CONVENTION.md`
