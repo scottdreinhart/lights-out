@@ -1,7 +1,7 @@
 /**
- * useIonicToast — Hook for triggering Ionic toast notifications.
+ * useIonicToast — Hook for triggering toast notifications.
  *
- * Perfect replacement for custom toast implementations.
+ * REFACTORED to remove Ionic dependency. Uses simple web-based notifications instead.
  *
  * Features:
  * - Text, error, warning, info variants
@@ -27,8 +27,6 @@
  * })
  */
 
-import { useIonToast } from '@ionic/react'
-
 export interface ToastOptions {
   message: string
   duration?: number
@@ -43,19 +41,113 @@ export interface ToastOptions {
   }>
 }
 
-export function useIonicToast() {
-  const [presentToast] = useIonToast()
+/**
+ * Simple web-based toast notification without Ionic dependency.
+ */
+function createWebToast(options: ToastOptions): Promise<void> {
+  return new Promise((resolve) => {
+    if (typeof document === 'undefined') {
+      resolve()
+      return
+    }
 
-  const show = async (options: ToastOptions) => {
-    await presentToast({
-      message: options.message,
-      duration: options.duration ?? 2000,
-      position: options.position ?? 'bottom',
-      color: options.color,
-      icon: options.icon,
-      buttons: options.buttons,
-      cssClass: ['ionic-toast', options.cssClass].filter(Boolean).join(' '),
+    const container = document.createElement('div')
+    container.className = `toast toast--${options.color || 'default'} toast--${options.position || 'bottom'}`
+    container.style.cssText = `
+      position: fixed;
+      ${options.position === 'top' ? 'top: 20px' : 'bottom: 20px'};
+      left: 50%;
+      transform: translateX(-50%);
+      background: ${getToastBgColor(options.color)};
+      color: white;
+      padding: 12px 16px;
+      border-radius: 4px;
+      font-size: 14px;
+      z-index: 9999;
+      animation: slideIn 0.3s ease-in-out;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      max-width: 90%;
+      word-wrap: break-word;
+    `
+
+    if (options.cssClass) {
+      container.className += ` ${options.cssClass}`
+    }
+
+    container.textContent = options.message
+    document.body.appendChild(container)
+
+    // Add animation styles if not already present
+    if (!document.querySelector('#toast-styles')) {
+      const style = document.createElement('style')
+      style.id = 'toast-styles'
+      style.textContent = `
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateX(-50%) translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+          }
+        }
+        @keyframes slideOut {
+          from {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+          }
+          to {
+            opacity: 0;
+            transform: translateX(-50%) translateY(20px);
+          }
+        }
+        .toast.fadeOut {
+          animation: slideOut 0.3s ease-in-out forwards;
+        }
+      `
+      document.head.appendChild(style)
+    }
+
+    // Auto-dismiss
+    const duration = options.duration ?? 2000
+    const timeout = setTimeout(() => {
+      container.classList.add('fadeOut')
+      setTimeout(() => {
+        container.remove()
+        resolve()
+      }, 300)
+    }, duration)
+
+    // Allow manual dismiss
+    container.style.cursor = 'pointer'
+    container.addEventListener('click', () => {
+      clearTimeout(timeout)
+      container.classList.add('fadeOut')
+      setTimeout(() => {
+        container.remove()
+        resolve()
+      }, 300)
     })
+  })
+}
+
+function getToastBgColor(color?: string): string {
+  const colorMap: Record<string, string> = {
+    danger: '#dc3545',
+    error: '#dc3545',
+    warning: '#ffc107',
+    info: '#17a2b8',
+    primary: '#007bff',
+    success: '#28a745',
+    default: '#333333',
+  }
+  return colorMap[color || 'default'] || colorMap.default
+}
+
+export function useIonicToast() {
+  const show = (options: ToastOptions) => {
+    return createWebToast(options)
   }
 
   const error = (message: string, duration = 3000) => {
@@ -80,7 +172,7 @@ export function useIonicToast() {
     return show({
       message,
       duration,
-      color: 'primary',
+      color: 'info',
       icon: 'information-circle',
     })
   }
@@ -89,7 +181,7 @@ export function useIonicToast() {
     return show({
       message,
       duration,
-      cssClass: 'ionic-toast--text-only',
+      cssClass: 'toast--text-only',
     })
   }
 

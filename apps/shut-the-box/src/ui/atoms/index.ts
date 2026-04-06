@@ -1,9 +1,6 @@
 /**
  * Atoms barrel export — smallest UI building blocks.
+ * Sourced from @games/common.
  */
 
-export { Button } from './Button'
-export { Dice } from './Dice'
-export { ErrorBoundary } from '@games/common'
-export { OfflineIndicator } from '@games/common'
-export { TileComponent } from './Tile'
+export { ErrorBoundary, OfflineIndicator, SplashScreen } from '@games/common'

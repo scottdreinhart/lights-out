@@ -5,6 +5,7 @@ import { MoveButton, RoundResultDisplay, Score, TierSelector } from '@/ui/atoms'
 import { initWasm } from '@/wasm/ai-wasm'
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
+import { HamburgerMenu } from './HamburgerMenu'
 
 const CPU_DELAY_MS = 2500
 const CPU_MOVES: Move[] = ['rock', 'paper', 'scissors']
@@ -19,6 +20,9 @@ export default function App() {
   const [wasmAvailable, setWasmAvailable] = useState(false)
   const [cpuDisplayMove, setCpuDisplayMove] = useState<Move>('rock')
   const cpuLockedMoveRef = useRef<Move>('rock')
+  const [showRules, setShowRules] = useState(false)
+  const [showSettings, setShowSettings] = useState(false)
+  const [showAbout, setShowAbout] = useState(false)
 
   // Initialize WASM on mount
   useEffect(() => {
@@ -101,6 +105,11 @@ export default function App() {
       <div className="app">
         <header className="app-header">
           <h1>♾️ ✊ ✋ ✌️</h1>
+          <HamburgerMenu
+            onRules={() => setShowRules(true)}
+            onSettings={() => setShowSettings(true)}
+            onAbout={() => setShowAbout(true)}
+          />
           <p className="subtitle">Choose Your Challenge</p>
           {wasmAvailable && <span className="wasm-badge">⚡ WebAssembly Optimized</span>}
         </header>
@@ -120,6 +129,11 @@ export default function App() {
     <div className="app">
       <header className="app-header">
         <h1>♾️ ✊ ✋ ✌️</h1>
+        <HamburgerMenu
+          onRules={() => setShowRules(true)}
+          onSettings={() => setShowSettings(true)}
+          onAbout={() => setShowAbout(true)}
+        />
         <p className="subtitle">Best of {gameState.bestOf} Rounds</p>
         {wasmAvailable && <span className="wasm-badge">⚡ WebAssembly Optimized</span>}
       </header>
@@ -172,10 +186,10 @@ export default function App() {
               Final Score: {gameState.playerScore} - {gameState.cpuScore}
             </p>
             <div className="game-over-buttons">
-              <button className="new-game-button" onClick={handleNewGame}>
+              <button className="control-button" onClick={handleNewGame}>
                 Play Again
               </button>
-              <button className="change-tier-button" onClick={handleChangeTier}>
+              <button className="control-button" onClick={handleChangeTier}>
                 Change Difficulty
               </button>
             </div>
@@ -186,6 +200,65 @@ export default function App() {
       <footer className="app-footer">
         <p>Total rounds played: {gameState.rounds.length}</p>
       </footer>
+
+      {/* Placeholder modals - Phase 1: Extract to dedicated components */}
+      {showRules && (
+        <div
+          className="modal-overlay"
+          onClick={() => setShowRules(false)}
+          onKeyDown={(e) => e.key === 'Escape' && setShowRules(false)}
+          role="dialog"
+          aria-modal="true"
+          tabIndex={0}
+        >
+          <div className="modal-content">
+            <button className="modal-close" onClick={() => setShowRules(false)}>
+              ✕
+            </button>
+            <h2>How to Play</h2>
+            <p>Rock beats Scissors, Scissors beats Paper, Paper beats Rock.</p>
+            <p>Choose your move before the CPU makes theirs. Best of series wins!</p>
+          </div>
+        </div>
+      )}
+
+      {showSettings && (
+        <div
+          className="modal-overlay"
+          onClick={() => setShowSettings(false)}
+          onKeyDown={(e) => e.key === 'Escape' && setShowSettings(false)}
+          role="dialog"
+          aria-modal="true"
+          tabIndex={0}
+        >
+          <div className="modal-content">
+            <button className="modal-close" onClick={() => setShowSettings(false)}>
+              ✕
+            </button>
+            <h2>Settings</h2>
+            <p>Sound and theme settings coming soon in Phase 1.</p>
+          </div>
+        </div>
+      )}
+
+      {showAbout && (
+        <div
+          className="modal-overlay"
+          onClick={() => setShowAbout(false)}
+          onKeyDown={(e) => e.key === 'Escape' && setShowAbout(false)}
+          role="dialog"
+          aria-modal="true"
+          tabIndex={0}
+        >
+          <div className="modal-content">
+            <button className="modal-close" onClick={() => setShowAbout(false)}>
+              ✕
+            </button>
+            <h2>About Rock Paper Scissors</h2>
+            <p>A classic game of strategy and chance, powered by adaptive AI.</p>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

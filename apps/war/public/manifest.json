@@ -1,0 +1,35 @@
+{
+    "name": "War Card Game",
+    "short_name": "War",
+    "description": "Battle the computer in the classic card game War. Draw cards and win all 52 to victory!",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "background_color": "#ffffff",
+    "theme_color": "#667eea",
+    "icons": [
+        {
+            "src": "/icon.svg",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "/icon.svg",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        }
+    ],
+    "categories": [
+        "games"
+    ],
+    "screenshots": [
+        {
+            "src": "/screenshot.png",
+            "sizes": "540x720",
+            "type": "image/png"
+        }
+    ]
+}

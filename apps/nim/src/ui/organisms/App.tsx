@@ -31,21 +31,21 @@ import { haptics } from '@/infrastructure/haptics'
 import {
   COLOR_THEMES,
   HamburgerLanguageSection,
-  HamburgerMenu,
   HamburgerPilesSection,
-  IonicAlertDialog,
   OfflineIndicator,
   QuickGameSettings,
   QuickThemePicker,
   SplashScreen,
   StarExplosion,
 } from '@/ui'
+import { HamburgerMenu } from '@games/common'
+import { applyThemeToDOM, initializeThemeSystem } from '@/ui/services/themeService'
 
 import styles from './App.module.css'
-import { GameBoard } from './GameBoard'
 import { DeviceInfoScreen } from './DeviceInfoScreen'
+import { GameBoard } from './GameBoard'
 
-type AppPhase = 'loading' | 'menu' | 'playing' | 'device-info'
+type AppPhase = 'splash' | 'menu' | 'playing' | 'device-info'
 
 export default function App() {
   const responsive = useResponsiveState()
@@ -55,7 +55,7 @@ export default function App() {
   const toast = useIonicToast()
   const { settings, setColorTheme } = useThemeContext()
   const { locale, setLocale, t } = useI18nContext()
-  const [phase, setPhase] = useState<AppPhase>('loading')
+  const [phase, setPhase] = useState<AppPhase>('splash')
   const [testStars, setTestStars] = useState(false)
   const [setup, setSetup] = useState<number[]>(game.setup)
   const prevGameOver = useRef(false)
@@ -68,10 +68,19 @@ export default function App() {
     dismiss: () => Promise<void>
   } | null>(null)
 
-  // Loading screen timer
+  // Initialize theme system on mount
   useEffect(() => {
-    const timer = setTimeout(() => setPhase('menu'), 1200)
-    return () => clearTimeout(timer)
+    initializeThemeSystem()
+  }, [])
+
+  // Apply theme settings to DOM when they change
+  useEffect(() => {
+    applyThemeToDOM(settings).catch(() => {})
+  }, [settings])
+
+  // Splash screen complete callback
+  const handleSplashComplete = useCallback(() => {
+    setPhase('menu')
   }, [])
 
   // Sound + haptic + stats on game over
@@ -101,7 +110,15 @@ export default function App() {
       }
     }
     prevGameOver.current = game.state.isGameOver
-  }, [game.state.isGameOver, game.state.winner, game.opponent, sfx, recordWin, recordLoss, recordPvpWin])
+  }, [
+    game.state.isGameOver,
+    game.state.winner,
+    game.opponent,
+    sfx,
+    recordWin,
+    recordLoss,
+    recordPvpWin,
+  ])
 
   // Sound on CPU move
   useEffect(() => {
@@ -117,19 +134,25 @@ export default function App() {
   }, [game.setup])
 
   // ─── Setup Handlers ───
-  const handlePileChange = useCallback((index: number, value: string) => {
-    const parsed = Number.parseInt(value, 10)
-    const nextValue = Number.isNaN(parsed) ? 1 : Math.max(1, Math.min(parsed, 15))
-    const nextSetup = [...setup]
-    nextSetup[index] = nextValue
-    setSetup(nextSetup)
-    game.updateSetup(nextSetup)
-  }, [setup, game])
+  const handlePileChange = useCallback(
+    (index: number, value: string) => {
+      const parsed = Number.parseInt(value, 10)
+      const nextValue = Number.isNaN(parsed) ? 1 : Math.max(1, Math.min(parsed, 15))
+      const nextSetup = [...setup]
+      nextSetup[index] = nextValue
+      setSetup(nextSetup)
+      game.updateSetup(nextSetup)
+    },
+    [setup, game],
+  )
 
-  const handleApplyPreset = useCallback((counts: number[]) => {
-    setSetup([...counts])
-    game.updateSetup([...counts])
-  }, [game])
+  const handleApplyPreset = useCallback(
+    (counts: number[]) => {
+      setSetup([...counts])
+      game.updateSetup([...counts])
+    },
+    [game],
+  )
 
   const isPresetActive = (counts: readonly number[]) =>
     counts.length === setup.length && counts.every((count, index) => count === setup[index])
@@ -256,31 +279,28 @@ export default function App() {
       unlisteners.push(resumeListener)
 
       // Handle Android hardware back button
-      const backListener = await CapacitorApp.addListener(
-        'backButton',
-        async () => {
-          // Navigate based on current phase
-          if (phase === 'playing') {
-            handleBackToMenu()
-          } else if (phase === 'menu' || phase === 'loading') {
-            // Allow OS to handle (app exit)
-            // Optional: show exit confirmation
-          }
-        },
-      )
+      const backListener = await CapacitorApp.addListener('backButton', async () => {
+        // Navigate based on current phase
+        if (phase === 'playing') {
+          handleBackToMenu()
+        } else if (phase === 'menu' || phase === 'splash') {
+          // Allow OS to handle (app exit)
+          // Optional: show exit confirmation
+        }
+      })
       unlisteners.push(backListener)
     }
 
-    setupListeners().catch(err => console.error('[Capacitor] Setup failed:', err))
+    setupListeners().catch((err) => console.error('[Capacitor] Setup failed:', err))
 
     return () => {
-      unlisteners.forEach(listener => listener.remove())
+      unlisteners.forEach((listener) => listener.remove())
     }
   }, [phase, handleBackToMenu])
 
   // ─── Show Splash ───
-  if (phase === 'loading') {
-    return <SplashScreen />
+  if (phase === 'splash') {
+    return <SplashScreen onComplete={handleSplashComplete} />
   }
 
   // ─── Show Menu / Device Info Surface ───

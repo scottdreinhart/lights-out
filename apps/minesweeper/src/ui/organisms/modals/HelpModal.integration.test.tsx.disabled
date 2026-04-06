@@ -1,0 +1,182 @@
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { describe, expect, it, vi } from 'vitest'
+import { HelpModal } from './HelpModal'
+
+describe('Minesweeper HelpModal Integration', () => {
+  describe('Modal Rendering', () => {
+    it('should render modal when isOpen is true', () => {
+      const mockOnClose = vi.fn()
+      render(<HelpModal isOpen={true} onClose={mockOnClose} />)
+
+      const modal = screen.getByRole('dialog')
+      expect(modal).toBeInTheDocument()
+    })
+
+    it('should not render modal when isOpen is false', () => {
+      const mockOnClose = vi.fn()
+      render(<HelpModal isOpen={false} onClose={mockOnClose} />)
+
+      const modals = screen.queryAllByRole('dialog')
+      expect(modals.length).toBe(0)
+    })
+
+    it('should display correct title', () => {
+      const mockOnClose = vi.fn()
+      render(<HelpModal isOpen={true} onClose={mockOnClose} />)
+
+      expect(screen.getByText('Minesweeper Help')).toBeInTheDocument()
+    })
+  })
+
+  describe('FAQ Content Rendering', () => {
+    it('should render all FAQ questions', () => {
+      const mockOnClose = vi.fn()
+      render(<HelpModal isOpen={true} onClose={mockOnClose} />)
+
+      expect(screen.getByText('How do I start playing?')).toBeInTheDocument()
+      expect(screen.getByText('What are the keyboard controls?')).toBeInTheDocument()
+      expect(screen.getByText('What are the difficulty levels?')).toBeInTheDocument()
+      expect(screen.getByText('What do the numbers mean?')).toBeInTheDocument()
+      expect(screen.getByText('What should I do if I get stuck?')).toBeInTheDocument()
+      expect(screen.getByText('How does scoring work?')).toBeInTheDocument()
+      expect(screen.getByText('Do you have any pro tips?')).toBeInTheDocument()
+    })
+
+    it('should render corresponding answers', () => {
+      const mockOnClose = vi.fn()
+      render(<HelpModal isOpen={true} onClose={mockOnClose} />)
+
+      // Check for key text from answers
+      expect(screen.getByText(/Click on any square to start/i)).toBeInTheDocument()
+      expect(screen.getByText(/Arrow Keys.*WASD/i)).toBeInTheDocument()
+      expect(screen.getByText(/8×8 board with 10 mines/i)).toBeInTheDocument()
+    })
+  })
+
+  describe('Close Functionality', () => {
+    it('should call onClose when close button is clicked', async () => {
+      const mockOnClose = vi.fn()
+      const user = userEvent.setup()
+      render(<HelpModal isOpen={true} onClose={mockOnClose} />)
+
+      const closeBtn = screen.getByLabelText('Close help')
+      await user.click(closeBtn)
+
+      expect(mockOnClose).toHaveBeenCalled()
+    })
+
+    it('should call onClose when ESC key is pressed', async () => {
+      const mockOnClose = vi.fn()
+      render(<HelpModal isOpen={true} onClose={mockOnClose} />)
+
+      const modal = screen.getByRole('dialog')
+      fireEvent.keyDown(modal, { key: 'Escape', code: 'Escape' })
+
+      await waitFor(() => {
+        expect(mockOnClose).toHaveBeenCalled()
+      })
+    })
+
+    it('should call onClose when backdrop is clicked', async () => {
+      const mockOnClose = vi.fn()
+      const user = userEvent.setup()
+      render(<HelpModal isOpen={true} onClose={mockOnClose} />)
+
+      // Find the backdrop (the modal's parent overlay)
+      const modal = screen.getByRole('dialog')
+      const backdrop = modal.parentElement
+
+      if (backdrop) {
+        await user.click(backdrop)
+        expect(mockOnClose).toHaveBeenCalled()
+      }
+    })
+  })
+
+  describe('Accessibility', () => {
+    it('should have proper ARIA attributes', () => {
+      const mockOnClose = vi.fn()
+      render(<HelpModal isOpen={true} onClose={mockOnClose} />)
+
+      const modal = screen.getByRole('dialog')
+      expect(modal).toHaveAttribute('aria-labelledby')
+    })
+
+    it('should have close button with proper aria-label', () => {
+      const mockOnClose = vi.fn()
+      render(<HelpModal isOpen={true} onClose={mockOnClose} />)
+
+      const closeBtn = screen.getByLabelText('Close help')
+      expect(closeBtn).toBeInTheDocument()
+    })
+
+    it('should trap focus within modal', () => {
+      const mockOnClose = vi.fn()
+      render(<HelpModal isOpen={true} onClose={mockOnClose} />)
+
+      const modal = screen.getByRole('dialog')
+      expect(modal).toBeInTheDocument()
+
+      // Focus should be available within modal
+      const focusableElements = modal.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      )
+      expect(focusableElements.length).toBeGreaterThan(0)
+    })
+  })
+
+  describe('Integration with Shared Component', () => {
+    it('should use shared HelpModal component', () => {
+      const mockOnClose = vi.fn()
+      render(<HelpModal isOpen={true} onClose={mockOnClose} />)
+
+      // Verify the modal structure matches shared component
+      const modal = screen.getByRole('dialog')
+      expect(modal).toHaveClass('modal') // Class from shared component
+    })
+
+    it('should properly adapt Minesweeper-specific content', () => {
+      const mockOnClose = vi.fn()
+      render(<HelpModal isOpen={true} onClose={mockOnClose} />)
+
+      // Verify Minesweeper-specific content is rendered
+      expect(screen.getByText(/Beginner:.*Intermediate:.*Expert:/i)).toBeInTheDocument()
+      expect(screen.getByText(/Hint function/i)).toBeInTheDocument()
+    })
+  })
+
+  describe('Difficulty Levels', () => {
+    it('should explain all difficulty levels', () => {
+      const mockOnClose = vi.fn()
+      render(<HelpModal isOpen={true} onClose={mockOnClose} />)
+
+      expect(screen.getByText(/8×8 board with 10 mines/i)).toBeInTheDocument()
+      expect(screen.getByText(/16×16 board with 40 mines/i)).toBeInTheDocument()
+      expect(screen.getByText(/16×30 board with 99 mines/i)).toBeInTheDocument()
+    })
+  })
+
+  describe('Pro Tips', () => {
+    it('should include pro tips list', () => {
+      const mockOnClose = vi.fn()
+      render(<HelpModal isOpen={true} onClose={mockOnClose} />)
+
+      expect(screen.getByText(/Flag squares you're certain contain mines/i)).toBeInTheDocument()
+      expect(screen.getByText(/Numbers create patterns/i)).toBeInTheDocument()
+      expect(screen.getByText(/Don't guess randomly/i)).toBeInTheDocument()
+    })
+  })
+
+  describe('Keyboard Controls Documentation', () => {
+    it('should document all keyboard controls', () => {
+      const mockOnClose = vi.fn()
+      render(<HelpModal isOpen={true} onClose={mockOnClose} />)
+
+      expect(screen.getByText(/Arrow Keys.*WASD/i)).toBeInTheDocument()
+      expect(screen.getByText(/Spacebar.*Right-Click/i)).toBeInTheDocument()
+      expect(screen.getByText(/Press C.*Chord/i)).toBeInTheDocument()
+      expect(screen.getByText(/Press H.*hint/i)).toBeInTheDocument()
+    })
+  })
+})

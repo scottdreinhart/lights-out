@@ -6,23 +6,37 @@ interface LandingPageProps {
   onDifficultyChange: (difficulty: Difficulty) => void
   onStart: () => void
   onViewScores: () => void
+  onShowRules?: () => void
+  onShowHelp?: () => void
   stats: GameStats
 }
 
-export function LandingPage({ difficulty, difficulties, onDifficultyChange, onStart, onViewScores, stats }: LandingPageProps) {
+export function LandingPage({
+  difficulty,
+  difficulties,
+  onDifficultyChange,
+  onStart,
+  onViewScores,
+  onShowRules,
+  onShowHelp,
+  stats,
+}: LandingPageProps) {
   return (
     <section className="ms-landing" aria-label="landing-page">
       <div className="ms-landing-hero">
         <p className="ms-kicker">Field Command</p>
         <h1>Minesweeper</h1>
         <p>
-          A modern control room for classic board-clearing. Start a run, manage settings from the menu,
-          and use the HUD to track pressure, pace, and streaks.
+          A modern control room for classic board-clearing. Start a run, manage settings from the
+          menu, and use the HUD to track pressure, pace, and streaks.
         </p>
         <div className="ms-landing-actions">
           <label className="ms-field">
             <span>Difficulty</span>
-            <select value={difficulty} onChange={(event) => onDifficultyChange(event.target.value as Difficulty)}>
+            <select
+              value={difficulty}
+              onChange={(event) => onDifficultyChange(event.target.value as Difficulty)}
+            >
               {difficulties.map((item) => (
                 <option key={item} value={item}>
                   {item}
@@ -37,6 +51,16 @@ export function LandingPage({ difficulty, difficulties, onDifficultyChange, onSt
           <button type="button" onClick={onViewScores}>
             Scores & History
           </button>
+          {onShowRules && (
+            <button type="button" onClick={onShowRules}>
+              Rules
+            </button>
+          )}
+          {onShowHelp && (
+            <button type="button" onClick={onShowHelp}>
+              How to Play
+            </button>
+          )}
         </div>
       </div>
 

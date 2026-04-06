@@ -48,11 +48,26 @@
       "@games/theme-context": [
         "../../packages/theme-context/src"
       ],
-      "@games/ai-framework": [
-        "../../packages/ai-framework/src"
+      "@games/app-hook-utils": [
+        "../../packages/app-hook-utils/src"
+      ],
+      "@games/assets-shared": [
+        "../../packages/assets-shared/src"
+      ],
+      "@games/ui-board-core": [
+        "../../packages/ui-board-core/src"
+      ],
+      "@games/ui-utils": [
+        "../../packages/ui-utils/src"
       ],
       "@games/common": [
         "../../packages/common/src"
+      ],
+      "@games/theme-contract": [
+        "../../packages/theme-contract/src"
+      ],
+      "@games/ai-framework": [
+        "../../packages/ai-framework/src"
       ]
     }
   },

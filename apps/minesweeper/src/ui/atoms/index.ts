@@ -1,5 +1,7 @@
-export { AnimatedLogo } from './AnimatedLogo'
+/**
+ * Atoms barrel export — smallest UI building blocks.
+ * Sourced from @games/common and local atoms.
+ */
+
+export { ErrorBoundary, OfflineIndicator, SplashScreen } from '@games/common'
 export { BoardCell } from './BoardCell'
-export { ErrorBoundary } from '@games/common'
-export { OfflineIndicator } from '@games/common'
-export { SplashScreen } from './SplashScreen'

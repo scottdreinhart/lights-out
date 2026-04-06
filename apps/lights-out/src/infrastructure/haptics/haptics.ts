@@ -1,4 +1,4 @@
-import { vibrate } from '@/app'
+import { vibrate } from '@games/haptics'
 
 export const haptics = {
   light: () => vibrate(10),

@@ -1,16 +1,15 @@
 /**
- * SplashScreen — animated logo intro before the main menu.
- * Shows an animated snake icon + title, then fades out to menu.
+ * SplashScreen — animated snake logo intro
+ * Shows animated snake SVG + title, then fades out to menu.
  */
 
-import { useEffect, useRef, useState } from 'react'
+import { SplashScreen as SharedSplashScreen } from '@games/common'
 import styles from './Overlay.module.css'
 
 interface SplashScreenProps {
   onComplete: () => void
 }
 
-const SPLASH_DURATION = 2800
 const SNAKE_BODY = [
   { x: 50, y: 50 },
   { x: 46, y: 50 },
@@ -25,35 +24,12 @@ const SNAKE_BODY = [
 ]
 
 export function SplashScreen({ onComplete }: SplashScreenProps) {
-  const [exiting, setExiting] = useState(false)
-  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined)
-
-  useEffect(() => {
-    timerRef.current = setTimeout(() => {
-      setExiting(true)
-      setTimeout(onComplete, 600)
-    }, SPLASH_DURATION)
-    return () => clearTimeout(timerRef.current)
-  }, [onComplete])
-
-  // Skip splash on click/tap/key
-  const skip = () => {
-    clearTimeout(timerRef.current)
-    setExiting(true)
-    setTimeout(onComplete, 300)
-  }
-
   return (
-    <div
-      className={`${styles.splash} ${exiting ? styles.splashExit : ''}`}
-      onClick={skip}
-      onKeyDown={(e) => {
-        if (e.key === ' ' || e.key === 'Enter' || e.key === 'Escape') {
-          skip()
-        }
-      }}
-      role="button"
-      tabIndex={0}
+    <SharedSplashScreen
+      onComplete={onComplete}
+      minimumDuration={2800}
+      title="SNAKE"
+      className={styles.snakeSplash}
     >
       <div className={styles.splashLogo}>
         <svg
@@ -80,9 +56,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
           <circle cx={52} cy={51.5} r={1} fill="#000" />
         </svg>
       </div>
-      <h1 className={styles.splashTitle}>SNAKE</h1>
       <p className={styles.splashTagline}>Snake + Tron Light Cycle Arcade</p>
-      <div className={styles.splashHint}>Press any key to continue</div>
-    </div>
+    </SharedSplashScreen>
   )
 }

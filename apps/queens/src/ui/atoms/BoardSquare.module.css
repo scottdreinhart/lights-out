@@ -1,0 +1,137 @@
+/**
+ * BoardSquare.module.css — N-Queens board square styling
+ *
+ * Styling for n-queens board squares with alternating background colors
+ * (checkerboard pattern), queen piece display, and keyboard selection highlighting.
+ * Uses CSS variables from the theme system for colors and accessibility.
+ */
+
+/**
+ * Base square styling
+ *
+ * 70×70px squares for n-queens board
+ * Alternating checkerboard background colors
+ * Smooth transitions for hover and selection effects
+ */
+.square {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  min-width: 70px;
+  min-height: 70px;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: var(--cell-bg, #e0e0e0);
+  cursor: pointer;
+  font-size: 32px;
+  font-weight: bold;
+  transition:
+    background-color 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease;
+  appearance: none;
+  -webkit-appearance: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+}
+
+/**
+ * Queen piece styling
+ *
+ * Display a queen icon or symbol on squares that have a queen
+ * Using a Unicode queen symbol (♛) or custom background
+ */
+.queen::after {
+  content: '♛';
+  position: absolute;
+  font-size: 40px;
+  color: #333;
+  pointer-events: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/**
+ * Hover state for mouse pointer (fine pointer device)
+ *
+ * Only apply hover effects on devices that support hovering (mouse, trackpad)
+ * Touch devices (pointer: coarse) should NOT have hover effects
+ */
+@media (hover: hover) {
+  .square:not(.disabled):hover {
+    background: var(--cell-hover-bg, #d0d0d0);
+    box-shadow: inset 0 0 0 1px var(--cell-hover-shadow, rgba(0, 0, 0, 0.2));
+    transform: scale(1.02);
+  }
+}
+
+/**
+ * Disabled state
+ *
+ * For squares that cannot be interacted with
+ */
+.disabled {
+  cursor: default;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/**
+ * Keyboard selection state
+ *
+ * Applied when square is selected via arrow keys
+ * Distinguished from hover state with a different color and outline
+ */
+.selected {
+  outline: 2px solid var(--cell-selected-outline, #71ffd6);
+  outline-offset: -2px;
+  box-shadow: inset 0 0 0 3px var(--cell-selected-glow, rgba(113, 255, 214, 0.3));
+  background: var(--cell-selected-bg, rgba(113, 255, 214, 0.15));
+}
+
+/**
+ * Hint/highlighted state
+ *
+ * Applied when square is:
+ * - A valid placement option
+ * - Under attack from another queen
+ * - Part of winning solution
+ *
+ * Distinct from selection to avoid confusion
+ */
+.hint {
+  box-shadow: inset 0 0 0 2px var(--hint-color, #ffc857),
+              inset 0 0 6px var(--cell-hint-glow, rgba(255, 200, 87, 0.3));
+  background: var(--cell-hint-bg, rgba(255, 204, 0, 0.1));
+}
+
+/**
+ * Accessibility: Reduced motion support
+ *
+ * Some users prefer reduced motion for health/accessibility reasons
+ * Disable transforms and animations for these users
+ */
+@media (prefers-reduced-motion: reduce) {
+  .square {
+    transition: background-color 150ms ease;
+  }
+
+  @media (hover: hover) {
+    .square:not(.disabled):hover {
+      transform: none;
+    }
+  }
+}
+
+/**
+ * Focus indicator for keyboard navigation
+ *
+ * Keyboard users need a clear visual indicator when a square has focus
+ */
+.square:focus-visible {
+  outline: none; /* We use custom outline via .selected class instead */
+}

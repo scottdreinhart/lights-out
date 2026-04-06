@@ -1,4 +1,9 @@
+/**
+ * UI layer barrel export.
+ * Re-exports atoms, molecules, organisms, and utilities.
+ *
+ * Usage: import { App, SplashScreen } from '@/ui'
+ */
+
 export * from './atoms'
-export * from './molecules'
-export * from './organisms'
-export * from './utils'
+export { App } from './organisms/App'

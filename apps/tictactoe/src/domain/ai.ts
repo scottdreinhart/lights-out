@@ -1,5 +1,5 @@
-import { minimax } from '@games/ai-framework'
 import type { GameAI } from '@games/ai-framework'
+import { minimax } from '@games/ai-framework'
 import { getEmptyCells } from './board.ts'
 import { getWinnerToken } from './rules.ts'
 import type { Board, Token } from './types.ts'
@@ -101,8 +101,12 @@ class TicTacToeMinimaxAI implements GameAI<Board, number, Token> {
 
   evaluateBoard(board: Board, _player: Token): number {
     const winner = getWinnerToken(board)
-    if (winner === this.cpuToken) return 10
-    if (winner === this.humanToken) return -10
+    if (winner === this.cpuToken) {
+      return 10
+    }
+    if (winner === this.humanToken) {
+      return -10
+    }
     return 0
   }
 
@@ -137,5 +141,5 @@ export const chooseCpuMoveUnbeatable = (
     // Fallback to smart heuristic if minimax fails
     return chooseCpuMoveSmart(board, cpuToken, humanToken)
   }
-  return result.move
+  return result.move as number
 }

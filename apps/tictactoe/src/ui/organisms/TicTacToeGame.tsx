@@ -80,15 +80,10 @@ const TicTacToeGame: React.FC = () => {
   const [showSplash, setShowSplash] = useState(true)
   const [showCoinFlip, setShowCoinFlip] = useState(false)
 
-  const handleSplashBeginTransition = useCallback(() => {
-    startTransition(() => {
-      setShowCoinFlip(true)
-    })
-  }, [])
-
   const handleSplashComplete = useCallback(() => {
     startTransition(() => {
       setShowSplash(false)
+      setShowCoinFlip(true)
     })
   }, [])
 
@@ -184,12 +179,7 @@ const TicTacToeGame: React.FC = () => {
 
   return (
     <div className={styles.page}>
-      {showSplash && (
-        <SplashScreen
-          onBeginTransition={handleSplashBeginTransition}
-          onComplete={handleSplashComplete}
-        />
-      )}
+      {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
 
       <header className={styles.appBar}>
         <h1 className={styles.title}>Tic Tac Toe</h1>

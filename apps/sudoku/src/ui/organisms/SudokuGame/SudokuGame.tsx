@@ -1,7 +1,8 @@
 import { useGame, useKeyboardControls, useResponsiveState } from '@/app'
 import type { Difficulty } from '@/domain'
 import { Button, Card } from '@/ui/atoms'
-import { SudokuBoard } from '@/ui/molecules'
+import { HamburgerMenu, NumberPad, SudokuBoard } from '@/ui/molecules'
+import { HelpModal, RulesModal, SettingsModal } from '../modals'
 import React, { useCallback, useMemo, useState } from 'react'
 import styles from './SudokuGame.module.css'
 
@@ -14,6 +15,9 @@ export const SudokuGame: React.FC = () => {
     col: 0,
   })
   const [selectedDigit, setSelectedDigit] = useState<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9>(1)
+  const [showRulesModal, setShowRulesModal] = useState(false)
+  const [showHelpModal, setShowHelpModal] = useState(false)
+  const [showSettingsModal, setShowSettingsModal] = useState(false)
 
   const moveSelection = (deltaRow: number, deltaCol: number) => {
     setSelectedCell((prev) => {
@@ -184,8 +188,20 @@ export const SudokuGame: React.FC = () => {
   }
 
   return (
-    <Card className={styles.gameCard} title="Sudoku">
-      <div className={styles.gameContainer}>
+    <>
+      <Card className={styles.gameCard} title="Sudoku">
+        <div className={styles.header}>
+          <h2 className={styles.title}>Sudoku</h2>
+          <HamburgerMenu
+            onRules={() => setShowRulesModal(true)}
+            onHelp={() => setShowHelpModal(true)}
+            onSettings={() => setShowSettingsModal(true)}
+            onToggleSound={() => {}}
+            onExit={() => window.location.reload()}
+            soundEnabled={true}
+          />
+        </div>
+        <div className={styles.gameContainer}>
         <div className={styles.topSection}>
           <div className={styles.stats}>
             <div className={styles.stat}>
@@ -276,6 +292,12 @@ export const SudokuGame: React.FC = () => {
           </Button>
         </div>
       </div>
+
+      {/* Modal Adapters */}
+      <RulesModal isOpen={showRulesModal} onClose={() => setShowRulesModal(false)} />
+      <HelpModal isOpen={showHelpModal} onClose={() => setShowHelpModal(false)} />
+      <SettingsModal isOpen={showSettingsModal} onClose={() => setShowSettingsModal(false)} />
     </Card>
+    </>
   )
 }

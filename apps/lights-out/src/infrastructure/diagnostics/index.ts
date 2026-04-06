@@ -5,4 +5,4 @@ export {
   getFatalCrash,
   logCrash,
   markFatalCrash,
-} from '@/app'
+} from '@games/crash-logger'

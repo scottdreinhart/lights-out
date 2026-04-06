@@ -1,4 +1,4 @@
-import type { AppState } from '@capacitor/app'
+import type { AppState, PluginListenerHandle } from '@capacitor/app'
 import { App } from '@capacitor/app'
 import { Keyboard } from '@capacitor/keyboard'
 import { StatusBar, Style } from '@capacitor/status-bar'
@@ -51,7 +51,7 @@ export const useAppState = () => {
       return
     }
 
-    let listener: any
+    let listener: PluginListenerHandle | null = null
     ;(async () => {
       try {
         listener = await App.addListener('appStateChange', (appState: AppState) => {

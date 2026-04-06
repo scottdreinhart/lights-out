@@ -1,3 +1,6 @@
-export { Button } from './Button/Button'
-export { Card } from './Card/Card'
-export { SudokuCell } from './SudokuCell/SudokuCell'
+/**
+ * Atoms barrel export — smallest UI building blocks.
+ * Sourced from @games/common.
+ */
+
+export { ErrorBoundary, OfflineIndicator, SplashScreen } from '@games/common'

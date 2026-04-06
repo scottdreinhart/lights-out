@@ -1,7 +1,9 @@
 /**
- * UI Layer Exports
- * Zip Game UI Components
+ * UI layer barrel export.
+ * Re-exports atoms, molecules, organisms, and utilities.
+ *
+ * Usage: import { App, SplashScreen } from '@/ui'
  */
 
-export { ZipBoard } from './ZipBoard'
-export { ZipGame } from './ZipGame'
+export * from './atoms'
+export { App } from './organisms/App'

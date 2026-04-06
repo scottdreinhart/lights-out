@@ -33,9 +33,12 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         external: [
           '@capacitor/core',
-          '@capacitor/haptics',
-          '@capacitor/preferences',
           '@capacitor/app',
+          '@capacitor/device',
+          '@capacitor/preferences',
+          '@capacitor/haptics',
+          '@capacitor/splash-screen',
+          '@capacitor/keyboard',
         ],
         output: {
           manualChunks(id) {

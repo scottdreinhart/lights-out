@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { visualizer } from 'rollup-plugin-visualizer'
 import { resolve } from 'path'
 
 const __dirname = import.meta.dirname
@@ -9,12 +8,6 @@ export default defineConfig({
   base: './',
   plugins: [
     react(),
-    visualizer({
-      filename: 'dist/bundle-report.html',
-      gzipSize: true,
-      brotliSize: true,
-      open: false,
-    }),
   ],
   resolve: {
     alias: {
@@ -22,6 +15,17 @@ export default defineConfig({
       '@/domain': resolve(__dirname, 'src/domain'),
       '@/app': resolve(__dirname, 'src/app'),
       '@/ui': resolve(__dirname, 'src/ui'),
+      '@games/domain-shared': resolve(__dirname, '../../packages/domain-shared/src'),
+      '@games/common': resolve(__dirname, '../../packages/common/src'),
+      '@games/storage-utils': resolve(__dirname, '../../packages/storage-utils/src'),
+      '@games/sound-context': resolve(__dirname, '../../packages/sound-context/src'),
+      '@games/theme-context': resolve(__dirname, '../../packages/theme-context/src'),
+      '@games/app-hook-utils': resolve(__dirname, '../../packages/app-hook-utils/src'),
+      '@games/assets-shared': resolve(__dirname, '../../packages/assets-shared/src'),
+      '@games/ui-board-core': resolve(__dirname, '../../packages/ui-board-core/src'),
+      '@games/ui-utils': resolve(__dirname, '../../packages/ui-utils/src'),
+      '@games/theme-contract': resolve(__dirname, '../../packages/theme-contract/src'),
+      '@games/ai-framework': resolve(__dirname, '../../packages/ai-framework/src'),
     },
   },
   build: {
@@ -30,13 +34,6 @@ export default defineConfig({
     modulePreload: { polyfill: false },
     minify: 'esbuild',
     cssMinify: true,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          react: ['react', 'react-dom'],
-        },
-      },
-    },
   },
   server: {
     host: '0.0.0.0',

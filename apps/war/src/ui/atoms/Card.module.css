@@ -1,0 +1,35 @@
+.card {
+  width: 80px;
+  height: 120px;
+  border: 2px solid #333;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card[data-facedown='true'] {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  border-color: #1c5aa0;
+}
+
+.rank {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.suit {
+  font-size: 2em;
+  line-height: 1;
+}

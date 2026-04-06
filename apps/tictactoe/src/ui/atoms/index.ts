@@ -1,11 +1,6 @@
-export { ErrorBoundary, OfflineIndicator } from '@games/common'
-export { default as CellButton } from './CellButton'
-export { default as ConfettiOverlay } from './ConfettiOverlay'
-export { default as DifficultyToggle } from './DifficultyToggle'
-export { default as GameOutcomeOverlay } from './GameOutcomeOverlay'
-export { default as NotificationBanner } from './NotificationBanner'
-export { default as OMark } from './OMark'
-export { default as SeriesSelector } from './SeriesSelector'
-export { default as SoundToggle } from './SoundToggle'
-export { default as WinLine } from './WinLine'
-export { default as XMark } from './XMark'
+/**
+ * Atoms barrel export — smallest UI building blocks.
+ * Sourced from @games/common.
+ */
+
+export { ErrorBoundary, OfflineIndicator, SplashScreen } from '@games/common'

@@ -1,0 +1,221 @@
+/**
+ * BoardCell.module.css — Minesweeper cell styling
+ * 
+ * Styling for minesweeper tiles with hover effects and keyboard selection highlighting.
+ * Uses CSS variables from the theme system for colors and accessibility.
+ */
+
+/**
+ * Base cell styling
+ * 
+ * 52×52px tiles (marketplace compliance requirement)
+ * Smooth transitions for hover and selection effects
+ */
+.cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  min-height: 52px;
+  padding: 0;
+  border: none;
+  background: var(--cell-bg, #e0e0e0);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition:
+    background-color 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease;
+  appearance: none;
+  -webkit-appearance: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+}
+
+/**
+ * Hover state for mouse pointer (fine pointer device)
+ * 
+ * Only apply hover effects on devices that support hovering (mouse, trackpad)
+ * Touch devices (pointer: coarse) should NOT have hover effects
+ */
+@media (hover: hover) {
+  .cell:not(.disabled):hover {
+    background: var(--cell-hover-bg, #d0d0d0);
+    box-shadow: inset 0 0 0 1px var(--cell-hover-shadow, rgba(0, 0, 0, 0.2));
+    transform: scale(1.02);
+  }
+}
+
+/**
+ * Note: @media (hover: hover) is MORE reliable than @media (pointer: fine)
+ * because it specifically tests whether the device supports any hovering at all.
+ * Touch devices don't activate this rule, preventing accidental hover states.
+ */
+
+/**
+ * Disabled state
+ * 
+ * For cells that cannot be interacted with
+ */
+.disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+/**
+ * Cell state colors based on revealed/hidden/flagged status
+ * 
+ * These are the base appearance of the cell before hover or selection
+ */
+
+/* Hidden cell (unrevealed) */
+.hidden {
+  background: #bdbdbd;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4), inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+  color: #666;
+}
+
+/* Revealed cell with no adjacent mines */
+.empty {
+  background: #f5f5f5;
+  color: #888;
+}
+
+/* Revealed cell with adjacent mines (numbers 1-8) */
+.numbered {
+  background: #f5f5f5;
+}
+
+/* Number color coding (standards from classic minesweeper) */
+.n1 {
+  color: #0000ff;
+}
+
+.n2 {
+  color: #008000;
+}
+
+.n3 {
+  color: #ff0000;
+}
+
+.n4 {
+  color: #000080;
+}
+
+.n5 {
+  color: #800000;
+}
+
+.n6 {
+  color: #008080;
+}
+
+.n7 {
+  color: #000000;
+}
+
+.n8 {
+  color: #808080;
+}
+
+/* Flagged cell */
+.flagged {
+  background: #bdbdbd;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4), inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+  color: #ff0000;
+}
+
+/* Revealed mine (game over) */
+.mine {
+  background: #ff6666;
+  color: #000;
+}
+
+/* Mine that ended the game */
+.triggered {
+  background: #ff3333;
+  color: #000;
+  font-weight: bold;
+}
+
+/**
+ * Keyboard selection state
+ * 
+ * Applied when cell is selected via arrow keys or WASD
+ * Distinguished from hover state with a different color and outline
+ */
+.selected {
+  outline: 2px solid var(--cell-selected-outline, #71ffd6);
+  outline-offset: -2px;
+  box-shadow: inset 0 0 0 3px var(--cell-selected-glow, rgba(113, 255, 214, 0.3));
+  background: var(--cell-selected-bg, rgba(113, 255, 214, 0.15));
+}
+
+/**
+ * Hint/highlighted state
+ * 
+ * Applied when cell is suggested as a hint in gameplay
+ * Distinct from selection to avoid confusion
+ */
+.hint {
+  box-shadow: inset 0 0 0 2px var(--hint-color, #ffc857), 
+              inset 0 0 6px var(--cell-hint-glow, rgba(255, 200, 87, 0.3));
+  background: var(--cell-hint-bg, rgba(255, 204, 0, 0.1));
+}
+
+/**
+ * Corner radius for board edges
+ * 
+ * Apply rounding to cells on the edges of the board
+ * Outer corners get rounding to create a finished board appearance
+ */
+.cornerTopLeft {
+  border-radius: 8px 0 0 0;
+}
+
+.cornerTopRight {
+  border-radius: 0 8px 0 0;
+}
+
+.cornerBottomLeft {
+  border-radius: 0 0 0 8px;
+}
+
+.cornerBottomRight {
+  border-radius: 0 0 8px 0;
+}
+
+/**
+ * Accessibility: Reduced motion support
+ * 
+ * Some users prefer reduced motion for health/accessibility reasons
+ * Disable transforms and animations for these users
+ */
+@media (prefers-reduced-motion: reduce) {
+  .cell {
+    transition: background-color 150ms ease;
+  }
+
+  @media (hover: hover) {
+    .cell:not(.disabled):hover {
+      transform: none;
+    }
+  }
+}
+
+/**
+ * Focus indicator for keyboard navigation
+ * 
+ * Keyboard users need a clear visual indicator when a cell has focus
+ * Standard focus ring (from browser) is sufficient due to selection outline
+ */
+.cell:focus-visible {
+  outline: none; /* We use custom outline via .selected class instead */
+}

@@ -1,7 +1,7 @@
 /**
- * useIonicPlatform — Platform detection hook using Ionic's isPlatform() utilities.
+ * useIonicPlatform — Platform detection hook using browser APIs and Capacitor detection.
  *
- * Provides semantic information about the current runtime environment:
+ * REFACTORED to remove Ionic dependency. Provides semantic information about the current runtime environment:
  * - Device category (mobile, tablet, desktop)
  * - Operating system (iOS, Android)
  * - Runtime environment (web, Electron, hybrid Capacitor)
@@ -12,18 +12,16 @@
  *   // Render mobile-optimized UI
  * }
  *
- * Benefits:
- * 1. Ionic's platform detection is more reliable than matchMedia alone
- * 2. Distinguishes between actual mobile OS (iOS/Android) vs responsive web
- * 3. Integrates with Capacitor for hybrid app detection
- * 4. Works across Web, Electron, iOS, and Android
+ * Implementation:
+ * - Uses User-Agent parsing for OS detection (iOS/Android)
+ * - Uses Capacitor API detection for hybrid apps
+ * - Uses window.electron detection for Electron
+ * - Uses responsive viewport and browser detection for web
  *
  * Alternative to useResponsiveState for OS/runtime detection.
  * Use useResponsiveState for viewport-based (5-tier) layout decisions.
  * Use useIonicPlatform for OS-based (iOS/Android/web) behavior decisions.
  */
-
-import { isPlatform } from '@ionic/react'
 
 export interface IonicPlatformInfo {
   /** True if running on actual mobile OS (iOS or Android) */
@@ -47,34 +45,54 @@ export interface IonicPlatformInfo {
 }
 
 /**
- * Detects the current platform using Ionic's isPlatform() utilities.
+ * Detect platform info using browser APIs, without Ionic dependency.
  * Caches result since platform doesn't change during app runtime.
  */
 let cachedPlatformInfo: IonicPlatformInfo | null = null
 
-export function useIonicPlatform(): IonicPlatformInfo {
-  if (cachedPlatformInfo) {
-    return cachedPlatformInfo
-  }
+function detectPlatform(): IonicPlatformInfo {
+  // Parse User-Agent for OS detection
+  const ua = typeof window !== 'undefined' ? navigator.userAgent : ''
+  const isIOS = /iPad|iPhone|iPod/.test(ua)
+  const isAndroid = /Android/.test(ua)
+  const isMobileOS = isIOS || isAndroid
 
-  const isMobileOS = isPlatform('ios') || isPlatform('android')
-  const isIOS = isPlatform('ios')
-  const isAndroid = isPlatform('android')
-  const isElectron = isPlatform('electron')
-  const isHybrid = isPlatform('hybrid')
-  const isMobileWeb = isPlatform('mobileweb')
-  const isPwa = isPlatform('pwa')
-  const isWeb = isMobileWeb || isPwa || (!isHybrid && !isElectron)
-  const isTablet = isPlatform('tablet')
-  const isMobile = isPlatform('mobile')
+  // Detect Electron
+  const isElectron =
+    typeof window !== 'undefined' &&
+    typeof (window as any).electron !== 'undefined'
 
-  // Determine environment context
+  // Detect Capacitor/Hybrid
+  const isHybrid =
+    typeof window !== 'undefined' &&
+    typeof (window as any).Capacitor !== 'undefined'
+
+  // Detect PWA
+  const isPwa =
+    typeof window !== 'undefined' &&
+    (navigator.standalone === true ||
+      window.matchMedia('(display-mode: standalone)').matches)
+
+  // Web is anything that's not hybrid/electron
+  const isWeb = !isHybrid && !isElectron
+
+  // Mobile/tablet detection: use viewport + UA
+  const viewport = typeof window !== 'undefined' ? window.innerWidth : 0
+  const isMobile = viewport < 600 || /Mobile|Android/.test(ua)
+  const isTablet =
+    (viewport >= 600 && viewport < 900) ||
+    (/iPad/.test(ua) && !/(Mini|Pad)/.test(ua))
+
+  // Mobile web is web browser on mobile device
+  const isMobileWeb = isWeb && (isMobile || (isTablet && isMobileOS))
+
+  // Desktop environment: Electron OR web on desktop OR tablet web without mobile OS
   const isDesktopEnvironment =
-    isElectron || // Electron app (Windows/Linux/macOS desktop)
-    (isWeb && !isMobile) || // Web browser on desktop
-    (isWeb && isTablet && !isMobileOS) // Web browser on tablet (not iOS iPad mini)
+    isElectron ||
+    (isWeb && !isMobileWeb) ||
+    (isWeb && isTablet && !isMobileOS)
 
-  cachedPlatformInfo = {
+  return {
     isMobileDevice: isMobileOS,
     isIOS,
     isAndroid,
@@ -85,7 +103,14 @@ export function useIonicPlatform(): IonicPlatformInfo {
     isMobile,
     isDesktopEnvironment,
   }
+}
 
+export function useIonicPlatform(): IonicPlatformInfo {
+  if (cachedPlatformInfo) {
+    return cachedPlatformInfo
+  }
+
+  cachedPlatformInfo = detectPlatform()
   return cachedPlatformInfo
 }
 

@@ -17,8 +17,8 @@
 }
 
 .cell {
-  width: 32px;
-  height: 32px;
+  width: 58px;
+  height: 58px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,8 +99,8 @@
 /* Responsive sizing */
 @media (max-width: 599px) {
   .cell {
-    width: 24px;
-    height: 24px;
+    width: 58px;
+    height: 58px;
     font-size: 12px;
   }
 }

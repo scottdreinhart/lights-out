@@ -1,7 +1,9 @@
 /**
- * Mini Sudoku UI Layer Barrel Export
+ * UI layer barrel export.
+ * Re-exports atoms, molecules, organisms, and utilities.
+ *
+ * Usage: import { App, SplashScreen } from '@/ui'
  */
 
 export * from './atoms'
-export * from './molecules'
-export * from './organisms'
+export { App } from './organisms/App'

@@ -1,0 +1,106 @@
+/* Standard web button styles - replacing Ionic */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 200ms ease;
+  text-align: center;
+  min-height: 44px;
+  min-width: 44px;
+  user-select: none;
+}
+
+.button:hover:not(:disabled):not(.button--loading) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.button:active:not(:disabled):not(.button--loading) {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Primary variant */
+.button--primary {
+  background: #007bff;
+  color: white;
+}
+
+.button--primary:hover:not(:disabled) {
+  background: #0056b3;
+}
+
+/* Secondary variant */
+.button--secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.button--secondary:hover:not(:disabled) {
+  background: #5a6268;
+}
+
+/* Danger variant */
+.button--danger {
+  background: #dc3545;
+  color: white;
+}
+
+.button--danger:hover:not(:disabled) {
+  background: #c82333;
+}
+
+/* Loading state */
+.button--loading {
+  pointer-events: none;
+}
+
+/* Spinner for loading state */
+.button__spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  border-right-color: transparent;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Touch device optimization */
+@media (pointer: coarse) {
+  .button {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  .button:hover:not(:disabled) {
+    transform: none;
+  }
+}
+
+/* Responsive sizing */
+@media (max-width: 599px) {
+  .button {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.95rem;
+  }
+}

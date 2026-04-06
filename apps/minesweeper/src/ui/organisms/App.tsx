@@ -1,4 +1,3 @@
-import { type Difficulty } from '@/domain'
 import {
   computeAiMoveAsync,
   ensureWasmReady,
@@ -6,16 +5,25 @@ import {
   useGame,
   useKeyboardControls,
   useSoundContext,
+  useSoundEffects,
   useThemeContext,
 } from '@/app'
-import { GameBoard, HamburgerMenu, Hud, LandingPage, ScoresScreen, SplashScreen } from '@/ui'
+import { type Difficulty } from '@/domain'
+import { SplashScreen } from '@games/common'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { GameBoard } from '../molecules/GameBoard'
+import { HamburgerMenu } from '../molecules/HamburgerMenu'
+import { Hud } from '../molecules/Hud'
+import { LandingPage } from '../molecules/LandingPage'
+import { ScoresScreen } from '../molecules/ScoresScreen'
+import { HelpModal, RulesModal } from './modals'
 
 const DIFFICULTIES: Difficulty[] = ['beginner', 'intermediate', 'expert']
 
 export function App() {
   const { settings, setColorTheme, setColorblind, setMode } = useThemeContext()
-  const { click, reveal: revealSound, explosion, soundEnabled, toggleSound, win } = useSoundContext()
+  const { soundEnabled, toggleSound } = useSoundContext()
+  const { click, reveal: revealSound, explosion, win } = useSoundEffects()
   const {
     changeDifficulty,
     chord,
@@ -36,15 +44,13 @@ export function App() {
   const [hintRequested, setHintRequested] = useState(false)
   const [screen, setScreen] = useState<'splash' | 'landing' | 'game' | 'scores'>('splash')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [showRulesModal, setShowRulesModal] = useState(false)
+  const [showHelpModal, setShowHelpModal] = useState(false)
   const [selectedCell, setSelectedCell] = useState({ row: 0, col: 0 })
   const [doneFeedback, setDoneFeedback] = useState<string | null>(null)
 
-  useEffect(() => {
-    const timeout = window.setTimeout(() => {
-      setScreen('landing')
-    }, 1200)
-
-    return () => window.clearTimeout(timeout)
+  const handleSplashComplete = useCallback(() => {
+    setScreen('landing')
   }, [])
 
   useEffect(() => {
@@ -73,7 +79,10 @@ export function App() {
   }, [difficulty, game.board, game.status])
 
   const mineCounter = useMemo(() => game.mines - game.flagsPlaced, [game.flagsPlaced, game.mines])
-  const difficultyLabel = useMemo(() => difficulty[0].toUpperCase() + difficulty.slice(1), [difficulty])
+  const difficultyLabel = useMemo(
+    () => difficulty[0].toUpperCase() + difficulty.slice(1),
+    [difficulty],
+  )
   const hintLabel = useMemo(() => {
     if (hint) {
       return `Hint ready: row ${hint.row + 1}, col ${hint.col + 1} via ${hint.engine.toUpperCase()}`
@@ -87,12 +96,14 @@ export function App() {
       return 'No safe move available'
     }
 
-    return 'Keyboard: Arrows/WASD move, Enter reveal, F flag, C chord, X done-check, H hint'
+    return 'Keyboard: Arrows/WASD move, Enter reveal, F flag, C chord, X done-check, H hint, ? help'
   }, [hint, hintPending, hintRequested])
 
   const doneCheck = useCallback(() => {
     const solved = submitBoard()
-    setDoneFeedback(solved ? 'Board validated: win confirmed.' : 'Not complete yet — keep clearing safe tiles.')
+    setDoneFeedback(
+      solved ? 'Board validated: win confirmed.' : 'Not complete yet — keep clearing safe tiles.',
+    )
   }, [submitBoard])
 
   const moveSelection = useCallback(
@@ -176,7 +187,7 @@ export function App() {
           setSelectedCell({ row: selectedCell.row, col: selectedCell.col })
           click()
           reveal(selectedCell.row, selectedCell.col)
-          revealSound()
+          revealSound() // from useSoundEffects as 'reveal' aliased as 'revealSound'
           setDoneFeedback(null)
         },
         enabled: () => screen === 'game',
@@ -237,11 +248,30 @@ export function App() {
 
   useKeyboardControls(keyboardBindings)
 
+  // Modal keyboard shortcuts: ? opens Help, / opens Rules (when not in game screen)
+  useEffect(() => {
+    const handleModalKeydown = (e: KeyboardEvent) => {
+      // ? key (Shift+/) to open Help modal
+      if (e.key === '?' || (e.shiftKey && e.key === '/')) {
+        e.preventDefault()
+        setShowHelpModal(true)
+      }
+      // / key to open Rules modal (when not in game)
+      if (e.key === '/' && !e.shiftKey && screen !== 'game') {
+        e.preventDefault()
+        setShowRulesModal(true)
+      }
+    }
+
+    document.addEventListener('keydown', handleModalKeydown)
+    return () => document.removeEventListener('keydown', handleModalKeydown)
+  }, [screen])
+
   const onReveal = (row: number, col: number) => {
     setSelectedCell({ row, col })
     click()
     reveal(row, col)
-    revealSound()
+    revealSound() // from useSoundEffects as 'reveal' aliased as 'revealSound'
     setDoneFeedback(null)
   }
 
@@ -264,7 +294,7 @@ export function App() {
   }
 
   if (screen === 'splash') {
-    return <SplashScreen />
+    return <SplashScreen onComplete={handleSplashComplete} />
   }
 
   if (screen === 'landing') {
@@ -276,6 +306,8 @@ export function App() {
           onDifficultyChange={changeDifficulty}
           onStart={startGame}
           onViewScores={openScores}
+          onShowRules={() => setShowRulesModal(true)}
+          onShowHelp={() => setShowHelpModal(true)}
           stats={stats}
         />
       </main>
@@ -339,12 +371,24 @@ export function App() {
           onViewScores={openScores}
           onHint={() => void requestHint()}
           onDone={doneCheck}
+          onRules={() => setShowRulesModal(true)}
+          onHelp={() => setShowHelpModal(true)}
           hintDisabled={hintPending || game.status === 'won' || game.status === 'lost'}
           doneDisabled={game.status === 'won' || game.status === 'lost'}
           stats={stats}
         />
 
-        {menuOpen ? <button type="button" className="ms-menu-backdrop" aria-label="close-menu" onClick={() => setMenuOpen(false)} /> : null}
+        {menuOpen ? (
+          <button
+            type="button"
+            className="ms-menu-backdrop"
+            aria-label="close-menu"
+            onClick={() => setMenuOpen(false)}
+          />
+        ) : null}
+
+        <RulesModal isOpen={showRulesModal} onClose={() => setShowRulesModal(false)} />
+        <HelpModal isOpen={showHelpModal} onClose={() => setShowHelpModal(false)} />
 
         <section className="ms-board-shell">
           <GameBoard

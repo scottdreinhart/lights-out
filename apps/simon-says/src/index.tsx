@@ -1,6 +1,5 @@
 import { SoundProvider, ThemeProvider } from '@/app'
-import { ErrorBoundary } from '@/ui/atoms'
-import { App } from '@/ui/organisms'
+import { ErrorBoundary, App } from '@/ui/organisms'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './styles.css'

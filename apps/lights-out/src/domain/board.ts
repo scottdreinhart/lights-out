@@ -4,60 +4,24 @@
  * Optimized with WebAssembly for hot paths.
  */
 
+import { lightsOutWasm } from '@/infrastructure'
 import { Board, Position } from './types'
 
 const GRID_SIZE = 5
 
-interface WasmModule {
-  instance: WebAssembly.Instance
-}
-
-// WASM module cache (lazy-loaded)
-let wasmModule: WasmModule | null = null
-
-/**
- * Initialize WASM module from embedded base64 binary
- */
-async function initWasm(): Promise<WasmModule | null> {
-  if (wasmModule) {
-    return wasmModule
-  }
-
-  try {
-    // Dynamically import the WASM module
-    const { AI_WASM_BASE64 } = await import('@/wasm/ai-wasm')
-
-    const binaryString = atob(AI_WASM_BASE64)
-    const bytes = new Uint8Array(binaryString.length)
-    for (let i = 0; i < binaryString.length; i++) {
-      bytes[i] = binaryString.charCodeAt(i)
-    }
-
-    const memory = new WebAssembly.Memory({ initial: 256, maximum: 512 })
-    const importObject = {
-      env: {
-        memory,
-        abort: () => {
-          throw new Error('WASM abort')
-        },
-      },
-    }
-
-    const wasmResult = await WebAssembly.instantiate(bytes, importObject)
-    wasmModule = { instance: wasmResult.instance }
-    console.log('[Board] WASM module loaded for optimization')
-    return wasmModule
-  } catch (err) {
-    console.warn('[Board] WASM unavailable, using JS:', err)
-    return null
-  }
-}
-
 /**
  * Create a new board with random light pattern
  * About 25-50% of lights randomly on
+ * Uses WASM optimization when available
  */
-export function createBoard(): Board {
+export async function createBoard(): Promise<Board> {
+  // Try WASM first for performance
+  const wasmBoard = await lightsOutWasm.createBoard()
+  if (wasmBoard) {
+    return wasmBoard
+  }
+
+  // JS fallback
   return Array.from({ length: GRID_SIZE }, () =>
     Array.from({ length: GRID_SIZE }, () => Math.random() > 0.5),
   )
@@ -66,8 +30,16 @@ export function createBoard(): Board {
 /**
  * Toggle a cell and its 4 cardinal neighbors (up, down, left, right)
  * Creates new board without mutating original
+ * Uses WASM optimization when available
  */
-export function toggleCell(board: Board, row: number, col: number): Board {
+export async function toggleCell(board: Board, row: number, col: number): Promise<Board> {
+  // Try WASM first for performance
+  const wasmBoard = await lightsOutWasm.toggleCell(board, row, col)
+  if (wasmBoard) {
+    return wasmBoard
+  }
+
+  // JS fallback
   const newBoard = board.map((r) => [...r])
 
   // Toggle the cell itself
@@ -93,8 +65,16 @@ export function toggleCell(board: Board, row: number, col: number): Board {
 
 /**
  * Check if all lights are off (solved)
+ * Uses WASM optimization when available
  */
-export function isSolved(board: Board): boolean {
+export async function isSolved(board: Board): Promise<boolean> {
+  // Try WASM first for performance
+  const wasmResult = await lightsOutWasm.isSolved(board)
+  if (wasmResult !== null) {
+    return wasmResult
+  }
+
+  // JS fallback
   return board.every((row) => row.every((light) => !light))
 }
 

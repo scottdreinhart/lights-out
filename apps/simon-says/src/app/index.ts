@@ -2,12 +2,12 @@
  * Application layer barrel export.
  * Re-exports all React hooks and services.
  *
- * Usage: import { useTheme, useSoundEffects } from '@/app'
+ * Usage: import { useSimonSays } from '@/app'
  */
 
-// Shared infrastructure
+export { useSimonSays } from './hooks'
+
 export {
-  useKeyboardControls,
   useMediaQuery,
   useWindowSize,
   useResponsiveState,

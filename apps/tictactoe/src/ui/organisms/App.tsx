@@ -1,7 +1,7 @@
 /**
  * App — Phase-based navigation wrapper for TicTacToeGame.
  *
- * Manages game phases: menu → playing → game-over
+ * Manages game phases: splash → menu → playing → game-over
  * Plus: settings, help, stats overlays accessible from menu and during play
  */
 
@@ -14,10 +14,11 @@ import {
   SettingsOverlay,
   StatsOverlay,
 } from '@/ui/molecules'
+import SplashScreen from '@/ui/molecules/SplashScreen'
 import { useCallback, useState } from 'react'
 import TicTacToeGame from './TicTacToeGame'
 
-type AppPhase = 'menu' | 'playing' | 'settings' | 'help' | 'stats' | 'game-over'
+type AppPhase = 'splash' | 'menu' | 'playing' | 'settings' | 'help' | 'stats' | 'game-over'
 
 interface GameOverState {
   outcome: any
@@ -28,7 +29,7 @@ interface GameOverState {
 }
 
 export default function App() {
-  const [phase, setPhase] = useState<AppPhase>('menu')
+  const [phase, setPhase] = useState<AppPhase>('splash')
   const [gameOverState] = useState<GameOverState | null>(null)
   const [difficulty, setDifficulty] = useState<Difficulty>('medium')
   const [seriesLength, setSeriesLength] = useState(1)
@@ -37,6 +38,14 @@ export default function App() {
   const { soundEnabled, toggleSound } = useSoundEffects()
 
   // Navigation callbacks
+  const handleSplashComplete = useCallback(() => {
+    setPhase('menu')
+  }, [])
+
+  const handleHowToPlay = useCallback(() => {
+    setPhase('help')
+  }, [])
+
   const handlePlayClicked = useCallback(() => {
     setPhase('playing')
   }, [])
@@ -68,6 +77,17 @@ export default function App() {
   const handleSetSeriesLength = useCallback((n: number) => {
     setSeriesLength(n)
   }, [])
+
+  // Shows SplashScreen with interactive buttons
+  if (phase === 'splash') {
+    return (
+      <SplashScreen
+        onComplete={handleSplashComplete}
+        onHowToPlay={handleHowToPlay}
+        onLetsPlay={handlePlayClicked}
+      />
+    )
+  }
 
   // Shows MainMenu
   if (phase === 'menu') {

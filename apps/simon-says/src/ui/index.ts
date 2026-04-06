@@ -2,8 +2,8 @@
  * UI layer barrel export.
  * Re-exports atoms, molecules, organisms, and utilities.
  *
- * Usage: import { ErrorBoundary, cx } from '@/ui'
+ * Usage: import { Board } from '@/ui'
  */
 
-export { BREAKPOINTS } from './ui-constants'
-export { cx } from './utils/cssModules'
+export * from './atoms'
+export * from './organisms'

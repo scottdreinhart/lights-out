@@ -1,0 +1,441 @@
+/**
+ * War GameBoard styles
+ */
+
+.board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: sans-serif;
+  gap: 1.5rem;
+}
+
+/* Header Section */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+  width: 100%;
+  max-width: 500px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.title h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.rulesButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 150ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rulesButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* Deck Info Section */
+.deckInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.deckSize {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.label {
+  font-size: 0.75rem;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.count {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.divider {
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+
+/* Progress Bar */
+.progressContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.progressBar {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #8bc34a);
+  transition: width 300ms ease;
+}
+
+.progressText {
+  font-size: 0.75rem;
+  min-width: 35px;
+  text-align: right;
+}
+
+/* Play Area */
+.playArea {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 700px;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  flex: 1;
+  min-height: 300px;
+}
+
+.playerSection,
+.computerSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+  flex: 1;
+}
+
+.playerSection h2,
+.computerSection h2 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.cardDisplay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  min-width: 120px;
+}
+
+.warSequence {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.faceDownCards {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.cardBack {
+  width: 60px;
+  height: 90px;
+  background: linear-gradient(135deg, #e91e63, #9c27b0);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.faceUpCard {
+  min-width: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Center Status */
+.centerStatus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: white;
+  text-align: center;
+}
+
+.warLabel {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff6b6b;
+  text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.roundInfo {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Stats Section */
+.stats {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  color: white;
+  width: 100%;
+  padding: 1rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.stat .label {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.stat .value {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+/* Game Over */
+.gameOverOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: fadeIn 200ms ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.gameOverContent {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: slideUp 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.gameOverTitle {
+  margin: 0 0 1.5rem 0;
+  font-size: 2rem;
+  color: #333;
+}
+
+.finalStats {
+  margin: 1.5rem 0;
+  font-size: 1rem;
+  color: #666;
+}
+
+.finalStats p {
+  margin: 0.5rem 0;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.primaryButton,
+.secondaryButton {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.primaryButton {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  min-width: 140px;
+}
+
+.primaryButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(245, 87, 108, 0.4);
+}
+
+.primaryButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.primaryButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.secondaryButton {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+}
+
+.secondaryButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 599px) {
+  .board {
+    padding: 0.75rem;
+    gap: 1rem;
+  }
+
+  .title h1 {
+    font-size: 2rem;
+  }
+
+  .playArea {
+    gap: 0.75rem;
+    padding: 1rem;
+    min-height: 250px;
+  }
+
+  .playerSection h2,
+  .computerSection h2 {
+    font-size: 0.9rem;
+  }
+
+  .stats {
+    gap: 1rem;
+    padding: 0.75rem;
+  }
+
+  .stat .value {
+    font-size: 1rem;
+  }
+
+  .actions {
+    gap: 0.5rem;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    min-width: 120px;
+  }
+
+  .cardDisplay {
+    min-width: 100px;
+    min-height: 150px;
+  }
+
+  .cardBack {
+    width: 50px;
+    height: 75px;
+  }
+}
+
+@media (max-width: 900px) {
+  .playArea {
+    flex-direction: column;
+  }
+
+  .playerSection,
+  .computerSection {
+    width: 100%;
+  }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+  .primaryButton:hover,
+  .secondaryButton:hover {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  }
+
+  .rulesButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1);
+  }
+}
+

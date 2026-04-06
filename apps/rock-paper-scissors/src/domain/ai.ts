@@ -4,7 +4,7 @@
  * Pure functions: given a board state, return the best move.
  */
 
-import { selectCPUMoveWasm } from '@/wasm/ai-wasm'
+import { rockPaperScissorsWasm } from '@/infrastructure'
 import type { Move, Round } from './types'
 
 /**
@@ -50,27 +50,22 @@ function selectCPUMoveFallback(rounds: Round[]): Move {
  * This hybrid approach ensures the game works everywhere while
  * getting performance boost when WASM is available.
  */
-export function selectCPUMove(rounds: Round[]): Move {
+export async function selectCPUMove(rounds: Round[]): Promise<Move> {
   const seed = Math.floor(Math.random() * 0x7fffffff)
 
   // Try WASM first
-  try {
-    const wasmResult = selectCPUMoveWasm(
-      rounds.map((r) => ({
-        playerMove: r.playerMove,
-        cpuMove: r.cpuMove,
-        result: r.result,
-      })),
-      seed,
-    )
+  const wasmResult = await rockPaperScissorsWasm.selectCPUMove(
+    rounds.map((r) => ({
+      playerMove: r.playerMove,
+      cpuMove: r.cpuMove,
+      result: r.result,
+    })),
+    seed,
+  )
 
-    if (wasmResult !== null) {
-      const moveNames: Array<'rock' | 'paper' | 'scissors'> = ['rock', 'paper', 'scissors']
-      return moveNames[wasmResult]
-    }
-  } catch (err) {
-    // WASM failed, fall through to JS
-    console.debug('WASM AI failed, using JS fallback')
+  if (wasmResult !== null && wasmResult >= 0 && wasmResult < 3) {
+    const moveNames: Array<'rock' | 'paper' | 'scissors'> = ['rock', 'paper', 'scissors']
+    return moveNames[wasmResult]
   }
 
   // Fall back to pure JavaScript

@@ -1,0 +1,55 @@
+/**
+ * Minesweeper SplashScreen styling
+ * Works with the shared SplashScreen component
+ */
+
+.minesweeperSplash {
+  /* Inherits from SharedSplashScreen */
+}
+
+.logoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.logoWithSubtitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.description {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 320px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .logoContainer {
+    gap: 1rem;
+  }
+
+  .logoWithSubtitle {
+    gap: 0.5rem;
+  }
+
+  .description {
+    font-size: 0.85rem;
+    max-width: 280px;
+  }
+}

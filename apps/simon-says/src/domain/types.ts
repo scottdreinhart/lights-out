@@ -1,33 +1,47 @@
-/**
- * Central type definitions — pure domain types, no framework dependencies.
- */
+import type { SimonColor } from './rules/simon.rules'
 
-// Add game-specific types here
-export {}
+export type GamePhase = 'idle' | 'playing' | 'deviceTurn' | 'playerTurn' | 'gameOver'
 
-/** Shared theme types — identical across all games */
+export interface SimonGameState {
+  // Sequence tracking
+  sequence: SimonColor[]
+  playerInput: SimonColor[]
+  currentRound: number
+  sequenceIndex: number
 
-export interface ColorTheme {
-  readonly id: string
-  readonly label: string
-  readonly accent: string
+  // Game state
+  phase: GamePhase
+  gameOver: boolean
+  gameOverReason: 'timeout' | 'mismatch' | 'maxSequence' | 'userReset' | null
+  winner: 'player' | 'computer' | null
+
+  // Score & stats
+  score: number
+  highScore: number
+  roundsCompleted: number
+  timeElapsed: number
+  startTime: number | null
+
+  // Multiplayer state
+  currentPlayer: 1 | 2 | 3 | 4 // For multiplayer elimination
+  playersActive: boolean[] // Tracks which players are still playing
+  playerScores: Record<number, number> // Score per player
+
+  // UI state
+  activeColor: SimonColor | null // Currently playing color
+  colorFlashDuration: number // How long color stays flashed
+  message: string
+
+  // Error state
+  error: string | null
 }
 
-export interface ColorblindMode {
-  readonly id: string
-  readonly label: string
-  readonly description?: string
+export interface SimonAudioConfig {
+  enabled: boolean
+  volume: number // 0-1
+  frequencies: Record<SimonColor, number>
 }
 
-export interface ThemeSettings {
-  colorTheme: string
-  mode: string
-  colorblind: string
-}
-
-export interface GameStats {
-  wins: number
-  losses: number
-  streak: number
-  bestStreak: number
+export interface SimonUIState {
+  showRules: boolean
 }

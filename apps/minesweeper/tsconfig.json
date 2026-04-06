@@ -51,11 +51,31 @@
       ],
       "@games/theme-context": [
         "../../packages/theme-context/src"
+      ],
+      "@games/app-hook-utils": [
+        "../../packages/app-hook-utils/src"
+      ],
+      "@games/assets-shared": [
+        "../../packages/assets-shared/src"
+      ],
+      "@games/ui-board-core": [
+        "../../packages/ui-board-core/src"
+      ],
+      "@games/ui-utils": [
+        "../../packages/ui-utils/src"
       ]
     }
   },
   "include": [
     "src",
     "src/vite-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx"
   ]
 }

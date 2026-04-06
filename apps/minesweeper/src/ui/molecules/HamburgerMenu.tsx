@@ -18,6 +18,8 @@ interface HamburgerMenuProps {
   onViewScores: () => void
   onHint: () => void
   onDone: () => void
+  onRules: () => void
+  onHelp: () => void
   hintDisabled: boolean
   doneDisabled: boolean
   stats: GameStats
@@ -42,6 +44,8 @@ export function HamburgerMenu({
   onViewScores,
   onHint,
   onDone,
+  onRules,
+  onHelp,
   hintDisabled,
   doneDisabled,
   stats,
@@ -53,6 +57,12 @@ export function HamburgerMenu({
         <section className="ms-menu-section">
           <p className="ms-kicker">Controls</p>
           <div className="ms-menu-actions">
+            <button type="button" onClick={onRules}>
+              Rules 📖
+            </button>
+            <button type="button" onClick={onHelp}>
+              Help ❓
+            </button>
             <button type="button" onClick={onNewGame}>
               New Game
             </button>
@@ -75,7 +85,10 @@ export function HamburgerMenu({
           <p className="ms-kicker">Settings</p>
           <label className="ms-field">
             <span>Difficulty</span>
-            <select value={difficulty} onChange={(event) => onDifficultyChange(event.target.value as Difficulty)}>
+            <select
+              value={difficulty}
+              onChange={(event) => onDifficultyChange(event.target.value as Difficulty)}
+            >
               {difficulties.map((item) => (
                 <option key={item} value={item}>
                   {item}

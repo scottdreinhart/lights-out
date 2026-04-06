@@ -1,0 +1,25 @@
+<svg viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient circle -->
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Round background -->
+  <circle cx="96" cy="96" r="96" fill="url(#bgGrad)"/>
+  
+  <!-- Left card (red suit) -->
+  <rect x="40" y="50" width="50" height="75" rx="4" fill="white" stroke="#333" stroke-width="2"/>
+  <text x="55" y="70" font-size="20" font-weight="bold" text-anchor="middle">A</text>
+  <text x="55" y="110" font-size="28" text-anchor="middle">♥</text>
+  
+  <!-- Right card (spade suit) -->
+  <rect x="102" y="70" width="50" height="75" rx="4" fill="white" stroke="#333" stroke-width="2"/>
+  <text x="117" y="90" font-size="20" font-weight="bold" text-anchor="middle">K</text>
+  <text x="117" y="130" font-size="28" text-anchor="middle" fill="#000">♠</text>
+  
+  <!-- VS text in middle -->
+  <text x="96" y="155" font-size="14" font-weight="bold" text-anchor="middle" fill="white">VS</text>
+</svg>

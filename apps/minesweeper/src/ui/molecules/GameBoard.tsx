@@ -1,7 +1,7 @@
-import type { ReactNode } from 'react'
-import type { Board, Cell } from '@/domain'
-import { BoardGrid, type BoardCell as SharedBoardCell } from '@games/ui-board-core'
+import type { Board } from '@/domain'
 import { BoardCell } from '@/ui'
+import { BoardGrid, type BoardCell as SharedBoardCell } from '@games/ui-board-core'
+import type { ReactNode } from 'react'
 
 interface GameBoardProps {
   board: Board
@@ -71,12 +71,25 @@ export function GameBoard({
     const minesweeperCell = board[cell.position.row]?.[cell.position.col]
     if (!minesweeperCell) return null
 
+    // Determine which corner this cell is (if any)
+    let cornerType: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | null = null
+    if (cell.position.row === 0 && cell.position.col === 0) {
+      cornerType = 'top-left'
+    } else if (cell.position.row === 0 && cell.position.col === cols - 1) {
+      cornerType = 'top-right'
+    } else if (cell.position.row === rows - 1 && cell.position.col === 0) {
+      cornerType = 'bottom-left'
+    } else if (cell.position.row === rows - 1 && cell.position.col === cols - 1) {
+      cornerType = 'bottom-right'
+    }
+
     return (
       <BoardCell
         cell={minesweeperCell}
         highlighted={cell.state?.hint ?? false}
         selected={isSelected}
         disabled={disabled}
+        cornerType={cornerType}
         onReveal={onReveal}
         onToggleFlag={onToggleFlag}
         onChord={onChord}

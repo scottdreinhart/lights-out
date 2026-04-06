@@ -20,6 +20,16 @@ export default defineConfig({
       '@/domain': path.resolve(__dirname, 'src/domain'),
       '@/app': path.resolve(__dirname, 'src/app'),
       '@/ui': path.resolve(__dirname, 'src/ui'),
+      '@games/domain-shared': path.resolve(__dirname, '../../packages/domain-shared/src'),
+      '@games/common': path.resolve(__dirname, '../../packages/common/src'),
+      '@games/storage-utils': path.resolve(__dirname, '../../packages/storage-utils/src'),
+      '@games/sound-context': path.resolve(__dirname, '../../packages/sound-context/src'),
+      '@games/theme-context': path.resolve(__dirname, '../../packages/theme-context/src'),
+      '@games/app-hook-utils': path.resolve(__dirname, '../../packages/app-hook-utils/src'),
+      '@games/assets-shared': path.resolve(__dirname, '../../packages/assets-shared/src'),
+      '@games/ui-board-core': path.resolve(__dirname, '../../packages/ui-board-core/src'),
+      '@games/ui-utils': path.resolve(__dirname, '../../packages/ui-utils/src'),
+      '@games/theme-contract': path.resolve(__dirname, '../../packages/theme-contract/src'),
     },
   },
   build: {
@@ -29,6 +39,15 @@ export default defineConfig({
     minify: 'esbuild',
     cssMinify: true,
     rollupOptions: {
+    external: [
+      '@capacitor/core',
+      '@capacitor/app',
+      '@capacitor/device',
+      '@capacitor/preferences',
+      '@capacitor/haptics',
+      '@capacitor/splash-screen',
+      '@capacitor/keyboard',
+    ],
       output: {
         manualChunks: {
           react: ['react', 'react-dom'],

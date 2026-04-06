@@ -1,16 +1,15 @@
 import { useGameState, useSoundEffects } from '@/app'
 import type { Difficulty } from '@/domain'
+import { SplashScreen } from '@/ui'
 import { MenuButton } from '@/ui/molecules'
 import Menu from '@/ui/molecules/Menu'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import About from './About'
-import GameEndNotification from './GameEndNotification'
 import styles from './App.module.css'
-import LoadingScreen from './LoadingScreen'
+import GameEndNotification from './GameEndNotification'
 import Settings from './Settings'
-import SplashScreen from './SplashScreen'
 
-type AppScreen = 'splash' | 'loading' | 'game' | 'settings' | 'about'
+type AppScreen = 'splash' | 'game' | 'settings' | 'about'
 
 export default function App() {
   const [difficulty, setLocalDifficulty] = useState<Difficulty>('medium')
@@ -21,18 +20,8 @@ export default function App() {
   const game = useGameState(difficulty)
   const sounds = useSoundEffects()
 
-  useEffect(() => {
-    // Transition: splash (2.5s) → loading (0.8s) → game (0.6s)
-    // Total: ~3.9s sequence
-    const splashTimer = setTimeout(() => setAppScreen('loading'), 2500)
-    const loadingTimer = setTimeout(() => {
-      setAppScreen('game')
-    }, 3300)
-
-    return () => {
-      clearTimeout(splashTimer)
-      clearTimeout(loadingTimer)
-    }
+  const handleSplashComplete = useCallback(() => {
+    setAppScreen('game')
   }, [])
 
   // Activate/deactivate AI based on screen
@@ -70,11 +59,7 @@ export default function App() {
   }
 
   if (appScreen === 'splash') {
-    return <SplashScreen />
-  }
-
-  if (appScreen === 'loading') {
-    return <LoadingScreen />
+    return <SplashScreen onComplete={handleSplashComplete} />
   }
 
   if (appScreen === 'settings') {

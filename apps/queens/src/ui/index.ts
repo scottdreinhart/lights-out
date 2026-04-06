@@ -1,7 +1,9 @@
 /**
- * Queens UI Layer
- * React components for N-Queens game
+ * UI layer barrel export.
+ * Re-exports atoms, molecules, organisms, and utilities.
+ *
+ * Usage: import { App, SplashScreen } from '@/ui'
  */
 
-export { QueensBoard } from './QueensBoard'
-export { QueensGame } from './QueensGame'
+export * from './atoms'
+export { App } from './organisms/App'

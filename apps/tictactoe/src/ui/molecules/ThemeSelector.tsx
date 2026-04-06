@@ -10,9 +10,11 @@ import styles from './ThemeSelector.module.css'
 
 interface ThemeSelectorProps {
   settings: ThemeSettings
-  onColorTheme: (id: string) => void
-  onMode: (mode: string) => void
-  onColorblind: (id: string) => void
+  onColorTheme: (theme: 'light' | 'dark' | 'system') => void
+  onMode: (mode: 'light' | 'dark') => void
+  onColorblind: (
+    cb: 'none' | 'protanopia' | 'deuteranopia' | 'tritanopia' | 'achromatopsia',
+  ) => void
 }
 
 const ThemeSelector: React.FC<ThemeSelectorProps> = React.memo(
@@ -78,7 +80,7 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = React.memo(
                     style={{
                       background: t.accent,
                     }}
-                    onClick={() => onColorTheme(t.id)}
+                    onClick={() => onColorTheme(t.id as 'light' | 'dark' | 'system')}
                     aria-label={t.label}
                     aria-pressed={settings.colorTheme === t.id}
                     title={t.label}
@@ -96,7 +98,13 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = React.memo(
                     key={m}
                     type="button"
                     className={cx(styles.modeBtn, settings.mode === m && styles.modeActive)}
-                    onClick={() => onMode(m)}
+                    onClick={() => {
+                      if (m === 'system') {
+                        onColorTheme('system')
+                      } else {
+                        onMode(m)
+                      }
+                    }}
                     aria-pressed={settings.mode === m}
                   >
                     {}
@@ -119,7 +127,16 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = React.memo(
                       styles.colorblindBtn,
                       settings.colorblind === cb.id && styles.colorblindActive,
                     )}
-                    onClick={() => onColorblind(cb.id)}
+                    onClick={() =>
+                      onColorblind(
+                        cb.id as
+                          | 'none'
+                          | 'protanopia'
+                          | 'deuteranopia'
+                          | 'tritanopia'
+                          | 'achromatopsia',
+                      )
+                    }
                     aria-pressed={settings.colorblind === cb.id}
                     title={cb.description || cb.label}
                   >

@@ -3,7 +3,7 @@
  * Uses WASM for performance when available, falls back to pure JS.
  */
 
-import { determineGameWinnerWasm, getRoundWinnerWasm, isGameOverWasm } from '@/wasm/ai-wasm'
+import { rockPaperScissorsWasm } from '@/infrastructure'
 import type { Move, RoundResult } from './types'
 
 /**
@@ -14,18 +14,14 @@ import type { Move, RoundResult } from './types'
  * - Paper covers Rock
  * Uses WASM if available for better performance.
  */
-export function determineRoundWinner(playerMove: Move, cpuMove: Move): RoundResult {
+export async function determineRoundWinner(playerMove: Move, cpuMove: Move): Promise<RoundResult> {
   // Try WASM first
-  try {
-    const moveMap: Record<Move, number> = { rock: 0, paper: 1, scissors: 2 }
-    const resultMap = ['draw' as RoundResult, 'win' as RoundResult, 'loss' as RoundResult]
+  const moveMap: Record<Move, number> = { rock: 0, paper: 1, scissors: 2 }
+  const resultMap = ['draw' as RoundResult, 'win' as RoundResult, 'loss' as RoundResult]
 
-    const wasmResult = getRoundWinnerWasm(moveMap[playerMove], moveMap[cpuMove])
-    if (wasmResult !== null && wasmResult >= 0 && wasmResult < 3) {
-      return resultMap[wasmResult]
-    }
-  } catch (err) {
-    console.debug('WASM rule calculation failed, using JS fallback')
+  const wasmResult = await rockPaperScissorsWasm.getRoundWinner(moveMap[playerMove], moveMap[cpuMove])
+  if (wasmResult !== null && wasmResult >= 0 && wasmResult < 3) {
+    return resultMap[wasmResult]
   }
 
   // JS fallback
@@ -49,15 +45,11 @@ export function determineRoundWinner(playerMove: Move, cpuMove: Move): RoundResu
  * A player needs to win > (bestOf / 2) rounds.
  * Uses WASM if available for better performance.
  */
-export function isGameOver(playerScore: number, cpuScore: number, bestOf: number): boolean {
+export async function isGameOver(playerScore: number, cpuScore: number, bestOf: number): Promise<boolean> {
   // Try WASM first
-  try {
-    const wasmResult = isGameOverWasm(playerScore, cpuScore, bestOf)
-    if (wasmResult !== null) {
-      return wasmResult
-    }
-  } catch (err) {
-    console.debug('WASM game-over check failed, using JS fallback')
+  const wasmResult = await rockPaperScissorsWasm.isGameOver([playerScore, cpuScore], bestOf)
+  if (wasmResult !== null) {
+    return wasmResult
   }
 
   // JS fallback
@@ -69,15 +61,25 @@ export function isGameOver(playerScore: number, cpuScore: number, bestOf: number
  * Determine the overall game winner.
  * Uses WASM if available for better performance.
  */
-export function determineGameWinner(
+export async function determineGameWinner(
   playerScore: number,
   cpuScore: number,
   bestOf: number,
-): 'player' | 'cpu' | null {
+): Promise<'player' | 'cpu' | null> {
   // Try WASM first
-  try {
-    const wasmResult = determineGameWinnerWasm(playerScore, cpuScore, bestOf)
-    if (wasmResult !== null) {
+  const wasmResult = await rockPaperScissorsWasm.isGameOver([playerScore, cpuScore], bestOf)
+  if (wasmResult !== null) {
+    if (playerScore > cpuScore) return 'player'
+    if (cpuScore > playerScore) return 'cpu'
+    return null // This shouldn't happen if game is over
+  }
+
+  // JS fallback
+  const winsNeeded = Math.floor(bestOf / 2) + 1
+  if (playerScore >= winsNeeded) return 'player'
+  if (cpuScore >= winsNeeded) return 'cpu'
+  return null
+}
       return wasmResult
     }
   } catch (err) {

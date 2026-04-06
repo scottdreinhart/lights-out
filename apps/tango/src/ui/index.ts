@@ -1,7 +1,9 @@
 /**
- * Tango UI Layer Exports
- * Public API for Tango game components
+ * UI layer barrel export.
+ * Re-exports atoms, molecules, organisms, and utilities.
+ *
+ * Usage: import { App, SplashScreen } from '@/ui'
  */
 
-export { TangoBoard } from './TangoBoard'
-export { TangoGame } from './TangoGame'
+export * from './atoms'
+export { App } from './organisms/App'

@@ -2,12 +2,9 @@
  * UI layer barrel export.
  * Re-exports atoms, molecules, organisms, and utilities.
  *
- * Usage: import { ErrorBoundary, cx } from '@/ui'
+ * Usage: import { App, SplashScreen } from '@/ui'
  */
 
 export * from './atoms'
-export { HamburgerMenu, QuickThemePicker } from './molecules'
-export { App, AppWithProviders } from './organisms'
-export * from './theme'
-export { BREAKPOINTS } from './ui-constants'
-export { cx } from './utils/cssModules'
+export { App } from './organisms/App'
+export { default as AppWithProviders } from './organisms/AppWithProviders'
