@@ -47,3 +47,12 @@ ios/
 *.tgz
 .cache/
 .node-platform.md
+
+# VS Code local history and editor configs
+.history/
+.continue/
+.playwright-mcp/
+vscode-settings.json
+
+# Local state files
+.node-platform.status
