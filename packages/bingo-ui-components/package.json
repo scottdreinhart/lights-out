@@ -1,0 +1,48 @@
+{
+  "name": "@games/bingo-ui-components",
+  "version": "1.0.0",
+  "description": "Shared UI components for bingo game variants",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./organisms": {
+      "import": "./dist/organisms/index.js",
+      "types": "./dist/organisms/index.d.ts"
+    },
+    "./molecules": {
+      "import": "./dist/molecules/index.js",
+      "types": "./dist/molecules/index.d.ts"
+    },
+    "./hooks": {
+      "import": "./dist/hooks/index.js",
+      "types": "./dist/hooks/index.d.ts"
+    }
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "format": "prettier --write src/",
+    "format:check": "prettier --check src/",
+    "typecheck": "tsc --noEmit",
+    "check": "pnpm lint && pnpm format:check && pnpm typecheck",
+    "validate": "pnpm check && pnpm build"
+  },
+  "dependencies": {
+    "@games/bingo-core": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "typescript": "^5.9.0"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@games/button-system",
+  "version": "1.0.0",
+  "description": "Standardized button system with WCAG 44px compliance, animations, and theming",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles": "./src/styles/button-system.css"
+  },
+  "files": [
+    "dist",
+    "src/styles"
+  ],
+  "dependencies": {
+    "clsx": "^2.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "react": "^19.2.4",
+    "typescript": "^5.9.3"
+  }
+}

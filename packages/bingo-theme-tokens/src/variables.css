@@ -1,0 +1,68 @@
+/**
+ * Bingo Theme Variables
+ * 
+ * Centralized CSS custom properties for consistent theming across bingo app.
+ * Extracted from apps/bingo/src/styles.css
+ */
+
+:root {
+  /* Bingo brand colors */
+  --bingo-primary: #667eea;
+  --bingo-secondary: #764ba2;
+  
+  /* Background colors */
+  --bg-dark: #1a1a2e;
+  --bg-light: #f5f5f5;
+  
+  /* Text colors */
+  --text-light: #e0e0e0;
+  --text-dark: #1a1a2e;
+  
+  /* Game state colors */
+  --win-highlight: #00ff88;
+  
+  /* Layout */
+  --border-radius: 12px;
+  
+  /* Semantic theme mappings */
+  --background: var(--bg-dark);
+  --text: var(--text-light);
+  --primary: var(--bingo-primary);
+  --primary-hover: #5a67d8;
+  --primary-dark: #0056b3;
+  --secondary: #6b7280;
+  --secondary-hover: #4b5563;
+  --border: #374151;
+  
+  /* Surface and interaction states */
+  --surface: rgba(255, 255, 255, 0.05);
+  --surface-hover: rgba(255, 255, 255, 0.08);
+  --color-border: #e0e0e0;
+  --color-text-primary: #333;
+  --color-text-secondary: #666;
+}
+
+/**
+ * Light mode overrides
+ * Applied when user prefers light color scheme
+ */
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: var(--bg-light);
+    --text: var(--text-dark);
+    --color-text-primary: #333;
+    --color-text-secondary: #666;
+  }
+}
+
+/**
+ * Reduced motion support
+ * Respect user accessibility preferences
+ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

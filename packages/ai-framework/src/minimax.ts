@@ -54,7 +54,6 @@ export function minimax<Board, Move, Player>(
     throw new Error('Minimax depth must be > 0')
   }
 
-  const startTime = performance.now()
   const state: SearchState = {
     nodesEvaluated: 0,
     prunesCut: 0,
@@ -107,8 +106,6 @@ export function minimax<Board, Move, Player>(
       bestMove = move
     }
   }
-
-  const endTime = performance.now()
 
   if (!bestMove) {
     throw new Error('Failed to find best move')
@@ -364,7 +361,6 @@ export function safeMinimax<Board, Move, Player>(
 
   // Evaluate the fallback move
   const nextBoard = game.applyMove(board, fallbackMove)
-  const opponent = game.getOpponent(player)
   const fallbackScore = game.evaluateBoard(nextBoard, player)
 
   return {

@@ -1,0 +1,12 @@
+{
+  "extends": "assemblyscript/std/assembly.json",
+  "compilerOptions": {
+    "target": "ES2020",
+    "strict": true,
+    "importHelpers": false,
+    "sourceMap": false,
+    "ignoreDeprecations": "6.0"
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"]
+}

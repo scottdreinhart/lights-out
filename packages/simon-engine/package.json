@@ -1,0 +1,30 @@
+{
+  "name": "@games/simon-engine",
+  "version": "1.0.0",
+  "description": "Simon game rule engine and configuration system (shared across Simon and Simon-Says apps)",
+  "type": "module",
+  "private": true,
+  "license": "PROPRIETARY",
+  "author": "Scott Reinhart",
+  "packageManager": "pnpm@10.31.0",
+  "engines": {
+    "node": "24.14.1",
+    "pnpm": "10.31.0"
+  },
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "typecheck": "tsc"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

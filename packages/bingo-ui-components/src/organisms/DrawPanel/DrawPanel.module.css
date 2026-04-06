@@ -1,0 +1,301 @@
+/**
+ * Draw Panel Styles
+ */
+
+.root {
+  background: var(--color-surface, #fff);
+  border: 2px solid var(--color-border, #ddd);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: opacity 150ms ease;
+}
+
+.root.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Number Display */
+.numberDisplay {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  color: white;
+}
+
+.column {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  min-width: 60px;
+  text-align: center;
+}
+
+.number {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.value {
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  animation: slideIn 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.empty {
+  font-size: 48px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes slideIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Stats */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 12px;
+}
+
+.stat {
+  background: var(--color-background, #f5f5f5);
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.statLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-secondary, #666);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.statValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text-primary, #000);
+}
+
+/* Progress Bar */
+.progressContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progressLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-secondary, #666);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.progressBar {
+  height: 24px;
+  background: var(--color-background, #f0f0f0);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--color-border, #ddd);
+  position: relative;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  transition: width 300ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+}
+
+.progressPercent {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-secondary, #666);
+  text-align: right;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  gap: 12px;
+}
+
+.drawButton {
+  flex: 1;
+  padding: 16px 24px;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    box-shadow 150ms ease,
+    transform 75ms ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.drawButton:hover:not(:disabled) {
+  background: #45a049;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+  transform: translateY(-2px);
+}
+
+.drawButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.drawButton:disabled {
+  background: var(--color-background, #ccc);
+  color: var(--color-text-secondary, #999);
+  cursor: not-allowed;
+}
+
+.drawButtonText {
+  display: inline-block;
+}
+
+.resetButton {
+  padding: 16px 24px;
+  background: var(--color-border, #ddd);
+  color: var(--color-text-primary, #000);
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    box-shadow 150ms ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.resetButton:hover:not(:disabled) {
+  background: #bbb;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.resetButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Game Over Message */
+.gameOverMessage {
+  background: #fff3cd;
+  border: 2px solid #ffc107;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  animation: pulse 500ms ease;
+}
+
+.gameOverMessage p {
+  font-size: 18px;
+  font-weight: 600;
+  color: #856404;
+  margin: 0 0 12px 0;
+}
+
+.newGameButton {
+  padding: 12px 24px;
+  background: #ffc107;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.newGameButton:hover {
+  background: #ffb300;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 599px) {
+  .root {
+    padding: 16px;
+  }
+
+  .content {
+    gap: 16px;
+  }
+
+  .numberDisplay {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .column {
+    font-size: 24px;
+    min-width: 50px;
+  }
+
+  .value {
+    font-size: 48px;
+  }
+
+  .empty {
+    font-size: 36px;
+  }
+
+  .statValue {
+    font-size: 20px;
+  }
+
+  .drawButton,
+  .resetButton {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+}

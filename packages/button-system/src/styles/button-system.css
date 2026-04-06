@@ -1,0 +1,230 @@
+/**
+ * @games/button-system - Standardized Button System
+ * 
+ * This package provides WCAG 2.1 AAA compliant button styling with:
+ * - Minimum 44px touch target height
+ * - Spring-based cubic-bezier animations
+ * - Touch device optimization with fallbacks
+ * - Consistent visual language across all games
+ * 
+ * Usage: Import this CSS in your app and use .control-button class
+ */
+
+/* ============================================================================
+   CONTROL BUTTON - WCAG 44px Compliant Primary Button
+   ============================================================================ */
+
+.control-button {
+  min-height: 44px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.control-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.control-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.control-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.control-button:focus-visible {
+  outline: 2px solid rgba(102, 126, 234, 0.8);
+  outline-offset: 2px;
+}
+
+/* ============================================================================
+   TOUCH DEVICE OPTIMIZATION
+   Remove hover animations on touch devices
+   ============================================================================ */
+
+@media (pointer: coarse) {
+  .control-button:hover {
+    transform: none;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  }
+}
+
+/* ============================================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================================ */
+
+/* Mobile devices: Slightly smaller padding */
+@media (max-width: 599px) {
+  .control-button {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Ultrawide screens: Slightly larger padding for visual balance */
+@media (min-width: 1800px) {
+  .control-button {
+    padding: 1.125rem 2.5rem;
+    font-size: 1.05rem;
+  }
+}
+
+/* ============================================================================
+   VARIANT: SECONDARY BUTTON
+   Alternative styling for secondary actions
+   ============================================================================ */
+
+.control-button.secondary {
+  background: linear-gradient(135deg, #6c757d, #5a6268);
+  box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+}
+
+.control-button.secondary:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(108, 117, 125, 0.5);
+}
+
+/* ============================================================================
+   VARIANT: DANGER BUTTON
+   For destructive actions (delete, reset, etc.)
+   ============================================================================ */
+
+.control-button.danger {
+  background: linear-gradient(135deg, #f44336, #d32f2f);
+  box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+}
+
+.control-button.danger:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(244, 67, 54, 0.5);
+}
+
+/* ============================================================================
+   VARIANT: SUCCESS BUTTON
+   For positive/confirming actions
+   ============================================================================ */
+
+.control-button.success {
+  background: linear-gradient(135deg, #4caf50, #388e3c);
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.control-button.success:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.5);
+}
+
+/* ============================================================================
+   VARIANT: ICON BUTTON
+   For buttons with icon content only
+   ============================================================================ */
+
+.control-button.icon {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1.3rem;
+}
+
+/* ============================================================================
+   LOADING STATE
+   Use when button is processing
+   ============================================================================ */
+
+.control-button.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.control-button.loading::after {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-left: 0.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================================================
+   SMALL & LARGE SIZES
+   Additional size variants for flexibility
+   ============================================================================ */
+
+.control-button.small {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  min-height: 36px;
+}
+
+.control-button.large {
+  padding: 1.25rem 2.5rem;
+  font-size: 1.125rem;
+  min-height: 52px;
+}
+
+/* ============================================================================
+   BLOCK BUTTON
+   Full-width button for modals and forms
+   ============================================================================ */
+
+.control-button.block {
+  width: 100%;
+  display: block;
+}
+
+/* ============================================================================
+   ACCESSIBILITY - High Contrast Mode
+   ============================================================================ */
+
+@media (prefers-contrast: more) {
+  .control-button {
+    border: 2px solid currentColor;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  .control-button:focus-visible {
+    outline-width: 3px;
+  }
+}
+
+/* ============================================================================
+   ACCESSIBILITY - Reduced Motion
+   ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .control-button {
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .control-button:hover:not(:disabled) {
+    transform: none;
+  }
+
+  .control-button.loading::after {
+    animation: none;
+    border: 2px solid #ffffff;
+  }
+}

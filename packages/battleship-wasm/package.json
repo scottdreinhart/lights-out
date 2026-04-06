@@ -1,0 +1,38 @@
+{
+    "name": "@games/battleship-wasm",
+    "version": "1.0.0",
+    "description": "Web Worker for Battleship CPU move calculation and async game operations",
+    "type": "module",
+    "main": "./src/index.ts",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./src/index.ts"
+        },
+        "./wasm-loader": {
+            "types": "./dist/wasm-loader.d.ts",
+            "import": "./src/wasm-loader.ts"
+        }
+    },
+    "files": [
+        "dist",
+        "src"
+    ],
+    "scripts": {
+        "build": "node scripts/build-wasm.mjs",
+        "build:ts": "tsc",
+        "dev": "tsc --watch"
+    },
+    "dependencies": {
+        "@games/domain-shared": "workspace:*"
+    },
+    "peerDependencies": {
+        "react": "^19.0.0"
+    },
+    "devDependencies": {
+        "@types/react": "^19.0.0",
+        "assemblyscript": "^0.26.0",
+        "typescript": "^5.9.3"
+    }
+}

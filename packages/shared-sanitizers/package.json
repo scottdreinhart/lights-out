@@ -1,0 +1,15 @@
+{
+  "name": "@games/shared-sanitizers",
+  "version": "1.0.0",
+  "description": "Centralized HTML/content sanitization utilities preventing XSS attacks",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    }
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "@games/shared-validators",
+  "version": "1.0.0",
+  "description": "Centralized input validation utilities for all game applications",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    }
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

@@ -1,0 +1,271 @@
+.root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Number Display */
+.numberDisplay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 12px;
+  padding: 24px;
+  min-height: 140px;
+  width: 100%;
+  border: 3px solid #5568d3;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+}
+
+.column {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.value {
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.empty {
+  font-size: 48px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding: 12px;
+  background: #f0f0f0;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.statLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.statValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.drawButton,
+.resetButton {
+  flex: 1;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.drawButton {
+  background: #667eea;
+  color: white;
+}
+
+.drawButton:hover:not(:disabled) {
+  background: #5568d3;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.drawButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.resetButton {
+  background: #ddd;
+  color: #333;
+  transition:
+    background-color 150ms ease,
+    box-shadow 150ms ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.resetButton:hover:not(:disabled) {
+  background: #bbb;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.resetButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Game Over Message */
+.gameOverMessage {
+  background: #fff3cd;
+  border: 2px solid #ffc107;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  animation: pulse 500ms ease;
+}
+
+.gameOverMessage p {
+  font-size: 18px;
+  font-weight: 600;
+  color: #856404;
+  margin: 0 0 12px 0;
+}
+
+.newGameButton {
+  padding: 12px 24px;
+  background: #ffc107;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.newGameButton:hover {
+  background: #ffb300;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 599px) {
+  .root {
+    padding: 16px;
+  }
+
+  .content {
+    gap: 16px;
+  }
+
+  .numberDisplay {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .column {
+    font-size: 24px;
+    min-width: 50px;
+  }
+
+  .value {
+    font-size: 48px;
+  }
+
+  .empty {
+    font-size: 36px;
+  }
+
+  .statValue {
+    font-size: 20px;
+  }
+
+  .drawButton,
+  .resetButton {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  .gameOverMessage {
+    padding: 16px;
+  }
+
+  .gameOverMessage p {
+    font-size: 16px;
+  }
+
+  .newGameButton {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 900px) {
+  .root {
+    padding: 32px;
+  }
+
+  .content {
+    gap: 28px;
+  }
+
+  .numberDisplay {
+    padding: 32px;
+    gap: 20px;
+  }
+
+  .column {
+    font-size: 40px;
+    min-width: 70px;
+  }
+
+  .value {
+    font-size: 80px;
+  }
+
+  .controls {
+    gap: 16px;
+  }
+
+  .drawButton,
+  .resetButton {
+    padding: 18px 32px;
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,187 @@
+/**
+ * GridCell.module.css — Shared grid cell styling
+ *
+ * Styling for grid cells in board-based games:
+ * - Battleship, Checkers, Bingo, Queens
+ * - Sudoku, Magic Square, and other grid games
+ *
+ * Uses CSS variables from the theme system for colors and responsive behavior.
+ * Supports keyboard selection, hint highlighting, and touch optimization.
+ */
+
+/**
+ * Base cell styling
+ *
+ * 52×52px minimum size (adjustable via CSS custom properties)
+ * Smooth transitions for hover and selection effects
+ * Touch-safe interaction handling
+ */
+.cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 52px;
+  min-height: 52px;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: var(--cell-bg, #e0e0e0);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  transition:
+    background-color 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+  border-radius: 2px;
+}
+
+/**
+ * Hover state for fine pointer devices (mouse, trackpad)
+ *
+ * Only apply hover effects on devices that support hovering.
+ * Touch devices (pointer: coarse) should NOT have hover effects.
+ * This prevents phantom hover states on mobile.
+ */
+@media (hover: hover) {
+  .cell:not(.disabled):hover {
+    background: var(--cell-hover-bg, #d0d0d0);
+    box-shadow: inset 0 0 0 1px var(--cell-hover-shadow, rgba(0, 0, 0, 0.2));
+    transform: scale(1.02);
+  }
+}
+
+/**
+ * Disabled state
+ *
+ * For cells that cannot be interacted with
+ */
+.disabled {
+  cursor: default;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/**
+ * Touch-optimized mode
+ *
+ * Applied for games on mobile/touch devices
+ * Increases cell size and reduces fine interactions
+ */
+.touchOptimized {
+  min-width: 64px;
+  min-height: 64px;
+  width: 64px;
+  height: 64px;
+  font-size: 18px;
+}
+
+/**
+ * Keyboard selection state (via arrow keys or Tab)
+ *
+ * Applied when cell is selected in navigation
+ * Distinctive visual style with cyan outline and glow
+ * Different from hover to avoid confusion
+ *
+ * @example
+ * When user presses arrow keys to navigate, selected cell shows this style
+ */
+.selected {
+  outline: 2px solid var(--cell-selected-outline, #71ffd6);
+  outline-offset: -2px;
+  box-shadow: inset 0 0 0 3px var(--cell-selected-glow, rgba(113, 255, 214, 0.3));
+  background: var(--cell-selected-bg, rgba(113, 255, 214, 0.15));
+}
+
+/**
+ * Hint/highlighted state
+ *
+ * Applied when cell is:
+ * - A valid move or placement
+ * - Under attack or in conflict (chess/queens)
+ * - Part of a winning pattern (bingo)
+ * - A suggested cell (hints/help)
+ *
+ * Distinctive visual style with gold glow
+ * Different from selection to avoid confusion
+ *
+ * @example
+ * In chess: squares under attack from a piece
+ * In Sudoku: cells in the same row/column/box
+ * In Bingo: numbers that complete a line
+ */
+.hint {
+  box-shadow: inset 0 0 0 2px var(--hint-color, #ffc857),
+              inset 0 0 6px var(--cell-hint-glow, rgba(255, 200, 87, 0.3));
+  background: var(--cell-hint-bg, rgba(255, 204, 0, 0.1));
+}
+
+/**
+ * Accessibility: Reduced motion support
+ *
+ * Some users prefer reduced motion for accessibility/health reasons
+ * Disable transforms and animations for these users
+ */
+@media (prefers-reduced-motion: reduce) {
+  .cell {
+    transition: background-color 150ms ease;
+  }
+
+  @media (hover: hover) {
+    .cell:not(.disabled):hover {
+      transform: none;
+    }
+  }
+}
+
+/**
+ * Focus indicator for keyboard navigation
+ *
+ * Keyboard users need a clear visual indicator when a cell has focus
+ * We use the .selected class for this instead of default focus outline
+ */
+.cell:focus-visible {
+  outline: none; /* Use .selected class for custom outline instead */
+}
+
+/**
+ * Placeholder styles for game-specific states
+ *
+ * Games can extend these by passing stateClass prop
+ * Examples:
+ * - .cellWithShip (Battleship: cell has a ship)
+ * - .cellMarked (Bingo: number has been called)
+ * - .cellHasQueen (Queens: square has a queen)
+ * - .cellHit (Battleship: cell was hit)
+ * - .cellMiss (Battleship: cell was missed)
+ */
+
+/**
+ * Battleship: Cell has a ship
+ */
+.cellWithShip {
+  /* Games can override in their own CSS modules or inline styles */
+}
+
+/**
+ * Bingo: Number has been marked/called
+ */
+.cellMarked {
+  /* Games can override in their own CSS modules or inline styles */
+}
+
+/**
+ * Queens: Square has a queen piece
+ */
+.cellHasQueen {
+  /* Games can override in their own CSS modules or inline styles */
+}
