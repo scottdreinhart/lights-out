@@ -1,0 +1,31 @@
+:root {
+  --color-primary: #667eea;
+  --color-secondary: #764ba2;
+  --color-text: #333;
+  --color-bg: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: #f0f0f0;
+    --color-bg: #1a1a2e;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}

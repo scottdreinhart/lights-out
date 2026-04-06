@@ -1,0 +1,125 @@
+.root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+    sans-serif;
+  color: white;
+  min-height: 100vh;
+  padding: 16px;
+}
+
+.gameContainer {
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resultsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.resultsCard {
+  background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+  border-radius: 16px;
+  padding: 40px 24px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+
+  h2 {
+    margin: 0 0 20px 0;
+    font-size: 32px;
+    font-weight: bold;
+  }
+}
+
+.finalScore {
+  font-size: 24px;
+  font-weight: bold;
+  color: #667eea;
+  margin: 0 0 12px 0;
+}
+
+.sequenceLength {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 24px 0;
+}
+
+.resultsActions {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+}
+
+.primaryButton {
+  all: unset;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  transition: all 200ms ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #667eea;
+  }
+}
+
+.secondaryButton {
+  all: unset;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  transition: all 200ms ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  &:focus-visible {
+    outline: 2px solid white;
+  }
+}
+
+@media (max-width: 599px) {
+  .resultsCard {
+    padding: 24px 16px;
+
+    h2 {
+      font-size: 24px;
+    }
+  }
+
+  .finalScore {
+    font-size: 20px;
+  }
+
+  .sequenceLength {
+    font-size: 14px;
+  }
+}

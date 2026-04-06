@@ -1,0 +1,89 @@
+.bingoCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.bingoCard.winner {
+  border-color: var(--success);
+  box-shadow: 0 0 12px rgba(40, 167, 69, 0.3);
+  background: rgba(40, 167, 69, 0.05);
+}
+
+.cardNumber {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.3rem;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  min-width: 40px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.cell .number {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.cell.marked {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.cell.marked .number {
+  color: white;
+}
+
+.cell.hint {
+  background: var(--warning);
+  border-color: var(--warning);
+  opacity: 0.7;
+}
+
+.cell.hint .number {
+  color: white;
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .bingoCard {
+    padding: 0.75rem;
+    gap: 0.4rem;
+  }
+
+  .grid {
+    gap: 0.2rem;
+  }
+
+  .cell {
+    min-width: 35px;
+  }
+
+  .cell .number {
+    font-size: 0.9rem;
+  }
+}

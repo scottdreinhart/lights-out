@@ -1,0 +1,43 @@
+{
+  "name": "@games/simon",
+  "version": "1.0.0",
+  "description": "Simon - Classic Memory Game",
+  "type": "module",
+  "private": true,
+  "license": "PROPRIETARY",
+  "author": "Scott Reinhart",
+  "packageManager": "pnpm@10.31.0",
+  "engines": {
+    "node": "24.14.1",
+    "pnpm": "10.31.0"
+  },
+  "scripts": {
+    "start": "pnpm exec vite --host",
+    "dev": "pnpm exec vite --host",
+    "build": "pnpm exec vite build",
+    "preview": "pnpm exec vite preview",
+    "typecheck": "pnpm exec tsc --noEmit",
+    "lint": "pnpm exec eslint src --max-warnings 0",
+    "lint:fix": "pnpm exec eslint src --fix",
+    "format": "pnpm exec prettier --write src",
+    "format:check": "pnpm exec prettier --check src",
+    "check": "pnpm run lint && pnpm run typecheck && pnpm run format:check",
+    "fix": "pnpm run lint:fix && pnpm run format",
+    "test": "pnpm exec vitest",
+    "test:watch": "pnpm exec vitest --watch",
+    "validate": "pnpm run check && pnpm run build"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "@games/simon-engine": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.3"
+  }
+}
