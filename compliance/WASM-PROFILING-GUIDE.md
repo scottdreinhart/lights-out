@@ -1,8 +1,9 @@
 # WASM Profiling & Performance Governance Guide
 
 **Status**: ✅ OPERATIONAL  
-**Last Updated**: April 2, 2026  
-**Governance**: AGENTS.md § 16 (WASM & AI Engine Governance)
+**Last Updated**: April 13, 2026 (Originally April 2)  
+**Governance**: AGENTS.md § 16 (WASM & AI Engine Governance)  
+**Current Coverage**: 52 games (expanded from 25 in April 2 baseline)
 
 ---
 

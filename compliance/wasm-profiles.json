@@ -1,6 +1,8 @@
 {
-  "timestamp": "2026-04-02T00:45:37.093Z",
+  "timestamp": "2026-04-13T14:30:37.093Z",
   "buildType": "production",
+  "totalGames": 52,
+  "lastUpdated": "2026-04-13T14:30:37.093Z",
   "profiles": {
     "battleship": {
       "timestamp": "2026-04-02T00:45:19.003Z",

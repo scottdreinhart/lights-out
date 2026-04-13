@@ -1,6 +1,8 @@
-# Baseline.json Update Reference - All 44 Games
+# Baseline.json Update Reference - All 52 Games
 
-**Master reference of exact values to update in `compliance/baseline.json`**
+**Master reference of exact values for 52 active game apps** (updated April 13, 2026)  
+**Previous baseline**: 44 games (27 existing + 17 unstarted)  
+**Current baseline**: 52 games (all active in monorepo as of April 13)
 
 ## Games Table Format
 

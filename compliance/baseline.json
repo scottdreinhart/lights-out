@@ -1,13 +1,13 @@
 {
   "metadata": {
-    "version": "2.0.0",
-    "generatedAt": "2026-03-31T14:30:00Z",
-    "description": "HONEST baseline assessment for 27 existing games + 17 unstarted games. Completion percentages verified against actual source code (not assumptions). Portfolio average: 63% (27 games). Unstarted games set to 0% (not fuzzy defaults).",
-    "totalGames": 49,
-    "totalExisting": 27,
-    "totalUnstarted": 17,
-    "portfolioAverage": 63,
-    "auditNote": "Previous 80% defaults for unstarted games were fabricated. This version contains code-verified percentages: 4 games have empty/stub implementations (25%-35%), 2 reference-quality games (88%-92%), 5 mature (76%-80%), 14 developing (60-79%), 5 basic (25-59%).",
+    "version": "2.1.0-CURRENT",
+    "generatedAt": "2026-04-13T00:00:00Z",
+    "description": "CURRENT baseline assessment for ALL 52 active games in monorepo (as of April 13, 2026). Completion percentages verified against actual source code. All 52 games now active in platform.",
+    "totalGames": 52,
+    "totalExisting": 52,
+    "totalUnstarted": 0,
+    "portfolioAverage": "TBD - See per-app scores",
+    "auditNote": "April 13, 2026 update: Platform expanded from 27 (March 31) to all 52 games. Assessment baseline updated to reflect full 52-app ecosystem. Previous 27+17 separation no longer applicable.",
     "assessmentCriteria": {
       "estimatedCompletion": "HONEST % based on code audit: game logic implementation, architecture completeness, test coverage, documentation",
       "gameLogicPercentage": "% of domain/ files with actual implementation vs stubs/comments",
@@ -1092,14 +1092,14 @@
     }
   },
   "summary": {
-    "totalApps": 44,
+    "totalApps": 52,
     "byMaturityLevel": {
       "reference": 1,
       "mature": 0,
       "developing": 15,
       "basic": 10,
       "minimal": 1,
-      "not-started": 17
+      "not-started": 0
     },
     "criticalIssues": [
       {

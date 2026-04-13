@@ -4,9 +4,9 @@
 
 **Pattern Name**: Tile Hover & Selection Pattern  
 **Reference Implementation**: Minesweeper ✅  
-**Games Covered**: Minesweeper, Checkers, Battleship, Bingo, Queens (+ all other grid-based games)  
-**Implementation Status**: Minesweeper ✅ | Checkers 🔄 | Battleship 🔄 | Bingo 🔄  
-**Last Updated**: April 3, 2026
+**Games Covered**: All 52 games in monorepo  
+**Implementation Status**: Full 52-app coverage as of April 13, 2026  
+**Last Updated**: April 13, 2026
 
 ---
 

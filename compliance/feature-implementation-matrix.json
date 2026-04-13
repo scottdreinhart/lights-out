@@ -1,11 +1,11 @@
 {
     "metadata": {
         "version": "1.0.0",
-        "generatedAt": "2026-04-03T12:00:00Z",
-        "description": "Platform × Feature Implementation Matrix - tracks UI/UX feature adoption across all 40+ game apps",
-        "totalApps": 41,
+        "generatedAt": "2026-04-13T00:00:00Z",
+        "description": "Platform × Feature Implementation Matrix - tracks UI/UX feature adoption across all 52 game apps",
+        "totalApps": 52,
         "totalFeatures": 9,
-        "totalCells": 369,
+        "totalCells": 468,
         "completionPercentage": 22,
         "completionScore": "87/369",
         "features": [

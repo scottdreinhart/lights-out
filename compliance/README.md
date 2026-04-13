@@ -1,6 +1,8 @@
 # Compliance & Coverage Matrix
 
-This directory contains the **Platform × Game Coverage Matrix**, a comprehensive governance system that tracks deployment readiness across all 7 CSP games and 10 distribution platforms.
+This directory contains the **Platform × Game Coverage Matrix** and related compliance artifacts for **52 active game apps** (as of April 13, 2026).
+
+`matrix.json` is the active machine-readable source of truth updated April 13. Several companion reports in this directory are historical snapshots from March 31 and may reference outdated 44-game counts until regenerated.
 
 ## 📊 Dashboard
 
@@ -22,7 +24,7 @@ This opens an interactive HTML dashboard showing:
 
 ### `matrix.json`
 
-**Purpose**: Central source of truth for deployment status
+**Purpose**: Active source of truth for deployment status
 
 **Structure**:
 

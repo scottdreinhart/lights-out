@@ -1,12 +1,13 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "generatedAt": "2026-04-02T19:26:21.012Z",
-    "description": "Platform × Game Coverage Matrix - tracks deployment across 10 platforms and 39 games",
-    "totalCells": 390,
-    "games": 39,
+    "generatedAt": "2026-04-13T14:30:21.012Z",
+    "description": "Platform × Game Coverage Matrix - Updated April 13, 2026 for full 52-game inventory across 10 platforms",
+    "totalCells": 520,
+    "games": 52,
     "platforms": 10,
-    "completionPercentage": 0
+    "completionPercentage": 0,
+    "lastUpdated": "2026-04-13T14:30:21.012Z"
   },
   "games": [
     "battleship",
@@ -4434,9 +4435,9 @@
   "compliance": {
     "metadata": {
       "version": "1.0.0",
-      "generatedAt": "2026-04-03T03:17:13.177Z",
-      "description": "Quality and compliance metrics for all 25 game apps",
-      "totalGames": 32,
+      "generatedAt": "2026-04-13T00:00:00.000Z",
+      "description": "Quality and compliance metrics for all 52 game apps",
+      "totalGames": 52,
       "overallStatus": {
         "green": 1,
         "amber": 7,

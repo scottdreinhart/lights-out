@@ -2,7 +2,7 @@
     "metadata": {
         "version": "1.0.0",
         "description": "Known blockers preventing cells from completion. Track by severity: high=blocks deployment, medium=requires mitigation, low=nice to have",
-        "lastUpdated": "2026-03-31"
+        "lastUpdated": "2026-04-13"
     },
     "blockers": [
         {

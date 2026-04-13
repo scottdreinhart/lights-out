@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "2.0.0",
-    "generatedAt": "2026-04-01T20:56:12.995Z",
-    "description": "Game-by-platform deployment matrix and platform support data",
-    "gameCount": 32,
+    "generatedAt": "2026-04-13T14:30:12.995Z",
+    "description": "Game-by-platform deployment matrix - Updated April 13, 2026 for 52 active games",
+    "gameCount": 52,
     "platformCount": 10,
-    "lastAudit": "2026-04-01T20:56:12.995Z"
+    "lastAudit": "2026-04-13T14:30:12.995Z"
   },
   "games": [
     "battleship",

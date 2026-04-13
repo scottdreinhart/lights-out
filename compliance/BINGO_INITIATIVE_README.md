@@ -1,8 +1,9 @@
 # 🎯 Bingo Decomposition Initiative - Master Index
 
-**Status**: ✅ **PHASE 1 PLANNING COMPLETE**  
+**Status**: ✅ **PHASE 1 PLANNING COMPLETE** (March/April 2026)  
 **Date**: April 3, 2026  
-**Scope**: 6 bingo game variants + shared components extraction + WASM optimization  
+**Updated**: April 13, 2026 (Platform now contains 8 bingo variants in 52-app monorepo)  
+**Scope**: 8 bingo game variants (bingo, bingo-30, bingo-80, bingo-90, bingo-blackout, bingo-bonus, bingo-pattern, bingo-progressive, bingo-rush, bing-survival, pattern-bingo, power-bingo, speed-bingo) + shared components extraction + WASM optimization  
 **Team Effort**: 5-7 FTE over 8 weeks
 
 ---
