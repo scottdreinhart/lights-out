@@ -11,6 +11,7 @@ import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const rootDir = path.resolve(__dirname, '..')
+const STABLE_SEED = 'game-platform-compliance-v2'
 
 // Game metadata
 const GAMES = [
@@ -66,6 +67,25 @@ const GAME_FAMILIES = {
   'Action Games': ['simon-says', 'snake', 'tango', 'memory-game', 'pinpoint'],
 }
 
+function hashString(value) {
+  let hash = 0
+
+  for (let index = 0; index < value.length; index += 1) {
+    hash = (hash * 31 + value.charCodeAt(index)) >>> 0
+  }
+
+  return hash
+}
+
+function deterministicRange(key, min, max) {
+  const span = max - min + 1
+  return min + (hashString(`${STABLE_SEED}:${key}`) % span)
+}
+
+function deterministicBoolean(key, threshold) {
+  return (hashString(`${STABLE_SEED}:${key}`) % 100) / 100 >= threshold
+}
+
 // Get game metadata from package.json or generate defaults
 function getGameMetadata(gameName) {
   // Determine game family
@@ -110,7 +130,7 @@ function generateMatrixData() {
       // Determine status based on:
       // 1. If platform is expected for this game type
       // 2. Game stage (lights-out and tictactoe are more complete, new games are not)
-      
+
       let status = 'not-started'
       let completion = 0
 
@@ -118,17 +138,17 @@ function generateMatrixData() {
         // Games with more implementation progress
         if (['lights-out', 'tictactoe', 'sudoku', 'mini-sudoku'].includes(game)) {
           status = 'partial'
-          completion = Math.floor(Math.random() * 40) + 60 // 60-99%
+          completion = deterministicRange(`${game}:${platform}:mature`, 60, 99)
         } else if (
           ['battleship', 'connect-four', 'mancala', 'reversi', 'checkers', 'minesweeper'].includes(game)
         ) {
           // Mature games
           status = 'partial'
-          completion = Math.floor(Math.random() * 30) + 50 // 50-79%
+          completion = deterministicRange(`${game}:${platform}:mature`, 50, 79)
         } else {
           // Developing games
           status = 'partial'
-          completion = Math.floor(Math.random() * 40) + 30 // 30-69%
+          completion = deterministicRange(`${game}:${platform}:developing`, 30, 69)
         }
       }
 
@@ -233,8 +253,8 @@ function generateSourcesData() {
       platformCount: metadata.expectedPlatforms.length,
       progress: {
         started: metadata.expectedPlatforms.length > 0,
-        inProgress: Math.random() > 0.3,
-        launched: Math.random() > 0.6,
+        inProgress: deterministicBoolean(`${game}:progress:inProgress`, 0.3),
+        launched: deterministicBoolean(`${game}:progress:launched`, 0.6),
       },
     }
   }
@@ -287,7 +307,7 @@ function generateComplianceSummary(sources) {
 }
 
 // Main generation function
-async function generateComplainceData() {
+async function generateComplianceData() {
   console.log('📊 Generating compliance data...')
 
   try {
@@ -313,4 +333,4 @@ async function generateComplainceData() {
 }
 
 // Run if called directly
-generateComplainceData()
+generateComplianceData()
