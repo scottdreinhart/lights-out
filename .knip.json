@@ -1,0 +1,19 @@
+{
+    "include": "src",
+    "exclude": {
+        "dependencies": [
+            "cz-git",
+            "standard-version"
+        ]
+    },
+    "workspaces": true,
+    "ignoreBinaries": true,
+    "ignorePatterns": [
+        "node_modules",
+        "dist",
+        "build",
+        ".next",
+        ".nuxt",
+        "coverage"
+    ]
+}

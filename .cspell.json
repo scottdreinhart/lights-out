@@ -1,0 +1,26 @@
+{
+  "extends": ["recommended"],
+  "modeDetection": false,
+  "ignoreWords": [
+    "monorepo",
+    "pnpm",
+    "vite",
+    "vitest",
+    "playwright",
+    "capacitor",
+    "husky",
+    "commitizen",
+    "commitlint",
+    "gitmoji",
+    "eslint",
+    "prettier",
+    "typescript",
+    "jsx",
+    "tsx",
+    "workspaces",
+    "bailout"
+  ],
+  "dictionaries": ["typescript", "npm", "gamedev"],
+  "ignorePaths": ["node_modules", "dist", "build", "coverage", ".next", ".nuxt", "docs/generated"],
+  "ignoreRegExpList": ["UPPER_CASE_CODE"]
+}

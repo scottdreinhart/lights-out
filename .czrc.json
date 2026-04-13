@@ -1,0 +1,220 @@
+{
+    "path": "cz-git",
+    "cz": {
+        "classicConfig": {
+            "types": [
+                {
+                    "emoji": "✨",
+                    "value": "feat",
+                    "name": "feat:     A new feature"
+                },
+                {
+                    "emoji": "🐛",
+                    "value": "fix",
+                    "name": "fix:      A bug fix"
+                },
+                {
+                    "emoji": "�",
+                    "value": "fix",
+                    "name": "🚑:       Critical hotfix"
+                },
+                {
+                    "emoji": "♻️",
+                    "value": "refactor",
+                    "name": "refactor: Code reorganization"
+                },
+                {
+                    "emoji": "⚡",
+                    "value": "perf",
+                    "name": "perf:     Performance optimization"
+                },
+                {
+                    "emoji": "📝",
+                    "value": "docs",
+                    "name": "docs:     Documentation changes"
+                },
+                {
+                    "emoji": "📚",
+                    "value": "docs",
+                    "name": "📚:       Knowledge/learning content"
+                },
+                {
+                    "emoji": "🎨",
+                    "value": "style",
+                    "name": "style:    Code formatting (no logic change)"
+                },
+                {
+                    "emoji": "💄",
+                    "value": "style",
+                    "name": "💄:       UI/UX cosmetic changes"
+                },
+                {
+                    "emoji": "🧪",
+                    "value": "test",
+                    "name": "test:     Add or update tests"
+                },
+                {
+                    "emoji": "✅",
+                    "value": "test",
+                    "name": "✅:       Test infrastructure/pass"
+                },
+                {
+                    "emoji": "🚧",
+                    "value": "feat",
+                    "name": "🚧:       Work in progress (WIP)"
+                },
+                {
+                    "emoji": "🚨",
+                    "value": "ci",
+                    "name": "🚨:       Fix CI/CD issues"
+                },
+                {
+                    "emoji": "💚",
+                    "value": "ci",
+                    "name": "💚:       CI build passes/green"
+                },
+                {
+                    "emoji": "🔧",
+                    "value": "build",
+                    "name": "🔧:       Config & tooling changes"
+                },
+                {
+                    "emoji": "🔨",
+                    "value": "build",
+                    "name": "🔨:       Build system changes"
+                },
+                {
+                    "emoji": "📦",
+                    "value": "build",
+                    "name": "📦:       Dependency/package changes"
+                },
+                {
+                    "emoji": "⬆️",
+                    "value": "chore",
+                    "name": "⬆️:        Upgrade dependencies"
+                },
+                {
+                    "emoji": "➕",
+                    "value": "chore",
+                    "name": "➕:       Add dependencies"
+                },
+                {
+                    "emoji": "🔐",
+                    "value": "security",
+                    "name": "security: Security fixes (CVE, XSS)"
+                },
+                {
+                    "emoji": "🌐",
+                    "value": "feat",
+                    "name": "🌐:       Internationalization (i18n)"
+                },
+                {
+                    "emoji": "♿",
+                    "value": "feat",
+                    "name": "♿:       Accessibility (a11y)"
+                },
+                {
+                    "emoji": "🎉",
+                    "value": "chore",
+                    "name": "🎉:       Release/milestone"
+                },
+                {
+                    "emoji": "🚀",
+                    "value": "chore",
+                    "name": "🚀:       Deployment/launch"
+                },
+                {
+                    "emoji": "🔥",
+                    "value": "chore",
+                    "name": "🔥:       Remove code/files"
+                },
+                {
+                    "emoji": "📱",
+                    "value": "feat",
+                    "name": "📱:       Mobile/responsive design"
+                },
+                {
+                    "emoji": "💫",
+                    "value": "feat",
+                    "name": "💫:       Animations/effects"
+                },
+                {
+                    "emoji": "✏️",
+                    "value": "docs",
+                    "name": "✏️:        Typo/grammar fixes"
+                },
+                {
+                    "emoji": "🔄",
+                    "value": "chore",
+                    "name": "🔄:       Merge/rebase changes"
+                },
+                {
+                    "emoji": "⏪",
+                    "value": "chore",
+                    "name": "⏪:       Revert changes"
+                },
+                {
+                    "emoji": "📖",
+                    "value": "docs",
+                    "name": "📖:       Reference documentation"
+                }
+            ],
+            "scopes": [
+                "domain",
+                "app",
+                "ui",
+                "workers",
+                "infra",
+                "shared",
+                "tests",
+                "docs",
+                "deps",
+                "platform",
+                "build",
+                "ci",
+                "security",
+                "compliance",
+                "a11y",
+                "perf"
+            ],
+            "scopeOverrides": {},
+            "scopeGroupName": "scope",
+            "scopeMultipleEnableFlag": false,
+            "maxHeaderLength": 100,
+            "maxLineLength": 100,
+            "minBodyLength": 0,
+            "messages": {
+                "type": "Select the type of change that you're committing:",
+                "scope": "Denote the scope of this change (optional):",
+                "customScope": "Denote the scope of this change:",
+                "subject": "Write a short, imperative tense description of the change (max {maxSubjectLength} chars):",
+                "body": "Provide a longer description of the changes (optional). Use \"|\" to break new line:\n",
+                "breaking": "List any breaking changes (optional). Use \"|\" to break new line:\n",
+                "footerPrefix": "List any issue closings this change affects (optional). E.g.: \"fixes #123\":\n",
+                "confirmCommit": "Are you sure you want to proceed with the commit above?"
+            },
+            "allowBreakingChanges": [
+                "feat",
+                "fix",
+                "refactor",
+                "perf",
+                "security"
+            ],
+            "isBreakingChange": "(BREAKING CHANGE)",
+            "breakingPrefix": "BREAKING CHANGE: ",
+            "footerPrefix": "Closes: ",
+            "skipQuestions": [],
+            "upperCaseSubject": false,
+            "markBreakingChangeMode": false,
+            "allowCustomScopes": true,
+            "allowEmptyScopes": true,
+            "customScopesAlign": "bottom",
+            "customScopesAlignValue": "top",
+            "defaultScope": "",
+            "defaultSubject": "",
+            "defaultBody": "",
+            "defaultFooter": "",
+            "defaultIssues": ""
+        }
+    }
+}

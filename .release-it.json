@@ -1,0 +1,139 @@
+{
+  "git": {
+    "changelog": "./CHANGELOG.md",
+    "commit": true,
+    "commitArgs": "--no-verify",
+    "commitMessage": "🎉 chore(release): ${version}",
+    "committer": {
+      "name": "Release Bot",
+      "email": "release@game-platform.local"
+    },
+    "requireBranch": [
+      "main",
+      "master"
+    ],
+    "requireCleanWorkingDir": true,
+    "tag": true,
+    "tagName": "v${version}",
+    "tagAnnotation": "Release ${version}",
+    "tagArgs": "--no-verify",
+    "push": true,
+    "pushArgs": "--no-verify",
+    "pushTags": true
+  },
+  "npm": {
+    "publish": false
+  },
+  "github": {
+    "release": true,
+    "releaseName": "v${version}",
+    "releaseNotes": "${changelog}"
+  },
+  "hooks": {
+    "before:init": [
+      "pnpm run validate"
+    ],
+    "after:bump": [
+      "pnpm run format"
+    ],
+    "after:release": [
+      "echo 'Released v${version}'"
+    ]
+  },
+  "changelog": {
+    "compact": false,
+    "sections": [
+      {
+        "title": "✨ Features",
+        "emojis": [
+          "✨",
+          "🚧",
+          "🌐",
+          "♿",
+          "📱",
+          "💫"
+        ]
+      },
+      {
+        "title": "🐛 Bug Fixes",
+        "emojis": [
+          "🐛",
+          "🚑"
+        ]
+      },
+      {
+        "title": "♻️ Refactoring",
+        "emojis": [
+          "♻️"
+        ]
+      },
+      {
+        "title": "⚡ Performance",
+        "emojis": [
+          "⚡"
+        ]
+      },
+      {
+        "title": "📝 Documentation",
+        "emojis": [
+          "📝",
+          "📚",
+          "✏️",
+          "📖"
+        ]
+      },
+      {
+        "title": "🎨 Styling",
+        "emojis": [
+          "🎨",
+          "💄"
+        ]
+      },
+      {
+        "title": "✅ Testing",
+        "emojis": [
+          "✅",
+          "🧪"
+        ]
+      },
+      {
+        "title": "🔧 Build & Config",
+        "emojis": [
+          "🔧",
+          "🔨",
+          "📦"
+        ]
+      },
+      {
+        "title": "💚 CI/CD",
+        "emojis": [
+          "🚨",
+          "💚"
+        ]
+      },
+      {
+        "title": "⬆️ Dependencies",
+        "emojis": [
+          "⬆️",
+          "➕"
+        ]
+      },
+      {
+        "title": "🔐 Security",
+        "emojis": [
+          "🔐"
+        ]
+      },
+      {
+        "title": "🔄 Maintenance",
+        "emojis": [
+          "🔄",
+          "⏪",
+          "🔥",
+          "🎉",
+          "🚀"
+        ]
+      }
+    ]
+  }
+}
