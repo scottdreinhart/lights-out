@@ -1,0 +1,28 @@
+{
+  "name": "gluestack-validation-react",
+  "version": "1.0.0",
+  "description": "Minimal Gluestack UI validation test app (React)",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:watch": "vitest --watch"
+  },
+  "dependencies": {
+    "@gluestack-ui/themed": "^1.2.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.3.3",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "axe-core": "^4.7.2",
+    "@axe-core/react": "^4.7.2"
+  }
+}
