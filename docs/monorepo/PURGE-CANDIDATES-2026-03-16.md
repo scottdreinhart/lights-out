@@ -1,5 +1,8 @@
 # Purge Candidates (Executed)
 
+> Historical snapshot (2026-03-16). This file is reference-only and non-authoritative.
+> Canonical governance authority: `AGENTS.md` and `docs/DOCUMENTATION_GOVERNANCE.md`.
+
 Date: 2026-03-16
 
 This report records the executed purge pass after verifying app-local replacements and scanning active references.

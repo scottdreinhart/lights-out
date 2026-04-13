@@ -1,6 +1,11 @@
 # Root vs App Duplicate Audit
 
-Date: 2026-03-16
+**Date**: 2026-03-16 (Historical reference; completed audit patterns now applied platform-wide)  
+**Updated**: 2026-04-13 (Noting completion and current platform state - 52 apps)
+
+## Historical Note
+
+This audit documented the initial strategy for root vs. app-local file placement using Tictactoe as case study. As of April 13, this pattern has been applied across 52 apps in the monorepo. Root now contains only orchestration-level configs; all runtime/app-specific assets live in `apps/*/` or `packages/*/`.  
 
 ## Method
 

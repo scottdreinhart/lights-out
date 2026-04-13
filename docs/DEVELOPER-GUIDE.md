@@ -1,4 +1,4 @@
-# Developer Guide
+# 🎓 Developer Guide
 
 Welcome to **Lights Out**! This guide covers architecture, development workflow, code style, and governance.
 

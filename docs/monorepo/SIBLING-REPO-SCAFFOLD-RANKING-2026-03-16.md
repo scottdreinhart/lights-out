@@ -1,5 +1,8 @@
 # Sibling Repo Scaffold Ranking (2026-03-16)
 
+> Historical snapshot (2026-03-16). This file is reference-only and non-authoritative.
+> Canonical governance authority: `AGENTS.md` and `docs/DOCUMENTATION_GOVERNANCE.md`.
+
 Purpose: prioritize sibling game-repo migration with scaffolded/minimal-code projects first.
 
 ## Method

@@ -29,7 +29,7 @@ Use when: Writing code
 Command: pnpm lint:gate:quick
 ```
 
-### 📋 STANDARD (15s)
+### 📚 STANDARD (15s)
 
 ```
 Security ✓
@@ -41,7 +41,7 @@ Use when: Before git push
 Command: pnpm lint:gate:standard
 ```
 
-### 🔍 FULL (30s)
+### 📚 FULL (30s)
 
 ```
 All Type Checks (7):
@@ -57,7 +57,7 @@ Use when: CI/CD pipeline
 Command: pnpm lint:gate:full
 ```
 
-### 🎯 STRICT (60s)
+### ✅ STRICT (60s)
 
 ```
 All Type Checks (7) ✓
@@ -79,7 +79,7 @@ Command: pnpm lint:gate:strict
 ## Development Workflow
 
 ```
-💻 Writing Code
+📚 Writing Code
    ↓
    pnpm lint:gate:quick        (5s) ✓
    │
@@ -88,14 +88,14 @@ Command: pnpm lint:gate:strict
    ↓
 git add . && git commit
    ↓
-📋 pnpm lint:gate:standard      (15s) ✓
+📚 pnpm lint:gate:standard      (15s) ✓
    │
    ├─ Issues? Fix and retry
    └─ OK? Push!
    ↓
 git push
    ↓
-🔄 GitHub Actions runs
+⚙️ GitHub Actions runs
    pnpm lint:gate:full          (30s) ✓
    │
    └─ Automated validation

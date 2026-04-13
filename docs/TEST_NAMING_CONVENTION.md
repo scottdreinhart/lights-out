@@ -6,7 +6,7 @@
 
 ---
 
-## 🎯 The Rule
+## ✅ The Rule
 
 **Feature name comes FIRST. Test type comes AFTER.**
 
@@ -124,7 +124,7 @@ These will **fail** `pnpm test:names`:
 
 ---
 
-## 📍 Folder Organization
+## 📁 Folder Organization
 
 Choose one pattern and stick to it:
 
@@ -178,7 +178,7 @@ tests/
 
 ---
 
-## 🔍 Feature Name Guidelines
+## 📚 Feature Name Guidelines
 
 Feature names should be:
 
@@ -224,7 +224,7 @@ pnpm test:names:verbose # With details
 
 ---
 
-## ✋ Enforcement
+## 📚 Enforcement
 
 Naming is automatically enforced at multiple stages:
 
@@ -263,7 +263,7 @@ pnpm test:names:verbose # Shows detailed problems + suggestions
 
 ---
 
-## 🔧 Creating New Tests
+## 🛠️ Creating New Tests
 
 ### Step 1: Choose Test Type
 
@@ -319,7 +319,7 @@ pnpm test:watch        # Continuous mode
 
 ---
 
-## 📋 Checklist for Contributors
+## 📚 Checklist for Contributors
 
 Before committing test code:
 
@@ -337,7 +337,7 @@ Before committing test code:
 
 ---
 
-## 🆘 Troubleshooting
+## ⚠️ Troubleshooting
 
 ### Error: "INVALID TEST NAME"
 
@@ -382,7 +382,7 @@ Before committing test code:
 
 ---
 
-## ❓ FAQ
+## ⚠️ FAQ
 
 **Q: Can I use different naming for different apps?**  
 A: No. This platform enforces a single naming standard across all 25+ apps. Consistency ensures tooling works everywhere.

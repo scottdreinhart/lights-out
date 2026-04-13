@@ -1,4 +1,4 @@
-# Sprint 2 Completion Summary & Sprint 3 Readiness
+# 📋 Sprint 2 Completion Summary & Sprint 3 Readiness
 
 **Sprint**: 2 (Weeks 3–4)  
 **Status**: ✅ **COMPLETE**  

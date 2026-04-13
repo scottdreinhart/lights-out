@@ -1,5 +1,8 @@
 # Governance/File Triage (2026-03-16)
 
+> Historical snapshot (2026-03-16). This file is reference-only and non-authoritative.
+> Canonical governance authority: `AGENTS.md` and `docs/DOCUMENTATION_GOVERNANCE.md`.
+
 ## Decision Summary
 
 Do not bulk-merge app-local governance/config trees into root.

@@ -1,8 +1,12 @@
 # TicTacToe Absorption — Execution TODOs
 
+**Date**: March 2026  
+**Status**: COMPLETED - Tictactoe absorption into monorepo finished; app is now primary development target  
+**Updated**: April 13, 2026  
+
 Status values: `todo` | `in-progress` | `blocked` | `done`
 
-## Sprint Board
+## Sprint Board (Historical — All Done)
 
 | ID | Status | Task | Owner | Command / Artifact | Done When |
 |---|---|---|---|---|---|

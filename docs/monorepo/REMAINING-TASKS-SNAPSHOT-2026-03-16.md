@@ -1,15 +1,21 @@
 # Remaining Tasks Snapshot
 
-Date: 2026-03-16
+> **ARCHIVED SNAPSHOT** (2026-03-16 → Updated 2026-04-13). Historical reference documenting March progress.
+> This file is reference-only and non-authoritative for current work.
+> Canonical governance authority: `AGENTS.md` and `docs/DOCUMENTATION_GOVERNANCE.md`.
 
-This snapshot consolidates active remaining work from monorepo/process markdown files.
-It excludes broad governance checklists that are reference-only.
+Date: 2026-03-16 (Archived; Context Updated 2026-04-13)
 
-## Strategic Context (Monorepo Direction)
+This snapshot originates from March 16 and consolidates work completed by April 13. See **Status Updates** below for current reality.
 
-- Repo hosts two active apps: `apps/tictactoe` and `apps/lights-out`.
-- Current modernization scope includes migration/ingestion/restructuring of Nim artifacts into monorepo-safe app-local structure.
-- Root should remain orchestration-first; app runtime/build assets should live under app directories unless intentionally shared.
+## Current Platform State (April 13, 2026)
+
+**Active Applications**: 52 game apps (battleship, bingo, bingo-*×8 variants, blackjack, bunco, cee-lo, checkers, chicago, cho-han, connect-four, crossclimb, dominoes, farkle, go-fish, hangman, liars-dice, lights-out, mancala, memory, memory-game, mexico, minesweeper, mini-sudoku, monchola, nim, pattern-bingo, pig, pinpoint, power-bingo, queens, reversi, rock-paper-scissors, ship-captain-crew, shut-the-box, simon, simon-says, snake, snakes-and-ladders, speed-bingo, sudoku, tango, tictactoe, war, zip)
+
+**Shared Packages**: 37 reusable packages (ai-framework, app-hook-utils, bingo-*×4, button-system, card-deck-*, common, crash-*, display-contract, domain-shared, haptics, shared-*, simon-engine, sound-context, sprite-contract, stats-utils, storage-utils, theme-*, ui-*, etc.)
+
+**Architecture**: CLEAN layers (domain/app/ui) + atomic design (atoms/molecules/organisms) enforced globally.
+Root remains orchestration-first; app runtime/build assets live under app directories or shared packages.
 
 ## 1) Purge Workflow (Current Blocking Track)
 

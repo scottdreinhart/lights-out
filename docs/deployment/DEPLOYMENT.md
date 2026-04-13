@@ -1,4 +1,8 @@
-# Lights Out - Deployment Guide
+# 🚀 Lights Out - Deployment Guide
+
+**Authority**: AGENTS.md § 20 (Build & Deployment) · § 14 (Electron) · § 15 (Capacitor)  
+**Date**: April 2026  
+**Status**: ✅ Operational
 
 Complete guide for deploying Lights Out across web, desktop (Electron), and mobile (Capacitor) platforms.
 
@@ -106,11 +110,11 @@ open dist/bundle-report.html
 
 **Platform Matrix:**
 
-| Platform | Command | Output | Shell |
-|----------|---------|--------|-------|
-| Windows | `pnpm electron:build:win` | `release/*.exe` | PowerShell |
-| Linux | `pnpm electron:build:linux` | `release/*.AppImage` | Bash (WSL) |
-| macOS | `pnpm electron:build:mac` | `release/*.dmg` | macOS only |
+| Platform | Command                     | Output               | Shell      |
+| -------- | --------------------------- | -------------------- | ---------- |
+| Windows  | `pnpm electron:build:win`   | `release/*.exe`      | PowerShell |
+| Linux    | `pnpm electron:build:linux` | `release/*.AppImage` | Bash (WSL) |
+| macOS    | `pnpm electron:build:mac`   | `release/*.dmg`      | macOS only |
 
 ### Build Steps
 
@@ -161,13 +165,13 @@ pnpm electron:build:mac
 
 ```typescript
 // Available in React via window.electronAPI
-window.electronAPI.getVersion()      // → "1.0.0"
-window.electronAPI.getPlatform()     // → "win32" | "darwin" | "linux"
-window.electronAPI.getAppPath()      // → Installation directory
-window.electronAPI.windowMinimize()  // Minimize window
-window.electronAPI.windowMaximize()  // Maximize/restore window
-window.electronAPI.windowClose()     // Close application
-window.electronAPI.log(msg, level)   // Log to main process
+window.electronAPI.getVersion() // → "1.0.0"
+window.electronAPI.getPlatform() // → "win32" | "darwin" | "linux"
+window.electronAPI.getAppPath() // → Installation directory
+window.electronAPI.windowMinimize() // Minimize window
+window.electronAPI.windowMaximize() // Maximize/restore window
+window.electronAPI.windowClose() // Close application
+window.electronAPI.log(msg, level) // Log to main process
 ```
 
 ### Distribution Tips
@@ -184,11 +188,13 @@ window.electronAPI.log(msg, level)   // Log to main process
 ### Prerequisites
 
 #### **Android**
+
 - Android Studio installed
 - Android SDK 33+ (AGP 8.0+)
 - Java 17+ installed
 
 #### **iOS**
+
 - Xcode 15+ (macOS only)
 - Cocoapods installed
 - Apple Developer account (for App Store release)
@@ -347,11 +353,11 @@ define: {
 ```typescript
 // React components
 if (__DEV__) {
-  console.log('Development mode active');
+  console.log('Development mode active')
 }
 
 // Environment variables
-const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL
 ```
 
 ---
@@ -360,38 +366,38 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 ### Web Deployment
 
-| Issue | Solution |
-|-------|----------|
-| 404 Not Found on refresh | Enable SPA routing (try_files/histApiFallback) |
-| CSS/JS not loading | Check `base` path in apps/lights-out/vite.config.ts |
-| Large bundle | Run `pnpm build` and check bundle-report.html |
+| Issue                    | Solution                                            |
+| ------------------------ | --------------------------------------------------- |
+| 404 Not Found on refresh | Enable SPA routing (try_files/histApiFallback)      |
+| CSS/JS not loading       | Check `base` path in apps/lights-out/vite.config.ts |
+| Large bundle             | Run `pnpm build` and check bundle-report.html       |
 
 ### Electron Deployment
 
-| Issue | Solution |
-|-------|----------|
-| App won't start | Check apps/lights-out/electron/main.js loads dist/index.html correctly |
-| IPC handlers not working | Verify preload.js exposes electronAPI |
-| Code signing fails (Windows) | Disable signing for dev builds (Windows only) |
+| Issue                        | Solution                                                               |
+| ---------------------------- | ---------------------------------------------------------------------- |
+| App won't start              | Check apps/lights-out/electron/main.js loads dist/index.html correctly |
+| IPC handlers not working     | Verify preload.js exposes electronAPI                                  |
+| Code signing fails (Windows) | Disable signing for dev builds (Windows only)                          |
 
 ### Mobile Deployment
 
-| Issue | Solution |
-|-------|----------|
-| App blank screen | Check web asset sync: `pnpm cap:sync` |
-| Plugins not available | Ensure @capacitor/core, plugins installed |
+| Issue                 | Solution                                        |
+| --------------------- | ----------------------------------------------- |
+| App blank screen      | Check web asset sync: `pnpm cap:sync`           |
+| Plugins not available | Ensure @capacitor/core, plugins installed       |
 | Build fails (Android) | Update Android SDK and Gradle in Android Studio |
 
 ---
 
 ## Performance Budgets
 
-| Metric | Target | Current |
-|--------|--------|---------|
-| Web bundle (JS) | < 250 KB | 229 KB ✅ |
-| Largest chunk | < 200 KB | 187 KB (vendor-react) ✅ |
-| First contentful paint | < 2s | ~1.2s ✅ |
-| Lighthouse score | > 90 | 93+ ✅ |
+| Metric                 | Target   | Current                  |
+| ---------------------- | -------- | ------------------------ |
+| Web bundle (JS)        | < 250 KB | 229 KB ✅                |
+| Largest chunk          | < 200 KB | 187 KB (vendor-react) ✅ |
+| First contentful paint | < 2s     | ~1.2s ✅                 |
+| Lighthouse score       | > 90     | 93+ ✅                   |
 
 ---
 
@@ -431,23 +437,27 @@ pnpm build
 ## Release v1.1.0
 
 ### Pre-Release
+
 - [ ] Update version in package.json
 - [ ] Update CHANGELOG.md
 - [ ] Run pnpm validate
 - [ ] Test accessibility: pnpm test:a11y
 
 ### Build
+
 - [ ] pnpm build → Web (dist/)
 - [ ] pnpm electron:build:win/linux/mac → Desktop
 - [ ] pnpm cap:sync → Mobile ready
 
 ### Deploy
+
 - [ ] Deploy web to production
 - [ ] Create GitHub release with binaries
 - [ ] Submit iOS to App Store
 - [ ] Submit Android to Play Store
 
 ### Post-Release
+
 - [ ] Monitor error logs for 24 hours
 - [ ] Respond to user feedback
 - [ ] Plan next release

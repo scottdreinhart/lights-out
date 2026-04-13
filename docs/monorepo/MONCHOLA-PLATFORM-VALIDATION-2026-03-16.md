@@ -1,5 +1,8 @@
 # Monchola Platform Validation Evidence (2026-03-16)
 
+> Historical snapshot (2026-03-16). This file is reference-only and non-authoritative.
+> Canonical governance authority: `AGENTS.md` and `docs/DOCUMENTATION_GOVERNANCE.md`.
+
 ## Scope
 
 Validation evidence for PR1 Monchola platform routing/checks under monorepo governance.

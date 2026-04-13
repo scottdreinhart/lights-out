@@ -195,7 +195,7 @@ measure('pruning-ratio', () => { ... }, { units: 'ratio' })
 - ✅ Conditional profiling staged
 - ✅ Ready for execution when AI implementation complete
 
-### 🔄 PENDING (Next Session)
+### ⚙️ PENDING (Next Session)
 
 1. **Execute Profiling** (Run benchmark tests):
    ```bash
