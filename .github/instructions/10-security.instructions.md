@@ -1,6 +1,6 @@
-# Security Governance
+# 🔐 Security Governance
 
-> **Authority**: `AGENTS.md` § 0 (Non-Negotiable Rules) and § 24 (Security Governance)
+> **Authority**: `AGENTS.md` § 0 (Non-Negotiable Rules) and § 24 (Security Governance)  
 > **BASELINE**: Before touching security code, read `AGENTS.md` § 0. No shortcuts. Minimal edits. Quality gates mandatory.
 > **Scope**: XSS prevention, input sanitization, secrets management, CSP
 

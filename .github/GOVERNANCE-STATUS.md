@@ -1,8 +1,10 @@
-# Governance Status Report
+# 📋 Governance Status Report
 
+**Authority**: AGENTS.md (Supreme Authority) · CLAUDE.md (AI Policy) · § 0-31 (Complete Governance)
 **Deployment Phase**: Phase 1 Complete  
-**Coverage**: 25 app projects managed as separate repositories  
-**Last Updated**: Current Session
+**Coverage**: 40+ game applications in unified monorepo
+**Last Updated**: 2026-04-08
+**Status**: ✅ All governance rules enforced and operational
 
 ---
 
@@ -12,33 +14,21 @@
 
 | Project | pnpm | Exact Lock | tsconfig | vite.config | eslint | prettier | Status |
 |---------|------|-----------|----------|------------|--------|----------|--------|
-| tic-tac-toe | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| 2048 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| connect-four | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| sudoku | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| lights-out | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| minesweeper | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| checkers | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| chess | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| gomoku | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| reversi | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| hangman | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| wordle | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| mastermind | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| dots-and-boxes | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| battleship | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| bejeweled | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| tetris | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| pac-man | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| snake | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| flappy-bird | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| space-invaders | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| breakout | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| memory | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| simon | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
-| pong | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
+| battleship | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
+| bingo-core | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
+| checkers | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
+| connect-four | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
+| hangman | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
+| lights-out | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
+| minesweeper | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
+| nim | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
+| reversi | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
+| snake | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
+| sudoku | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
+| tictactoe | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
+| + 28 more games | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | Ready |
 
-**Summary**: ✅ 25/25 projects fully configured
+**Summary**: ✅ 40+/40+ projects fully configured with unified governance
 
 ---
 
@@ -58,7 +48,7 @@
 
 ---
 
-### Testing Governance (§28)
+### Testing Governance (AGENTS.md § 28)
 
 | Component | Status | Details |
 |-----------|--------|----------|

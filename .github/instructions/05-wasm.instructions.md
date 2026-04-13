@@ -1,7 +1,7 @@
-# WASM Instructions — AssemblyScript / WebAssembly
+# ⚙️ WASM Instructions — AssemblyScript / WebAssembly
 
 > **Scope**: AssemblyScript source, WASM build pipeline, runtime loader, and AI worker integration.
-> Subordinate to `AGENTS.md` §0 (Non-Negotiable Rules), §6 (language governance), and `01-build.instructions.md`.
+> Subordinate to `AGENTS.md` §0 (Non-Negotiable Rules), §16 (WASM), §6 (language governance), and `01-build.instructions.md`.
 > **BASELINE**: Before building WASM, read `AGENTS.md` § 0. No parallel build paths. Preserve fallback logic. Bash mandatory.
 
 ---
@@ -24,14 +24,14 @@ The WASM subsystem provides a high-performance AI engine for CPU move computatio
 
 ## Architecture
 
-| Path | Purpose |
-|---|---|
-| `apps/<game-app>/assembly/index.ts` | AssemblyScript source — AI engine |
+| Path                                     | Purpose                                                                     |
+| ---------------------------------------- | --------------------------------------------------------------------------- |
+| `apps/<game-app>/assembly/index.ts`      | AssemblyScript source — AI engine                                           |
 | `apps/<game-app>/assembly/tsconfig.json` | AssemblyScript compiler config (extends `assemblyscript/std/assembly.json`) |
-| `apps/<game-app>/scripts/build-wasm.js` | Node build script — compiles AS → WASM → base64 → `src/wasm/ai-wasm.ts` |
-| `src/wasm/ai-wasm.ts` | Auto-generated base64 WASM module (do not edit manually) |
-| `src/workers/ai.worker.ts` | Web Worker — WASM-first with JS fallback |
-| `build/ai.wasm` | Intermediate WASM binary (gitignored) |
+| `apps/<game-app>/scripts/build-wasm.js`  | Node build script — compiles AS → WASM → base64 → `src/wasm/ai-wasm.ts`     |
+| `src/wasm/ai-wasm.ts`                    | Auto-generated base64 WASM module (do not edit manually)                    |
+| `src/workers/ai.worker.ts`               | Web Worker — WASM-first with JS fallback                                    |
+| `build/ai.wasm`                          | Intermediate WASM binary (gitignored)                                       |
 
 ### Data flow
 
@@ -41,9 +41,9 @@ apps/<game-app>/assembly/index.ts → (pnpm wasm:build) → build/ai.wasm → ba
 
 ## Scripts
 
-| Script | What It Does | Shell |
-|---|---|---|
-| `pnpm wasm:build` | Production WASM build (optimized) | Bash (WSL: Ubuntu) |
+| Script                  | What It Does                        | Shell              |
+| ----------------------- | ----------------------------------- | ------------------ |
+| `pnpm wasm:build`       | Production WASM build (optimized)   | Bash (WSL: Ubuntu) |
 | `pnpm wasm:build:debug` | Debug WASM build (with source maps) | Bash (WSL: Ubuntu) |
 
 Both scripts run `apps/<game-app>/scripts/build-wasm.js` which invokes the `asc` (AssemblyScript compiler) CLI.
@@ -80,8 +80,8 @@ Workers may only import from `@/domain` (per `AGENTS.md` §3). The `@/wasm` impo
 
 ## Key Dependencies
 
-| Package | Version | Purpose |
-|---|---|---|
+| Package          | Version | Purpose                 |
+| ---------------- | ------- | ----------------------- |
 | `assemblyscript` | 0.28.10 | AssemblyScript compiler |
 
 ---

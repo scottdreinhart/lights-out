@@ -1,24 +1,24 @@
-# Responsive UI/UX Instructions
+# 📱 Responsive UI/UX Instructions
 
 > **Scope**: Responsive design, viewport adaptation, breakpoints, device-aware hooks.
-> Subordinate to `AGENTS.md` §0 (Non-Negotiable Rules) and §3 (architecture).
+> Subordinate to `AGENTS.md` §0 (Non-Negotiable Rules), §12 (Responsive Design), and §3 (architecture).
 > **BASELINE**: Before implementing responsive UI, read `AGENTS.md` § 0. Use useResponsiveState hook. Preserve 5-tier architecture. Quality gates mandatory.
 
 ---
 
 ## Architecture
 
-| Concern | Layer | File | Purpose |
-|---|---|---|---|
-| Breakpoint tokens | Domain | `src/domain/responsive.ts` | Single source of truth for all breakpoint values |
-| Media query tokens | Domain | `src/domain/responsive.ts` | Capability-based CSS media query strings |
-| Semantic types | Domain | `src/domain/responsive.ts` | `NavMode`, `ContentDensity`, `DialogMode`, `InteractionMode` |
-| Derivation functions | Domain | `src/domain/responsive.ts` | Pure functions: capabilities → semantic state |
-| Tests | Domain | `src/domain/responsive.test.ts` | 40+ tests covering all derivations and boundaries |
-| Media query hook | App | `src/app/useMediaQuery.ts` | SSR-safe `matchMedia` wrapper (event-driven) |
-| Window size hook | App | `src/app/useWindowSize.ts` | SSR-safe `innerWidth`/`innerHeight` (resize-driven) |
-| Responsive hook | App | `src/app/useResponsiveState.ts` | Centralized entry point combining all capabilities |
-| UI breakpoints | UI | `src/ui/ui-constants.ts` | Re-exports domain breakpoints for component use |
+| Concern              | Layer  | File                            | Purpose                                                      |
+| -------------------- | ------ | ------------------------------- | ------------------------------------------------------------ |
+| Breakpoint tokens    | Domain | `src/domain/responsive.ts`      | Single source of truth for all breakpoint values             |
+| Media query tokens   | Domain | `src/domain/responsive.ts`      | Capability-based CSS media query strings                     |
+| Semantic types       | Domain | `src/domain/responsive.ts`      | `NavMode`, `ContentDensity`, `DialogMode`, `InteractionMode` |
+| Derivation functions | Domain | `src/domain/responsive.ts`      | Pure functions: capabilities → semantic state                |
+| Tests                | Domain | `src/domain/responsive.test.ts` | 40+ tests covering all derivations and boundaries            |
+| Media query hook     | App    | `src/app/useMediaQuery.ts`      | SSR-safe `matchMedia` wrapper (event-driven)                 |
+| Window size hook     | App    | `src/app/useWindowSize.ts`      | SSR-safe `innerWidth`/`innerHeight` (resize-driven)          |
+| Responsive hook      | App    | `src/app/useResponsiveState.ts` | Centralized entry point combining all capabilities           |
+| UI breakpoints       | UI     | `src/ui/ui-constants.ts`        | Re-exports domain breakpoints for component use              |
 
 ---
 
@@ -34,14 +34,14 @@ const { compactViewport, navMode, touchOptimized } = useResponsiveState()
 
 ## Breakpoint Tokens
 
-| Token | Width (px) | Device Class |
-|---|---|---|
-| `xs` | 0 | Small phone |
-| `sm` | 375 | Phone |
-| `md` | 600 | Tablet / mobile boundary |
-| `lg` | 900 | Desktop boundary |
-| `xl` | 1200 | Wide desktop |
-| `xxl` | 1800 | Ultrawide |
+| Token | Width (px) | Device Class             |
+| ----- | ---------- | ------------------------ |
+| `xs`  | 0          | Small phone              |
+| `sm`  | 375        | Phone                    |
+| `md`  | 600        | Tablet / mobile boundary |
+| `lg`  | 900        | Desktop boundary         |
+| `xl`  | 1200       | Wide desktop             |
+| `xxl` | 1800       | Ultrawide                |
 
 Height thresholds: `short` (500px), `medium` (700px).
 
@@ -50,18 +50,23 @@ Height thresholds: `short` (500px), `medium` (700px).
 ## ResponsiveState Fields
 
 ### Breakpoint Flags (mutually exclusive)
+
 `isXs`, `isSm`, `isMd`, `isLg`, `isXl`, `isXxl`
 
 ### Device Categories (mutually exclusive)
+
 `isMobile` (< md), `isTablet` (md–lg), `isDesktop` (≥ lg)
 
 ### Composite Flags
+
 `compactViewport`, `shortViewport`, `wideViewport`, `ultrawideViewport`, `touchOptimized`, `denseLayoutAllowed`, `fullscreenDialogPreferred`
 
 ### Layout Modes
+
 `navMode` (bottom-tabs / drawer / sidebar), `contentDensity` (compact / comfortable / spacious), `dialogMode` (fullscreen / bottom-sheet / centered-modal), `interactionMode` (touch / hybrid / pointer-precise), `gridColumns` (1–4)
 
 ### Raw Capabilities
+
 `width`, `height`, `isPortrait`, `isLandscape`, `supportsHover`, `hasCoarsePointer`, `hasFinePointer`, `prefersReducedMotion`
 
 ---
@@ -155,7 +160,7 @@ Use CSS Modules with organized media query blocks:
 /* Touch device optimization */
 @media (pointer: coarse) {
   .button:hover {
-    transform: none;  /* Disable hover animations */
+    transform: none; /* Disable hover animations */
   }
 }
 ```
@@ -183,12 +188,14 @@ return (
 ```
 
 **When to use inline styles:**
+
 - Values derived from multiple `ResponsiveState` flags
 - Conditional layout changes (direction, max-width, sizing)
 - Content density / interaction mode awareness
 - Dynamic calculations that require component state
 
 **When to use media queries:**
+
 - Static typography changes per tier (font-size, line-height)
 - Padding/margin increments by device class
 - Border radius or shadow adjustments
@@ -264,13 +271,24 @@ CSS Module handles static variants:
 
 ```css
 @media (max-width: 599px) {
-  .buttons { gap: 0.75rem; max-width: 100%; }
-  .primaryBtn { padding: 0.9rem; font-size: 1rem; }
+  .buttons {
+    gap: 0.75rem;
+    max-width: 100%;
+  }
+  .primaryBtn {
+    padding: 0.9rem;
+    font-size: 1rem;
+  }
 }
 
 @media (min-width: 900px) {
-  .buttons { gap: 1.2rem; }
-  .primaryBtn { padding: 1.2rem; font-size: 1.1rem; }
+  .buttons {
+    gap: 1.2rem;
+  }
+  .primaryBtn {
+    padding: 1.2rem;
+    font-size: 1.1rem;
+  }
 }
 ```
 
@@ -357,6 +375,7 @@ When adding responsive features, test at all 5 breakpoints:
 - **1800px** (xxl: ultrawide start)
 
 Verify:
+
 - Layout shifts smoothly between tiers
 - No content overflow or cutoff
 - Touch interactions don't break on coarse pointer

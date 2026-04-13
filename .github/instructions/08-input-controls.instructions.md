@@ -1,6 +1,6 @@
-# INPUT CONTROLS IMPLEMENTATION DIRECTIVE
+# 🎮 INPUT CONTROLS IMPLEMENTATION DIRECTIVE
 
-> **BASELINE**: Before implementing input controls, read `AGENTS.md` § 0 (Non-Negotiable Rules). Preserve existing behavior. Make minimal edits. Implement, don't suggest. Quality gates mandatory.
+> **BASELINE**: Before implementing input controls, read `AGENTS.md` § 0 (Non-Negotiable Rules) and § 19 (Input Controls). Preserve existing behavior. Make minimal edits. Implement, don't suggest. Quality gates mandatory.
 
 ---
 

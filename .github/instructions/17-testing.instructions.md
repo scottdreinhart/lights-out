@@ -1,4 +1,4 @@
-# Testing Standards & Framework Instructions
+# ✅ Testing Standards & Framework Instructions
 
 > **Scope**: Test taxonomy, naming conventions, discovery patterns, framework selection, and quality gates.
 > Subordinate to `AGENTS.md` §0 (Non-Negotiable Rules) and §28 (Testing Governance).
@@ -434,11 +434,10 @@ import path from 'path'
 describe('Bundle Size & CSS Performance', () => {
   it('should maintain CSS critical path < 50KB', () => {
     const distPath = path.resolve(__dirname, '../../dist')
-    const cssFiles = fs.readdirSync(distPath)
-      .filter(f => f.endsWith('.css'))
+    const cssFiles = fs.readdirSync(distPath).filter((f) => f.endsWith('.css'))
 
     let totalSize = 0
-    cssFiles.forEach(file => {
+    cssFiles.forEach((file) => {
       const filePath = path.join(distPath, file)
       const stats = fs.statSync(filePath)
       if (file.includes('index') || file.includes('critical')) {
@@ -488,16 +487,16 @@ test.describe('Core Web Vitals (E2E)', () => {
 
 **Performance Thresholds (Mandatory per AGENTS.md § 30)**:
 
-| Metric | Good | Fail |
-|---|---|---|
-| **Lighthouse** | ≥90 target / ≥80 minimum | <80 = FAIL |
-| **FCP** | <1.8s | >3s = FAIL |
-| **LCP** | <2.5s | >4s = FAIL |
-| **CLS** | <0.1 | >0.25 = FAIL |
-| **CSS Critical Path** | <50KB (minified) | >100KB = FAIL |
-| **DevTools Coverage** | >80% CSS used | <70% = FAIL |
-| **Bundle Size** | <200KB total | >300KB = FAIL (must investigate) |
-| **Sync AI Engine** | <100ms (typical) | >500ms = FAIL |
+| Metric                | Good                     | Fail                             |
+| --------------------- | ------------------------ | -------------------------------- |
+| **Lighthouse**        | ≥90 target / ≥80 minimum | <80 = FAIL                       |
+| **FCP**               | <1.8s                    | >3s = FAIL                       |
+| **LCP**               | <2.5s                    | >4s = FAIL                       |
+| **CLS**               | <0.1                     | >0.25 = FAIL                     |
+| **CSS Critical Path** | <50KB (minified)         | >100KB = FAIL                    |
+| **DevTools Coverage** | >80% CSS used            | <70% = FAIL                      |
+| **Bundle Size**       | <200KB total             | >300KB = FAIL (must investigate) |
+| **Sync AI Engine**    | <100ms (typical)         | >500ms = FAIL                    |
 
 **Mandatory Integration with pnpm validate**:
 

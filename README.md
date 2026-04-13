@@ -30,7 +30,7 @@ See [LICENSE](LICENSE) file for complete terms and conditions.
 
 ## Project Structure
 
-**Monorepo with 25 game applications and 11 shared packages**
+**Monorepo with 52 app folders and 37 shared packages**
 
 ```
 lights-out/
@@ -49,7 +49,7 @@ lights-out/
 ├── .gitattributes                    # Git line endings and binary rules
 ├── .gitignore                        # Git ignore patterns
 │
-├── apps/                             # 25 game applications (monorepo structure)
+├── apps/                             # 52 app folders (games, variants, and shared UI shell)
 │   ├── battleship/                   # Battleship game
 │   ├── bunco/                        # Bunco dice/scoring game
 │   ├── cee-lo/                       # Cee-lo gambling game
@@ -76,7 +76,7 @@ lights-out/
 │   ├── snake/                        # Snake real-time survival game
 │   └── tictactoe/                    # Tic-Tac-Toe reference architecture
 │
-├── packages/                         # 11 shared libraries
+├── packages/                         # 37 shared libraries
 │   ├── app-hook-utils/               # Reusable React hooks for all games
 │   ├── assets-shared/                # Shared sprite sheets and game assets
 │   ├── common/                       # Common utilities (types, helpers)

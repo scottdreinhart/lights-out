@@ -1,6 +1,6 @@
-# Ionic React Integration Guide
+# 🧹 Ionic React Integration Guide
 
-> **Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules).
+> **Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules) and § 2 (Package Manager).  
 > **BASELINE**: Before using Ionic components, read `AGENTS.md` § 0. Preserve cross-platform behavior. Minimal component customization. Quality gates mandatory.
 
 ## Overview

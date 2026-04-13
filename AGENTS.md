@@ -5227,32 +5227,32 @@ All CSS optimization derives from 13 maximum-density super prompts. See `.github
 
 **Quick Reference**:
 
-| Super Prompt | Rule | Target |
-|---|---|---|
-| 1. CRP | HTML → CSS (blocked) → JS → Paint | Optimize browser sequence |
-| 2. Render-Blocking CSS | CSS blocks rendering by default | Every KB costs 1-3ms parse |
-| 3. Critical CSS Strategy | Inline <14KB above-fold; defer non-critical | FCP timing |
-| 4. CSS Size Optimization | Minify + remove unused | <50KB critical path |
-| 5. Non-Blocking CSS | Load non-critical AFTER FCP | media="print" pattern |
-| 6. HEAD Optimization | Only critical resources | Minimal blocking |
-| 7. Layout/Reflow/Paint | transform/opacity only for animations | No layout thrashing |
-| 8. CLS Prevention | Reserve space for images | CLS <0.1 |
-| 9. Font Performance | font-display: swap; preload LCP font | Text renders immediately |
-| 10. CSS Architecture | BEM naming, split by feature | Clean, reusable CSS |
-| 11. Resource Prioritization | LCP ≤2.5s; fetchpriority="high" | User perception |
-| 12. Validation + Tooling | Lighthouse ≥90, DevTools, PageSpeed | No guessing |
-| 13. Core Web Vitals | FCP <1.8s, LCP <2.5s, CLS <0.1 | 75th percentile field data |
+| Super Prompt                | Rule                                        | Target                     |
+| --------------------------- | ------------------------------------------- | -------------------------- |
+| 1. CRP                      | HTML → CSS (blocked) → JS → Paint           | Optimize browser sequence  |
+| 2. Render-Blocking CSS      | CSS blocks rendering by default             | Every KB costs 1-3ms parse |
+| 3. Critical CSS Strategy    | Inline <14KB above-fold; defer non-critical | FCP timing                 |
+| 4. CSS Size Optimization    | Minify + remove unused                      | <50KB critical path        |
+| 5. Non-Blocking CSS         | Load non-critical AFTER FCP                 | media="print" pattern      |
+| 6. HEAD Optimization        | Only critical resources                     | Minimal blocking           |
+| 7. Layout/Reflow/Paint      | transform/opacity only for animations       | No layout thrashing        |
+| 8. CLS Prevention           | Reserve space for images                    | CLS <0.1                   |
+| 9. Font Performance         | font-display: swap; preload LCP font        | Text renders immediately   |
+| 10. CSS Architecture        | BEM naming, split by feature                | Clean, reusable CSS        |
+| 11. Resource Prioritization | LCP ≤2.5s; fetchpriority="high"             | User perception            |
+| 12. Validation + Tooling    | Lighthouse ≥90, DevTools, PageSpeed         | No guessing                |
+| 13. Core Web Vitals         | FCP <1.8s, LCP <2.5s, CLS <0.1              | 75th percentile field data |
 
 ### MANDATORY THRESHOLDS (Hard Limits)
 
-| Metric | Good | Fail |
-|---|---|---|
-| **Lighthouse** | ≥90 | <80 |
-| **FCP** | <1.8s | >3s |
-| **LCP** | <2.5s | >4s |
-| **CLS** | <0.1 | >0.25 |
-| **CSS Critical Path** | <50KB | >100KB |
-| **DevTools Coverage** | >80% used | <70% |
+| Metric                | Good      | Fail   |
+| --------------------- | --------- | ------ |
+| **Lighthouse**        | ≥90       | <80    |
+| **FCP**               | <1.8s     | >3s    |
+| **LCP**               | <2.5s     | >4s    |
+| **CLS**               | <0.1      | >0.25  |
+| **CSS Critical Path** | <50KB     | >100KB |
+| **DevTools Coverage** | >80% used | <70%   |
 
 ### SELF-CORRECTION LOOP (MANDATORY)
 
@@ -5323,3 +5323,377 @@ Build MANY small, high-quality, independent game apps powered by shared systems.
 DO NOT build a super app.
 DO NOT reduce app count.
 DO NOT trade product proliferation for architectural convenience.
+
+---
+
+## § 31. Commit Governance & Self-Enforcing Documentation (MANDATORY)
+
+**Authority**: AGENTS.md § 0 (Non-Negotiable Rules), AGENTS.md § 0.A (Self-Correction Loop)  
+**Primary Source**: `COMMIT-ENFORCEMENT.md`, `.commitlintrc.cjs`, `.czrc.json`, `.husky/commit-msg`  
+**Philosophy**: "Compliance by default, not discipline" — easiest path = correct path
+
+### Commit Governance Foundation
+
+**Objective**: Automatic documentation generation from commit history with zero manual effort.
+
+Every commit flows through a **6-layer enforcement stack**:
+
+1. **Layer 1: Commitizen Prompts** — Interactive guided input (type, scope, subject, body, footer)
+2. **Layer 2: Commitlint Validation** — Syntax checks (type enum, case, period rules, length limits)
+3. **Layer 3: Husky Git Hooks** — Blocks invalid commits at `.git/hooks/commit-msg`
+4. **Layer 4: CI/CD Pipeline** — GitHub Actions validation (enforces on all branches)
+5. **Layer 5: Release System** — standard-version semantic versioning (auto-generates CHANGELOG)
+6. **Layer 6: Documentation Generation** — CHANGELOG.md, release notes, deployment logs auto-created
+
+**Result**: Developers commit normally → system captures intent → documentation auto-generates.
+
+### 10 Enforced Commit Types (Gitmoji Standard)
+
+| Type     | Emoji | Scope                    | Example Commits                      | Gitmoji Ref |
+| -------- | ----- | ------------------------ | ------------------------------------ | ----------- |
+| feat     | ✨    | Features in any layer    | feat(domain): add sudoku validator   | New feature |
+| fix      | 🐛    | Bug fixes                | fix(ui): correct tile focus state    | Bug fix |
+| refactor | ♻️    | Code reorganization      | refactor(app): split useGame hook    | Code refactor |
+| perf     | ⚡    | Performance optimization | perf(ui): memoize board component    | Performance |
+| docs     | 📝    | Documentation changes    | docs: update CHANGELOG               | Documentation |
+| style    | 🎨    | Code formatting/structure| style: organize imports              | Code style |
+| test     | ✅    | Test additions/fixes     | test(domain): add validator tests    | Add tests |
+| chore    | 🚀    | Deployment/CI/tooling    | chore(infra): deploy to production   | Deployment |
+| a11y     | ♿    | Accessibility features   | feat(ui): improve button label       | Accessibility |
+| security | 🔐    | Security fixes           | security: fix XSS in input sanitizer | Security fix |
+
+**Optional**: ci (💚), hotfix (🚑), build (🔨), remove code (🔥), wip (🚧)
+
+**Authority**: [Gitmoji Standard](https://gitmoji.dev/) + Conventional Commits
+
+### Commit Scope Rules (CLEAN Architecture Mapping)
+
+Scopes must map to architecture layers or cross-cutting concerns:
+
+| Scope     | Layer           | Coverage                                  |
+| --------- | --------------- | ----------------------------------------- |
+| `domain`  | Domain Layer    | Business logic, rules, types, AI engines  |
+| `app`     | App Layer       | Hooks, context providers, services        |
+| `ui`      | UI Layer        | Components (atoms, molecules, organisms)  |
+| `workers` | Workers         | Web Workers, WASM computation             |
+| `infra`   | Infrastructure  | Build, CI/CD, tooling, monorepo stuff     |
+| `shared`  | Shared Packages | Reusable systems across games             |
+| `docs`    | Documentation   | Any documentation files                   |
+| `deps`    | Dependencies    | Dependency updates, version bumps         |
+| `tests`   | Testing         | Test infrastructure, test harness changes |
+
+**Rule**: Scope must be lowercase, context-specific, and tied to modified code.
+
+### Commitizen Interactive Prompt
+
+```bash
+pnpm commit
+# Prompts you for:
+# 1. Type (select from 10 types)
+# 2. Scope (optional, context-sensitive autocomplete)
+# 3. Subject (short description, <50 chars, lowercase, no period)
+# 4. Body (detailed explanation, why/what changed)
+# 5. Breaking changes (YES if BREAKING CHANGE discovered)
+# 6. Footer (issue references, related PRs)
+```
+
+**Why Interactive**: Reduces errors, guides developers, captures metadata for docs.
+
+### Commitlint Validation Rules (Strict Enforcement)
+
+Each commit must satisfy:
+
+- ✅ **Type**: Must be one of 10 approved types (enforced as enum)
+- ✅ **Scope**: Optional, but if provided must be lowercase (enforced as case rule)
+- ✅ **Subject**:
+  - Lowercase (enforced)
+  - No period at end (enforced)
+  - Max 100 characters (enforced)
+  - Imperative mood ("add feature", not "added feature")
+- ✅ **Body**:
+  - Wrapped at 72 characters (enforced)
+  - Explain what and why, not how
+  - Optional but recommended for feat/fix/refactor
+- ✅ **Footer**:
+  - BREAKING CHANGE: description (if breaking)
+  - Closes #123 (if related to issue)
+  - Format enforced via regex
+
+**Validation Trigger**: `.husky/commit-msg` hook runs commitlint automatically.
+
+**Failure Handling**: Commit blocked if validation fails; error message explains what's required.
+
+### Monorepo Commit Scope Inheritance
+
+**Root-Level Rule**: All apps inherit `.commitlintrc.cjs` and `.czrc.json` from root.
+
+**Why**:
+
+- Single source of truth for all 40+ games
+- Consistent commit styles across platform
+- Unified documentation generation
+- No per-app configuration sprawl
+
+**Per-App Practices**:
+
+- Apps use scopes like `ui`, `domain`, `app` (universal across all games)
+- Don't use game-specific scopes (e.g., `sudoku-ui`)
+- Use `docs` scope for game-specific documentation
+- Use `chore(deps)` for app-specific dependency updates
+
+**Enforcement**: `.commitlintrc.cjs` validates ALL commits, root and app-level.
+
+### Documentation Auto-Generation from Commits
+
+**CHANGELOG.md** (Global Platform Changelog)
+
+```bash
+pnpm release --changelog-only
+# Generates ./CHANGELOG.md from:
+# - All commits since last tag
+# - Grouped by type (feat, fix, docs, etc.)
+# - Links to commit SHAs
+# - Sections per type with emoji labels
+# - Versions with dates and breaking changes
+```
+
+**Per-App Changelog** (Future Automation)
+
+Each app (`/apps/<name>/`) will have own CHANGELOG.md:
+
+- Filters commits by app scope
+- Independent semantic versioning (app-level vs platform-level)
+- Auto-triggers on app-specific releases
+
+**Release Notes** (docs/releases/VERSION.md per release)
+
+Template structure:
+
+- What's new (features + improvements by category)
+- Bug fixes and breaking changes
+- Migration guides (if breaking)
+- Installation instructions
+- Contributors and acknowledgments
+
+**Deployment Summaries** (docs/deployments/YYYY-MM-DD.md per deployment)
+
+Template structure:
+
+- Which apps deployed, which version
+- What changed (features, fixes, security patches)
+- Health checks and verification results
+- Issues encountered and resolutions
+- Post-deployment notes
+
+### Breaking Changes Tracking (footer: BREAKING CHANGE)
+
+If a commit introduces a breaking change:
+
+```
+feat(domain): change BoardType API signature
+
+This change modifies the BoardType interface,
+removing the deprecated 'size' property.
+
+BREAKING CHANGE: BoardType no longer accepts 'size' parameter.
+  OLD: new BoardType({ size: 9, layout: 'grid' })
+  NEW: new BoardType({ layout: 'grid', dimensions: { width: 3, height: 3 } })
+
+Migration guide: See MIGRATIONS.md for version upgrade path.
+```
+
+**Effect**:
+
+- Commitlint enforces BREAKING CHANGE footer presence
+- standard-version identifies as major version bump
+- CHANGELOG.md lists under "Breaking Changes" section
+- docs/MIGRATIONS.md updated with migration guide
+- Documentation workflow alerts maintainers
+
+**Rule**: No undocumented breaking changes. Footer = automatic detection.
+
+### Security Changes Tracking (footer: SECURITY)
+
+If a commit fixes a security issue:
+
+```
+security: fix XSS vulnerability in input sanitizer
+
+Sanitizer now correctly escapes user input in
+all text fields, preventing script injection.
+
+Closes #456
+Fixes: CVE-2026-12345
+Severity: High
+Backport: 18.2.1
+```
+
+**Effect**:
+
+- Tracked in docs/SECURITY-CHANGES.md
+- Security audit log updated automatically
+- Release notes flagged with 🔐 security icon
+- If critical: triggers expedited release process
+
+### AI Tool Requirements (Mandatory)
+
+All Copilot, Claude, and AI agents must:
+
+- ✅ **Suggest commits** using correct type + scope
+- ✅ **Validate naming** before proposing code
+- ✅ **Check BREAKING CHANGE** footer requirement
+- ✅ **Reference** COMMIT-ENFORCEMENT.md for rules
+- ❌ **Never** commit code directly (requires human review + commitment)
+- ❌ **Never** suggest commits bypassing validation
+
+Example AI output:
+
+```
+I suggest this commit:
+
+feat(domain): add sudoku hint system
+
+This implements a new hint resolver that suggests
+valid moves based on constraint propagation.
+
+Scope: domain (core logic)
+Type: feat (new feature)
+Impact: High (new feature, tested)
+Breaking: No
+
+Run: pnpm commit
+Select: feat → domain → "add sudoku hint system"
+```
+
+### Pre-Commit Automation (lint-staged + Husky)
+
+**Trigger**: Every `git commit`, before commit is created.
+
+**Stages**:
+
+1. **Stage 1: Lint Check** (`pnpm lint` on staged files)
+   - If fails: auto-fix with `eslint --fix`
+   - If still fails: commit blocked, developer fixes manually
+
+2. **Stage 2: Format Check** (`pnpm format:check` on staged files)
+   - If fails: auto-fix with `prettier --write`
+   - If still fails: commit blocked (rare)
+
+3. **Stage 3: Type Check** (`pnpm typecheck`)
+   - If fails: commit blocked, developer fixes types
+
+4. **Stage 4: Commit Message** (`commitlint` on message)
+   - Validates type, scope, subject, body, footer
+   - If fails: detailed error, commit blocked
+
+**Result**: Only code meeting quality + commit standards can be committed. Compliance = default.
+
+### CI/CD Enforcement (GitHub Actions)
+
+**When**: Every commit to all branches (PR + main).
+
+**What**:
+
+- Re-validate commit messages (catches manual git commits)
+- Run `pnpm validate` (lint + typecheck + build)
+- Run `pnpm test` (unit/integration tests)
+- Run `pnpm test:e2e` (if applicable)
+- Generate coverage reports
+- Block merge if any check fails
+
+**Merge Requirement**: All CI checks + human code review required.
+
+### Release Process (standard-version + Semantic Versioning)
+
+**Command**: `pnpm release [--major | --minor | --patch]`
+
+**What Happens**:
+
+1. Analyzes commits since last tag
+2. Determines version bump (major/minor/patch)
+3. Generates ./CHANGELOG.md section
+4. Creates version commit + git tag
+5. Generates release notes (docs/releases/VX.Y.Z.md)
+6. Ready for deployment
+
+**Breaking Changes**: Any BREAKING CHANGE footer → major version bump.
+
+**Frequency**: On-demand (release when ready) or scheduled (nightly/weekly lint run).
+
+### APP_FEATURE_MATRIX.md Compliance Tracking
+
+Platform compliance tracked in real-time:
+
+| Feature                   | Status |         Completeness         |
+| ------------------------- | :----: | :--------------------------: |
+| Commit types enforced     |   ✅   |             100%             |
+| Scope validation          |   ✅   |             100%             |
+| Pre-commit hooks          |   ✅   |             100%             |
+| CHANGELOG generation      |   ✅   |             100%             |
+| Release automation        |   ✅   |             100%             |
+| Per-app changelogs        |   🔄   |     40% (script pending)     |
+| Deployment tracking       |   🟡   |     20% (template ready)     |
+| Breaking change detection |   🟡   | 80% (manual footer required) |
+
+**View Live**: `APP_FEATURE_MATRIX.md` in root directory.
+
+### Verification Checklist (Before Code Review)
+
+- [ ] Commit type is one of 10 approved types
+- [ ] Scope is lowercase and architecture-relevant
+- [ ] Subject is lowercase, no period, <50 chars, imperative mood
+- [ ] Body explains what changed and why (if provided)
+- [ ] No BREAKING CHANGE footer if not actually breaking
+- [ ] BREAKING CHANGE footer present if API changed
+- [ ] Security fixes documented with SECURITY footer
+- [ ] Dependency updates use `chore(deps)` scope
+- [ ] Code passes `pnpm lint` + `pnpm typecheck`
+- [ ] Tests pass (`pnpm test` + `pnpm test:e2e` if applicable)
+- [ ] Commit message appears in intended CHANGELOG section
+- [ ] AI agents and humans follow same rules
+
+### Troubleshooting
+
+**Problem**: Commit message rejected by commitlint  
+**Solution**:
+
+1. Read error message (explains what's wrong)
+2. Run `pnpm commit` (interactive prompt guides you)
+3. Or manually amend: `git commit --amend -m "feat(scope): message"`
+4. Check `.commitlintrc.cjs` for exact rules
+
+**Problem**: Git hook not running  
+**Solution**:
+
+1. Verify husky installed: `husky --version`
+2. Verify hooks created: `ls -la .husky/`
+3. Reinstall if missing: `pnpm husky install`
+
+**Problem**: Commitizen not showing emoji  
+**Solution**:
+
+1. Check `.czrc.json` configuration
+2. Verify `cz-git` package installed: `pnpm list cz-git`
+3. Emoji appears in commit message in VS Code/GitHub UI regardless
+
+### Governance Precedence
+
+1. **AGENTS.md § 0** — Non-negotiable AI rules (apply self-correction loop)
+2. **AGENTS.md § 31** — This section (commit governance enforcement)
+3. **COMMIT-ENFORCEMENT.md** — Detailed system bible + troubleshooting
+4. **`.commitlintrc.cjs`** — Source of truth for validation rules
+5. **`.czrc.json`** — Source of truth for emoji/scope mappings
+6. **`.husky/commit-msg`** — Hook that enforces commitlint
+
+### References
+
+- **System Bible**: `COMMIT-ENFORCEMENT.md` (600+ lines, complete reference)
+- **Change Log**: `./CHANGELOG.md` (auto-generated, per-version format)
+- **Breaking Changes**: `docs/MIGRATIONS.md` (migration guides, version tracking)
+- **Security Log**: `docs/SECURITY-CHANGES.md` (vulnerability tracking, audit trail)
+- **Dependency Log**: `docs/DEPENDENCY-UPDATES.md` (version tracking, update schedule)
+- **Feature Matrix**: `APP_FEATURE_MATRIX.md` (compliance dashboard, all 40+ apps)
+- **Release Template**: `docs/releases/TEMPLATE.md` (release notes structure)
+- **Deployment Template**: `docs/deployments/TEMPLATE.md` (deployment summary structure)
+
+---

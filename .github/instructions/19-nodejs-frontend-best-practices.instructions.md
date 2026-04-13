@@ -1,8 +1,8 @@
-# Node.js Best Practices (Frontend Adaptation)
+# 📘 Node.js Best Practices (Frontend Adaptation)
 
-> **Authority**: `AGENTS.md` § 0 (Non-Negotiable Rules) and § 29 (Node.js Best Practices)
-> **Source**: https://github.com/goldbergyoni/nodebestpractices (102+ items, adapted for React/TypeScript)
-> **Scope**: Async patterns, error handling, naming conventions, testing practices, code quality
+> **Authority**: `AGENTS.md` § 0 (Non-Negotiable Rules) and § 29 (Node.js Best Practices)  
+> **Source**: https://github.com/goldbergyoni/nodebestpractices (102+ items, adapted for React/TypeScript)  
+> **Scope**: Async patterns, error handling, naming conventions, testing practices, code quality  
 > **BASELINE**: Before making changes, read `AGENTS.md` § 0. Quality gates mandatory. No fake completion.
 
 ---

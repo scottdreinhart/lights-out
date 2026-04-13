@@ -1,5 +1,5 @@
 {
-  "terminal.integrated.defaultProfile.windows": "Ubuntu (WSL)",
+  "terminal.integrated.defaultProfile.windows": "Ubuntu-24.04",
   "terminal.integrated.shellIntegration.enabled": true,
   "terminal.integrated.shellIntegration.decorationsEnabled": "both",
   "terminal.integrated.shellIntegration.showCommandGuide": true,
@@ -11,21 +11,22 @@
   "terminal.integrated.cwd": "${workspaceFolder}",
   "terminal.integrated.splitCwd": "inherited",
   "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.automationProfile.windows": "Ubuntu-24.04",
   "terminal.integrated.profiles.windows": {
-    "Ubuntu (WSL)": {
+    "Ubuntu-24.04": {
       "path": "C:\\WINDOWS\\System32\\wsl.exe",
-      "args": ["-d", "Ubuntu"],
-      "icon": "terminal-linux"
+      "args": ["-d", "Ubuntu-24.04"],
+      "icon": "terminal-linux",
+      "overrideName": true
     },
     "PowerShell": {
       "source": "PowerShell",
       "icon": "terminal-powershell"
-    }
+    },
+    "Ubuntu": { "hidden": true },
+    "WSL": { "hidden": true }
   },
-  "terminal.integrated.automationProfile.windows": {
-    "path": "C:\\WINDOWS\\System32\\wsl.exe",
-    "args": ["-d", "Ubuntu"]
-  },
+  "terminal.integrated.enablePersistentSessions": false,
   "terminal.integrated.env.windows": {
     "BASH_ENV": "/mnt/c/Users/scott/game-platform/.vscode/terminal-bootstrap.sh"
   },

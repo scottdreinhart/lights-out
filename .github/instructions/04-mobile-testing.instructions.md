@@ -1,6 +1,6 @@
-# Mobile Testing Governance — Capacitor Deployment Readiness
+# 🧪 Mobile Testing Governance — Capacitor Deployment Readiness
 
-**Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules) for all mobile testing decisions.
+**Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules) and § 28 (Testing Governance) for all mobile testing decisions.
 
 **BASELINE**: Before mobile testing, read `AGENTS.md` § 0. No fake completion. Preserve safe-area behavior. Quality gates mandatory.
 

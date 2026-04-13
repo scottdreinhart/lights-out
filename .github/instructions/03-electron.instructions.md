@@ -1,7 +1,7 @@
-# Electron Instructions
+# 🗭️ Electron Instructions
 
 > **Scope**: Electron desktop app development, builds, preview, and platform-specific packaging.
-> Subordinate to `AGENTS.md` §0 (Non-Negotiable Rules) and §5 (shell routing).
+> Subordinate to `AGENTS.md` §0 (Non-Negotiable Rules), §14 (Electron), and §5 (shell routing).
 > **BASELINE**: Before developing Electron apps, read `AGENTS.md` § 0. Preserve cross-platform behavior. Shell routing mandatory. Quality gates required.
 
 ---
@@ -19,14 +19,14 @@ Electron wraps the Vite web app in a native desktop window.
 
 ## Scripts
 
-| Script | What It Does |
-|---|---|
-| `pnpm electron:dev` | Launches Vite + Electron together (via `concurrently` + `wait-on`) |
-| `pnpm electron:preview` | Builds Vite → opens Electron on the built `dist/` |
-| `pnpm electron:build` | Vite build + electron-builder for current platform → `release/` |
-| `pnpm electron:build:win` | Windows `.exe` (portable, unsigned) → `release/` |
-| `pnpm electron:build:linux` | Linux `.AppImage` → `release/` |
-| `pnpm electron:build:mac` | macOS `.dmg` → `release/` |
+| Script                      | What It Does                                                       |
+| --------------------------- | ------------------------------------------------------------------ |
+| `pnpm electron:dev`         | Launches Vite + Electron together (via `concurrently` + `wait-on`) |
+| `pnpm electron:preview`     | Builds Vite → opens Electron on the built `dist/`                  |
+| `pnpm electron:build`       | Vite build + electron-builder for current platform → `release/`    |
+| `pnpm electron:build:win`   | Windows `.exe` (portable, unsigned) → `release/`                   |
+| `pnpm electron:build:linux` | Linux `.AppImage` → `release/`                                     |
+| `pnpm electron:build:mac`   | macOS `.dmg` → `release/`                                          |
 
 ---
 
@@ -43,13 +43,13 @@ See [AGENTS.md § 5](../../AGENTS.md#5-cross-platform-shell-governance-mandatory
 
 ## Environment Routing
 
-| Script | Required Shell |
-|---|---|
-| `pnpm electron:dev` | Bash (WSL: Ubuntu) |
-| `pnpm electron:preview` | Bash (WSL: Ubuntu) |
-| `pnpm electron:build:win` | **PowerShell** (Windows) |
-| `pnpm electron:build:linux` | Bash (WSL: Ubuntu) |
-| `pnpm electron:build:mac` | **macOS / Apple** (requires Apple hardware) |
+| Script                      | Required Shell                              |
+| --------------------------- | ------------------------------------------- |
+| `pnpm electron:dev`         | Bash (WSL: Ubuntu)                          |
+| `pnpm electron:preview`     | Bash (WSL: Ubuntu)                          |
+| `pnpm electron:build:win`   | **PowerShell** (Windows)                    |
+| `pnpm electron:build:linux` | Bash (WSL: Ubuntu)                          |
+| `pnpm electron:build:mac`   | **macOS / Apple** (requires Apple hardware) |
 
 Never run `electron:build:win` in WSL. Never run `electron:build:mac` without confirmed Apple hardware.
 Default to Bash for all Electron dev and preview work.
@@ -60,31 +60,31 @@ Default to Bash for all Electron dev and preview work.
 
 Defined in `package.json` `"build"` key (electron-builder config):
 
-| Field | Value |
-|---|---|
-| `appId` | `com.scottreinhart.nim` |
-| `productName` | `Nim` |
-| `directories.output` | `release` |
-| `files` | `dist/**/*`, `electron/**/*` |
+| Field                | Value                        |
+| -------------------- | ---------------------------- |
+| `appId`              | `com.scottreinhart.nim`      |
+| `productName`        | `Nim`                        |
+| `directories.output` | `release`                    |
+| `files`              | `dist/**/*`, `electron/**/*` |
 
 ### Platform Targets
 
-| Platform | Target | Output |
-|---|---|---|
-| Windows | `portable` | `.exe` (no installer, unsigned) |
-| macOS | `dmg` | `.dmg` disk image |
-| Linux | `AppImage` | `.AppImage` self-contained binary |
+| Platform | Target     | Output                            |
+| -------- | ---------- | --------------------------------- |
+| Windows  | `portable` | `.exe` (no installer, unsigned)   |
+| macOS    | `dmg`      | `.dmg` disk image                 |
+| Linux    | `AppImage` | `.AppImage` self-contained binary |
 
 ---
 
 ## Key Dependencies
 
-| Package | Version | Purpose |
-|---|---|---|
-| `electron` | 40.8.0 | Desktop runtime |
-| `electron-builder` | 26.8.1 | Packaging & distribution |
-| `concurrently` | ~9.x | Run Vite + Electron in parallel for dev |
-| `wait-on` | ~8.x | Wait for Vite server before launching Electron |
+| Package            | Version | Purpose                                        |
+| ------------------ | ------- | ---------------------------------------------- |
+| `electron`         | 40.8.0  | Desktop runtime                                |
+| `electron-builder` | 26.8.1  | Packaging & distribution                       |
+| `concurrently`     | ~9.x    | Run Vite + Electron in parallel for dev        |
+| `wait-on`          | ~8.x    | Wait for Vite server before launching Electron |
 
 ---
 

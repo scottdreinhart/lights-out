@@ -1,7 +1,7 @@
-# Conditional Capacitor Integration Pattern
+# 🔌 Conditional Capacitor Integration Pattern
 
-> **Status**: Active for nim, lights-out (platform apps with native support)
-> **Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules) and § 15 (Capacitor & Mobile Build Governance)
+> **Status**: Active for nim, lights-out (platform apps with native support)  
+> **Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules), § 15 (Capacitor), and § 5 (Shell Routing)  
 > **BASELINE**: Before conditional Capacitor usage, read `AGENTS.md` § 0. Preserve web-first architecture. No platform-specific branching. Quality gates mandatory.
 
 ## Overview
