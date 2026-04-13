@@ -66,8 +66,8 @@ export const GameLayout = React.memo<GameLayoutProps>(
     } = useBankroll(playerId, gameId)
 
     // Handle table selection
-    const handleSelectTableWithNavigation = (variant: TableVariant, chipSet: number[]) => {
-      handleSelectTable(variant, chipSet)
+    const handleSelectTableWithNavigation = (variant: TableVariant, chipSet: readonly number[]) => {
+      handleSelectTable(variant, chipSet as number[])
       setScreen('playing')
     }
 

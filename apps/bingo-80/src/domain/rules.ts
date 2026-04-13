@@ -4,9 +4,8 @@
  */
 
 import { createBingoCards, isWinner, markNumber } from './card'
+import { ALL_NUMBERS } from './constants'
 import type { DrawResult, GameState } from './types'
-
-const ALL_NUMBERS = Array.from({ length: 80 }, (_, i) => i + 1)
 
 /**
  * Initialize a new Swedish Bingo game

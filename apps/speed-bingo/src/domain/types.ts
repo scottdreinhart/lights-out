@@ -3,6 +3,8 @@
  * Fast-paced bingo with rapid number drawing.
  */
 
+import { GRID_SIZE, DEFAULT_DRAW_SPEED } from './constants'
+
 export type BingoColumn = 'B' | 'I' | 'N' | 'G' | 'O'
 export const COLUMNS: BingoColumn[] = ['B', 'I', 'N', 'G', 'O']
 export const COLUMN_RANGES: Record<BingoColumn, [number, number]> = {
@@ -39,7 +41,6 @@ export interface DrawResult {
   winners: string[]
 }
 
-export const GRID_SIZE = 5
 export const MIN_CARDS = 1
 export const MAX_CARDS = 5 // Fewer cards for speed
 export const WINNING_PATTERNS = [
@@ -49,7 +50,6 @@ export const WINNING_PATTERNS = [
   'diagonal-right',
 ] as const
 
-// Speed bingo settings
-export const DEFAULT_DRAW_SPEED = 2000 // 2 seconds between draws
-export const FAST_DRAW_SPEED = 1000 // 1 second for ultra-fast
-export const SLOW_DRAW_SPEED = 3000 // 3 seconds for slower pace
+// Note: GRID_SIZE and DEFAULT_DRAW_SPEED are imported from constants
+// Re-export for backward compatibility
+export { GRID_SIZE, DEFAULT_DRAW_SPEED }

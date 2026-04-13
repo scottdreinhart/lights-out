@@ -1,6 +1,5 @@
 import type { BingoCard as BingoCardType } from '@games/bingo-core'
 import { BoardGrid, Tile } from '@games/ui-board-core'
-import React from 'react'
 import styles from './BingoCard.module.css'
 
 interface BingoCardProps {

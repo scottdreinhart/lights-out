@@ -1,0 +1,122 @@
+/* ProgressToNextPowerUp.module.css */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  max-width: 300px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  font-size: 1.2rem;
+}
+
+.title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.powerUpName {
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+}
+
+.progressContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.progressBar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffd700 0%, #ffed4e 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+.progressText {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+}
+
+/* Mobile: <600px */
+@media (max-width: 599px) {
+  .root {
+    min-width: 180px;
+    max-width: 250px;
+    padding: 10px;
+  }
+
+  .title {
+    font-size: 0.8rem;
+  }
+
+  .powerUpName {
+    font-size: 0.9rem;
+  }
+
+  .progressText {
+    font-size: 0.75rem;
+  }
+}
+
+/* Tablet: 600–899px */
+@media (min-width: 600px) and (max-width: 899px) {
+  .root {
+    min-width: 220px;
+    max-width: 280px;
+  }
+}
+
+/* Desktop: 900–1199px */
+@media (min-width: 900px) {
+  .root {
+    min-width: 240px;
+    max-width: 320px;
+  }
+}
+
+/* Ultrawide: 1800px+ */
+@media (min-width: 1800px) {
+  .root {
+    min-width: 280px;
+    max-width: 360px;
+    padding: 16px;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .powerUpName {
+    font-size: 1.1rem;
+  }
+
+  .progressText {
+    font-size: 0.9rem;
+  }
+}

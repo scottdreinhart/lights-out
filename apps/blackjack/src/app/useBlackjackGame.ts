@@ -19,8 +19,7 @@ interface UseBlackjackGameResult {
   stand: ReturnType<typeof useGame>['stand']
   doubleDown: ReturnType<typeof useGame>['doubleDown']
   split: ReturnType<typeof useGame>['split']
-  surrender: ReturnType<typeof useGame>['surrender']
-  playDealerTurn: ReturnType<typeof useGame>['playDealerTurn']
+  playDealer: ReturnType<typeof useGame>['playDealer']
   newRound: ReturnType<typeof useGame>['newRound']
   getAvailableActions: ReturnType<typeof useGame>['getAvailableActions']
 
@@ -35,7 +34,7 @@ interface UseBlackjackGameResult {
   updateStats: ReturnType<typeof useStats>['updateStats']
 
   // Game history (from useGameHistory)
-  gameHistory: ReturnType<typeof useGameHistory>['gameHistory']
+  history: ReturnType<typeof useGameHistory>['history']
   addGameToHistory: ReturnType<typeof useGameHistory>['addGameToHistory']
   getRecentGames: ReturnType<typeof useGameHistory>['getRecentGames']
   getTotalStats: ReturnType<typeof useGameHistory>['getTotalStats']
@@ -50,7 +49,7 @@ interface UseBlackjackGameResult {
 export function useBlackjackGame(initialBalance: number = 1000): UseBlackjackGameResult {
   // Initialize statistics and history hooks
   const { stats, updateStats } = useStats()
-  const { gameHistory, addGameToHistory, getRecentGames, getTotalStats } = useGameHistory()
+  const { history, addGameToHistory, getRecentGames, getTotalStats } = useGameHistory()
 
   // Handle game completion for statistics tracking
   const handleGameComplete = (handHistory: HandHistory) => {
@@ -87,7 +86,7 @@ export function useBlackjackGame(initialBalance: number = 1000): UseBlackjackGam
     updateStats,
 
     // Game history
-    gameHistory,
+    history,
     addGameToHistory,
     getRecentGames,
     getTotalStats,

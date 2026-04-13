@@ -4,6 +4,7 @@
  */
 
 import type { Card, GameAction, GameState, Hand, HandStatus, SettlementResult } from './types'
+import { RULES_VEGAS_STRIP } from './constants'
 
 // ┌─────────────────────────────────────────────────────────┐
 // │ HAND VALUE CALCULATION                                  │
@@ -132,7 +133,9 @@ export function canDoubleDown(hand: Hand | Card[]): boolean {
  */
 export function canSplit(hand: Hand | Card[]): boolean {
   const cards = Array.isArray(hand) ? hand : hand.cards
-  if (cards.length !== 2) {return false}
+  if (cards.length !== 2) {
+    return false
+  }
   // Can split if both cards have same rank or same value (e.g., 10, J, Q, K)
   const cardsOfValue = cards.filter((c) => ['10', 'J', 'Q', 'K'].includes(c.rank)).length
   return cards[0].rank === cards[1].rank || (cardsOfValue === 2 && calculateHandValue(hand) === 20)
@@ -153,14 +156,22 @@ export function determineOutcome(
   const dealerValue = calculateHandValue(dealerHand)
 
   // Player bust
-  if (playerValue > 21) {return 'loss'}
+  if (playerValue > 21) {
+    return 'loss'
+  }
 
   // Dealer bust
-  if (dealerValue > 21) {return 'win'}
+  if (dealerValue > 21) {
+    return 'win'
+  }
 
   // Compare values
-  if (playerValue > dealerValue) {return 'win'}
-  if (playerValue < dealerValue) {return 'loss'}
+  if (playerValue > dealerValue) {
+    return 'win'
+  }
+  if (playerValue < dealerValue) {
+    return 'loss'
+  }
   return 'push'
 }
 
@@ -172,8 +183,12 @@ export function calculatePayout(
   outcome: SettlementResult,
   isBlackjack: boolean,
 ): number {
-  if (outcome === 'push') {return 0}
-  if (outcome === 'loss') {return -bet}
+  if (outcome === 'push') {
+    return 0
+  }
+  if (outcome === 'loss') {
+    return -bet
+  }
   // Win: 1:1 payout, except blackjack which is 3:2
   return isBlackjack ? bet * 1.5 : bet
 }
@@ -209,7 +224,7 @@ export function createGameState(playerBalance: number = 1000): GameState {
     deck: [],
     discardPile: [],
     decksRemaining: 8,
-    rules: 'vegas-strip',
+    rules: RULES_VEGAS_STRIP,
     timestamp: new Date(),
     history: [],
   }
@@ -227,17 +242,25 @@ export function dealInitialHands(
     throw new Error('Must deal at least 2 cards per hand')
   }
 
+  const player = gameState.players[0]
+  if (!player) {
+    throw new Error('No active player in game state')
+  }
+
   return {
     ...gameState,
     phase: 'playing',
-    player: {
-      ...gameState.player,
-      currentHand: {
-        ...gameState.player.currentHand,
-        cards: playerCards.slice(0, 2),
-        status: isNaturalBlackjack(playerCards) ? 'blackjack' : 'playing',
+    players: [
+      {
+        ...player,
+        currentHand: {
+          ...player.currentHand,
+          cards: playerCards.slice(0, 2),
+          status: isNaturalBlackjack(playerCards) ? 'blackjack' : 'playing',
+        },
       },
-    },
+      ...gameState.players.slice(1),
+    ],
     dealer: {
       hand: dealerCards.slice(0, 2),
       status: 'playing',
@@ -248,90 +271,103 @@ export function dealInitialHands(
 /**
  * Process a player action (hit, stand, etc.)
  */
-export function processPlayerAction(
-  gameState: GameState,
-  action: GameAction,
-): GameState {
+export function processPlayerAction(gameState: GameState, action: GameAction): GameState {
+  const player = gameState.players[0]
+  if (!player) return gameState
+
   switch (action) {
     case 'hit': {
       // Note: Card dealing is now handled in the app layer
       // This function assumes the card has already been added to the hand
-      const updatedCards = gameState.player.currentHand.cards
+      const updatedCards = player.currentHand.cards
       return {
         ...gameState,
-        player: {
-          ...gameState.player,
-          currentHand: {
-            ...gameState.player.currentHand,
-            cards: updatedCards,
-            status: isBust(updatedCards) ? 'bust' : 'playing',
+        players: [
+          {
+            ...player,
+            currentHand: {
+              ...player.currentHand,
+              cards: updatedCards,
+              status: isBust(updatedCards) ? 'bust' : 'playing',
+            },
           },
-        },
+          ...gameState.players.slice(1),
+        ],
       }
     }
 
     case 'stand':
       return {
         ...gameState,
-        phase: 'dealer-turn',
-        player: {
-          ...gameState.player,
-          currentHand: {
-            ...gameState.player.currentHand,
-            status: 'stand',
+        players: [
+          {
+            ...player,
+            currentHand: {
+              ...player.currentHand,
+              status: 'stand',
+            },
           },
-        },
+          ...gameState.players.slice(1),
+        ],
       }
 
-    case 'double-down': {
+    case 'double': {
       // Note: Card dealing is now handled in the app layer
       // This function assumes the card has already been added to the hand
-      const updatedCards = gameState.player.currentHand.cards
+      const updatedCards = player.currentHand.cards
       return {
         ...gameState,
-        player: {
-          ...gameState.player,
-          currentHand: {
-            ...gameState.player.currentHand,
-            cards: updatedCards,
-            bet: gameState.player.currentHand.bet * 2,
-            status: isBust(updatedCards) ? 'bust' : 'stand',
+        players: [
+          {
+            ...player,
+            currentHand: {
+              ...player.currentHand,
+              cards: updatedCards,
+              bet: player.currentHand.bet * 2,
+              status: isBust(updatedCards) ? 'bust' : 'stand',
+            },
           },
-        },
-        phase: 'dealer-turn',
+          ...gameState.players.slice(1),
+        ],
       }
     }
 
     case 'split': {
       // Create two hands from the original pair
-      const [card1, card2] = gameState.player.currentHand.cards
-      const splitHand1 = { ...gameState.player.currentHand, cards: [card1] }
+      const [card1, card2] = player.currentHand.cards
+      const splitHand1 = { ...player.currentHand, cards: [card1] }
       const splitHand2 = {
-        ...gameState.player.currentHand,
+        ...player.currentHand,
         id: `hand-split-${Date.now()}`,
         cards: [card2],
       }
       return {
         ...gameState,
-        player: {
-          ...gameState.player,
-          currentHand: splitHand1,
-          splitHands: [splitHand2],
-        },
+        players: [
+          {
+            ...player,
+            currentHand: splitHand1,
+            splitHands: [splitHand2],
+          },
+          ...gameState.players.slice(1),
+        ],
       }
     }
 
     case 'surrender':
       return {
         ...gameState,
-        player: {
-          ...gameState.player,
-          currentHand: {
-            ...gameState.player.currentHand,
-            status: 'settled',
+        players: [
+          {
+            ...player,
+            currentHand: {
+              ...player.currentHand,
+              status: 'settled',
+            },
           },
-        },
-        phase: 'settlement',
+          ...gameState.players.slice(1),
+        ],
+        phase: 'settling',
       }
 
     default:

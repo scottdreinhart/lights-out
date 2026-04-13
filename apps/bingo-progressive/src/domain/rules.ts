@@ -4,9 +4,9 @@
  */
 
 import { createBingoCards, isWinner, markNumber } from './card'
+import { ALL_NUMBERS } from './constants'
 import type { DrawResult, GameState } from './types'
 
-const ALL_NUMBERS = Array.from({ length: 75 }, (_, i) => i + 1)
 const BASE_JACKPOT = 100
 const LEVEL_MULTIPLIER = 2
 

@@ -78,22 +78,30 @@ export function validateAndPlaceBet(
 
   const validatedBet = betValidation.value
 
-  // Check if player has sufficient balance
-  if (validatedBet > gameState.player.balance) {
+  // Check if player exists and has sufficient balance
+  const player = gameState.players[0]
+  if (!player) {
+    return { ok: false, error: 'No active player' }
+  }
+
+  if (validatedBet > player.balance) {
     return { ok: false, error: 'Insufficient balance for this bet' }
   }
 
   try {
-    // Deduct bet from balance (or apply it to current hand)
-    const newState = {
+    // Apply bet to current hand
+    const newState: GameState = {
       ...gameState,
-      player: {
-        ...gameState.player,
-        currentHand: {
-          ...gameState.player.currentHand,
-          bet: validatedBet,
+      players: [
+        {
+          ...player,
+          currentHand: {
+            ...player.currentHand,
+            bet: validatedBet,
+          },
         },
-      },
+        ...gameState.players.slice(1),
+      ],
     }
     return { ok: true, value: newState }
   } catch (err) {
@@ -139,13 +147,21 @@ export function getSanitizedPlayerName(playerName: string): string {
  *
  * Ensures all player-provided data is sanitized before display
  */
-export function getSanitizedGameState(gameState: GameState) {
+export function getSanitizedGameState(gameState: GameState): GameState {
+  const player = gameState.players[0]
+  if (!player) {
+    return gameState
+  }
+
   return {
     ...gameState,
-    player: {
-      ...gameState.player,
-      displayName: getSanitizedPlayerName(gameState.player.id),
-    },
+    players: [
+      {
+        ...player,
+        id: getSanitizedPlayerName(player.id),
+      },
+      ...gameState.players.slice(1),
+    ],
   }
 }
 

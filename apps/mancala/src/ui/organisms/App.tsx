@@ -7,6 +7,7 @@ import { useCallback, useEffect, useState } from 'react'
 import About from './About'
 import styles from './App.module.css'
 import GameEndNotification from './GameEndNotification'
+import { HamburgerMenu } from './HamburgerMenu'
 import Settings from './Settings'
 
 type AppScreen = 'splash' | 'game' | 'settings' | 'about'
@@ -17,6 +18,9 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [soundEnabled, setSoundEnabled] = useState(true)
   const [darkMode, setDarkMode] = useState(true)
+  const [showRulesModal, setShowRulesModal] = useState(false)
+  const [showSettingsModal, setShowSettingsModal] = useState(false)
+  const [showAboutModal, setShowAboutModal] = useState(false)
   const game = useGameState(difficulty)
   const sounds = useSoundEffects()
 
@@ -81,7 +85,7 @@ export default function App() {
   }
 
   return (
-    <div className={styles.app}>
+    <div className={styles.app} style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       <Menu
         isOpen={menuOpen}
         onClose={() => setMenuOpen(false)}
@@ -89,23 +93,250 @@ export default function App() {
         onNewGame={handleNewGame}
       />
 
-      <header className={styles.header}>
+      <header className={styles.header} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem' }}>
         <div className={styles.headerContent}>
           <h1>Mancala</h1>
           <p>Kalah — Two-row capture game with AI</p>
         </div>
-        <MenuButton onClick={() => setMenuOpen(!menuOpen)} />
+        <HamburgerMenu
+          onRules={() => setShowRulesModal(true)}
+          onSettings={() => setShowSettingsModal(true)}
+          onAbout={() => setShowAboutModal(true)}
+        />
       </header>
 
-      <section className={styles.gameBoard}>
-        <Board game={game} onPitClick={handlePitClick} />
-      </section>
+      <main style={{ flex: 1, overflow: 'auto' }}>
+        <section className={styles.gameBoard}>
+          <Board game={game} onPitClick={handlePitClick} />
+        </section>
 
-      <GameEndNotification
-        winner={game.winner as 0 | 1 | null}
-        humanPlayer={game.humanPlayer as 0 | 1}
-        isVisible={game.isGameOver}
-      />
+        <GameEndNotification
+          winner={game.winner as 0 | 1 | null}
+          humanPlayer={game.humanPlayer as 0 | 1}
+          isVisible={game.isGameOver}
+        />
+      </main>
+
+      {/* Rules Modal */}
+      {showRulesModal && (
+        <div
+          className="modal-overlay"
+          onClick={() => setShowRulesModal(false)}
+          role="dialog"
+          aria-modal="true"
+          tabIndex={0}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+          }}
+        >
+          <div
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              backgroundColor: 'white',
+              borderRadius: '0.5rem',
+              padding: '2rem',
+              maxWidth: '500px',
+              maxHeight: '80vh',
+              overflow: 'auto',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            }}
+          >
+            <button
+              className="modal-close"
+              onClick={() => setShowRulesModal(false)}
+              style={{
+                position: 'absolute',
+                top: '1rem',
+                right: '1rem',
+                background: 'none',
+                border: 'none',
+                fontSize: '1.5rem',
+                cursor: 'pointer',
+              }}
+            >
+              ✕
+            </button>
+            <h2>How to Play Mancala</h2>
+            <p>
+              Mancala (also known as Kalah) is a two-player capture and move game. Each player
+              controls the 6 pits on their side and attempts to move more stones into their store
+              than their opponent.
+            </p>
+            <h3>Game Rules</h3>
+            <ul>
+              <li>Players alternate picking up stones from a pit on their side</li>
+              <li>Stones are distributed one per pit by moving around the board</li>
+              <li>If the last stone lands in a player's store, that player moves again</li>
+              <li>If the last stone lands in an empty pit on a player's side, capture opposite stones</li>
+              <li>Game ends when all pits on one side are empty</li>
+              <li>Remaining stones go to the owner's store</li>
+              <li>Player with the most stones in their store wins</li>
+            </ul>
+          </div>
+        </div>
+      )}
+
+      {/* Settings Modal */}
+      {showSettingsModal && (
+        <div
+          className="modal-overlay"
+          onClick={() => setShowSettingsModal(false)}
+          role="dialog"
+          aria-modal="true"
+          tabIndex={0}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+          }}
+        >
+          <div
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              backgroundColor: 'white',
+              borderRadius: '0.5rem',
+              padding: '2rem',
+              maxWidth: '400px',
+              maxHeight: '80vh',
+              overflow: 'auto',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            }}
+          >
+            <button
+              className="modal-close"
+              onClick={() => setShowSettingsModal(false)}
+              style={{
+                position: 'absolute',
+                top: '1rem',
+                right: '1rem',
+                background: 'none',
+                border: 'none',
+                fontSize: '1.5rem',
+                cursor: 'pointer',
+              }}
+            >
+              ✕
+            </button>
+            <h2>Settings</h2>
+            <p>Access the full settings screen to adjust difficulty, sound, and display options.</p>
+            <button
+              onClick={() => {
+                setShowSettingsModal(false)
+                handleNavigate('settings')
+              }}
+              style={{
+                display: 'block',
+                width: '100%',
+                padding: '0.75rem',
+                backgroundColor: '#0066cc',
+                color: 'white',
+                border: 'none',
+                borderRadius: '0.25rem',
+                cursor: 'pointer',
+                fontSize: '1rem',
+              }}
+            >
+              Open Settings
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* About Modal */}
+      {showAboutModal && (
+        <div
+          className="modal-overlay"
+          onClick={() => setShowAboutModal(false)}
+          role="dialog"
+          aria-modal="true"
+          tabIndex={0}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+          }}
+        >
+          <div
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              backgroundColor: 'white',
+              borderRadius: '0.5rem',
+              padding: '2rem',
+              maxWidth: '400px',
+              maxHeight: '80vh',
+              overflow: 'auto',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            }}
+          >
+            <button
+              className="modal-close"
+              onClick={() => setShowAboutModal(false)}
+              style={{
+                position: 'absolute',
+                top: '1rem',
+                right: '1rem',
+                background: 'none',
+                border: 'none',
+                fontSize: '1.5rem',
+                cursor: 'pointer',
+              }}
+            >
+              ✕
+            </button>
+            <h2>About Mancala</h2>
+            <p>
+              Mancala (also known as Kalah) is an ancient two-player strategy game that dates back
+              thousands of years. This digital version includes AI-powered opponents at various
+              difficulty levels to challenge your strategic thinking.
+            </p>
+            <button
+              onClick={() => {
+                setShowAboutModal(false)
+                handleNavigate('about')
+              }}
+              style={{
+                display: 'block',
+                width: '100%',
+                padding: '0.75rem',
+                backgroundColor: '#0066cc',
+                color: 'white',
+                border: 'none',
+                borderRadius: '0.25rem',
+                cursor: 'pointer',
+                fontSize: '1rem',
+              }}
+            >
+              View Full About
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

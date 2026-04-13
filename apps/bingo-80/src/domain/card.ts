@@ -2,11 +2,9 @@
  * Swedish Bingo (Bingo-80) card generation and marking
  */
 
-import { v4 as uuid } from 'crypto'
+import { v4 as uuid } from 'uuid'
+import { CARD_SIZE, GRID_SIZE, MAX_NUMBER } from './constants'
 import type { Card } from './types'
-
-const GRID_SIZE = 4
-const CARD_SIZE = GRID_SIZE * GRID_SIZE
 
 /**
  * Generate a single bingo card (4x4 grid, 80 balls)
@@ -15,9 +13,9 @@ function generateCard(): Card {
   const squares: (number | null)[] = []
   const used = new Set<number>()
 
-  // Generate 16 unique numbers from 1-80
+  // Generate 16 unique numbers from 1-MAX_NUMBER
   while (squares.length < CARD_SIZE) {
-    const num = Math.floor(Math.random() * 80) + 1
+    const num = Math.floor(Math.random() * MAX_NUMBER) + 1
     if (!used.has(num)) {
       squares.push(num)
       used.add(num)

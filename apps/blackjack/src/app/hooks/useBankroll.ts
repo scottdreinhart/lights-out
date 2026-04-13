@@ -1,17 +1,17 @@
-import { useEffect, useRef, useState } from 'react'
 import {
   createBankroll,
-  createTableConfig,
   createGamingSession,
-  updateSessionAfterRound,
+  createTableConfig,
   endSession,
   getSessionStats,
+  updateSessionAfterRound,
   type Bankroll,
-  type TableVariant,
-  type TableConfig,
-  type GamingSession,
   type BetRecord,
+  type GamingSession,
+  type TableConfig,
+  type TableVariant,
 } from '@games/banking'
+import { useEffect, useState } from 'react'
 
 /**
  * Game result for updating session
@@ -85,7 +85,7 @@ export const useBankroll = (playerId: string, gameId: string) => {
     if (!bankroll) return
 
     // Create table configuration with game-specific settings
-    const config = createTableConfig(gameId, variant, {
+    const config = createTableConfig(gameId, variant as 'casual' | 'mid' | 'high-roller', {
       // Optional: Add blackjack-specific house rules here
     })
 
@@ -146,7 +146,6 @@ export const useBankroll = (playerId: string, gameId: string) => {
     const updatedSession = updateSessionAfterRound(
       gameSession,
       result.betAmount,
-      result.result,
       result.payout,
     )
     setGameSession(updatedSession)

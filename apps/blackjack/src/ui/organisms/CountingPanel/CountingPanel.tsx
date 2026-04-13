@@ -29,7 +29,7 @@ export function CountingPanel({
   countingEnabled,
   className,
 }: CountingPanelProps) {
-  const responsive = useResponsiveState()
+  const _responsive = useResponsiveState()
 
   if (!countingEnabled || !countingState) {
     return null

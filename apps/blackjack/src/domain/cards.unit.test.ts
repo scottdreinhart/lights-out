@@ -10,9 +10,13 @@ interface BlackjackCard {
   rank: string // 'A', '2'-'10', 'J', 'Q', 'K'
 }
 
-const getCardValue = (card: BlackjackCard): number => {
-  if (card.rank === 'A') {return 11}
-  if (['J', 'Q', 'K'].includes(card.rank)) {return 10}
+const _getCardValue = (card: BlackjackCard): number => {
+  if (card.rank === 'A') {
+    return 11
+  }
+  if (['J', 'Q', 'K'].includes(card.rank)) {
+    return 10
+  }
   return parseInt(card.rank, 10)
 }
 

@@ -1,4 +1,5 @@
 import type { Grid, Cell, PatternType } from './types'
+import { BINGO_COLUMNS } from './constants'
 
 /**
  * Generate a random bingo card for Pattern Bingo
@@ -6,11 +7,11 @@ import type { Grid, Cell, PatternType } from './types'
  */
 export const generateCard = (): Grid => {
   const columns = {
-    B: Array.from({ length: 15 }, (_, i) => i + 1),
-    I: Array.from({ length: 15 }, (_, i) => i + 16),
-    N: Array.from({ length: 15 }, (_, i) => i + 31),
-    G: Array.from({ length: 15 }, (_, i) => i + 46),
-    O: Array.from({ length: 15 }, (_, i) => i + 61),
+    B: Array.from({ length: BINGO_COLUMNS.B.max - BINGO_COLUMNS.B.min + 1 }, (_, i) => BINGO_COLUMNS.B.min + i),
+    I: Array.from({ length: BINGO_COLUMNS.I.max - BINGO_COLUMNS.I.min + 1 }, (_, i) => BINGO_COLUMNS.I.min + i),
+    N: Array.from({ length: BINGO_COLUMNS.N.max - BINGO_COLUMNS.N.min + 1 }, (_, i) => BINGO_COLUMNS.N.min + i),
+    G: Array.from({ length: BINGO_COLUMNS.G.max - BINGO_COLUMNS.G.min + 1 }, (_, i) => BINGO_COLUMNS.G.min + i),
+    O: Array.from({ length: BINGO_COLUMNS.O.max - BINGO_COLUMNS.O.min + 1 }, (_, i) => BINGO_COLUMNS.O.min + i),
   }
 
   // Shuffle each column

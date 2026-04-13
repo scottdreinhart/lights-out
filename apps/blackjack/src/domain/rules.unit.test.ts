@@ -3,32 +3,31 @@
  * Tests core game logic: hand values, winning conditions, valid actions
  */
 
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import {
   calculateHandValue,
-  isBust,
-  isNaturalBlackjack,
-  canHit,
-  canStand,
   canDoubleDown,
+  canHit,
   canSplit,
+  canStand,
   determineOutcome,
   getBestHandValue,
+  isBust,
+  isNaturalBlackjack,
 } from './rules'
-import type { Hand, Card } from './types'
+import type { Card, Hand, Rank, Suit } from './types'
 
-const createCard = (suit: 'H' | 'D' | 'C' | 'S', rank: string): Card => ({
+const createCard = (suit: string, rank: string): Card => ({
   id: `${suit}-${rank}`,
-  suit,
-  rank,
+  suit: suit as Suit,
+  rank: rank as Rank,
 })
 
 const createHand = (cards: Card[], bet: number = 10): Hand => ({
+  id: Math.random().toString(36),
   cards,
   status: 'playing',
   bet,
-  result: null,
-  handIndex: 0,
 })
 
 describe('Blackjack Domain Rules', () => {
@@ -49,11 +48,7 @@ describe('Blackjack Domain Rules', () => {
     })
 
     it('should count Ace as 1 when needed to avoid bust', () => {
-      const hand = createHand([
-        createCard('H', 'A'),
-        createCard('D', 'K'),
-        createCard('C', '5'),
-      ])
+      const hand = createHand([createCard('H', 'A'), createCard('D', 'K'), createCard('C', '5')])
       expect(calculateHandValue(hand)).toBe(16) // Ace=1, K=10, 5=5
     })
 
@@ -63,11 +58,7 @@ describe('Blackjack Domain Rules', () => {
     })
 
     it('should handle multiple aces', () => {
-      const hand = createHand([
-        createCard('H', 'A'),
-        createCard('D', 'A'),
-        createCard('C', '9'),
-      ])
+      const hand = createHand([createCard('H', 'A'), createCard('D', 'A'), createCard('C', '9')])
       expect(calculateHandValue(hand)).toBe(21) // One Ace=11, one Ace=1, 9=9
     })
 
@@ -79,11 +70,7 @@ describe('Blackjack Domain Rules', () => {
 
   describe('isBust', () => {
     it('should return true for hand > 21', () => {
-      const hand = createHand([
-        createCard('H', 'K'),
-        createCard('D', 'Q'),
-        createCard('C', '5'),
-      ])
+      const hand = createHand([createCard('H', 'K'), createCard('D', 'Q'), createCard('C', '5')])
       expect(isBust(hand)).toBe(true)
     })
 
@@ -105,11 +92,7 @@ describe('Blackjack Domain Rules', () => {
     })
 
     it('should return false for 21 with 3+ cards', () => {
-      const hand = createHand([
-        createCard('H', '7'),
-        createCard('D', '7'),
-        createCard('C', '7'),
-      ])
+      const hand = createHand([createCard('H', '7'), createCard('D', '7'), createCard('C', '7')])
       expect(isNaturalBlackjack(hand)).toBe(false)
     })
 
@@ -136,11 +119,7 @@ describe('Blackjack Domain Rules', () => {
     })
 
     it('should not allow hit when bust', () => {
-      const hand = createHand([
-        createCard('H', 'K'),
-        createCard('D', 'Q'),
-        createCard('C', '5'),
-      ])
+      const hand = createHand([createCard('H', 'K'), createCard('D', 'Q'), createCard('C', '5')])
       expect(canHit(hand)).toBe(false)
     })
 
@@ -157,11 +136,7 @@ describe('Blackjack Domain Rules', () => {
     })
 
     it('should not allow stand when bust', () => {
-      const hand = createHand([
-        createCard('H', 'K'),
-        createCard('D', 'Q'),
-        createCard('C', '5'),
-      ])
+      const hand = createHand([createCard('H', 'K'), createCard('D', 'Q'), createCard('C', '5')])
       expect(canStand(hand)).toBe(false)
     })
   })
@@ -173,11 +148,7 @@ describe('Blackjack Domain Rules', () => {
     })
 
     it('should not allow double with 3+ cards', () => {
-      const hand = createHand([
-        createCard('H', '5'),
-        createCard('D', '6'),
-        createCard('C', '2'),
-      ])
+      const hand = createHand([createCard('H', '5'), createCard('D', '6'), createCard('C', '2')])
       expect(canDoubleDown(hand)).toBe(false)
     })
 
@@ -204,11 +175,7 @@ describe('Blackjack Domain Rules', () => {
     })
 
     it('should not allow split with 3+ cards', () => {
-      const hand = createHand([
-        createCard('H', '8'),
-        createCard('D', '8'),
-        createCard('C', '5'),
-      ])
+      const hand = createHand([createCard('H', '8'), createCard('D', '8'), createCard('C', '5')])
       expect(canSplit(hand)).toBe(false)
     })
   })

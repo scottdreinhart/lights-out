@@ -6,7 +6,7 @@
  */
 
 import type { GameAction, StrategyHint } from '@/domain'
-import { getBasicStrategyRecommendation, getStrategyAccuracyFeedback } from '@/domain'
+import { getBasicStrategyRecommendation } from '@/domain'
 import type { Card } from '@games/card-deck-core'
 import { useCallback, useState } from 'react'
 
@@ -50,15 +50,28 @@ export const useBasicStrategy = ({
         return { recommendedAction: '', isCorrect: false }
       }
 
-      const recommendation = getBasicStrategyRecommendation(playerValue, dealerUpCard)
-      const feedback = getStrategyAccuracyFeedback(recommendation as any, playerAction)
-      
+      // Insurance is not part of basic strategy - skip recommendation
+      if (playerAction === 'insurance') {
+        return { recommendedAction: '', isCorrect: false }
+      }
+
+      // Extract hard and soft values
+      const playerHardValue = typeof playerValue === 'number' ? playerValue : playerValue.hard
+      const playerSoftValue = typeof playerValue === 'object' ? playerValue.soft : undefined
+
+      const recommendation = getBasicStrategyRecommendation(
+        playerHardValue,
+        playerSoftValue,
+        dealerUpCard,
+        playerAction as Exclude<GameAction, 'insurance'>,
+      )
+
       // Generate hint if learning mode is enabled
       if (learningMode) {
         const hint: StrategyHint = {
-          type: feedback.isCorrect ? 'confirmation' : 'correction',
-          message: feedback.feedback,
-          priority: feedback.isCorrect ? 'low' : 'high',
+          type: 'action',
+          message: recommendation.explanation,
+          priority: recommendation.isCorrect ? 'low' : 'high',
           showInLearningMode: true,
         }
         setCurrentHint(hint)
@@ -66,10 +79,13 @@ export const useBasicStrategy = ({
 
       // Auto-record decision if learning mode
       if (learningMode) {
-        recordDecision(feedback.isCorrect)
+        recordDecision(recommendation.isCorrect)
       }
 
-      return { recommendedAction: recommendation, isCorrect: feedback.isCorrect }
+      return {
+        recommendedAction: recommendation.recommendedAction,
+        isCorrect: recommendation.isCorrect,
+      }
     },
     [enabled, learningMode],
   )

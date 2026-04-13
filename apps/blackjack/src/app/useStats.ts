@@ -20,6 +20,10 @@ const createInitialStats = (): PlayerStatistics => ({
   totalWinnings: 0,
   bestStreak: 0,
   worstStreak: 0,
+  gamesPlayed: 0,
+  wins: 0,
+  blackjacks: 0,
+  currentStreak: 0,
 })
 
 export function useStats() {
@@ -68,6 +72,10 @@ export function useStats() {
         totalWinnings: newTotalWinnings,
         bestStreak: newBestStreak,
         worstStreak: newWorstStreak,
+        gamesPlayed: newTotalGames,
+        wins: Math.round(totalWins),
+        blackjacks: Math.round(totalBlackjacks),
+        currentStreak: handHistory.handsWon > 0 ? Math.max(0, current.currentStreak + handHistory.handsWon) : Math.min(0, current.currentStreak - handHistory.handsLost),
       }
     })
   }, [])

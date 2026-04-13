@@ -2,12 +2,9 @@
  * Progressive Bingo card generation and marking
  */
 
-import { v4 as uuid } from 'crypto'
+import { v4 as uuid } from 'uuid'
+import { CARD_SIZE, CENTER_INDEX, GRID_SIZE, MAX_NUMBER } from './constants'
 import type { Card } from './types'
-
-const GRID_SIZE = 5
-const CARD_SIZE = GRID_SIZE * GRID_SIZE
-const CENTER_INDEX = Math.floor(GRID_SIZE / 2) * GRID_SIZE + Math.floor(GRID_SIZE / 2)
 
 /**
  * Generate a single progressive bingo card (5x5 grid with free center)
@@ -16,14 +13,14 @@ function generateCard(): Card {
   const squares: (number | null)[] = []
   const used = new Set<number>()
 
-  // Generate 24 unique numbers from 1-75 (center is free)
+  // Generate 24 unique numbers from 1-MAX_NUMBER (center is free)
   for (let i = 0; i < CARD_SIZE; i++) {
     if (i === CENTER_INDEX) {
       squares.push(null) // Free center tile
     } else {
       let num: number
       do {
-        num = Math.floor(Math.random() * 75) + 1
+        num = Math.floor(Math.random() * MAX_NUMBER) + 1
       } while (used.has(num))
       squares.push(num)
       used.add(num)
@@ -33,7 +30,7 @@ function generateCard(): Card {
   return {
     id: uuid(),
     squares,
-    marked: Array(CARD_SIZE).fill(i === CENTER_INDEX ? true : false)
+    marked: Array(CARD_SIZE).fill(i === CENTER_INDEX ? true : false),
   }
 }
 
@@ -48,11 +45,9 @@ export function createBingoCards(count: number): Card[] {
  * Mark a number on all cards
  */
 export function markNumber(cards: Card[], number: number): Card[] {
-  return cards.map(card => ({
+  return cards.map((card) => ({
     ...card,
-    marked: card.squares.map((square, idx) =>
-      square === number ? true : card.marked[idx]
-    )
+    marked: card.squares.map((square, idx) => (square === number ? true : card.marked[idx])),
   }))
 }
 
@@ -64,7 +59,7 @@ export function isWinner(card: Card): boolean {
   for (let row = 0; row < GRID_SIZE; row++) {
     const start = row * GRID_SIZE
     const end = start + GRID_SIZE
-    if (card.marked.slice(start, end).every(m => m)) {
+    if (card.marked.slice(start, end).every((m) => m)) {
       return true
     }
   }

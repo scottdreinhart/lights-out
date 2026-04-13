@@ -13,51 +13,51 @@ import type { GameRules } from './types'
  * Vegas Strip Blackjack Rules (most common variant)
  */
 export const RULES_VEGAS_STRIP: GameRules = {
-  name: 'Vegas Strip',
-  decks: 8,
+  deckCount: 8,
   dealerHitsSoft17: true,
-  doubleDownAllowed: true,
-  doubleDownOnAny: true,
-  splitAllowed: true,
-  resplitAllowed: true,
-  resplitAces: false,
-  surrenderAllowed: true,
-  insuranceAllowed: false,
-  blackjackPayout: 1.5,
+  doubleDownOn: 'any', // Can double on any initial two cards
+  canSurrender: true,
+  maxSplits: 4,
+  canResplitAces: false,
+  aces1CardOnly: true,
+  blackjackPayoutRatio: 1.5 as const,
+  houseEdgePercent: 0.48,
+  minBet: 10,
+  maxBet: 500,
 }
 
 /**
  * Single Deck Blackjack Rules
  */
 export const RULES_SINGLE_DECK: GameRules = {
-  name: 'Single Deck',
-  decks: 1,
+  deckCount: 1,
   dealerHitsSoft17: true,
-  doubleDownAllowed: true,
-  doubleDownOnAny: true,
-  splitAllowed: true,
-  resplitAllowed: true,
-  resplitAces: false,
-  surrenderAllowed: false,
-  insuranceAllowed: false,
-  blackjackPayout: 1.5,
+  doubleDownOn: 'any',
+  canSurrender: false,
+  maxSplits: 4,
+  canResplitAces: false,
+  aces1CardOnly: true,
+  blackjackPayoutRatio: 1.5 as const,
+  houseEdgePercent: 0.42,
+  minBet: 5,
+  maxBet: 500,
 }
 
 /**
  * Hard Rock Blackjack Rules (restrictive)
  */
 export const RULES_HARD_ROCK: GameRules = {
-  name: 'Hard Rock',
-  decks: 6,
-  dealerHitsSoft17: false,
-  doubleDownAllowed: true,
-  doubleDownOnAny: false, // Only 10 or 11
-  splitAllowed: true,
-  resplitAllowed: false,
-  resplitAces: false,
-  surrenderAllowed: false,
-  insuranceAllowed: true,
-  blackjackPayout: 1.5,
+  deckCount: 6,
+  dealerHitsSoft17: false, // Stand on soft 17 (S17)
+  doubleDownOn: '10-11', // Only 10 or 11
+  canSurrender: false,
+  maxSplits: 3,
+  canResplitAces: false,
+  aces1CardOnly: true,
+  blackjackPayoutRatio: 1.5 as const,
+  houseEdgePercent: 0.62,
+  minBet: 15,
+  maxBet: 1000,
 }
 
 // ┌─────────────────────────────────────────────────────────┐

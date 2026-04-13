@@ -1,5 +1,5 @@
+import type { Card as CardType, Suit } from '@/domain'
 import React from 'react'
-import type { Card as CardType } from '@/domain'
 import styles from './Card.module.css'
 
 export interface CardProps {
@@ -75,11 +75,22 @@ export interface CardProps {
  * />
  */
 export const Card = React.memo<CardProps>(
-  ({ card, hidden = false, size = 'md', className, onClick, selectable = false, selected = false, disabled = false, animationState, dealDelay = 0 }) => {
+  ({
+    card,
+    hidden = false,
+    size = 'md',
+    className,
+    onClick,
+    selectable = false,
+    selected = false,
+    disabled = false,
+    animationState,
+    dealDelay = 0,
+  }) => {
     const isHidden = hidden || !card
 
     // Map rank to SVG filename character
-    const getRankChar = (rank: typeof card.rank): string => {
+    const getRankChar = (rank: string | undefined): string => {
       const rankMap: Record<string, string> = {
         ace: 'A',
         '2': '2',
@@ -95,18 +106,18 @@ export const Card = React.memo<CardProps>(
         queen: 'Q',
         king: 'K',
       }
-      return rankMap[rank] || '?'
+      return rankMap[rank || '?'] || '?'
     }
 
     // Map suit to SVG filename character
-    const getSuitChar = (suit: typeof card.suit): string => {
+    const getSuitChar = (suit: string | undefined): string => {
       const suitMap: Record<string, string> = {
         hearts: 'H',
         diamonds: 'D',
         clubs: 'C',
         spades: 'S',
       }
-      return suitMap[suit] || '?'
+      return suitMap[suit || '?'] || '?'
     }
 
     // Build SVG filename
@@ -115,13 +126,15 @@ export const Card = React.memo<CardProps>(
         return '/cards/1B.svg' // Card back design
       }
       const rankChar = getRankChar(card!.rank)
-      const suitChar = getSuitChar(card!.suit)
+      const suitChar = getSuitChar(card!.suit as string)
       return `/cards/${rankChar}${suitChar}.svg`
     }
 
     // Build accessibility label
     const getAriaLabel = (): string => {
-      if (isHidden) {return 'Card back (hidden)'}
+      if (isHidden) {
+        return 'Card back (hidden)'
+      }
 
       const rankNames: Record<string, string> = {
         ace: 'Ace',
@@ -146,7 +159,7 @@ export const Card = React.memo<CardProps>(
         spades: 'Spades',
       }
 
-      return `${rankNames[card!.rank]} of ${suitNames[card!.suit]}`
+      return `${rankNames[card!.rank]} of ${suitNames[card!.suit as Suit]}`
     }
 
     // Build class name
@@ -187,15 +200,20 @@ export const Card = React.memo<CardProps>(
         }
 
     return (
-      <div 
-        className={classNames} 
+      <div
+        className={classNames}
         {...interactiveProps}
         style={dealDelay > 0 ? { animationDelay: `${dealDelay}ms` } : undefined}
       >
-        <img src={getSvgFilename()} alt={getAriaLabel()} className={styles.cardImage} draggable={false} />
+        <img
+          src={getSvgFilename()}
+          alt={getAriaLabel()}
+          className={styles.cardImage}
+          draggable={false}
+        />
       </div>
     )
-  }
+  },
 )
 
 Card.displayName = 'Card'

@@ -1,0 +1,35 @@
+{
+    "name": "@games/bingo-rush",
+    "version": "1.0.0",
+    "description": "Bingo Rush - Race against the clock with accelerating difficulty",
+    "type": "module",
+    "private": true,
+    "license": "PROPRIETARY",
+    "author": "Scott Reinhart",
+    "packageManager": "pnpm@10.31.0",
+    "engines": {
+        "node": "24.14.1",
+        "pnpm": "10.31.0"
+    },
+    "main": "dist/index.js",
+    "scripts": {
+        "dev": "vite --host",
+        "build": "vite build",
+        "preview": "vite preview",
+        "lint": "eslint src/ --fix",
+        "type-check": "tsc --noEmit",
+        "test": "pnpm exec vitest run",
+        "validate": "pnpm lint && pnpm type-check && pnpm build"
+    },
+    "dependencies": {
+        "react": "19.2.4",
+        "react-dom": "19.2.4",
+        "@games/bingo-core": "workspace:*"
+    },
+    "devDependencies": {
+        "@types/react": "19.2.4",
+        "@vitejs/plugin-react": "4.3.3",
+        "typescript": "5.9.3",
+        "vite": "7.3.1"
+    }
+}

@@ -5,7 +5,7 @@
  * Based on standard Vegas Strip rules (S17, DOA, DAS).
  */
 
-import type { Card } from '@games/card-deck-core'
+import type { Card, Rank } from '@games/card-deck-core'
 import type { BasicStrategyRecommendation, GameAction } from './types'
 
 // ┌─────────────────────────────────────────────────────────┐
@@ -592,7 +592,7 @@ function getSoftHandKey(softValue: number): PlayerSoftTotal | null {
  */
 function getHardStrategyAction(playerValue: number, dealerUpCard: DealerUpCard): GameAction {
   // Cap player value at 21
-  const cappedValue = Math.min(playerValue, 21) as PlayerHardTotal
+  const cappedValue = (Math.min(playerValue, 21) as unknown) as PlayerHardTotal
 
   if (HARD_STRATEGY[cappedValue]?.[dealerUpCard]) {
     return HARD_STRATEGY[cappedValue][dealerUpCard]
@@ -632,7 +632,7 @@ function getStrategyExplanation(
  */
 function calculateExpectedValue(
   playerValue: number,
-  dealerUpCard: DealerUpCard,
+  _dealerUpCard: DealerUpCard,
   action: GameAction,
 ): number {
   // Simplified EV calculation (not exact, but directional)

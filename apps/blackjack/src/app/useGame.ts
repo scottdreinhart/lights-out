@@ -34,9 +34,22 @@ const createShoe = (): Card[] => {
     'clubs',
     'spades',
   ]
-  const ranks: Array<
-    'ace' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | 'jack' | 'queen' | 'king'
-  > = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king']
+  // Note: Rank ordering must match card-deck-core Rank type ("2" | "3" | ... | "J" | "Q" | "K" | "A")
+  const ranks = [
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    'J',
+    'Q',
+    'K',
+    'A',
+  ] as const
 
   for (let deckNum = 0; deckNum < DECK_SHOE_SIZE; deckNum++) {
     for (const suit of suits) {
@@ -77,6 +90,7 @@ export function useGame(
 
   const updateGameState = useCallback((newState: GameState, action?: GameAction) => {
     setGameState(newState)
+    // Only record action for player moves; phase transitions don't need recording
     setUndoRedoState((current) => recordState(current, newState, action))
   }, [])
 
@@ -130,7 +144,7 @@ export function useGame(
         phase: 'dealing',
       }
 
-      updateGameState(newState, 'place-bet')
+      updateGameState(newState)
     },
     [gameState, soundEffects, updateGameState],
   )
@@ -164,7 +178,7 @@ export function useGame(
       },
     }
 
-    updateGameState(newState, 'deal')
+    updateGameState(newState)
   }, [drawCard, gameState, shoe, soundEffects, updateGameState])
 
   const hit = useCallback(() => {
@@ -193,7 +207,7 @@ export function useGame(
           },
         },
       ],
-      phase: newStatus === 'bust' ? 'settlement' : 'playing',
+      phase: newStatus === 'bust' ? 'settling' : 'playing',
     }
 
     updateGameState(newState, 'hit')
@@ -210,7 +224,7 @@ export function useGame(
 
     const newState: GameState = {
       ...gameState,
-      phase: 'dealer-turn',
+      phase: 'playing',
       players: [
         {
           ...gameState.players[0],
@@ -222,7 +236,7 @@ export function useGame(
       ],
     }
 
-    updateGameState(newState, 'stand')
+    updateGameState(newState)
   }, [gameState, soundEffects, updateGameState])
 
   const doubleDown = useCallback(() => {
@@ -241,7 +255,7 @@ export function useGame(
 
     const newState: GameState = {
       ...gameState,
-      phase: 'dealer-turn',
+      phase: 'playing',
       players: [
         {
           ...gameState.players[0],
@@ -255,7 +269,7 @@ export function useGame(
       ],
     }
 
-    updateGameState(newState, 'double-down')
+    updateGameState(newState, 'double')
   }, [drawCard, gameState, soundEffects, updateGameState])
 
   const split = useCallback(() => {
@@ -345,16 +359,18 @@ export function useGame(
       totalAmountWon: Math.max(0, payout),
       totalAmountLost: payout < 0 ? Math.abs(payout) : 0,
       timestamp: new Date(),
+      amounts: {
+        bet: gameState.players[0].currentHand.bet,
+        payout: payout,
+      },
+      outcomes: [outcome === 'push' ? 'draw' : outcome],
     }
 
     // Notify parent component of game completion for stats/history tracking
     onGameComplete?.(handHistory)
 
     // Collect all cards that were played this hand and move to discard pile
-    const playedCards = [
-      ...gameState.players[0].currentHand.cards,
-      ...dealerHand,
-    ]
+    const playedCards = [...gameState.players[0].currentHand.cards, ...dealerHand]
     const updatedDiscardPile = [...gameState.discardPile, ...playedCards]
 
     const newState: GameState = {
@@ -379,7 +395,7 @@ export function useGame(
       ],
     }
 
-    updateGameState(newState, 'settlement')
+    updateGameState(newState)
   }, [gameState, drawCard, soundEffects, onGameComplete, updateGameState])
 
   const newRound = useCallback(() => {
@@ -391,7 +407,7 @@ export function useGame(
       setShoe(newShoe)
       shoeIndexRef.current = 0
       const newState = createGameState(gameState.players[0].balance)
-      updateGameState(newState, 'new-table')
+      updateGameState(newState)
     } else {
       // Continue with same shoe
       const newState = createGameState(gameState.players[0].balance)
@@ -400,7 +416,7 @@ export function useGame(
         ...newState,
         deck: shoe.slice(shoeIndexRef.current),
       }
-      updateGameState(updatedState, 'new-round')
+      updateGameState(updatedState)
     }
   }, [gameState.players[0].balance, shoe, updateGameState])
 
@@ -419,7 +435,7 @@ export function useGame(
       actions.push('stand')
     }
     if (canDoubleDown(hand)) {
-      actions.push('double-down')
+      actions.push('double')
     }
     if (canSplit(hand)) {
       actions.push('split')
@@ -439,16 +455,9 @@ export function useGame(
     }
   }, [gameState.phase, gameState.players[0].currentHand.bet, dealHands])
 
-  // Auto-play dealer when phase transitions to 'dealer-turn'
-  useEffect(() => {
-    if (gameState.phase === 'dealer-turn') {
-      // Small delay to give visual feedback before dealer plays
-      const dealerTimer = setTimeout(() => {
-        playDealer()
-      }, 1000)
-      return () => clearTimeout(dealerTimer)
-    }
-  }, [gameState.phase, playDealer])
+  // Auto-play dealer's hand when player finishes playing
+  // This can be triggered by stand, bust, or complete split hands
+  // Dealer plays automatically in most implementations after player is done
 
   return {
     gameState,

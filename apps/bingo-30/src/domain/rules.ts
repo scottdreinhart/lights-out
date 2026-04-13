@@ -3,9 +3,10 @@
  */
 
 import { createBingoCards, isWinner, markNumber } from './card'
+import { MAX_NUMBER } from './constants'
 import type { DrawResult, GameState } from './types'
 
-const ALL_NUMBERS = Array.from({ length: 25 }, (_, i) => i + 1)
+const ALL_NUMBERS = Array.from({ length: MAX_NUMBER }, (_, i) => i + 1)
 
 /**
  * Initialize a new mini bingo game

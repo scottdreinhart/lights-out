@@ -43,6 +43,7 @@ export async function toggleCell(board: Board, row: number, col: number): Promis
   const newBoard = board.map((r) => [...r])
 
   // Toggle the cell itself
+  // eslint-disable-next-line security/detect-object-injection
   newBoard[row][col] = !newBoard[row][col]
 
   // Toggle neighbors: up, down, left, right
@@ -56,6 +57,7 @@ export async function toggleCell(board: Board, row: number, col: number): Promis
   neighbors.forEach(({ row: r, col: c }) => {
     // Only toggle if neighbor is within bounds
     if (r >= 0 && r < GRID_SIZE && c >= 0 && c < GRID_SIZE) {
+      // eslint-disable-next-line security/detect-object-injection
       newBoard[r][c] = !newBoard[r][c]
     }
   })

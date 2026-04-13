@@ -3,7 +3,7 @@
  */
 
 // Types
-export type { Card, CardSuit, CardRank, GameState, GamePhase, WarSequence } from './types'
+export type { Card, GameState, GamePhase, WarSequence } from './types'
 
 // Rules and game logic
 export { playRound, isGameOver, getWinner, resetGame } from './rules'
@@ -21,8 +21,6 @@ export { RULES_TEXT, getRulesText, RULE_DESCRIPTIONS } from './rules/war.rules.t
 
 // Constants and utilities
 export {
-  SUITS,
-  RANKS,
   createDeck,
   getRankValue,
   compareCards,

@@ -26,35 +26,44 @@ function gameReducer(state: GameState, action: GameContextAction): GameState {
     case 'RESET_GAME':
       return createGameState(action.payload?.balance)
 
-    case 'SET_BET':
+    case 'SET_BET': {
+      const player = state.players[0]
+      if (!player) return state
       return {
         ...state,
-        player: {
-          ...state.player,
-          currentHand: {
-            ...state.player.currentHand,
-            bet: action.payload,
+        players: [
+          {
+            ...player,
+            currentHand: {
+              ...player.currentHand,
+              bet: action.payload,
+            },
           },
-        },
+          ...state.players.slice(1),
+        ],
       }
+    }
 
     case 'DEAL_HANDS':
       return dealInitialHands(state, action.payload.playerCards, action.payload.dealerCards)
 
     case 'PLAYER_ACTION':
-      return processPlayerAction(state, action.payload.action, action.payload.card)
+      return processPlayerAction(state, action.payload.action)
 
     case 'DEALER_TURN':
-      return playDealerTurn(state, action.payload.cards)
+      return playDealerTurn(state)
 
     case 'SETTLEMENT':
       return {
         ...state,
-        phase: 'settlement',
+        phase: 'settling',
       }
 
-    case 'NEW_ROUND':
-      return createGameState(state.player.balance)
+    case 'NEW_ROUND': {
+      const player = state.players[0]
+      const balance = player?.balance ?? 0
+      return createGameState(balance)
+    }
 
     default:
       return state

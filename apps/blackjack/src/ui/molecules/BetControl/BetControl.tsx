@@ -1,6 +1,6 @@
-import React, { useState, useCallback, useMemo } from 'react'
+import { CHIP_DENOMINATIONS } from '@/domain/constants'
+import React, { useCallback, useMemo, useState } from 'react'
 import styles from './BetControl.module.css'
-import { CHIP_DENOMINATIONS, MIN_BET, MAX_BET } from '@/domain/constants'
 
 export interface BetControlProps {
   /**
@@ -69,7 +69,7 @@ export const BetControl = React.memo<BetControlProps>(
     /**
      * Remove a chip denomination from current bet
      */
-    const removeChip = useCallback(
+    const _removeChip = useCallback(
       (denomination: number) => {
         const newBet = Math.max(0, tempBet - denomination)
         setTempBet(newBet)
@@ -137,9 +137,7 @@ export const BetControl = React.memo<BetControlProps>(
         <div className={styles.betDisplay}>
           <span className={styles.label}>Current Bet</span>
           <div className={styles.betAmount}>${tempBet}</div>
-          {insufficientBalance && (
-            <div className={styles.error}>Exceeds balance</div>
-          )}
+          {insufficientBalance && <div className={styles.error}>Exceeds balance</div>}
           {belowMinimum && <div className={styles.error}>Below minimum bet</div>}
           {exceedsMaximum && <div className={styles.error}>Exceeds maximum bet</div>}
         </div>
@@ -151,7 +149,9 @@ export const BetControl = React.memo<BetControlProps>(
               <button
                 className={`${styles.chipButton} ${styles[`chip${denomination}`]}`}
                 onClick={() => addChip(denomination)}
-                disabled={disabled || tempBet + denomination > maxBet || tempBet + denomination > balance}
+                disabled={
+                  disabled || tempBet + denomination > maxBet || tempBet + denomination > balance
+                }
                 title={`Add $${denomination} chip`}
                 aria-label={`Add ${denomination} dollar chip`}
               >
@@ -194,9 +194,7 @@ export const BetControl = React.memo<BetControlProps>(
           className={styles.placeBetButton}
           onClick={handlePlaceBet}
           disabled={disabled || !isValidBet}
-          title={
-            isValidBet ? 'Place bet and start dealing' : 'Invalid bet amount'
-          }
+          title={isValidBet ? 'Place bet and start dealing' : 'Invalid bet amount'}
         >
           Place Bet ${tempBet}
         </button>

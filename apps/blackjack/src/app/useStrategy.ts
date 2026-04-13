@@ -5,9 +5,9 @@
  * Provides comprehensive learning and advisory features.
  */
 
-import { useState, useCallback, useEffect } from 'react'
+import type { GameAction, StrategyHint, StrategyMode, StrategyState } from '@/domain'
 import type { Card } from '@games/card-deck-core'
-import type { GameAction, StrategyMode, StrategyState, StrategyHint } from '@/domain'
+import { useCallback, useEffect, useState } from 'react'
 import { useBasicStrategy } from './useBasicStrategy'
 import { useCardCounting } from './useCardCounting'
 
@@ -21,7 +21,12 @@ interface UseStrategyResult {
   strategyState: StrategyState
   currentHint: StrategyHint | null
   sessionAccuracy: number
-  getStrategyHint: (playerHard: number, playerSoft: number | undefined, dealerUpCard: Card, playerAction: GameAction) => void
+  getStrategyHint: (
+    playerHard: number,
+    playerSoft: number | undefined,
+    dealerUpCard: Card,
+    playerAction: GameAction,
+  ) => void
   recordCardSeen: (card: Card) => void
   resetSession: () => void
   getStrategySummary: () => string
@@ -53,7 +58,7 @@ export const useStrategy = ({
     cardCountingEnabled: strategyMode === 'card-counting' || strategyMode === 'learning',
     learningModeEnabled,
     countingState: cardCounting.countingState,
-    currentHint: basicStrategy.currentHint || cardCounting.currentHint,
+    currentHint: basicStrategy.currentHint ?? cardCounting.currentHint ?? undefined,
     sessionStats: {
       correctDecisions: basicStrategy.correctDecisions,
       totalDecisions: basicStrategy.totalDecisions,
@@ -63,16 +68,25 @@ export const useStrategy = ({
 
   // Update hint when either strategy changes
   useEffect(() => {
-    setCurrentHint(basicStrategy.currentHint || cardCounting.currentHint)
+    setCurrentHint(basicStrategy.currentHint || cardCounting.currentHint || null)
   }, [basicStrategy.currentHint, cardCounting.currentHint])
 
   // Get strategy hint for current situation
   const getStrategyHint = useCallback(
-    (playerHard: number, playerSoft: number | undefined, dealerUpCard: Card, playerAction: GameAction) => {
+    (
+      playerHard: number,
+      playerSoft: number | undefined,
+      dealerUpCard: Card,
+      playerAction: GameAction,
+    ): void => {
       if (strategyMode === 'none') return
 
       if (strategyMode === 'basic' || strategyMode === 'learning') {
-        basicStrategy.getRecommendation(playerHard, playerSoft, dealerUpCard, playerAction)
+        basicStrategy.getRecommendation(
+          playerSoft !== undefined ? { hard: playerHard, soft: playerSoft } : playerHard,
+          dealerUpCard,
+          playerAction,
+        )
       }
 
       // Note: Card counting hint comes from seeing cards, not from hand recommendations
@@ -101,7 +115,9 @@ export const useStrategy = ({
     const parts: string[] = []
 
     if (strategyMode === 'basic' || strategyMode === 'learning') {
-      parts.push(`Basic Strategy: ${basicStrategy.correctDecisions}/${basicStrategy.totalDecisions} correct (${basicStrategy.accuracyRate.toFixed(1)}%)`)
+      parts.push(
+        `Basic Strategy: ${basicStrategy.correctDecisions}/${basicStrategy.totalDecisions} correct (${basicStrategy.accuracyRate.toFixed(1)}%)`,
+      )
     }
 
     if (strategyMode === 'card-counting' || strategyMode === 'learning') {

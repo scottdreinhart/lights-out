@@ -5,6 +5,7 @@ import {
   hasWon,
   getWinningPatterns,
 } from './card'
+import { ALL_NUMBERS } from './constants'
 
 /**
  * Create initial game state
@@ -18,12 +19,12 @@ export const createGameState = (): GameState => ({
 })
 
 /**
- * Draw a number (1-75)
+ * Draw a number (from available pool)
  */
 export const drawNumber = (state: GameState): GameState => {
   if (!state.gameActive) return state
 
-  const available = Array.from({ length: 75 }, (_, i) => i + 1).filter(
+  const available = ALL_NUMBERS.filter(
     (n) => !state.drawnNumbers.has(n),
   )
 

@@ -4,10 +4,8 @@
  */
 
 import { checkWinningPatterns, createBingoCards, isWinner, markNumber } from './card'
+import { ALL_NUMBERS, DEFAULT_DRAW_SPEED } from './constants'
 import type { DrawResult, SpeedBingoGameState } from './types'
-import { DEFAULT_DRAW_SPEED } from './types'
-
-const ALL_NUMBERS = Array.from({ length: 75 }, (_, i) => i + 1)
 
 /**
  * Initialize a new speed bingo game with specified number of cards.

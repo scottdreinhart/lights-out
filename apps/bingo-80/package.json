@@ -30,7 +30,9 @@
         "clean:node": "pnpm exec rimraf node_modules",
         "clean:all": "pnpm clean && pnpm clean:node",
         "reinstall": "pnpm clean:all && pnpm install",
-        "test": "pnpm exec vitest",
+        "test:hooks": "pnpm exec vitest",
+        "test:integration": "pnpm exec vitest --config vitest.config.node.ts",
+        "test": "pnpm test:hooks && pnpm test:integration",
         "test:watch": "pnpm exec vitest --watch",
         "test:ui": "pnpm exec vitest --ui",
         "test:coverage": "pnpm exec vitest --coverage",
@@ -38,7 +40,8 @@
     },
     "dependencies": {
         "react": "19.2.4",
-        "react-dom": "19.2.4"
+        "react-dom": "19.2.4",
+        "uuid": "^9.0.0"
     },
     "devDependencies": {
         "@testing-library/react": "16.3.2",

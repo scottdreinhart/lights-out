@@ -489,8 +489,16 @@ const PAIRS_STRATEGY_TABLE: Record<string, Record<string, StrategyAction>> = {
  * Gets the optimal basic strategy action for a given hand and dealer upcard
  */
 export function getBasicStrategyAction(context: StrategyContext): StrategyAction {
-  const { playerHand, dealerUpCard, canDouble, canSplit, canSurrender, isSoft, isPair, handValue } =
-    context
+  const {
+    playerHand,
+    dealerUpCard,
+    canDouble,
+    canSplit,
+    canSurrender,
+    isSoft,
+    isPair,
+    handValue,
+  } = context
 
   // Handle pairs first (highest priority)
   if (isPair && playerHand.length === 2) {
@@ -625,7 +633,7 @@ function calculateExpectedValue(context: StrategyContext, action: StrategyAction
   // For now, return a rough estimate based on common blackjack EV tables
 
   const { handValue, dealerUpCard } = context
-  const dealerValue =
+  const _dealerValue =
     dealerUpCard.rank === 'A' ? 11 : dealerUpCard.rank === '10' ? 10 : parseInt(dealerUpCard.rank)
 
   // Rough EV impact (positive = good, negative = bad)
@@ -850,7 +858,7 @@ export function getBetSizingStrategy(
 /**
  * Get counting difficulty level based on metrics
  */
-export function getCountingDifficulty(trueCount: number, accuracy: number): string {
+export function getCountingDifficulty(_trueCount: number, accuracy: number): string {
   if (accuracy < 50) return 'Very Hard'
   if (accuracy < 70) return 'Hard'
   if (accuracy < 85) return 'Medium'

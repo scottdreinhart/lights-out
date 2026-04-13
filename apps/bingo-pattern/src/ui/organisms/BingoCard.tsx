@@ -1,4 +1,3 @@
-import React from 'react'
 import type { Grid } from '@/domain'
 import styles from './BingoCard.module.css'
 
@@ -28,9 +27,7 @@ export const BingoCard: React.FC<Props> = ({ grid, drawnNumbers, hints }) => {
                 className={`${styles.cell} ${isMarked ? styles.marked : ''} ${
                   isHint ? styles.hint : ''
                 }`}
-                aria-label={
-                  isFree ? 'Free' : `${cell.number}${isMarked ? ' marked' : ''}`
-                }
+                aria-label={isFree ? 'Free' : `${cell.number}${isMarked ? ' marked' : ''}`}
               >
                 {!isFree && <span className={styles.number}>{cell.number}</span>}
                 {isFree && <span className={styles.free}>FREE</span>}

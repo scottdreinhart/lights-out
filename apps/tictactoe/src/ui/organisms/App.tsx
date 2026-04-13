@@ -17,6 +17,7 @@ import {
 import SplashScreen from '@/ui/molecules/SplashScreen'
 import { useCallback, useState } from 'react'
 import TicTacToeGame from './TicTacToeGame'
+import { HamburgerMenu } from './HamburgerMenu'
 
 type AppPhase = 'splash' | 'menu' | 'playing' | 'settings' | 'help' | 'stats' | 'game-over'
 
@@ -33,6 +34,9 @@ export default function App() {
   const [gameOverState] = useState<GameOverState | null>(null)
   const [difficulty, setDifficulty] = useState<Difficulty>('medium')
   const [seriesLength, setSeriesLength] = useState(1)
+  const [showRulesModal, setShowRulesModal] = useState(false)
+  const [showSettingsModal, setShowSettingsModal] = useState(false)
+  const [showHelpModal, setShowHelpModal] = useState(false)
 
   const { stats, resetStats } = useStats()
   const { soundEnabled, toggleSound } = useSoundEffects()
@@ -154,5 +158,83 @@ export default function App() {
   // Shows TicTacToeGame (playing phase)
   // Note: TicTacToeGame currently manages its own settings via hooks
   // Future: pass difficulty/seriesLength as props to TicTacToeGame
-  return <TicTacToeGame />
+  return (
+    <div className="game-container" style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem' }}>
+        <h1>TicTacToe</h1>
+        <HamburgerMenu
+          onRules={() => setShowRulesModal(true)}
+          onSettings={() => setShowSettingsModal(true)}
+          onHelp={() => setShowHelpModal(true)}
+        />
+      </header>
+
+      <main style={{ flex: 1, overflow: 'auto' }}>
+        <TicTacToeGame />
+      </main>
+
+      {/* Inline modals for during gameplay */}
+      {showRulesModal && (
+        <div
+          className="modal-overlay"
+          onClick={() => setShowRulesModal(false)}
+          onKeyDown={(e) => e.key === 'Escape' && setShowRulesModal(false)}
+          role="dialog"
+          aria-modal="true"
+          tabIndex={0}
+        >
+          <div className="modal-content">
+            <button className="modal-close" onClick={() => setShowRulesModal(false)}>
+              ✕
+            </button>
+            <h2>How to Play</h2>
+            <p>TicTacToe is a classic game where you compete against the AI to get three in a row (horizontal, vertical, or diagonal).</p>
+            <p>Choose your difficulty level and play series of matches to rack up wins!</p>
+          </div>
+        </div>
+      )}
+
+      {showSettingsModal && (
+        <div
+          className="modal-overlay"
+          onClick={() => setShowSettingsModal(false)}
+          onKeyDown={(e) => e.key === 'Escape' && setShowSettingsModal(false)}
+          role="dialog"
+          aria-modal="true"
+          tabIndex={0}
+        >
+          <div className="modal-content">
+            <button className="modal-close" onClick={() => setShowSettingsModal(false)}>
+              ✕
+            </button>
+            <h2>Settings</h2>
+            <p>Sound: {soundEnabled ? '🔊 On' : '🔇 Off'}</p>
+            <button onClick={toggleSound}>
+              {soundEnabled ? 'Disable' : 'Enable'} Sound
+            </button>
+          </div>
+        </div>
+      )}
+
+      {showHelpModal && (
+        <div
+          className="modal-overlay"
+          onClick={() => setShowHelpModal(false)}
+          onKeyDown={(e) => e.key === 'Escape' && setShowHelpModal(false)}
+          role="dialog"
+          aria-modal="true"
+          tabIndex={0}
+        >
+          <div className="modal-content">
+            <button className="modal-close" onClick={() => setShowHelpModal(false)}>
+              ✕
+            </button>
+            <h2>Help</h2>
+            <p>Click on any square to make your move. The AI will respond with its move.</p>
+            <p>First to get three in a row wins the round. Win enough rounds to win the series!</p>
+          </div>
+        </div>
+      )}
+    </div>
+  )
 }
