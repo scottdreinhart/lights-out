@@ -1,0 +1,25 @@
+import React from 'react'
+import styles from './<%= componentName %>.module.css'
+
+export interface <%= componentName %>Props {
+  children?: React.ReactNode
+}
+
+/**
+ * <%= componentName %> - <%= tier %> component
+ * @componentTier <%= tier %>
+ * @category UI/<%= tier %>
+ * 
+ * TODO: Add detailed component documentation
+ */
+export const <%= componentName %>: React.FC<<%= componentName %>Props> = ({
+  children,
+}) => {
+  return (
+    <div className={styles.root}>
+      {children}
+    </div>
+  )
+}
+
+<%= componentName %>.displayName = '<%= componentName %>'

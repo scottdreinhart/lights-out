@@ -1,0 +1,12 @@
+import { renderHook, act } from '@testing-library/react'
+import { describe, it, expect } from 'vitest'
+import { <%= hookName %> } from './<%= hookName %>'
+
+describe('<%= hookName %>', () => {
+  it('initializes correctly', () => {
+    const { result } = renderHook(() => <%= hookName %>())
+    expect(result.current).toBeDefined()
+  })
+
+  // TODO: Add more test cases
+})
