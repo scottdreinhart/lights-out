@@ -15,7 +15,8 @@ Default development shell for this repository: **Bash (WSL Ubuntu)**.
 
 Before making ANY changes, you MUST:
 
-1. **Read AGENTS.md first** — Especially § 0 (Non-Negotiable Rules), § 0.A (Runtime Validation & Self-Correction), § 3 (Architecture), § 4 (Path Discipline), § 29 (Node.js Best Practices), § 30 (CSS Performance)
+1. **Read AGENTS.md first** — Especially § 0 (Non-Negotiable Rules), § 0.A (Runtime Validation & Self-Correction), § 3 (Architecture), § 4 (Path Discipline), § 29 (Node.js Best Practices), § 30 (CSS Performance), § 32 (Amazon Fire TV Web App Governance)
+   - Then read root `ENVIRONMENT.md` for compact repository runtime context (it is subordinate to AGENTS.md).
 2. **Inspect existing code** — Search for similar components, hooks, utilities, and patterns before creating anything new
 3. **Reuse before creating** — Extend existing implementations instead of building parallel code
 4. **Make minimal edits** — Prefer surgical changes over rewrites; preserve file structure and naming
@@ -301,6 +302,24 @@ All test files MUST follow strict naming convention and validation:
 - Full reference: `docs/TEST_NAMING_CONVENTION.md`
 
 **Governance Authority**: AGENTS.md § 28 (Testing Governance)
+
+---
+
+## Amazon Fire TV Platform Directive (Mandatory)
+
+- Fire TV work must follow `.github/instructions/21-fire-tv.instructions.md`.
+- Fire TV input handling must stay semantic-action-driven and remote-first:
+  - D-pad: Left/Up/Right/Down -> move/focus actions
+  - Select/Enter -> confirm
+  - Back -> cancel/back navigation
+  - Play/Pause -> media/game pause toggle
+- Treat **Home**, **Menu**, and **Voice Search** as non-capturable for third-party web apps.
+- Handle focus/lifecycle changes using visibility and platform pause/resume signals:
+  - pause audio/game loops when backgrounded or voice search obscures app
+  - restore UI state on resume
+- Target Fire TV 1080p first and keep focus indicators explicit and high-contrast.
+
+**Reference**: AGENTS.md § 32 and `.github/instructions/21-fire-tv.instructions.md`.
 
 ---
 

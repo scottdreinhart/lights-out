@@ -1,4 +1,4 @@
-# 💡 Lights Out
+# 💡 Game-Platform
 
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://github.com/facebook/react)
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)](https://github.com/vitejs/vite)
@@ -27,6 +27,8 @@ See [LICENSE](LICENSE) file for complete terms and conditions.
 > **LICENSE TRANSITION PLANNED** — This project is currently proprietary. The license will change to open source once the project has reached a suitable state to allow for it.
 
 [Project Structure](#project-structure) · [Getting Started](#getting-started) · [Tech Stack](#tech-stack) · [Contributing](#contributing) · [Portfolio Services](#portfolio-services) · [Future Game Ideas](#future-game-ideas)
+
+Agent/runtime quick context: [`ENVIRONMENT.md`](ENVIRONMENT.md) (subordinate to [`AGENTS.md`](AGENTS.md)).
 
 ## Project Structure
 
