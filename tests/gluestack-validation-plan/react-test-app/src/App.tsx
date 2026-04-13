@@ -1,11 +1,10 @@
-import React from 'react'
-import { GluestackUIProvider } from '@gluestack-ui/themed'
-import { config } from '@gluestack-ui/config'
-import Q1_TVFocus from './tests/Q1-TVFocus'
-import Q2_Theming from './tests/Q2-Theming'
-import Q3_Responsive from './tests/Q3-Responsive'
+/**
+ * File: tests/gluestack-validation-plan/react-test-app/src/App.tsx
+ * Windows: D:\src\game-platform\tests\gluestack-validation-plan\react-test-app\src\App.tsx
+ * Linux:   /mnt/d/src/game-platform/tests/gluestack-validation-plan/react-test-app/src/App.tsx
+ */
 
-export default function App(): JSX.Element {
+import React from 'react'(): JSX.Element {
   const [activeTest, setActiveTest] = React.useState<1 | 2 | 3>(1)
 
   return (

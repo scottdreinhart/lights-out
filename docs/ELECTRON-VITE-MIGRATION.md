@@ -1,5 +1,11 @@
 # Electron-Vite Migration Guide
 
+**File Path**:  
+- Windows: `D:\src\game-platform\docs\ELECTRON-VITE-MIGRATION.md`  
+- Linux/WSL: `/mnt/d/src/game-platform/docs/ELECTRON-VITE-MIGRATION.md`
+
+---
+
 ## Overview
 
 This guide shows how to migrate an existing Electron + Vite setup to use **electron-vite** for cleaner unified configuration and better development experience.

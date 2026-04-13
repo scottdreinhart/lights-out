@@ -1,8 +1,10 @@
-import React from 'react'
-import { Button, Box, Text } from '@gluestack-ui/themed'
-
 /**
- * Q2: Game-Specific Theming
+ * File: tests/gluestack-validation-plan/react-test-app/src/tests/Q2-Theming.tsx
+ * Windows: D:\src\game-platform\tests\gluestack-validation-plan\react-test-app\src\tests\Q2-Theming.tsx
+ * Linux:   /mnt/d/src/game-platform/tests/gluestack-validation-plan/react-test-app/src/tests/Q2-Theming.tsx
+ */
+
+import React from 'react'
  * 
  * Tests:
  * - Theme switching at runtime

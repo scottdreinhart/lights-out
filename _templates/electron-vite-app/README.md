@@ -1,5 +1,11 @@
 # Electron-Vite App Template
 
+**File Path**:  
+- Windows: `D:\src\game-platform\_templates\electron-vite-app\README.md`  
+- Linux/WSL: `/mnt/d/src/game-platform/_templates/electron-vite-app/README.md`
+
+---
+
 Minimal Electron-Vite application template for game platform.
 
 ## Features

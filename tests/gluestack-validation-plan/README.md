@@ -1,5 +1,11 @@
 # Gluestack UI Validation: Master Test Plan
 
+**File Path**:  
+- Windows: `D:\src\game-platform\tests\gluestack-validation-plan\README.md`  
+- Linux/WSL: `/mnt/d/src/game-platform/tests/gluestack-validation-plan/README.md`
+
+---
+
 **Objective**: Systematically validate Gluestack UI as shared component library for 52-game platform.
 
 **Timeline**: 4 days (1 week distributed)

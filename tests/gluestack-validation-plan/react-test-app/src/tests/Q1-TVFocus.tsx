@@ -1,8 +1,10 @@
-import React from 'react'
-import { Button, Box, Text } from '@gluestack-ui/themed'
-
 /**
- * Q1: TV/D-Pad Focus Behavior
+ * File: tests/gluestack-validation-plan/react-test-app/src/tests/Q1-TVFocus.tsx
+ * Windows: D:\src\game-platform\tests\gluestack-validation-plan\react-test-app\src\tests\Q1-TVFocus.tsx
+ * Linux:   /mnt/d/src/game-platform/tests/gluestack-validation-plan/react-test-app/src/tests/Q1-TVFocus.tsx
+ */
+
+import React from 'react'
  * 
  * Tests:
  * - Focus navigation with arrow keys (simulates D-Pad)

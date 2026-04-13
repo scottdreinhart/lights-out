@@ -1,5 +1,11 @@
 # Gluestack Validation: Test Results Summary
 
+**File Path**:  
+- Windows: `D:\src\game-platform\tests\gluestack-validation-plan\RESULTS.md`  
+- Linux/WSL: `/mnt/d/src/game-platform/tests/gluestack-validation-plan/RESULTS.md`
+
+---
+
 Placeholder for documenting test execution results.
 
 ## When to Update

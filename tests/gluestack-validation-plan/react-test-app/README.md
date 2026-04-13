@@ -1,5 +1,11 @@
 # Gluestack UI Validation Test App
 
+**File Path**:  
+- Windows: `D:\src\game-platform\tests\gluestack-validation-plan\react-test-app\README.md`  
+- Linux/WSL: `/mnt/d/src/game-platform/tests/gluestack-validation-plan/react-test-app/README.md`
+
+---
+
 Minimal React + Vite application for validating Gluestack UI suitability for 52-game platform (2 shells: web + RN).
 
 ## Quick Start

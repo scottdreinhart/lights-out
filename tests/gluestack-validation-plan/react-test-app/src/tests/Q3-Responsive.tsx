@@ -1,8 +1,10 @@
-import React from 'react'
-import { Box, Text } from '@gluestack-ui/themed'
-
 /**
- * Q3: 5-Tier Responsive Breakpoints
+ * File: tests/gluestack-validation-plan/react-test-app/src/tests/Q3-Responsive.tsx
+ * Windows: D:\src\game-platform\tests\gluestack-validation-plan\react-test-app\src\tests\Q3-Responsive.tsx
+ * Linux:   /mnt/d/src/game-platform/tests/gluestack-validation-plan/react-test-app/src/tests/Q3-Responsive.tsx
+ */
+
+import React from 'react'
  * 
  * Tests:
  * - Responsive behavior at 5 breakpoints
