@@ -16,6 +16,17 @@ import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
+// ANSI color codes
+const COLORS = {
+  CYAN: '\x1b[96m',
+  GREEN: '\x1b[92m',
+  RED: '\x1b[91m',
+  YELLOW: '\x1b[93m',
+  BLUE: '\x1b[94m',
+  RESET: '\x1b[0m',
+  BOLD: '\x1b[1m',
+}
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const appsDir = path.join(__dirname, 'apps')
 const args = process.argv.slice(2)
@@ -277,7 +288,7 @@ export interface GameState {
   phase: GamePhase
   score: number
   gameOver: boolean
-  // [TODO]: Add ${gameName}-specific game state
+  // Extend with ${gameName}-specific game state fields as needed.
 }
 `
 }
@@ -296,7 +307,7 @@ export function createInitialGameState(): GameState {
   }
 }
 
-// [TODO]: Add ${gameName}-specific constants (deck, board, rules, etc.)
+// Extend with ${gameName}-specific constants (deck, board, rules, etc.).
 `
 }
 
@@ -305,7 +316,7 @@ function generateDomainRules(gameName) {
 import { createInitialGameState } from './constants'
 
 export function playRound(state: GameState): GameState {
-  // [TODO]: Implement ${gameName} round logic
+  // Replace with ${gameName}-specific round logic.
   return state
 }
 
@@ -426,7 +437,7 @@ export function Board() {
       </div>
 
       <div className={styles.playArea}>
-        {/* [TODO]: Render ${gameName} UI here */}
+        {/* Replace with ${gameName}-specific gameplay UI. */}
         <GamePiece value="Play" onClick={nextRound} />
       </div>
 

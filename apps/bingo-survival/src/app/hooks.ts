@@ -3,7 +3,7 @@
  * Level progression and difficulty scaling
  */
 
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { LEVEL_BONUS_MULTIPLIERS, LEVEL_TIME_LIMITS, SURVIVAL_BASE_POINTS } from '../domain'
 
 /**
@@ -26,12 +26,16 @@ export const useLevelProgression = (maxLevel: number = 10) => {
   const [isGameOver, setIsGameOver] = useState(false)
 
   const getLevelTimeLimit = useCallback(() => {
-    if (currentLevel > maxLevel || currentLevel < 1) return 0
+    if (currentLevel > maxLevel || currentLevel < 1) {
+      return 0
+    }
     return LEVEL_TIME_LIMITS[currentLevel - 1] // 0-indexed
   }, [currentLevel, maxLevel])
 
   const getLevelMultiplier = useCallback(() => {
-    if (currentLevel > maxLevel || currentLevel < 1) return 1
+    if (currentLevel > maxLevel || currentLevel < 1) {
+      return 1
+    }
     return Math.pow(LEVEL_BONUS_MULTIPLIERS, currentLevel - 1)
   }, [currentLevel, maxLevel])
 
@@ -57,9 +61,15 @@ export const useLevelProgression = (maxLevel: number = 10) => {
   }, [currentLevel, maxLevel])
 
   const getPhaseLabel = useCallback((): string => {
-    if (currentLevel <= 3) return 'Calm'
-    if (currentLevel <= 6) return 'Acceleration'
-    if (currentLevel <= 9) return 'Intense'
+    if (currentLevel <= 3) {
+      return 'Calm'
+    }
+    if (currentLevel <= 6) {
+      return 'Acceleration'
+    }
+    if (currentLevel <= 9) {
+      return 'Intense'
+    }
     return 'Expert'
   }, [currentLevel])
 
@@ -69,9 +79,9 @@ export const useLevelProgression = (maxLevel: number = 10) => {
   }, [])
 
   // Computed properties for components
-  const totalLevels = useMemo(() => maxLevel, [maxLevel])
-  const phaseLabel = useMemo(() => getPhaseLabel(), [getPhaseLabel])
-  const progressPercentage = useMemo(() => getProgressPercentage(), [getProgressPercentage])
+  const totalLevels = maxLevel
+  const phaseLabel = getPhaseLabel()
+  const progressPercentage = getProgressPercentage()
 
   return {
     currentLevel,

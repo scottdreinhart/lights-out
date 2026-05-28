@@ -1,48 +1,39 @@
 import { SplashScreen } from '@/ui'
-import { useCallback, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 
-type AppPhase = 'splash' | 'playing' | 'help'
+const ZipGame = lazy(async () => {
+  const module = await import('./ZipGame')
+  return { default: module.ZipGame }
+})
 
 export function App() {
-  const [phase, setPhase] = useState<AppPhase>('splash')
+  const [showSplash, setShowSplash] = useState(true)
+  const [boardVisible, setBoardVisible] = useState(false)
 
-  const handleSplashComplete = useCallback(() => {
-    setPhase('playing')
+  useEffect(() => {
+    void import('./ZipGame')
   }, [])
-
-  const handleHowToPlay = useCallback(() => {
-    setPhase('help')
-  }, [])
-
-  const handleLetsPlay = useCallback(() => {
-    setPhase('playing')
-  }, [])
-
-  if (phase === 'splash') {
-    return (
-      <SplashScreen
-        onComplete={handleSplashComplete}
-        onHowToPlay={handleHowToPlay}
-        onLetsPlay={handleLetsPlay}
-      />
-    )
-  }
-
-  if (phase === 'help') {
-    return (
-      <div className="app">
-        <h1>How to Play</h1>
-        <p>Game rules would appear here.</p>
-        <button onClick={() => setPhase('splash')}>Back</button>
-      </div>
-    )
-  }
 
   return (
     <div className="app">
-      <h1>Zip</h1>
-      <p>Coming soon...</p>
-      <button onClick={() => setPhase('splash')}>Back to Splash</button>
+      <div
+        style={{
+          opacity: boardVisible ? 1 : 0,
+          pointerEvents: boardVisible ? 'auto' : 'none',
+          transition: 'opacity 15s ease',
+        }}
+      >
+        <Suspense fallback={<div className="app">Loading Zip...</div>}>
+          <ZipGame />
+        </Suspense>
+      </div>
+      {showSplash && (
+        <SplashScreen
+          onFadeStart={() => setBoardVisible(true)}
+          onComplete={() => setShowSplash(false)}
+          title="ZIP"
+        />
+      )}
     </div>
   )
 }

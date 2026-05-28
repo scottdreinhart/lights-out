@@ -1,20 +1,16 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { visualizer } from 'rollup-plugin-visualizer'
 import path from 'path'
+import { defineConfig } from 'vite'
+import {
+  createOptimizedBuild,
+  createOptimizedPlugins,
+  createOptimizedResolve,
+} from '../../scripts/vite/createOptimizedViteConfig.mjs'
 
 export default defineConfig({
   base: './',
-  plugins: [
-    react(),
-    visualizer({
-      filename: 'dist/bundle-report.html',
-      gzipSize: true,
-      brotliSize: true,
-      open: false,
-    }),
-  ],
+  plugins: createOptimizedPlugins(),
   resolve: {
+    ...createOptimizedResolve(),
     alias: {
       '@': path.resolve(__dirname, 'src'),
       '@/domain': path.resolve(__dirname, 'src/domain'),
@@ -22,30 +18,8 @@ export default defineConfig({
       '@/ui': path.resolve(__dirname, 'src/ui'),
     },
   },
-  build: {
-    target: 'es2020',
-    cssTarget: 'es2020',
-    modulePreload: { polyfill: false },
-    minify: 'esbuild',
-    cssMinify: 'lightningcss',
-    sourcemap: false,
-    rollupOptions: {
-    external: [
-      '@capacitor/core',
-      '@capacitor/app',
-      '@capacitor/device',
-      '@capacitor/preferences',
-      '@capacitor/haptics',
-      '@capacitor/splash-screen',
-      '@capacitor/keyboard',
-    ],
-      output: {
-        manualChunks: {
-          react: ['react', 'react-dom'],
-        },
-      },
-    },
-  },
+
+  build: createOptimizedBuild(),
   worker: {
     format: 'es',
   },

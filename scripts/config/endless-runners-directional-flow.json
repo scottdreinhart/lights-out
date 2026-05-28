@@ -1,0 +1,343 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-04-19",
+    "source": "Directional Flow Ingestion",
+    "domain": "endless-runner",
+    "requiredFields": [
+      "scroll_direction",
+      "camera_mode",
+      "lane_model",
+      "primary_input",
+      "core_pattern"
+    ]
+  },
+  "games": [
+    {
+      "id": "temple-run",
+      "name": "Temple Run",
+      "url": "https://en.wikipedia.org/wiki/Temple_Run",
+      "scroll_direction": "forward",
+      "camera_mode": "third_person_behind",
+      "lane_model": "3_lane",
+      "primary_input": [
+        "swipe_left_right_up_down"
+      ],
+      "core_pattern": [
+        "obstacle_avoidance",
+        "path_turns",
+        "jump_slide"
+      ]
+    },
+    {
+      "id": "temple-run-2",
+      "name": "Temple Run 2",
+      "url": "https://en.wikipedia.org/wiki/Temple_Run_2",
+      "scroll_direction": "forward",
+      "camera_mode": "third_person_behind",
+      "lane_model": "3_lane",
+      "primary_input": [
+        "swipe",
+        "tilt"
+      ],
+      "core_pattern": [
+        "obstacle_avoidance",
+        "dynamic_paths",
+        "vehicles"
+      ]
+    },
+    {
+      "id": "subway-surfers",
+      "name": "Subway Surfers",
+      "url": "https://en.wikipedia.org/wiki/Subway_Surfers",
+      "scroll_direction": "forward",
+      "camera_mode": "third_person_behind",
+      "lane_model": "3_lane",
+      "primary_input": [
+        "swipe",
+        "jump",
+        "roll"
+      ],
+      "core_pattern": [
+        "obstacle_avoidance",
+        "train_dodging",
+        "coin_collection"
+      ]
+    },
+    {
+      "id": "sonic-dash",
+      "name": "Sonic Dash",
+      "url": "https://en.wikipedia.org/wiki/Sonic_Dash",
+      "scroll_direction": "forward",
+      "camera_mode": "third_person_behind",
+      "lane_model": "3_lane",
+      "primary_input": [
+        "swipe",
+        "dash"
+      ],
+      "core_pattern": [
+        "speed_boost",
+        "obstacle",
+        "enemy_hit"
+      ]
+    },
+    {
+      "id": "minion-rush",
+      "name": "Minion Rush",
+      "url": "https://en.wikipedia.org/wiki/Despicable_Me:_Minion_Rush",
+      "scroll_direction": "forward",
+      "camera_mode": "third_person_behind",
+      "lane_model": "3_lane",
+      "primary_input": [
+        "swipe"
+      ],
+      "core_pattern": [
+        "obstacle",
+        "humor_events",
+        "collectibles"
+      ]
+    },
+    {
+      "id": "into-the-dead",
+      "name": "Into the Dead",
+      "url": "https://en.wikipedia.org/wiki/Into_the_Dead",
+      "scroll_direction": "forward",
+      "camera_mode": "first_person",
+      "lane_model": "free_movement",
+      "primary_input": [
+        "tilt",
+        "tap"
+      ],
+      "core_pattern": [
+        "avoidance",
+        "shooting",
+        "survival"
+      ]
+    },
+    {
+      "id": "canabalt",
+      "name": "Canabalt",
+      "url": "https://en.wikipedia.org/wiki/Canabalt",
+      "scroll_direction": "horizontal_right",
+      "camera_mode": "side_view",
+      "lane_model": "single_plane",
+      "primary_input": [
+        "single_button_jump"
+      ],
+      "core_pattern": [
+        "gap_jump",
+        "timing",
+        "speed_scaling"
+      ]
+    },
+    {
+      "id": "jetpack-joyride",
+      "name": "Jetpack Joyride",
+      "url": "https://en.wikipedia.org/wiki/Jetpack_Joyride",
+      "scroll_direction": "horizontal_right",
+      "camera_mode": "side_view",
+      "lane_model": "vertical_free_movement",
+      "primary_input": [
+        "hold_to_ascend"
+      ],
+      "core_pattern": [
+        "obstacle_dodge",
+        "coin_collection",
+        "gadgets"
+      ]
+    },
+    {
+      "id": "altos-adventure",
+      "name": "Alto's Adventure",
+      "url": "https://en.wikipedia.org/wiki/Alto%27s_Adventure",
+      "scroll_direction": "horizontal_right",
+      "camera_mode": "side_view",
+      "lane_model": "terrain_physics",
+      "primary_input": [
+        "tap_jump",
+        "hold_trick"
+      ],
+      "core_pattern": [
+        "slope_momentum",
+        "trick_chain",
+        "flow_state"
+      ]
+    },
+    {
+      "id": "altos-odyssey",
+      "name": "Alto's Odyssey",
+      "url": "https://en.wikipedia.org/wiki/Alto%27s_Odyssey",
+      "scroll_direction": "horizontal_right",
+      "camera_mode": "side_view",
+      "lane_model": "terrain_physics",
+      "primary_input": [
+        "tap",
+        "hold"
+      ],
+      "core_pattern": [
+        "environmental_flow",
+        "trick_scoring"
+      ]
+    },
+    {
+      "id": "vector",
+      "name": "Vector",
+      "url": "https://en.wikipedia.org/wiki/Vector_(video_game)",
+      "scroll_direction": "horizontal_right",
+      "camera_mode": "side_view",
+      "lane_model": "animation_trigger",
+      "primary_input": [
+        "swipe"
+      ],
+      "core_pattern": [
+        "parkour_execution",
+        "obstacle",
+        "timing"
+      ]
+    },
+    {
+      "id": "punch-quest",
+      "name": "Punch Quest",
+      "url": "https://en.wikipedia.org/wiki/Punch_Quest",
+      "scroll_direction": "horizontal_right",
+      "camera_mode": "side_view",
+      "lane_model": "dual_lane",
+      "primary_input": [
+        "tap_left_right"
+      ],
+      "core_pattern": [
+        "combat",
+        "enemy_clear",
+        "forward_push"
+      ]
+    },
+    {
+      "id": "doodle-jump",
+      "name": "Doodle Jump",
+      "url": "https://en.wikipedia.org/wiki/Doodle_Jump",
+      "scroll_direction": "vertical_up",
+      "camera_mode": "centered_follow",
+      "lane_model": "free_horizontal",
+      "primary_input": [
+        "tilt",
+        "auto_jump"
+      ],
+      "core_pattern": [
+        "platform_chain",
+        "upward_progression"
+      ]
+    },
+    {
+      "id": "tiny-wings",
+      "name": "Tiny Wings",
+      "url": "https://en.wikipedia.org/wiki/Tiny_Wings",
+      "scroll_direction": "horizontal_right",
+      "camera_mode": "side_view",
+      "lane_model": "terrain_wave",
+      "primary_input": [
+        "hold_release"
+      ],
+      "core_pattern": [
+        "momentum_wave",
+        "glide",
+        "timing"
+      ]
+    },
+    {
+      "id": "crossy-road",
+      "name": "Crossy Road",
+      "url": "https://en.wikipedia.org/wiki/Crossy_Road",
+      "scroll_direction": "vertical_forward",
+      "camera_mode": "isometric",
+      "lane_model": "grid_based",
+      "primary_input": [
+        "tap",
+        "directional"
+      ],
+      "core_pattern": [
+        "lane_crossing",
+        "timing",
+        "hazard_prediction"
+      ]
+    },
+    {
+      "id": "zombie-tsunami",
+      "name": "Zombie Tsunami",
+      "url": "https://en.wikipedia.org/wiki/Zombie_Tsunami",
+      "scroll_direction": "horizontal_right",
+      "camera_mode": "side_view",
+      "lane_model": "group_physics",
+      "primary_input": [
+        "tap_jump"
+      ],
+      "core_pattern": [
+        "swarm_growth",
+        "obstacle_loss"
+      ]
+    },
+    {
+      "id": "geometry-dash",
+      "name": "Geometry Dash",
+      "url": "https://en.wikipedia.org/wiki/Geometry_Dash",
+      "scroll_direction": "horizontal_right",
+      "camera_mode": "side_view",
+      "lane_model": "fixed_path",
+      "primary_input": [
+        "tap"
+      ],
+      "core_pattern": [
+        "rhythm_timing",
+        "obstacle_memory"
+      ]
+    },
+    {
+      "id": "chameleon-run",
+      "name": "Chameleon Run",
+      "url": "https://en.wikipedia.org/wiki/Chameleon_Run",
+      "scroll_direction": "horizontal_forward",
+      "camera_mode": "pseudo_3d_side",
+      "lane_model": "linear_path",
+      "primary_input": [
+        "tap_jump",
+        "color_switch"
+      ],
+      "core_pattern": [
+        "color_match",
+        "timing",
+        "speed"
+      ]
+    },
+    {
+      "id": "race-the-sun",
+      "name": "Race the Sun",
+      "url": "https://en.wikipedia.org/wiki/Race_the_Sun",
+      "scroll_direction": "forward",
+      "camera_mode": "third_person_low_angle",
+      "lane_model": "free_movement",
+      "primary_input": [
+        "directional",
+        "glide"
+      ],
+      "core_pattern": [
+        "obstacle_field",
+        "speed_decay",
+        "survival"
+      ]
+    },
+    {
+      "id": "flappy-bird",
+      "name": "Flappy Bird",
+      "url": "https://en.wikipedia.org/wiki/Flappy_Bird",
+      "scroll_direction": "horizontal_right",
+      "camera_mode": "side_view",
+      "lane_model": "vertical_precision",
+      "primary_input": [
+        "tap"
+      ],
+      "core_pattern": [
+        "gap_navigation",
+        "gravity_control"
+      ]
+    }
+  ]
+}

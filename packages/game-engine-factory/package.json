@@ -1,0 +1,28 @@
+{
+  "name": "@games/game-engine-factory",
+  "version": "1.0.0",
+  "description": "Reusable deterministic game engine templates and variant factory",
+  "type": "module",
+  "private": true,
+  "license": "PROPRIETARY",
+  "author": "Scott Reinhart",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    }
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "lint": "pnpm exec eslint src/**/*.ts",
+    "typecheck": "pnpm exec tsc --noEmit -p tsconfig.json",
+    "test": "pnpm exec vitest run src/engine-factory.unit.test.ts",
+    "validate:domain-purity": "node scripts/validate-domain-purity.mjs",
+    "check": "pnpm lint && pnpm typecheck && pnpm validate:domain-purity",
+    "validate": "pnpm check && pnpm test",
+    "validate:gated": "pnpm validate"
+  }
+}

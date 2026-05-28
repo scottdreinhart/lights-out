@@ -1,0 +1,93 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 2px solid #e9ecef;
+  background: #f8f9fa;
+  color: #495057;
+  font-family: monospace;
+  font-weight: 600;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #212529;
+}
+
+.running {
+  background: #d1ecf1;
+  border-color: #bee5eb;
+  color: #0c5460;
+}
+
+.running .value {
+  color: #0c5460;
+}
+
+.expired {
+  background: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+  animation: pulse 500ms ease;
+}
+
+.expired .value {
+  color: #721c24;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 599px) {
+  .root {
+    gap: 6px;
+    padding: 8px 12px;
+  }
+
+  .label {
+    font-size: 12px;
+  }
+
+  .value {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 900px) {
+  .root {
+    gap: 10px;
+    padding: 12px 20px;
+  }
+
+  .label {
+    font-size: 16px;
+  }
+
+  .value {
+    font-size: 20px;
+  }
+}

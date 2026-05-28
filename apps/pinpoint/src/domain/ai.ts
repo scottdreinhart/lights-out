@@ -1,5 +1,4 @@
-import type { Code, Guess, Feedback, GameState, Color } from './types'
-import { COLORS } from './constants'
+import type { Code, Color, Feedback, GameState, Guess } from './types'
 
 // Simple AI that uses a basic strategy: try all possible combinations systematically
 export const generateAiGuess = (state: GameState): Guess => {
@@ -33,12 +32,14 @@ export const generateAiGuess = (state: GameState): Guess => {
 // Check if a guess is possible given previous feedback
 export const isPossibleGuess = (
   candidate: Guess,
-  previousGuesses: Array<{ guess: Guess; feedback: Feedback }>
+  previousGuesses: Array<{ guess: Guess; feedback: Feedback }>,
 ): boolean => {
   return previousGuesses.every(({ guess, feedback }) => {
     const candidateFeedback = calculateFeedback(candidate, guess)
-    return candidateFeedback.correctPosition === feedback.correctPosition &&
-           candidateFeedback.correctColor === feedback.correctColor
+    return (
+      candidateFeedback.correctPosition === feedback.correctPosition &&
+      candidateFeedback.correctColor === feedback.correctColor
+    )
   })
 }
 
@@ -98,9 +99,9 @@ export const generateOptimalGuess = (state: GameState): Guess => {
     const secondColor = availableColors[1] || firstColor
     const midPoint = Math.ceil(codeLength / 2)
 
-    return Array(codeLength).fill(null).map((_, i) =>
-      i < midPoint ? firstColor : secondColor
-    ) as Guess
+    return Array(codeLength)
+      .fill(null)
+      .map((_, i) => (i < midPoint ? firstColor : secondColor)) as Guess
   }
 
   // For now, use a simpler strategy
@@ -114,8 +115,9 @@ export const getHint = (state: GameState): Guess | null => {
   if (!isGameActive(state)) return null
 
   // Generate a reasonable hint based on previous guesses
-  const possibleGuesses = generateAllPossibleCodes(state.codeLength, state.availableColors)
-    .filter(code => isPossibleGuess(code, state.guesses))
+  const possibleGuesses = generateAllPossibleCodes(state.codeLength, state.availableColors).filter(
+    (code) => isPossibleGuess(code, state.guesses),
+  )
 
   if (possibleGuesses.length === 0) return null
 
@@ -126,8 +128,9 @@ export const getHint = (state: GameState): Guess | null => {
 
 // Check if the game can be solved with current information
 export const isSolvable = (state: GameState): boolean => {
-  const possibleCodes = generateAllPossibleCodes(state.codeLength, state.availableColors)
-    .filter(code => isPossibleGuess(code, state.guesses))
+  const possibleCodes = generateAllPossibleCodes(state.codeLength, state.availableColors).filter(
+    (code) => isPossibleGuess(code, state.guesses),
+  )
 
   return possibleCodes.length > 0
 }

@@ -1,6 +1,6 @@
 /**
  * Power Bingo - Variant-Specific Constants
- * 
+ *
  * Power Bingo introduces a power-up system that allows players to activate
  * special abilities to gain strategic advantages. Power-ups are earned based
  * on difficulty and pattern completion frequency.
@@ -8,10 +8,10 @@
 
 /**
  * Power-up earning rates
- * 
+ *
  * Players earn power-ups based on how many patterns they complete relative to difficulty.
  * Values represent how many patterns must be completed to earn one power-up.
- * 
+ *
  * Examples:
  * - Easy (1): One power-up earned every 1 pattern completed
  * - Medium (1.5): One power-up earned every 1.5 patterns (roughly 67% of patterns)
@@ -27,7 +27,7 @@ export const POWER_UP_EARNING_RATES = {
 
 /**
  * Power-up inventory limits
- * 
+ *
  * How many of each type a player can hold at once
  */
 export const POWER_UP_INVENTORY_LIMITS = {
@@ -37,6 +37,11 @@ export const POWER_UP_INVENTORY_LIMITS = {
   shield: 2, // Max 2 shield power-ups
   timeExtend: 3, // Max 3 time extension power-ups
 } as const
+
+export const POWER_UP_INVENTORY_MAX = Object.values(POWER_UP_INVENTORY_LIMITS).reduce(
+  (total, limit) => total + limit,
+  0,
+)
 
 /**
  * Power-up effect durations and quantities
@@ -73,7 +78,7 @@ export const POWER_UP_EFFECTS = {
 
 /**
  * Power-up activation requirements
- * 
+ *
  * Conditions that must be met to use each power-up
  */
 export const POWER_UP_ACTIVATION_REQUIREMENTS = {
@@ -103,7 +108,7 @@ export const POWER_UP_ACTIVATION_REQUIREMENTS = {
 
 /**
  * Power-up drop rates and weight system
- * 
+ *
  * Determines which power-ups appear more frequently
  * Higher weight = more common
  */
@@ -132,7 +137,7 @@ export const POWER_UP_RARITIES = {
 
 /**
  * Difficulty-specific power-up availability
- * 
+ *
  * Some power-ups may be disabled on certain difficulties
  */
 export const DIFFICULTY_POWER_UP_AVAILABILITY = {
@@ -156,7 +161,7 @@ export const DIFFICULTY_POWER_UP_AVAILABILITY = {
 
 /**
  * Strategic power-up combinations
- * 
+ *
  * Bonus points for using multiple power-ups in same round
  */
 export const POWER_UP_COMBO_BONUSES = {
@@ -171,9 +176,7 @@ export const POWER_UP_COMBO_BONUSES = {
  * @param difficulty - Game difficulty ('easy' | 'medium' | 'hard' | 'expert')
  * @returns Patterns required per power-up earned
  */
-export const getPowerUpEarningRate = (
-  difficulty: keyof typeof POWER_UP_EARNING_RATES
-): number => {
+export const getPowerUpEarningRate = (difficulty: keyof typeof POWER_UP_EARNING_RATES): number => {
   return POWER_UP_EARNING_RATES[difficulty] ?? POWER_UP_EARNING_RATES.medium
 }
 
@@ -185,7 +188,7 @@ export const getPowerUpEarningRate = (
  */
 export const isPowerUpAvailable = (
   powerUpType: string,
-  difficulty: keyof typeof DIFFICULTY_POWER_UP_AVAILABILITY
+  difficulty: keyof typeof DIFFICULTY_POWER_UP_AVAILABILITY,
 ): boolean => {
   const availability = DIFFICULTY_POWER_UP_AVAILABILITY[difficulty]
   return availability?.available.includes(powerUpType) ?? false

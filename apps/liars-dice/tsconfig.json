@@ -51,6 +51,9 @@
       "@games/theme-context": [
         "../../packages/theme-context/src"
       ]
+      "@games/diagnostics-utils": [
+        "../../packages/diagnostics-utils/src"
+      ],
     }
   },
   "include": [

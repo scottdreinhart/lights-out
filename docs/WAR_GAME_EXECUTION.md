@@ -443,17 +443,17 @@ pnpm test
 
 ## 📚 Checklist: Before Moving to Game 3
 
-- [ ] All 20+ files created ✅
-- [ ] `pnpm install` completes ✅
-- [ ] `pnpm dev` launches game at http://localhost:5173 ✅
-- [ ] Game displays "War" title ✅
-- [ ] "Draw Card" button visible ✅
-- [ ] Click "Draw Card" — shows two cards ✅
-- [ ] `pnpm validate` passes (lint + typecheck) ✅
-- [ ] 10+ unit tests written & passing ✅
-- [ ] 5+ component tests written & passing ✅
-- [ ] Responsive CSS works (test on mobile/tablet/desktop) ✅
-- [ ] WCAG AA accessibility verified ✅
+- [x] All 20+ files created ✅
+- [x] `pnpm install` completes ✅
+- [x] `pnpm dev` launches game at http://localhost:5173 ✅
+- [x] Game displays "War" title ✅
+- [x] "Draw Card" button visible ✅
+- [x] Click "Draw Card" — shows two cards ✅
+- [x] `pnpm validate` passes (lint + typecheck) ✅
+- [x] 10+ unit tests written & passing ✅
+- [x] 5+ component tests written & passing ✅
+- [x] Responsive CSS works (test on mobile/tablet/desktop) ✅
+- [x] WCAG AA accessibility verified ✅
 
 ---
 

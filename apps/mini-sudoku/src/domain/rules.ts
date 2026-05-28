@@ -4,34 +4,47 @@
  */
 
 import { getBoxIndex, getCellsInBox, getCellsInCol, getCellsInRow, parseCellId } from './constants'
-import type { Board, CellConflict, CellValue, Difficulty, MiniSudokuState } from './types'
 import { createPuzzleAtDifficulty } from './templates'
+import type { Board, CellConflict, CellValue, Difficulty, MiniSudokuState } from './types'
 
 /**
  * Check if a value assignment is valid (no conflicts)
  */
 export function isValidMove(board: Board, cellId: string, value: CellValue): boolean {
-  if (!value) {return true} // Clearing is always valid
+  if (!value) {
+    return true
+  } // Clearing is always valid
 
   const cell = board.get(cellId)
-  if (!cell || cell.isGiven) {return false} // Can't move given cell
+  if (!cell || cell.isGiven) {
+    return false
+  } // Can't move given cell
 
   const { row, col } = parseCellId(cellId)
 
   // Check uniqueness in row, column, and box
-  return isValueUniqueInRow(board, row, cellId, value) &&
-         isValueUniqueInCol(board, col, cellId, value) &&
-         isValueUniqueInBox(board, row, col, cellId, value)
+  return (
+    isValueUniqueInRow(board, row, cellId, value) &&
+    isValueUniqueInCol(board, col, cellId, value) &&
+    isValueUniqueInBox(board, row, col, cellId, value)
+  )
 }
 
 /**
  * Check if value is unique in the given row (excluding the current cell)
  */
-function isValueUniqueInRow(board: Board, row: number, excludeCellId: string, value: CellValue): boolean {
+function isValueUniqueInRow(
+  board: Board,
+  row: number,
+  excludeCellId: string,
+  value: CellValue,
+): boolean {
   for (const otherCellId of getCellsInRow(row)) {
     if (otherCellId !== excludeCellId) {
       const other = board.get(otherCellId)
-      if (other?.value === value) {return false}
+      if (other?.value === value) {
+        return false
+      }
     }
   }
   return true
@@ -40,11 +53,18 @@ function isValueUniqueInRow(board: Board, row: number, excludeCellId: string, va
 /**
  * Check if value is unique in the given column (excluding the current cell)
  */
-function isValueUniqueInCol(board: Board, col: number, excludeCellId: string, value: CellValue): boolean {
+function isValueUniqueInCol(
+  board: Board,
+  col: number,
+  excludeCellId: string,
+  value: CellValue,
+): boolean {
   for (const otherCellId of getCellsInCol(col)) {
     if (otherCellId !== excludeCellId) {
       const other = board.get(otherCellId)
-      if (other?.value === value) {return false}
+      if (other?.value === value) {
+        return false
+      }
     }
   }
   return true
@@ -53,12 +73,20 @@ function isValueUniqueInCol(board: Board, col: number, excludeCellId: string, va
 /**
  * Check if value is unique in the box containing the given cell (excluding the current cell)
  */
-function isValueUniqueInBox(board: Board, row: number, col: number, excludeCellId: string, value: CellValue): boolean {
+function isValueUniqueInBox(
+  board: Board,
+  row: number,
+  col: number,
+  excludeCellId: string,
+  value: CellValue,
+): boolean {
   const boxIndex = getBoxIndex(row, col)
   for (const otherCellId of getCellsInBox(boxIndex)) {
     if (otherCellId !== excludeCellId) {
       const other = board.get(otherCellId)
-      if (other?.value === value) {return false}
+      if (other?.value === value) {
+        return false
+      }
     }
   }
   return true
@@ -67,12 +95,7 @@ function isValueUniqueInBox(board: Board, row: number, col: number, excludeCellI
 /**
  * Find conflicting cells in a row for a given value
  */
-function findConflictsInRow(
-  board: Board,
-  cellId: string,
-  value: CellValue,
-  row: number,
-): string[] {
+function findConflictsInRow(board: Board, cellId: string, value: CellValue, row: number): string[] {
   const conflicts: string[] = []
   for (const otherId of getCellsInRow(row)) {
     if (otherId !== cellId) {
@@ -88,12 +111,7 @@ function findConflictsInRow(
 /**
  * Find conflicting cells in a column for a given value
  */
-function findConflictsInCol(
-  board: Board,
-  cellId: string,
-  value: CellValue,
-  col: number,
-): string[] {
+function findConflictsInCol(board: Board, cellId: string, value: CellValue, col: number): string[] {
   const conflicts: string[] = []
   for (const otherId of getCellsInCol(col)) {
     if (otherId !== cellId) {
@@ -135,7 +153,9 @@ export function getConflictingCells(
   cellId: string,
   value: CellValue,
 ): CellConflict[] {
-  if (!value) {return []} // No conflicts when clearing
+  if (!value) {
+    return []
+  } // No conflicts when clearing
 
   const conflicts: CellConflict[] = []
   const { row, col } = parseCellId(cellId)
@@ -179,7 +199,9 @@ export function getConflictingCells(
  */
 export function isComplete(board: Board): boolean {
   for (const cell of board.values()) {
-    if (!cell.value) {return false}
+    if (!cell.value) {
+      return false
+    }
   }
   return true
 }
@@ -191,8 +213,12 @@ function isRowValid(board: Board, row: number): boolean {
   const values = new Set<CellValue>()
   for (const cellId of getCellsInRow(row)) {
     const cell = board.get(cellId)
-    if (!cell?.value) {return false}
-    if (values.has(cell.value)) {return false}
+    if (!cell?.value) {
+      return false
+    }
+    if (values.has(cell.value)) {
+      return false
+    }
     values.add(cell.value)
   }
   return values.size === 4
@@ -205,8 +231,12 @@ function isColValid(board: Board, col: number): boolean {
   const values = new Set<CellValue>()
   for (const cellId of getCellsInCol(col)) {
     const cell = board.get(cellId)
-    if (!cell?.value) {return false}
-    if (values.has(cell.value)) {return false}
+    if (!cell?.value) {
+      return false
+    }
+    if (values.has(cell.value)) {
+      return false
+    }
     values.add(cell.value)
   }
   return values.size === 4
@@ -219,8 +249,12 @@ function isBoxValid(board: Board, box: number): boolean {
   const values = new Set<CellValue>()
   for (const cellId of getCellsInBox(box)) {
     const cell = board.get(cellId)
-    if (!cell?.value) {return false}
-    if (values.has(cell.value)) {return false}
+    if (!cell?.value) {
+      return false
+    }
+    if (values.has(cell.value)) {
+      return false
+    }
     values.add(cell.value)
   }
   return values.size === 4
@@ -230,21 +264,29 @@ function isBoxValid(board: Board, box: number): boolean {
  * Check if puzzle is solved (complete and valid)
  */
 export function isSolved(board: Board): boolean {
-  if (!isComplete(board)) {return false}
+  if (!isComplete(board)) {
+    return false
+  }
 
   // Verify all rows are valid
   for (let row = 0; row < 4; row++) {
-    if (!isRowValid(board, row)) {return false}
+    if (!isRowValid(board, row)) {
+      return false
+    }
   }
 
   // Verify all columns are valid
   for (let col = 0; col < 4; col++) {
-    if (!isColValid(board, col)) {return false}
+    if (!isColValid(board, col)) {
+      return false
+    }
   }
 
   // Verify all boxes are valid
   for (let box = 0; box < 4; box++) {
-    if (!isBoxValid(board, box)) {return false}
+    if (!isBoxValid(board, box)) {
+      return false
+    }
   }
 
   return true
@@ -256,7 +298,9 @@ export function isSolved(board: Board): boolean {
 export function countEmpty(board: Board): number {
   let count = 0
   for (const cell of board.values()) {
-    if (!cell.value) {count++}
+    if (!cell.value) {
+      count++
+    }
   }
   return count
 }
@@ -280,7 +324,9 @@ export function getCellsInRegion(regionType: 'row' | 'col' | 'box', index: numbe
  */
 export function updateCellCandidates(board: Board, cellId: string): void {
   const cell = board.get(cellId)
-  if (!cell || cell.value || cell.isGiven) {return}
+  if (!cell || cell.value || cell.isGiven) {
+    return
+  }
 
   const { row, col } = parseCellId(cellId)
   const boxIndex = getBoxIndex(row, col)
@@ -327,8 +373,12 @@ export function updateAllCandidates(board: Board): void {
  */
 export function getCellCandidates(board: Board, cellId: string): Set<CellValue> {
   const cell = board.get(cellId)
-  if (!cell) {return new Set()}
-  if (cell.value) {return new Set()}
+  if (!cell) {
+    return new Set()
+  }
+  if (cell.value) {
+    return new Set()
+  }
   return new Set(cell.candidates)
 }
 
@@ -367,7 +417,12 @@ export function isGameComplete(gameState: MiniSudokuState): boolean {
 /**
  * Make a move on the game state
  */
-export function makeMove(gameState: MiniSudokuState, row: number, col: number, value: CellValue): MiniSudokuState {
+export function makeMove(
+  gameState: MiniSudokuState,
+  row: number,
+  col: number,
+  value: CellValue,
+): MiniSudokuState {
   const cellId = `r${row}c${col}`
   const cell = gameState.board.get(cellId)
 

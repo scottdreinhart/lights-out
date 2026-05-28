@@ -1,6 +1,6 @@
-import React from 'react'
-import { BoardGrid as SharedBoardGrid } from '@games/ui-board-core'
 import { useResponsiveState } from '@games/common'
+import { BoardGrid as SharedBoardGrid } from '@games/ui-board-core'
+import React from 'react'
 import styles from './BoardGrid.module.css'
 
 export interface BoardGridProps {
@@ -48,9 +48,11 @@ export const BoardGrid: React.FC<BoardGridProps> = ({
       {selectedColumn !== null && selectedColumn !== undefined && (
         <div
           className={styles.columnIndicator}
-          style={{
-            '--indicator-position': `calc((100% / ${cols}) * ${selectedColumn} + (100% / ${cols}) / 2)`,
-          } as React.CSSProperties}
+          style={
+            {
+              '--indicator-position': `calc((100% / ${cols}) * ${selectedColumn} + (100% / ${cols}) / 2)`,
+            } as React.CSSProperties
+          }
           aria-label={`Column ${selectedColumn + 1} selected`}
         />
       )}

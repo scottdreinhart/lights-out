@@ -1,0 +1,16 @@
+{
+  "name": "Angle War Game",
+  "short_name": "Angle War",
+  "description": "Tune trajectory and force, then commit to high-value artillery shots.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#111827",
+  "background_color": "#0b1020",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}

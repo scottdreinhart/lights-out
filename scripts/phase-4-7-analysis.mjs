@@ -13,6 +13,36 @@
 import { readdirSync, statSync } from 'fs'
 import { join } from 'path'
 
+// ANSI color codes
+const COLORS = {
+  CYAN: '\x1b[96m',
+  GREEN: '\x1b[92m',
+  RED: '\x1b[91m',
+  YELLOW: '\x1b[93m',
+  WHITE: '\x1b[97m',
+  BLUE: '\x1b[94m',
+  MAGENTA: '\x1b[95m',
+  RESET: '\x1b[0m',
+  BOLD: '\x1b[1m',
+}
+
+/**
+ * Standardized boxed header for terminal output
+ */
+function boxedHeader(title, color = COLORS.BLUE) {
+  const width = 80
+  const horizontalLine = '═'.repeat(width - 2)
+  
+  console.log(`\n${COLORS.WHITE}╔${horizontalLine}╗${COLORS.RESET}`)
+  
+  const paddingTotal = width - 2 - title.length
+  const paddingLeft = Math.floor(paddingTotal / 2)
+  const paddingRight = paddingTotal - paddingLeft
+  
+  console.log(`${COLORS.WHITE}║${' '.repeat(paddingLeft)}${COLORS.BOLD}${color}${title}${COLORS.RESET}${COLORS.WHITE}${' '.repeat(paddingRight)}║${COLORS.RESET}`)
+  console.log(`${COLORS.WHITE}╚${horizontalLine}╝${COLORS.RESET}\n`)
+}
+
 const APPS_DIR = './apps'
 const REPO_ROOT = process.cwd()
 
@@ -24,9 +54,8 @@ const appDirs = readdirSync(APPS_DIR)
   })
   .sort()
 
-console.log(`\n📊 PHASE 4-7 DECOMPOSITION ANALYSIS`)
-console.log(`${'='.repeat(70)}`)
-console.log(`\nAnalyzing ${appDirs.length} apps for consolidation opportunities...\n`)
+boxedHeader('PHASE 4-7 DECOMPOSITION ANALYSIS', COLORS.CYAN)
+console.log(`Analyzing ${appDirs.length} apps for consolidation opportunities...\n`)
 
 // Analysis results collection
 const analysis = {

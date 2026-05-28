@@ -1,1 +1,5 @@
 export { useSimonSays } from './useSimonSays'
+export { useSimonSays as useGame } from './useSimonSays'
+export { useStats } from './useStats'
+export { default as useTheme } from './useTheme'
+export { useSoundEffects } from './useSoundEffects'

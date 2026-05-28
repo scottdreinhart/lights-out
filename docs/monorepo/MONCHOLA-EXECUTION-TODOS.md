@@ -70,4 +70,4 @@ Platform evidence artifact:
 
 - [x] (`DONE`) Update PR body with candidate-selection evidence links.
 - [x] (`DONE`) Include risk/mitigation + rollback notes.
-- [ ] (`IN PROGRESS`) Confirm exit criteria in runbook are all checked (CI job pass pending).
+- [x] (`DONE`) Confirm exit criteria in runbook are all checked (`pnpm --filter @games/monchola validate` passed locally on 2026-04-26).

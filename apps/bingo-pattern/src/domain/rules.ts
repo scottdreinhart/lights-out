@@ -1,11 +1,6 @@
-import type { GameState } from './types'
-import {
-  generateCard,
-  markNumber,
-  hasWon,
-  getWinningPatterns,
-} from './card'
+import { generateCard, getWinningPatterns, hasWon, markNumber } from './card'
 import { ALL_NUMBERS } from './constants'
+import type { GameState } from './types'
 
 /**
  * Create initial game state
@@ -22,11 +17,11 @@ export const createGameState = (): GameState => ({
  * Draw a number (from available pool)
  */
 export const drawNumber = (state: GameState): GameState => {
-  if (!state.gameActive) return state
+  if (!state.gameActive) {
+    return state
+  }
 
-  const available = ALL_NUMBERS.filter(
-    (n) => !state.drawnNumbers.has(n),
-  )
+  const available = ALL_NUMBERS.filter((n) => !state.drawnNumbers.has(n))
 
   if (available.length === 0) {
     return { ...state, gameActive: false }

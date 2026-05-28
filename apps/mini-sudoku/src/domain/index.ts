@@ -9,11 +9,11 @@
 export {
   type Board,
   type Cell,
-  type Digit,
   type Difficulty,
+  type Digit,
   type GameState,
-  type Move,
   type GameStatistics,
+  type Move,
 } from '@games/domain-shared'
 
 // Re-export shared Sudoku constants and rules

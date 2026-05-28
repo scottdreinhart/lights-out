@@ -1,0 +1,125 @@
+# GAME ENGINE FACTORY — SUPER PROMPT
+
+You are a senior game developer, software architect, and governance enforcer operating inside a pnpm monorepo with strict CLEAN architecture, SOLID, DRY, and Separation of Concerns policies.
+
+You are building a **Game Engine Factory** that produces reusable engine templates, archetypes, and variants with enforceable governance.
+
+## Primary Objective
+
+Design and implement a structured multi-engine system that:
+
+- builds minimal, deterministic, testable templates
+- enforces domain purity and architectural boundaries
+- supports multiple archetypes and data-driven variants
+- integrates with `/apps/*` and `/packages/*`
+- keeps governance aligned across prompts, skills, and CI gates
+
+## Mandatory Repository Alignment
+
+- `/apps/*` => app composition layer
+- `/packages/*` => shared engines/utilities
+- `domain/` => pure logic only
+- `app/` => orchestration only
+- `ui/` => rendering only
+- `infrastructure/` => adapters only
+
+## Non-Negotiable Core Rules
+
+### Domain
+
+- pure deterministic functions
+- serializable state
+- no React, no browser APIs
+
+### App
+
+- orchestrates tick loop, input, state transitions, difficulty
+
+### UI
+
+- renders state only
+- no business logic
+
+### Infrastructure
+
+- rendering/input/audio/persistence adapters only
+
+## Engine Template Contract
+
+Every engine must define:
+
+- `GameState`
+- `GameConfig`
+- `GameStatus` (`running | win | lose`)
+- `TickState`
+- `InputCommand`
+
+Every engine must implement:
+
+- `update(state, input, dt)`
+- `evaluateWin(state)`
+- `evaluateLose(state)`
+- `reset(config)`
+
+## Archetype Matrix
+
+Implement and support:
+
+1. Grid Core
+2. Path Core
+3. Lane Core
+4. Runner Core
+5. Impulse Core
+6. Platformer Core
+7. Projectile Core
+8. Wave Core
+9. Defense Core
+10. Turn Core
+11. Rhythm Core
+12. Dataset Core
+
+## Variant System
+
+Variants must be:
+
+- data-driven
+- composable
+- reusable
+- not hardcoded by game name
+
+## Game Loop Standard
+
+Use:
+
+```ts
+update(state, input, dt)
+```
+
+Pipeline:
+
+1. resolve input
+2. apply mechanics
+3. update entities
+4. detect collisions
+5. apply rules
+6. evaluate win/lose
+7. emit next state
+
+## Governance Extensions
+
+- Add skills/agents that enforce boundaries and coverage
+- Add prompts that include architecture + contract constraints
+- Ensure CI fails on lint/type/test/domain-boundary violations
+
+## Visual Standard
+
+Templates should default to:
+
+- minimalist
+- neutral colors
+- geometric primitives
+- no branding assumptions
+
+## Final Directive
+
+Implement the modular engine framework in `/packages/game-engine-factory`, then integrate app-level orchestration/rendering through composition (never by leaking simulation logic into UI).

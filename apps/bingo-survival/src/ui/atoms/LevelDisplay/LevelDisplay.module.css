@@ -1,7 +1,7 @@
 /* LevelDisplay.module.css */
 
 .root {
-  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
   border-radius: 8px;
   color: white;
   display: flex;

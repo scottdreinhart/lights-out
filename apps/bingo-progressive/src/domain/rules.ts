@@ -21,7 +21,7 @@ export function createGameState(cardCount: number = 1): GameState {
     gameActive: true,
     currentDrawn: null,
     level: 1,
-    jackpot: BASE_JACKPOT
+    jackpot: BASE_JACKPOT,
   }
 }
 
@@ -44,7 +44,7 @@ export function drawNumber(state: GameState): DrawResult | null {
   const markedCards = markNumber(state.cards, number)
   const newWinners: string[] = []
 
-  markedCards.forEach((card, idx) => {
+  markedCards.forEach((card) => {
     if (!state.winners.includes(card.id) && isWinner(card)) {
       newWinners.push(card.id)
     }
@@ -66,7 +66,7 @@ export function drawNumber(state: GameState): DrawResult | null {
   return {
     number,
     drawnCount: newDrawnNumbers.size,
-    totalNumbers: ALL_NUMBERS.length
+    totalNumbers: ALL_NUMBERS.length,
   }
 }
 
@@ -102,9 +102,11 @@ export function getJackpot(state: GameState): number {
  * Get hint positions for the last drawn number
  */
 export function getHints(state: GameState): number[] {
-  if (!state.currentDrawn) return []
+  if (!state.currentDrawn) {
+    return []
+  }
   const positions: number[] = []
-  state.cards.forEach(card => {
+  state.cards.forEach((card) => {
     card.squares.forEach((square, idx) => {
       if (square === state.currentDrawn) {
         positions.push(idx)

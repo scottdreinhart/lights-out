@@ -23,6 +23,19 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const projectRoot = path.resolve(__dirname, '..')
 const distDir = path.join(projectRoot, 'dist')
 
+// ANSI color codes
+const COLORS = {
+  CYAN: '\x1b[96m',
+  GREEN: '\x1b[92m',
+  RED: '\x1b[91m',
+  YELLOW: '\x1b[93m',
+  WHITE: '\x1b[97m',
+  BLUE: '\x1b[94m',
+  GRAY: '\x1b[90m',
+  RESET: '\x1b[0m',
+  BOLD: '\x1b[1m',
+}
+
 // Budget thresholds per AGENTS.md § 30
 const BUDGETS = {
   css: {
@@ -66,7 +79,7 @@ function colorize(text, status) {
 
 function validateBudgets() {
   if (!fs.existsSync(distDir)) {
-    console.error('❌ dist/ directory not found. Run `pnpm build` first.')
+    console.error(`${COLORS.RED}${COLORS.BOLD}❌ dist/ directory not found. Run \`pnpm build\` first.${COLORS.RESET}`)
     process.exit(1)
   }
 
@@ -107,8 +120,8 @@ function validateBudgets() {
   })
 
   // Validate CSS Critical Path
-  console.log('\n📊 CSS Performance Metrics (Per AGENTS.md § 30):')
-  console.log('─'.repeat(60))
+  console.log(`${COLORS.BLUE}${COLORS.BOLD}\n📊 CSS Performance Metrics${COLORS.RESET}`)
+  console.log(`${COLORS.GRAY}${'─'.repeat(60)}${COLORS.RESET}`)
 
   const cssStatus =
     cssTotal > BUDGETS.css.critical.fail

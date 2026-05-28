@@ -2,9 +2,9 @@ name: Quality Gate & WCAG Validation
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main, develop ]
+    branches: [main, develop]
 
 jobs:
   validate:
@@ -35,3 +35,12 @@ jobs:
 
       - name: Run Build
         run: pnpm build
+
+      - name: Rebuild strict feature matrix
+        run: pnpm exec node scripts/rebuild-feature-implementation-matrix.mjs
+
+      - name: Rebuild security adoption audit
+        run: pnpm exec node scripts/rollout-security-modules.mjs
+
+      - name: Enforce strict compliance thresholds
+        run: pnpm validate:feature-thresholds

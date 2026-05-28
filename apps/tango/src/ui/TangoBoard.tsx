@@ -5,7 +5,6 @@
 
 import React from 'react'
 import type { Board, Position } from '../domain'
-import { TILE_COLORS } from '../domain'
 import styles from './TangoBoard.module.css'
 
 interface TangoBoardProps {
@@ -24,9 +23,8 @@ export const TangoBoard: React.FC<TangoBoardProps> = ({
   const renderTile = (row: number, col: number) => {
     const value = board[row][col]
     const isEmpty = value === 0
-    const isHighlighted = highlightedTile &&
-      highlightedTile.row === row &&
-      highlightedTile.col === col
+    const isHighlighted =
+      highlightedTile && highlightedTile.row === row && highlightedTile.col === col
 
     let className = styles.tile
     if (isEmpty) className += ` ${styles.empty}`
@@ -47,11 +45,7 @@ export const TangoBoard: React.FC<TangoBoardProps> = ({
           }
         }}
       >
-        {!isEmpty && (
-          <span className={styles.tileNumber}>
-            {value}
-          </span>
-        )}
+        {!isEmpty && <span className={styles.tileNumber}>{value}</span>}
       </div>
     )
   }
@@ -63,9 +57,7 @@ export const TangoBoard: React.FC<TangoBoardProps> = ({
       role="grid"
       aria-label={`Tango puzzle board of size ${size}x${size}`}
     >
-      {board.map((row, rowIndex) =>
-        row.map((_, colIndex) => renderTile(rowIndex, colIndex))
-      )}
+      {board.map((row, rowIndex) => row.map((_, colIndex) => renderTile(rowIndex, colIndex)))}
     </div>
   )
 }

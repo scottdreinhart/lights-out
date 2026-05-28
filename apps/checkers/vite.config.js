@@ -1,26 +1,27 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { visualizer } from 'rollup-plugin-visualizer'
 import path from 'path'
+import { defineConfig } from 'vite'
+import {
+  createOptimizedBuild,
+  createOptimizedPlugins,
+  createOptimizedResolve,
+} from '../../scripts/vite/createOptimizedViteConfig.mjs'
 
 export default defineConfig({
   base: './',
-  plugins: [
-    react(),
-    visualizer({
-      filename: 'dist/bundle-report.html',
-      gzipSize: true,
-      brotliSize: true,
-      open: false,
-    }),
-  ],
+  plugins: createOptimizedPlugins(),
   resolve: {
+    ...createOptimizedResolve(),
     alias: {
       '@': path.resolve(__dirname, 'src'),
       '@/domain': path.resolve(__dirname, 'src/domain'),
       '@/app': path.resolve(__dirname, 'src/app'),
       '@/ui': path.resolve(__dirname, 'src/ui'),
       '@games/ai-framework': path.resolve(__dirname, '../../packages/ai-framework/src'),
+      '@games/bingo-ui-components': path.resolve(
+        __dirname,
+        '../../packages/bingo-ui-components/src',
+      ),
+      '@games/ui-board-core': path.resolve(__dirname, '../../packages/ui-board-core/src'),
       '@games/app-hook-utils': path.resolve(__dirname, '../../packages/app-hook-utils/src'),
       '@games/assets-shared': path.resolve(__dirname, '../../packages/assets-shared/src'),
       '@games/card-deck-core': path.resolve(__dirname, '../../packages/card-deck-core/src'),
@@ -41,29 +42,8 @@ export default defineConfig({
       '@games/ui-utils': path.resolve(__dirname, '../../packages/ui-utils/src'),
     },
   },
-  build: {
-    target: 'es2020',
-    cssTarget: 'es2020',
-    modulePreload: { polyfill: false },
-    minify: 'esbuild',
-    cssMinify: true,
-    rollupOptions: {
-    external: [
-      '@capacitor/core',
-      '@capacitor/app',
-      '@capacitor/device',
-      '@capacitor/preferences',
-      '@capacitor/haptics',
-      '@capacitor/splash-screen',
-      '@capacitor/keyboard',
-    ],
-      output: {
-        manualChunks: {
-          react: ['react', 'react-dom'],
-        },
-      },
-    },
-  },
+
+  build: createOptimizedBuild(),
   server: {
     host: '0.0.0.0',
     port: 5173,

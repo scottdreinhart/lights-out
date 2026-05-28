@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react'
 
 type AppPhase = 'splash' | 'playing' | 'help'
 
-export default function App() {
+export function App() {
   const [phase, setPhase] = useState<AppPhase>('splash')
 
   const handleSplashComplete = useCallback(() => {
@@ -45,3 +45,5 @@ export default function App() {
     </div>
   )
 }
+
+export default App

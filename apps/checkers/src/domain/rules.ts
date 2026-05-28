@@ -11,7 +11,7 @@ import {
   positionKey,
   positionToNotation,
 } from './board'
-import type { Board, Move, MoveResult, Piece, Player, Position, Winner } from './types'
+import type { Board, GameState, Move, MoveResult, Piece, Player, Position, Winner } from './types'
 
 const RED_DIRECTIONS: readonly Position[] = [
   { row: -1, col: -1 },
@@ -192,6 +192,17 @@ export const getWinner = (board: Board): Winner => {
   }
 
   return null
+}
+
+export const createGameState = (board: Board, currentPlayer: Player): GameState => {
+  const winner = getWinner(board)
+
+  return {
+    board,
+    currentPlayer,
+    legalMoves: winner ? [] : getLegalMoves(board, currentPlayer),
+    winner,
+  }
 }
 
 export const formatMove = (move: Move): string => {

@@ -637,7 +637,7 @@
         <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 20px;">
           <div>
             <h1>🎮 Game Platform Compliance Dashboard</h1>
-            <p>Track deployment readiness across 44 games and 10 platforms</p>
+            <p id="readinessSummary">Track deployment readiness across all games and platforms</p>
           </div>
           <div style="text-align: right; font-size: 12px; color: #666;">
             <div>Last refresh: <span id="lastRefresh">Just now</span></div>
@@ -698,6 +698,9 @@
         <button class="report-tab" onclick="switchReport('compliance-metrics')">
           ✅ Quality Metrics
         </button>
+        <button class="report-tab" onclick="switchReport('semantic-actions')">
+          🔁 Build + QA Actions
+        </button>
         <button class="report-tab" onclick="switchReport('coverage')">
           📊 Coverage Matrix
         </button>
@@ -708,6 +711,9 @@
           🏗️ Architecture
         </button>
         <button class="report-tab" onclick="switchReport('features')">🔧 Code Reuse</button>
+        <button class="report-tab" onclick="switchReport('shared-packages')">
+          📦 Shared Packages
+        </button>
         <button class="report-tab" onclick="switchReport('wasm')">⚡ WASM Status</button>
         <button class="report-tab" onclick="switchReport('platforms')">🌐 Platform Ready</button>
         <button class="report-tab" onclick="switchReport('types')">🎮 Game Types</button>
@@ -846,6 +852,11 @@
         <div id="complianceMetricsContent"></div>
       </div>
 
+      <div id="semantic-actions-report" class="report-container">
+        <h2 style="margin-bottom: 15px; color: #333">🔁 Build + QA Semantic Actions</h2>
+        <div id="semanticActionsContent"></div>
+      </div>
+
       <div id="coverage-report" class="report-container">
         <div class="matrix-container">
           <h2 style="margin-bottom: 15px; color: #333">Coverage Matrix</h2>
@@ -894,6 +905,10 @@
 
       <div id="features-report" class="report-container">
         <!-- Features report will be rendered here -->
+      </div>
+
+      <div id="shared-packages-report" class="report-container">
+        <!-- Shared package matrix report will be rendered here -->
       </div>
 
       <div id="wasm-report" class="report-container">
@@ -947,6 +962,14 @@
         matrix: null,
         baseline: null,
         blockers: null,
+        platformApprovalReport: null,
+        platformApprovalMatrix: null,
+        platformRequirementsCatalog: null,
+        arcadeTargets: null,
+        arcadeRequirements: null,
+        bundleMetrics: null,
+        sharedPackageCoverage: null,
+        semanticActions: null,
       }
 
       let currentFilters = {
@@ -1021,11 +1044,33 @@
           complianceData.matrix = await matrixRes.json()
 
           // Load other files but don't fail if missing
-          const [sourcesRes, baselineRes, blockersRes, wasmProfilesRes] = await Promise.all([
+          const [
+            sourcesRes,
+            baselineRes,
+            blockersRes,
+            wasmProfilesRes,
+            platformApprovalReportRes,
+            platformApprovalMatrixRes,
+            platformRequirementsCatalogRes,
+            arcadeTargetsRes,
+            arcadeRequirementsRes,
+              bundleMetricsRes,
+              sharedPackageCoverageRes,
+              semanticActionsRes,
+          ] =
+            await Promise.all([
             fetch('./sources.json').catch(() => ({ ok: false })),
             fetch('./baseline.json').catch(() => ({ ok: false })),
             fetch('./blockers.json').catch(() => ({ ok: false })),
             fetch('./wasm-profiles.json').catch(() => ({ ok: false })),
+            fetch('./platform-approval-report.json').catch(() => ({ ok: false })),
+            fetch('./platform-approval-matrix.json').catch(() => ({ ok: false })),
+            fetch('./platform-requirements-catalog.json').catch(() => ({ ok: false })),
+            fetch('./arcade-upconversion-targets.json').catch(() => ({ ok: false })),
+            fetch('../scripts/config/arcade-upconversion-requirements.json').catch(() => ({ ok: false })),
+            fetch('./bundle-metrics.json').catch(() => ({ ok: false })),
+            fetch('./shared-package-coverage.json').catch(() => ({ ok: false })),
+            fetch('./semantic-actions.json').catch(() => ({ ok: false })),
           ])
 
           if (sourcesRes.ok) {
@@ -1039,6 +1084,30 @@
           }
           if (wasmProfilesRes.ok) {
             complianceData.wasmProfiles = await wasmProfilesRes.json()
+          }
+          if (platformApprovalReportRes.ok) {
+            complianceData.platformApprovalReport = await platformApprovalReportRes.json()
+          }
+          if (platformApprovalMatrixRes.ok) {
+            complianceData.platformApprovalMatrix = await platformApprovalMatrixRes.json()
+          }
+          if (platformRequirementsCatalogRes.ok) {
+            complianceData.platformRequirementsCatalog = await platformRequirementsCatalogRes.json()
+          }
+          if (arcadeTargetsRes.ok) {
+            complianceData.arcadeTargets = await arcadeTargetsRes.json()
+          }
+          if (arcadeRequirementsRes.ok) {
+            complianceData.arcadeRequirements = await arcadeRequirementsRes.json()
+          }
+          if (bundleMetricsRes.ok) {
+            complianceData.bundleMetrics = await bundleMetricsRes.json()
+          }
+          if (sharedPackageCoverageRes.ok) {
+            complianceData.sharedPackageCoverage = await sharedPackageCoverageRes.json()
+          }
+          if (semanticActionsRes.ok) {
+            complianceData.semanticActions = await semanticActionsRes.json()
           }
 
           renderDashboard()
@@ -1055,6 +1124,8 @@
                 <li>compliance/sources.json (for game-by-platform reports)</li>
                 <li>compliance/baseline.json (for game metrics)</li>
                 <li>compliance/blockers.json (for deployment blockers)</li>
+                <li>compliance/bundle-metrics.json (for root-build bundle telemetry)</li>
+                <li>compliance/shared-package-coverage.json (for app × shared package matrix)</li>
               </ul>
             </div>
           </div>
@@ -1113,6 +1184,9 @@
           case 'compliance-metrics':
             renderComplianceMetrics()
             break
+          case 'semantic-actions':
+            renderSemanticActionsReport()
+            break
           case 'coverage':
             renderMatrix()
             break
@@ -1128,6 +1202,9 @@
           case 'features':
             renderFeatureReport()
             break
+          case 'shared-packages':
+            renderSharedPackagesReport()
+            break
           case 'wasm':
             renderWasmReport()
             break
@@ -1142,10 +1219,17 @@
 
       function renderStats() {
         const { matrix } = complianceData
+        const readinessSummary = document.getElementById('readinessSummary')
         
         // Handle both data structures: app-level and game-by-platform
         let html = ''
         let totalStats = null
+        const gamesCount = matrix?.metadata?.games || (Array.isArray(matrix?.games) ? matrix.games.length : Object.keys(matrix?.apps || {}).length)
+        const platformsCount =
+          matrix?.metadata?.platforms || (Array.isArray(matrix?.platforms) ? matrix.platforms.length : 0)
+        if (readinessSummary && gamesCount > 0 && platformsCount > 0) {
+          readinessSummary.textContent = `Track deployment readiness across ${gamesCount} games and ${platformsCount} platforms`
+        }
 
         // If matrix has app-level data (apps field)
         if (matrix.apps) {
@@ -1331,6 +1415,113 @@
         }
       }
 
+      function renderSharedPackagesReport() {
+        const container = document.getElementById('shared-packages-report')
+        const data = complianceData.sharedPackageCoverage
+
+        if (!container) return
+        if (!data || !data.apps || !data.sharedPackages || !data.matrix) {
+          container.innerHTML =
+            '<div style="padding: 40px; text-align: center; color: #999;"><p>Shared package coverage data not available. Run <code>pnpm generate-shared-package-coverage</code>.</p></div>'
+          return
+        }
+
+        const apps = [...data.apps].sort((a, b) => a.app.localeCompare(b.app))
+        const sharedPackages = [...data.sharedPackages].sort((a, b) => b.usageCount - a.usageCount)
+
+        let html = `
+          <div style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <h3 style="margin-top: 0; color: #333; margin-bottom: 20px;">Shared Package Coverage Summary</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 20px;">
+              <div style="background: #dbeafe; border-radius: 8px; padding: 15px; border-left: 4px solid #2563eb;">
+                <div style="color: #1e3a8a; font-weight: bold; font-size: 24px;">${data.summary.appCount}</div>
+                <div style="color: #1e3a8a; font-size: 12px; text-transform: uppercase; margin-top: 5px;">Apps</div>
+              </div>
+              <div style="background: #dcfce7; border-radius: 8px; padding: 15px; border-left: 4px solid #16a34a;">
+                <div style="color: #166534; font-weight: bold; font-size: 24px;">${data.summary.sharedPackageCount}</div>
+                <div style="color: #166534; font-size: 12px; text-transform: uppercase; margin-top: 5px;">Shared Packages</div>
+              </div>
+              <div style="background: #fef3c7; border-radius: 8px; padding: 15px; border-left: 4px solid #d97706;">
+                <div style="color: #92400e; font-weight: bold; font-size: 24px;">${data.summary.appsUsingAnySharedPackage}</div>
+                <div style="color: #92400e; font-size: 12px; text-transform: uppercase; margin-top: 5px;">Apps Using Shared Packages</div>
+              </div>
+              <div style="background: #f3e8ff; border-radius: 8px; padding: 15px; border-left: 4px solid #9333ea;">
+                <div style="color: #6b21a8; font-weight: bold; font-size: 24px;">${data.summary.matrixUtilizationPercent}%</div>
+                <div style="color: #6b21a8; font-size: 12px; text-transform: uppercase; margin-top: 5px;">Matrix Utilization</div>
+              </div>
+            </div>
+            <div style="font-size: 12px; color: #666;">Generated: ${new Date(data.metadata.generatedAt).toLocaleString()}</div>
+          </div>
+          <div style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); overflow-x: auto;">
+            <h3 style="margin-top: 0; color: #333; margin-bottom: 14px;">App × Shared Package Matrix</h3>
+            <table class="matrix-table">
+              <thead>
+                <tr>
+                  <th>App</th>
+                  ${sharedPackages
+                    .map((pkg) => `<th title="${pkg.package} (${pkg.usageCount} apps)">${pkg.package.replace('@games/', '')}</th>`)
+                    .join('')}
+                  <th>Used</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${apps
+                  .map((appRow) => {
+                    const cells = sharedPackages
+                      .map((pkg) => {
+                        const cell = data.matrix[appRow.app]?.[pkg.package]
+                        if (!cell || !cell.used) return '<td class="cell not-started">—</td>'
+                        const sections = (cell.sections || []).join(', ')
+                        return `<td class="cell complete" title="${pkg.package} (${sections})">${cell.version || 'workspace:*'}</td>`
+                      })
+                      .join('')
+                    return `<tr>
+                      <td class="game-name">${appRow.app}</td>
+                      ${cells}
+                      <td class="cell ${appRow.usedPackageCount > 0 ? 'partial' : 'not-started'}">${appRow.usedPackageCount}/${sharedPackages.length}</td>
+                    </tr>`
+                  })
+                  .join('')}
+              </tbody>
+            </table>
+          </div>
+          <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); overflow-x: auto;">
+            <h3 style="margin-top: 0; color: #333; margin-bottom: 14px;">Shared Package Adoption</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+              <thead>
+                <tr style="background: #f3f4f6; border-bottom: 2px solid #e5e7eb;">
+                  <th style="padding: 10px; text-align: left;">Package</th>
+                  <th style="padding: 10px; text-align: left;">Workspace Folder</th>
+                  <th style="padding: 10px; text-align: center;">Apps Using</th>
+                  <th style="padding: 10px; text-align: center;">Coverage</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${sharedPackages
+                  .map((pkg, idx) => {
+                    const rowBg = idx % 2 === 0 ? '#ffffff' : '#f9fafb'
+                    const color =
+                      pkg.usagePercent >= 70 ? '#16a34a' : pkg.usagePercent >= 30 ? '#d97706' : '#dc2626'
+                    return `<tr style="background: ${rowBg}; border-bottom: 1px solid #e5e7eb;">
+                      <td style="padding: 10px; font-weight: 600;">${pkg.package}</td>
+                      <td style="padding: 10px; color: #666;">${pkg.folder}</td>
+                      <td style="padding: 10px; text-align: center;">${pkg.usageCount}/${data.summary.appCount}</td>
+                      <td style="padding: 10px; text-align: center;">
+                        <span style="display: inline-block; padding: 3px 8px; border-radius: 12px; color: white; background: ${color};">
+                          ${pkg.usagePercent}%
+                        </span>
+                      </td>
+                    </tr>`
+                  })
+                  .join('')}
+              </tbody>
+            </table>
+          </div>
+        `
+
+        container.innerHTML = html
+      }
+
       function renderComplianceMetrics() {
         const container = document.getElementById('complianceMetricsContent')
         const { matrix } = complianceData
@@ -1342,6 +1533,35 @@
         
         const games = matrix.compliance.games
         const metadata = matrix.compliance.metadata
+        const statusIndicator = (status) => {
+          if (status === 'green') return '✅'
+          if (status === 'amber') return '◐'
+          return '❌'
+        }
+        const pairedIndicator = (a, b) => {
+          if (a && b) return '✅'
+          if (a || b) return '◐'
+          return '❌'
+        }
+        const sampleIndicator = (used, total) => {
+          if (total > 0 && used === total) return '✅'
+          if (used > 0 || total > 0) return '◐'
+          return '❌'
+        }
+        const gameValues = Object.values(games)
+        const keyboardGames = gameValues.filter((g) => g.keyboardNavigation === 'green').length
+        const touchGestureGames = gameValues.filter((g) => g.touchGestureSupport === 'green').length
+        const dpadGamepadGames = gameValues.filter((g) => g.dpadGameControllerSupport === 'green').length
+        const soundGames = gameValues.filter((g) => g.soundSupport === 'green').length
+        const animatedBannerGames = gameValues.filter((g) => g.animatedNotificationSupport === 'green').length
+        const totalSamples = gameValues.reduce(
+          (sum, g) => sum + (g.soundSampleCounts?.totalSamples || 0),
+          0,
+        )
+        const usedSamples = gameValues.reduce(
+          (sum, g) => sum + (g.soundSampleCounts?.usedSamples || 0),
+          0,
+        )
         
         // Summary stats
         const overallStatus = metadata.overallStatus || { green: 0, amber: 0, red: 0, completionPercentage: 0 }
@@ -1370,6 +1590,12 @@
             <div style="font-size: 12px; color: #666;">
               Last scanned: ${metadata.generatedAt ? new Date(metadata.generatedAt).toLocaleString() : 'Unknown'}
             </div>
+            <div style="font-size: 12px; color: #666; margin-top: 8px;">
+              Keyboard-ready games: <strong>${keyboardGames}</strong> | Touch/gesture games: <strong>${touchGestureGames}</strong> | D-pad/gamepad games: <strong>${dpadGamepadGames}</strong>
+            </div>
+            <div style="font-size: 12px; color: #666; margin-top: 6px;">
+              Sound-enabled games: <strong>${soundGames}</strong> | Animated notification/banner games: <strong>${animatedBannerGames}</strong> | Samples used: <strong>${usedSamples}</strong>/<strong>${totalSamples}</strong>
+            </div>
           </div>
           
           <div style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
@@ -1381,10 +1607,16 @@
                     <th style="padding: 12px; text-align: left; color: #333; font-weight: 600;">Game</th>
                     <th style="padding: 12px; text-align: center; color: #333; font-weight: 600;">Build</th>
                     <th style="padding: 12px; text-align: center; color: #333; font-weight: 600;">Tests</th>
-                    <th style="padding: 12px; text-align: center; color: #333; font-weight: 600;">Keyboard</th>
+                    <th style="padding: 12px; text-align: center; color: #333; font-weight: 600;">Keyboard (WASD+Arrows)</th>
+                    <th style="padding: 12px; text-align: center; color: #333; font-weight: 600;">Touch/Gestures</th>
+                    <th style="padding: 12px; text-align: center; color: #333; font-weight: 600;">D-pad/Gamepad</th>
+                    <th style="padding: 12px; text-align: center; color: #333; font-weight: 600;">Sound</th>
+                    <th style="padding: 12px; text-align: center; color: #333; font-weight: 600;">Samples</th>
+                    <th style="padding: 12px; text-align: center; color: #333; font-weight: 600;">Animated Banners</th>
                     <th style="padding: 12px; text-align: center; color: #333; font-weight: 600;">A11y</th>
                     <th style="padding: 12px; text-align: center; color: #333; font-weight: 600;">Shared</th>
                     <th style="padding: 12px; text-align: center; color: #333; font-weight: 600;">Responsive</th>
+                    <th style="padding: 12px; text-align: center; color: #333; font-weight: 600;">Bundling</th>
                     <th style="padding: 12px; text-align: center; color: #333; font-weight: 600;">Features</th>
                     <th style="padding: 12px; text-align: center; color: #333; font-weight: 600;">Overall</th>
                   </tr>
@@ -1403,16 +1635,36 @@
                         if (status === 'amber') return '🟡'
                         return '🔴'
                       }
+                      const bundlingChecks = metrics.bundlingChecks || {}
+                      const bundlingPassed = Object.values(bundlingChecks).filter(Boolean).length
+                      const bundlingTotal = Object.keys(bundlingChecks).length
+                      const keyboardChecks = metrics.keyboardSupportMatrix || {}
+                      const keyboardPassed = Object.values(keyboardChecks).filter(Boolean).length
+                      const keyboardTotal = Object.keys(keyboardChecks).length
+                      const touchChecksPassed = [keyboardChecks.hasTouchSupport, keyboardChecks.hasGestureSupport].filter(Boolean).length
+                      const dpadChecksPassed = [keyboardChecks.hasDpadSupport, keyboardChecks.hasGameControllerSupport].filter(Boolean).length
+                      const soundChecks = metrics.soundMatrix || {}
+                      const soundPassed = Object.values(soundChecks).filter(Boolean).length
+                      const soundTotal = Object.keys(soundChecks).length
+                      const animatedChecks = metrics.animatedNotificationMatrix || {}
+                      const animatedPassed = Object.values(animatedChecks).filter(Boolean).length
+                      const animatedTotal = Object.keys(animatedChecks).length
                       const rowBg = idx % 2 === 0 ? '#ffffff' : '#f9fafb'
-                      
+                       
                       return `<tr style="background: ${rowBg}; border-bottom: 1px solid #e5e7eb;">
                         <td style="padding: 12px; text-align: left; font-weight: 600; color: #333;">${gameName}</td>
                         <td style="padding: 12px; text-align: center;">${getStatusEmoji(metrics.buildStatus)}</td>
                         <td style="padding: 12px; text-align: center;">${getStatusEmoji(metrics.testStatus)}</td>
-                        <td style="padding: 12px; text-align: center;">${getStatusEmoji(metrics.keyboardNavigation)}</td>
+                        <td style="padding: 12px; text-align: center;" title="${keyboardTotal > 0 ? `${keyboardPassed}/${keyboardTotal} keyboard matrix checks passed (${metrics.keyboardSupportScore || 0}%)` : 'Keyboard matrix checks unavailable'}">${getStatusEmoji(metrics.keyboardNavigation)}</td>
+                        <td style="padding: 12px; text-align: center;" title="${touchChecksPassed}/2 touch+gesture checks passed">${getStatusEmoji(metrics.touchGestureSupport || 'red')}</td>
+                        <td style="padding: 12px; text-align: center;" title="${dpadChecksPassed}/2 D-pad+gamepad checks passed">${getStatusEmoji(metrics.dpadGameControllerSupport || 'red')}</td>
+                        <td style="padding: 12px; text-align: center;" title="${soundTotal > 0 ? `${soundPassed}/${soundTotal} sound checks passed` : 'Sound checks unavailable'}">${getStatusEmoji(metrics.soundSupport || 'red')}</td>
+                        <td style="padding: 12px; text-align: center;" title="Used/Total local sample files">${metrics.soundSampleCounts ? `${metrics.soundSampleCounts.usedSamples}/${metrics.soundSampleCounts.totalSamples}` : '0/0'}</td>
+                        <td style="padding: 12px; text-align: center;" title="${animatedTotal > 0 ? `${animatedPassed}/${animatedTotal} animated notification/banner checks passed` : 'Animated banner checks unavailable'}">${getStatusEmoji(metrics.animatedNotificationSupport || 'red')}</td>
                         <td style="padding: 12px; text-align: center;">${getStatusEmoji(metrics.accessibility)}</td>
                         <td style="padding: 12px; text-align: center;">${getStatusEmoji(metrics.sharedSystems)}</td>
                         <td style="padding: 12px; text-align: center;">${getStatusEmoji(metrics.responsiveDesign)}</td>
+                        <td style="padding: 12px; text-align: center;" title="${bundlingTotal > 0 ? `${bundlingPassed}/${bundlingTotal} bundling checks passed` : 'Bundling checks unavailable'}">${getStatusEmoji(metrics.bundlingOptimization || 'red')}</td>
                         <td style="padding: 12px; text-align: center;">${getStatusEmoji(metrics.featureCompleteness)}</td>
                         <td style="padding: 12px; text-align: center;">
                           <span style="display: inline-block; background: ${getStatusColor(metrics.overallStatus)}; color: white; padding: 4px 8px; border-radius: 4px; font-weight: 600;">
@@ -1432,9 +1684,267 @@
               </div>
             </div>
           </div>
+          <div style="background: white; border-radius: 12px; padding: 20px; margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <h3 style="margin-top: 0; color: #333; margin-bottom: 14px;">Cross-Game Support Matrix Grid</h3>
+            <div style="font-size: 12px; color: #666; margin-bottom: 12px;">
+              ✅ Full support &nbsp;&nbsp; ◐ Partial / intermediate support &nbsp;&nbsp; ❌ Missing support
+            </div>
+            <div style="overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+                <thead>
+                  <tr style="background: #f3f4f6; border-bottom: 2px solid #e5e7eb;">
+                    <th style="padding: 10px; text-align: left;">Game</th>
+                    <th style="padding: 10px; text-align: center;">WASD + Arrows</th>
+                    <th style="padding: 10px; text-align: center;">Touch + Gestures</th>
+                    <th style="padding: 10px; text-align: center;">D-pad + Game Controller</th>
+                    <th style="padding: 10px; text-align: center;">Sound</th>
+                    <th style="padding: 10px; text-align: center;">Animated Notifications/Banners</th>
+                    <th style="padding: 10px; text-align: center;">Samples (Used/Total)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${Object.entries(games)
+                    .sort((a, b) => a[0].localeCompare(b[0]))
+                    .map(([gameName, metrics], idx) => {
+                      const km = metrics.keyboardSupportMatrix || {}
+                      const samples = metrics.soundSampleCounts || { usedSamples: 0, totalSamples: 0 }
+                      const rowBg = idx % 2 === 0 ? '#ffffff' : '#f9fafb'
+                      const keyboardIndicator = pairedIndicator(km.hasWASDSupport, km.hasArrowKeySupport)
+                      const touchIndicator = pairedIndicator(km.hasTouchSupport, km.hasGestureSupport)
+                      const dpadGamepadIndicator = pairedIndicator(km.hasDpadSupport, km.hasGameControllerSupport)
+                      const soundSupportIndicator = statusIndicator(metrics.soundSupport || 'red')
+                      const animatedSupportIndicator = statusIndicator(
+                        metrics.animatedNotificationSupport || 'red',
+                      )
+                      const samplesSupportIndicator = sampleIndicator(
+                        samples.usedSamples || 0,
+                        samples.totalSamples || 0,
+                      )
+
+                      return `<tr style="background: ${rowBg}; border-bottom: 1px solid #e5e7eb;">
+                        <td style="padding: 10px; font-weight: 600;">${gameName}</td>
+                        <td style="padding: 10px; text-align: center;" title="WASD + Arrow key coverage">${keyboardIndicator}</td>
+                        <td style="padding: 10px; text-align: center;" title="Touch handlers + gesture hooks">${touchIndicator}</td>
+                        <td style="padding: 10px; text-align: center;" title="D-pad + game controller signals">${dpadGamepadIndicator}</td>
+                        <td style="padding: 10px; text-align: center;" title="Sound integration matrix status">${soundSupportIndicator}</td>
+                        <td style="padding: 10px; text-align: center;" title="Animated banner/notification matrix status">${animatedSupportIndicator}</td>
+                        <td style="padding: 10px; text-align: center;" title="Audio sample usage">${samplesSupportIndicator} ${samples.usedSamples}/${samples.totalSamples}</td>
+                      </tr>`
+                    })
+                    .join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div style="background: white; border-radius: 12px; padding: 20px; margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <h3 style="margin-top: 0; color: #333; margin-bottom: 14px;">Input Controls Matrix Grid</h3>
+            <div style="font-size: 12px; color: #666; margin-bottom: 12px;">
+              Detailed capabilities by game: WASD, arrow keys, touch, gestures, D-pad, gamepad, and text-input safety.
+            </div>
+            <div style="overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+                <thead>
+                  <tr style="background: #f3f4f6; border-bottom: 2px solid #e5e7eb;">
+                    <th style="padding: 10px; text-align: left;">Game</th>
+                    <th style="padding: 10px; text-align: center;">WASD</th>
+                    <th style="padding: 10px; text-align: center;">Arrows</th>
+                    <th style="padding: 10px; text-align: center;">Touch</th>
+                    <th style="padding: 10px; text-align: center;">Gestures</th>
+                    <th style="padding: 10px; text-align: center;">D-pad</th>
+                    <th style="padding: 10px; text-align: center;">Gamepad</th>
+                    <th style="padding: 10px; text-align: center;">Input Safety</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${Object.entries(games)
+                    .sort((a, b) => a[0].localeCompare(b[0]))
+                    .map(([gameName, metrics], idx) => {
+                      const m = metrics.keyboardSupportMatrix || {}
+                      const mark = (v) => (v ? '✅' : '❌')
+                      const rowBg = idx % 2 === 0 ? '#ffffff' : '#f9fafb'
+                      return `<tr style="background: ${rowBg}; border-bottom: 1px solid #e5e7eb;">
+                        <td style="padding: 10px; font-weight: 600;">${gameName}</td>
+                        <td style="padding: 10px; text-align: center;">${mark(m.hasWASDSupport)}</td>
+                        <td style="padding: 10px; text-align: center;">${mark(m.hasArrowKeySupport)}</td>
+                        <td style="padding: 10px; text-align: center;">${mark(m.hasTouchSupport)}</td>
+                        <td style="padding: 10px; text-align: center;">${mark(m.hasGestureSupport)}</td>
+                        <td style="padding: 10px; text-align: center;">${mark(m.hasDpadSupport)}</td>
+                        <td style="padding: 10px; text-align: center;">${mark(m.hasGameControllerSupport)}</td>
+                        <td style="padding: 10px; text-align: center;">${mark(m.hasTextInputSafetyGuard)}</td>
+                      </tr>`
+                    })
+                    .join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div style="background: white; border-radius: 12px; padding: 20px; margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <h3 style="margin-top: 0; color: #333; margin-bottom: 14px;">Sound + Animated Banner Matrix Grid</h3>
+            <div style="overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+                <thead>
+                  <tr style="background: #f3f4f6; border-bottom: 2px solid #e5e7eb;">
+                    <th style="padding: 10px; text-align: left;">Game</th>
+                    <th style="padding: 10px; text-align: center;">Sound Integration</th>
+                    <th style="padding: 10px; text-align: center;">Sample Files</th>
+                    <th style="padding: 10px; text-align: center;">Used Samples</th>
+                    <th style="padding: 10px; text-align: center;">Animated Components</th>
+                    <th style="padding: 10px; text-align: center;">Animated Usage</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${Object.entries(games)
+                    .sort((a, b) => a[0].localeCompare(b[0]))
+                    .map(([gameName, metrics], idx) => {
+                      const sound = metrics.soundMatrix || {}
+                      const animated = metrics.animatedNotificationMatrix || {}
+                      const mark = (v) => (v ? '✅' : '❌')
+                      const rowBg = idx % 2 === 0 ? '#ffffff' : '#f9fafb'
+                      const counts = metrics.soundSampleCounts || { usedSamples: 0, totalSamples: 0 }
+                      return `<tr style="background: ${rowBg}; border-bottom: 1px solid #e5e7eb;">
+                        <td style="padding: 10px; font-weight: 600;">${gameName}</td>
+                        <td style="padding: 10px; text-align: center;">${mark(sound.hasSoundIntegration)}</td>
+                        <td style="padding: 10px; text-align: center;">${mark(sound.hasSampleFiles)}</td>
+                        <td style="padding: 10px; text-align: center;">${counts.usedSamples}/${counts.totalSamples}</td>
+                        <td style="padding: 10px; text-align: center;">${mark(animated.hasNotificationComponents)}</td>
+                        <td style="padding: 10px; text-align: center;">${mark(animated.hasUsageSignals)}</td>
+                      </tr>`
+                    })
+                    .join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
         `
         
         container.innerHTML = html
+      }
+
+      function renderSemanticActionsReport() {
+        const container = document.getElementById('semanticActionsContent')
+        const report = complianceData.semanticActions
+        if (!container) return
+
+        if (!report || !report.sections) {
+          container.innerHTML =
+            '<div style="padding: 40px; text-align: center; color: #999;"><p>Semantic actions report not available. Run <code>pnpm generate-compliance-data</code> (or <code>pnpm dashboard:refresh</code>).</p></div>'
+          return
+        }
+
+        const summary = report.summary || { total: 0, pass: 0, fail: 0, pending: 0, inProgress: 0 }
+        const badge = (status) => {
+          if (status === 'PASS')
+            return '<span style="display:inline-block;padding:3px 8px;border-radius:999px;background:#dcfce7;color:#166534;border:1px solid #86efac;font-weight:700;">PASS</span>'
+          if (status === 'FAIL')
+            return '<span style="display:inline-block;padding:3px 8px;border-radius:999px;background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;font-weight:700;">FAIL</span>'
+          if (status === 'IN-PROGRESS')
+            return '<span style="display:inline-block;padding:3px 8px;border-radius:999px;background:#fef3c7;color:#92400e;border:1px solid #fcd34d;font-weight:700;">IN-PROGRESS</span>'
+          return '<span style="display:inline-block;padding:3px 8px;border-radius:999px;background:#e0f2fe;color:#075985;border:1px solid #7dd3fc;font-weight:700;">PENDING</span>'
+        }
+
+        const renderRefs = (refs, missingRefs) => {
+          if (!refs || refs.length === 0) return '<span style="color:#9ca3af;">No chained scripts</span>'
+          return refs
+            .map((ref) => {
+              const missing = (missingRefs || []).includes(ref.script)
+              return `<span style="display:inline-block;margin:2px 6px 2px 0;padding:2px 6px;border-radius:999px;font-size:11px;${
+                missing
+                  ? 'background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;'
+                  : 'background:#ecfdf5;color:#166534;border:1px solid #86efac;'
+              }">${ref.script}</span>`
+            })
+            .join('')
+        }
+
+        const sectionsHtml = report.sections
+          .map((section) => {
+            const rows = (section.items || [])
+              .map((item) => {
+                const command = item.command
+                  ? `<code style="font-size:11px;word-break:break-all;">${item.command}</code>`
+                  : '<span style="color:#9ca3af;">Missing script command</span>'
+                const detail = item.detail
+                  ? Array.isArray(item.detail)
+                    ? item.detail
+                        .map(
+                          (value) =>
+                            `<span style="display:inline-block;margin:2px 6px 2px 0;padding:2px 6px;border-radius:999px;font-size:11px;background:#f3f4f6;color:#374151;border:1px solid #e5e7eb;">${value}</span>`,
+                        )
+                        .join('')
+                    : `<span style="display:inline-block;margin:2px 6px 2px 0;padding:2px 6px;border-radius:999px;font-size:11px;background:#f3f4f6;color:#374151;border:1px solid #e5e7eb;">${item.detail}</span>`
+                  : ''
+
+                return `
+                  <tr style="border-bottom:1px solid #f3f4f6;">
+                    <td style="padding:10px 12px;min-width:220px;">
+                      <div style="font-weight:600;color:#111827;">${item.label}</div>
+                      <div style="font-size:11px;color:#6b7280;margin-top:4px;">${item.script || item.id}${item.required ? ' • required' : ' • optional'}</div>
+                    </td>
+                    <td style="padding:10px 12px;">${badge(item.status)}</td>
+                    <td style="padding:10px 12px;">${command}</td>
+                    <td style="padding:10px 12px;">${renderRefs(item.references, item.missingReferences)}</td>
+                    <td style="padding:10px 12px;">${detail || '<span style="color:#9ca3af;">—</span>'}</td>
+                  </tr>
+                `
+              })
+              .join('')
+
+            return `
+              <div style="margin-top:20px;border:1px solid #e5e7eb;border-radius:10px;background:#fff;">
+                <div style="padding:14px 16px;border-bottom:1px solid #e5e7eb;">
+                  <h3 style="margin:0;color:#111827;">${section.title}</h3>
+                  <div style="margin-top:6px;font-size:12px;color:#4b5563;">${section.description || ''}</div>
+                </div>
+                <div style="overflow-x:auto;">
+                  <table style="width:100%;border-collapse:collapse;font-size:12px;">
+                    <thead style="background:#f9fafb;border-bottom:1px solid #e5e7eb;">
+                      <tr>
+                        <th style="padding:10px 12px;text-align:left;">Workflow Item</th>
+                        <th style="padding:10px 12px;text-align:left;">Grade</th>
+                        <th style="padding:10px 12px;text-align:left;">Command / Trigger</th>
+                        <th style="padding:10px 12px;text-align:left;">Chained Scripts</th>
+                        <th style="padding:10px 12px;text-align:left;">Details</th>
+                      </tr>
+                    </thead>
+                    <tbody>${rows}</tbody>
+                  </table>
+                </div>
+              </div>
+            `
+          })
+          .join('')
+
+        container.innerHTML = `
+          <div style="background:#fff;border-radius:12px;padding:20px;margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,0.1);">
+            <h3 style="margin-top:0;color:#333;margin-bottom:14px;">Workflow Disclosure Summary</h3>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;">
+              <div style="background:#ecfdf5;border-left:4px solid #10b981;border-radius:8px;padding:12px;">
+                <div style="font-size:24px;font-weight:700;color:#166534;">${summary.pass}</div>
+                <div style="font-size:11px;text-transform:uppercase;color:#166534;">PASS</div>
+              </div>
+              <div style="background:#fee2e2;border-left:4px solid #ef4444;border-radius:8px;padding:12px;">
+                <div style="font-size:24px;font-weight:700;color:#991b1b;">${summary.fail}</div>
+                <div style="font-size:11px;text-transform:uppercase;color:#991b1b;">FAIL</div>
+              </div>
+              <div style="background:#fef3c7;border-left:4px solid #f59e0b;border-radius:8px;padding:12px;">
+                <div style="font-size:24px;font-weight:700;color:#92400e;">${summary.inProgress}</div>
+                <div style="font-size:11px;text-transform:uppercase;color:#92400e;">IN-PROGRESS</div>
+              </div>
+              <div style="background:#e0f2fe;border-left:4px solid #0284c7;border-radius:8px;padding:12px;">
+                <div style="font-size:24px;font-weight:700;color:#075985;">${summary.pending}</div>
+                <div style="font-size:11px;text-transform:uppercase;color:#075985;">PENDING</div>
+              </div>
+              <div style="background:#f3f4f6;border-left:4px solid #6b7280;border-radius:8px;padding:12px;">
+                <div style="font-size:24px;font-weight:700;color:#111827;">${summary.total}</div>
+                <div style="font-size:11px;text-transform:uppercase;color:#374151;">Total Checks</div>
+              </div>
+            </div>
+            <div style="margin-top:12px;font-size:12px;color:#6b7280;">
+              Source: package.json scripts and pipeline files • Generated ${report.metadata?.generatedAt ? new Date(report.metadata.generatedAt).toLocaleString() : 'unknown'}
+            </div>
+          </div>
+          ${sectionsHtml}
+        `
       }
 
       function updateFeatureReport() {
@@ -1544,57 +2054,15 @@
       }
 
       function renderPlatformReport() {
-        const container = document.getElementById('platforms-report')
-        if (container) {
-          container.innerHTML = '<div style="padding: 40px; text-align: center; color: #999;"><p>Platform ready status available from detailed compliance reports.</p></div>'
-        }
-      }
-
-      function renderTypeReport() {
-        const container = document.getElementById('types-report')
-        if (container) {
-          container.innerHTML = '<div style="padding: 40px; text-align: center; color: #999;"><p>Game type analysis available from detailed compliance reports.</p></div>'
-        }
-      }
-
-      function renderArchitectureReport() {
-        const container = document.getElementById('architecture-report')
-        if (container) {
-          container.innerHTML = '<div style="padding: 40px; text-align: center; color: #999;"><p>Architecture compliance available from detailed compliance reports.</p></div>'
-        }
-      }
-              `,
-                )
-                .join('')}
-            </div>
-          </div>
-
-          <div>
-            <h3 style="margin-bottom: 15px; color: #333; font-size: 18px;">🔵 Candidates (${candidates.length - hasWasm.length})</h3>
-            <div class="wasm-status-grid">
-              ${candidates
-                .filter(([_, g]) => !g.hasWasm)
-                .slice(0, 10)
-                .map(
-                  ([name, game]) => `
-                <div class="wasm-card candidate">
-                  <h4 style="margin: 0 0 10px 0;">${name}</h4>
-                  <div style="font-size: 12px; color: #666;">
-                    <div>Type: ${game.type}</div>
-                    <div>Completion: ${game.estimatedCompletion}%</div>
-                    <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #ddd;">Consider if: AI solver, complex algorithm needed</div>
-                  </div>
-                </div>
-              `,
-                )
-                .join('')}
-            </div>
-          </div>
-        `
-      }
-
-      function renderPlatformReport() {
-        const { baseline, matrix } = complianceData
+        const {
+          matrix,
+          platformApprovalReport,
+          platformApprovalMatrix,
+          platformRequirementsCatalog,
+          arcadeTargets,
+          arcadeRequirements,
+          bundleMetrics,
+        } = complianceData
 
         const container = document.getElementById('platforms-report')
         if (!container) return
@@ -1616,6 +2084,525 @@
             else platformStats[platform].notStarted++
           }
         }
+
+        const approvalPlatforms = [
+          'meta',
+          'twitch',
+          'crazygames',
+          'discord',
+          'telegram',
+          'steam',
+        ]
+
+        const verdictBadge = (verdict) => {
+          if (verdict === 'PASS') {
+            return `<span style="background:#dcfce7;color:#166534;border:1px solid #86efac;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:700;">PASS</span>`
+          }
+          if (verdict === 'FAIL') {
+            return `<span style="background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:700;">FAIL</span>`
+          }
+          return `<span style="background:#fff7ed;color:#9a3412;border:1px solid #fdba74;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:700;">BLOCKED</span>`
+        }
+
+        const verdictCell = (verdict) => {
+          if (verdict === 'PASS') {
+            return `<span title="PASS" style="display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;background:#dcfce7;color:#166534;border:1px solid #86efac;border-radius:6px;font-weight:800;">✓</span>`
+          }
+          if (verdict === 'FAIL') {
+            return `<span title="FAIL" style="display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;border-radius:6px;font-weight:800;">✕</span>`
+          }
+          return `<span title="BLOCKED / PARTIAL" style="display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;background:#fff7ed;color:#9a3412;border:1px solid #fdba74;border-radius:6px;font-weight:800;">◐</span>`
+        }
+
+        const sourceLabel = (source) => {
+          try {
+            return new URL(source).hostname
+          } catch {
+            return source
+          }
+        }
+
+        const renderSourceLinks = (sources) => {
+          const safeSources = (sources || []).filter(Boolean)
+          if (safeSources.length === 0) return ''
+          return safeSources
+            .slice(0, 3)
+            .map(
+              (source) =>
+                `<a href="${source}" target="_blank" rel="noopener noreferrer" style="color:#2563eb;text-decoration:underline;">${sourceLabel(source)}</a>`,
+            )
+            .join(' · ')
+        }
+
+        const requirementValueLabel = (requirement) => {
+          if (Array.isArray(requirement?.values) && requirement.values.length > 0) {
+            return requirement.values.join(' OR ')
+          }
+          return requirement?.value || 'N/A'
+        }
+
+        const statusRankByMilestone = {
+          targeted: 0,
+          scaffolded: 1,
+          runtime_wired: 2,
+          ui_wired: 3,
+          input_wired: 4,
+          quality_gated: 5,
+          converted: 6,
+        }
+
+        const rankToLabel = {
+          0: 'targeted',
+          1: 'scaffolded',
+          2: 'runtime_wired',
+          3: 'ui_wired',
+          4: 'input_wired',
+          5: 'quality_gated',
+          6: 'converted',
+        }
+
+        const normalizedStatusRank = (value) => {
+          if (!value) return 0
+          const normalized = String(value).toLowerCase().replace(/[\s-]+/g, '_')
+          return statusRankByMilestone[normalized] ?? 0
+        }
+
+        const statusBadge = (status) => {
+          const rank = normalizedStatusRank(status)
+          if (rank >= 6) {
+            return '<span style="background:#dcfce7;color:#166534;border:1px solid #86efac;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:700;">converted</span>'
+          }
+          if (rank >= 1) {
+            return '<span style="background:#ffedd5;color:#9a3412;border:1px solid #fdba74;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:700;">in progress</span>'
+          }
+          return '<span style="background:#f3f4f6;color:#374151;border:1px solid #d1d5db;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:700;">targeted</span>'
+        }
+
+        const requirementPassIcon = (passed) =>
+          passed
+            ? '<span title="PASS" style="display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;background:#dcfce7;color:#166534;border:1px solid #86efac;border-radius:6px;font-weight:800;">PASS</span>'
+            : '<span title="FAIL" style="display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;border-radius:6px;font-weight:800;">FAIL</span>'
+
+        let arcadeConversionHtml = `
+          <div style="margin-top: 24px; border: 1px solid #e5e7eb; border-radius: 10px; background: #fff;">
+            <div style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+              <h3 style="margin: 0; color: #111827;">Arcade Up-Conversion PASS/FAIL Matrix</h3>
+              <div style="margin-top: 8px; font-size: 12px; color: #4b5563;">
+                Add <code>compliance/arcade-upconversion-targets.json</code> and <code>scripts/config/arcade-upconversion-requirements.json</code> to render this matrix.
+              </div>
+            </div>
+          </div>
+        `
+
+        const targetRows = Array.isArray(arcadeTargets?.targets) ? arcadeTargets.targets : []
+        const requirementRows = Array.isArray(arcadeRequirements?.requirements)
+          ? arcadeRequirements.requirements
+          : []
+
+        if (targetRows.length && requirementRows.length) {
+          const targetsByApp = Object.fromEntries(targetRows.map((target) => [target.appId, target]))
+          const sortedApps = Object.keys(targetsByApp).sort((a, b) => a.localeCompare(b))
+          const expectedRankForPhase = {
+            scaffold: 1,
+            runtime: 2,
+            ui: 3,
+            input: 4,
+            quality: 5,
+            conversion: 6,
+          }
+
+          const matrixRows = sortedApps
+            .map((appId, index) => {
+              const rowBg = index % 2 === 0 ? '#ffffff' : '#fafafa'
+              const target = targetsByApp[appId]
+              const appRank = normalizedStatusRank(target?.status)
+              const requirementCells = requirementRows
+                .map((requirement) => {
+                  const expectedRank = expectedRankForPhase[requirement.phase] ?? 99
+                  return `<td style="padding: 8px; text-align:center;">${requirementPassIcon(appRank >= expectedRank)}</td>`
+                })
+                .join('')
+
+              return `
+                <tr style="background:${rowBg}; border-bottom: 1px solid #f3f4f6;">
+                  <td style="padding: 10px 12px; font-weight: 600; color:#111827;">${appId}</td>
+                  <td style="padding: 10px 12px; color:#374151;">${target.arcadeType || 'TBD'}</td>
+                  <td style="padding: 10px 12px;">${statusBadge(target.status)}</td>
+                  <td style="padding: 10px 12px; font-family: monospace; font-size: 11px; color:#4b5563;">${rankToLabel[appRank] || target.status || 'targeted'}</td>
+                  ${requirementCells}
+                </tr>
+              `
+            })
+            .join('')
+
+          const requirementDefinitionRows = requirementRows
+            .map(
+              (requirement) => `
+                <tr style="border-bottom: 1px solid #f3f4f6;">
+                  <td style="padding: 10px 12px; font-family: monospace; font-size: 11px; color: #374151;">${requirement.id}</td>
+                  <td style="padding: 10px 12px; color: #111827;">${requirement.label}</td>
+                  <td style="padding: 10px 12px; text-transform: uppercase; color: #4b5563; font-family: monospace; font-size: 11px;">${requirement.phase}</td>
+                  <td style="padding: 10px 12px; color: #111827;">${requirement.passCondition}</td>
+                </tr>
+              `,
+            )
+            .join('')
+
+          arcadeConversionHtml = `
+            <div style="margin-top: 24px; border: 1px solid #e5e7eb; border-radius: 10px; background: #fff;">
+              <div style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+                <h3 style="margin: 0; color: #111827;">Arcade Up-Conversion PASS/FAIL Matrix</h3>
+                <div style="margin-top: 8px; font-size: 12px; color: #4b5563;">
+                  Conversion pass/fail is requirement-based per app. A requirement cell is PASS only after the app reaches that conversion phase milestone.
+                </div>
+              </div>
+              <div style="overflow:auto; max-height: 720px;">
+                <table style="width:100%; border-collapse: collapse; font-size: 12px;">
+                  <thead style="position: sticky; top: 0; background: #f9fafb; z-index: 2;">
+                    <tr style="border-bottom: 1px solid #e5e7eb;">
+                      <th style="padding: 10px 12px; text-align:left; min-width: 150px;">App</th>
+                      <th style="padding: 10px 12px; text-align:left; min-width: 160px;">Arcade Type</th>
+                      <th style="padding: 10px 12px; text-align:left; min-width: 120px;">Current Status</th>
+                      <th style="padding: 10px 12px; text-align:left; min-width: 120px;">Milestone</th>
+                      ${requirementRows
+                        .map(
+                          (requirement) =>
+                            `<th title="${requirement.label}" style="padding: 10px 8px; text-align:center; min-width: 76px;">${requirement.id}</th>`,
+                        )
+                        .join('')}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${matrixRows}
+                  </tbody>
+                </table>
+              </div>
+              <div style="padding: 16px; border-top: 1px solid #e5e7eb;">
+                <h4 style="margin: 0 0 10px 0; color: #111827;">Arcade Conversion Requirement Definitions</h4>
+                <div style="overflow-x:auto; max-height: 340px;">
+                  <table style="width:100%; border-collapse: collapse; font-size: 12px;">
+                    <thead style="position: sticky; top: 0; background: #f9fafb; z-index: 1;">
+                      <tr style="border-bottom: 1px solid #e5e7eb;">
+                        <th style="padding: 10px 12px; text-align:left;">Requirement ID</th>
+                        <th style="padding: 10px 12px; text-align:left;">Criterion</th>
+                        <th style="padding: 10px 12px; text-align:left;">Phase</th>
+                        <th style="padding: 10px 12px; text-align:left;">PASS/FAIL Rule</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${requirementDefinitionRows}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          `
+        }
+
+        let criteriaMatrixHtml = `
+          <div style="margin-top: 24px; border: 1px solid #e5e7eb; border-radius: 10px; background: #fff;">
+            <div style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+              <h3 style="margin: 0; color: #111827;">Platform PASS/FAIL Criteria Matrix</h3>
+              <div style="margin-top: 8px; font-size: 12px; color: #4b5563;">
+                Run <code>pnpm generate-compliance-data</code> to generate <code>compliance/platform-requirements-catalog.json</code>.
+              </div>
+            </div>
+          </div>
+        `
+
+        if (platformRequirementsCatalog?.platforms) {
+          const criteriaRows = Object.entries(platformRequirementsCatalog.platforms)
+            .sort((a, b) => a[0].localeCompare(b[0]))
+            .flatMap(([platformKey, platformConfig]) =>
+              (platformConfig.requirements || []).map((requirement) => {
+                const platformDisplay = platformConfig.displayName || platformKey
+                return `
+                  <tr style="border-bottom: 1px solid #f3f4f6;">
+                    <td style="padding: 10px 12px; font-weight: 600; color: #111827;">${platformDisplay}</td>
+                    <td style="padding: 10px 12px; font-family: monospace; font-size: 11px; color: #374151;">${requirement.id}</td>
+                    <td style="padding: 10px 12px; color: #111827;">${requirement.label}</td>
+                    <td style="padding: 10px 12px; color: #374151;"><code>${requirement.type}</code></td>
+                    <td style="padding: 10px 12px; color: #4b5563; font-family: monospace; font-size: 11px; max-width: 420px; word-break: break-word;">${requirementValueLabel(requirement)}</td>
+                    <td style="padding: 10px 12px; color: #111827; min-width: 360px;">${requirement.passCondition || 'PASS/FAIL rule unavailable'}</td>
+                  </tr>
+                `
+              }),
+            )
+            .join('')
+
+          criteriaMatrixHtml = `
+            <div style="margin-top: 24px; border: 1px solid #e5e7eb; border-radius: 10px; background: #fff;">
+              <div style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+                <h3 style="margin: 0; color: #111827;">Platform PASS/FAIL Criteria Matrix</h3>
+                <div style="margin-top: 8px; font-size: 12px; color: #4b5563;">
+                  Each requirement is evaluated per app. A platform cell is <strong>PASS/Complete</strong> only when every listed requirement passes for that app.
+                </div>
+              </div>
+              <div style="overflow-x:auto; max-height: 640px;">
+                <table style="width:100%; border-collapse: collapse; font-size: 12px;">
+                  <thead style="position: sticky; top: 0; background: #f9fafb; z-index: 1;">
+                    <tr style="border-bottom: 1px solid #e5e7eb;">
+                      <th style="padding: 10px 12px; text-align:left;">Platform</th>
+                      <th style="padding: 10px 12px; text-align:left;">Requirement ID</th>
+                      <th style="padding: 10px 12px; text-align:left;">Criterion</th>
+                      <th style="padding: 10px 12px; text-align:left;">Check Type</th>
+                      <th style="padding: 10px 12px; text-align:left;">Target</th>
+                      <th style="padding: 10px 12px; text-align:left;">PASS/FAIL Rule</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${criteriaRows}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          `
+        }
+
+        let approvalDetailHtml = `
+          <div style="margin-top: 24px; border: 1px solid #e5e7eb; border-radius: 10px; background: #fff;">
+            <div style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+              <h3 style="margin: 0; color: #111827;">Platform Approval Failure Matrix (Gate-Level)</h3>
+              <div style="margin-top: 8px; font-size: 12px; color: #4b5563;">
+                Verdict + gate grade per game/platform with explicit failed or blocked acceptance/rejection gates.
+              </div>
+            </div>
+            <div style="padding: 16px; color: #6b7280; font-size: 13px;">
+              Run <code>pnpm report:platform-approval</code> to generate <code>compliance/platform-approval-report.json</code>.
+            </div>
+          </div>
+        `
+
+        let fullVerdictGridHtml = `
+          <div style="margin-top: 24px; border: 1px solid #e5e7eb; border-radius: 10px; background: #fff;">
+            <div style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+              <h3 style="margin: 0; color: #111827;">Complete App × Platform Verdict Grid</h3>
+              <div style="margin-top: 8px; font-size: 12px; color: #4b5563;">
+                Run <code>pnpm report:platform-approval</code> to generate <code>compliance/platform-approval-matrix.json</code>.
+              </div>
+            </div>
+          </div>
+        `
+        if (platformApprovalMatrix?.matrix) {
+          const platformKeys = Object.keys(platformApprovalMatrix.perPlatform || {})
+          const platformDisplayMap = Object.fromEntries(
+            platformKeys.map((key) => [key, platformApprovalMatrix.perPlatform?.[key]?.displayName || key]),
+          )
+          const gameRows = Object.entries(platformApprovalMatrix.matrix).sort((a, b) =>
+            a[0].localeCompare(b[0]),
+          )
+          const summary = platformApprovalMatrix.summary || {}
+          fullVerdictGridHtml = `
+            <div style="margin-top: 24px; border: 1px solid #e5e7eb; border-radius: 10px; background: #fff;">
+              <div style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+                <h3 style="margin: 0; color: #111827;">Complete App × Platform Verdict Grid</h3>
+                <div style="margin-top: 8px; font-size: 12px; color: #4b5563;">
+                  Every app and every platform in one matrix using PASS/FAIL/BLOCKED indicators.
+                </div>
+                <div style="margin-top: 10px; font-size: 12px; color: #374151;">
+                  Cells: ${summary.totalCells || 0} • PASS: ${summary.pass || 0} • FAIL: ${summary.fail || 0} • BLOCKED: ${summary.blocked || 0}
+                </div>
+                <div style="margin-top: 8px; font-size: 12px; color: #374151; display: flex; gap: 16px; flex-wrap: wrap;">
+                  <span>${verdictCell('PASS')} PASS</span>
+                  <span>${verdictCell('FAIL')} FAIL</span>
+                  <span>${verdictCell('BLOCKED')} BLOCKED</span>
+                </div>
+              </div>
+              <div style="overflow:auto; max-height: 760px;">
+                <table style="width:100%; border-collapse: collapse; font-size: 12px;">
+                  <thead style="position: sticky; top: 0; background: #f9fafb; z-index: 2;">
+                    <tr style="border-bottom: 1px solid #e5e7eb;">
+                      <th style="padding: 10px 12px; text-align:left; position: sticky; left: 0; background: #f9fafb; z-index: 3; min-width: 170px;">Game</th>
+                      ${platformKeys
+                        .map(
+                          (platformKey) =>
+                            `<th title="${platformDisplayMap[platformKey]}" style="padding: 10px 8px; text-align:center; min-width: 68px;">${platformKey}</th>`,
+                        )
+                        .join('')}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${gameRows
+                      .map(([gameId, platformMap], rowIndex) => {
+                        const rowBg = rowIndex % 2 === 0 ? '#ffffff' : '#fafafa'
+                        return `
+                          <tr style="background:${rowBg}; border-bottom: 1px solid #f3f4f6;">
+                            <td style="padding: 10px 12px; position: sticky; left: 0; background: ${rowBg}; z-index: 1; font-weight: 600; color:#111827;">${gameId}</td>
+                            ${platformKeys
+                              .map(
+                                (platformKey) =>
+                                  `<td style="padding: 8px; text-align:center;">${verdictCell(platformMap[platformKey])}</td>`,
+                              )
+                              .join('')}
+                          </tr>
+                        `
+                      })
+                      .join('')}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          `
+        }
+
+        if (platformApprovalReport?.results) {
+          const rows = []
+          Object.entries(platformApprovalReport.results).forEach(([gameId, platformMap]) => {
+            approvalPlatforms.forEach((platformKey) => {
+              const data = platformMap[platformKey]
+              if (!data) return
+
+              const automatedTotal = data.automatedChecks.filter(
+                (check) => check.status === 'PASS' || check.status === 'FAIL',
+              ).length
+              const automatedPassing = data.automatedChecks.filter(
+                (check) => check.status === 'PASS',
+              ).length
+              const failedAutomated = data.automatedChecks.filter((check) => check.status === 'FAIL')
+              const blockedManual = data.manualChecks.filter((check) => check.status === 'BLOCKED')
+              const reasonParts = []
+
+              failedAutomated.forEach((check) => {
+                const links = renderSourceLinks(check.citationSources || data.sources || [])
+                reasonParts.push(`
+                  <div>• ${check.label}</div>
+                  ${links ? `<div style="padding-left:12px;color:#4b5563;">Sources: ${links}</div>` : ''}
+                `)
+              })
+
+              blockedManual.forEach((check) => {
+                const links = renderSourceLinks([check.source, ...(data.sources || [])])
+                reasonParts.push(`
+                  <div>• ${check.label}</div>
+                  ${links ? `<div style="padding-left:12px;color:#4b5563;">Sources: ${links}</div>` : ''}
+                `)
+              })
+
+              const reasonText = reasonParts.length
+                ? reasonParts.join('')
+                : '<div style="color:#6b7280;">No failed gates</div>'
+
+              rows.push(`
+                <tr style="border-bottom: 1px solid #f3f4f6;">
+                  <td style="padding: 10px 12px; font-weight: 600; color:#111827;">${gameId}</td>
+                  <td style="padding: 10px 12px; text-transform: capitalize;">${platformKey}</td>
+                  <td style="padding: 10px 12px;">${verdictBadge(data.verdict)}</td>
+                  <td style="padding: 10px 12px; white-space: nowrap; font-weight: 600;">${automatedPassing}/${automatedTotal}</td>
+                  <td style="padding: 10px 12px; font-size: 12px; color: #374151;">${reasonText}</td>
+                </tr>
+              `)
+            })
+          })
+
+          approvalDetailHtml = `
+            <div style="margin-top: 24px; border: 1px solid #e5e7eb; border-radius: 10px; background: #fff;">
+              <div style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+                <h3 style="margin: 0; color: #111827;">Platform Approval Failure Matrix (Gate-Level)</h3>
+                <div style="margin-top: 8px; font-size: 12px; color: #4b5563;">
+                  PASS/FAIL verdict with gate grade and exact rejection/acceptance gates per game.
+                </div>
+              </div>
+              <div style="overflow-x:auto; max-height: 680px;">
+                <table style="width:100%; border-collapse: collapse; font-size: 13px;">
+                  <thead style="position: sticky; top: 0; background: #f9fafb; z-index: 1;">
+                    <tr style="border-bottom: 1px solid #e5e7eb;">
+                      <th style="padding: 10px 12px; text-align:left;">Game</th>
+                      <th style="padding: 10px 12px; text-align:left;">Platform</th>
+                      <th style="padding: 10px 12px; text-align:left;">Verdict</th>
+                      <th style="padding: 10px 12px; text-align:left;">Gate Grade</th>
+                      <th style="padding: 10px 12px; text-align:left;">Failure Reasons</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${rows.join('')}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          `
+        }
+
+        const bundleApps = Object.entries(bundleMetrics?.apps || {}).sort((a, b) => {
+          const left = a[1]?.totals?.totalBytes || 0
+          const right = b[1]?.totals?.totalBytes || 0
+          return right - left
+        })
+        const discordLimit = getBundleLimitBytes('discord')
+        const telegramLimit = getBundleLimitBytes('telegram')
+        const bundleSummary = bundleMetrics?.summary?.aggregate || null
+        const bundleTelemetryHtml = bundleApps.length
+          ? `
+            <div style="margin-top: 24px; border: 1px solid #e5e7eb; border-radius: 10px; background: #fff;">
+              <div style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+                <h3 style="margin: 0; color: #111827;">Bundle Telemetry (Root Build Totals)</h3>
+                <div style="margin-top: 8px; font-size: 12px; color: #4b5563;">
+                  Source: compliance/bundle-metrics.json • Generated ${bundleMetrics?.metadata?.generatedAt || 'unknown'}
+                </div>
+                ${
+                  bundleSummary
+                    ? `
+                  <div style="margin-top: 8px; font-size: 12px; color: #374151;">
+                    Apps with bundles: ${bundleSummary.totalAppsWithMetrics} • Aggregate total: ${formatBytes(bundleSummary.totalBytes)} • JS: ${formatBytes(bundleSummary.totalJsBytes)} • CSS: ${formatBytes(bundleSummary.totalCssBytes)}
+                  </div>
+                `
+                    : ''
+                }
+              </div>
+              <div style="overflow-x:auto; max-height: 680px;">
+                <table style="width:100%; border-collapse: collapse; font-size: 12px;">
+                  <thead style="position: sticky; top: 0; background: #f9fafb; z-index: 1;">
+                    <tr style="border-bottom: 1px solid #e5e7eb;">
+                      <th style="padding: 10px 12px; text-align:left;">App</th>
+                      <th style="padding: 10px 12px; text-align:right;">Total</th>
+                      <th style="padding: 10px 12px; text-align:right;">JS</th>
+                      <th style="padding: 10px 12px; text-align:right;">CSS</th>
+                      <th style="padding: 10px 12px; text-align:right;">Discord (10MB)</th>
+                      <th style="padding: 10px 12px; text-align:right;">Telegram (8MB)</th>
+                      <th style="padding: 10px 12px; text-align:left;">Asset Inventory</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${bundleApps
+                      .map(([appName, appMetrics]) => {
+                        const totalBytes = appMetrics?.totals?.totalBytes || 0
+                        const discordPct = ((totalBytes / discordLimit) * 100).toFixed(1)
+                        const telegramPct = ((totalBytes / telegramLimit) * 100).toFixed(1)
+                        const discordColor =
+                          Number(discordPct) > 100 ? '#dc2626' : Number(discordPct) >= 90 ? '#d97706' : '#059669'
+                        const telegramColor =
+                          Number(telegramPct) > 100 ? '#dc2626' : Number(telegramPct) >= 90 ? '#d97706' : '#059669'
+                        return `
+                          <tr style="border-bottom: 1px solid #f3f4f6;">
+                            <td style="padding: 10px 12px; font-weight: 600; color:#111827;">${appName}</td>
+                            <td style="padding: 10px 12px; text-align:right; font-weight: 600;">${formatBytes(totalBytes)}</td>
+                            <td style="padding: 10px 12px; text-align:right;">${formatBytes(appMetrics?.totals?.jsBytes || 0)}</td>
+                            <td style="padding: 10px 12px; text-align:right;">${formatBytes(appMetrics?.totals?.cssBytes || 0)}</td>
+                            <td style="padding: 10px 12px; text-align:right; color:${discordColor}; font-weight:700;">${discordPct}%</td>
+                            <td style="padding: 10px 12px; text-align:right; color:${telegramColor}; font-weight:700;">${telegramPct}%</td>
+                            <td style="padding: 10px 12px; min-width: 320px;">
+                              <details>
+                                <summary style="cursor:pointer;">${appMetrics?.files?.length || 0} files</summary>
+                                <div style="max-height: 140px; overflow:auto; margin-top: 6px; font-family: monospace; font-size: 11px;">
+                                  ${(appMetrics?.files || [])
+                                    .map((file) => `<div>${file.path} — ${formatBytes(file.bytes)}</div>`)
+                                    .join('')}
+                                </div>
+                              </details>
+                            </td>
+                          </tr>
+                        `
+                      })
+                      .join('')}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          `
+          : `
+            <div style="margin-top: 24px; border: 1px solid #e5e7eb; border-radius: 10px; background: #fff; padding: 16px; color: #6b7280; font-size: 13px;">
+              Bundle telemetry not found. Run <code>pnpm generate-bundle-metrics</code> (or <code>pnpm build:apps</code>) first.
+            </div>
+          `
 
         container.innerHTML = `
           <h2 style="margin-bottom: 20px; color: #333">🌐 Platform Readiness</h2>
@@ -1640,6 +2627,11 @@
               })
               .join('')}
           </div>
+          ${arcadeConversionHtml}
+          ${criteriaMatrixHtml}
+          ${fullVerdictGridHtml}
+          ${approvalDetailHtml}
+          ${bundleTelemetryHtml}
         `
       }
 
@@ -1694,7 +2686,7 @@
 
       function renderBlockers() {
         const { blockers } = complianceData
-        const blockerList = blockers?.blockers || []
+        const blockerList = getEffectiveBlockerList(blockers?.blockers || [])
 
         // Count by severity
         document.getElementById('blocker-count-all').textContent = blockerList.length
@@ -1711,15 +2703,138 @@
         renderBlockerList(blockerList, 'all')
       }
 
+      function formatBytes(value) {
+        if (value === null || value === undefined || Number.isNaN(value)) {
+          return 'N/A'
+        }
+        if (value < 1024 * 1024) {
+          return `${(value / 1024).toFixed(1)} KB`
+        }
+        return `${(value / (1024 * 1024)).toFixed(2)} MB`
+      }
+
+      function getBundleLimitBytes(platform) {
+        if (platform === 'discord') return 10 * 1024 * 1024
+        if (platform === 'telegram') return 8 * 1024 * 1024
+        if (platform === 'meta') return 4 * 1024 * 1024
+        return null
+      }
+
+      function getBundleAssessment(game, platform) {
+        const appBundle = complianceData.bundleMetrics?.apps?.[game]
+        if (!appBundle) return null
+
+        const totalBytes = appBundle?.totals?.totalBytes ?? null
+        const limitBytes = getBundleLimitBytes(platform)
+        const utilizationPct =
+          totalBytes !== null && limitBytes ? Number(((totalBytes / limitBytes) * 100).toFixed(1)) : null
+        const status =
+          utilizationPct === null
+            ? 'info'
+            : utilizationPct > 100
+              ? 'fail'
+              : utilizationPct >= 90
+                ? 'warn'
+                : 'pass'
+
+        return {
+          totalBytes,
+          limitBytes,
+          utilizationPct,
+          status,
+          riskLabel:
+            utilizationPct === null
+              ? 'unknown'
+              : utilizationPct < 50
+                ? 'low'
+                : utilizationPct < 80
+                  ? 'moderate'
+                  : utilizationPct <= 100
+                    ? 'elevated'
+                    : 'over-limit',
+          recommendation:
+            utilizationPct === null
+              ? 'Collect bundle metrics before assigning risk.'
+              : utilizationPct < 50
+                ? 'Low current risk; continue normal bundle hygiene and monitor growth.'
+                : utilizationPct < 80
+                  ? 'Moderate risk; keep optimization planned as features are added.'
+                  : utilizationPct <= 100
+                    ? 'Elevated risk; prioritize optimization before adding major payload.'
+                    : 'Over limit; optimization required before platform approval.',
+          topFiles: appBundle.largestFiles || [],
+        }
+      }
+
+      const BLOCKER_BUNDLE_LOW_RISK_THRESHOLD_PCT = 50
+
+      function isBundleRiskBlocker(blocker) {
+        const id = String(blocker?.id || '').toLowerCase()
+        const issue = String(blocker?.issue || '').toLowerCase()
+        return id.includes('bundle') || issue.includes('bundle')
+      }
+
+      function isSuppressedLowRiskBlocker(blocker) {
+        if (!isBundleRiskBlocker(blocker)) return false
+        const assessment = getBundleAssessment(blocker.game, blocker.platform)
+        if (!assessment || assessment.utilizationPct === null) return false
+        return assessment.utilizationPct < BLOCKER_BUNDLE_LOW_RISK_THRESHOLD_PCT
+      }
+
+      function getEffectiveBlockerList(blockerList) {
+        return (blockerList || []).filter((blocker) => !isSuppressedLowRiskBlocker(blocker))
+      }
+
       function renderBlockerList(blockers, severity) {
-        let filtered = blockers
+        const effectiveBlockers = getEffectiveBlockerList(blockers)
+        let filtered = effectiveBlockers
         if (severity !== 'all') {
-          filtered = blockers.filter((b) => b.severity === severity)
+          filtered = effectiveBlockers.filter((b) => b.severity === severity)
         }
 
         const html = filtered
           .map(
-            (b) => `
+            (b) => {
+              const assessment = getBundleAssessment(b.game, b.platform)
+              const statusColor =
+                assessment?.status === 'fail'
+                  ? '#dc2626'
+                  : assessment?.status === 'warn'
+                    ? '#d97706'
+                    : '#2563eb'
+
+              const bundleInfo = assessment
+                ? `
+                  <div style="margin-top: 10px; font-size: 12px; color: #4b5563; line-height: 1.4;">
+                    <div><strong>Measured Bundle:</strong> ${formatBytes(assessment.totalBytes)}</div>
+                    ${
+                      assessment.limitBytes
+                        ? `<div><strong>Platform Limit:</strong> ${formatBytes(assessment.limitBytes)} (<span style="color:${statusColor};font-weight:700;">${assessment.utilizationPct}%</span>)</div>`
+                        : '<div><strong>Platform Limit:</strong> Not defined for this blocker context</div>'
+                    }
+                    <div><strong>Bundle Risk:</strong> <span style="color:${statusColor};font-weight:700;">${assessment.riskLabel}</span></div>
+                    <div><strong>Guidance:</strong> ${assessment.recommendation}</div>
+                    <details style="margin-top: 6px;">
+                      <summary style="cursor: pointer; color: #374151;">Top bundle files</summary>
+                      <div style="margin-top: 6px; max-height: 120px; overflow: auto; padding-right: 4px;">
+                        ${assessment.topFiles
+                          .slice(0, 10)
+                          .map(
+                            (file) =>
+                              `<div style="font-family: monospace; font-size: 11px;">${file.path} — ${formatBytes(file.bytes)}</div>`,
+                          )
+                          .join('')}
+                      </div>
+                    </details>
+                  </div>
+                `
+                : `
+                  <div style="margin-top: 10px; font-size: 12px; color: #9ca3af;">
+                    Bundle telemetry unavailable (run <code>pnpm generate-bundle-metrics</code>).
+                  </div>
+                `
+
+              return `
         <div class="blocker-card ${b.severity}">
           <div class="blocker-header">
             <div class="blocker-severity ${b.severity}">${b.severity}</div>
@@ -1729,9 +2844,11 @@
           <div class="blocker-platform">${b.platform === 'all' || !b.platform ? 'All Platforms' : b.platform}</div>
           <div class="blocker-issue">${b.issue || 'Unknown issue'}</div>
           <div class="blocker-resolution">💡 ${b.resolution || 'TBD'}</div>
+          ${bundleInfo}
           <div style="margin-top: 10px; font-size: 12px; color: #999;">Status: ${b.status || 'pending'}</div>
         </div>
-      `,
+      `
+            },
           )
           .join('')
 
@@ -1744,7 +2861,7 @@
         buttons.forEach((b) => b.classList.remove('active'))
         event.target.classList.add('active')
 
-        const blockerList = complianceData.blockers?.blockers || []
+        const blockerList = getEffectiveBlockerList(complianceData.blockers?.blockers || [])
         renderBlockerList(blockerList, severity)
       }
 
@@ -1882,6 +2999,25 @@
           <h3>Status</h3>
           <p><strong>${cell.status}</strong> - ${cell.completionPercentage}% complete</p>
         </div>
+
+        ${
+          cell.bundleTelemetry
+            ? `
+          <div class="modal-section">
+            <h3>Bundle Telemetry</h3>
+            <p><strong>Total Bundle:</strong> ${formatBytes(cell.bundleTelemetry.totalBytes)}</p>
+            ${
+              cell.bundleTelemetry.limitBytes
+                ? `
+              <p><strong>Platform Limit:</strong> ${formatBytes(cell.bundleTelemetry.limitBytes)}</p>
+              <p><strong>Utilization:</strong> ${cell.bundleTelemetry.utilizationPct}% (${cell.bundleTelemetry.withinLimit ? 'Within limit' : 'Over limit'})</p>
+            `
+                : ''
+            }
+          </div>
+        `
+            : ''
+        }
 
         ${
           gameRule

@@ -1,4 +1,5 @@
 import { useGame, useTheme } from '@/app'
+import { SplashScreen } from '@/ui'
 import {
   AboutModal,
   BingoCard,
@@ -7,8 +8,8 @@ import {
   RulesModal,
   SettingsModal,
 } from '@/ui/organisms'
+import { getCardHint, getCardPatterns } from '@games/bingo-domain'
 import { VariantProvider, useScoring } from '@games/bingo-game-hooks'
-import { SplashScreen } from '@games/common'
 import type { BingoTheme } from '@games/theme-context'
 import { useCallback, useEffect, useState } from 'react'
 
@@ -24,11 +25,9 @@ export function App() {
   const { theme, setTheme } = useTheme()
   const {
     gameState,
-    drawSingleNumber,
-    handleReset,
-    handleNewGame,
-    getWinnerChecks,
-    getHintPositions,
+    drawNumber: drawSingleNumber,
+    resetGame: handleReset,
+    newGame: handleNewGame,
   } = useGame(cardCount)
 
   // Initialize scoring system for variant
@@ -187,6 +186,7 @@ export function App() {
             <DrawPanel
               currentNumber={gameState.currentDrawn}
               numbersDrawn={gameState.drawnNumbers.size}
+              drawnNumbers={Array.from(gameState.drawnNumbers)}
               totalNumbers={75}
               onDraw={handleDraw}
               onReset={handleReset}
@@ -197,12 +197,12 @@ export function App() {
 
           <div className="cards-container">
             {gameState.cards.map((card) => {
-              const winnerCheck = getWinnerChecks(card.id)
-              const hintPositions = showHints ? getHintPositions(card.id) : []
+              const winnerCheck = getCardPatterns(gameState, card.id)
+              const hintPositions = showHints ? getCardHint(gameState, card.id) : []
 
               // Record score when pattern wins occur
-              if (winnerCheck.patterns.length > 0) {
-                winnerCheck.patterns.forEach((pattern) => {
+              if (winnerCheck.length > 0) {
+                winnerCheck.forEach((pattern) => {
                   scoreWin(card.id, pattern)
                 })
               }
@@ -211,7 +211,7 @@ export function App() {
                 <BingoCard
                   key={card.id}
                   card={card}
-                  patterns={winnerCheck.patterns}
+                  patterns={winnerCheck}
                   hintPositions={hintPositions}
                   showHints={showHints}
                 />

@@ -37,7 +37,7 @@ async function runLighthouse() {
       '--only-categories=accessibility',
       `--output-path=${jsonFile.replace(/\.json$/, '')}`,
       '--output=json,html',
-      '--chrome-flags="--headless"',
+      '--chrome-flags=--headless --no-sandbox --disable-gpu --disable-dev-shm-usage',
     ])
 
     let output = ''

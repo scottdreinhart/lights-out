@@ -9,15 +9,20 @@
   justify-content: center;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   z-index: 9999;
-  animation: fadeOut 0.5s ease-out forwards;
-  animation-delay: var(--fade-delay, 0s);
+}
+
+.splash.exiting {
+  animation-name: fadeOut;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }
 
 .splash.interactive {
-  animation: none; /* Disable auto-fade in interactive mode */
+  animation: none;
 }
 
 .content {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,6 +31,60 @@
   text-align: center;
   padding: 2rem;
   max-width: 90vw;
+  width: min(90vw, 42rem);
+  min-height: 18rem;
+}
+
+.logo {
+  color: white;
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 420ms ease,
+    transform 420ms ease;
+  pointer-events: none;
+}
+
+.stageVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stageHidden {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.logoMark {
+  width: 5rem;
+  height: 5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.5rem;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
+  text-transform: uppercase;
+}
+
+.logoImage {
+  width: 15.94rem;
+  height: 15.94rem;
+  object-fit: contain;
+  border-radius: 1rem;
 }
 
 .title {
@@ -110,14 +169,21 @@
 
 /* Accessibility: Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+  .splash.exiting,
   .buttonPrimary,
-  .buttonSecondary {
+  .buttonSecondary,
+  .stage {
     transition: none;
+    animation: none;
   }
 
   .buttonPrimary:hover,
   .buttonSecondary:hover {
     transform: none;
+  }
+
+  .logoMark {
+    box-shadow: none;
   }
 }
 
@@ -132,13 +198,26 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .title {
-    font-size: 2rem;
+  .logoMark {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1.25rem;
+    font-size: 1.2rem;
+  }
+
+  .logoImage {
+    width: 13.13rem;
+    height: 13.13rem;
+    border-radius: 0.9rem;
   }
 
   .content {
     gap: 1rem;
     padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
   }
 
   .buttonGroup {
@@ -154,13 +233,26 @@
 }
 
 @media (max-width: 480px) {
-  .title {
-    font-size: 1.5rem;
+  .logoMark {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+  }
+
+  .logoImage {
+    width: 11.25rem;
+    height: 11.25rem;
+    border-radius: 0.75rem;
   }
 
   .content {
     gap: 0.75rem;
     padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
   }
 
   .buttonGroup {

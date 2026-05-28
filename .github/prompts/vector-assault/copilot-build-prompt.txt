@@ -1,0 +1,65 @@
+Build a clean minimalist arcade prototype named “Vector Assault.”
+
+Creative target:
+- Hybrid of classic Asteroids and modern score-attack arena survival.
+- Asteroids is the primary reference for movement feel, fragmentation behavior, panic survival, and vector aesthetics.
+- Arena-survival framing is secondary and used for escalating wave pressure and replayability.
+- Do NOT turn this into a frictionless twin-stick shooter clone.
+
+Core gameplay:
+- Single-screen looping arena.
+- Rotate left/right.
+- Thrust forward only in facing direction.
+- Momentum persists (inertia-based handling).
+- Primary weapon fires forward from facing.
+- Panic reposition ability inspired by risky hyperspace (cooldown/tradeoff).
+- Secondary “Overdrive Burst” with short high-output window and recovery.
+
+Enemy model:
+- Asteroid-like hazards drift on vectors.
+- Large -> medium -> small fragmentation chain.
+- Fragmentation raises local danger and score opportunity.
+- Add occasional hunter/ranged saucer-like threats in later waves.
+- Approach vectors can originate from any screen edge.
+- Use wraparound for ship, hazards, and projectiles unless explicitly justified.
+
+Wave structure:
+- Start readable and sparse.
+- Escalate with count, speed, fragmentation density, overlap pressure, and special threat frequency.
+- Fast transitions, minimal downtime.
+- Endless score-attack identity with immediate restart on death.
+
+Combat rules:
+- Keep primary fire cadence governed (projectile cap and/or fire timer).
+- Avoid unrestricted spam.
+- Overdrive Burst is powerful but temporary.
+- Score scales with danger (smaller/faster/riskier targets worth more).
+
+HUD:
+- Show Score, Lives, Tick/Wave, and pressure indicators.
+- Preserve prototype labels when useful: Intensity, Focus, Progress.
+- Include actions for Strafe Fire, Reposition, Overdrive Burst, Reset Session.
+
+Visual and audio style:
+- White/near-white vector outlines on black.
+- Minimal geometric silhouettes, high readability under pressure.
+- Avoid texture-heavy visuals and particle clutter.
+- Audio should be concise arcade pulse/urgency with crisp fire/impact.
+
+Architecture requirements:
+- Follow repository governance and clean layering.
+- Domain simulation framework-agnostic and deterministic where practical.
+- Keep gameplay logic out of React rendering.
+- Separate simulation, input orchestration, and rendering.
+- Create reusable primitives for ship/hazards/projectiles/wrap/collision/waves/scoring/cooldowns/HUD.
+- Keep constants centralized and tunable.
+- Add TODO headers before implementing major new systems.
+
+Acceptance criteria:
+- Inertia-first movement feel is obvious.
+- Fragmentation materially changes danger.
+- Pressure escalates over time.
+- Score loop drives replay.
+- Restart is immediate.
+- Visual clarity holds under high object density.
+

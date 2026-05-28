@@ -59,7 +59,7 @@ export function calculateScore(dice: DieValue[]): number {
     const count = counts[value] || 0
     if (count >= 3) {
       const multiplier = count - 2 // 3 of a kind = ×1, 4 of a kind = ×2, etc.
-      score += (value * 100) * multiplier
+      score += value * 100 * multiplier
     }
   }
 

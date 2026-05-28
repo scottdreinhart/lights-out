@@ -12,8 +12,8 @@
  *   ← { type: 'moves', moves: Record<string, number> }
  */
 
-import type { WasmAIExports } from '@/wasm/wasm-loader'
 import { AI_WASM_BASE64 } from '@/wasm/ai-wasm'
+import type { WasmAIExports } from '@/wasm/wasm-loader'
 
 // ─── WASM instance (loaded once on init) ────────────────────
 

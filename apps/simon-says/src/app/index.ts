@@ -5,30 +5,32 @@
  * Usage: import { useSimonSays } from '@/app'
  */
 
-export { useSimonSays } from './hooks'
+export * from './hooks'
 
 export {
-  useMediaQuery,
-  useWindowSize,
-  useResponsiveState,
-  useDeviceInfo,
-  useAppScreens,
-  useServiceLoader,
-  useOnlineStatus,
-  useLongPress,
-  usePerformanceMetrics,
   logWebVitals,
+  useAppScreens,
+  useDeviceInfo,
+  useLongPress,
+  useMediaQuery,
+  useOnlineStatus,
+  usePerformanceMetrics,
+  useResponsiveState,
+  useServiceLoader,
+  useWindowSize,
   type DeviceInfo,
   type DeviceType,
   type WindowSize,
 } from '@games/app-hook-utils'
 
 // Local services
+export { logCrash, getCrashLogs, clearCrashLogs, markFatalCrash, getFatalCrash, clearFatalCrash } from '@games/diagnostics-utils'
 export * from './haptics'
-export * from './crashLogger'
-export * from './storageService'
 export { SoundProvider, useSoundContext } from './SoundContext'
+export * from './storageService'
 export { ThemeProvider, useThemeContext } from './ThemeContext'
 
 // App-specific hooks
-export { useStats } from './useStats'
+// useGame is the canonical alias — simon-says uses useSimonSays internally
+export { useSimonSays as useGame } from './hooks'
+export * from './securityModules'

@@ -1,0 +1,23 @@
+{
+  "game_title": "Neon Escape",
+  "genre_family": "endless_runner",
+  "scroll_direction": "forward",
+  "camera_mode": "third_person_behind",
+  "lane_model": "3_lane",
+  "movement_model": "auto_forward",
+  "primary_input": "swipe",
+  "secondary_input": "jump_slide",
+  "core_pattern": "lane_switching + obstacle_avoidance + coin_collection",
+  "player_goal": "maximize_score",
+  "obstacle_model": ["lane_blockers", "moving", "pattern_sequences"],
+  "collectible_model": "coins",
+  "powerup_model": ["shield", "magnet", "speed_boost"],
+  "difficulty_curve": "distance_based",
+  "failure_condition": "single_hit",
+  "session_structure": "pure_endless",
+  "tone": "cyberpunk",
+  "world_theme": "neon metro tunnel",
+  "reference_archetypes": ["Temple Run 2", "Subway Surfers", "Sonic Dash"],
+  "must_have_systems": ["lane_switch", "jump", "slide", "coin_spawner", "chase_pressure"],
+  "must_not_have_systems": ["free_aim", "open_world", "camera_rotation"]
+}

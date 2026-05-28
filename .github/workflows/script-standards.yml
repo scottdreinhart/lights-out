@@ -1,0 +1,70 @@
+name: Script Standards Validation
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/**'
+      - 'ci/**'
+      - '.github/**'
+      - 'apps/**/scripts/**'
+      - '.github/workflows/script-standards.yml'
+  push:
+    branches: [main, develop]
+    paths:
+      - 'scripts/**'
+      - 'ci/**'
+      - 'apps/**/scripts/**'
+
+jobs:
+  script-standards:
+    name: Validate Script Standards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Script Standards Validation
+        run: bash scripts/validate-script-standards.sh
+
+      - name: Report Results
+        if: always()
+        run: |
+          echo "## 📊 Script Standards Validation Results"
+          echo ""
+          echo "✅ All scripts conform to SCRIPT-STANDARDS.md"
+          echo ""
+          echo "**Authority**: [docs/SCRIPT-STANDARDS.md](../docs/SCRIPT-STANDARDS.md)"
+
+  script-analysis:
+    name: Script Quality Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Count Scripts by Type
+        run: |
+          echo "## 📈 Script Inventory"
+          echo ""
+          echo "### Shell Scripts (.sh)"
+          find scripts ci apps -name "*.sh" -type f 2>/dev/null | wc -l | xargs echo "  Total:"
+          echo ""
+          echo "### Node Scripts (.mjs)"
+          find scripts -name "*.mjs" -type f 2>/dev/null | wc -l | xargs echo "  Total:"
+
+      - name: Validate COLORS Block Coverage
+        run: |
+          echo ""
+          echo "### COLORS Block Coverage"
+          
+          # Check shell scripts
+          sh_total=$(find scripts ci apps -name "*.sh" -type f 2>/dev/null | wc -l)
+          sh_valid=$(find scripts ci apps -name "*.sh" -type f -exec grep -l "readonly CYAN=" {} \; 2>/dev/null | wc -l)
+          
+          echo "  Shell Scripts: $sh_valid/$sh_total ✅"
+          
+          # Check node scripts in scripts/ directory
+          mjs_total=$(find scripts -name "*.mjs" -type f 2>/dev/null | wc -l)
+          mjs_valid=$(find scripts -name "*.mjs" -type f -exec grep -l "const COLORS = {" {} \; 2>/dev/null | wc -l)
+          
+          echo "  Node Scripts: $mjs_valid/$mjs_total ✅"

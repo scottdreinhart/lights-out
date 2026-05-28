@@ -1,10 +1,15 @@
 import path from 'node:path'
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import {
+  createOptimizedBuild,
+  createOptimizedPlugins,
+  createOptimizedResolve,
+} from '../../scripts/vite/createOptimizedViteConfig.mjs'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: createOptimizedPlugins(),
   resolve: {
+    ...createOptimizedResolve(),
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@/domain': path.resolve(__dirname, './src/domain'),
@@ -17,11 +22,5 @@ export default defineConfig({
       localsConvention: 'camelCase',
     },
   },
-  build: {
-    target: 'es2020',
-    cssTarget: 'es2020',
-    modulePreload: { polyfill: false },
-    minify: 'esbuild',
-    cssMinify: true,
-  },
+  build: createOptimizedBuild(),
 })

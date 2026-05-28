@@ -1,28 +1,53 @@
 # Workspace-Aware Scripts Documentation
 
-**Updated**: April 13, 2026  
-**Purpose**: Document workspace-wide and app-specific script patterns
+**Updated**: May 2, 2026  
+**Purpose**: Document workspace-wide and app-specific script patterns  
+**Philosophy**: Preservation-first design with **lights-out as primary development target** and **workspace-aware operations via `:ws` suffix**
 
 ---
 
-## Overview
+## 📋 Script Pattern Overview
 
-The monorepo supports two script patterns:
+The monorepo supports **three script patterns** with clear execution scopes:
 
-1. **App-Focused Scripts** (default root scripts)
-   - Target `apps/lights-out/` by default for backward compatibility
-   - Syntax: `pnpm start`, `pnpm build`, `pnpm lint`, etc.
-   - Used for quick lights-out development
+### 1️⃣ **App-Focused Scripts** (default root scripts)
+**These target `apps/lights-out/` for backward compatibility and quick development**
 
-2. **Workspace-Aware Scripts** (new `:ws` suffix)
-   - Run across ALL apps in the monorepo
-   - Syntax: `pnpm start:ws`, `pnpm build:ws`, `pnpm lint:ws`, etc.
-   - Used for platform-wide operations
+- Syntax: `pnpm start`, `pnpm build`, `pnpm lint`, `pnpm format`, `pnpm typecheck`, etc.
+- Purpose: Fast iteration on lights-out game (primary development target)
+- Execution: Limited to `apps/lights-out/src/` only
+- Use when: Developing lights-out specifically
 
-3. **Per-App Scripts** (explicit app targeting)
-   - Target specific apps via per-app scripts
-   - Syntax: `pnpm monchola:web:build`, `pnpm tictactoe:web:lint`, etc.
-   - Used for focused app development
+**⚠️ IMPORTANT**: Root scripts like `pnpm lint` do NOT scan all 60+ game apps—only lights-out. For workspace-wide operations, use the `:ws` suffix.
+
+### 2️⃣ **Workspace-Aware Scripts** (the `:ws` suffix pattern)
+**These run across ALL apps in the monorepo**
+
+- Syntax: `pnpm start:ws`, `pnpm build:ws`, `pnpm lint:ws`, `pnpm typecheck:ws`, etc.
+- Purpose: Platform-wide operations and validation
+- Execution: All apps in `apps/*/` directory in parallel or sequential mode
+- Use when: Validating entire platform, running quality gates, preparing releases
+
+**✅ COMPLETE LIST**: `lint:ws`, `lint:fix:ws`, `format:ws`, `format:check:ws`, `typecheck:ws`, `check:ws`, `fix:ws`, `validate:ws`, `clean:ws`, `test:ws`, `test:watch:ws`, `build:ws`, `start:ws`, `dev:ws`, `preview:ws`
+
+### 3️⃣ **Per-App Scripts** (explicit app targeting)
+**Target specific apps via per-app scripts**
+
+- Syntax: `pnpm monchola:web:build`, `pnpm tictactoe:web:lint`, `pnpm <app>:web:*`, etc.
+- Purpose: Focused app-by-app development
+- Execution: Single app only
+- Use when: Working on specific game app (bingo, checkers, nim, etc.)
+
+---
+
+## 🚨 Common Mistakes to Avoid
+
+| ❌ If you do this | ✅ Do this instead | Reason |
+|---|---|---|
+| `pnpm lint` (expects ALL apps scanned) | `pnpm lint:ws` | Root `lint` only targets lights-out |
+| `pnpm validate` (full platform) | `pnpm validate:ws` | Root `validate` is lights-out-only |
+| `pnpm build` (all apps) | `pnpm build:ws` | Root `build` uses build-apps-sequential |
+| `pnpm start` (run all servers) | `pnpm start:ws` | Root `start` launches lights-out only |
 
 ---
 
@@ -45,6 +70,16 @@ The monorepo supports two script patterns:
 | **Auto-fix** | `pnpm fix` | `pnpm fix:ws` |
 | **Check all** | `pnpm check` | `pnpm check:ws` |
 | **Full validation** | `pnpm validate` | `pnpm validate:ws` |
+
+### Testing
+
+| Task | Scope | Command |
+|------|-------|----------|
+| **Unit tests (single app)** | lights-out only | `pnpm test:unit` |
+| **All test types (single app)** | lights-out only | `pnpm test` |
+| **Tests in workspace** | All apps | `pnpm test:ws` |
+| **Watch mode (single app)** | lights-out only | `pnpm test:watch` |
+| **Watch mode (all apps)** | All apps | `pnpm test:watch:ws` |
 
 ### Cleanup
 
@@ -90,14 +125,14 @@ The monorepo supports two script patterns:
 - Execution: `pnpm -r lint:fix`
 
 **`pnpm format:ws`**
-- Formats code in ALL apps using Prettier
-- Use when: Batch format all code
-- Execution: `pnpm -r format`
+- Formats code in ALL apps sequentially by invoking each app's bracketed format script
+- Use when: Batch format all code and confirm each app individually
+- Execution: `node scripts/validate-workspace-segmented.mjs --script=format:segment --scope=apps --timeoutMs=600000`
 
 **`pnpm format:check:ws`**
-- Checks code formatting for ALL apps (no changes)
+- Checks code formatting for ALL apps sequentially by invoking each app's bracketed format check script
 - Use when: Verify formatting compliance before commit
-- Execution: `pnpm -r format:check`
+- Execution: `node scripts/validate-workspace-segmented.mjs --script=format:check:segment --scope=apps --timeoutMs=600000`
 
 **`pnpm typecheck:ws`**
 - Type-checks ALL apps using TypeScript
@@ -145,6 +180,11 @@ The monorepo supports two script patterns:
 ### `pnpm -r --sequential`
 - Explicit sequential execution
 - Good for: Builds, operations with dependencies
+
+### Bracketed workspace validation
+- Use `scripts/validate-workspace-segmented.mjs` when a workspace script should run app-by-app with explicit PASS/FAIL output
+- Best for: format, format:check, lint, typecheck, and other app-scoped quality gates
+- App-level segmented scripts now live as `format:segment` and `format:check:segment`
 
 ---
 

@@ -10,13 +10,13 @@ export interface BingoCell {
 
 export interface BingoCard {
   id: number
-  numbers: number[][]  // 3x3 grid
+  numbers: number[][] // 3x3 grid
 }
 
 export interface GameState {
   cards: BingoCard[]
   drawnNumbers: Set<number>
-  winners: number[]  // Card IDs
+  winners: number[] // Card IDs
   gameActive: boolean
   currentDrawn: number | null
 }

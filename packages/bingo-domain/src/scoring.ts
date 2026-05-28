@@ -39,10 +39,10 @@ export function getPatternPoints(pattern: string): number {
 export function getSpeedMultiplier(numbersDrawn: number, totalNumbers: number): number {
   // If less than 30% of numbers drawn, significant speed bonus
   const percentage = numbersDrawn / totalNumbers
-  if (percentage < 0.3) return 2.0 // 2x multiplier
-  if (percentage < 0.4) return 1.75 // 1.75x
-  if (percentage < 0.5) return 1.5 // 1.5x
-  if (percentage < 0.6) return 1.25 // 1.25x
+  if (percentage < 0.3) {return 2.0} // 2x multiplier
+  if (percentage < 0.4) {return 1.75} // 1.75x
+  if (percentage < 0.5) {return 1.5} // 1.5x
+  if (percentage < 0.6) {return 1.25} // 1.25x
   return 1.0 // No bonus after 60% of numbers drawn
 }
 
@@ -53,9 +53,9 @@ export function getSpeedMultiplier(numbersDrawn: number, totalNumbers: number): 
 export function getPatternBonus(pattern: string, variantId: BingoVariantId): number {
   // Pattern Bingo: special arrangement bonuses
   if (variantId === 'pattern') {
-    if (pattern === 'blackout') return 500 // Blackout is rare in pattern bingo
-    if (pattern === 'four-corners') return 200 // Four corners worth extra
-    if (pattern === 'diagonal-left' || pattern === 'diagonal-right') return 150
+    if (pattern === 'blackout') {return 500} // Blackout is rare in pattern bingo
+    if (pattern === 'four-corners') {return 200} // Four corners worth extra
+    if (pattern === 'diagonal-left' || pattern === 'diagonal-right') {return 150}
   }
 
   // Bonus variant: all patterns worth extra
@@ -64,8 +64,8 @@ export function getPatternBonus(pattern: string, variantId: BingoVariantId): num
   }
 
   // Rush and Speed: normal bonuses
-  if (pattern === 'four-corners') return 50
-  if (pattern === 'diagonal-left' || pattern === 'diagonal-right') return 25
+  if (pattern === 'four-corners') {return 50}
+  if (pattern === 'diagonal-left' || pattern === 'diagonal-right') {return 25}
 
   return 0
 }
@@ -110,7 +110,7 @@ export function calculateScore(
  * Award bonus points for survival variant based on time survived.
  */
 export function getSurvivalBonus(elapsedSeconds: number, timeLimitSeconds: number): number {
-  if (elapsedSeconds <= 0) return 0
+  if (elapsedSeconds <= 0) {return 0}
 
   // Award points for every second survived
   const timeBonus = elapsedSeconds * 10

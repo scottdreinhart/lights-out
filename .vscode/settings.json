@@ -23,18 +23,49 @@
       "source": "PowerShell",
       "icon": "terminal-powershell"
     },
-    "Ubuntu": { "hidden": true },
-    "WSL": { "hidden": true }
+    "Ubuntu": {
+      "hidden": true
+    },
+    "WSL": {
+      "hidden": true
+    }
   },
   "terminal.integrated.enablePersistentSessions": false,
   "terminal.integrated.env.windows": {
-    "BASH_ENV": "/mnt/c/Users/scott/game-platform/.vscode/terminal-bootstrap.sh"
+    "BASH_ENV": "/mnt/c/Users/scott/game-platform/.vscode/terminal-bootstrap.sh",
+    "OLLAMA_HOST": "http://localhost:11434",
+    "OLLAMA_NUM_PARALLEL": "1",
+    "OLLAMA_MAX_LOADED_MODELS": "2",
+    "OLLAMA_KEEP_ALIVE": "30m",
+    "CUDA_VISIBLE_DEVICES": "0"
   },
+
   "continue.inlineCompletions.enabled": true,
+  "continue.enableTabAutocomplete": true,
+  "continue.telemetryEnabled": false,
+
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false
+  },
   "github.copilot.chat.codeGeneration.useInstructionFiles": true,
   "github.copilot.chat.agent.thinkingTool": true,
   "github.copilot.chat.reviewSelection.enabled": true,
   "github.copilot.chat.languageModels": [
+    {
+      "id": "ollama/gemma4-31b-16k",
+      "model": "gemma4-31b-16k",
+      "apiBase": "http://localhost:11434",
+      "provider": "ollama"
+    },
+    {
+      "id": "ollama/gemma4-31b-64k",
+      "model": "gemma4-31b-64k",
+      "apiBase": "http://localhost:11434",
+      "provider": "ollama"
+    },
     {
       "id": "ollama/qwen3:30b-coder",
       "model": "qwen3:30b-coder",
@@ -42,7 +73,9 @@
       "provider": "ollama"
     }
   ],
+
   "sarif-viewer.connectToGithubCodeScanning": "off",
+
   "mcp": {
     "servers": {
       "brave-search": {

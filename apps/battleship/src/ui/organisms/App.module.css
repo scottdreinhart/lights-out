@@ -3,10 +3,15 @@
   flex-direction: column;
   align-items: center;
   gap: 1.25rem;
-  padding: 1.5rem 1rem;
-  max-width: 1100px;
+  width: 100%;
+  max-width: 1400px;
+  padding: 20px clamp(12px, 2vw, 24px);
   margin: 0 auto;
   min-height: 100vh;
+  border: 1px solid rgb(121 170 255 / 26%);
+  border-radius: 18px;
+  background: rgb(11 19 35 / 90%);
+  box-shadow: 0 28px 70px rgb(0 0 0 / 45%);
 }
 
 .header {
@@ -14,15 +19,14 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 1100px;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(0, 150, 255, 0.1);
+  border-bottom: 1px solid rgb(121 170 255 / 18%);
 }
 
 .title {
   font-size: 2rem;
   margin: 0;
-  background: linear-gradient(135deg, var(--theme-accent, #667eea), #764ba2);
+  background: linear-gradient(135deg, #98c6ff, #71ffd6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -36,10 +40,10 @@
 
 .btn {
   padding: 0.5rem 1.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.07);
-  color: inherit;
+  border: 1px solid rgb(121 170 255 / 24%);
+  border-radius: 12px;
+  background: rgb(5 9 18 / 55%);
+  color: #eff4ff;
   cursor: pointer;
   font-size: 0.85rem;
   font-weight: 600;
@@ -50,8 +54,8 @@
 
 @media (hover: hover) {
   .btn:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: var(--theme-accent, #667eea);
+    background: rgb(15 23 42 / 84%);
+    border-color: #98c6ff;
   }
 }
 
@@ -62,6 +66,7 @@
 
 .boards {
   display: flex;
+  width: 100%;
   justify-content: center;
 }
 
@@ -70,6 +75,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  width: 100%;
 }
 
 .scoreboardContainer {
@@ -79,15 +85,15 @@
   flex-wrap: wrap;
   width: 100%;
   padding: 1.5rem 0;
-  border-bottom: 1px solid rgba(0, 150, 255, 0.1);
+  border-bottom: 1px solid rgb(121 170 255 / 18%);
 }
 
 .newGameBtn {
   padding: 0.75rem 2rem;
-  border: none;
-  border-radius: 8px;
-  background: var(--theme-accent, #667eea);
-  color: #1a1a1a;
+  border: 1px solid rgb(137 179 255 / 40%);
+  border-radius: 12px;
+  background: linear-gradient(180deg, #3855a4, #223574);
+  color: #f4f8ff;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 700;
@@ -96,7 +102,7 @@
 @media (hover: hover) {
   .newGameBtn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 18px 34px rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -137,6 +143,12 @@
 .compact.app {
   padding: 1rem 0.5rem;
   gap: 1rem;
+}
+
+@media (min-width: 900px) {
+  .app {
+    padding: 24px clamp(20px, 3vw, 40px);
+  }
 }
 
 /* Touch-optimized sizing (applied via JS class) */

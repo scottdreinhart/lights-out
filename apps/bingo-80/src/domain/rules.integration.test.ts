@@ -72,7 +72,10 @@ describe('bingo-80 (Swedish 4x4 Bingo) - Integration Tests', () => {
       const cardNumbers = new Set(gameState.cards[0].squares)
 
       // Draw some numbers
-      for (const num of Array.from(cardNumbers).slice(0, 5)) {
+      const nums = Array.from(cardNumbers)
+        .filter((n): n is number => n !== null)
+        .slice(0, 5)
+      for (const num of nums) {
         drawNumber(gameState)
         // Keep drawing until we get this number
         while (!gameState.drawnNumbers.has(num) && gameState.drawnNumbers.size < MAX_NUMBER) {
@@ -146,8 +149,6 @@ describe('bingo-80 (Swedish 4x4 Bingo) - Integration Tests', () => {
     })
 
     it('should generate fresh cards after reset', () => {
-      const firstCardId = gameState.cards[0].id
-
       const resetState = resetGame(gameState)
 
       expect(resetState.drawnNumbers.size).toBe(0)

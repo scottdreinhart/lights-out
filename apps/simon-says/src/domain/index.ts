@@ -6,13 +6,7 @@
  */
 
 // Game orchestration functions from rules.ts
-export {
-  handleTimeout,
-  playerAddsColor,
-  playerMove,
-  resetGame,
-  startGame,
-} from './rules'
+export { handleTimeout, playerAddsColor, playerMove, resetGame, startGame } from './rules'
 
 // Rule configuration from rules/ directory
 export {
@@ -35,6 +29,3 @@ export * from './responsive'
 export * from './sprites'
 export * from './themes'
 export * from './types'
-
-
-

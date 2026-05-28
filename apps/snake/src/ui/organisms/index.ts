@@ -6,3 +6,4 @@ export { default as App } from './App'
 
 // ── Governance: Error Boundary ──
 export { ErrorBoundary } from './ErrorBoundary'
+export { SnakeSurface } from './SnakeSurface'

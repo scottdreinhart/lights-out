@@ -5,20 +5,18 @@
  * Usage: import { useTheme, useSoundEffects } from '@/app'
  */
 
-export * from './aiService'
-export * from './haptics'
-export * from './crashLogger'
-export { SoundProvider, useSoundContext } from '@games/sound-context'
-export * from './storageService'
-export { ThemeProvider, useThemeContext } from './ThemeContext'
-export * from './useGame'
 export { RESPONSIVE_BREAKPOINTS } from '@/domain'
 export type {
-	ContentDensity as ResponsiveContentDensity,
-	NavMode as ResponsiveNavMode,
+  ContentDensity as ResponsiveContentDensity,
+  NavMode as ResponsiveNavMode,
 } from '@/domain'
-export { useResponsiveState } from '@games/app-hook-utils'
-export { useSoundEffects } from './useSoundEffects'
-export { useStats } from './useStats'
-export { default as useTheme } from './useTheme'
-export { useSwipe } from '@games/app-hook-utils'
+export { useKeyboardControls, useResponsiveState, useSwipe } from '@games/app-hook-utils'
+export { SoundProvider, useSoundContext } from '@games/sound-context'
+export { logCrash, getCrashLogs, clearCrashLogs, markFatalCrash, getFatalCrash, clearFatalCrash } from '@games/diagnostics-utils'
+export * from './aiService'
+export * from './haptics'
+export * from './useGame'
+export * from './hooks'
+export * from './securityModules'
+export * from './storageService'
+export { ThemeProvider, useThemeContext } from './ThemeContext'

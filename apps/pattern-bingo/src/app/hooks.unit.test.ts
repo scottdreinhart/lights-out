@@ -3,8 +3,8 @@
  * Tests pattern detection logic and multiplier scoring
  */
 
-import { describe, it, expect, beforeEach } from 'vitest'
-import { renderHook, act } from '@testing-library/react'
+import { act, renderHook } from '@testing-library/react'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { usePatternDetection } from '../hooks'
 
 describe('usePatternDetection', () => {
@@ -93,7 +93,11 @@ describe('usePatternDetection', () => {
         expect(pattern).not.toBeNull()
         expect(pattern?.type).toBe('LINE')
         expect(pattern?.coordinates).toEqual([
-          [0, 0], [0, 1], [0, 2], [0, 3], [0, 4]
+          [0, 0],
+          [0, 1],
+          [0, 2],
+          [0, 3],
+          [0, 4],
         ])
         expect(pattern?.score).toBe(100)
         expect(pattern?.multiplier).toBe(1.0)
@@ -117,7 +121,11 @@ describe('usePatternDetection', () => {
         expect(pattern).not.toBeNull()
         expect(pattern?.type).toBe('LINE')
         expect(pattern?.coordinates).toEqual([
-          [0, 0], [1, 0], [2, 0], [3, 0], [4, 0]
+          [0, 0],
+          [1, 0],
+          [2, 0],
+          [3, 0],
+          [4, 0],
         ])
       })
 
@@ -149,10 +157,10 @@ describe('usePatternDetection', () => {
 
       // Mark corners: 0, 4, 20, 24
       act(() => {
-        result.current.markSquare(0)   // [0,0]
-        result.current.markSquare(4)   // [0,4]
-        result.current.markSquare(20)  // [4,0]
-        result.current.markSquare(24)  // [4,4]
+        result.current.markSquare(0) // [0,0]
+        result.current.markSquare(4) // [0,4]
+        result.current.markSquare(20) // [4,0]
+        result.current.markSquare(24) // [4,4]
       })
 
       act(() => {
@@ -160,7 +168,10 @@ describe('usePatternDetection', () => {
         expect(pattern).not.toBeNull()
         expect(pattern?.type).toBe('CORNERS')
         expect(pattern?.coordinates).toEqual([
-          [0, 0], [0, 4], [4, 0], [4, 4]
+          [0, 0],
+          [0, 4],
+          [4, 0],
+          [4, 4],
         ])
         expect(pattern?.score).toBe(150)
       })
@@ -171,9 +182,9 @@ describe('usePatternDetection', () => {
 
       // Mark 3 corners, miss one
       act(() => {
-        result.current.markSquare(0)   // [0,0]
-        result.current.markSquare(4)   // [0,4]
-        result.current.markSquare(20)  // [4,0]
+        result.current.markSquare(0) // [0,0]
+        result.current.markSquare(4) // [0,4]
+        result.current.markSquare(20) // [4,0]
         // Missing [4,4]
       })
 
@@ -197,11 +208,11 @@ describe('usePatternDetection', () => {
         // Left column (excluding corners)
         5, 10, 15,
         // Right column (excluding corners)
-        9, 14, 19
+        9, 14, 19,
       ]
 
       act(() => {
-        frameIndices.forEach(index => result.current.markSquare(index))
+        frameIndices.forEach((index) => result.current.markSquare(index))
       })
 
       act(() => {
@@ -221,7 +232,7 @@ describe('usePatternDetection', () => {
       // Mark center and cardinal directions: 12(center), 7(top), 17(bottom), 11(left), 13(right)
       act(() => {
         result.current.markSquare(12) // [2,2] center
-        result.current.markSquare(7)  // [1,2] top
+        result.current.markSquare(7) // [1,2] top
         result.current.markSquare(17) // [3,2] bottom
         result.current.markSquare(11) // [2,1] left
         result.current.markSquare(13) // [2,3] right
@@ -232,7 +243,11 @@ describe('usePatternDetection', () => {
         expect(pattern).not.toBeNull()
         expect(pattern?.type).toBe('PLUS')
         expect(pattern?.coordinates).toEqual([
-          [2, 2], [1, 2], [3, 2], [2, 1], [2, 3]
+          [2, 2],
+          [1, 2],
+          [3, 2],
+          [2, 1],
+          [2, 3],
         ])
         expect(pattern?.score).toBe(175)
       })

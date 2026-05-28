@@ -14,7 +14,9 @@ let wasmReadyPromise: Promise<MinesweeperWasmExports | null> | null = null
 
 function decodeBase64(base64: string): Uint8Array {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const NodeBuffer = (globalThis as any).Buffer as { from(s: string, enc: string): ArrayLike<number> } | undefined
+  const NodeBuffer = (globalThis as any).Buffer as
+    | { from(s: string, enc: string): ArrayLike<number> }
+    | undefined
   if (NodeBuffer) {
     return Uint8Array.from(NodeBuffer.from(base64, 'base64'))
   }
@@ -34,7 +36,10 @@ async function instantiateWasm(): Promise<MinesweeperWasmExports | null> {
 
   try {
     const bytes = decodeBase64(AI_WASM_BASE64)
-    const { instance } = await WebAssembly.instantiate(bytes, {}) as unknown as WebAssembly.WebAssemblyInstantiatedSource
+    const { instance } = (await WebAssembly.instantiate(
+      bytes,
+      {},
+    )) as unknown as WebAssembly.WebAssemblyInstantiatedSource
     const exports = instance.exports as Partial<MinesweeperWasmExports>
 
     if (

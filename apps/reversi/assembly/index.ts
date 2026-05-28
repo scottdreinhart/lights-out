@@ -3,8 +3,8 @@
 //
 // Board cells: 0 = empty, 1 = player 1, 2 = player 2
 //
-// TODO: Implement game-specific AI functions here.
-//       See tictactoe/assembly/index.ts for reference pattern.
+// This game currently relies on JavaScript worker AI fallback.
+// WASM is intentionally a minimal module until a game-specific engine is added.
 //
 // Compile: pnpm wasm:build
 // =======================================================================

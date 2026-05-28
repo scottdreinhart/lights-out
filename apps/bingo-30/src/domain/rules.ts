@@ -1,20 +1,20 @@
 /**
- * Mini Bingo game rules and state management (3x3 variant).
+ * Mini Bingo (3x3 variant) - core game state transitions.
  */
 
-import { createBingoCards, isWinner, markNumber } from './card'
-import { MAX_NUMBER } from './constants'
+import { createBingoCards, isWinner } from './card'
+import { ALL_NUMBERS, MAX_NUMBER } from './constants'
 import type { DrawResult, GameState } from './types'
 
-const ALL_NUMBERS = Array.from({ length: MAX_NUMBER }, (_, i) => i + 1)
-
 /**
- * Initialize a new mini bingo game
+ * Create a fresh game state.
  */
 export function createGameState(cardCount: number = 1): GameState {
+  const safeCardCount = Math.max(1, cardCount)
+
   return {
-    cards: createBingoCards(cardCount),
-    drawnNumbers: new Set(),
+    cards: createBingoCards(safeCardCount),
+    drawnNumbers: new Set<number>(),
     winners: [],
     gameActive: true,
     currentDrawn: null,
@@ -22,85 +22,66 @@ export function createGameState(cardCount: number = 1): GameState {
 }
 
 /**
- * Draw the next random number
+ * Start a new game.
  */
-export function drawNumber(state: GameState): DrawResult | null {
-  if (!state.gameActive || state.drawnNumbers.size >= ALL_NUMBERS.length) {
-    return null
-  }
-
-  const availableNumbers = ALL_NUMBERS.filter((n) => !state.drawnNumbers.has(n))
-  if (availableNumbers.length === 0) {
-    return null
-  }
-
-  const number = availableNumbers[Math.floor(Math.random() * availableNumbers.length)]
-  state.drawnNumbers.add(number)
-  state.currentDrawn = number
-
-  // Mark number on all cards and check for winners
-  const newWinners: number[] = []
-  for (const card of state.cards) {
-    markNumber(card, number)
-    if (isWinner(card, state.drawnNumbers) && !state.winners.includes(card.id)) {
-      newWinners.push(card.id)
-      state.winners.push(card.id)
-    }
-  }
-
-  return {
-    number,
-    winners: newWinners,
-  }
-}
-
-/**
- * Reset the game
- */
-export function resetGame(state: GameState): void {
-  state.drawnNumbers.clear()
-  state.currentDrawn = null
-  state.gameActive = true
-  state.winners = []
-}
-
-/**
- * Start a new game
- */
-export function newGame(cardCount: number): GameState {
+export function newGame(cardCount: number = 1): GameState {
   return createGameState(cardCount)
 }
 
 /**
- * Check if a number has been drawn
+ * Draw a new number and update mutable state.
  */
-export function isNumberDrawn(state: GameState, number: number): boolean {
-  return state.drawnNumbers.has(number)
+export function drawNumber(state: GameState): DrawResult | null {
+  if (!state.gameActive || state.drawnNumbers.size >= MAX_NUMBER) {
+    return null
+  }
+
+  const availableNumbers = ALL_NUMBERS.filter((num) => !state.drawnNumbers.has(num))
+  if (availableNumbers.length === 0) {
+    state.gameActive = false
+    return null
+  }
+
+  const drawn = availableNumbers[Math.floor(Math.random() * availableNumbers.length)]
+  state.drawnNumbers.add(drawn)
+  state.currentDrawn = drawn
+
+  const winners = state.cards
+    .filter((card) => isWinner(card, state.drawnNumbers))
+    .map((card) => card.id)
+
+  state.winners = winners
+  if (winners.length > 0 || state.drawnNumbers.size >= MAX_NUMBER) {
+    state.gameActive = false
+  }
+
+  return { number: drawn, winners }
 }
 
 /**
- * Get hint positions (random unmarked numbers)
+ * Reset the current game state in place while keeping the same cards.
  */
-export function getHintPositions(state: GameState, cardId: number, count: number = 3): number[] {
-  const card = state.cards.find((c) => c.id === cardId)
-  if (!card) return []
+export function resetGame(state: GameState): void {
+  state.drawnNumbers.clear()
+  state.winners = []
+  state.currentDrawn = null
+  state.gameActive = true
+}
 
-  const unmarked: number[] = []
-  for (const row of card.numbers) {
-    for (const num of row) {
-      if (!state.drawnNumbers.has(num)) {
-        unmarked.push(num)
-      }
-    }
+/**
+ * Return card numbers that are closest to winning.
+ */
+export function getHintPositions(state: GameState, cardId: number, count: number = 1): number[] {
+  const card = state.cards.find((item) => item.id === cardId)
+  if (!card) {
+    return []
   }
 
-  // Return random hints
-  const hints: number[] = []
-  for (let i = 0; i < Math.min(count, unmarked.length); i++) {
-    const randomIndex = Math.floor(Math.random() * unmarked.length)
-    hints.push(unmarked[randomIndex])
-    unmarked.splice(randomIndex, 1)
+  const remaining = card.numbers.flat().filter((num) => !state.drawnNumbers.has(num))
+
+  if (remaining.length === 0) {
+    return []
   }
 
-  return hints
+  return remaining.slice(0, Math.max(1, count))
 }

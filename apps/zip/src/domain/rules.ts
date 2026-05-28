@@ -3,39 +3,41 @@
  * Core game logic for maze navigation and movement
  */
 
+import { DIRECTIONS, MAZE_CONFIGS } from './constants'
 import type {
-  Maze,
   Cell,
-  Position,
-  Direction,
-  Move,
-  ZipState,
   Difficulty,
+  Direction,
+  Maze,
   MazeConfig,
+  Move,
+  Position,
+  ZipState,
 } from './types'
-import {
-  MAZE_CONFIGS,
-  DIRECTIONS,
-  MOVEMENT_COSTS,
-} from './constants'
 
 /**
  * Create an empty maze grid
  */
 export const createEmptyMaze = (width: number, height: number): Maze => {
-  return Array(height).fill(null).map(() =>
-    Array(width).fill(null).map((): Cell => ({ type: 'empty' }))
-  )
+  return Array(height)
+    .fill(null)
+    .map(() =>
+      Array(width)
+        .fill(null)
+        .map((): Cell => ({ type: 'empty' })),
+    )
 }
 
 /**
  * Check if a position is within maze bounds
  */
 export const isValidPosition = (position: Position, maze: Maze): boolean => {
-  return position.row >= 0 &&
-         position.row < maze.length &&
-         position.col >= 0 &&
-         position.col < maze[0].length
+  return (
+    position.row >= 0 &&
+    position.row < maze.length &&
+    position.col >= 0 &&
+    position.col < maze[0].length
+  )
 }
 
 /**
@@ -72,25 +74,28 @@ export const getValidMoves = (position: Position, maze: Maze): Move[] => {
 /**
  * Check if moving to a position would collect an item
  */
-export const wouldCollectItem = (position: Position, maze: Maze, collectedItems: Position[]): boolean => {
-  if (!isValidPosition(position, maze)) return false
+export const wouldCollectItem = (
+  position: Position,
+  maze: Maze,
+  collectedItems: Position[],
+): boolean => {
+  if (!isValidPosition(position, maze)) {
+    return false
+  }
 
   const cell = maze[position.row][position.col]
-  if (cell.type !== 'item') return false
+  if (cell.type !== 'item') {
+    return false
+  }
 
   // Check if item hasn't been collected yet
-  return !collectedItems.some(item =>
-    item.row === position.row && item.col === position.col
-  )
+  return !collectedItems.some((item) => item.row === position.row && item.col === position.col)
 }
 
 /**
  * Make a move in the maze
  */
-export const makeMove = (
-  state: ZipState,
-  direction: Direction
-): ZipState => {
+export const makeMove = (state: ZipState, direction: Direction): ZipState => {
   const currentPos = state.playerPosition
   const delta = DIRECTIONS[direction]
   const newPos: Position = {
@@ -99,8 +104,7 @@ export const makeMove = (
   }
 
   // Check if move is valid
-  if (!isValidPosition(newPos, state.maze) ||
-      !isPassable(state.maze[newPos.row][newPos.col])) {
+  if (!isValidPosition(newPos, state.maze) || !isPassable(state.maze[newPos.row][newPos.col])) {
     return state // Invalid move, return unchanged state
   }
 
@@ -117,9 +121,10 @@ export const makeMove = (
     direction,
   }
 
-  const isComplete = newPos.row === state.goalPosition.row &&
-                    newPos.col === state.goalPosition.col &&
-                    newCollectedItems.length === state.items.length
+  const isComplete =
+    newPos.row === state.goalPosition.row &&
+    newPos.col === state.goalPosition.col &&
+    newCollectedItems.length === state.items.length
 
   return {
     ...state,
@@ -179,8 +184,8 @@ export const generateMaze = (config: MazeConfig): Maze => {
 const getUnvisitedNeighbors = (position: Position, maze: Maze): Position[] => {
   const neighbors: Position[] = []
   const directions = [
-    { row: 0, col: 2 },  // right
-    { row: 2, col: 0 },  // down
+    { row: 0, col: 2 }, // right
+    { row: 2, col: 0 }, // down
     { row: 0, col: -2 }, // left
     { row: -2, col: 0 }, // up
   ]
@@ -191,8 +196,7 @@ const getUnvisitedNeighbors = (position: Position, maze: Maze): Position[] => {
       col: position.col + dir.col,
     }
 
-    if (isValidPosition(neighbor, maze) &&
-        maze[neighbor.row][neighbor.col].type === 'wall') {
+    if (isValidPosition(neighbor, maze) && maze[neighbor.row][neighbor.col].type === 'wall') {
       neighbors.push(neighbor)
     }
   }

@@ -101,7 +101,7 @@ jobs:
             "docs/SECURITY-CHANGES.md"
             "docs/DEPENDENCY-UPDATES.md"
             "docs/DOCUMENTATION-INDEX-COMMIT-DRIVEN.md"
-            "docs/APP_FEATURE_MATRIX.md"
+            "APP_FEATURE_MATRIX.md"
             "docs/COMMIT-ENFORCEMENT.md"
           )
           

@@ -30,10 +30,10 @@ export interface QueensState {
  * Difficulty levels for N-Queens
  */
 export enum Difficulty {
-  EASY = 'EASY',     // 4x4 board
+  EASY = 'EASY', // 4x4 board
   MEDIUM = 'MEDIUM', // 6x6 board
-  HARD = 'HARD',     // 8x8 board
-  EXPERT = 'EXPERT'  // 10x10 board
+  HARD = 'HARD', // 8x8 board
+  EXPERT = 'EXPERT', // 10x10 board
 }
 
 /**

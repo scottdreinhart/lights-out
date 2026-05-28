@@ -51,11 +51,7 @@ export default function Menu({ onClose, onNavigate, onNewGame, isOpen }: MenuPro
             </button>
           </li>
           <li>
-            <button
-              className={styles.navItem}
-              onClick={handleNewGame}
-              aria-label="Start new game"
-            >
+            <button className={styles.navItem} onClick={handleNewGame} aria-label="Start new game">
               <span className={styles.icon}>🔄</span>
               <span>New Game</span>
             </button>

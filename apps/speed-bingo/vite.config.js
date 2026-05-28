@@ -1,13 +1,18 @@
-import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
+import {
+  createOptimizedBuild,
+  createOptimizedPlugins,
+  createOptimizedResolve,
+} from '../../scripts/vite/createOptimizedViteConfig.mjs'
 
 const __dirname = import.meta.dirname
 
 export default defineConfig({
   base: './',
-  plugins: [react()],
+  plugins: createOptimizedPlugins(),
   resolve: {
+    ...createOptimizedResolve(),
     alias: {
       '@': resolve(__dirname, 'src'),
       '@/domain': resolve(__dirname, 'src/domain'),
@@ -26,13 +31,7 @@ export default defineConfig({
       '@games/ai-framework': resolve(__dirname, '../../packages/ai-framework/src'),
     },
   },
-  build: {
-    target: 'es2020',
-    cssTarget: 'es2020',
-    modulePreload: { polyfill: false },
-    minify: 'esbuild',
-    cssMinify: true,
-  },
+  build: createOptimizedBuild(),
   server: {
     host: '0.0.0.0',
     port: 5173,

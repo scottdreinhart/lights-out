@@ -18,6 +18,35 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
 const STATUS_FILE = path.join(ROOT, 'compliance', 'app-status.json')
 
+// ANSI color codes
+const COLORS = {
+  CYAN: '\x1b[96m',
+  GREEN: '\x1b[92m',
+  RED: '\x1b[91m',
+  WHITE: '\x1b[97m',
+  BLUE: '\x1b[94m',
+  MAGENTA: '\x1b[95m',
+  RESET: '\x1b[0m',
+  BOLD: '\x1b[1m',
+}
+
+/**
+ * Standardized boxed header for terminal output
+ */
+function boxedHeader(title, color = COLORS.BLUE) {
+  const width = 80
+  const horizontalLine = '═'.repeat(width - 2)
+  
+  console.log(`\n${COLORS.WHITE}╔${horizontalLine}╗${COLORS.RESET}`)
+  
+  const paddingTotal = width - 2 - title.length
+  const paddingLeft = Math.floor(paddingTotal / 2)
+  const paddingRight = paddingTotal - paddingLeft
+  
+  console.log(`${COLORS.WHITE}║${' '.repeat(paddingLeft)}${COLORS.BOLD}${color}${title}${COLORS.RESET}${COLORS.WHITE}${' '.repeat(paddingRight)}║${COLORS.RESET}`)
+  console.log(`${COLORS.WHITE}╚${horizontalLine}╝${COLORS.RESET}\n`)
+}
+
 const args = process.argv.slice(2)
 const detailed = args.includes('--detailed')
 const tierFilter = args.find(a => a.startsWith('--tier='))?.split('=')[1]
@@ -27,8 +56,8 @@ let data = {}
 try {
   data = JSON.parse(fs.readFileSync(STATUS_FILE, 'utf-8'))
 } catch {
-  console.error('❌ Error: app-status.json not found or invalid')
-  console.error('Run: node scripts/audit-app-status.mjs')
+  console.error(`${COLORS.RED}${COLORS.BOLD}❌ app-status.json not found or invalid${COLORS.RESET}`)
+  console.error(`${COLORS.RED}   Run: node scripts/audit-app-status.mjs${COLORS.RESET}`)
   process.exit(1)
 }
 
@@ -45,13 +74,10 @@ function formatPercent(value, total) {
 
 function reportText() {
   const filtered = filterApps()
-  console.log(`
-╔════════════════════════════════════════════════════════════════╗
-║         GAME PLATFORM APP STATUS REPORT                        ║
-║         Generated: ${new Date().toISOString().split('T')[0]}                              ║
-╚════════════════════════════════════════════════════════════════╝
+  boxedHeader('GAME PLATFORM APP STATUS REPORT', COLORS.MAGENTA)
+  console.log(`Generated: ${new Date().toISOString().split('T')[0]}`)
 
-📊 DISTRIBUTION BY TIER
+  console.log(`\n📊 DISTRIBUTION BY TIER`)
 ${'═'.repeat(60)}
   Template:              ${String(summary.byTier?.template || 0).padStart(2)} apps  ${formatPercent(summary.byTier?.template || 0, data.metadata?.totalApps || 1).padStart(4)}
   Web-Complete:         ${String(summary.byTier?.webComplete || 0).padStart(2)} apps  ${formatPercent(summary.byTier?.webComplete || 0, data.metadata?.totalApps || 1).padStart(4)}

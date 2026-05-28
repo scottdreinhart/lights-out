@@ -1,1 +1,2 @@
-export { useGame } from './useGame'
+export * from './securityModules'
+export { useGame } from './hooks'

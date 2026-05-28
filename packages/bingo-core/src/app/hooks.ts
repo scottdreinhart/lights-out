@@ -1,10 +1,7 @@
-/**
- * React hooks for bingo games
- * Composable game logic and state management
- */
-
 import { createContext, useCallback, useContext, useEffect, useState } from 'react'
+
 import type {
+  CallRecord,
   GameConfig,
   GameState,
   Player,
@@ -13,143 +10,232 @@ import type {
   StampAttempt,
   StampingMode,
 } from '../domain'
-import { SPEED_RATING_CONFIG, STAMPING_PENALTIES } from '../domain/constants'
 import {
-  calculatePlayerAccuracy,
+  EARLY_COMPLETION_CONFIG,
+  SPEED_RATING_CONFIG,
+  STAMPING_PENALTIES,
+} from '../domain/constants'
+import {
   calculateSpeedRating,
-  detectMissedStamps,
   getEarlyCompletionBonus,
   validateStampAttempt,
 } from '../domain/rules'
 
-/**
- * Hook for managing bingo game state and operations
- */
+interface BingoCallerState {
+  currentCall: number | null
+  calledNumbers: number[]
+  isCalling: boolean
+  addCall: (number: number) => void
+  resetCalls: () => void
+}
+
+interface BingoPlayersState {
+  players: Player[]
+  addPlayer: (player: Player) => void
+  removePlayer: (playerId: string) => void
+  updatePlayer: (playerId: string, updates: Partial<Player>) => void
+}
+
+interface BingoReactionsState {
+  reactionTimes: Map<string, number[]>
+  recordReaction: (playerId: string, reactionTime: number) => void
+  getAverageReaction: (playerId: string) => number
+}
+
+interface BingoScoringState {
+  calculateBonus: (baseScore: number, bonuses: Record<string, number>) => number
+}
+
+interface StampingState {
+  stampingMode: StampingMode
+  stampAttempts: StampAttempt[]
+  accuracy: PlayerAccuracy
+  setStampingMode: (mode: StampingMode) => void
+  stampNumber: (number: number, calledNumbers: number[]) => boolean
+  checkMissedStamps: (calledNumbers: number[], attemptedNumbers: number[]) => number
+  getAccuracyMetrics: () => PlayerAccuracy
+  resetStamping: () => void
+}
+
+interface RoundTimerState {
+  timeRemaining: number
+  isComplete: boolean
+  countdownSeconds: number
+  isRunning: boolean
+  isExpired: boolean
+  bonusMultiplier: number
+  startTimer: () => void
+  stopTimer: () => void
+  resetTimer: () => void
+  signalCompletion: () => { elapsedTime: number; earlyCompletionBonus: number }
+}
+
+interface SpeedRatingState {
+  speedRating: SpeedRating
+  speedScore: number
+  accuracyScore: number
+  combinedRating: number
+  skillLevel: 'beginner' | 'intermediate' | 'advanced' | 'expert'
+  getSkillLevel: () => 'beginner' | 'intermediate' | 'advanced' | 'expert'
+}
+
+interface BingoContextType {
+  gameState: GameState | null
+  setGameState: React.Dispatch<React.SetStateAction<GameState | null>>
+  currentGameConfig: GameConfig | null
+  setCurrentGameConfig: React.Dispatch<React.SetStateAction<GameConfig | null>>
+}
+
+const BingoContext = createContext<BingoContextType | undefined>(undefined)
+
+const createInitialAccuracy = (playerId = 'player-1'): PlayerAccuracy => ({
+  playerId,
+  totalNumbersCalled: 0,
+  stampsMissed: 0,
+  stampErrors: 0,
+  accumulatedPenalty: 0,
+})
+
+const createInitialSpeedRating = (totalRoundTime = 0): SpeedRating => ({
+  timeToComplete: 0,
+  totalRoundTime,
+  speedScore: 0,
+  accuracyScore: 0,
+  combinedRating: 0,
+})
+
 export const useBingoGame = (initialConfig: GameConfig) => {
-  const [gameState, setGameState] = useState<GameState>({
+  const [gameState, setGameState] = useState<GameState>(() => ({
     id: crypto.randomUUID(),
     difficulty: initialConfig.difficulty,
-    cards: [],
-    calledNumbers: [],
+    cards: [] as GameState['cards'],
+    calledNumbers: [] as CallRecord[],
+    currentCallIndex: 0,
     gameStartTime: Date.now(),
     isGameActive: false,
-    currentCallIndex: 0,
-  })
+    roundEndTime: undefined,
+    roundStartTime: undefined,
+    stampAttempts: [] as GameState['stampAttempts'],
+    stampingMode: initialConfig.stampingMode,
+    playerAccuracy: {} as Record<string, PlayerAccuracy>,
+    winner: undefined,
+  }))
 
-  const resetGame = useCallback(() => {
-    setGameState((prev) => ({
-      ...prev,
-      calledNumbers: [],
-      currentCallIndex: 0,
-      isGameActive: false,
-      gameEndTime: undefined,
-      winner: undefined,
-    }))
-  }, [])
+  const [currentGameConfig, setCurrentGameConfig] = useState<GameConfig>(initialConfig)
 
   const startGame = useCallback(() => {
-    setGameState((prev) => ({
-      ...prev,
+    setGameState((previousState) => ({
+      ...previousState,
       gameStartTime: Date.now(),
       isGameActive: true,
+      roundStartTime: Date.now(),
+      roundEndTime: undefined,
+      calledNumbers: [],
+      currentCallIndex: 0,
+      stampAttempts: [],
+      playerAccuracy: {},
+      winner: undefined,
+      stampingMode: currentGameConfig.stampingMode,
+    }))
+  }, [currentGameConfig.stampingMode])
+
+  const endGame = useCallback(() => {
+    setGameState((previousState) => ({
+      ...previousState,
+      isGameActive: false,
+      roundEndTime: Date.now(),
     }))
   }, [])
 
-  const endGame = useCallback(() => {
-    setGameState((prev) => ({
-      ...prev,
-      gameEndTime: Date.now(),
-      isGameActive: false,
+  const updateGameState = useCallback((updates: Partial<GameState>) => {
+    setGameState((previousState) => ({
+      ...previousState,
+      ...updates,
     }))
   }, [])
 
   return {
     gameState,
-    setGameState,
-    resetGame,
+    currentGameConfig,
+    setCurrentGameConfig,
     startGame,
     endGame,
+    updateGameState,
   }
 }
 
-/**
- * Hook for managing the calling system
- */
-export const useBingoCaller = (callInterval: number = 3000) => {
-  const [recentCalls, setRecentCalls] = useState<number[]>([])
-  const [nextNumber, setNextNumber] = useState<number | null>(null)
-  const [isRunning, setIsRunning] = useState(false)
-
-  const startCalling = useCallback(() => {
-    setIsRunning(true)
-  }, [])
-
-  const stopCalling = useCallback(() => {
-    setIsRunning(false)
-  }, [])
+export const useBingoCaller = (_callInterval = 3000): BingoCallerState => {
+  const [currentCall, setCurrentCall] = useState<number | null>(null)
+  const [calledNumbers, setCalledNumbers] = useState<number[]>([])
+  const [isCalling, setIsCalling] = useState(false)
 
   const addCall = useCallback((number: number) => {
-    setRecentCalls((prev) => [...prev, number].slice(-5)) // Keep last 5
-    setNextNumber(number)
+    setCurrentCall(number)
+    setCalledNumbers((previousNumbers) => [...previousNumbers, number])
+  }, [])
+
+  const resetCalls = useCallback(() => {
+    setCurrentCall(null)
+    setCalledNumbers([])
+    setIsCalling(false)
   }, [])
 
   return {
-    recentCalls,
-    nextNumber,
-    isRunning,
-    startCalling,
-    stopCalling,
+    currentCall,
+    calledNumbers,
+    isCalling,
     addCall,
+    resetCalls,
   }
 }
 
-/**
- * Hook for tracking player cards and scores
- */
-export const useBingoPlayers = () => {
+export const useBingoPlayers = (): BingoPlayersState => {
   const [players, setPlayers] = useState<Player[]>([])
 
   const addPlayer = useCallback((player: Player) => {
-    setPlayers((prev) => [...prev, player])
+    setPlayers((previousPlayers) => [...previousPlayers, player])
   }, [])
 
-  const updatePlayerScore = useCallback((playerId: string, scoreIncrease: number) => {
-    setPlayers((prev) =>
-      prev.map((p) => (p.id === playerId ? { ...p, totalScore: p.totalScore + scoreIncrease } : p)),
+  const removePlayer = useCallback((playerId: string) => {
+    setPlayers((previousPlayers) => previousPlayers.filter((player) => player.id !== playerId))
+  }, [])
+
+  const updatePlayer = useCallback((playerId: string, updates: Partial<Player>) => {
+    setPlayers((previousPlayers) =>
+      previousPlayers.map((player) =>
+        player.id === playerId ? { ...player, ...updates } : player,
+      ),
     )
-  }, [])
-
-  const setPlayerCards = useCallback((playerId: string, cards: string[]) => {
-    setPlayers((prev) => prev.map((p) => (p.id === playerId ? { ...p, cards } : p)))
   }, [])
 
   return {
     players,
-    setPlayers,
     addPlayer,
-    updatePlayerScore,
-    setPlayerCards,
+    removePlayer,
+    updatePlayer,
   }
 }
 
-/**
- * Hook for managing reaction time tracking
- */
-export const useBingoReactions = () => {
-  const [reactionTimes, setReactionTimes] = useState<Record<string, number[]>>({})
+export const useBingoReactions = (): BingoReactionsState => {
+  const [reactionTimes, setReactionTimes] = useState<Map<string, number[]>>(() => new Map())
 
-  const recordReaction = useCallback((playerId: string, reactionMs: number) => {
-    setReactionTimes((prev) => ({
-      ...prev,
-      [playerId]: [...(prev[playerId] || []), reactionMs],
-    }))
+  const recordReaction = useCallback((playerId: string, reactionTime: number) => {
+    setReactionTimes((previousTimes) => {
+      const nextTimes = new Map(previousTimes)
+      const playerTimes = nextTimes.get(playerId) ?? []
+      nextTimes.set(playerId, [...playerTimes, reactionTime])
+      return nextTimes
+    })
   }, [])
 
   const getAverageReaction = useCallback(
-    (playerId: string): number => {
-      const times = reactionTimes[playerId] || []
-      if (times.length === 0) return 0
-      return times.reduce((a, b) => a + b, 0) / times.length
+    (playerId: string) => {
+      const times = reactionTimes.get(playerId) ?? []
+      if (times.length === 0) {
+        return 0
+      }
+
+      return times.reduce((sum, time) => sum + time, 0) / times.length
     },
     [reactionTimes],
   )
@@ -161,101 +247,75 @@ export const useBingoReactions = () => {
   }
 }
 
-/**
- * Hook for managing bonus calculation
- */
-export const useBingoScoring = () => {
-  const calculateBonus = useCallback(
-    (baseScore: number, bonuses: Record<string, number | undefined>) => {
-      return baseScore + Object.values(bonuses).reduce((sum, b) => sum + (b || 0), 0)
-    },
-    [],
-  )
+export const useBingoScoring = (): BingoScoringState => {
+  const calculateBonus = useCallback((baseScore: number, bonuses: Record<string, number>) => {
+    const bonusTotal = Object.values(bonuses).reduce((sum, bonus) => sum + bonus, 0)
+    return baseScore + bonusTotal
+  }, [])
 
   return {
     calculateBonus,
   }
 }
 
-/**
- * Hook for managing stamping mode and stamp validation
- * Tracks stamp attempts, errors, and accuracy metrics
- *
- * Supports two modes:
- * - 'auto': Numbers automatically marked as called
- * - 'manual': Player must manually stamp called numbers
- *
- * Applies penalties:
- * - 10 points for wrong stamp
- * - 5 points for missed stamp
- */
-export const useStamping = (initialMode: StampingMode = 'auto') => {
-  const [stampingMode, setStampingMode] = useState<StampingMode>(initialMode)
+export const useStamping = (initialStampingMode: StampingMode = 'manual'): StampingState => {
+  const [stampingMode, setStampingMode] = useState<StampingMode>(initialStampingMode)
   const [stampAttempts, setStampAttempts] = useState<StampAttempt[]>([])
-  const [accuracy, setAccuracy] = useState<PlayerAccuracy>({
-    totalAttempts: 0,
-    correctStamps: 0,
-    wrongStamps: 0,
-    missedStamps: 0,
-    totalPenalty: 0,
-  })
+  const [accuracy, setAccuracy] = useState<PlayerAccuracy>(() => createInitialAccuracy())
 
   const stampNumber = useCallback((number: number, calledNumbers: number[]) => {
-    const isValid = validateStampAttempt(number, calledNumbers)
-
-    const attempt: StampAttempt = {
+    const attemptedStamp: StampAttempt = {
       number,
-      timestamp: Date.now(),
-      isValid,
-      penalty: !isValid ? STAMPING_PENALTIES.WRONG_STAMP : 0,
+      row: 0,
+      col: 0,
+      attemptedAt: Date.now(),
+      success: false,
+      calledNumbers,
     }
 
-    setStampAttempts((prev) => [...prev, attempt])
+    const validation = validateStampAttempt(attemptedStamp, calledNumbers)
+    const success = validation.valid && validation.correct
 
-    // Update accuracy metrics
-    setAccuracy((prev) => ({
-      totalAttempts: prev.totalAttempts + 1,
-      correctStamps: prev.correctStamps + (isValid ? 1 : 0),
-      wrongStamps: prev.wrongStamps + (!isValid ? 1 : 0),
-      missedStamps: prev.missedStamps, // Tracked separately below
-      totalPenalty: prev.totalPenalty + (isValid ? 0 : STAMPING_PENALTIES.WRONG_STAMP),
+    setStampAttempts((previousAttempts) => [...previousAttempts, { ...attemptedStamp, success }])
+    setAccuracy((previousAccuracy) => ({
+      ...previousAccuracy,
+      totalNumbersCalled: Math.max(previousAccuracy.totalNumbersCalled, calledNumbers.length),
+      stampErrors: previousAccuracy.stampErrors + (success ? 0 : 1),
+      accumulatedPenalty:
+        previousAccuracy.accumulatedPenalty + (success ? 0 : STAMPING_PENALTIES.wrongStamp),
     }))
 
-    return isValid
+    return success
   }, [])
 
   const checkMissedStamps = useCallback((calledNumbers: number[], attemptedNumbers: number[]) => {
-    const missedCount = detectMissedStamps(calledNumbers, attemptedNumbers)
+    const missedStamps = calledNumbers.filter(
+      (calledNumber) => !attemptedNumbers.includes(calledNumber),
+    )
 
-    setAccuracy((prev) => ({
-      ...prev,
-      missedStamps: missedCount,
-      totalPenalty: prev.totalPenalty + missedCount * STAMPING_PENALTIES.MISSED_STAMP,
+    setAccuracy((previousAccuracy) => ({
+      ...previousAccuracy,
+      totalNumbersCalled: Math.max(previousAccuracy.totalNumbersCalled, calledNumbers.length),
+      stampsMissed: missedStamps.length,
+      accumulatedPenalty:
+        previousAccuracy.accumulatedPenalty + missedStamps.length * STAMPING_PENALTIES.missedStamp,
     }))
 
-    return missedCount
+    return missedStamps.length
   }, [])
 
-  const getAccuracyMetrics = useCallback(() => {
-    return calculatePlayerAccuracy(accuracy)
-  }, [accuracy])
+  const getAccuracyMetrics = useCallback(() => accuracy, [accuracy])
 
   const resetStamping = useCallback(() => {
     setStampAttempts([])
-    setAccuracy({
-      totalAttempts: 0,
-      correctStamps: 0,
-      wrongStamps: 0,
-      missedStamps: 0,
-      totalPenalty: 0,
-    })
+    setAccuracy(createInitialAccuracy())
   }, [])
 
   return {
     stampingMode,
-    setStampingMode,
     stampAttempts,
     accuracy,
+    setStampingMode,
     stampNumber,
     checkMissedStamps,
     getAccuracyMetrics,
@@ -263,82 +323,84 @@ export const useStamping = (initialMode: StampingMode = 'auto') => {
   }
 }
 
-/**
- * Hook for managing round timer and completion
- * Tracks countdown and early completion bonus
- *
- * Provides:
- * - Countdown in seconds
- * - Time expiration detection
- * - Completion signaling for bonus calculation
- *
- * Constants:
- * - Uses EARLY_COMPLETION_CONFIG for bonus calculation
- *   (max 50 points, awarded if time >30%)
- */
-export const useRoundTimer = (durationSeconds: number) => {
+export const useRoundTimer = (durationSeconds = 180): RoundTimerState => {
+  const [timeRemaining, setTimeRemaining] = useState(durationSeconds)
+  const [isComplete, setIsComplete] = useState(false)
   const [startTime, setStartTime] = useState<number | null>(null)
-  const [isTimeExpired, setIsTimeExpired] = useState(false)
-  const [countdownSeconds, setCountdownSeconds] = useState(durationSeconds)
+  const [bonusMultiplier, setBonusMultiplier] = useState(1)
 
-  // Timer countdown effect
   useEffect(() => {
-    if (!startTime || isTimeExpired) return
+    if (startTime === null) {
+      return undefined
+    }
 
-    const interval = setInterval(() => {
-      const elapsed = Math.floor((Date.now() - startTime) / 1000)
-      const remaining = Math.max(0, durationSeconds - elapsed)
+    if (isComplete) {
+      return undefined
+    }
 
-      setCountdownSeconds(remaining)
+    const intervalId = window.setInterval(() => {
+      const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000)
+      const remainingSeconds = Math.max(0, durationSeconds - elapsedSeconds)
 
-      if (remaining === 0) {
-        setIsTimeExpired(true)
-        clearInterval(interval)
+      setTimeRemaining(remainingSeconds)
+      if (remainingSeconds === 0) {
+        setIsComplete(true)
+        window.clearInterval(intervalId)
       }
-    }, 100) // Update every 100ms for smooth countdown
+    }, 1000)
 
-    return () => clearInterval(interval)
-  }, [startTime, isTimeExpired, durationSeconds])
+    return () => {
+      window.clearInterval(intervalId)
+    }
+  }, [durationSeconds, isComplete, startTime])
 
   const startTimer = useCallback(() => {
     setStartTime(Date.now())
-    setIsTimeExpired(false)
-    setCountdownSeconds(durationSeconds)
+    setIsComplete(false)
+    setTimeRemaining(durationSeconds)
+    setBonusMultiplier(1)
   }, [durationSeconds])
 
   const stopTimer = useCallback(() => {
-    setIsTimeExpired(true)
+    setStartTime(null)
   }, [])
 
   const resetTimer = useCallback(() => {
     setStartTime(null)
-    setIsTimeExpired(false)
-    setCountdownSeconds(durationSeconds)
+    setIsComplete(false)
+    setTimeRemaining(durationSeconds)
+    setBonusMultiplier(1)
   }, [durationSeconds])
 
   const signalCompletion = useCallback(() => {
-    if (!startTime) return { completion: null, bonus: 0 }
+    const elapsedTime = startTime === null ? 0 : Date.now() - startTime
+    const earlyCompletionBonus = getEarlyCompletionBonus(elapsedTime, durationSeconds * 1000, {
+      ...EARLY_COMPLETION_CONFIG,
+      enabled: true,
+      totalDuration: durationSeconds,
+      speedRating: true,
+      earlyCompletionBonus: true,
+    })
 
-    const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000)
-    const remainingSeconds = Math.max(0, durationSeconds - elapsedSeconds)
-    const completionTime = durationSeconds - remainingSeconds
+    setBonusMultiplier(Math.max(1, Math.ceil(earlyCompletionBonus / 10)))
 
-    // Calculate early completion bonus (0-50 points)
-    const bonus = getEarlyCompletionBonus(completionTime, durationSeconds)
+    setIsComplete(true)
+    setStartTime(null)
+    setTimeRemaining(0)
 
     return {
-      completion: {
-        elapsedSeconds,
-        remainingSeconds,
-        completionTime,
-      },
-      bonus,
+      elapsedTime,
+      earlyCompletionBonus,
     }
-  }, [startTime, durationSeconds])
+  }, [durationSeconds, startTime])
 
   return {
-    countdownSeconds,
-    isTimeExpired,
+    timeRemaining,
+    isComplete,
+    countdownSeconds: timeRemaining,
+    isRunning: startTime !== null && !isComplete,
+    isExpired: isComplete,
+    bonusMultiplier,
     startTimer,
     stopTimer,
     resetTimer,
@@ -346,64 +408,49 @@ export const useRoundTimer = (durationSeconds: number) => {
   }
 }
 
-/**
- * Hook for calculating speed and accuracy ratings
- * Produces dual-dimension scoring system
- *
- * Dimensions:
- * - speedScore: 0-100 (faster = higher)
- * - accuracyScore: 0-100 (more accurate = higher)
- * - combinedRating: Average of speed and accuracy
- *
- * Used by UI to display skill level feedback
- * Constants from SPEED_RATING_CONFIG
- */
 export const useSpeedRating = (
-  accuracy: PlayerAccuracy,
-  completionTime: number,
-  totalTime: number,
-) => {
-  const [speedRating, setSpeedRating] = useState<SpeedRating>({
-    speedScore: 0,
-    accuracyScore: 0,
-    combinedRating: 0,
-  })
+  accuracy: PlayerAccuracy = createInitialAccuracy(),
+  completionTime = 0,
+  totalTime = 0,
+): SpeedRatingState => {
+  const [speedRating, setSpeedRating] = useState<SpeedRating>(() =>
+    createInitialSpeedRating(totalTime),
+  )
 
-  // Recalculate whenever inputs change
   useEffect(() => {
-    const rating = calculateSpeedRating(completionTime, totalTime, accuracy)
-    setSpeedRating(rating)
+    setSpeedRating(calculateSpeedRating(0, completionTime, totalTime, accuracy))
   }, [accuracy, completionTime, totalTime])
 
-  const getSkillLevel = useCallback((): 'beginner' | 'intermediate' | 'advanced' | 'expert' => {
-    const combined = speedRating.combinedRating
+  const getSkillLevel = useCallback(() => {
+    if (speedRating.combinedRating >= SPEED_RATING_CONFIG.maxCombinedRating * 0.85) {
+      return 'expert'
+    }
 
-    if (combined >= SPEED_RATING_CONFIG.MAX * 0.9) return 'expert' // 90+
-    if (combined >= SPEED_RATING_CONFIG.MAX * 0.7) return 'advanced' // 70-89
-    if (combined >= SPEED_RATING_CONFIG.MAX * 0.5) return 'intermediate' // 50-69
-    return 'beginner' // 0-49
+    if (speedRating.combinedRating >= SPEED_RATING_CONFIG.maxCombinedRating * 0.65) {
+      return 'advanced'
+    }
+
+    if (speedRating.combinedRating >= SPEED_RATING_CONFIG.maxCombinedRating * 0.35) {
+      return 'intermediate'
+    }
+
+    return 'beginner'
   }, [speedRating.combinedRating])
 
   return {
     speedRating,
+    speedScore: speedRating.speedScore,
+    accuracyScore: speedRating.accuracyScore,
+    combinedRating: speedRating.combinedRating,
+    skillLevel: getSkillLevel(),
     getSkillLevel,
   }
 }
 
-/**
- * Provide bingo game context to all nested components
- */
-interface BingoContextType {
-  gameConfig: GameConfig
-  gameState: GameState
-}
-
-const BingoContext = createContext<BingoContextType | undefined>(undefined)
-
 export const useBingoContext = () => {
   const context = useContext(BingoContext)
   if (!context) {
-    throw new Error('useBingoContext must be used within BingoProvider')
+    throw new Error('useBingoContext must be used within a BingoProvider')
   }
   return context
 }

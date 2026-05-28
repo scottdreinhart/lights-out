@@ -62,8 +62,8 @@ Defined in `package.json` `"build"` key (electron-builder config):
 
 | Field                | Value                        |
 | -------------------- | ---------------------------- |
-| `appId`              | `com.scottreinhart.nim`      |
-| `productName`        | `Nim`                        |
+| `appId`              | App-specific (defined per app in its `package.json` `build` key) |
+| `productName`        | App-specific (defined per app)                                    |
 | `directories.output` | `release`                    |
 | `files`              | `dist/**/*`, `electron/**/*` |
 

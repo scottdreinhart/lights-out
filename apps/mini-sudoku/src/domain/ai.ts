@@ -3,10 +3,10 @@
  * Provides hints and estimates puzzle difficulty
  */
 
-import type { Board, Hint, DifficultyMetrics } from './types'
-import { Difficulty } from './types'
-import { getCellsInRow, getCellsInCol, getCellsInBox } from './constants'
+import { getCellsInBox, getCellsInCol, getCellsInRow } from './constants'
 import { updateAllCandidates } from './rules'
+import type { Board, DifficultyMetrics, Hint } from './types'
+import { Difficulty } from './types'
 
 /**
  * Hint type: candidates
@@ -14,10 +14,14 @@ import { updateAllCandidates } from './rules'
  */
 function getHint_Candidates(board: Board, cellId: string): Hint | null {
   const cell = board.get(cellId)
-  if (!cell || cell.value || cell.isGiven) {return null}
+  if (!cell || cell.value || cell.isGiven) {
+    return null
+  }
 
   const candidates = new Set(cell.candidates)
-  if (candidates.size === 0) {return null}
+  if (candidates.size === 0) {
+    return null
+  }
 
   return {
     type: 'candidates',
@@ -33,7 +37,9 @@ function getHint_Candidates(board: Board, cellId: string): Hint | null {
  */
 function getHint_NakedSingle(board: Board): Hint | null {
   for (const cell of board.values()) {
-    if (cell.value || cell.isGiven) {continue}
+    if (cell.value || cell.isGiven) {
+      continue
+    }
     if (cell.candidates.size === 1) {
       const candidates = Array.from(cell.candidates)
       const value = candidates[0]
@@ -51,11 +57,7 @@ function getHint_NakedSingle(board: Board): Hint | null {
 /**
  * Check a group of cells for a hidden single (value that can only go in one cell)
  */
-function findHiddenSingleInGroup(
-  board: Board,
-  cellIds: string[],
-  regionName: string,
-): Hint | null {
+function findHiddenSingleInGroup(board: Board, cellIds: string[], regionName: string): Hint | null {
   for (const value of ['1', '2', '3', '4'] as const) {
     let count = 0
     let candidateCell: string | null = null
@@ -88,19 +90,25 @@ function getHint_HiddenSingle(board: Board): Hint | null {
   // Check rows
   for (let row = 0; row < 4; row++) {
     const hint = findHiddenSingleInGroup(board, getCellsInRow(row), `row ${row}`)
-    if (hint) {return hint}
+    if (hint) {
+      return hint
+    }
   }
 
   // Check columns
   for (let col = 0; col < 4; col++) {
     const hint = findHiddenSingleInGroup(board, getCellsInCol(col), `column ${col}`)
-    if (hint) {return hint}
+    if (hint) {
+      return hint
+    }
   }
 
   // Check boxes
   for (let box = 0; box < 4; box++) {
     const hint = findHiddenSingleInGroup(board, getCellsInBox(box), `box ${box}`)
-    if (hint) {return hint}
+    if (hint) {
+      return hint
+    }
   }
 
   return null
@@ -124,10 +132,14 @@ export function provideHint(board: Board, cellId?: string): Hint | null {
 
   // Try techniques in order of complexity
   let hint = getHint_NakedSingle(boardCopy)
-  if (hint) {return hint}
+  if (hint) {
+    return hint
+  }
 
   hint = getHint_HiddenSingle(boardCopy)
-  if (hint) {return hint}
+  if (hint) {
+    return hint
+  }
 
   // Last resort: return first cell with candidates
   for (const cell of boardCopy.values()) {
@@ -152,7 +164,9 @@ export function estimateDifficulty(board: Board): DifficultyMetrics {
   // Count clues
   let clueCount = 0
   for (const cell of boardCopy.values()) {
-    if (cell.isGiven) {clueCount++}
+    if (cell.isGiven) {
+      clueCount++
+    }
   }
 
   // Calculate constraint density (how constrained is the puzzle)
@@ -230,7 +244,9 @@ export function countSolvableByLogic(board: Board): number {
       }
     }
 
-    if (!foundHint) {break}
+    if (!foundHint) {
+      break
+    }
   }
 
   return stepsSolved

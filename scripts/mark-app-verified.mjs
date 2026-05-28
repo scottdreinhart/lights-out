@@ -13,10 +13,19 @@ import { fileURLToPath } from 'url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const projectRoot = path.resolve(__dirname, '..')
 
+// ANSI color codes
+const COLORS = {
+  CYAN: '\x1b[96m',
+  GREEN: '\x1b[92m',
+  RED: '\x1b[91m',
+  RESET: '\x1b[0m',
+  BOLD: '\x1b[1m',
+}
+
 const appName = process.argv[2]
 if (!appName) {
-  console.error('❌ Usage: node scripts/mark-app-verified.mjs <app-name>')
-  console.error('Example: node scripts/mark-app-verified.mjs checkers')
+  console.error(`${COLORS.RED}${COLORS.BOLD}❌ Usage: node scripts/mark-app-verified.mjs <app-name>${COLORS.RESET}`)
+  console.error(`${COLORS.RED}  Example: node scripts/mark-app-verified.mjs checkers${COLORS.RESET}`)
   process.exit(1)
 }
 
@@ -25,7 +34,7 @@ const markerPath = path.join(appPath, '.browser-verified')
 
 // Verify app exists
 if (!fs.existsSync(appPath)) {
-  console.error(`❌ App not found: ${appName}`)
+  console.error(`${COLORS.RED}${COLORS.BOLD}❌ App not found: ${appName}${COLORS.RESET}`)
   process.exit(1)
 }
 

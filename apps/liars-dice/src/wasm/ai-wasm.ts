@@ -2,7 +2,7 @@
 // Rebuild with: pnpm wasm:build
 // Source: assembly/index.ts → build/ai.wasm (0.0 KB, 25 bytes)
 
-export const AI_WASM_BASE64 = 'AGFzbQEAAAAFAwEAAAcKAQZtZW1vcnkCAA==';
+export const AI_WASM_BASE64 = 'AGFzbQEAAAAFAwEAAAcKAQZtZW1vcnkCAA=='
 
 // Size: 0.0 KB (25 bytes)
-// Encoded: 2026-04-02T00:45:25.648Z
+// Encoded: 2026-04-17T10:51:32.530Z

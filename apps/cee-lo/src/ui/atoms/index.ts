@@ -3,4 +3,5 @@
  * Sourced from @games/common.
  */
 
-export { ErrorBoundary, OfflineIndicator, SplashScreen } from '@games/common'
+export { ErrorBoundary, NotificationBanner, OfflineIndicator, SplashScreen } from '@games/common'
+export { GameOutcomeOverlay } from './GameOutcomeOverlay'

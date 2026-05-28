@@ -3,6 +3,7 @@
  */
 
 import { useMemory } from '@/app'
+import { ActionBar, Button, StatPill, StatsBar } from '@games/assets-shared'
 import { Card } from '../atoms'
 import styles from './Board.module.css'
 
@@ -13,22 +14,11 @@ export function Board() {
     <div className={styles.board}>
       <header className={styles.header}>
         <h1>Memory Game</h1>
-        <div className={styles.stats}>
-          <div className={styles.stat}>
-            <span className={styles.label}>Moves:</span>
-            <span className={styles.value}>{state.moves}</span>
-          </div>
-          <div className={styles.stat}>
-            <span className={styles.label}>Matches:</span>
-            <span className={styles.value}>
-              {state.matches}/{state.cards.length / 2}
-            </span>
-          </div>
-          <div className={styles.stat}>
-            <span className={styles.label}>Time:</span>
-            <span className={styles.value}>{elapsedTime}s</span>
-          </div>
-        </div>
+        <StatsBar className={styles.stats}>
+          <StatPill label="Moves" value={state.moves} />
+          <StatPill label="Matches" value={`${state.matches}/${state.cards.length / 2}`} />
+          <StatPill label="Time" value={`${elapsedTime}s`} />
+        </StatsBar>
       </header>
 
       {isWon && (
@@ -38,9 +28,9 @@ export function Board() {
             <p>
               Completed in {state.moves} moves and {elapsedTime} seconds
             </p>
-            <button type="button" onClick={reset} className={styles.button}>
+            <Button type="button" onClick={reset} className={styles.button} variant="primary">
               Play Again
-            </button>
+            </Button>
           </div>
         </div>
       )}
@@ -56,9 +46,11 @@ export function Board() {
         ))}
       </div>
 
-      <button type="button" onClick={reset} className={styles.resetButton}>
-        Reset Game
-      </button>
+      <ActionBar>
+        <Button type="button" onClick={reset} className={styles.resetButton} variant="secondary">
+          Reset Game
+        </Button>
+      </ActionBar>
     </div>
   )
 }

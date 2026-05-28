@@ -229,6 +229,7 @@ export function useSwipeGesture(
 - ✅ Names should be **descriptive** about what they do
 - ❌ Never use generic names like `useData()` or `useHelper()`
 - ❌ Never use `useFetch*` if you mean `useAsync*` (reserve `use*Fetch` for HTTP-specific)
+- ❌ Hook implementation files MUST live in a `hooks/` directory. Do not leave hook files in `src/`, feature roots, or UI folders; relocate them into `hooks/` and keep their barrels/imports aligned with the layer rules.
 
 ---
 
@@ -375,6 +376,12 @@ const [data, setData, clearData] = useLocalStorage('my-key', INITIAL)
 - [ ] No expensive computations in renders
 - [ ] Tested with DevTools Profiler
 - [ ] Under 150 lines (consider splitting if larger)
+
+## 6. Placement Guidance
+
+- Hook implementation files must be placed in a `hooks/` directory.
+- If a hook is currently outside `hooks/`, move it into `hooks/` using the smallest non-destructive change that preserves behavior and barrel exports.
+- Do not keep hook implementation files in `src/`, feature roots, or UI folders.
 
 ---
 

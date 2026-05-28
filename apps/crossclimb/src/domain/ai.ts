@@ -42,7 +42,9 @@ export const findPathBFS = (graph: Graph): SearchResult => {
     }
 
     // Prevent infinite loops
-    if (path.length > MAX_SEARCH_DEPTH) continue
+    if (path.length > MAX_SEARCH_DEPTH) {
+      continue
+    }
 
     const currentNode = graph.nodes.get(currentNodeId)!
     for (const neighborId of currentNode.connections) {
@@ -54,7 +56,7 @@ export const findPathBFS = (graph: Graph): SearchResult => {
     }
   }
 
-  if (bestPath) {
+  if (bestPath !== null) {
     bestPath.edges = generateEdgeList(bestPath.nodes, graph)
   }
 
@@ -78,8 +80,12 @@ export const findPathDFS = (graph: Graph): SearchResult => {
   let minWeight = Infinity
 
   const dfs = (currentPath: NodeId[], visited: Set<NodeId>): void => {
-    if (Date.now() - startTime > SEARCH_TIMEOUT) return
-    if (currentPath.length > MAX_SEARCH_DEPTH) return
+    if (Date.now() - startTime > SEARCH_TIMEOUT) {
+      return
+    }
+    if (currentPath.length > MAX_SEARCH_DEPTH) {
+      return
+    }
 
     const currentNodeId = currentPath[currentPath.length - 1]
 
@@ -112,15 +118,16 @@ export const findPathDFS = (graph: Graph): SearchResult => {
 
   dfs([startNode], new Set([startNode]))
 
-  if (bestPath) {
-    bestPath.edges = generateEdgeList(bestPath.nodes, graph)
+  const resolvedPath = bestPath as Path | null
+  if (resolvedPath !== null) {
+    resolvedPath.edges = generateEdgeList(resolvedPath.nodes, graph)
   }
 
   return {
-    path: bestPath,
+    path: resolvedPath,
     visited: new Set(),
-    cost: bestPath?.totalWeight || 0,
-    found: bestPath !== null,
+    cost: resolvedPath?.totalWeight || 0,
+    found: resolvedPath !== null,
   }
 }
 
@@ -154,7 +161,9 @@ export const findPathAStar = (graph: Graph): SearchResult => {
       }
     }
 
-    if (!current) break
+    if (!current) {
+      break
+    }
 
     if (current === endNode) {
       // Reconstruct path
@@ -273,7 +282,9 @@ export const getHintMove = (currentPath: NodeId[], graph: Graph): NodeId | null 
   let bestScore = Infinity
 
   for (const neighborId of currentNode.connections) {
-    if (currentPath.includes(neighborId)) continue // Avoid cycles
+    if (currentPath.includes(neighborId)) {
+      continue
+    } // Avoid cycles
 
     const neighbor = graph.nodes.get(neighborId)!
     const distance =

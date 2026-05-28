@@ -39,7 +39,7 @@ const base64 = wasm.toString('base64')
 const sizeBytes = wasm.length
 const sizeKB = (sizeBytes / 1024).toFixed(1)
 
-// Read existing loader code or create placeholder
+// Read existing loader code or create fallback file content
 let loaderCode = ''
 try {
   loaderCode = readFileSync('src/wasm/ai-wasm.ts', 'utf8')

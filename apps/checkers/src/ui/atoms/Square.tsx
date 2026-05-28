@@ -12,14 +12,7 @@ interface SquareProps {
   readonly onClick?: () => void
 }
 
-function SquareComponent({
-  piece,
-  isKing,
-  selected,
-  highlighted,
-  disabled,
-  onClick,
-}: SquareProps) {
+function SquareComponent({ piece, isKing, selected, highlighted, disabled, onClick }: SquareProps) {
   // Determine piece display
   let pieceDisplay = ''
   if (piece === 'red') {

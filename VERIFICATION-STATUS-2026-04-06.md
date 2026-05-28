@@ -2,7 +2,7 @@
 
 **Authority**: AGENTS.md § 31 (Commit Governance) · § 0 (Non-Negotiable Rules)  
 **Date**: April 6, 2026  
-**Reference**: COMMIT-DRIVEN-ECOSYSTEM-COMPLETE.md  
+**Reference**: docs/archive/root/COMMIT-DRIVEN-ECOSYSTEM-COMPLETE.md  
 **Status**: 🟡 **MOSTLY WORKING** with 3 actionable fixes needed
 
 ---

@@ -44,6 +44,21 @@
       ],
       "@games/common": [
         "../../packages/common/src"
+      ],
+      "@games/app-hook-utils": [
+        "../../packages/app-hook-utils/src"
+      ],
+      "@games/assets-shared": [
+        "../../packages/assets-shared/src"
+      ],
+      "@games/sound-context": [
+        "../../packages/sound-context/src"
+      ],
+      "@games/theme-context": [
+        "../../packages/theme-context/src"
+      ],
+      "@games/theme-contract": [
+        "../../packages/theme-contract/src"
       ]
     }
   },

@@ -56,7 +56,9 @@
   border-radius: 4px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.1s;
+  transition:
+    background-color 0.3s,
+    transform 0.1s;
 }
 
 .button:hover {
@@ -68,7 +70,7 @@
 }
 
 .button.primary {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 
@@ -77,12 +79,12 @@
 }
 
 .button.secondary {
-  background-color: #2196F3;
+  background-color: #2196f3;
   color: white;
 }
 
 .button.secondary:hover {
-  background-color: #1976D2;
+  background-color: #1976d2;
 }
 
 .button.danger {

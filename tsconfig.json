@@ -25,17 +25,23 @@
       "@games/ai-framework": ["./packages/ai-framework/src/index.ts"],
       "@games/app-hook-utils": ["./packages/app-hook-utils/src/index.ts"],
       "@games/assets-shared": ["./packages/assets-shared/src/index.ts"],
+      "@games/banking": ["./packages/banking/src/index.ts"],
       "@games/bingo": ["./apps/bingo/src/app/index.ts"],
       "@games/bingo/domain": ["./apps/bingo/src/domain/index.ts"],
       "@games/bingo-core": ["./packages/bingo-core/src/index.ts"],
+      "@games/bingo-core/*": ["./packages/bingo-core/src/*"],
       "@games/bingo-domain": ["./packages/bingo-domain/src/index.ts"],
+      "@games/bingo-domain/*": ["./packages/bingo-domain/src/*"],
       "@games/bingo-game-hooks": ["./packages/bingo-game-hooks/src/index.ts"],
+      "@games/bingo-game-hooks/*": ["./packages/bingo-game-hooks/src/*"],
       "@games/bingo-ui-components": ["./packages/bingo-ui-components/src/index.ts"],
+      "@games/bingo-ui-components/*": ["./packages/bingo-ui-components/src/*"],
       "@games/card-deck-core": ["./packages/card-deck-core/src/index.ts"],
       "@games/card-deck-system": ["./packages/card-deck-system/src/index.ts"],
       "@games/common": ["./packages/common/src/index.ts"],
       "@games/crash-logger": ["./packages/crash-logger/src/index.ts"],
       "@games/crash-utils": ["./packages/crash-utils/src/index.ts"],
+      "@games/diagnostics-utils": ["./packages/diagnostics-utils/src/index.ts"],
       "@games/display-contract": ["./packages/display-contract/src/index.ts"],
       "@games/domain-shared": ["./packages/domain-shared/src/index.ts"],
       "@games/haptics": ["./packages/haptics/src/index.ts"],
@@ -51,8 +57,9 @@
       "@games/theme-contract": ["./packages/theme-contract/src/index.ts"],
       "@games/ui-utils": ["./packages/ui-utils/src/index.ts"],
       "@games/ui-board-core": ["./packages/ui-board-core/src/index.ts"],
-      "@games/ui-dice-system": ["./packages/ui-dice-system/src/index.ts"]
+      "@games/ui-dice-system": ["./packages/ui-dice-system/src/index.ts"],
+      "@games/ui-hooks": ["./packages/ui-hooks/src/index.ts"]
     }
   },
-  "include": ["src", "src/vite-env.d.ts"]
+  "include": ["src", "src/vite-env.d.ts", "apps", "packages"]
 }

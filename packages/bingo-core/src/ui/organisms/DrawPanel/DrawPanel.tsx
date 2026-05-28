@@ -1,9 +1,9 @@
-import type { BingoCard } from '@bingo-core/domain'
+import type { Card } from '@games/bingo-core/domain'
 import React, { useCallback, useEffect, useState } from 'react'
 import styles from './DrawPanel.module.css'
 
 interface DrawPanelProps {
-  card: BingoCard
+  card: Card
   drawnNumbers: number[]
   gameState: 'playing' | 'won' | 'idle'
   onDraw: () => void
@@ -16,12 +16,12 @@ interface DrawPanelProps {
 }
 
 export const DrawPanel: React.FC<DrawPanelProps> = ({
-  card,
   drawnNumbers,
   gameState,
   onDraw,
   onReset,
   onNewGame,
+  onPlay,
   canDraw,
   remainingCount,
   totalCount,
@@ -29,7 +29,9 @@ export const DrawPanel: React.FC<DrawPanelProps> = ({
   const [lastNumber, setLastNumber] = useState<number | null>(null)
 
   const handleDraw = useCallback(() => {
-    if (!canDraw) return
+    if (!canDraw) {
+      return
+    }
     onDraw()
     // Play sound if callback provided
     onPlay?.()

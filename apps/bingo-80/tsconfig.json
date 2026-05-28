@@ -1,4 +1,5 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "target": "ES2020",
     "useDefineForClassFields": true,
@@ -22,6 +23,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
+    ,
+      "@games/bingo-ui-components": ["../../packages/bingo-ui-components/src/index.ts"],
+      "@games/bingo-ui-components/*": ["../../packages/bingo-ui-components/src/*"]
     }
   },
   "include": ["src"]

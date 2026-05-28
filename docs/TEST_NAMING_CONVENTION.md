@@ -328,9 +328,9 @@ Before committing test code:
 - [ ] Feature name is descriptive (not generic like `test`, `main`, `index`)`
 - [ ] File uses `.tsx` only if it renders JSX (components)
 - [ ] File uses `.ts` for all other tests
-- [ ] Vitest tests use `.test.ts(x)` extension ✅
-- [ ] Playwright tests use `.spec.ts(x)` extension ✅
-- [ ] Performance tests use `.perf.js`, `.load.js`, etc. ✅
+- [x] Vitest tests use `.test.ts(x)` extension ✅
+- [x] Playwright tests use `.spec.ts(x)` extension ✅
+- [x] Performance tests use `.perf.js`, `.load.js`, etc. ✅
 - [ ] Run `pnpm test:names` and confirm it passes
 - [ ] Run `pnpm test` locally and all tests pass
 - [ ] Commit message references Naming Convention if file was renamed

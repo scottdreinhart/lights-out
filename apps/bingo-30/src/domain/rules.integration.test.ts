@@ -81,7 +81,6 @@ describe('Bingo-30 Game Rules & State', () => {
       const state = createGameState(2)
       // Manually set up cards and drawn numbers to force a win
       const card1 = state.cards[0]
-      const card2 = state.cards[1]
 
       // Draw all numbers from first card's first row
       for (const num of card1.numbers[0]) {

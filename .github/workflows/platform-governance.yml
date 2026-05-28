@@ -30,3 +30,6 @@ jobs:
 
       - name: Run platform governance checks
         run: bash ci/platform-governance-check.sh
+
+      - name: Validate Script Standards
+        run: bash scripts/validate-script-standards.sh

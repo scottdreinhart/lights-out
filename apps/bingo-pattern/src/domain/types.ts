@@ -11,7 +11,7 @@ export type Cell = {
 
 export type Grid = Cell[][]
 
-export type PatternType = 
+export type PatternType =
   | 'row'
   | 'column'
   | 'diagonalMain'

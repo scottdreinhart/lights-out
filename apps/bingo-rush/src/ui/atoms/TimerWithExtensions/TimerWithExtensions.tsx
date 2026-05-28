@@ -16,8 +16,12 @@ const TimerWithExtensions: React.FC<TimerWithExtensionsProps> = ({ className }) 
   }
 
   const getUrgencyClass = (): string => {
-    if (timeRemaining <= 10) return styles.critical
-    if (timeRemaining <= 30) return styles.warning
+    if (timeRemaining <= 10) {
+      return styles.critical
+    }
+    if (timeRemaining <= 30) {
+      return styles.warning
+    }
     return styles.normal
   }
 

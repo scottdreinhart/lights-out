@@ -43,10 +43,14 @@ export class UniquenessConstraint extends MiniSudokuConstraint {
   }
 
   eliminate(cellId: string, value: CellValue, board: Board): boolean {
-    if (!value) {return false}
+    if (!value) {
+      return false
+    }
 
     for (const otherId of this.cellIds) {
-      if (otherId === cellId) {continue}
+      if (otherId === cellId) {
+        continue
+      }
       const other = board.get(otherId)
       if (other?.value === value) {
         return true // Conflict detected
@@ -114,7 +118,9 @@ export class ValueRangeConstraint extends MiniSudokuConstraint {
 
   isSatisfied(board: Board): boolean {
     const cell = board.get(this.cellIds[0])
-    if (!cell?.value) {return true}
+    if (!cell?.value) {
+      return true
+    }
     return ['1', '2', '3', '4'].includes(cell.value)
   }
 

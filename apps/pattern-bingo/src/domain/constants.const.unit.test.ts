@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import {
-  PATTERN_POINTS,
+  DIFFICULTY_PATTERN_REQUIREMENTS,
   PATTERN_MULTIPLIER_PROGRESSION,
   PATTERN_MULTIPLIERS,
-  DIFFICULTY_PATTERN_REQUIREMENTS,
+  PATTERN_POINTS,
 } from './constants'
 
 describe('Pattern Bingo Constants', () => {

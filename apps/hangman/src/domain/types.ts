@@ -1,11 +1,10 @@
 /**
- * Central type definitions — pure domain types, no framework dependencies.
+ * Hangman — Domain Types
+ * Pure domain types with no framework dependencies.
  */
 
-// Add game-specific types here
-export {}
-
-/** Shared theme types — identical across all games */
+export type GamePhase = 'idle' | 'playing' | 'won' | 'lost'
+export type Difficulty = 'easy' | 'medium' | 'hard'
 
 export interface ColorTheme {
   readonly id: string
@@ -23,6 +22,17 @@ export interface ThemeSettings {
   colorTheme: string
   mode: string
   colorblind: string
+}
+
+/** Letters the player has guessed */
+export type GuessedLetter = string // single uppercase letter
+
+export interface GameState {
+  word: string // the secret word (uppercase)
+  guessedLetters: Set<string> // letters already guessed
+  wrongGuesses: number // count of incorrect guesses
+  maxWrongGuesses: number // threshold for loss
+  phase: GamePhase
 }
 
 export interface GameStats {

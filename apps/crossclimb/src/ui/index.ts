@@ -6,4 +6,5 @@
  */
 
 export * from './atoms'
-export { App } from './organisms/App'
+export { CrossclimbGame } from './CrossclimbGame'
+export { App } from './organisms'

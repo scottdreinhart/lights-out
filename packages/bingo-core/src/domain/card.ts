@@ -3,7 +3,7 @@
  * Pure functions for creating and managing bingo cards
  */
 
-import type { Card, Cell, CardPattern } from './types'
+import type { Card, CardPattern, Cell } from './types'
 
 /**
  * Generate a random number array for a bingo card column
@@ -96,7 +96,9 @@ export const markNumber = (card: Card, number: number, timestamp: number): Card 
         break
       }
     }
-    if (found) break
+    if (found) {
+      break
+    }
   }
 
   return updated
@@ -207,8 +209,9 @@ const checkDiagonalLine = (card: Card): boolean => {
     (cell) => cell.marked,
   )
   // Top-right to bottom-left
-  const diagonal2 = Array.from({ length: card.grid.length }, (_, i) =>
-    card.grid[i][card.grid[0].length - 1 - i],
+  const diagonal2 = Array.from(
+    { length: card.grid.length },
+    (_, i) => card.grid[i][card.grid[0].length - 1 - i],
   ).every((cell) => cell.marked)
 
   return diagonal1 || diagonal2

@@ -29,6 +29,9 @@
       "@games/haptics": [
         "../../packages/haptics/src"
       ]
+      "@games/diagnostics-utils": [
+        "../../packages/diagnostics-utils/src"
+      ],
     }
   },
   "include": [

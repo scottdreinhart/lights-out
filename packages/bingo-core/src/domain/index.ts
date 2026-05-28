@@ -3,7 +3,7 @@
  * Framework-agnostic, exportable for all variants
  */
 
-export * from './types'
-export * from './constants'
-export * from './card'
-export * from './rules'
+export * from './types';
+export * from './constants';
+export * from './card';
+export * from './rules';

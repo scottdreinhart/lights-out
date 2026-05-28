@@ -28,9 +28,13 @@ export interface GameState {
   // Current game phase
   phase: GamePhase
 
-  // Player decks (cards owned)
+  // Active draw piles (players draw from top)
   playerDeck: Card[]
   computerDeck: Card[]
+
+  // Captured piles (won cards, shuffled back into draw pile when draw pile is empty)
+  playerWonPile: Card[]
+  computerWonPile: Card[]
 
   // Cards currently being played
   playerCard: Card | null

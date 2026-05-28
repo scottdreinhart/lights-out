@@ -3,5 +3,3 @@
  */
 
 export { GameBoard } from './GameBoard'
-export { PileToggle } from './PileToggle'
-

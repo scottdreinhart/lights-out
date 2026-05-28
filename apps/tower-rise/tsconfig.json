@@ -1,0 +1,65 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "tsBuildInfoFile": ".ts-buildinfo",
+    "types": [
+      "vite/client"
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@games/app-hook-utils/useInputState": [
+        "../../packages/app-hook-utils/src/useInputState.ts"
+      ],
+      "@games/ui-utils": [
+        "../../packages/ui-utils/src"
+      ],
+      "@games/domain-shared": [
+        "../../packages/domain-shared/src"
+      ],
+      "@games/common": [
+        "../../packages/common/src"
+      ],
+      "@games/app-hook-utils": [
+        "../../packages/app-hook-utils/src"
+      ],
+      "@games/storage-utils": [
+        "../../packages/storage-utils/src"
+      ],
+      "@games/sound-context": [
+        "../../packages/sound-context/src"
+      ],
+      "@games/theme-context": [
+        "../../packages/theme-context/src"
+      ]
+      "@games/diagnostics-utils": [
+        "../../packages/diagnostics-utils/src"
+      ],
+    }
+  },
+  "include": [
+    "src",
+    "src/vite-env.d.ts"
+  ]
+}

@@ -1,7 +1,10 @@
 import { COLOR_THEMES, COLORBLIND_MODES, MODES, type Difficulty, type GameStats } from '@/domain'
+import type { RefObject } from 'react'
 
 interface HamburgerMenuProps {
   open: boolean
+  menuId?: string
+  firstActionRef?: RefObject<HTMLButtonElement | null>
   difficulty: Difficulty
   onDifficultyChange: (difficulty: Difficulty) => void
   colorTheme: string
@@ -28,6 +31,8 @@ interface HamburgerMenuProps {
 
 export function HamburgerMenu({
   open,
+  menuId = 'ms-game-menu-panel',
+  firstActionRef,
   difficulty,
   onDifficultyChange,
   colorTheme,
@@ -52,12 +57,20 @@ export function HamburgerMenu({
   difficulties,
 }: HamburgerMenuProps) {
   return (
-    <aside className={`ms-menu${open ? ' ms-menu-open' : ''}`} aria-label="settings-and-scores">
-      <div className="ms-menu-panel">
+    <aside className={`ms-menu${open ? ' ms-menu-open' : ''}`} aria-label="Game menu" aria-hidden={!open}>
+      <div
+        id={menuId}
+        className="ms-menu-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="ms-menu-title"
+      >
         <section className="ms-menu-section">
-          <p className="ms-kicker">Controls</p>
+          <p id="ms-menu-title" className="ms-kicker">
+            Controls
+          </p>
           <div className="ms-menu-actions">
-            <button type="button" onClick={onRules}>
+            <button ref={firstActionRef} type="button" onClick={onRules}>
               Rules 📖
             </button>
             <button type="button" onClick={onHelp}>

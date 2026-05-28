@@ -3,12 +3,11 @@
  * Solving algorithms for the Tango slide puzzle
  */
 
+import { createSolvedBoard, getValidMoves, makeMove } from './rules'
 import type { Board, Position, SolutionStats } from './types'
-import { findEmptyPosition, isValidMove, makeMove, createSolvedBoard } from './rules'
 
 export const calculateParity = (board: Board): 'even' | 'odd' => {
-  const size = board.length
-  const flatBoard = board.flat().filter(n => n !== 0)
+  const flatBoard = board.flat().filter((n) => n !== 0)
   let inversions = 0
 
   for (let i = 0; i < flatBoard.length; i++) {
@@ -51,7 +50,6 @@ export const solvePuzzleBFS = (board: Board): Position[] | null => {
       return path
     }
 
-    const emptyPos = findEmptyPosition(currentBoard)
     const validMoves = getValidMoves(currentBoard)
 
     for (const move of validMoves) {
@@ -62,7 +60,7 @@ export const solvePuzzleBFS = (board: Board): Position[] | null => {
         visited.add(newKey)
         queue.push({
           board: newBoard,
-          path: [...path, move]
+          path: [...path, move],
         })
       }
     }
@@ -93,18 +91,20 @@ export const solvePuzzleAStar = (board: Board): Position[] | null => {
     return distance
   }
 
-  const openSet: Array<{ board: Board; path: Position[]; cost: number; heuristic: number }> = [{
-    board,
-    path: [],
-    cost: 0,
-    heuristic: heuristic(board)
-  }]
+  const openSet: Array<{ board: Board; path: Position[]; cost: number; heuristic: number }> = [
+    {
+      board,
+      path: [],
+      cost: 0,
+      heuristic: heuristic(board),
+    },
+  ]
 
   const visited = new Set<string>([boardToString(board)])
 
   while (openSet.length > 0) {
     // Find node with lowest f-score
-    openSet.sort((a, b) => (a.cost + a.heuristic) - (b.cost + b.heuristic))
+    openSet.sort((a, b) => a.cost + a.heuristic - (b.cost + b.heuristic))
     const current = openSet.shift()!
     const currentKey = boardToString(current.board)
 
@@ -112,7 +112,6 @@ export const solvePuzzleAStar = (board: Board): Position[] | null => {
       return current.path
     }
 
-    const emptyPos = findEmptyPosition(current.board)
     const validMoves = getValidMoves(current.board)
 
     for (const move of validMoves) {
@@ -125,7 +124,7 @@ export const solvePuzzleAStar = (board: Board): Position[] | null => {
           board: newBoard,
           path: [...current.path, move],
           cost: current.cost + 1,
-          heuristic: heuristic(newBoard)
+          heuristic: heuristic(newBoard),
         })
       }
     }

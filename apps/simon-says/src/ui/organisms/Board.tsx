@@ -2,9 +2,9 @@
  * Simon Says: Game Board organism
  */
 
+import { useSimonSays } from '@/app'
 import type { Color } from '@/domain'
 import { ColorButton } from '@/ui/atoms'
-import { useSimonSays } from '@/app'
 import styles from './Board.module.css'
 
 export function Board() {

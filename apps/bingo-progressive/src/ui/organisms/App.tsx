@@ -1,6 +1,6 @@
 import { useGame } from '@/app'
 import { BingoCard, DrawPanel, HamburgerMenu } from '@/ui/organisms'
-import { useState } from 'react'
+import { type KeyboardEvent, useState } from 'react'
 import styles from './App.module.css'
 
 export const App: React.FC = () => {
@@ -9,6 +9,16 @@ export const App: React.FC = () => {
   const [showSettings, setShowSettings] = useState(false)
   const [showAbout, setShowAbout] = useState(false)
   const { cards, currentNumber, drawNumber, resetGame, winners, drawnCount } = useGame(cardCount)
+
+  const handleBackdropKeyDown = (
+    event: KeyboardEvent<HTMLDivElement>,
+    closeModal: () => void,
+  ) => {
+    if (event.key === 'Enter' || event.key === ' ' || event.key === 'Escape') {
+      event.preventDefault()
+      closeModal()
+    }
+  }
 
   return (
     <div className={styles.app}>
@@ -52,7 +62,15 @@ export const App: React.FC = () => {
 
       {showRules && (
         <div
-          onClick={() => setShowRules(false)}
+          role="button"
+          tabIndex={0}
+          aria-label="Close rules dialog"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) {
+              setShowRules(false)
+            }
+          }}
+          onKeyDown={(event) => handleBackdropKeyDown(event, () => setShowRules(false))}
           style={{
             position: 'fixed',
             top: 0,
@@ -67,7 +85,6 @@ export const App: React.FC = () => {
           }}
         >
           <div
-            onClick={(e) => e.stopPropagation()}
             style={{
               backgroundColor: 'white',
               padding: '2rem',
@@ -88,7 +105,15 @@ export const App: React.FC = () => {
       )}
       {showSettings && (
         <div
-          onClick={() => setShowSettings(false)}
+          role="button"
+          tabIndex={0}
+          aria-label="Close settings dialog"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) {
+              setShowSettings(false)
+            }
+          }}
+          onKeyDown={(event) => handleBackdropKeyDown(event, () => setShowSettings(false))}
           style={{
             position: 'fixed',
             top: 0,
@@ -103,7 +128,6 @@ export const App: React.FC = () => {
           }}
         >
           <div
-            onClick={(e) => e.stopPropagation()}
             style={{
               backgroundColor: 'white',
               padding: '2rem',
@@ -121,7 +145,15 @@ export const App: React.FC = () => {
       )}
       {showAbout && (
         <div
-          onClick={() => setShowAbout(false)}
+          role="button"
+          tabIndex={0}
+          aria-label="Close about dialog"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) {
+              setShowAbout(false)
+            }
+          }}
+          onKeyDown={(event) => handleBackdropKeyDown(event, () => setShowAbout(false))}
           style={{
             position: 'fixed',
             top: 0,
@@ -136,7 +168,6 @@ export const App: React.FC = () => {
           }}
         >
           <div
-            onClick={(e) => e.stopPropagation()}
             style={{
               backgroundColor: 'white',
               padding: '2rem',

@@ -1,0 +1,16 @@
+{
+  "name": "Tower Rise Game",
+  "short_name": "Tower Rise",
+  "description": "Climb upward through procedural pressure and avoid falling below the active frame.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#111827",
+  "background_color": "#0b1020",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}

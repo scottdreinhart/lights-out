@@ -39,6 +39,18 @@
       "@games/domain-shared": [
         "../../packages/domain-shared/src"
       ],
+      "@games/assets-shared": [
+        "../../packages/assets-shared/src"
+      ],
+      "@games/app-hook-utils": [
+        "../../packages/app-hook-utils/src"
+      ],
+      "@games/diagnostics-utils": [
+        "../../packages/diagnostics-utils/src"
+      ],
+      "@games/ui-hooks": [
+        "../../packages/ui-hooks/src"
+      ],
       "@games/common": [
         "../../packages/common/src"
       ],

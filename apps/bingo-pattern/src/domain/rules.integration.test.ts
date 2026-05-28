@@ -119,7 +119,9 @@ describe('bingo-pattern (Pattern-Based 5x5 Bingo) - Integration Tests', () => {
       let initialMarked = 0
       gameState.card.forEach((row) => {
         row.forEach((cell) => {
-          if (cell.marked) initialMarked++
+          if (cell.marked) {
+            initialMarked++
+          }
         })
       })
       expect(initialMarked).toBe(1) // Only center is marked initially
@@ -142,7 +144,9 @@ describe('bingo-pattern (Pattern-Based 5x5 Bingo) - Integration Tests', () => {
       let markedAfter = 0
       gameState.card.forEach((row) => {
         row.forEach((cell) => {
-          if (cell.marked) markedAfter++
+          if (cell.marked) {
+            markedAfter++
+          }
         })
       })
 

@@ -54,7 +54,6 @@ export const DrawPanel: React.FC<DrawPanelProps> = ({
 
   const progressPercent =
     totalCount > 0 ? Math.round(((totalCount - (remainingCount || 0)) / totalCount) * 100) : 0
-  const nextNumber = drawnNumbers.length > 0 ? drawnNumbers[drawnNumbers.length - 1] : null
 
   return (
     <div className={`${styles.root} ${disabled ? styles.disabled : ''}`}>

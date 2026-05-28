@@ -1,3 +1,5 @@
+export { ErrorBoundary } from '@games/ui-utils'
+export { OfflineIndicator, SplashScreen } from '@games/common'
 export { PowerUpInventory } from './PowerUpInventory'
 export { PowerUpSlot } from './PowerUpSlot'
 export { ProgressToNextPowerUp } from './ProgressToNextPowerUp'

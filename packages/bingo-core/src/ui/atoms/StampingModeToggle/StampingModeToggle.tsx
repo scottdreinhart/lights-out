@@ -1,4 +1,4 @@
-import { useStamping } from '@bingo-core/app'
+import { useStamping } from '@games/bingo-core/app'
 import React, { useCallback } from 'react'
 import styles from './StampingModeToggle.module.css'
 

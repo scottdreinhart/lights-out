@@ -26,7 +26,7 @@
 
 ### For **Team Leads / Managers**
 
-1. **Report**: [`SPRINT_2_COMPLETION_REPORT.md`](SPRINT_2_COMPLETION_REPORT.md) (10 min)
+1. **Report**: [`docs/archive/root/SPRINT_2_COMPLETION_REPORT.md`](docs/archive/root/SPRINT_2_COMPLETION_REPORT.md) (10 min)
 2. **Metrics**: Quality dashboard (quality metrics section)
 3. **Readiness**: Risk assessment + sign-off
 
@@ -68,7 +68,7 @@
 
 ### SPRINT 2 SUMMARY DOCUMENTS
 
-**SPRINT_2_COMPLETION_REPORT.md** (Executive Summary)
+**docs/archive/root/SPRINT_2_COMPLETION_REPORT.md** (Executive Summary)
 
 - **Length**: 15 pages
 - **Audience**: Managers, leads, team overview
@@ -401,7 +401,7 @@ Accessibility:            WCAG 2.1 AA
 - Onboarding: [`DEVELOPER_ONBOARDING_GUIDE.md`](DEVELOPER_ONBOARDING_GUIDE.md)
 - Sprint 3: [`SPRINT_3_IMPLEMENTATION_PLAN.md`](SPRINT_3_IMPLEMENTATION_PLAN.md)
 - Summary: [`SPRINT_2_COMPLETION_SUMMARY.md`](SPRINT_2_COMPLETION_SUMMARY.md)
-- Report: [`SPRINT_2_COMPLETION_REPORT.md`](SPRINT_2_COMPLETION_REPORT.md)
+- Report: [`docs/archive/root/SPRINT_2_COMPLETION_REPORT.md`](docs/archive/root/SPRINT_2_COMPLETION_REPORT.md)
 
 ### Instruction Files
 

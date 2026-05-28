@@ -82,12 +82,23 @@ export function fireAt(
     return { board, result: { result: 'already', sunkShip: null } }
   }
 
+  // Hard guard: never allow a side to fire on its own ships.
+  const ownShipAtTarget = board.ships.some(
+    (ship) =>
+      ship.owner === shooter && ship.cells.some((c) => c.row === coord.row && c.col === coord.col),
+  )
+
+  if (ownShipAtTarget) {
+    return { board, result: { result: 'already', sunkShip: null } }
+  }
+
   // Determine opponent (who we're shooting at)
   const opponent: 'player' | 'cpu' = shooter === 'player' ? 'cpu' : 'player'
 
   // Check if there's an opponent ship at this location
   const opponentShipAtTarget = board.ships.some(
-    (ship) => ship.owner === opponent && ship.cells.some((c) => c.row === coord.row && c.col === coord.col),
+    (ship) =>
+      ship.owner === opponent && ship.cells.some((c) => c.row === coord.row && c.col === coord.col),
   )
 
   const newGrid = board.grid.map((row) => [...row])

@@ -32,6 +32,7 @@ export {
   calculatePathWeight,
   createInitialState,
   createRandomGraph,
+  hasCheckpointCompletePath,
   isValidMove,
   isValidPath,
   makeMove,

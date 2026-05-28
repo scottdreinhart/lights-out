@@ -1,4 +1,4 @@
-import { useRoundTimer } from '@bingo-core/app'
+import { useRoundTimer } from '@games/bingo-core/app'
 import React, { useCallback } from 'react'
 import styles from './DoneButton.module.css'
 

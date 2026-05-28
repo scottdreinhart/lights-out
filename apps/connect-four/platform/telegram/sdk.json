@@ -1,0 +1,5 @@
+{
+  "app": "connect-four",
+  "sdk": "telegram-mini-app",
+  "mode": "placeholder"
+}

@@ -1,5 +1,6 @@
 import { SplashScreen } from '@/ui'
 import { useCallback, useState } from 'react'
+import { CrossclimbGame } from '../CrossclimbGame'
 
 export function App() {
   const [showSplash, setShowSplash] = useState(true)
@@ -14,8 +15,7 @@ export function App() {
 
   return (
     <div className="app">
-      <h1>Crossclimb</h1>
-      <p>Coming soon...</p>
+      <CrossclimbGame />
     </div>
   )
 }

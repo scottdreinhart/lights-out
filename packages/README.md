@@ -16,6 +16,12 @@ Following CLEAN Architecture principles, these packages export pure, framework-a
   - Pre-configured decks for Blackjack, Baccarat, Rummy, etc.
   - All games using cards should use this package
 
+- **`game-engine-factory`** — Deterministic archetype/variant engine templates
+  - Provides reusable engine contracts (`update`, `evaluateWin`, `evaluateLose`, `reset`)
+  - Ships 12 archetype families (grid/path/lane/runner/impulse/platformer/projectile/wave/defense/turn/rhythm/dataset)
+  - Supports data-driven variant configuration with deterministic tick updates
+  - Intended as a shared domain-first foundation for scaffolding new game mechanics
+
 - **`domain-shared`** — Shared domain layer types and utilities
   - Common game types, constants, utilities
   - Board/grid helpers

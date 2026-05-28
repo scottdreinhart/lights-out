@@ -5,14 +5,18 @@
  */
 
 export {
-  useBingoGame,
   useBingoCaller,
+  useBingoContext,
+  useBingoGame,
   useBingoPlayers,
   useBingoReactions,
   useBingoScoring,
-  useStamping,
   useRoundTimer,
   useSpeedRating,
-  useBingoContext,
-  type BingoContextType,
-} from '@games/bingo-core'
+  useStamping,
+} from '@games/bingo-core/app'
+export { ThemeProvider, useTheme } from '@games/theme-context'
+
+// useGame canonical alias
+export { useBingoGame as useGame } from '@games/bingo-core/app'
+export * from './securityModules'

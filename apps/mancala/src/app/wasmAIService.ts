@@ -10,8 +10,8 @@
  * This module maintained for backward compatibility.
  */
 
-import { ensureAsyncWorkerReady, selectAiMove, terminateAsyncWorker } from './aiService'
 import type { Difficulty } from '@/domain'
+import { ensureAsyncWorkerReady, selectAiMove, terminateAsyncWorker } from './aiService'
 
 /**
  * Select AI move with WASM acceleration and worker support.

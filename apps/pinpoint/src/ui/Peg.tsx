@@ -1,6 +1,6 @@
-import React from 'react'
 import type { Color } from '@/domain'
 import { COLOR_HEX_CODES, PEG_SIZE } from '@/domain'
+import React from 'react'
 import styles from './Peg.module.css'
 
 interface PegProps {
@@ -16,7 +16,7 @@ export const Peg: React.FC<PegProps> = ({
   size = PEG_SIZE,
   onClick,
   className = '',
-  ariaLabel
+  ariaLabel,
 }) => {
   const backgroundColor = color ? COLOR_HEX_CODES[color] : 'transparent'
   const border = color ? 'none' : '2px solid #ccc'
@@ -34,12 +34,16 @@ export const Peg: React.FC<PegProps> = ({
       role={onClick ? 'button' : undefined}
       tabIndex={onClick ? 0 : undefined}
       aria-label={ariaLabel}
-      onKeyDown={onClick ? (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault()
-          onClick()
-        }
-      } : undefined}
+      onKeyDown={
+        onClick
+          ? (e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                onClick()
+              }
+            }
+          : undefined
+      }
     />
   )
 }

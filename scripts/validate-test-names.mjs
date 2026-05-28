@@ -30,6 +30,20 @@ import glob from 'glob'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
+// ANSI color codes (standardized per SCRIPT-STANDARDS.md)
+const COLORS = {
+  CYAN: '\033[96m',
+  GREEN: '\033[92m',
+  RED: '\033[91m',
+  YELLOW: '\033[93m',
+  BLUE: '\033[94m',
+  WHITE: '\033[97m',
+  GRAY: '\033[90m',
+  MAGENTA: '\033[95m',
+  RESET: '\033[0m',
+  BOLD: '\033[1m',
+}
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const repoRoot = path.resolve(__dirname, '..')
 
@@ -64,6 +78,18 @@ const VITEST_PATTERNS = [
   '**/*.api.test.tsx',
 ]
 
+const GLOB_IGNORE = [
+  '**/node_modules/**',
+  '**/dist/**',
+  '**/release/**',
+  '**/.next/**',
+  '**/.turbo/**',
+  '**/.git/**',
+  '**/coverage/**',
+  '**/playwright-report/**',
+  '**/test-results/**',
+]
+
 const PLAYWRIGHT_PATTERNS = [
   '**/*.e2e.spec.ts',
   '**/*.e2e.spec.tsx',
@@ -92,7 +118,11 @@ function findTestFiles() {
   // Search for each pattern individually to avoid glob array issues
   for (const pattern of allPatterns) {
     try {
-      const files = glob.sync(pattern, { cwd: repoRoot })
+      const files = glob.sync(pattern, {
+        cwd: repoRoot,
+        nodir: true,
+        ignore: GLOB_IGNORE,
+      })
       files.forEach((f) => {
         // Filter out excluded directories
         if (
@@ -212,16 +242,16 @@ function main() {
   const verbose = args.includes('--verbose') || args.includes('-v')
   const fix = args.includes('--fix') || args.includes('-f')
 
-  console.log('🔍 Validating test file names...\n')
+  console.log(`${COLORS.BLUE}${COLORS.BOLD}🔍 Validating test file names...${COLORS.RESET}\n`)
 
   const testFiles = findTestFiles()
 
   if (testFiles.length === 0) {
-    console.log('   ℹ️  No test files found.')
+    console.log(`${COLORS.YELLOW}   ℹ️  No test files found.${COLORS.RESET}`)
     process.exit(0)
   }
 
-  console.log(`   Found ${testFiles.length} test file(s)\n`)
+  console.log(`${COLORS.CYAN}   Found ${testFiles.length} test file(s)\n${COLORS.RESET}`)
 
   let validCount = 0
   let invalidCount = 0
@@ -235,8 +265,8 @@ function main() {
     if (isValid) {
       validCount++
       if (verbose) {
-        console.log(`✅ ${file}`)
-        console.log(`   Type: ${testType} | Feature: ${feature}`)
+        console.log(`${COLORS.GREEN}✅${COLORS.RESET} ${file}`)
+        console.log(`${COLORS.GRAY}   Type: ${testType} | Feature: ${feature}${COLORS.RESET}`)
       }
     } else {
       invalidCount++
@@ -249,9 +279,9 @@ function main() {
     }
   })
 
-  console.log(`\n${'='.repeat(70)}`)
-  console.log(`Summary: ${validCount} valid, ${invalidCount} invalid`)
-  console.log(`${'='.repeat(70)}\n`)
+  console.log(`${COLORS.WHITE}\n${'='.repeat(70)}${COLORS.RESET}`)
+  console.log(`${COLORS.WHITE}📚 Summary: ${validCount} valid, ${invalidCount} invalid${COLORS.RESET}`)
+  console.log(`${COLORS.WHITE}${'='.repeat(70)}\n${COLORS.RESET}`)
 
   if (invalidCount > 0) {
     console.error(
@@ -261,7 +291,7 @@ function main() {
     )
     process.exit(1)
   } else {
-    console.log('✅ All test files follow naming conventions!\n')
+    console.log(`${COLORS.GREEN}✅ All test files follow naming conventions!\n${COLORS.RESET}`)
     process.exit(0)
   }
 }
@@ -285,3 +315,4 @@ function determineErrorReason(filename) {
 }
 
 main()
+# Test modification Wed Apr 29 12:20:29 EDT 2026

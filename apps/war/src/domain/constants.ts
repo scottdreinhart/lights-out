@@ -1,11 +1,15 @@
-import type { Card, GameState } from './types'
 import type { Rank } from '@games/card-deck-core'
-import { createDeck as createCardDeck, shuffleDeck as shuffleCardDeck } from '@games/card-deck-core'
-import { WAR_DECK } from '@games/card-deck-core'
+import {
+  createDeck as createCardDeck,
+  shuffleDeck as shuffleCardDeck,
+  WAR_DECK,
+} from '@games/card-deck-core'
+import type { Card, GameState } from './types'
 
 export function createDeck(): Card[] {
   const deck = createCardDeck(WAR_DECK)
-  return shuffleCardDeck(deck)
+  const shuffled = shuffleCardDeck(deck)
+  return [...shuffled.remainingCards]
 }
 
 export function getRankValue(rank: Rank): number {
@@ -23,6 +27,7 @@ export function getRankValue(rank: Rank): number {
     '4': 4,
     '3': 3,
     '2': 2,
+    joker: 15,
   }
   return rankMap[rank]
 }
@@ -31,13 +36,22 @@ export function compareCards(card1: Card, card2: Card): 1 | 2 | 0 {
   const val1 = getRankValue(card1.rank)
   const val2 = getRankValue(card2.rank)
 
-  if (val1 > val2) return 1
-  if (val2 > val1) return 2
+  if (val1 > val2) {
+    return 1
+  }
+  if (val2 > val1) {
+    return 2
+  }
   return 0 // Tie
 }
 
 export function shuffleDeck(deck: Card[]): Card[] {
-  return shuffleCardDeck(deck)
+  const next = [...deck]
+  for (let i = next.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[next[i], next[j]] = [next[j], next[i]]
+  }
+  return next
 }
 
 export function createInitialGameState(): GameState {
@@ -48,6 +62,8 @@ export function createInitialGameState(): GameState {
     phase: 'playing',
     playerDeck: fullDeck.slice(0, mid),
     computerDeck: fullDeck.slice(mid),
+    playerWonPile: [],
+    computerWonPile: [],
     playerCard: null,
     computerCard: null,
     tableCards: {
@@ -83,10 +99,7 @@ export function hasEnoughCardsForWar(deck: Card[], warCardCount: number): boolea
 /**
  * Get cards to place in war (face-down cards)
  */
-export function getWarCards(
-  deck: Card[],
-  count: number
-): { cards: Card[]; remaining: Card[] } {
+export function getWarCards(deck: Card[], count: number): { cards: Card[]; remaining: Card[] } {
   const cards = deck.slice(0, Math.min(count, deck.length))
   const remaining = deck.slice(cards.length)
   return { cards, remaining }
@@ -95,9 +108,6 @@ export function getWarCards(
 /**
  * Calculate winner of a single round based on revealed cards
  */
-export function determineRoundWinner(
-  playerCard: Card,
-  computerCard: Card
-): 1 | 2 | 0 {
+export function determineRoundWinner(playerCard: Card, computerCard: Card): 1 | 2 | 0 {
   return compareCards(playerCard, computerCard)
 }

@@ -1,13 +1,18 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { defineConfig } from 'vite'
+import {
+  createOptimizedBuild,
+  createOptimizedPlugins,
+  createOptimizedResolve,
+} from '../../scripts/vite/createOptimizedViteConfig.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: createOptimizedPlugins(),
   resolve: {
+    ...createOptimizedResolve(),
     alias: {
       '@': path.resolve(__dirname, 'src'),
       '@/domain': path.resolve(__dirname, 'src/domain'),
@@ -23,20 +28,5 @@ export default defineConfig({
       '@games/storage-utils': path.resolve(__dirname, '../../packages/storage-utils/src'),
     },
   },
-  build: {
-    outDir: 'dist',
-    emptyOutDir: true,
-    sourcemap: false,
-    rollupOptions: {
-      external: [
-        '@capacitor/core',
-        '@capacitor/app',
-        '@capacitor/device',
-        '@capacitor/preferences',
-        '@capacitor/haptics',
-        '@capacitor/splash-screen',
-        '@capacitor/keyboard',
-      ],
-    },
-  },
+  build: createOptimizedBuild(),
 })

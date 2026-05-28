@@ -3,7 +3,7 @@
  * Core logic for N-Queens puzzle
  */
 
-import type { Board, QueenPosition, MoveResult } from './types'
+import type { Board, MoveResult } from './types'
 
 /**
  * Create empty board
@@ -30,7 +30,7 @@ export function isValidPlacement(board: Board, row: number, col: number): boolea
  * Check if board is complete (all queens placed)
  */
 export function isBoardComplete(board: Board): boolean {
-  return board.every(pos => pos !== -1)
+  return board.every((pos) => pos !== -1)
 }
 
 /**

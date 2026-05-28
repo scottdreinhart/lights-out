@@ -7,7 +7,7 @@ interface PatternListProps {
   showScores?: boolean
 }
 
-const PatternList: React.FC<PatternListProps> = ({ className, showScores = true }) => {
+export const PatternList: React.FC<PatternListProps> = ({ className, showScores = true }) => {
   const { detectedPatterns, patternScores, totalScore } = usePatternDetection()
 
   const getPatternIcon = (patternType: string): string => {

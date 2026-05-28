@@ -1,0 +1,16 @@
+{
+  "name": "Pulse Burst",
+  "short_name": "Pulse Burst",
+  "description": "Precision impulse-gap runner with burst timing, gravity control, and escalating speed.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#111827",
+  "background_color": "#0b1020",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}

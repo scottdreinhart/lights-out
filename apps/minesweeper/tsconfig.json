@@ -64,6 +64,9 @@
       "@games/ui-utils": [
         "../../packages/ui-utils/src"
       ]
+      "@games/diagnostics-utils": [
+        "../../packages/diagnostics-utils/src"
+      ],
     }
   },
   "include": [

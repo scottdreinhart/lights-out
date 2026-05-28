@@ -1,7 +1,6 @@
 import { useGameState, useSoundEffects } from '@/app'
 import type { Difficulty } from '@/domain'
 import { SplashScreen } from '@/ui'
-import { MenuButton } from '@/ui/molecules'
 import Menu from '@/ui/molecules/Menu'
 import { useCallback, useEffect, useState } from 'react'
 import About from './About'
@@ -85,7 +84,10 @@ export default function App() {
   }
 
   return (
-    <div className={styles.app} style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+    <div
+      className={styles.app}
+      style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}
+    >
       <Menu
         isOpen={menuOpen}
         onClose={() => setMenuOpen(false)}
@@ -93,7 +95,15 @@ export default function App() {
         onNewGame={handleNewGame}
       />
 
-      <header className={styles.header} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem' }}>
+      <header
+        className={styles.header}
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: '1rem',
+        }}
+      >
         <div className={styles.headerContent}>
           <h1>Mancala</h1>
           <p>Kalah — Two-row capture game with AI</p>
@@ -177,7 +187,9 @@ export default function App() {
               <li>Players alternate picking up stones from a pit on their side</li>
               <li>Stones are distributed one per pit by moving around the board</li>
               <li>If the last stone lands in a player's store, that player moves again</li>
-              <li>If the last stone lands in an empty pit on a player's side, capture opposite stones</li>
+              <li>
+                If the last stone lands in an empty pit on a player's side, capture opposite stones
+              </li>
               <li>Game ends when all pits on one side are empty</li>
               <li>Remaining stones go to the owner's store</li>
               <li>Player with the most stones in their store wins</li>

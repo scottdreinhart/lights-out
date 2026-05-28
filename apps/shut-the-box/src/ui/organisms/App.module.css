@@ -107,7 +107,12 @@
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(253, 171, 41, 0.8), rgba(245, 127, 23, 0.4) 50%, transparent);
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(253, 171, 41, 0.8),
+    rgba(245, 127, 23, 0.4) 50%,
+    transparent
+  );
   filter: blur(40px);
   animation: splashGlow 3s ease-in-out infinite;
   top: 50%;

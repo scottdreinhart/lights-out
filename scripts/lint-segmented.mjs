@@ -2,6 +2,18 @@ import { spawnSync } from 'node:child_process'
 
 const args = process.argv.slice(2)
 
+// ANSI color codes
+const COLORS = {
+  CYAN: '\x1b[96m',
+  GREEN: '\x1b[92m',
+  YELLOW: '\x1b[93m',
+  RED: '\x1b[91m',
+  GRAY: '\x1b[90m',
+  BLUE: '\x1b[94m',
+  RESET: '\x1b[0m',
+  BOLD: '\x1b[1m',
+}
+
 const getArgValue = (name, fallback) => {
   const match = args.find((arg) => arg.startsWith(`${name}=`))
   if (!match) {
@@ -27,7 +39,8 @@ const scopeTargets = {
 const target = scopeTargets[scope]
 
 if (!target) {
-  console.error(`Unknown scope '${scope}'. Valid scopes: ${Object.keys(scopeTargets).join(', ')}`)
+  console.error(`${COLORS.RED}${COLORS.BOLD}❌ Unknown scope '${scope}'${COLORS.RESET}`)
+  console.error(`${COLORS.RED}   Valid scopes: ${Object.keys(scopeTargets).join(', ')}${COLORS.RESET}`)
   process.exit(2)
 }
 
@@ -52,7 +65,8 @@ const segmentMatchers = {
 const matchesSegment = segmentMatchers[segment]
 
 if (!matchesSegment) {
-  console.error(`Unknown segment '${segment}'. Valid segments: ${Object.keys(segmentMatchers).join(', ')}`)
+  console.error(`${COLORS.RED}${COLORS.BOLD}❌ Unknown segment '${segment}'${COLORS.RESET}`)
+  console.error(`${COLORS.RED}   Valid segments: ${Object.keys(segmentMatchers).join(', ')}${COLORS.RESET}`)
   process.exit(2)
 }
 

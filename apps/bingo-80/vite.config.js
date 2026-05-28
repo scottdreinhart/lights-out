@@ -1,30 +1,21 @@
-import react from '@vitejs/plugin-react'
 import path from 'path'
 import { defineConfig } from 'vite'
+import {
+  createOptimizedBuild,
+  createOptimizedPlugins,
+  createOptimizedResolve,
+} from '../../scripts/vite/createOptimizedViteConfig.mjs'
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: createOptimizedPlugins(),
   server: {
     port: 5173,
     open: true,
   },
-  build: {
-    outDir: 'dist',
-    
-  rollupOptions: {
-    external: [
-      '@capacitor/core',
-      '@capacitor/app',
-      '@capacitor/device',
-      '@capacitor/preferences',
-      '@capacitor/haptics',
-      '@capacitor/splash-screen',
-      '@capacitor/keyboard',
-    ],
-  },sourcemap: false,
-  },
+
+  build: createOptimizedBuild(),
   resolve: {
+    ...createOptimizedResolve(),
     alias: {
       '@': path.resolve(__dirname, './src'),
     },

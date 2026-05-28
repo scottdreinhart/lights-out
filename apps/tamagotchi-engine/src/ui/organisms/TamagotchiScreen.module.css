@@ -1,0 +1,1285 @@
+/* Sources: https://github.com/loociano/tamagotchi-tech-specs/blob/master/index.md and
+   https://tamagotchi.fandom.com/wiki/Tamagotchi_Angel */
+
+.shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.kicker {
+  margin: 0 0 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.75rem;
+  color: var(--accent-strong);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2.2rem, 7vw, 4.4rem);
+  line-height: 0.95;
+}
+
+.description {
+  max-width: 56ch;
+  margin: 0.9rem 0 0;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.heroCard,
+.board,
+.history {
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: var(--bg-panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.heroCard {
+  padding: 1.4rem 1.6rem;
+  display: grid;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.heroStats {
+  justify-content: center;
+  padding: 0.65rem;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 14px;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  color: #ffffff !important;
+}
+
+.heroStats * {
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.badgeValue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #ffffff !important;
+}
+
+.badgeEmoji,
+.buttonEmoji {
+  line-height: 1;
+}
+
+.badgeEmoji {
+  font-size: 1em;
+}
+
+.buttonEmoji {
+  font-size: 1.05em;
+}
+
+.stageBadge {
+  display: inline-flex;
+  width: fit-content;
+  padding: 0.32rem 0.65rem;
+  gap: 0.45rem;
+  align-items: center;
+  border-radius: 999px;
+  background: rgba(139, 243, 200, 0.12);
+  border: 1px solid rgba(139, 243, 200, 0.22);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.72rem;
+  color: #ffffff !important;
+}
+
+.actionDashboard {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.actionSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.actionList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.25rem;
+}
+
+.actionButtonRow {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  padding: 0.05rem 0;
+}
+
+.buttonText {
+  flex: 1;
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.buttonEmoji {
+  font-size: 1.25em;
+}
+
+.buttonPriceTag {
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #8bf3c8;
+  border: 1px solid rgba(139, 243, 200, 0.3);
+}
+
+@media (max-width: 900px) {
+  .actionDashboard {
+    flex-direction: column;
+  }
+}
+
+.actionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.actionButtonContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  padding: 0.25rem 0;
+}
+
+.actionButtonTop {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.buttonPriceTag {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.1rem 0.4rem;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #8bf3c8;
+  border: 1px solid rgba(139, 243, 200, 0.2);
+}
+
+.actionLabelContent {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.buttonText {
+  flex: 1;
+  text-align: left;
+}
+
+.buttonPrice {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #8bf3c8;
+}
+
+.metaGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.02rem;
+}
+
+.metaRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  line-height: 1.32;
+  min-width: 0;
+}
+
+.metaRow strong {
+  color: var(--text);
+  text-align: right;
+  line-height: 1.32;
+}
+
+.board {
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.rightColumn {
+  display: grid;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.secondaryPanels {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.petColumn {
+  display: grid;
+  gap: 0.35rem;
+  justify-items: stretch;
+  align-self: start;
+}
+
+.sidebar {
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.petView {
+  position: relative;
+  overflow: hidden;
+  min-height: 330px;
+  border-radius: 24px;
+  border: 1px solid rgba(139, 243, 200, 0.14);
+  background:
+    radial-gradient(circle at 50% 30%, rgba(86, 212, 255, 0.2), transparent 28%),
+    linear-gradient(180deg, rgba(17, 24, 38, 0.96), rgba(7, 10, 19, 0.98));
+  display: grid;
+  place-items: center;
+  padding: 1.8rem 1.6rem;
+  text-align: center;
+  width: 100%;
+  transition: background 0.5s ease;
+}
+
+.stateWarning {
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255, 159, 67, 0.3), transparent 35%),
+    linear-gradient(180deg, rgba(38, 24, 17, 0.96), rgba(19, 10, 7, 0.98));
+  border-color: rgba(255, 159, 67, 0.3);
+}
+
+.stateDire {
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255, 107, 107, 0.4), transparent 40%),
+    linear-gradient(180deg, rgba(38, 17, 17, 0.96), rgba(19, 7, 7, 0.98));
+  border-color: rgba(255, 107, 107, 0.4);
+}
+
+.attentionPulse {
+  position: absolute;
+  inset: 0;
+  border: 4px solid rgba(255, 255, 255, 0.4);
+  border-radius: inherit;
+  animation: attentionBorderPulse 1s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes attentionBorderPulse {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+.mobileTabs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg-panel);
+  border-radius: 24px;
+  border: 1px solid var(--border);
+}
+
+.tabHeader {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.4rem;
+  border-radius: 16px;
+}
+
+.tabHeader button {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 0.8rem;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tabHeader button.tabActive {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 4px 12px rgba(86, 212, 255, 0.3);
+}
+
+.tabContent {
+  min-height: 200px;
+}
+
+.statsPlaceholder {
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 16px;
+  border: 1px dashed var(--border);
+}
+
+.eventEvolution {
+  border-left: 4px solid #9f7aff;
+  background: rgba(159, 122, 255, 0.05);
+}
+.eventCritical {
+  border-left: 4px solid #ff6b6b;
+  background: rgba(255, 107, 107, 0.05) !important;
+}
+.eventCare {
+  border-left: 4px solid #8bf3c8;
+  background: rgba(139, 243, 200, 0.05);
+}
+.eventTraining {
+  border-left: 4px solid #5ddcff;
+  background: rgba(93, 220, 255, 0.05);
+}
+.eventCall {
+  border-left: 4px solid #f7b84d;
+  background: rgba(247, 184, 77, 0.05);
+}
+.eventNormal {
+  border-left: 4px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.shellGlow {
+  position: absolute;
+  inset: 18% 15%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 243, 200, 0.18), transparent 60%);
+  filter: blur(8px);
+}
+
+.petFace {
+  position: relative;
+  z-index: 1;
+  width: min(62vw, 220px);
+  height: min(62vw, 220px);
+  display: grid;
+  place-items: center;
+  text-shadow: 0 0 42px rgba(86, 212, 255, 0.35);
+}
+
+.faceFrame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.eye {
+  position: absolute;
+  top: 40%;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+}
+
+.eye:first-child {
+  left: calc(50% - 62px);
+}
+
+.eye:last-child {
+  right: calc(50% - 62px);
+}
+
+.eyeGlyph {
+  font-size: clamp(2.4rem, 6vw, 3.1rem);
+  line-height: 1;
+  color: rgba(244, 255, 251, 0.95);
+  text-shadow: 0 0 14px rgba(86, 212, 255, 0.35);
+}
+
+.gazeScan .eyeGlyph {
+  animation: eyeGlyphDrift 4.8s ease-in-out infinite;
+}
+
+.gazeScan .eye:last-child .eyeGlyph {
+  animation-delay: -1.8s;
+}
+
+.gazeOutUp .eyeGlyph,
+.gazeOutDown .eyeGlyph {
+  animation: none;
+}
+
+.gazeOutUp .eye:first-child .eyeGlyph {
+  transform: translate(-6px, -6px);
+}
+
+.gazeOutUp .eye:last-child .eyeGlyph {
+  transform: translate(6px, -6px);
+}
+
+.gazeOutDown .eye:first-child .eyeGlyph {
+  transform: translate(-6px, 6px);
+}
+
+.gazeOutDown .eye:last-child .eyeGlyph {
+  transform: translate(6px, 6px);
+}
+
+.mouth {
+  position: absolute;
+  left: 50%;
+  top: 63%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  line-height: 1;
+  color: rgba(244, 255, 251, 0.94);
+  text-shadow: 0 0 10px rgba(86, 212, 255, 0.28);
+}
+
+@keyframes eyeGlyphDrift {
+  0% {
+    transform: translate(-4px, -3px);
+  }
+
+  20% {
+    transform: translate(4px, -2px);
+  }
+
+  40% {
+    transform: translate(3px, 3px);
+  }
+
+  60% {
+    transform: translate(-3px, 4px);
+  }
+
+  80% {
+    transform: translate(-4px, 1px);
+  }
+
+  100% {
+    transform: translate(-4px, -3px);
+  }
+}
+
+.petCaption {
+  position: relative;
+  z-index: 1;
+  margin: 0.3rem 0 0;
+  font-size: 1.3rem;
+}
+
+.petSubcaption {
+  position: relative;
+  z-index: 1;
+  margin: 0.05rem 0 0;
+  color: var(--text-muted);
+}
+
+.sidebar {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.interactivePanel {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1.35rem 1.5rem;
+  border-radius: 24px;
+  border: 1px solid rgba(139, 243, 200, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.outcomePanel {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.buttonGroup {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1.35rem 1.5rem;
+  border-radius: 24px;
+  border: 1px solid rgba(139, 243, 200, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.signalPanel {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1.4rem 1.6rem;
+  border: 1px solid rgba(139, 243, 200, 0.14);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.signalHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+.signalHeader h2 {
+  margin: 0;
+}
+
+.signalHeader span {
+  color: var(--text-muted);
+  line-height: 1.32;
+}
+
+.meters {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.meterRow {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.meterRow span {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.meterTrack {
+  height: 0.72rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.meterFillDanger,
+.meterFillFocus,
+.meterFillProgress {
+  height: 100%;
+  border-radius: inherit;
+}
+
+.meterFillDanger {
+  background: linear-gradient(90deg, #ff6b6b, #ff9f43);
+}
+
+.meterFillFocus {
+  background: linear-gradient(90deg, #5ddcff, #9f7aff);
+}
+
+.meterFillProgress {
+  background: linear-gradient(90deg, #8bf3c8, #44d18a);
+}
+
+.meterFillLifetime {
+  background: linear-gradient(90deg, #ffd36b, #ff9f43);
+}
+
+.meterFillRed {
+  background: linear-gradient(90deg, #ff6b6b, #d32f2f);
+}
+
+.insightNote {
+  margin-top: 1rem;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.pressureRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  line-height: 1.32;
+}
+
+.economyRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  line-height: 1.32;
+}
+
+.callPanel {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1.2rem 1.35rem;
+  border-radius: 20px;
+  border: 1px solid rgba(139, 243, 200, 0.12);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.callPanelHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.callPanelHeader span {
+  color: var(--text-muted);
+  line-height: 1.32;
+}
+
+.callList {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.callItem {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.callItemHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+.callItemHeader span {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  line-height: 1.32;
+}
+
+.callRag {
+  position: relative;
+  height: 0.9rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.callRagSegment {
+  position: relative;
+  z-index: 0;
+}
+
+.callRagGreen {
+  background: linear-gradient(90deg, rgba(64, 190, 126, 0.92), rgba(98, 229, 170, 0.92));
+}
+
+.callRagAmber {
+  background: linear-gradient(90deg, rgba(247, 184, 77, 0.92), rgba(255, 214, 117, 0.92));
+}
+
+.callRagRed {
+  background: linear-gradient(90deg, rgba(250, 97, 97, 0.92), rgba(255, 149, 102, 0.92));
+}
+
+.callRagFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(98, 229, 170, 0.32),
+    rgba(247, 184, 77, 0.36),
+    rgba(250, 97, 97, 0.42)
+  );
+  transition: width 160ms linear;
+  pointer-events: none;
+}
+
+.callRagMarker {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  background: #f6fff9;
+  box-shadow:
+    0 0 0 3px rgba(8, 13, 25, 0.8),
+    0 0 12px rgba(139, 243, 200, 0.45);
+  transition: left 160ms linear;
+  animation: callRagPulse 1.6s ease-in-out infinite;
+}
+
+.callRagLabels {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.25rem;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+@keyframes callRagPulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.82;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.12);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .petView,
+  .attentionPulse,
+  .gazeScan .eyeGlyph,
+  .callRagFill,
+  .callRagMarker,
+  .attentionPulse,
+  .tabHeader button {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .tabHeader button.tabActive {
+    box-shadow: none !important;
+  }
+}
+
+.callEmpty {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.32;
+}
+
+.pressureLabel {
+  color: var(--text-muted);
+}
+
+.pressureValue {
+  font-size: 1rem;
+}
+
+.decisionPanel {
+  display: grid;
+  gap: 0.4rem;
+  padding: 1.2rem 1.35rem;
+  border-radius: 20px;
+  border: 1px solid rgba(139, 243, 200, 0.12);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.decisionCardHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.decisionCardHeader h3 {
+  margin: 0;
+}
+
+.decisionCardHeader span {
+  color: var(--text-muted);
+  line-height: 1.32;
+}
+
+.decisionHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.decisionHeader span {
+  color: var(--text-muted);
+  line-height: 1.32;
+}
+
+.decisionHeader strong {
+  color: var(--accent);
+}
+
+.decisionPanel p {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.32;
+}
+
+.decisionStats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.decisionStats div {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.8rem 0.85rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.decisionStats span {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  line-height: 1.32;
+}
+
+.decisionStats strong {
+  font-size: 0.95rem;
+}
+
+.timerPanel,
+.relationshipPanel {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1.35rem 1.5rem;
+  border-radius: 24px;
+  border: 1px solid rgba(139, 243, 200, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.sectionHeader h2,
+.sectionHeader h3 {
+  margin: 0;
+}
+
+.sectionHeader span {
+  color: var(--text-muted);
+  line-height: 1.32;
+}
+
+.utilityButtons {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.timerList {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.timerItem {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.8rem 0.85rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.timerItemHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+.timerItemHeader span {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  line-height: 1.32;
+}
+
+.timerClock {
+  font-variant-numeric: tabular-nums;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.timerTrack {
+  height: 0.7rem;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.timerFill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  transition: width 160ms linear;
+}
+
+.timerFillBlue {
+  background: linear-gradient(90deg, #5ddcff, #8bf3c8);
+}
+
+.timerFillAmber {
+  background: linear-gradient(90deg, #ffd36b, #ff9f43);
+}
+
+.timerFillViolet {
+  background: linear-gradient(90deg, #9f7aff, #d6a6ff);
+}
+
+.relationshipGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.relationshipCard {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.8rem 0.85rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.relationshipCard strong {
+  font-size: 0.95rem;
+}
+
+.relationshipCard span,
+.relationshipCard p {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.32;
+}
+
+.debugGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.debugCard {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem 1.05rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.debugCard h3 {
+  margin: 0;
+}
+
+.debugList {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.debugRow,
+.debugCall {
+  display: grid;
+  gap: 0.12rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.debugRow span,
+.debugCall span {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  line-height: 1.32;
+}
+
+.debugRow strong,
+.debugCall strong {
+  line-height: 1.32;
+}
+
+.debugEmpty {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.32;
+}
+
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(3, 6, 14, 0.72);
+  backdrop-filter: blur(8px);
+}
+
+.modal {
+  width: min(920px, 100%);
+  max-height: min(86vh, 900px);
+  overflow: auto;
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem;
+  border-radius: 24px;
+  border: 1px solid rgba(139, 243, 200, 0.18);
+  background: rgba(8, 13, 25, 0.98);
+  box-shadow: var(--shadow);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.modalHeader h2 {
+  margin: 0;
+}
+
+.modalHeader p {
+  margin: 0.25rem 0 0;
+  color: var(--text-muted);
+}
+
+.modalSummaryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.modalSummaryCard {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.modalSummaryCard span {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  line-height: 1.32;
+}
+
+.modalSummaryCard strong {
+  line-height: 1.32;
+}
+
+.controls,
+.variantStrip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.playPanel {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1.35rem 1.5rem;
+  border-radius: 24px;
+  border: 1px solid rgba(139, 243, 200, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.feedPanel {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1.35rem 1.5rem;
+  border-radius: 24px;
+  border: 1px solid rgba(139, 243, 200, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.playHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.playHeader h2 {
+  margin: 0;
+}
+
+.playHeader span {
+  color: var(--text-muted);
+}
+
+.playControls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.resurrectionBar {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.variantStrip {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.history {
+  padding: 1rem;
+}
+
+.historyHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.historyHeader h2 {
+  margin: 0;
+}
+
+.historyHeader span {
+  color: var(--text-muted);
+}
+
+.historyList {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.historyItem {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 0.9rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.historyItem strong,
+.historyItem span,
+.historyItem p {
+  display: block;
+}
+
+.historyItem strong {
+  color: var(--accent);
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+}
+
+.historyItem span {
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+
+.historyItem p {
+  margin: 0.4rem 0 0;
+}
+
+@media (max-width: 899px) {
+  .hero,
+  .board {
+    grid-template-columns: 1fr;
+  }
+
+  .petView {
+    min-height: 340px;
+  }
+
+  .decisionHeader,
+  .pressureRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .callPanelHeader,
+  .callItemHeader,
+  .playHeader,
+  .modalHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .playControls {
+    grid-template-columns: 1fr;
+  }
+
+  .decisionStats {
+    grid-template-columns: 1fr;
+  }
+
+  .relationshipGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .modalSummaryGrid,
+  .debugGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sectionHeader,
+  .timerItemHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

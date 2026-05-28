@@ -8,13 +8,13 @@ import { SCORE_THRESHOLDS } from './constants'
 import type {
   BonusConfig,
   Card,
-  ScoreResult,
-  WinDetection,
-  StampingMode,
-  StampAttempt,
   PlayerAccuracy,
-  SpeedRating,
   RoundTimerConfig,
+  ScoreResult,
+  SpeedRating,
+  StampAttempt,
+  StampingMode,
+  WinDetection,
 } from './types'
 
 /**
@@ -378,11 +378,7 @@ export const calculateManualModeScore = (
  * In auto mode, automatically marks all instances of a called number
  * on all cards.
  */
-export const autoMarkNumber = (
-  card: Card,
-  calledNumber: number,
-  timestamp: number,
-): Card => {
+export const autoMarkNumber = (card: Card, calledNumber: number, timestamp: number): Card => {
   const updatedGrid = card.grid.map((row) =>
     row.map((cell) => {
       if (cell.number === calledNumber && !cell.marked) {

@@ -4,3 +4,4 @@
 
 export { default as App } from './App'
 export { ErrorBoundary } from './ErrorBoundary'
+export { ReversiSurface } from './ReversiSurface'

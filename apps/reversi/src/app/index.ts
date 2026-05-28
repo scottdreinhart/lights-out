@@ -1,34 +1,21 @@
 /**
- * Application layer barrel export.
+ * Reversi app layer barrel export.
  * Re-exports all React hooks and services.
  *
- * Usage: import { useTheme, useSoundEffects } from '@/app'
+ * Usage: import { useGame, useTheme, useSoundEffects } from '@/app'
  */
 
-// Shared infrastructure
-export {
-  useKeyboardControls,
-  useMediaQuery,
-  useWindowSize,
-  useResponsiveState,
-  useDeviceInfo,
-  useAppScreens,
-  useServiceLoader,
-  useOnlineStatus,
-  useLongPress,
-  usePerformanceMetrics,
-  logWebVitals,
-  type DeviceInfo,
-  type DeviceType,
-  type WindowSize,
-} from '@games/app-hook-utils'
-
 // Local services
+export { logCrash, getCrashLogs, clearCrashLogs, markFatalCrash, getFatalCrash, clearFatalCrash } from '@games/diagnostics-utils'
 export * from './haptics'
-export * from './crashLogger'
-export * from './storageService'
 export { SoundProvider, useSoundContext } from './SoundContext'
+export * from './storageService'
 export { ThemeProvider, useThemeContext } from './ThemeContext'
 
 // App-specific hooks
-export { useStats } from './useStats'
+export { useReversiApp, useSoundEffects, useStats } from './hooks'
+export type { UseReversiAppReturn } from './hooks/useReversiApp'
+
+// useGame is the canonical alias — reversi uses useReversiGame internally
+export * from './securityModules'
+export { useReversiGame as useGame, useReversiGame } from './hooks/useReversiGame'

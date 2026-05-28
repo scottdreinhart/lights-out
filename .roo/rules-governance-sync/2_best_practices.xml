@@ -1,0 +1,49 @@
+<governance_sync_best_practices>
+  <general_principles>
+    <principle priority="high">
+      <name>Preserve first</name>
+      <description>Keep existing architecture, scripts, aliases, config, and validation flows unless the user explicitly requests a change.</description>
+    </principle>
+    <principle priority="high">
+      <name>Smallest correct change</name>
+      <description>Prefer surgical edits over rewrites. Decompose larger work into small steps that are independently testable.</description>
+    </principle>
+    <principle priority="high">
+      <name>Reuse before create</name>
+      <description>Search for existing conventions, files, and abstractions before introducing new ones.</description>
+    </principle>
+  </general_principles>
+
+  <mode_conventions>
+    <convention category="governance">
+      <rule>Preserve the stronger rule when multiple governance sources overlap.</rule>
+    </convention>
+    <convention category="architecture">
+      <rule>Respect CLEAN boundaries and keep domain, app, ui, infrastructure, and platform concerns separated.</rule>
+    </convention>
+    <convention category="tooling">
+      <rule>Prefer existing pnpm scripts and validation gates instead of ad hoc command chains.</rule>
+    </convention>
+    <convention category="aliases">
+      <rule>Preserve path aliases and do not replace them with deep relative imports.</rule>
+    </convention>
+  </mode_conventions>
+
+  <quality_checklist>
+    <category name="before_editing">
+      <item>Read the minimum governance needed for the task.</item>
+      <item>Identify the affected layer and the likely files.</item>
+      <item>Check for existing code or mode guidance that can be reused.</item>
+    </category>
+    <category name="during_editing">
+      <item>Keep changes localized.</item>
+      <item>Preserve existing contracts and behavior.</item>
+      <item>Avoid adding duplicate rules or parallel workflows.</item>
+    </category>
+    <category name="before_completion">
+      <item>Run the narrowest meaningful validation available.</item>
+      <item>Confirm no scripts, aliases, or config were removed.</item>
+      <item>Confirm the mode files remain synchronized.</item>
+    </category>
+  </quality_checklist>
+</governance_sync_best_practices>

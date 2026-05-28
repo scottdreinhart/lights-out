@@ -1,0 +1,57 @@
+/* Sources: https://github.com/loociano/tamagotchi-tech-specs/blob/master/index.md
+   and https://tamagotchi.fandom.com/wiki/Tamagotchi_Angel */
+
+:root {
+  color-scheme: dark;
+  --bg: #090b12;
+  --bg-panel: rgba(18, 23, 38, 0.84);
+  --bg-panel-strong: #121927;
+  --border: rgba(123, 149, 196, 0.28);
+  --border-strong: rgba(151, 184, 255, 0.48);
+  --text: #f2f5ff;
+  --text-muted: #96a4bf;
+  --accent: #8bf3c8;
+  --accent-strong: #56d4ff;
+  --care: #ffb86b;
+  --danger: #ff6b8b;
+  --color-primary: #56d4ff;
+  --color-primary-dark: #2bb7e5;
+  --color-secondary: rgba(255, 255, 255, 0.08);
+  --color-secondary-light: rgba(255, 255, 255, 0.12);
+  --color-text: #f2f5ff;
+  --color-border: rgba(123, 149, 196, 0.28);
+  --color-danger: #ff6b8b;
+  --color-danger-dark: #ff4d73;
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(86, 212, 255, 0.18), transparent 28%),
+    radial-gradient(circle at 80% 0%, rgba(139, 243, 200, 0.14), transparent 22%),
+    linear-gradient(180deg, #090b12, #0c1020 42%, #090b12);
+  color: var(--text);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}

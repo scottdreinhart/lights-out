@@ -66,7 +66,7 @@ export function GameBoard({
   const renderCell = (
     cell: SharedBoardCell,
     isSelected: boolean,
-    isFocused: boolean,
+    _isFocused: boolean,
   ): ReactNode => {
     const minesweeperCell = board[cell.position.row]?.[cell.position.col]
     if (!minesweeperCell) return null

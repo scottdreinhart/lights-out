@@ -1,6 +1,24 @@
-import { useRoundTimer } from '@bingo-core/app'
+import { useRoundTimer } from '@games/bingo-core/app'
 import React, { useMemo } from 'react'
 import styles from './RoundTimer.module.css'
+
+interface TimerDisplayViewProps {
+  className?: string
+  label?: string
+  value: string
+  status: 'idle' | 'running' | 'expired'
+}
+
+const TimerDisplayView: React.FC<TimerDisplayViewProps> = ({ className, label, value, status }) => {
+  return (
+    <div
+      className={`${styles.root} ${className || ''} ${status === 'expired' ? styles.expired : ''} ${status === 'running' ? styles.running : ''}`}
+    >
+      {label ? <span className={styles.label}>{label}:</span> : null}
+      <span className={styles.time}>{value}</span>
+    </div>
+  )
+}
 
 interface RoundTimerProps {
   className?: string
@@ -16,19 +34,14 @@ export const RoundTimer: React.FC<RoundTimerProps> = ({ className, showLabel = t
     return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
   }, [countdownSeconds])
 
-  // Simple responsive classes based on window width
-  const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 900
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 600
+  const status = isExpired ? 'expired' : isRunning ? 'running' : 'idle'
 
   return (
-    <div
-      className={`${styles.root} ${className || ''} ${isExpired ? styles.expired : ''} ${isRunning ? styles.running : ''}`}
-      style={{
-        padding: isMobile ? '8px 12px' : isDesktop ? '12px 20px' : '10px 16px',
-      }}
-    >
-      {showLabel && <span className={styles.label}>Time:</span>}
-      <span className={styles.time}>{formattedTime}</span>
-    </div>
+    <TimerDisplayView
+      className={className}
+      label={showLabel ? 'Time' : undefined}
+      value={formattedTime}
+      status={status}
+    />
   )
 }

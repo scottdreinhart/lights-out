@@ -8,24 +8,35 @@
 
 :root {
   /* Cell styling for hover and selection patterns */
-  --cell-bg: #bdbdbd;
-  --cell-hover-bg: #c9c9c9;
-  --cell-hover-shadow: rgba(0, 0, 0, 0.15);
+  --cell-bg: #0e1a20;
+  --cell-hover-bg: #13232d;
+  --cell-hover-shadow: rgba(113, 255, 214, 0.18);
   --cell-selected-outline: #71ffd6;
   --cell-selected-glow: rgba(113, 255, 214, 0.3);
   --cell-selected-bg: rgba(113, 255, 214, 0.15);
   --cell-hint-glow: rgba(255, 200, 87, 0.3);
   --cell-hint-bg: rgba(255, 204, 0, 0.1);
   --hint-color: #ffc857;
+
+  --theme-bg: #080b14;
+  --theme-panel: rgb(11 19 35 / 90%);
+  --theme-panel-border: rgb(121 170 255 / 26%);
+  --theme-text: #eff4ff;
+  --theme-muted: #cad8f7;
+  --theme-accent: #98c6ff;
 }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: #1a1a2e;
-  color: #e0e0e0;
-  display: flex;
-  justify-content: center;
+  background:
+    radial-gradient(circle at 20% 10%, rgb(33 51 89 / 70%) 0%, transparent 42%),
+    radial-gradient(circle at 80% 90%, rgb(20 48 85 / 55%) 0%, transparent 45%), var(--theme-bg);
+  color: var(--theme-text);
   min-height: 100vh;
+}
+
+#root {
+  width: 100%;
 }
 
 button {

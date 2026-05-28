@@ -19,7 +19,7 @@ export const CENTER_INDEX = Math.floor(GRID_SIZE / 2) * GRID_SIZE + Math.floor(G
 export const MAX_NUMBER = 75 as const
 
 /** All available numbers in the pool */
-export const ALL_NUMBERS = Array.from({ length: MAX_NUMBER }, (_, i) => i + 1) as const
+export const ALL_NUMBERS: readonly number[] = Array.from({ length: MAX_NUMBER }, (_, i) => i + 1)
 
 /** Difficulty levels for progressive gameplay */
 export const DIFFICULTY_LEVELS = {

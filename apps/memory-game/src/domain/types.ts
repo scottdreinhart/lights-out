@@ -1,28 +1,43 @@
 /**
- * Central type definitions — pure domain types, no framework dependencies.
+ * Memory Game — Domain Types
+ * Pure domain types with no framework dependencies.
  */
 
-// Add game-specific types here
-export {}
-
-/** Shared theme types — identical across all games */
+export type CardSymbol = '🎮' | '🎲' | '🎯' | '🏆' | '🎸' | '🎨' | '🎭' | '🎪'
 
 export interface ColorTheme {
-  readonly id: string
-  readonly label: string
-  readonly accent: string
+  id: string
+  label: string
+  accent: string
 }
 
 export interface ColorblindMode {
-  readonly id: string
-  readonly label: string
-  readonly description?: string
+  id: string
+  label: string
+  description?: string
 }
 
 export interface ThemeSettings {
   colorTheme: string
-  mode: string
+  mode: 'system' | 'light' | 'dark'
   colorblind: string
+}
+
+export type GamePhase = 'idle' | 'playing' | 'checking' | 'won'
+
+export interface MemoryCard {
+  id: number
+  symbol: CardSymbol
+  isFlipped: boolean
+  isMatched: boolean
+}
+
+export interface GameState {
+  cards: MemoryCard[]
+  flippedIds: number[]
+  matchedPairs: number
+  moves: number
+  phase: GamePhase
 }
 
 export interface GameStats {
@@ -30,4 +45,6 @@ export interface GameStats {
   losses: number
   streak: number
   bestStreak: number
+  bestMoves: number | null
+  gamesPlayed: number
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { App } from './ui/organisms/App'
 import './styles.css'
+import { App } from './ui/organisms/App'
 
 const root = ReactDOM.createRoot(document.getElementById('root')!)
 root.render(

@@ -2,6 +2,17 @@ import { readdirSync, statSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import path from 'node:path'
 
+// ANSI color codes
+const COLORS = {
+  CYAN: '\x1b[96m',
+  GREEN: '\x1b[92m',
+  RED: '\x1b[91m',
+  YELLOW: '\x1b[93m',
+  BLUE: '\x1b[94m',
+  RESET: '\x1b[0m',
+  BOLD: '\x1b[1m',
+}
+
 const args = process.argv.slice(2)
 const scopeArg = args.find((arg) => arg.startsWith('--scope='))
 const scope = scopeArg ? scopeArg.split('=')[1] : 'src/app'

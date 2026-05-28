@@ -8,7 +8,6 @@ export interface RulesModalProps {
 }
 
 export function RulesModal({ isOpen, onClose }: RulesModalProps) {
-  const triggerRef = useRef<HTMLButtonElement>(null)
   const modalRef = useRef<HTMLDivElement>(null)
 
   // Keyboard handlers: ESC to close
@@ -33,7 +32,9 @@ export function RulesModal({ isOpen, onClose }: RulesModalProps) {
     const previouslyFocused = document.activeElement as HTMLElement
 
     // Focus the close button
-    const closeBtn = modalRef.current.querySelector('button[aria-label="Close rules"]') as HTMLButtonElement
+    const closeBtn = modalRef.current.querySelector(
+      'button[aria-label="Close rules"]',
+    ) as HTMLButtonElement
     if (closeBtn) {
       setTimeout(() => closeBtn.focus(), 50)
     }

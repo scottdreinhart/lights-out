@@ -1,0 +1,5 @@
+{
+  "app": "hangman",
+  "sdk": "telegram-mini-app",
+  "mode": "placeholder"
+}

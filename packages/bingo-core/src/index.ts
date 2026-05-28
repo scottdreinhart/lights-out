@@ -13,7 +13,7 @@ export type {
   BingoCardProps,
   BingoDrawPanelProps,
   BingoGameProps,
-  UseBingoGameReturn
+  UseBingoGameReturn,
 } from './types.js';
 
 // Rules and game logic
@@ -26,7 +26,7 @@ export {
   generateBingoCards,
   formatBingoCard,
   areCardsEqual,
-  getCardNumbers
+  getCardNumbers,
 } from './card.js';
 
 // Predefined variants
@@ -50,7 +50,7 @@ export {
   BINGO_VARIANTS,
   getBingoVariant,
   getBingoVariantKeys,
-  getAllBingoVariants
+  getAllBingoVariants,
 } from './variants.js';
 
 // UI Components

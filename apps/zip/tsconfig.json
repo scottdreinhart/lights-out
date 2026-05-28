@@ -51,9 +51,18 @@
       "@games/theme-context": [
         "../../packages/theme-context/src"
       ],
+      "@games/ui-board-core": [
+        "../../packages/ui-board-core/src"
+      ],
+      "@games/assets-shared": [
+        "../../packages/assets-shared/src"
+      ],
       "@games/ai-framework": [
         "../../packages/ai-framework/src"
       ]
+      "@games/diagnostics-utils": [
+        "../../packages/diagnostics-utils/src"
+      ],
     }
   },
   "include": [

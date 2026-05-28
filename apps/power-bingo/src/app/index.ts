@@ -3,5 +3,6 @@
  * Custom hooks for power-up management and activation
  */
 
+export { ThemeProvider, useTheme } from '@games/theme-context'
 export * from './hooks'
-export type { PowerUpType, PowerUp } from './hooks'
+export * from './securityModules'

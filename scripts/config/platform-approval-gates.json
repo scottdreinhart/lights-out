@@ -1,0 +1,147 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "description": "Evidence-backed approval gates derived from ingested platform documentation.",
+    "authority": ".github/instructions/15-app-store-compliance.instructions.md (Sections 10-11)"
+  },
+  "automatedGateCitations": {
+    "status-complete": {
+      "sources": ["compliance/matrix.json"],
+      "rationale": "Deployment readiness status is derived from matrix cell completion."
+    },
+    "app-exists": {
+      "sources": ["compliance/app-status.json"],
+      "rationale": "App registry source of truth for audited applications."
+    },
+    "rules-verified": {
+      "sources": ["compliance/sources.json"],
+      "rationale": "Game rule verification is tracked in canonical sources."
+    },
+    "platform-adapter": {
+      "sources": ["scripts/config/platform-requirements.json"],
+      "rationale": "Platform adapter requirement coverage is evaluated from platform requirement contracts."
+    },
+    "performance-compliance": {
+      "sources": [
+        "AGENTS.md § 25",
+        ".github/instructions/20-css-performance-rendering-optimization.instructions.md"
+      ],
+      "rationale": "Performance gate follows repository web vitals and rendering governance."
+    },
+    "ui-compliance": {
+      "sources": [
+        "AGENTS.md § 12",
+        "AGENTS.md § 13",
+        "AGENTS.md § 23"
+      ],
+      "rationale": "UI compliance gate follows responsive, menu architecture, and accessibility governance."
+    },
+    "blockers-free": {
+      "sources": ["compliance/blockers.json"],
+      "rationale": "Critical blocker state is sourced from blocker registry."
+    },
+    "requirements-coverage": {
+      "sources": ["scripts/config/platform-requirements.json", "compliance/platform-gap-analysis.json"],
+      "rationale": "Platform requirement checks and missing requirement counts are generated from these files."
+    }
+  },
+  "platforms": {
+    "web": {
+      "displayName": "Web",
+      "sources": [
+        "https://developer.mozilla.org/en-US/docs/Web/Performance",
+        "https://www.w3.org/WAI/WCAG21/quickref/"
+      ],
+      "manualGates": []
+    },
+    "electron": {
+      "displayName": "Electron",
+      "sources": [
+        "https://www.electronjs.org/docs/latest/tutorial/security",
+        "https://www.electron.build/"
+      ],
+      "manualGates": []
+    },
+    "ios": {
+      "displayName": "iOS",
+      "sources": [
+        "https://developer.apple.com/app-store/review/guidelines/"
+      ],
+      "manualGates": []
+    },
+    "android": {
+      "displayName": "Android",
+      "sources": [
+        "https://support.google.com/googleplay/android-developer/answer/9859348"
+      ],
+      "manualGates": []
+    },
+    "meta": {
+      "displayName": "Meta Instant Games",
+      "sources": [
+        "https://developers.facebook.com/docs/games/build/instant-games/quality-guidelines",
+        "https://developers.facebook.com/docs/games/build/instant-games/game-performance",
+        "https://developers.facebook.com/docs/games/instant-games/getting-started/launch-checklist"
+      ],
+      "manualGates": []
+    },
+    "twitch": {
+      "displayName": "Twitch Extensions",
+      "sources": [
+        "https://dev.twitch.tv/docs/extensions",
+        "https://dev.twitch.tv/docs/extensions/guidelines-and-policies",
+        "https://dev.twitch.tv/docs/extensions/monetization",
+        "https://dev.twitch.tv/docs/extensions/frontend",
+        "https://dev.twitch.tv/docs/extensions/backend",
+        "https://dev.twitch.tv/docs/extensions/building",
+        "https://dev.twitch.tv/docs/extensions/reference"
+      ],
+      "manualGates": []
+    },
+    "crazygames": {
+      "displayName": "CrazyGames",
+      "sources": [
+        "https://docs.crazygames.com/requirements/intro",
+        "https://docs.crazygames.com/requirements/technical",
+        "https://docs.crazygames.com/requirements/quality",
+        "https://docs.crazygames.com/requirements/gameplay",
+        "https://docs.crazygames.com/requirements/ads"
+      ],
+      "manualGates": []
+    },
+    "discord": {
+      "displayName": "Discord Activities",
+      "sources": [
+        "https://discord.com/developers/docs/activities/overview",
+        "https://discord.com/developers/docs/activities/how-activities-work",
+        "https://support-dev.discord.com/hc/en-us/articles/360025028592-Game-Submission-Guidelines"
+      ],
+      "manualGates": [
+        {
+          "id": "discord-submission-guideline-auth-review",
+          "label": "Authenticated Discord submission guideline review recorded",
+          "source": "https://support-dev.discord.com/hc/en-us/articles/360025028592-Game-Submission-Guidelines",
+          "requiredEvidenceFields": ["reviewedBy", "reviewedAt", "reference", "notes"]
+        }
+      ]
+    },
+    "telegram": {
+      "displayName": "Telegram Mini Apps",
+      "sources": [
+        "https://core.telegram.org/bots/games",
+        "https://core.telegram.org/bots/api",
+        "https://core.telegram.org/bots/inline"
+      ],
+      "manualGates": []
+    },
+    "steam": {
+      "displayName": "Steam",
+      "sources": [
+        "https://partner.steamgames.com/doc/store/review_process",
+        "https://partner.steamgames.com/doc/store/page",
+        "https://partner.steamgames.com/steamdirect"
+      ],
+      "manualGates": []
+    }
+  }
+}

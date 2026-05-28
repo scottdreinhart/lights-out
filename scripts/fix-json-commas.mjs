@@ -1,3 +1,12 @@
+// ANSI color codes
+const COLORS = {
+  CYAN: '\x1b[96m',
+  GREEN: '\x1b[92m',
+  RED: '\x1b[91m',
+  RESET: '\x1b[0m',
+  BOLD: '\x1b[1m',
+}
+
 const fs = require('fs');
 const path = require('path');
 

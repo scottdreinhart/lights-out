@@ -4,6 +4,7 @@ export interface HamburgerMenuProps {
   onSettings: () => void
   onNewGame: () => void
   onAbout: () => void
+  onRules: () => void
 }
 
 /**
@@ -12,13 +13,18 @@ export interface HamburgerMenuProps {
  * Converts Battleship-specific callbacks to the shared menu items format.
  * Uses the shared HamburgerMenu from @games/common for consistent behavior.
  */
-export function HamburgerMenu({ onSettings, onNewGame, onAbout }: HamburgerMenuProps) {
+export function HamburgerMenu({ onSettings, onNewGame, onAbout, onRules }: HamburgerMenuProps) {
   // Convert callbacks to items format for shared component
   const menuItems: MenuItem[] = [
     {
       label: 'New Game',
       icon: '🎮',
       action: onNewGame,
+    },
+    {
+      label: 'How to Play',
+      icon: '❓',
+      action: onRules,
     },
     {
       label: 'Settings',

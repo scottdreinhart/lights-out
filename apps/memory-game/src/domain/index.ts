@@ -1,6 +1,5 @@
 // Re-export sprite utilities from @games/assets-shared
 
-
 /**
  * Domain layer barrel export.
  * Re-exports all pure, framework-agnostic game logic.
@@ -9,6 +8,7 @@
  */
 
 export * from './ai'
+export * from './arcade'
 export * from './board'
 export * from './constants'
 export * from './layers'
@@ -17,4 +17,3 @@ export * from './rules'
 export * from './sprites'
 export * from './themes'
 export * from './types'
-

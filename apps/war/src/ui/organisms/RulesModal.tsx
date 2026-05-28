@@ -4,8 +4,8 @@
  */
 
 import type { WarRuleConfig } from '@/domain'
-import { RULES_TEXT, RULE_DESCRIPTIONS } from '@/domain'
-import React, { useState } from 'react'
+import { RULES_TEXT, RULE_DESCRIPTIONS, describeRules } from '@/domain'
+import React from 'react'
 import styles from './RulesModal.module.css'
 
 interface RulesModalProps {
@@ -21,27 +21,41 @@ export const RulesModal: React.FC<RulesModalProps> = ({
   rules,
   variant = 'CLASSIC',
 }) => {
-  if (!isOpen) return null
+  if (!isOpen) {
+    return null
+  }
 
   const rulesText = RULES_TEXT[variant] ?? RULES_TEXT.CLASSIC
   const description = RULE_DESCRIPTIONS[variant]
 
   return (
-    <div className={styles.overlay} onClick={onClose} role="presentation">
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+    <div
+      className={styles.overlay}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) {
+          onClose()
+        }
+      }}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ' || event.key === 'Escape') {
+          onClose()
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label="Close rules dialog"
+    >
+      <div className={styles.modal}>
         <div className={styles.header}>
-          <h2 className={styles.title}>
-            {description?.title ?? 'War Card Game Rules'}
-          </h2>
+          <h2 className={styles.title}>{description?.title ?? 'War Card Game Rules'}</h2>
           <button className={styles.closeButton} onClick={onClose} aria-label="Close rules">
             ✕
           </button>
         </div>
 
         <div className={styles.content}>
-          {description && (
-            <p className={styles.description}>{description.description}</p>
-          )}
+          {description && <p className={styles.description}>{description.description}</p>}
+          <p className={styles.description}>Active rules: {describeRules(rules)}</p>
 
           <div className={styles.rulesText}>
             {rulesText.split('\n').map((line, i) => {

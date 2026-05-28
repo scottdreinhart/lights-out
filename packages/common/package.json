@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Shared code, patterns, and utilities for all game applications",
   "type": "module",
+  "sideEffects": [
+    "**/*.css",
+    "**/*.module.css"
+  ],
   "exports": {
     ".": {
       "import": "./src/index.ts",
@@ -11,6 +15,7 @@
   },
   "dependencies": {
     "@games/app-hook-utils": "workspace:*",
+    "@games/assets-shared": "workspace:*",
     "@games/domain-shared": "workspace:*",
     "react": "19.2.4",
     "react-dom": "19.2.4"

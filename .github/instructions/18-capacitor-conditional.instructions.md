@@ -1,6 +1,6 @@
 # 🔌 Conditional Capacitor Integration Pattern
 
-> **Status**: Active for nim, lights-out (platform apps with native support)  
+> **Status**: Active for all platform apps with native Capacitor support (e.g., lights-out, mancala, tictactoe, monchola)  
 > **Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules), § 15 (Capacitor), and § 5 (Shell Routing)  
 > **BASELINE**: Before conditional Capacitor usage, read `AGENTS.md` § 0. Preserve web-first architecture. No platform-specific branching. Quality gates mandatory.
 
@@ -86,7 +86,7 @@ All methods are **safe to call everywhere** (web, Electron, native).
 
 ### Initialize App with Capacitor Support
 
-**apps/nim/src/index.tsx**:
+**apps/\<game-app\>/src/index.tsx**:
 
 ```typescript
 import React from 'react'
@@ -234,7 +234,7 @@ This allows optional Capacitor use while keeping web builds small.
 ### Web Build (Primary)
 
 ```bash
-cd apps/nim
+cd apps/<game-app>
 pnpm build          # Should succeed without Capacitor
 pnpm preview        # Should work in browser
 ```

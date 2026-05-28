@@ -1,0 +1,42 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgb(0 0 0 / 68%);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  z-index: 1200;
+}
+
+.card {
+  width: min(400px, 100%);
+  border-radius: 14px;
+  border: 1px solid rgb(145 181 255 / 35%);
+  background: #0f1a31;
+  padding: 20px;
+  color: #f0f5ff;
+  text-align: center;
+}
+
+.card h2 {
+  margin: 0 0 10px;
+}
+
+.card p {
+  margin: 0 0 10px;
+}
+
+.score {
+  color: #b9d4ff;
+}
+
+.restart {
+  min-height: 44px;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgb(153 189 255 / 45%);
+  background: linear-gradient(180deg, #324f9e, #253d7f);
+  color: #f8fbff;
+  font-weight: 700;
+  cursor: pointer;
+}

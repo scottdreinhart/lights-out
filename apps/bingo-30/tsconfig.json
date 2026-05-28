@@ -19,8 +19,11 @@
     /* Paths */
     "baseUrl": ".",
     "paths": {
+      "@/app": ["src/app/index.ts"],
       "@/app/*": ["src/app/*"],
+      "@/domain": ["src/domain/index.ts"],
       "@/domain/*": ["src/domain/*"],
+      "@/ui": ["src/ui/index.ts"],
       "@/ui/*": ["src/ui/*"]
     },
 

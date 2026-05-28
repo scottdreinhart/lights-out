@@ -6,4 +6,4 @@
  */
 
 export * from './atoms'
-export { App } from './organisms/App'
+export { App, ConnectFourSurface } from './organisms'

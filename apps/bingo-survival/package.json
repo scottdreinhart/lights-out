@@ -1,35 +1,77 @@
 {
-    "name": "@games/bingo-survival",
-    "version": "1.0.0",
-    "description": "Bingo Survival - Endless survival mode with increasing difficulty",
-    "type": "module",
-    "private": true,
-    "license": "PROPRIETARY",
-    "author": "Scott Reinhart",
-    "packageManager": "pnpm@10.31.0",
-    "engines": {
-        "node": "24.14.1",
-        "pnpm": "10.31.0"
-    },
-    "main": "dist/index.js",
-    "scripts": {
-        "dev": "vite --host",
-        "build": "vite build",
-        "preview": "vite preview",
-        "lint": "eslint src/ --fix",
-        "type-check": "tsc --noEmit",
-        "test": "pnpm exec vitest",
-        "validate": "pnpm lint && pnpm type-check && pnpm build"
-    },
-    "dependencies": {
-        "react": "19.2.4",
-        "react-dom": "19.2.4",
-        "@games/bingo-core": "workspace:*"
-    },
-    "devDependencies": {
-        "@types/react": "19.2.4",
-        "@vitejs/plugin-react": "4.3.3",
-        "typescript": "5.9.3",
-        "vite": "7.3.1"
-    }
+  "name": "@games/bingo-survival",
+  "version": "1.0.0",
+  "description": "Bingo Survival - Endless survival mode with increasing difficulty",
+  "type": "module",
+  "private": true,
+  "license": "PROPRIETARY",
+  "author": "Scott Reinhart",
+  "packageManager": "pnpm@10.31.0",
+  "engines": {
+    "node": "24.14.1",
+    "pnpm": "10.31.0"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src/ --fix",
+    "type-check": "tsc --noEmit",
+    "test": "pnpm exec vitest",
+    "validate": "pnpm validate:gated",
+    "typecheck": "pnpm type-check",
+    "format": "pnpm exec prettier --write src/",
+    "format:check": "pnpm exec prettier --check src/",
+    "check": "pnpm lint && pnpm format:check && pnpm typecheck",
+    "cap:sync": "pnpm run build && pnpm exec cap sync",
+    "cap:init:android": "pnpm exec cap add android",
+    "cap:init:ios": "pnpm exec cap add ios",
+    "cap:open:android": "pnpm exec cap open android",
+    "cap:open:ios": "pnpm exec cap open ios",
+    "cap:run:android": "pnpm exec cap run android",
+    "cap:run:ios": "pnpm exec cap run ios",
+    "electron:dev": "pnpm run build && electron .",
+    "electron:preview": "pnpm run build && electron .",
+    "electron:build": "pnpm run build && pnpm exec electron-builder --publish never",
+    "electron:build:win": "pnpm run build && pnpm exec electron-builder --win --publish never",
+    "electron:build:linux": "pnpm run build && pnpm exec electron-builder --linux --publish never",
+    "electron:build:mac": "pnpm run build && pnpm exec electron-builder --mac --publish never",
+    "platform:meta:build": "pnpm run build",
+    "platform:twitch:build": "pnpm run build",
+    "platform:crazygames:build": "pnpm run build",
+    "platform:discord:build": "pnpm run build",
+    "platform:telegram:build": "pnpm run build",
+    "platform:steam:build": "pnpm run build",
+    "test:names": "pnpm -C ../.. exec node scripts/validate-test-names-segmented.mjs --scope=apps/bingo-survival/src --chunk=200",
+    "validate:gated": "pnpm -C ../.. exec node scripts/validate-gated.mjs --nameScope=apps/bingo-survival/src --workspaceScope=apps/bingo-survival --testScope=apps/bingo-survival/src --buildScope=apps/bingo-survival",
+    "dashboard": "pnpm -C ../.. dashboard",
+    "dashboard:serve": "pnpm -C ../.. dashboard:serve",
+    "format:segment": "pnpm -C ../.. exec node scripts/validate-workspace-segmented.mjs --script=format --scope=apps/bingo-survival --timeoutMs=600000",
+    "format:check:segment": "pnpm -C ../.. exec node scripts/validate-workspace-segmented.mjs --script=format:check --scope=apps/bingo-survival --timeoutMs=600000"
+  },
+  "dependencies": {
+    "@games/bingo-core": "workspace:*",
+    "@games/bingo-game-hooks": "workspace:*",
+    "@games/bingo-ui-components": "workspace:*",
+    "@games/common": "workspace:*",
+    "@games/shared-api-client": "workspace:*",
+    "@games/shared-config": "workspace:*",
+    "@games/shared-sanitizers": "workspace:*",
+    "@games/shared-validators": "workspace:*",
+    "@games/sound-context": "workspace:*",
+    "@games/theme-context": "workspace:*",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.4",
+    "@vitejs/plugin-react": "^6.0.1",
+    "typescript": "5.9.3",
+    "vite": "^8.0.8"
+  },
+  "build": {
+    "appId": "com.scottreinhart.bingosurvival",
+    "productName": "Bingo Survival"
+  }
 }

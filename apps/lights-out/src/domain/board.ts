@@ -1,45 +1,28 @@
 /**
  * Board operations — pure functions for creating and manipulating game state.
  * No React, no DOM — purely functional transformations.
- * Optimized with WebAssembly for hot paths.
  */
 
-import { lightsOutWasm } from '@/infrastructure'
+import { getWasmModule } from '@/wasm/wasm-loader'
 import { Board, Position } from './types'
 
 const GRID_SIZE = 5
 
 /**
- * Create a new board with random light pattern
- * About 25-50% of lights randomly on
- * Uses WASM optimization when available
+ * Create a new board with random light pattern.
+ * About 25-50% of lights randomly on.
  */
-export async function createBoard(): Promise<Board> {
-  // Try WASM first for performance
-  const wasmBoard = await lightsOutWasm.createBoard()
-  if (wasmBoard) {
-    return wasmBoard
-  }
-
-  // JS fallback
+export function createBoard(): Board {
   return Array.from({ length: GRID_SIZE }, () =>
     Array.from({ length: GRID_SIZE }, () => Math.random() > 0.5),
   )
 }
 
 /**
- * Toggle a cell and its 4 cardinal neighbors (up, down, left, right)
- * Creates new board without mutating original
- * Uses WASM optimization when available
+ * Toggle a cell and its 4 cardinal neighbors (up, down, left, right).
+ * Creates new board without mutating original.
  */
-export async function toggleCell(board: Board, row: number, col: number): Promise<Board> {
-  // Try WASM first for performance
-  const wasmBoard = await lightsOutWasm.toggleCell(board, row, col)
-  if (wasmBoard) {
-    return wasmBoard
-  }
-
-  // JS fallback
+export function toggleCell(board: Board, row: number, col: number): Board {
   const newBoard = board.map((r) => [...r])
 
   // Toggle the cell itself
@@ -66,26 +49,17 @@ export async function toggleCell(board: Board, row: number, col: number): Promis
 }
 
 /**
- * Check if all lights are off (solved)
- * Uses WASM optimization when available
+ * Check if all lights are off (solved).
  */
-export async function isSolved(board: Board): Promise<boolean> {
-  // Try WASM first for performance
-  const wasmResult = await lightsOutWasm.isSolved(board)
-  if (wasmResult !== null) {
-    return wasmResult
-  }
-
-  // JS fallback
+export function isSolved(board: Board): boolean {
   return board.every((row) => row.every((light) => !light))
 }
 
 /**
- * Initialize WASM module for board optimization
- * Call this once at app startup for best performance
+ * Initialize WASM module once so worker/runtime paths are warmed up.
  */
 export async function initBoardWasm(): Promise<void> {
-  await initWasm()
+  await getWasmModule()
 }
 
 /**

@@ -3,6 +3,17 @@ import fs from 'fs/promises'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
+// ANSI color codes
+const COLORS = {
+  CYAN: '\x1b[96m',
+  GREEN: '\x1b[92m',
+  RED: '\x1b[91m',
+  YELLOW: '\x1b[93m',
+  BLUE: '\x1b[94m',
+  RESET: '\x1b[0m',
+  BOLD: '\x1b[1m',
+}
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.join(__dirname, '..')
 const APPS_DIR = path.join(ROOT, 'apps')
@@ -30,7 +41,7 @@ function generateMatrix(games) {
     'ios',
     'android',
     'electron',
-    'itch',
+    'twitch',
     'crazygames',
     'discord',
     'telegram',

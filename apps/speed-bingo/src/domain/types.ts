@@ -1,9 +1,4 @@
-/**
- * Speed Bingo domain types and constants.
- * Fast-paced bingo with rapid number drawing.
- */
-
-import { GRID_SIZE, DEFAULT_DRAW_SPEED } from './constants'
+import { DEFAULT_DRAW_SPEED, GRID_SIZE } from './constants'
 
 export type BingoColumn = 'B' | 'I' | 'N' | 'G' | 'O'
 export const COLUMNS: BingoColumn[] = ['B', 'I', 'N', 'G', 'O']
@@ -26,13 +21,29 @@ export interface BingoCard {
   grid: BingoCell[][]
 }
 
+export type WinningPattern =
+  | 'horizontal-top'
+  | 'horizontal-middle'
+  | 'horizontal-bottom'
+  | 'vertical-left'
+  | 'vertical-center'
+  | 'vertical-right'
+  | 'diagonal-main'
+  | 'diagonal-anti'
+  | 'full-house'
+
+export interface WinnerCheck {
+  isWinner: boolean
+  patterns: WinningPattern[]
+}
+
 export interface SpeedBingoGameState {
   cards: BingoCard[]
   drawnNumbers: Set<number>
   winners: string[]
   gameActive: boolean
   currentDrawn: number | null
-  drawSpeed: number // milliseconds between auto-draws
+  drawSpeed: number
   isAutoDrawing: boolean
 }
 
@@ -42,14 +53,5 @@ export interface DrawResult {
 }
 
 export const MIN_CARDS = 1
-export const MAX_CARDS = 5 // Fewer cards for speed
-export const WINNING_PATTERNS = [
-  'horizontal',
-  'vertical',
-  'diagonal-left',
-  'diagonal-right',
-] as const
-
-// Note: GRID_SIZE and DEFAULT_DRAW_SPEED are imported from constants
-// Re-export for backward compatibility
-export { GRID_SIZE, DEFAULT_DRAW_SPEED }
+export const MAX_CARDS = 5
+export { DEFAULT_DRAW_SPEED, GRID_SIZE }

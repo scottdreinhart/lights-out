@@ -19,7 +19,7 @@ export function DrawPanel({
   numbersDrawn,
   totalNumbers,
   onDraw,
-  onReset,
+  onReset: _onReset,
   disabled = false,
   winners = [],
 }: DrawPanelProps) {

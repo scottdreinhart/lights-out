@@ -6,7 +6,6 @@
  * Extracted from apps/bingo/src/ui/organisms/BingoCard.tsx
  */
 
-import type { BingoCard as BingoCardType } from '@games/bingo-core'
 import { useResponsiveState } from '@games/app-hook-utils'
 import {
   BoardGrid,
@@ -17,8 +16,16 @@ import {
 import React, { useMemo, useState } from 'react'
 import styles from './BingoCard.module.css'
 
+// Local interface for component data needs
+interface BingoCardData {
+  id: string
+  grid: Array<Array<{ number: BingoNumber; marked: boolean; isFreeSpace: boolean }>>
+}
+
+type BingoNumber = number
+
 export interface BingoCardProps {
-  card: BingoCardType
+  card: BingoCardData
   patterns?: string[]
   disabled?: boolean
   onCardClick?: (cardId: string) => void
@@ -93,8 +100,8 @@ export const BingoCard: React.FC<BingoCardProps> = ({
 
   // Convert bingo card data to BoardGrid cells
   const cells: BoardCell[] = useMemo(() => {
-    return card.grid.flatMap((row, rowIndex) =>
-      row.map((cell, colIndex) => {
+    return card.grid.flatMap((row: Array<{ number: BingoNumber; marked: boolean; isFreeSpace: boolean }>, rowIndex: number) =>
+      row.map((cell: { number: BingoNumber; marked: boolean; isFreeSpace: boolean }, colIndex: number) => {
         const isHinted =
           showHints && hintPositions.some((pos) => pos.row === rowIndex && pos.col === colIndex)
         return {

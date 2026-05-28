@@ -15,4 +15,4 @@ export const CARD_SIZE = GRID_SIZE * GRID_SIZE
 export const MAX_NUMBER = 80 as const
 
 /** All available numbers in the pool */
-export const ALL_NUMBERS = Array.from({ length: MAX_NUMBER }, (_, i) => i + 1) as const
+export const ALL_NUMBERS = Array.from({ length: MAX_NUMBER }, (_, i) => i + 1)

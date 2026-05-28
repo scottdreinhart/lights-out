@@ -224,7 +224,7 @@ export function validateEmail(input: unknown): ValidationResult<string> {
  */
 export function validateJSON<T>(
   input: unknown,
-  schema?: unknown,
+  _schema?: unknown,
 ): ValidationResult<T> {
   // String check
   const strResult = validateString(input)

@@ -55,8 +55,8 @@ Defined in `package.json` under the `"build"` key:
 
 | Field                | Value                        |
 | -------------------- | ---------------------------- |
-| `appId`              | `com.scottreinhart.nim`      |
-| `productName`        | `Nim`                        |
+| `appId`              | App-specific (per `apps/<game>/package.json` `build` key) |
+| `productName`        | App-specific (per app)                                     |
 | `directories.output` | `release`                    |
 | `files`              | `dist/**/*`, `electron/**/*` |
 | `win.target`         | `portable` (unsigned)        |

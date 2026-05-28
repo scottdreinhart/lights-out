@@ -68,15 +68,21 @@ export function isWinner(card: Card): boolean {
         break
       }
     }
-    if (columnComplete) return true
+    if (columnComplete) {
+      return true
+    }
   }
 
   // Check diagonals
   let diagonal1 = true
   let diagonal2 = true
   for (let i = 0; i < GRID_SIZE; i++) {
-    if (!card.marked[i * GRID_SIZE + i]) diagonal1 = false
-    if (!card.marked[i * GRID_SIZE + (GRID_SIZE - 1 - i)]) diagonal2 = false
+    if (!card.marked[i * GRID_SIZE + i]) {
+      diagonal1 = false
+    }
+    if (!card.marked[i * GRID_SIZE + (GRID_SIZE - 1 - i)]) {
+      diagonal2 = false
+    }
   }
 
   return diagonal1 || diagonal2

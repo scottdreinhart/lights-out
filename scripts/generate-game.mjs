@@ -12,6 +12,16 @@
 
 import fs from 'fs/promises'
 
+// ANSI color codes
+const COLORS = {
+  CYAN: '\x1b[96m',
+  GREEN: '\x1b[92m',
+  RED: '\x1b[91m',
+  BLUE: '\x1b[94m',
+  RESET: '\x1b[0m',
+  BOLD: '\x1b[1m',
+}
+
 const GAME_DEFINITIONS = {
   // Simple games (1-pass logic): war, memory, flip, snap
   war: {

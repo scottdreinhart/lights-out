@@ -2,20 +2,70 @@
 
 import { execSync } from 'child_process'
 import { promises as fs } from 'fs'
+import { readdirSync, statSync } from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
+
+// ANSI color codes
+const COLORS = {
+  CYAN: '\x1b[96m',
+  GREEN: '\x1b[92m',
+  RED: '\x1b[91m',
+  YELLOW: '\x1b[93m',
+  WHITE: '\x1b[97m',
+  BLUE: '\x1b[94m',
+  MAGENTA: '\x1b[95m',
+  GRAY: '\x1b[90m',
+  RESET: '\x1b[0m',
+  BOLD: '\x1b[1m',
+}
+
+function log(msg, colorCode = 'WHITE', indent = 0) {
+  const code = colorCode.toUpperCase();
+  const color = COLORS[code] || COLORS.WHITE;
+  const indentation = '  '.repeat(indent);
+  console.log(`${indentation}${color}${msg}${COLORS.RESET}`);
+}
+
+/**
+ * Standardized boxed header for terminal output
+ */
+function boxedHeader(title, color = COLORS.BLUE) {
+  const width = 80
+  const horizontalLine = '═'.repeat(width - 2)
+  
+  console.log(`\n${COLORS.WHITE}╔${horizontalLine}╗${COLORS.RESET}`)
+  
+  const titleText = title.toUpperCase();
+  const paddingTotal = width - 2 - titleText.length
+  const paddingLeft = Math.floor(paddingTotal / 2)
+  const paddingRight = paddingTotal - paddingLeft
+  
+  console.log(`${COLORS.WHITE}║${' '.repeat(paddingLeft)}${COLORS.BOLD}${color}${titleText}${COLORS.RESET}${COLORS.WHITE}${' '.repeat(paddingRight)}║${COLORS.RESET}`)
+  console.log(`${COLORS.WHITE}╚${horizontalLine}╝${COLORS.RESET}\n`)
+}
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const rootDir = path.resolve(__dirname, '..')
 const appsDir = path.join(rootDir, 'apps')
 const complianceDir = path.join(rootDir, 'compliance')
 
-console.log('🔍 Starting parallel lint validation of all 38 apps...\n')
+// Get all app directories correctly
+const appDirs = readdirSync(appsDir)
+  .filter((f) => {
+    try {
+      const stat = statSync(path.join(appsDir, f))
+      return stat.isDirectory() && !f.startsWith('.')
+    } catch {
+      return false
+    }
+  })
+  .sort()
 
-// Get all app directories (exclude 'ui' shared package)
-const appDirs = (await fs.readdir(appsDir)).filter((name) => name !== 'ui').sort()
+boxedHeader('APP LINT VALIDATION', COLORS.CYAN)
 
-console.log(`📊 Found ${appDirs.length} apps to validate\n`)
+log(`🔍 Starting parallel lint validation of ${appDirs.length} apps...`, 'BLUE')
+log(`📊 Found ${appDirs.length} apps to validate`, 'CYAN')
 
 // Lint each app in parallel
 const lintResults = await Promise.all(
@@ -61,34 +111,29 @@ const results = {
 const resultsFile = path.join(complianceDir, 'app-lint-results.json')
 await fs.writeFile(resultsFile, JSON.stringify(results, null, 2))
 
-// Print formatted results to terminal
-console.log('\n' + '='.repeat(70))
-console.log('LINT VALIDATION RESULTS')
-console.log('='.repeat(70) + '\n')
+boxedHeader('Lint Validation Results', COLORS.BLUE)
 
-console.log(`✅ PASSED (${results.passed})`)
-lintResults.filter((r) => r.status === 'pass').forEach((r) => console.log(`   • ${r.appName}`))
+log(`✅ PASSED (${results.passed})`, 'GREEN')
+lintResults.filter((r) => r.status === 'pass').forEach((r) => log(`   ${r.appName}`, 'WHITE', 1))
 
-console.log(`\n❌ FAILED (${results.failed})`)
-lintResults.filter((r) => r.status === 'fail').forEach((r) => console.log(`   • ${r.appName}`))
+log(`\n❌ FAILED (${results.failed})`, 'RED')
+lintResults.filter((r) => r.status === 'fail').forEach((r) => log(`   ${r.appName}`, 'RED', 1))
 
-console.log(`\n⏭️  SKIPPED (${results.skipped})`)
+log(`\n⏭️  SKIPPED (${results.skipped})`, 'YELLOW')
 lintResults
   .filter((r) => r.status === 'skip')
-  .forEach((r) => console.log(`   • ${r.appName} (${r.reason})`))
+  .forEach((r) => log(`   ${r.appName} (${r.reason})`, 'YELLOW', 1))
 
-console.log(
-  `\n📊 Summary: ${results.passed} passed, ${results.failed} failed, ${results.skipped} skipped`,
-)
-console.log(`💾 Results saved to: ${resultsFile}\n`)
+log(`\n📊 Summary: ${results.passed} passed, ${results.failed} failed, ${results.skipped} skipped`, 'CYAN')
+log(`💾 Results saved to: ${resultsFile}`, 'GRAY')
 
 // Generate dashboard HTML
 const dashboardHtml = generateDashboard(results)
 const dashboardFile = path.join(complianceDir, 'app-lint-dashboard.html')
 await fs.writeFile(dashboardFile, dashboardHtml)
 
-console.log(`🌐 Dashboard created: ${dashboardFile}`)
-console.log(`   Open in browser: http://localhost:8080/app-lint-dashboard.html\n`)
+log(`🌐 Dashboard created: ${dashboardFile}`, 'BLUE')
+log(`   Open in browser: http://localhost:8080/app-lint-dashboard.html\n`, 'BLUE')
 
 process.exit(0)
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { createBingoCards, checkWinningPatterns, isWinner, markNumber } from './card'
+import { checkWinningPatterns, createBingoCards, isWinner, markNumber } from './card'
 import { GRID_SIZE, MAX_NUMBER } from './constants'
 
 describe('Bingo-30 Card Generation & Validation', () => {

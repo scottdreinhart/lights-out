@@ -25,19 +25,59 @@
     "fix": "pnpm run lint:fix && pnpm run format",
     "test": "pnpm exec vitest",
     "test:watch": "pnpm exec vitest --watch",
-    "validate": "pnpm run check && pnpm run build"
+    "validate": "pnpm validate:gated",
+    "cap:sync": "pnpm run build && pnpm exec cap sync",
+    "cap:init:android": "pnpm exec cap add android",
+    "cap:init:ios": "pnpm exec cap add ios",
+    "cap:open:android": "pnpm exec cap open android",
+    "cap:open:ios": "pnpm exec cap open ios",
+    "cap:run:android": "pnpm exec cap run android",
+    "cap:run:ios": "pnpm exec cap run ios",
+    "electron:dev": "pnpm run build && electron .",
+    "electron:preview": "pnpm run build && electron .",
+    "electron:build": "pnpm run build && pnpm exec electron-builder --publish never",
+    "electron:build:win": "pnpm run build && pnpm exec electron-builder --win --publish never",
+    "electron:build:linux": "pnpm run build && pnpm exec electron-builder --linux --publish never",
+    "electron:build:mac": "pnpm run build && pnpm exec electron-builder --mac --publish never",
+    "platform:meta:build": "pnpm run build",
+    "platform:twitch:build": "pnpm run build",
+    "platform:crazygames:build": "pnpm run build",
+    "platform:discord:build": "pnpm run build",
+    "platform:telegram:build": "pnpm run build",
+    "platform:steam:build": "pnpm run build",
+    "test:names": "pnpm -C ../.. exec node scripts/validate-test-names-segmented.mjs --scope=apps/simon/src --chunk=200",
+    "validate:gated": "pnpm -C ../.. exec node scripts/validate-gated.mjs --nameScope=apps/simon/src --workspaceScope=apps/simon --testScope=apps/simon/src --buildScope=apps/simon",
+    "dashboard": "pnpm -C ../.. dashboard",
+    "dashboard:serve": "pnpm -C ../.. dashboard:serve",
+    "format:segment": "pnpm -C ../.. exec node scripts/validate-workspace-segmented.mjs --script=format --scope=apps/simon --timeoutMs=600000",
+    "format:check:segment": "pnpm -C ../.. exec node scripts/validate-workspace-segmented.mjs --script=format:check --scope=apps/simon --timeoutMs=600000"
   },
   "dependencies": {
+    "@games/app-hook-utils": "workspace:*",
+    "@games/assets-shared": "workspace:*",
+    "@games/common": "workspace:*",
+    "@games/shared-api-client": "workspace:*",
+    "@games/shared-config": "workspace:*",
+    "@games/shared-sanitizers": "workspace:*",
+    "@games/shared-validators": "workspace:*",
+    "@games/simon-engine": "workspace:*",
+    "@games/sound-context": "workspace:*",
+    "@games/theme-context": "workspace:*",
+    "@games/theme-contract": "workspace:*",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "@games/simon-engine": "workspace:*"
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
     "@types/node": "^25.5.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^4.3.4",
+    "@vitejs/plugin-react": "^6.0.1",
     "typescript": "^5.9.3",
-    "vite": "^8.0.3"
+    "vite": "^8.0.8"
+  },
+  "main": "electron/main.js",
+  "build": {
+    "appId": "com.scottreinhart.simon",
+    "productName": "Simon"
   }
 }

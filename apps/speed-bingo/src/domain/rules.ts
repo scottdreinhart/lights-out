@@ -5,7 +5,8 @@
 
 import { checkWinningPatterns, createBingoCards, isWinner, markNumber } from './card'
 import { ALL_NUMBERS, DEFAULT_DRAW_SPEED } from './constants'
-import type { DrawResult, SpeedBingoGameState } from './types'
+import type { DrawResult, SpeedBingoGameState, WinnerCheck, WinningPattern } from './types'
+import { MAX_CARDS, MIN_CARDS } from './types'
 
 /**
  * Initialize a new speed bingo game with specified number of cards.
@@ -14,8 +15,9 @@ export function createGameState(
   cardCount: number = 1,
   drawSpeed: number = DEFAULT_DRAW_SPEED,
 ): SpeedBingoGameState {
+  const safeCardCount = Math.max(MIN_CARDS, Math.min(MAX_CARDS, cardCount))
   return {
-    cards: createBingoCards(cardCount),
+    cards: createBingoCards(safeCardCount),
     drawnNumbers: new Set(),
     winners: [],
     gameActive: true,
@@ -42,7 +44,7 @@ export function drawNumber(state: SpeedBingoGameState): DrawResult | null {
   state.drawnNumbers.add(number)
   state.currentDrawn = number
 
-  // Mark number on all cards
+  // Mark number on all cards.
   for (const card of state.cards) {
     markNumber(card, number)
   }
@@ -78,7 +80,7 @@ export function stopAutoDraw(state: SpeedBingoGameState): void {
  * Update draw speed.
  */
 export function setDrawSpeed(state: SpeedBingoGameState, speed: number): void {
-  state.drawSpeed = speed
+  state.drawSpeed = Math.max(250, speed)
 }
 
 /**
@@ -122,9 +124,44 @@ export function checkCardWin(state: SpeedBingoGameState, cardId: string): boolea
 /**
  * Get winning patterns for a card.
  */
-export function getCardPatterns(state: SpeedBingoGameState, cardId: string): string[] {
+export function getCardPatterns(state: SpeedBingoGameState, cardId: string): WinningPattern[] {
   const card = state.cards.find((c) => c.id === cardId)
   return card ? checkWinningPatterns(card) : []
+}
+
+/**
+ * Card winner summary for UI rendering.
+ */
+export function getWinnerCheck(state: SpeedBingoGameState, cardId: string): WinnerCheck {
+  const patterns = getCardPatterns(state, cardId)
+  return {
+    isWinner: patterns.length > 0,
+    patterns,
+  }
+}
+
+/**
+ * Get hint positions for unmarked, not-yet-drawn cells.
+ */
+export function getCardHint(
+  state: SpeedBingoGameState,
+  cardId: string,
+): { row: number; col: number }[] {
+  const card = state.cards.find((c) => c.id === cardId)
+  if (!card) {
+    return []
+  }
+
+  const positions: { row: number; col: number }[] = []
+  card.grid.forEach((row, rowIndex) => {
+    row.forEach((cell, colIndex) => {
+      if (!cell.marked && cell.number !== null && !state.drawnNumbers.has(cell.number)) {
+        positions.push({ row: rowIndex, col: colIndex })
+      }
+    })
+  })
+
+  return positions
 }
 
 /**
@@ -153,4 +190,33 @@ export function resetGame(state: SpeedBingoGameState): void {
 export function endGame(state: SpeedBingoGameState): void {
   state.gameActive = false
   state.isAutoDrawing = false
+}
+
+export function getGameStats(state: SpeedBingoGameState) {
+  return {
+    totalCards: state.cards.length,
+    numbersDrawn: state.drawnNumbers.size,
+    numbersRemaining: ALL_NUMBERS.length - state.drawnNumbers.size,
+    winners: state.winners,
+    completion: (state.drawnNumbers.size / ALL_NUMBERS.length) * 100,
+  }
+}
+
+/**
+ * Deep-clone state so reducers/hooks can mutate safely without touching previous state references.
+ */
+export function cloneGameState(state: SpeedBingoGameState): SpeedBingoGameState {
+  return {
+    ...state,
+    cards: state.cards.map((card) => ({
+      ...card,
+      grid: card.grid.map((row) =>
+        row.map((cell) => ({
+          ...cell,
+        })),
+      ),
+    })),
+    drawnNumbers: new Set(state.drawnNumbers),
+    winners: [...state.winners],
+  }
 }

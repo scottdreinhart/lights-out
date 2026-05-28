@@ -1,5 +1,5 @@
 import { createThemeContext } from '@games/theme-context'
-import useTheme from './useTheme'
+import useTheme from './hooks/useTheme'
 
 const { ThemeProvider, useThemeContext } = createThemeContext(useTheme)
 

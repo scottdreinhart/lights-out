@@ -4,6 +4,7 @@
   align-items: center;
   gap: 0.5rem;
   max-width: 100%;
+  contain: layout paint;
 }
 
 .label {
@@ -17,11 +18,13 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(var(--grid-size, 10), minmax(58px, 1fr));
-  gap: 2px;
-  background: var(--grid-bg, rgba(255, 255, 255, 0.03));
-  border-radius: 6px;
-  padding: 4px;
+  gap: 4px;
+  background: rgb(5 9 18 / 55%);
+  border: 1px solid rgb(132 171 241 / 22%);
+  border-radius: 0;
+  padding: 8px;
   max-width: 100%;
+  contain: layout paint;
 }
 
 .row {

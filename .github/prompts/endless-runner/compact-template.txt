@@ -1,0 +1,27 @@
+Generate a complete endless runner game spec.
+
+Required fields:
+- scroll_direction
+- camera_mode
+- lane_model
+- movement_model
+- primary_input
+- obstacle_model
+- collectible_model
+- powerup_model
+- difficulty_curve
+- failure_condition
+
+Also include:
+- exact world scroll behavior
+- exact player control mapping
+- exact obstacle spawn categories
+- exact score loop
+- exact fail loop
+- exact domain systems required
+
+Architecture:
+- React UI only
+- PixiJS rendering
+- fixed-step deterministic domain simulation
+- no gameplay logic in React

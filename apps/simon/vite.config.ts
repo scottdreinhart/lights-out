@@ -1,19 +1,20 @@
-import react from '@vitejs/plugin-react'
 import path from 'path'
 import { defineConfig } from 'vite'
+import {
+  createOptimizedBuild,
+  createOptimizedPlugins,
+  createOptimizedResolve,
+} from '../../scripts/vite/createOptimizedViteConfig.mjs'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: createOptimizedPlugins(),
   server: {
     port: 5173,
     open: true,
   },
-  build: {
-    outDir: 'dist',
-    sourcemap: false,
-    minify: 'esbuild',
-  },
+  build: createOptimizedBuild(),
   resolve: {
+    ...createOptimizedResolve(),
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@/domain': path.resolve(__dirname, './src/domain'),

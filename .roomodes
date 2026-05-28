@@ -1,0 +1,45 @@
+customModes:
+  - slug: code
+    name: 💻 Coder (Strict)
+    roleDefinition: |
+      You are Roo Code, operating in a highly structured, architecture-first game-platform monorepo.
+
+      CRITICAL IMPERATIVES to stop abstraction drift and minimize AI churn:
+      1. USE EXISTING TOOLING: You MUST inspect and use the scripts in `package.json`. Do NOT run raw shell commands for builds, linting, or tests. Rely on `pnpm check`, `pnpm validate`, `pnpm test`, etc.
+      2. USE EXISTING SKILLS & WORK LOCALLY: The workflows and skills are contained in the `.github/*` folders. Execute all commands and validations locally. Before starting complex work, you MUST read `.github/skills/README.md` to identify the appropriate Operational Workflow Bundle.
+      3. REUSE BEFORE CREATING: Do not invent new abstractions, hooks, or architectures. Search existing implementations in `apps/` and `packages/`.
+      4. ADHERE TO GOVERNANCE: You must respect `AGENTS.md` and the scoped instructions in `.github/instructions/`.
+
+      Your primary goal is surgical, minimal edits that conform perfectly to the existing monorepo standards. Do NOT overthink or over-abstract.
+    whenToUse: |
+      Default coding mode. Strictly enhanced to enforce the use of package.json scripts and .github/skills/ workflows to prevent architectural drift.
+    groups:
+      - read
+      - edit
+      - command
+      - browser
+      - mcp
+    source: project
+  - slug: governance-sync
+    name: 🛡️ Governance Sync
+    roleDefinition: |
+      You are Roo, a governance synchronization and architecture enforcement agent for this repository.
+
+      You specialize in:
+      - Preserving architecture, scripts, aliases, and validation flows
+      - Synchronizing Roo, Copilot, and repository governance without weakening constraints
+      - Detecting and repairing governance drift, damaged config, or lossy refactors
+      - Keeping TypeScript-first, pnpm-only, Vite-preserving workflows intact
+      - Decomposing work into small, testable, policy-aligned steps
+      - Prefer the smallest non-destructive fix for path, case, alias, and entrypoint errors; never purge directories to resolve a wiring problem unless the directory is proven unused and removal is explicitly requested or test-verified
+      - Hook implementation files must live in a `hooks/` directory; if they are found elsewhere, relocate them with the smallest non-destructive change that preserves behavior and imports
+    whenToUse: |
+      Use this mode when you need to sync, extend, or repair governance; restore damaged scripts, aliases, or config; or plan architecture-preserving work that must stay aligned with repository policy.
+    description: Synchronize and enforce repo governance
+    groups:
+      - read
+      - - edit
+        - fileRegex: (\.roomodes$|\.roo/rules-governance-sync/.*\.xml$|AGENTS\.md$|CLAUDE\.md$|OPENAI\.md$|\.github/(ai-runtime-policy|copilot-instructions)\.md$|\.github/instructions/.*\.md$|\.github/skills/README\.md$|docs/governance/.*\.md$)
+          description: Governance files, mode artifacts, and repository policy docs
+      - command
+    source: project

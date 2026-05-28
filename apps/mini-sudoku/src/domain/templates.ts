@@ -3,10 +3,10 @@
  * Creates CSP (Constraint Satisfaction Problem) objects for solver & generator
  */
 
-import type { Board, Cell, Difficulty, CellValue } from './types'
-import { BOARD_SIZE, DEFAULT_CANDIDATES, ALL_CELL_IDS } from './constants'
-import { createAllConstraints } from './constraints'
 import { generateSudokuPuzzle, type SudokuConfig } from '@games/domain-shared'
+import { ALL_CELL_IDS, BOARD_SIZE, DEFAULT_CANDIDATES } from './constants'
+import { createAllConstraints } from './constraints'
+import type { Board, Cell, CellValue, Difficulty } from './types'
 
 // Mini Sudoku 4x4 configuration
 const MINI_SUDOKU_CONFIG: SudokuConfig = {
@@ -42,50 +42,6 @@ export function createEmptyBoard(): Board {
 }
 
 /**
- * Convert generic sudoku board to mini-sudoku board format
- */
-function convertToMiniSudokuBoard(genericBoard: number[][], difficulty: Difficulty): Board {
-  const board = createEmptyBoard()
-  const totalCells = BOARD_SIZE * BOARD_SIZE
-  const cluesCounts = {
-    [Difficulty.EASY]: Math.floor(totalCells * 0.6),   // 9-10 clues
-    [Difficulty.MEDIUM]: Math.floor(totalCells * 0.5), // 7-8 clues
-    [Difficulty.HARD]: Math.floor(totalCells * 0.4),   // 5-6 clues
-  }
-
-  let clueCount = 0
-  const maxClues = cluesCounts[difficulty]
-
-  // Fill cells from the generic board
-  for (let row = 0; row < BOARD_SIZE; row++) {
-    for (let col = 0; col < BOARD_SIZE; col++) {
-      const cellId = `r${row}c${col}`
-      const value = genericBoard[row][col]
-
-      if (value !== 0 && clueCount < maxClues) {
-        const cell = board.get(cellId)!
-        cell.value = value.toString() as CellValue
-        cell.isGiven = true
-        cell.candidates.clear()
-        clueCount++
-      }
-    }
-  }
-
-  return board
-}
-
-/**
- * Create a puzzle board at the specified difficulty
- */
-export function createPuzzleAtDifficulty(difficulty: Difficulty): Board {
-  const puzzle = generateSudokuPuzzle(MINI_SUDOKU_CONFIG, difficulty === Difficulty.EASY ? 'easy' :
-    difficulty === Difficulty.MEDIUM ? 'medium' : 'hard')
-
-  return convertToMiniSudokuBoard(puzzle.grid, difficulty)
-}
-
-/**
  * Create a full valid solution board
  * Returns a generated valid 4×4 sudoku
  */
@@ -108,16 +64,6 @@ export function createSolvedBoard(): Board {
 
   return board
 }
-    if (!cellsToRemove.includes(cellId)) {
-      const cell = deepCopiedPuzzle.get(cellId)
-      if (!cell) {continue}
-      cell.isGiven = true
-      cell.candidates.clear()
-    }
-  }
-
-  return deepCopiedPuzzle
-}
 
 /**
  * Calculate clue count based on difficulty level
@@ -132,6 +78,36 @@ function getClueCountForDifficulty(difficulty: Difficulty): number {
     default:
       return 5 + Math.floor(Math.random() * 2) // 5-6 clues
   }
+}
+
+/**
+ * Create puzzle from a solved board by revealing clues
+ */
+function createPuzzleFromSolution(solved: Board, clueCount: number): Board {
+  const puzzle = new Map(solved)
+  const allCells = Array.from(puzzle.values())
+  const cellsToKeep = new Set<string>()
+
+  // Randomly select cells to keep as clues
+  let kept = 0
+  for (const cell of allCells) {
+    if (kept >= clueCount) break
+    if (Math.random() < clueCount / allCells.length) {
+      cellsToKeep.add(cell.id)
+      kept++
+    }
+  }
+
+  // Clear non-clue cells
+  for (const cell of puzzle.values()) {
+    if (!cellsToKeep.has(cell.id)) {
+      cell.value = ''
+      cell.isGiven = false
+      cell.candidates = new Set(DEFAULT_CANDIDATES)
+    }
+  }
+
+  return puzzle
 }
 
 /**
@@ -163,7 +139,9 @@ export function createCSP(puzzle: Board): MiniSudokuCSP {
   // Initialize domain for each cell
   for (const cellId of ALL_CELL_IDS) {
     const cell = puzzle.get(cellId)
-    if (!cell) {continue}
+    if (!cell) {
+      continue
+    }
     if (cell.value) {
       domain.set(cellId, new Set([cell.value]))
     } else {
@@ -199,7 +177,9 @@ export function clonePuzzle(board: Board): Board {
 export function countClues(board: Board): number {
   let count = 0
   for (const cell of board.values()) {
-    if (cell.isGiven) {count++}
+    if (cell.isGiven) {
+      count++
+    }
   }
   return count
 }
@@ -210,7 +190,9 @@ export function countClues(board: Board): number {
 export function countFilled(board: Board): number {
   let count = 0
   for (const cell of board.values()) {
-    if (cell.value) {count++}
+    if (cell.value) {
+      count++
+    }
   }
   return count
 }

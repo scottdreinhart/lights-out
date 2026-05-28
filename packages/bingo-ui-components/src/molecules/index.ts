@@ -8,3 +8,7 @@
 // To be extracted in Phase 1
 // export { PatternShowcase } from './PatternShowcase/PatternShowcase'
 // export type { PatternShowcaseProps } from './PatternShowcase/PatternShowcase.types'
+
+// Placeholder export to make this a valid module
+export {}
+

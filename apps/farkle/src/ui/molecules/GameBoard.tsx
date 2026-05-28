@@ -3,9 +3,9 @@
  * Uses @games/ui-dice-system for dice rendering and selection
  */
 
-import { DiceArea, SelectedDice } from '@games/ui-dice-system'
-import type { DieValue } from '@games/common'
 import { useResponsiveState } from '@games/app-hook-utils'
+import type { DieValue } from '@games/common'
+import { DiceArea, SelectedDice } from '@games/ui-dice-system'
 import styles from './GameBoard.module.css'
 
 interface GameBoardProps {
@@ -48,12 +48,12 @@ export function GameBoard({
   const feedback =
     phase === 'selecting' && displayDice.length > 0
       ? {
-          type: ('success' as const),
+          type: 'success' as const,
           text: atRiskScore > 0 ? `+${atRiskScore} points at risk` : 'Select scoreable dice',
         }
       : phase === 'rolling'
-        ? { type: ('neutral' as const), text: 'Roll the dice!' }
-        : { type: ('warning' as const), text: `Banking: ${bankedScore} points` }
+        ? { type: 'neutral' as const, text: 'Roll the dice!' }
+        : { type: 'warning' as const, text: `Banking: ${bankedScore} points` }
 
   return (
     <div className={styles.root}>
@@ -72,11 +72,12 @@ export function GameBoard({
 
       {/* Current phase info */}
       <div className={styles.phaseInfo}>
-        <h2>
-          {currentPlayer === 'human' ? 'Your Turn' : "CPU's Turn"}
-        </h2>
+        <h2>{currentPlayer === 'human' ? 'Your Turn' : "CPU's Turn"}</h2>
         {phase === 'selecting' && (
-          <p>Select dice to score: {selectedDice.length > 0 ? `${selectedDice.length} selected` : 'None yet'}</p>
+          <p>
+            Select dice to score:{' '}
+            {selectedDice.length > 0 ? `${selectedDice.length} selected` : 'None yet'}
+          </p>
         )}
       </div>
 
@@ -109,11 +110,7 @@ export function GameBoard({
       {heldDice.length > 0 && (
         <div className={styles.heldSection}>
           <label>Held Dice ({heldDice.length})</label>
-          <SelectedDice
-            dice={heldDice}
-            dieSize={isMobile ? 48 : 64}
-            label="Banked"
-          />
+          <SelectedDice dice={heldDice} dieSize={isMobile ? 48 : 64} label="Banked" />
         </div>
       )}
 

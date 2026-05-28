@@ -1,5 +1,5 @@
-import React from 'react'
 import { Button } from '@/ui/atoms'
+import React from 'react'
 
 interface GameControlsProps {
   onReset: () => void

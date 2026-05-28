@@ -1,7 +1,7 @@
 // Re-export sprite utilities from @games/assets-shared
 
-
 export * from './ai'
+export * from './arcade'
 export * from './board'
 export * from './constants'
 export * from './layers'

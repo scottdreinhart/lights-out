@@ -20,7 +20,8 @@
 }
 
 @keyframes pulse-drop {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(-50%) translateY(0);
     opacity: 1;
   }

@@ -25,11 +25,16 @@ export {
 
 // Local services
 export { SoundProvider, useSoundContext } from '@games/sound-context'
-export * from './crashLogger'
-export * from './haptics'
-export * from './storageService'
-export { ThemeProvider, useThemeContext } from './ThemeContext'
+export { logCrash, getCrashLogs, clearCrashLogs, markFatalCrash, getFatalCrash, clearFatalCrash } from '@games/diagnostics-utils'
+import { vibrate } from './haptics'
+import { load, loadNullable, remove, save } from './storageService'
+import { ThemeProvider, useThemeContext } from './ThemeContext'
+
+export { vibrate, load, loadNullable, remove, save, ThemeProvider, useThemeContext }
 
 // App-specific hooks
-export { useGame } from './useGame'
-export { useStats } from './useStats'
+import { securityModules, securityModulesReady } from './securityModules'
+import { useGame, useTheme, useStats, useSoundEffects } from './hooks'
+
+export { securityModules, securityModulesReady, useGame, useTheme, useStats, useSoundEffects }
+export type { SoundEffects } from './hooks/useSoundEffects'

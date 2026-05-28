@@ -37,7 +37,9 @@ export const LEVEL_TIME_LIMITS = [
  * @returns Time limit in seconds
  */
 export const getLevelTimeLimit = (level: number): number => {
-  if (level < 1) return LEVEL_TIME_LIMITS[0]
+  if (level < 1) {
+    return LEVEL_TIME_LIMITS[0]
+  }
   if (level > LEVEL_TIME_LIMITS.length) {
     return LEVEL_TIME_LIMITS[LEVEL_TIME_LIMITS.length - 1]
   }
@@ -52,6 +54,8 @@ export const LEVEL_BONUS_CONFIG = {
   incrementPerLevel: 0.05, // +5% per level
   maxMultiplier: 3.0, // Cap at 3x bonus for very high levels
 } as const
+
+export const LEVEL_BONUS_MULTIPLIERS = 1 + LEVEL_BONUS_CONFIG.incrementPerLevel
 
 /**
  * Get the bonus multiplier for a specific level
@@ -83,3 +87,5 @@ export const SURVIVAL_SCORE_BONUSES = {
   perSuccessiveLevel: 50, // Additional points per level reached
   levelSurvivalStreak: 25, // Points per consecutive level without timeout
 } as const
+
+export const SURVIVAL_BASE_POINTS = SURVIVAL_SCORE_BONUSES.perLevelComplete

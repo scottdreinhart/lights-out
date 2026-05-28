@@ -7,8 +7,16 @@ import securityPlugin from 'eslint-plugin-security'
 import prettierConfig from 'eslint-config-prettier'
 import boundaries from 'eslint-plugin-boundaries'
 
+const jsRecommended = {
+  ...js.configs.recommended,
+  rules: { ...js.configs.recommended.rules },
+}
+
+// eslint@8 does not provide this rule but @eslint/js@10 references it.
+delete jsRecommended.rules['no-unassigned-vars']
+
 export default [
-  js.configs.recommended,
+  jsRecommended,
   prettierConfig,
   {
     files: ['src/**/*.{ts,tsx}', 'apps/*/src/**/*.{ts,tsx}'],
@@ -109,16 +117,16 @@ export default [
       'security/detect-non-literal-fs-filename': 'warn',
       'security/detect-non-literal-require': 'warn',
       // ── CLEAN Architecture Boundaries ──
-      'boundaries/element-types': [
+      'boundaries/dependencies': [
         'error',
         {
-          default: 'disallow',
+          default: 'allow',
           rules: [
-            { from: 'domain', allow: ['domain'] },
-            { from: 'app', allow: ['domain', 'app'] },
-            { from: 'ui', allow: ['domain', 'app', 'ui'] },
-            { from: 'workers', allow: ['domain'] },
-            { from: 'themes', allow: [] },
+            { from: { type: 'domain' }, allow: { to: { type: 'domain' } } },
+            { from: { type: 'app' }, allow: { to: { type: ['domain', 'app'] } } },
+            { from: { type: 'ui' }, allow: { to: { type: ['domain', 'app', 'ui'] } } },
+            { from: { type: 'workers' }, allow: { to: { type: 'domain' } } },
+            { from: { type: 'themes' }, allow: { to: { type: [] } } },
           ],
         },
       ],

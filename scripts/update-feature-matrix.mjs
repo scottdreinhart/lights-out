@@ -21,13 +21,23 @@ const ROOT = path.resolve(__dirname, '..')
 const STATUS_FILE = path.join(ROOT, 'compliance', 'app-status.json')
 const MATRIX_FILE = path.join(ROOT, 'APP_FEATURE_MATRIX.md')
 
+// ANSI color codes
+const COLORS = {
+  CYAN: '\x1b[96m',
+  GREEN: '\x1b[92m',
+  RED: '\x1b[91m',
+  BLUE: '\x1b[94m',
+  RESET: '\x1b[0m',
+  BOLD: '\x1b[1m',
+}
+
 let data = {}
 try {
   data = JSON.parse(fs.readFileSync(STATUS_FILE, 'utf-8'))
-  console.log('📊 Loaded app-status.json')
+  console.log(`${COLORS.GREEN}✅ Loaded app-status.json${COLORS.RESET}`)
 } catch {
-  console.error('❌ Error: app-status.json not found')
-  console.error('Run: node scripts/audit-app-status.mjs')
+  console.error(`${COLORS.RED}${COLORS.BOLD}❌ app-status.json not found${COLORS.RESET}`)
+  console.error(`${COLORS.RED}   Run: node scripts/audit-app-status.mjs${COLORS.RESET}`)
   process.exit(1)
 }
 

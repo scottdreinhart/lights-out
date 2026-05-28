@@ -3,5 +3,6 @@
  * Sourced from @games/common and local atoms.
  */
 
-export { ErrorBoundary, OfflineIndicator, SplashScreen } from '@games/common'
+export { ErrorBoundary } from '@games/ui-utils'
+export { OfflineIndicator, SplashScreen } from '@games/common'
 export { BoardCell } from './BoardCell'

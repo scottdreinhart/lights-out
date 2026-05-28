@@ -6,7 +6,10 @@
 
 import { useThemeContext } from '@/app'
 import { COLOR_THEMES } from '@/domain'
-import { SettingsModal as SharedSettingsModal, type Theme } from '@games/bingo-ui-components/organisms'
+import {
+  SettingsModal as SharedSettingsModal,
+  type Theme,
+} from '@games/bingo-ui-components/organisms'
 
 export interface SettingsModalProps {
   readonly isOpen: boolean

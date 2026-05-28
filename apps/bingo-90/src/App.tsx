@@ -8,7 +8,7 @@ const variant = BINGO_VARIANTS['90-ball']
 
 function App() {
   const [gameState, setGameState] = useState(() => ({
-    card: generateBingoCard(variant),
+    card: generateBingoCard({ variant }),
     drawnNumbers: new Set<number>(),
     isPlaying: false,
     lastDrawn: null as number | null,
@@ -28,14 +28,18 @@ function App() {
   }, [])
 
   const drawNumber = useCallback(() => {
-    if (!gameState.isPlaying) return
+    if (!gameState.isPlaying) {
+      return
+    }
 
     // Generate random number from 1-90 not already drawn
     const availableNumbers = Array.from({ length: 90 }, (_, i) => i + 1).filter(
       (num) => !gameState.drawnNumbers.has(num),
     )
 
-    if (availableNumbers.length === 0) return
+    if (availableNumbers.length === 0) {
+      return
+    }
 
     const randomIndex = Math.floor(Math.random() * availableNumbers.length)
     const drawnNumber = availableNumbers[randomIndex]
@@ -60,7 +64,7 @@ function App() {
 
   const resetGame = useCallback(() => {
     setGameState({
-      card: generateBingoCard(variant),
+      card: generateBingoCard({ variant }),
       drawnNumbers: new Set(),
       isPlaying: false,
       lastDrawn: null,

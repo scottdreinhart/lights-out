@@ -110,6 +110,13 @@ export const DEFAULT_GAME_CONFIG: GameConfig = {
   bonusConfig: DEFAULT_BONUS_CONFIG,
   freeCenterSpace: true,
   allowRepeats: false,
+  stampingMode: 'manual',
+  roundTimerConfig: {
+    enabled: true,
+    totalDuration: 180,
+    speedRating: true,
+    earlyCompletionBonus: true,
+  },
 }
 
 /**
@@ -183,6 +190,8 @@ export const BINGO_LETTERS = ['B', 'I', 'N', 'G', 'O'] as const
  */
 export const formatCall = (number: number, columnBounds = COLUMN_BOUNDS_90): string => {
   const columnIndex = columnBounds.findIndex(([min, max]) => number >= min && number <= max)
-  if (columnIndex === -1) return `${number}`
+  if (columnIndex === -1) {
+    return `${number}`
+  }
   return `${BINGO_LETTERS[columnIndex]}-${number}`
 }

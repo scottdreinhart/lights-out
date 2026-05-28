@@ -1,4 +1,4 @@
-import type { GameStatus, GameStats } from '@/domain'
+import type { GameStats, GameStatus } from '@/domain'
 
 interface HudProps {
   minesRemaining: number
@@ -9,7 +9,14 @@ interface HudProps {
   hintLabel: string
 }
 
-export function Hud({ minesRemaining, elapsedSeconds, status, stats, difficultyLabel, hintLabel }: HudProps) {
+export function Hud({
+  minesRemaining,
+  elapsedSeconds,
+  status,
+  stats,
+  difficultyLabel,
+  hintLabel,
+}: HudProps) {
   return (
     <section className="ms-hud" aria-label="game-hud">
       <div className="ms-hud-primary">

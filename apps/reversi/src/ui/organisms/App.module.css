@@ -1,0 +1,322 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg, #121321);
+  color: var(--text, #e9ecff);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--text, #e9ecff) 20%, transparent);
+}
+
+.titleWrap {
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.subtitle {
+  margin: 0.25rem 0 0;
+  color: color-mix(in srgb, var(--text, #e9ecff) 70%, transparent);
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.boardSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.status {
+  font-weight: 700;
+}
+
+.passMessage {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, #f59e0b 20%, transparent);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(42px, 54px));
+  grid-template-rows: repeat(8, minmax(42px, 54px));
+  gap: 4px;
+  padding: 8px;
+  border-radius: 0.75rem;
+  background: #236a44;
+  box-shadow: 0 0 0 2px #173f2a inset;
+}
+
+.cell {
+  position: relative;
+  border: 1px solid #1a4a30;
+  border-radius: 0.4rem;
+  background: #2d8b57;
+  cursor: pointer;
+}
+
+.cell:hover {
+  background: #36a566;
+}
+
+.cell:disabled {
+  cursor: default;
+}
+
+.focused {
+  outline: 2px solid #ffd166;
+  outline-offset: 1px;
+}
+
+.valid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px dashed color-mix(in srgb, #ffd166 75%, transparent);
+  border-radius: 0.3rem;
+  pointer-events: none;
+}
+
+.validDot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: color-mix(in srgb, #ffd166 80%, #ffffff 20%);
+}
+
+.disc {
+  display: inline-block;
+  width: 75%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 40%);
+}
+
+.black {
+  background: radial-gradient(circle at 30% 30%, #4a4a4a 0%, #111 70%);
+}
+
+.white {
+  background: radial-gradient(circle at 30% 30%, #ffffff 0%, #d6d8df 70%);
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actionButton,
+.actionButtonSecondary,
+.modalButton,
+.activeButton {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.actionButton,
+.activeButton {
+  background: #5b6bff;
+  color: #fff;
+}
+
+.actionButtonSecondary,
+.modalButton {
+  background: #2f375f;
+  color: #f3f4ff;
+}
+
+.sidebar {
+  width: min(320px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.signalPanel {
+  border: 1px solid color-mix(in srgb, var(--text, #e9ecff) 18%, transparent);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  background: color-mix(in srgb, #1a203a 92%, transparent);
+  display: grid;
+  gap: 10px;
+}
+
+.signalHeader {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.meters {
+  display: grid;
+  gap: 10px;
+}
+
+.meterRow {
+  display: grid;
+  gap: 6px;
+}
+
+.meterTrack {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.meterFillDanger,
+.meterFillFocus,
+.meterFillProgress {
+  height: 100%;
+  transition: width 180ms ease;
+}
+
+.meterFillDanger {
+  background: linear-gradient(90deg, #ffd27d, #ff6b6b);
+}
+
+.meterFillFocus {
+  background: linear-gradient(90deg, #8ef0d5, #46c2ff);
+}
+
+.meterFillProgress {
+  background: linear-gradient(90deg, #c5a0ff, #7d8cff);
+}
+
+.pressureRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pressureLabel {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  font-weight: 700;
+}
+
+.pressureValue {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.panel {
+  border: 1px solid color-mix(in srgb, var(--text, #e9ecff) 18%, transparent);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  background: color-mix(in srgb, #1f2440 90%, transparent);
+}
+
+.panel h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.panel p {
+  margin: 0.25rem 0;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgb(0 0 0 / 55%);
+}
+
+.modal {
+  position: relative;
+  width: min(560px, 95vw);
+  max-height: 85vh;
+  overflow: auto;
+  border-radius: 0.8rem;
+  background: #1f2440;
+  color: #f3f4ff;
+  padding: 1.2rem;
+}
+
+.modal h2,
+.modal h3 {
+  margin-top: 0;
+}
+
+.modal ul {
+  padding-inline-start: 1.25rem;
+}
+
+.modalClose {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.5rem;
+  border: none;
+  background: transparent;
+  color: #f3f4ff;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.settingsGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.settingsGroup select {
+  border: 1px solid #414978;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  background: #151a33;
+  color: #f3f4ff;
+}
+
+.inlineButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+@media (max-width: 899px) {
+  .main {
+    padding: 0.75rem;
+  }
+
+  .board {
+    grid-template-columns: repeat(8, minmax(36px, 46px));
+    grid-template-rows: repeat(8, minmax(36px, 46px));
+  }
+}
+
+@media (pointer: coarse) {
+  .cell:hover {
+    background: #2d8b57;
+  }
+}

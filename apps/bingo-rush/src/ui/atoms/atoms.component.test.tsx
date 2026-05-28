@@ -4,7 +4,7 @@
  */
 
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it, vi, beforeEach } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import * as hooksModule from '../../app/hooks'
 import { ExtensionCounter } from './ExtensionCounter'
 import { TimerWithExtensions } from './TimerWithExtensions'

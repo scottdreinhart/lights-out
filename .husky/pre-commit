@@ -13,6 +13,22 @@ pnpm exec lint-staged 2>/dev/null || {
 }
 
 echo ""
+echo "🔍 Running script standards validation..."
+
+# Validate script standards (COLORS block presence)
+if ! bash scripts/validate-script-standards.sh; then
+  echo ""
+  echo "❌ Script standards validation failed!"
+  echo ""
+  echo "To fix:"
+  echo "  1. Add COLORS block to any scripts flagged above"
+  echo "  2. Reference: docs/SCRIPT-STANDARDS.md"
+  echo "  3. Then stage changes and recommit"
+  echo ""
+  exit 1
+fi
+
+echo ""
 echo "🔍 Running quick quality gate..."
 
 # Run quick quality gate (security + boundaries - ~5 seconds)

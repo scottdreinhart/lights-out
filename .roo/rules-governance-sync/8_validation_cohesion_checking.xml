@@ -1,0 +1,83 @@
+<validation_cohesion_checking>
+  <overview>
+    Final cohesion and contradiction checks for the governance-sync mode. Use this to confirm the mode remains internally consistent and synchronized with its supporting files.
+  </overview>
+
+  <validation_principles>
+    <principle name="comprehensive_review">
+      <description>Review the mode as a whole, not as isolated fragments.</description>
+      <checklist>
+        <item>Read all existing XML guidance files in the mode directory.</item>
+        <item>Compare terminology across files for consistency.</item>
+        <item>Check that examples match the stated rules and recovery behavior.</item>
+        <item>Verify that the mode role and permissions still align with the instructions.</item>
+      </checklist>
+    </principle>
+
+    <principle name="contradiction_detection">
+      <description>Actively look for overlaps or conflicts between files.</description>
+      <common_contradictions>
+        <contradiction>
+          <type>Duplicate guidance</type>
+          <resolution>Keep the clearest single source and trim the duplicate wording elsewhere.</resolution>
+        </contradiction>
+        <contradiction>
+          <type>Permission mismatch</type>
+          <resolution>Update the mode permissions or adjust the instruction if the scope no longer matches.</resolution>
+        </contradiction>
+        <contradiction>
+          <type>Recovery mismatch</type>
+          <resolution>Ensure recovery rules are present in both the workflow and the error-handling guidance.</resolution>
+        </contradiction>
+      </common_contradictions>
+    </principle>
+  </validation_principles>
+
+  <validation_workflow>
+    <phase name="pre_change_analysis">
+      <description>Before editing the mode</description>
+      <steps>
+        <step>Identify the exact file or files that need to change.</step>
+        <step>Check whether the request is a preservation edit or a recovery edit.</step>
+        <step>Confirm the smallest safe change set.</step>
+      </steps>
+    </phase>
+
+    <phase name="post_change_validation">
+      <description>After editing the mode</description>
+      <validation_checklist>
+        <category name="structural_validation">
+          <check>All XML files are well-formed.</check>
+          <check>The numbered mode files exist in the expected order.</check>
+          <check>The mode slug appears exactly once in .roomodes.</check>
+        </category>
+        <category name="content_validation">
+          <check>The roleDefinition matches the actual scope of the mode.</check>
+          <check>The whenToUse text clearly differentiates this mode from others.</check>
+          <check>The examples demonstrate the intended behavior without runtime detail.</check>
+          <check>The recovery guidance matches the preserve-first policy.</check>
+        </category>
+        <category name="integration_validation">
+          <check>Mode boundaries remain clear.</check>
+          <check>Handoff points to other modes are explicit.</check>
+          <check>No hidden assumptions were introduced.</check>
+        </category>
+      </validation_checklist>
+    </phase>
+  </validation_workflow>
+
+  <red_flags>
+    <flag priority="high">
+      <description>The mode references permissions not included in its groups.</description>
+      <action>Align the permissions or remove the unsupported instruction.</action>
+    </flag>
+    <flag priority="high">
+      <description>The supporting files introduce conflicting workflows.</description>
+      <action>Consolidate to one source of truth and update the others to match.</action>
+    </flag>
+    <flag priority="medium">
+      <description>Examples drift away from the mode's stated purpose.</description>
+      <action>Revise the example to match the current mode intent.</action>
+    </flag>
+  </red_flags>
+</validation_cohesion_checking>

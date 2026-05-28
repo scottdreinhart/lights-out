@@ -1,0 +1,34 @@
+import { createUseThemeHook } from '@games/ui-hooks'
+import { createSharedThemeLoaders } from '@games/assets-shared'
+import { SHARED_THEME_COLORS } from '@games/domain-shared'
+
+import type { ThemeSettings } from '@/domain'
+import {
+  COLOR_THEMES,
+  DEFAULT_SETTINGS,
+  getBackgroundCssValue,
+  getLayerStack,
+  layerStackToCssVars,
+  preloadAllSprites,
+} from '@/domain'
+import { load, save } from '../storageService'
+
+const STORAGE_KEY = 'cee-lo-theme-settings'
+
+const THEME_COLORS = SHARED_THEME_COLORS
+
+const useTheme = createUseThemeHook<ThemeSettings>({
+  storageKey: STORAGE_KEY,
+  defaultSettings: DEFAULT_SETTINGS,
+  colorThemes: COLOR_THEMES,
+  themeColors: THEME_COLORS,
+  createThemeLoaders: createSharedThemeLoaders,
+  load,
+  save,
+  getLayerStack,
+  layerStackToCssVars,
+  getBackgroundCssValue,
+  preloadAllSprites,
+})
+
+export default useTheme

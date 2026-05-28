@@ -1,0 +1,49 @@
+.container {
+  display: grid;
+  gap: 6px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label {
+  font-size: 0.84rem;
+  color: #a9bfdf;
+}
+
+.value {
+  font-size: 0.95rem;
+}
+
+.track {
+  height: 10px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 12%);
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  transition: width 120ms linear;
+}
+
+.fillLow {
+  background: linear-gradient(90deg, #5bc6ff, #77f0c6);
+}
+
+.fillMedium {
+  background: linear-gradient(90deg, #ffd06b, #ff9f4d);
+}
+
+.fillHigh {
+  background: linear-gradient(90deg, #ff8a80, #ff4f67);
+}
+
+.caption {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #bdd0ef;
+}

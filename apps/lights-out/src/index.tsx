@@ -81,19 +81,74 @@ const EARLY_THEME_COLORS: Record<string, Record<string, string>> = {
   },
 }
 
+function getClassicThemeColors(themeId: string): Record<string, string> | null {
+  if (themeId === 'chiba-city') {
+    return EARLY_THEME_COLORS['chiba-city']
+  }
+
+  if (themeId === 'neon-core') {
+    return EARLY_THEME_COLORS['neon-core']
+  }
+
+  if (themeId === 'neon-arcade') {
+    return EARLY_THEME_COLORS['neon-arcade']
+  }
+
+  if (themeId === 'night-district') {
+    return EARLY_THEME_COLORS['night-district']
+  }
+
+  return null
+}
+
+function getExperimentalThemeColors(themeId: string): Record<string, string> | null {
+  if (themeId === 'gridline') {
+    return EARLY_THEME_COLORS.gridline
+  }
+
+  if (themeId === 'vaporwave') {
+    return EARLY_THEME_COLORS.vaporwave
+  }
+
+  if (themeId === 'synthwave') {
+    return EARLY_THEME_COLORS.synthwave
+  }
+
+  if (themeId === 'high-contrast') {
+    return EARLY_THEME_COLORS['high-contrast']
+  }
+
+  return null
+}
+
+function getEarlyThemeColors(themeId: string): Record<string, string> {
+  return (
+    getClassicThemeColors(themeId) ??
+    getExperimentalThemeColors(themeId) ??
+    EARLY_THEME_COLORS['chiba-city']
+  )
+}
+
+function applyThemeColors(colors: Record<string, string>): void {
+  const root = document.documentElement
+  root.style.setProperty('--theme-primary', colors['--theme-primary'])
+  root.style.setProperty('--theme-secondary', colors['--theme-secondary'])
+  root.style.setProperty('--theme-accent', colors['--theme-accent'])
+  root.style.setProperty('--theme-bg', colors['--theme-bg'])
+  root.style.setProperty('--theme-fg', colors['--theme-fg'])
+  root.style.setProperty('--theme-card', colors['--theme-card'])
+  root.style.setProperty('--theme-border', colors['--theme-border'])
+}
+
 function initializeThemeEarly(): void {
   const STORAGE_KEY = 'lights-out-theme-settings'
   const settings = load<ThemeSettings>(STORAGE_KEY, DEFAULT_SETTINGS)
-  const themeId = settings.colorTheme
-  const colors = EARLY_THEME_COLORS[themeId] || EARLY_THEME_COLORS['chiba-city']
+  const colors = getEarlyThemeColors(settings.colorTheme)
 
-  const root = document.documentElement
-  Object.entries(colors).forEach(([key, value]) => {
-    root.style.setProperty(key, value)
-  })
+  applyThemeColors(colors)
 
-  const bgColor = colors['--theme-bg'] || '#000000'
-  const fgColor = colors['--theme-fg'] || '#e0e0e0'
+  const bgColor = colors['--theme-bg']
+  const fgColor = colors['--theme-fg']
   document.body.style.backgroundColor = bgColor
   document.body.style.color = fgColor
 }

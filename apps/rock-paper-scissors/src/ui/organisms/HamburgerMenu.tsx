@@ -1,7 +1,4 @@
-import {
-  HamburgerMenu as SharedHamburgerMenu,
-  type MenuItem,
-} from '@games/common'
+import { HamburgerMenu as SharedHamburgerMenu, type MenuItem } from '@games/common'
 
 export interface HamburgerMenuProps {
   onRules: () => void

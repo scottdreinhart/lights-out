@@ -1,0 +1,23 @@
+{
+  "game_title": "Rooftop Break",
+  "genre_family": "endless_runner",
+  "scroll_direction": "horizontal_right",
+  "camera_mode": "side_view",
+  "lane_model": "single_plane",
+  "movement_model": "auto_run",
+  "primary_input": "single_button_jump",
+  "secondary_input": "",
+  "core_pattern": "gap_jump + rooftop_timing + collapse_escape",
+  "player_goal": "survive_as_long_as_possible",
+  "obstacle_model": "gap_hazards",
+  "collectible_model": "score_multipliers",
+  "powerup_model": "none",
+  "difficulty_curve": "time_based",
+  "failure_condition": "fall_offscreen",
+  "session_structure": "pure_endless",
+  "tone": "retro",
+  "world_theme": "industrial rooftops at dusk",
+  "reference_archetypes": ["Canabalt", "Vector"],
+  "must_have_systems": ["auto_run", "jump_arc", "gap_generation", "speed_ramp"],
+  "must_not_have_systems": ["lane_switch", "inventory", "free_roam"]
+}

@@ -3,13 +3,11 @@
  * Core game logic for the Tango slide puzzle
  */
 
-import type { Board, Position, TangoState, MoveResult, Difficulty } from './types'
-import { BOARD_SIZES, PUZZLE_CONFIGS } from './constants'
+import { PUZZLE_CONFIGS } from './constants'
+import type { Board, Difficulty, Position, TangoState } from './types'
 
 export const createEmptyBoard = (size: number): Board => {
-  return Array.from({ length: size }, () =>
-    Array.from({ length: size }, () => 0)
-  )
+  return Array.from({ length: size }, () => Array.from({ length: size }, () => 0))
 }
 
 export const createSolvedBoard = (size: number): Board => {
@@ -67,7 +65,7 @@ export const makeMove = (board: Board, from: Position): Board => {
   }
 
   // Create new board with swapped positions
-  const newBoard = board.map(row => [...row])
+  const newBoard = board.map((row) => [...row])
   const tileValue = newBoard[from.row][from.col]
 
   newBoard[from.row][from.col] = 0
@@ -104,9 +102,9 @@ export const getValidMoves = (board: Board): Position[] => {
   // Check all adjacent positions
   const directions = [
     { row: -1, col: 0 }, // up
-    { row: 1, col: 0 },  // down
+    { row: 1, col: 0 }, // down
     { row: 0, col: -1 }, // left
-    { row: 0, col: 1 },  // right
+    { row: 0, col: 1 }, // right
   ]
 
   for (const dir of directions) {
@@ -122,8 +120,7 @@ export const getValidMoves = (board: Board): Position[] => {
 }
 
 export const shuffleBoard = (board: Board, moves: number): Board => {
-  let currentBoard = board.map(row => [...row])
-  let emptyPos = findEmptyPosition(currentBoard)
+  let currentBoard = board.map((row) => [...row])
 
   for (let i = 0; i < moves; i++) {
     const validMoves = getValidMoves(currentBoard)
@@ -133,7 +130,6 @@ export const shuffleBoard = (board: Board, moves: number): Board => {
     // Choose random valid move
     const randomMove = validMoves[Math.floor(Math.random() * validMoves.length)]
     currentBoard = makeMove(currentBoard, randomMove)
-    emptyPos = findEmptyPosition(currentBoard)
   }
 
   return currentBoard
@@ -158,7 +154,7 @@ export const createTangoGameState = (difficulty: Difficulty): TangoState => {
 export const updateGameState = (
   state: TangoState,
   newBoard: Board,
-  moveCount: number
+  moveCount: number,
 ): TangoState => {
   const isSolved = isBoardSolved(newBoard)
 

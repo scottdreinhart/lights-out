@@ -11,23 +11,30 @@ This file is a compact runtime layer that reinforces existing governance and red
 - Precedence order is defined in `AGENTS.md` §1:
   1. `AGENTS.md`
   2. `.github/copilot-instructions.md`
-  3. `.github/instructions/*.instructions.md`
-  4. `docs/**` (informational)
+  3. `.github/instructions/*.instructions.md` (including `00-ai-skills-routing.md`)
+  4. `docs/governance/**` (governance details + AI discovery)
+  5. `docs/**` (informational)
 - If this file conflicts with any higher source, **higher source wins**.
 - This file does not replace governance; it points agents to authoritative controls.
+
+## 🚀 Quick Navigation
+
+**First time here?** Start with:
+- **For Copilot/Claude users**: [docs/governance/AI_TOOLS_DISCOVERY.md](docs/governance/AI_TOOLS_DISCOVERY.md) — 26 skills, 8 workflow bundles, complete task mapping
+- **For Roo Code IDE users**: [docs/governance/ROO_MODES_QUICK_START.md](docs/governance/ROO_MODES_QUICK_START.md) — 15 workspace modes, permissions, workflows
+- **For any AI task**: [.github/instructions/00-ai-skills-routing.md](.github/instructions/00-ai-skills-routing.md) — Decision tree for "what tool should I use?"
 
 ## Repository operating context
 
 - Monorepo root with pnpm workspaces (`pnpm-workspace.yaml`):
   - `.` (root)
-  - `apps/*`
-  - `packages/*`
-  - `tooling/*`
-- Current structure evidence:
-  - `apps/` contains many independent game apps (53 app folders detected).
-  - `packages/` contains shared libraries/contracts/utilities (36 package folders detected).
-  - `tooling/` exists for auxiliary tooling.
-- Root scripts currently route common commands to `apps/lights-out`; many app-specific scripts also exist (for example `nim:*`, `tictactoe:*`, `mancala:*`, `monchola:*`).
+  - `apps/*` — 65 game apps
+  - `packages/*` — shared libraries/contracts/utilities
+  - `tooling/*` — auxiliary tooling
+- Script patterns (see WORKSPACE_SCRIPTS.md for complete reference):
+  - **Root scripts** (no `:ws` suffix) default to `apps/lights-out` for quick development
+  - **Workspace-aware** (`:ws` suffix) run across all apps: `pnpm lint:ws`, `pnpm build:ws`, `pnpm validate:ws`
+  - **Per-app** scripts target specific games: `pnpm <app>:web:lint`, `pnpm --filter @games/<app> validate`
 
 ## Package manager and runtime policy
 

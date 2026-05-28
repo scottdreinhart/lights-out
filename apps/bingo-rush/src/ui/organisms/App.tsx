@@ -7,7 +7,7 @@ import {
   RulesModal,
   SettingsModal,
 } from '@/ui/organisms'
-import { useScoring } from '@games/bingo-game-hooks'
+import { VariantProvider, useScoring } from '@games/bingo-game-hooks'
 import { SplashScreen } from '@games/common'
 import { useCallback, useEffect, useState } from 'react'
 
@@ -51,7 +51,7 @@ export function App() {
   }
   const handleToggleHints = () => setShowHints(!showHints)
 
-  if (phase === 'splash')
+  if (phase === 'splash') {
     return (
       <SplashScreen
         onComplete={handleSplashComplete}
@@ -60,7 +60,8 @@ export function App() {
         title="BINGO RUSH"
       />
     )
-  if (phase === 'help')
+  }
+  if (phase === 'help') {
     return (
       <div className="bingo-help-screen">
         <h2>How to Play Bingo Rush</h2>
@@ -70,6 +71,7 @@ export function App() {
         </button>
       </div>
     )
+  }
 
   return (
     <VariantProvider variantId="rush">

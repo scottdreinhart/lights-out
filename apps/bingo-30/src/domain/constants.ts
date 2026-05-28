@@ -11,4 +11,4 @@ export const GRID_SIZE = 3 as const
 export const MAX_NUMBER = 25 as const
 
 /** All available numbers in the bingo pool */
-export const ALL_NUMBERS = Array.from({ length: MAX_NUMBER }, (_, i) => i + 1) as const
+export const ALL_NUMBERS = Array.from({ length: MAX_NUMBER }, (_, i) => i + 1)

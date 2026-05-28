@@ -1,17 +1,8 @@
-import { useGame, useTheme } from '@/app'
-import { useScoring } from '@games/bingo-game-hooks'
-import type { BingoTheme } from '@games/theme-context'
-import { VariantProvider } from '@games/bingo-game-hooks'
-import {
-  AboutModal,
-  BingoCard,
-  DrawPanel,
-  HamburgerMenu,
-  RulesModal,
-  SettingsModal,
-} from '@/ui/organisms'
-import { SplashScreen } from '@games/common'
-import { useCallback, useEffect, useState } from 'react'
+import { useGame } from '@/app'
+import { MAX_CARDS, MIN_CARDS } from '@/domain'
+import { SplashScreen } from '@/ui'
+import { BingoCard, DrawPanel } from '@/ui/organisms'
+import { useCallback, useState } from 'react'
 
 type BingoPhase = 'splash' | 'playing' | 'help'
 
@@ -22,23 +13,16 @@ export function App() {
   const [phase, setPhase] = useState<BingoPhase>('splash')
   const [cardCount, setCardCount] = useState(1)
   const [showHints, setShowHints] = useState(false)
-  const [showSettings, setShowSettings] = useState(false)
-  const [showAbout, setShowAbout] = useState(false)
-  const [showRules, setShowRules] = useState(false)
-  const { theme, setTheme } = useTheme()
   const {
     gameState,
     drawSingleNumber,
     handleReset,
     handleNewGame,
+    changeDrawSpeed,
+    toggleAutoDraw,
     getWinnerChecks,
     getHintPositions,
   } = useGame(cardCount)
-  const { scoreWin, getLeaderboard, getStats } = useScoring('speed', gameState)
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-  }, [theme])
 
   const handleSplashComplete = useCallback(() => setPhase('playing'), [])
   const handleHowToPlay = useCallback(() => setPhase('help'), [])
@@ -51,7 +35,7 @@ export function App() {
   }
   const handleToggleHints = () => setShowHints(!showHints)
 
-  if (phase === 'splash')
+  if (phase === 'splash') {
     return (
       <SplashScreen
         onComplete={handleSplashComplete}
@@ -60,80 +44,44 @@ export function App() {
         title="SPEED BINGO"
       />
     )
-  if (phase === 'help')
+  }
+  if (phase === 'help') {
     return (
       <div className="bingo-help-screen">
         <h2>How to Play Speed Bingo</h2>
         <p>
-          Lightning-fast draw rate! Keep up with the rapid number calls and win before anyone else!
+          Numbers are called continuously. Mark fast, complete a line, and win before the pool runs
+          dry.
         </p>
         <button onClick={handleLetsPlay} className="bingo-action-button">
           Let's Play
         </button>
       </div>
     )
+  }
 
   return (
-    <VariantProvider variantId="speed">
-      <div className="bingo-container">
-        <div className="score-display">
-          {getLeaderboard.length > 0 && (
-            <div className="score-board">
-              <h3>Leaderboard</h3>
-              <ul className="leaderboard-list">
-                {getLeaderboard.map((entry, idx) => (
-                  <li key={entry.cardId} className="leaderboard-entry">
-                    <span className="rank">#{idx + 1}</span>
-                    <span className="card-label">Card {entry.cardId}</span>
-                    <span className="score">{entry.score} pts</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {getStats && (
-            <div className="game-stats">
-              <div className="stat">
-                <span className="label">Total Wins:</span>
-                <span className="value">{getStats.totalWins}</span>
-              </div>
-              <div className="stat">
-                <span className="label">Total Points:</span>
-                <span className="value">{getStats.totalPoints}</span>
-              </div>
-            </div>
-          )}
-        </div>
-        <div className="bingo-app-header">
+    <div className="bingo-container">
+      <div className="bingo-app-header">
         <div className="app-header-content">
           <h1 className="app-title">Speed Bingo</h1>
           <div className="header-controls">
-            <HamburgerMenu
-              onRules={() => setShowRules(true)}
-              onSettings={() => setShowSettings(true)}
-              onAbout={() => setShowAbout(true)}
-            />
-          </div>
-        </div>
-      </div>
-      <div className="bingo-game">
-        <div className="draw-panel-container">
-          <div className="card-count-control">
-            <label htmlFor="card-count">Cards:</label>
+            <label htmlFor="card-count">Cards</label>
             <select
+              id="card-count"
               value={cardCount}
               onChange={(e) => handleCardCountChange(Number(e.target.value))}
-              id="card-count"
             >
-              {[1, 2, 3, 4, 5].map((num) => (
-                <option key={num} value={num}>
-                  {num}
-                </option>
-              ))}
+              {Array.from({ length: MAX_CARDS - MIN_CARDS + 1 }, (_, i) => i + MIN_CARDS).map(
+                (num) => (
+                  <option key={num} value={num}>
+                    {num}
+                  </option>
+                ),
+              )}
             </select>
-          </div>
-          <div className="controls-toolbar">
             <button
+              type="button"
               onClick={handleToggleHints}
               className="control-button"
               aria-label={showHints ? 'Hide hints' : 'Show hints'}
@@ -141,22 +89,31 @@ export function App() {
               {showHints ? 'Hide Hints' : 'Show Hints'}
             </button>
             <button
+              type="button"
               onClick={handleNewGameClick}
               className="control-button"
               aria-label="Start new game"
             >
               New Game
             </button>
-            <button onClick={handleReset} className="control-button" aria-label="Reset game">
+            <button type="button" onClick={handleReset} className="control-button">
               Reset
             </button>
           </div>
+        </div>
+      </div>
+      <div className="bingo-game">
+        <div className="draw-panel-container">
           <DrawPanel
             currentNumber={gameState.currentDrawn}
             numbersDrawn={gameState.drawnNumbers.size}
             totalNumbers={75}
+            drawSpeed={gameState.drawSpeed}
+            isAutoDrawing={gameState.isAutoDrawing}
             onDraw={handleDraw}
             onReset={handleReset}
+            onToggleAutoDraw={toggleAutoDraw}
+            onDrawSpeedChange={changeDrawSpeed}
             disabled={!gameState.gameActive}
             winners={gameState.winners}
           />
@@ -164,11 +121,6 @@ export function App() {
         <div className="cards-container">
           {gameState.cards.map((card) => {
             const winnerCheck = getWinnerChecks(card.id)
-            if (winnerCheck.patterns.length > 0) {
-              winnerCheck.patterns.forEach((pattern) => {
-                scoreWin(card.id, pattern)
-              })
-            }
             const hintPositions = showHints ? getHintPositions(card.id) : []
             return (
               <BingoCard
@@ -182,15 +134,6 @@ export function App() {
           })}
         </div>
       </div>
-      <SettingsModal
-        isOpen={showSettings}
-        onClose={() => setShowSettings(false)}
-        selectedTheme={theme}
-        onThemeChange={setTheme}
-      />
-      <AboutModal isOpen={showAbout} onClose={() => setShowAbout(false)} />
-      <RulesModal isOpen={showRules} onClose={() => setShowRules(false)} />
-      </div>
-    </VariantProvider>
+    </div>
   )
 }

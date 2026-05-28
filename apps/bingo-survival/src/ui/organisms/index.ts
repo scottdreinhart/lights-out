@@ -4,11 +4,20 @@
  * Re-exports shared bingo UI components from @games/bingo-ui-components
  */
 
+export {
+  AboutModal,
+  BingoCard,
+  DrawPanel,
+  HamburgerMenu,
+  HelpModal,
+  RulesModal,
+  SettingsModal,
+  type AboutModalProps,
+  type BingoCardProps,
+  type DrawPanelProps,
+  type HamburgerMenuProps,
+  type HelpModalProps,
+  type RulesModalProps,
+  type SettingsModalProps,
+} from '@games/bingo-ui-components/organisms'
 export { App } from './App'
-export { AboutModal, type AboutModalProps } from '@games/bingo-ui-components/organisms'
-export { BingoCard, type BingoCardProps } from '@games/bingo-ui-components/organisms'
-export { DrawPanel, type DrawPanelProps } from '@games/bingo-ui-components/organisms'
-export { HamburgerMenu, type HamburgerMenuProps } from '@games/bingo-ui-components/organisms'
-export { HelpModal, type HelpModalProps } from '@games/bingo-ui-components/organisms'
-export { RulesModal, type RulesModalProps } from '@games/bingo-ui-components/organisms'
-export { SettingsModal, type SettingsModalProps } from '@games/bingo-ui-components/organisms'

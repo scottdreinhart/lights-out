@@ -1,6 +1,6 @@
-import React from 'react'
 import type { Feedback } from '@/domain'
 import { FEEDBACK_PEG_SIZE } from '@/domain'
+import React from 'react'
 import styles from './FeedbackPegs.module.css'
 
 interface FeedbackPegsProps {
@@ -8,10 +8,7 @@ interface FeedbackPegsProps {
   className?: string
 }
 
-export const FeedbackPegs: React.FC<FeedbackPegsProps> = ({
-  feedback,
-  className = ''
-}) => {
+export const FeedbackPegs: React.FC<FeedbackPegsProps> = ({ feedback, className = '' }) => {
   const { correctPosition, correctColor } = feedback
   const totalFeedback = correctPosition + correctColor
 

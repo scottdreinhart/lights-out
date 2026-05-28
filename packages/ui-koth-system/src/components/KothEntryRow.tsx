@@ -48,10 +48,10 @@ export function KothEntryRow({
  * Format seconds to human readable duration
  */
 function formatSeconds(seconds: number): string {
-  if (seconds < 60) return `${seconds}s`
+  if (seconds < 60) {return `${seconds}s`}
   const minutes = Math.floor(seconds / 60)
   const secs = seconds % 60
-  if (minutes < 60) return `${minutes}m ${secs}s`
+  if (minutes < 60) {return `${minutes}m ${secs}s`}
   const hours = Math.floor(minutes / 60)
   const mins = minutes % 60
   return `${hours}h ${mins}m`
@@ -68,10 +68,10 @@ function getTimeAgoString(timestamp: number): string {
   const diffHours = Math.floor(diffMinutes / 60)
   const diffDays = Math.floor(diffHours / 24)
 
-  if (diffSeconds < 60) return 'Just now'
-  if (diffMinutes < 60) return `${diffMinutes}m ago`
-  if (diffHours < 24) return `${diffHours}h ago`
-  if (diffDays < 7) return `${diffDays}d ago`
+  if (diffSeconds < 60) {return 'Just now'}
+  if (diffMinutes < 60) {return `${diffMinutes}m ago`}
+  if (diffHours < 24) {return `${diffHours}h ago`}
+  if (diffDays < 7) {return `${diffDays}d ago`}
 
   // For older entries, show date
   const date = new Date(timestamp)

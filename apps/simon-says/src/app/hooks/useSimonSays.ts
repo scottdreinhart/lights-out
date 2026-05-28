@@ -3,10 +3,16 @@
  * Coordinates game state and device playback
  */
 
-import { useCallback, useEffect, useState } from 'react'
 import type { SimonColor, SimonGameState, SimonRuleConfig } from '@/domain'
-import { DEFAULT_RULES, startGame, playerMove, playerAddsColor, handleTimeout, resetGame } from '@/domain'
-import { createInitialGameState } from '@/domain'
+import {
+  createInitialGameState,
+  DEFAULT_RULES,
+  handleTimeout,
+  playerMove,
+  resetGame,
+  startGame,
+} from '@/domain'
+import { useCallback, useEffect, useState } from 'react'
 
 export function useSimonSays(initialRules: Partial<SimonRuleConfig> = {}) {
   const rules = { ...DEFAULT_RULES, ...initialRules }
@@ -65,4 +71,3 @@ export function useSimonSays(initialRules: Partial<SimonRuleConfig> = {}) {
     rules,
   }
 }
-

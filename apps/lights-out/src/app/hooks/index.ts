@@ -21,6 +21,7 @@ export { useSwipeGesture } from '@games/assets-shared/hooks'
 
 // Import local app-specific hooks
 export { useGame } from './useGame'
+export { useLightsOutApp } from './useLightsOutApp'
 export { useSoundEffects } from './useSoundEffects'
 export { useStats } from './useStats'
 export { default as useTheme } from './useTheme'

@@ -1,106 +1,123 @@
-/**
- * Speed Bingo card generation and marking
- */
+import { GRID_SIZE } from './constants'
+import type { BingoCard, BingoCell, BingoColumn, WinningPattern } from './types'
+import { COLUMNS, COLUMN_RANGES } from './types'
 
-import { v4 as uuid } from 'uuid'
-import { CARD_SIZE, MAX_NUMBER } from './constants'
-import type { Card } from './types'
+function pickUniqueInRange(min: number, max: number, count: number): number[] {
+  const available = Array.from({ length: max - min + 1 }, (_, i) => i + min)
+  const selected: number[] = []
 
-/**
- * Generate a single speed bingo card
- */
-function generateCard(): Card {
-  const squares: (number | null)[] = []
-  const used = new Set<number>()
-
-  // Generate unique numbers from 1-MAX_NUMBER
-  while (squares.length < CARD_SIZE) {
-    const num = Math.floor(Math.random() * MAX_NUMBER) + 1
-    if (!used.has(num)) {
-      squares.push(num)
-      used.add(num)
-    }
+  while (selected.length < count && available.length > 0) {
+    const index = Math.floor(Math.random() * available.length)
+    const [value] = available.splice(index, 1)
+    selected.push(value)
   }
 
+  return selected
+}
+
+function createRowCell(number: number | null, marked = false): BingoCell {
   return {
-    id: uuid(),
-    squares,
-    marked: Array(CARD_SIZE).fill(false),
+    number,
+    marked,
+    isFreeSpace: number === null,
   }
 }
 
-/**
- * Generate multiple speed bingo cards
- */
-export function createBingoCards(count: number): Card[] {
-  return Array.from({ length: count }, () => generateCard())
+function generateCardGrid(): BingoCell[][] {
+  const grid = Array.from({ length: GRID_SIZE }, () =>
+    Array.from({ length: GRID_SIZE }, () => createRowCell(null)),
+  )
+
+  COLUMNS.forEach((column: BingoColumn, columnIndex) => {
+    const [min, max] = COLUMN_RANGES[column]
+    const numbers = pickUniqueInRange(min, max, GRID_SIZE)
+    numbers.forEach((value, rowIndex) => {
+      grid[rowIndex][columnIndex] = createRowCell(value)
+    })
+  })
+
+  const center = Math.floor(GRID_SIZE / 2)
+  grid[center][center] = createRowCell(null, true)
+
+  return grid
 }
 
-/**
- * Mark a number on all cards
- */
-export function markNumber(cards: Card[], number: number): Card[] {
-  return cards.map((card) => ({
-    ...card,
-    marked: card.squares.map((square, idx) => (square === number ? true : card.marked[idx])),
-  }))
+function isLineMarked(cells: BingoCell[]): boolean {
+  return cells.every((cell) => cell.marked || cell.isFreeSpace)
 }
 
-/**
- * Check if a card is a winner
- */
-export function isWinner(card: Card): boolean {
-  const size = Math.sqrt(card.squares.length)
+export function createBingoCard(): BingoCard {
+  return {
+    id: crypto.randomUUID(),
+    grid: generateCardGrid(),
+  }
+}
 
-  // Check rows
-  for (let i = 0; i < size; i++) {
-    let rowComplete = true
-    for (let j = 0; j < size; j++) {
-      if (!card.marked[i * size + j]) {
-        rowComplete = false
-        break
+export function createBingoCards(count: number): BingoCard[] {
+  return Array.from({ length: count }, () => createBingoCard())
+}
+
+export function markNumber(card: BingoCard, number: number): void {
+  for (let row = 0; row < GRID_SIZE; row++) {
+    for (let col = 0; col < GRID_SIZE; col++) {
+      const cell = card.grid[row][col]
+      if (cell.number === number) {
+        cell.marked = true
       }
     }
-    if (rowComplete) return true
   }
-
-  // Check columns
-  for (let j = 0; j < size; j++) {
-    let colComplete = true
-    for (let i = 0; i < size; i++) {
-      if (!card.marked[i * size + j]) {
-        colComplete = false
-        break
-      }
-    }
-    if (colComplete) return true
-  }
-
-  // Check diagonals
-  let diag1Complete = true
-  for (let i = 0; i < size; i++) {
-    if (!card.marked[i * size + i]) {
-      diag1Complete = false
-      break
-    }
-  }
-  if (diag1Complete) return true
-
-  let diag2Complete = true
-  for (let i = 0; i < size; i++) {
-    if (!card.marked[i * size + (size - 1 - i)]) {
-      diag2Complete = false
-      break
-    }
-  }
-  if (diag2Complete) return true
-
-  return false
 }
 
-/**
- * Check winning patterns across cards
- */
-export function checkWinningPatterns(cards: Card[]): Card[] {
-  return cards.filter((card) => isWinner(card))
+export function checkWinningPatterns(card: BingoCard): WinningPattern[] {
+  const patterns: WinningPattern[] = []
+
+  for (let row = 0; row < GRID_SIZE; row++) {
+    if (isLineMarked(card.grid[row])) {
+      if (row === 0) {
+        patterns.push('horizontal-top')
+      }
+      if (row === 2) {
+        patterns.push('horizontal-middle')
+      }
+      if (row === GRID_SIZE - 1) {
+        patterns.push('horizontal-bottom')
+      }
+    }
+  }
+
+  for (let col = 0; col < GRID_SIZE; col++) {
+    const column = card.grid.map((row) => row[col])
+    if (isLineMarked(column)) {
+      if (col === 0) {
+        patterns.push('vertical-left')
+      }
+      if (col === 2) {
+        patterns.push('vertical-center')
+      }
+      if (col === GRID_SIZE - 1) {
+        patterns.push('vertical-right')
+      }
+    }
+  }
+
+  const mainDiagonal = card.grid.map((row, index) => row[index])
+  if (isLineMarked(mainDiagonal)) {
+    patterns.push('diagonal-main')
+  }
+
+  const antiDiagonal = card.grid.map((row, index) => row[GRID_SIZE - 1 - index])
+  if (isLineMarked(antiDiagonal)) {
+    patterns.push('diagonal-anti')
+  }
+
+  const isFullHouse = card.grid.flat().every((cell) => cell.marked || cell.isFreeSpace)
+  if (isFullHouse) {
+    patterns.push('full-house')
+  }
+
+  return patterns
+}
+
+export function isWinner(card: BingoCard): boolean {
+  return checkWinningPatterns(card).length > 0
 }

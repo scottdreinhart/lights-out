@@ -1,0 +1,5 @@
+{
+  "app": "battleship",
+  "sdk": "discord-embedded-app",
+  "mode": "placeholder"
+}

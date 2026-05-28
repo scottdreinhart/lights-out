@@ -21,4 +21,5 @@
       "@games/*": ["../../packages/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src"]
+}

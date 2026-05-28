@@ -9,6 +9,16 @@ const __dirname = dirname(__filename)
 const rootDir = join(__dirname, '..')
 const appsDir = join(rootDir, 'apps')
 
+// ANSI color codes
+const COLORS = {
+  CYAN: '\x1b[96m',
+  GREEN: '\x1b[92m',
+  RED: '\x1b[91m',
+  BLUE: '\x1b[94m',
+  RESET: '\x1b[0m',
+  BOLD: '\x1b[1m',
+}
+
 const standardTemplate = {
   name: '', // will be set per app
   version: '1.0.0',

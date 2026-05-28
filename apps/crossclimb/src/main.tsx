@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './styles.css'
-import { CrossclimbGame } from './ui'
+import { App } from './ui'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <CrossclimbGame />
+    <App />
   </React.StrictMode>,
 )

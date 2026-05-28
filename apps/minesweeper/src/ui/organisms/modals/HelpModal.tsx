@@ -37,7 +37,9 @@ export function HelpModal({ isOpen, onClose }: HelpModalProps) {
     const previouslyFocused = document.activeElement as HTMLElement
 
     // Focus the close button
-    const closeBtn = modalRef.current.querySelector('button[aria-label="Close help"]') as HTMLButtonElement
+    const closeBtn = modalRef.current.querySelector(
+      'button[aria-label="Close help"]',
+    ) as HTMLButtonElement
     if (closeBtn) {
       setTimeout(() => closeBtn.focus(), 50)
     }

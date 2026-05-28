@@ -1,0 +1,5 @@
+{
+  "app": "snake",
+  "sdk": "discord-embedded-app",
+  "mode": "placeholder"
+}

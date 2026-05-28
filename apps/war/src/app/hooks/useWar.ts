@@ -1,5 +1,12 @@
 import type { GameState, WarRuleConfig } from '@/domain'
-import { createInitialGameState, getWinner, isGameOver, playRound, DEFAULT_RULES, resetGame } from '@/domain'
+import {
+  createInitialGameState,
+  DEFAULT_RULES,
+  getWinner,
+  isGameOver,
+  playRound,
+  resetGame,
+} from '@/domain'
 import { useCallback, useState } from 'react'
 
 interface UseWarOptions {
@@ -8,7 +15,7 @@ interface UseWarOptions {
 
 export function useWar(options: UseWarOptions = {}) {
   const rules = options.rules ?? DEFAULT_RULES
-  
+
   const [state, setState] = useState<GameState>(createInitialGameState)
 
   const nextRound = useCallback(() => {

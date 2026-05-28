@@ -33,18 +33,18 @@ export const DIFFICULTY_CONFIGS: Record<string, DifficultyConfig> = {
 }
 
 export const NODE_COLORS = {
-  start: '#27ae60',      // Green
-  end: '#e74c3c',        // Red
+  start: '#27ae60', // Green
+  end: '#e74c3c', // Red
   checkpoint: '#f39c12', // Orange
-  normal: '#3498db',     // Blue
-  visited: '#9b59b6',    // Purple
-  current: '#e67e22',    // Dark orange
+  normal: '#3498db', // Blue
+  visited: '#9b59b6', // Purple
+  current: '#e67e22', // Dark orange
 } as const
 
 export const EDGE_COLORS = {
-  traversable: '#95a5a6',   // Gray
-  traversed: '#2c3e50',     // Dark blue
-  blocked: '#e74c3c',       // Red
+  traversable: '#95a5a6', // Gray
+  traversed: '#2c3e50', // Dark blue
+  blocked: '#e74c3c', // Red
 } as const
 
 export const NODE_RADIUS = 20

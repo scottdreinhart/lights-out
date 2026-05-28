@@ -1,0 +1,106 @@
+
+> crossclimb-game@1.0.0 lint /mnt/d/src/game-platform/apps/crossclimb
+> npx eslint src/
+
+npm warn Unknown env config "node-linker". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown env config "store-dir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown env config "verify-deps-before-run". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown env config "global-bin-dir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown env config "npm-globalconfig". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown env config "recursive". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown env config "_jsr-registry". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown global config "store-dir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown global config "global-bin-dir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+/mnt/d/src/game-platform/apps/crossclimb/src/__tests__/setup.ts
+  5:1  warning  File does not match any element pattern  boundaries/no-unknown-files
+
+/mnt/d/src/game-platform/apps/crossclimb/src/app/index.ts
+   6:35  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+   9:15  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  10:46  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/crossclimb/src/app/useCrossclimbGame.ts
+   7:72  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+   8:85  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  97:26  warning  Variable Assigned to Object Injection Sink        security/detect-object-injection
+
+/mnt/d/src/game-platform/apps/crossclimb/src/domain/ai.ts
+    6:50  warning  Dependencies to unknown elements are not allowed             boundaries/no-unknown
+    7:50  warning  Dependencies to unknown elements are not allowed             boundaries/no-unknown
+    8:56  warning  Dependencies to unknown elements are not allowed             boundaries/no-unknown
+   13:57  warning  Arrow function has a complexity of 12. Maximum allowed is 8  complexity
+  131:59  warning  Arrow function has a complexity of 16. Maximum allowed is 8  complexity
+  252:20  warning  Variable Assigned to Object Injection Sink                   security/detect-object-injection
+
+/mnt/d/src/game-platform/apps/crossclimb/src/domain/constants.ts
+  6:39  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/crossclimb/src/domain/index.ts
+  18:8   warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  29:8   warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  40:8   warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  42:87  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/crossclimb/src/domain/rules.ts
+    6:52  warning  Dependencies to unknown elements are not allowed             boundaries/no-unknown
+   16:8   warning  Dependencies to unknown elements are not allowed             boundaries/no-unknown
+   59:10  warning  Arrow function has a complexity of 11. Maximum allowed is 8  complexity
+   60:18  warning  Variable Assigned to Object Injection Sink                   security/detect-object-injection
+   94:31  warning  Function Call Object Injection Sink                          security/detect-object-injection
+   95:31  warning  Function Call Object Injection Sink                          security/detect-object-injection
+  108:17  warning  Generic Object Injection Sink                                security/detect-object-injection
+  109:15  warning  Generic Object Injection Sink                                security/detect-object-injection
+  115:32  warning  Function Call Object Injection Sink                          security/detect-object-injection
+  116:32  warning  Function Call Object Injection Sink                          security/detect-object-injection
+  142:9   warning  Arrow function has a complexity of 10. Maximum allowed is 8  complexity
+  292:20  warning  Variable Assigned to Object Injection Sink                   security/detect-object-injection
+
+/mnt/d/src/game-platform/apps/crossclimb/src/domain/rules.unit.test.ts
+  7:36  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  8:40  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  9:31  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/crossclimb/src/index.tsx
+  1:1  warning  File does not match any element pattern  boundaries/no-unknown-files
+
+/mnt/d/src/game-platform/apps/crossclimb/src/main.tsx
+  1:1  warning  File does not match any element pattern  boundaries/no-unknown-files
+
+/mnt/d/src/game-platform/apps/crossclimb/src/setup.ts
+  5:1  warning  File does not match any element pattern  boundaries/no-unknown-files
+
+/mnt/d/src/game-platform/apps/crossclimb/src/ui/CrossclimbBoard.tsx
+    7:36  warning  Dependencies to unknown elements are not allowed             boundaries/no-unknown
+    8:67  warning  Dependencies to unknown elements are not allowed             boundaries/no-unknown
+  113:5   warning  Arrow function has a complexity of 15. Maximum allowed is 8  complexity
+  190:36  warning  Function Call Object Injection Sink                          security/detect-object-injection
+
+/mnt/d/src/game-platform/apps/crossclimb/src/ui/CrossclimbGame.tsx
+  4:33  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/crossclimb/src/ui/organisms/App.tsx
+  3:32  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/crossclimb/src/ui/organisms/index.ts
+  1:21  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/crossclimb/src/ui/organisms/platform/AppHeader.tsx
+  3:48  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/crossclimb/src/ui/organisms/platform/FeatureShell.tsx
+  2:28  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  3:27  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  5:28  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  6:31  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/crossclimb/src/ui/organisms/platform/index.ts
+  1:50  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  2:48  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  3:54  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  4:73  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  5:50  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  6:56  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+✖ 54 problems (0 errors, 54 warnings)
+

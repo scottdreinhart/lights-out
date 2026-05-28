@@ -146,7 +146,9 @@ const ensureConnectivity = (
   // BFS to find connected components
   while (toVisit.length > 0) {
     const currentId = toVisit.shift()!
-    if (visited.has(currentId)) continue
+    if (visited.has(currentId)) {
+      continue
+    }
 
     visited.add(currentId)
     const currentNode = nodes.get(currentId)!
@@ -204,7 +206,14 @@ export const createInitialState = (
   canvasWidth: number,
   canvasHeight: number,
 ): CrossclimbState => {
-  const graph = createRandomGraph(difficulty, canvasWidth, canvasHeight)
+  let graph = createRandomGraph(difficulty, canvasWidth, canvasHeight)
+  let attempts = 0
+  const maxAttempts = 10
+
+  while (!hasCheckpointCompletePath(graph) && attempts < maxAttempts) {
+    graph = createRandomGraph(difficulty, canvasWidth, canvasHeight)
+    attempts++
+  }
 
   return {
     graph,
@@ -221,7 +230,9 @@ export const createInitialState = (
  */
 export const isValidMove = (fromNodeId: NodeId, toNodeId: NodeId, graph: Graph): boolean => {
   const fromNode = graph.nodes.get(fromNodeId)
-  if (!fromNode) return false
+  if (!fromNode) {
+    return false
+  }
 
   return fromNode.connections.includes(toNodeId)
 }
@@ -263,9 +274,15 @@ export const makeMove = (state: CrossclimbState, toNodeId: NodeId): CrossclimbSt
  * Check if the current path is valid (visits all checkpoints)
  */
 export const isValidPath = (path: NodeId[], graph: Graph): boolean => {
-  if (path.length < 2) return false
-  if (path[0] !== graph.startNode) return false
-  if (path[path.length - 1] !== graph.endNode) return false
+  if (path.length < 2) {
+    return false
+  }
+  if (path[0] !== graph.startNode) {
+    return false
+  }
+  if (path[path.length - 1] !== graph.endNode) {
+    return false
+  }
 
   // Check all checkpoints are visited
   const visitedCheckpoints = new Set(
@@ -312,4 +329,48 @@ export const resetGame = (state: CrossclimbState): CrossclimbState => {
     isComplete: false,
     moves: 0,
   }
+}
+
+/**
+ * Determine if graph has a valid start->end path that visits all checkpoints.
+ */
+export const hasCheckpointCompletePath = (graph: Graph): boolean => {
+  const checkpointSet = new Set(graph.checkpoints)
+  const initialCollected = new Set<NodeId>()
+  if (checkpointSet.has(graph.startNode)) {
+    initialCollected.add(graph.startNode)
+  }
+
+  const search = (currentNodeId: NodeId, visited: Set<NodeId>, collected: Set<NodeId>): boolean => {
+    if (currentNodeId === graph.endNode && graph.checkpoints.every((id) => collected.has(id))) {
+      return true
+    }
+
+    const currentNode = graph.nodes.get(currentNodeId)
+    if (!currentNode) {
+      return false
+    }
+
+    for (const nextNodeId of currentNode.connections) {
+      if (visited.has(nextNodeId)) {
+        continue
+      }
+
+      const nextVisited = new Set(visited)
+      nextVisited.add(nextNodeId)
+
+      const nextCollected = new Set(collected)
+      if (checkpointSet.has(nextNodeId)) {
+        nextCollected.add(nextNodeId)
+      }
+
+      if (search(nextNodeId, nextVisited, nextCollected)) {
+        return true
+      }
+    }
+
+    return false
+  }
+
+  return search(graph.startNode, new Set([graph.startNode]), initialCollected)
 }

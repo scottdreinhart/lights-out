@@ -35,7 +35,6 @@ This folder contains active project documentation organized by topic.
 - [Package Ownership](monorepo/PACKAGE-OWNERSHIP.md)
 - [Migration Plan](monorepo/MIGRATION-PLAN.md)
 - [React Native Remediation Plan](monorepo/REACT-NATIVE-REMEDIATION-PLAN.md)
-- [Root vs App Duplicate Audit](monorepo/ROOT-APP-DUPLICATE-AUDIT.md)
 - [Purge Safety Protocol](monorepo/PURGE-SAFETY-PROTOCOL.md)
 - [Purge Guard Manifest (2026-03-16)](monorepo/PURGE-GUARD-2026-03-16.csv)
 - [Purge Candidates (2026-03-16)](monorepo/PURGE-CANDIDATES-2026-03-16.md)
@@ -45,7 +44,11 @@ This folder contains active project documentation organized by topic.
 - [TicTacToe Readiness Matrix](monorepo/TICTACTOE-READINESS-MATRIX.md)
 - [PR1 TicTacToe Runbook](monorepo/PR1-TICTACTOE-RUNBOOK.md)
 - [TicTacToe Execution TODOs](monorepo/TICTACTOE-EXECUTION-TODOS.md)
-- [TicTacToe Code Merge Triage](monorepo/TICTACTOE-CODE-MERGE-TRIAGE.md)
+
+## Archived
+
+- [Root vs App Duplicate Audit](archive/monorepo/ROOT-APP-DUPLICATE-AUDIT.md)
+- [TicTacToe Code Merge Triage](archive/monorepo/TICTACTOE-CODE-MERGE-TRIAGE.md)
 
 ## Testing Standards
 

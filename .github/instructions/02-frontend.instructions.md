@@ -137,7 +137,7 @@ See AGENTS.md § 30 and `.github/instructions/20-css-performance-rendering-optim
 
 ```bash
 # 1. Run local Lighthouse
-npx lighthouse <url> --view
+pnpm test:lighthouse
 
 # 2. Open DevTools
 #    - Network: Verify critical.css downloads first

@@ -578,7 +578,7 @@ On GitHub:
 - [ ] Reference any related issues
 - [ ] Wait for CI/CD to complete
 - [ ] Address feedback from team
-- [ ] Merge once approved + gates pass ✅
+- [x] Merge once approved + gates pass ✅
 
 ---
 

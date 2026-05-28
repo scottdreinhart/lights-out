@@ -14,7 +14,7 @@
 import { execSync } from 'child_process'
 import fs from 'fs'
 
-const MATRIX_FILE = 'docs/APP_FEATURE_MATRIX.md'
+const MATRIX_FILE = 'APP_FEATURE_MATRIX.md'
 const DRY_RUN = process.argv.includes('--dry-run')
 
 const STATUS_ICONS = {

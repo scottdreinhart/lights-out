@@ -1,148 +1,237 @@
 /**
  * War card game rules engine.
- * Handles card dealing, round resolution, and war mechanics.
+ * Maintains strict 52-card conservation while ownership shifts between players.
  */
 
-import type { Card, GameState, WarSequence } from './types'
-import { compareCards, getWarCards } from './constants'
+import { compareCards, createDeck, shuffleDeck } from './constants'
 import { type WarRuleConfig, getWarCardCount } from './rules/war.rules'
+import type { Card, GameState } from './types'
+
+type Participant = 'player' | 'computer'
+
+interface DeckBuckets {
+  drawPile: Card[]
+  wonPile: Card[]
+}
+
+const EMPTY_TABLE = { player: [] as Card[], computer: [] as Card[] }
+
+function getBuckets(state: GameState, participant: Participant): DeckBuckets {
+  if (participant === 'player') {
+    return {
+      drawPile: state.playerDeck,
+      wonPile: state.playerWonPile,
+    }
+  }
+
+  return {
+    drawPile: state.computerDeck,
+    wonPile: state.computerWonPile,
+  }
+}
+
+function setBuckets(state: GameState, participant: Participant, buckets: DeckBuckets): GameState {
+  if (participant === 'player') {
+    return {
+      ...state,
+      playerDeck: buckets.drawPile,
+      playerWonPile: buckets.wonPile,
+    }
+  }
+
+  return {
+    ...state,
+    computerDeck: buckets.drawPile,
+    computerWonPile: buckets.wonPile,
+  }
+}
+
+function getOwnedCount(state: GameState, participant: Participant): number {
+  const { drawPile, wonPile } = getBuckets(state, participant)
+  return drawPile.length + wonPile.length
+}
+
+function getTotalCardCount(state: GameState): number {
+  return getOwnedCount(state, 'player') + getOwnedCount(state, 'computer')
+}
+
+function refillDrawPile(buckets: DeckBuckets, rules: WarRuleConfig): DeckBuckets {
+  if (buckets.drawPile.length > 0 || buckets.wonPile.length === 0 || !rules.reshuffleOnEmpty) {
+    return buckets
+  }
+
+  return {
+    drawPile: shuffleDeck(buckets.wonPile),
+    wonPile: [],
+  }
+}
+
+function drawOneCard(
+  buckets: DeckBuckets,
+  rules: WarRuleConfig,
+): { card: Card | null; buckets: DeckBuckets } {
+  const withRefill = refillDrawPile(buckets, rules)
+  const card = withRefill.drawPile[0] ?? null
+
+  if (!card) {
+    return { card: null, buckets: withRefill }
+  }
+
+  return {
+    card,
+    buckets: {
+      ...withRefill,
+      drawPile: withRefill.drawPile.slice(1),
+    },
+  }
+}
+
+function drawWarBundle(
+  buckets: DeckBuckets,
+  faceDownCount: number,
+  rules: WarRuleConfig,
+): { faceDown: Card[]; faceUp: Card; buckets: DeckBuckets } | null {
+  const available = buckets.drawPile.length + buckets.wonPile.length
+  const needed = faceDownCount + 1
+
+  if (available < needed) {
+    return null
+  }
+
+  let next = buckets
+  const faceDown: Card[] = []
+
+  for (let i = 0; i < faceDownCount; i++) {
+    const draw = drawOneCard(next, rules)
+    if (!draw.card) {
+      return null
+    }
+    faceDown.push(draw.card)
+    next = draw.buckets
+  }
+
+  const faceUpDraw = drawOneCard(next, rules)
+  if (!faceUpDraw.card) {
+    return null
+  }
+
+  return {
+    faceDown,
+    faceUp: faceUpDraw.card,
+    buckets: faceUpDraw.buckets,
+  }
+}
 
 /**
  * Play a single round of War
- * 1. Draw top card from each deck
+ * 1. Draw top card from each draw pile (refill from won pile when needed)
  * 2. Compare cards
  * 3. Handle ties with war
  */
 export function playRound(state: GameState, rules: WarRuleConfig): GameState {
-  // Check if game is over
-  if (state.playerDeck.length === 0 || state.computerDeck.length === 0) {
-    return finishGame(state)
+  if (state.gameOver) {
+    return state
   }
 
-  // Draw top card from each player
-  const playerCard = state.playerDeck[0]
-  const computerCard = state.computerDeck[0]
+  let working = state
 
-  if (!playerCard || !computerCard) {
-    return finishGame(state)
+  // Refill empty draw piles from won piles before each round.
+  working = setBuckets(working, 'player', refillDrawPile(getBuckets(working, 'player'), rules))
+  working = setBuckets(working, 'computer', refillDrawPile(getBuckets(working, 'computer'), rules))
+
+  if (getOwnedCount(working, 'player') === 0 || getOwnedCount(working, 'computer') === 0) {
+    return finishGame(working)
+  }
+
+  const playerDraw = drawOneCard(getBuckets(working, 'player'), rules)
+  working = setBuckets(working, 'player', playerDraw.buckets)
+
+  const computerDraw = drawOneCard(getBuckets(working, 'computer'), rules)
+  working = setBuckets(working, 'computer', computerDraw.buckets)
+
+  if (!playerDraw.card || !computerDraw.card) {
+    return finishGame(working)
   }
 
   const newState: GameState = {
-    ...state,
-    playerCard,
-    computerCard,
-    playerDeck: state.playerDeck.slice(1),
-    computerDeck: state.computerDeck.slice(1),
-    roundsPlayed: state.roundsPlayed + 1,
+    ...working,
+    phase: 'playing',
+    playerCard: playerDraw.card,
+    computerCard: computerDraw.card,
+    roundsPlayed: working.roundsPlayed + 1,
   }
 
-  // Compare cards
-  const winner = compareCards(playerCard, computerCard)
+  const winner = compareCards(playerDraw.card, computerDraw.card)
 
   if (winner === 0) {
-    // Cards are equal - start war
-    return startWar(newState, rules, playerCard)
-  } else if (winner === 1) {
-    // Player wins
-    return playerWinsRound(newState, [playerCard, computerCard])
-  } else {
-    // Computer wins
-    return computerWinsRound(newState, [playerCard, computerCard])
+    return startWar(newState, rules, playerDraw.card)
   }
+
+  return winner === 1 ? playerWinsRound(newState, []) : computerWinsRound(newState, [])
 }
 
 /**
- * Start a war sequence when cards are equal
+ * Start a war sequence when cards are equal.
+ * tableCards holds only previously contested cards; playerCard/computerCard hold current face-up cards.
  */
-function startWar(
-  state: GameState,
-  rules: WarRuleConfig,
-  tiedCard: Card
-): GameState {
+function startWar(state: GameState, rules: WarRuleConfig, tiedCard: Card): GameState {
   const warCardCount = getWarCardCount(rules, tiedCard.rank)
 
-  // Check if both players have enough cards for war
-  const playerCanWar = state.playerDeck.length > warCardCount
-  const computerCanWar = state.computerDeck.length > warCardCount
+  const playerCurrent = state.playerCard ? [state.playerCard] : []
+  const computerCurrent = state.computerCard ? [state.computerCard] : []
 
-  if (!playerCanWar || !computerCanWar) {
-    // Handle out of cards during war
-    return handleOutOfCardsInWar(
-      state,
-      rules,
-      [state.playerCard!, state.computerCard!],
-      playerCanWar,
-      computerCanWar
-    )
+  const playerBundle = drawWarBundle(getBuckets(state, 'player'), warCardCount, rules)
+  const computerBundle = drawWarBundle(getBuckets(state, 'computer'), warCardCount, rules)
+
+  if (!playerBundle || !computerBundle) {
+    return handleOutOfCardsInWar(state, rules, Boolean(playerBundle), Boolean(computerBundle))
   }
 
-  // Both players can war - draw face-down cards
-  const playerFaceDown = state.playerDeck.slice(0, warCardCount)
-  const computerFaceDown = state.computerDeck.slice(0, warCardCount)
-
-  // Remove face-down cards from decks
-  let playerDeck = state.playerDeck.slice(warCardCount)
-  let computerDeck = state.computerDeck.slice(warCardCount)
-
-  // Draw face-up cards
-  const playerFaceUp = playerDeck[0]
-  const computerFaceUp = computerDeck[0]
-
-  if (!playerFaceUp || !computerFaceUp) {
-    return handleOutOfCardsInWar(state, rules, [], true, true)
-  }
-
-  playerDeck = playerDeck.slice(1)
-  computerDeck = computerDeck.slice(1)
-
-  // Store war cards on table
-  const newState: GameState = {
+  let newState: GameState = {
     ...state,
     phase: 'war',
-    playerDeck,
-    computerDeck,
-    playerCard: playerFaceUp,
-    computerCard: computerFaceUp,
+    playerCard: playerBundle.faceUp,
+    computerCard: computerBundle.faceUp,
     tableCards: {
-      player: [...state.tableCards.player, state.playerCard!, ...playerFaceDown, playerFaceUp],
-      computer: [...state.tableCards.computer, state.computerCard!, ...computerFaceDown, computerFaceUp],
+      player: [...state.tableCards.player, ...playerCurrent, ...playerBundle.faceDown],
+      computer: [...state.tableCards.computer, ...computerCurrent, ...computerBundle.faceDown],
     },
     warsPlayed: state.warsPlayed + 1,
   }
 
-  // Compare face-up cards
-  const faceUpWinner = compareCards(playerFaceUp, computerFaceUp)
+  newState = setBuckets(newState, 'player', playerBundle.buckets)
+  newState = setBuckets(newState, 'computer', computerBundle.buckets)
+
+  const faceUpWinner = compareCards(playerBundle.faceUp, computerBundle.faceUp)
 
   if (faceUpWinner === 0 && rules.allowRecursiveWar) {
-    // Recursive war - start another war with the face-up card
-    return startWar(newState, rules, playerFaceUp)
-  } else if (faceUpWinner === 1) {
-    // Player wins war
+    return startWar(newState, rules, playerBundle.faceUp)
+  }
+
+  if (faceUpWinner === 1) {
     return playerWinsRound(newState, [])
-  } else if (faceUpWinner === 2) {
-    // Computer wins war
+  }
+
+  if (faceUpWinner === 2) {
     return computerWinsRound(newState, [])
-  } else {
-    // Tie but no recursive war allowed - draw again
-    return {
-      ...newState,
-      phase: 'playing',
-    }
+  }
+
+  return {
+    ...newState,
+    phase: 'playing',
   }
 }
 
 /**
- * Handle situation where player runs out of cards during war
+ * Handle situation where a player runs out of cards during war.
  */
 function handleOutOfCardsInWar(
   state: GameState,
   rules: WarRuleConfig,
-  currentCards: Card[],
   playerCanContinue: boolean,
-  computerCanContinue: boolean
+  computerCanContinue: boolean,
 ): GameState {
   if (rules.outOfCardsBehavior === 'lose') {
-    // Player loses immediately
     if (!playerCanContinue) {
       return {
         ...state,
@@ -160,83 +249,104 @@ function handleOutOfCardsInWar(
       }
     }
   } else if (rules.outOfCardsBehavior === 'useLastCard') {
-    // Use all remaining cards, last card face-up
-    const playerCards = state.playerDeck.length > 0 ? state.playerDeck : []
-    const computerCards = state.computerDeck.length > 0 ? state.computerDeck : []
+    const playerAllCards = [
+      ...state.tableCards.player,
+      ...(state.playerCard ? [state.playerCard] : []),
+      ...state.playerDeck,
+      ...state.playerWonPile,
+    ]
+    const computerAllCards = [
+      ...state.tableCards.computer,
+      ...(state.computerCard ? [state.computerCard] : []),
+      ...state.computerDeck,
+      ...state.computerWonPile,
+    ]
 
-    const playerFaceUp = playerCards[playerCards.length - 1]
-    const computerFaceUp = computerCards[computerCards.length - 1]
+    const playerFaceUp = playerAllCards[playerAllCards.length - 1]
+    const computerFaceUp = computerAllCards[computerAllCards.length - 1]
 
     if (!playerFaceUp || !computerFaceUp) {
       return finishGame(state)
     }
 
     const winner = compareCards(playerFaceUp, computerFaceUp)
+    const spoils = playerAllCards.concat(computerAllCards)
 
-    const allPlayerCards = [state.playerCard!, ...playerCards]
-    const allComputerCards = [state.computerCard!, ...computerCards]
-
-    if (winner === 1) {
-      return playerWinsRound({ ...state, playerDeck: [], computerDeck: [] }, allPlayerCards.concat(allComputerCards))
-    } else {
-      return computerWinsRound({ ...state, playerDeck: [], computerDeck: [] }, allPlayerCards.concat(allComputerCards))
+    const base: GameState = {
+      ...state,
+      playerDeck: [],
+      computerDeck: [],
+      playerWonPile: [],
+      computerWonPile: [],
+      playerCard: null,
+      computerCard: null,
+      tableCards: EMPTY_TABLE,
+      warHistory: [],
     }
+
+    return winner === 1 ? playerWinsRound(base, spoils) : computerWinsRound(base, spoils)
   }
 
   return finishGame(state)
 }
 
+function collectRoundSpoils(state: GameState, additionalCards: Card[]): Card[] {
+  return [
+    ...state.tableCards.player,
+    ...state.tableCards.computer,
+    ...(state.playerCard ? [state.playerCard] : []),
+    ...(state.computerCard ? [state.computerCard] : []),
+    ...additionalCards,
+  ]
+}
+
 /**
- * Player wins the current round
+ * Player wins the current round.
+ * Spoils are captured into won pile and shuffled into draw pile only when draw pile is empty.
  */
 function playerWinsRound(state: GameState, additionalCards: Card[]): GameState {
-  const winnings = [
-    state.playerCard,
-    state.computerCard,
-    ...state.tableCards.player,
-    ...state.tableCards.computer,
-    ...additionalCards,
-  ].filter((c): c is Card => c !== null)
+  const winnings = collectRoundSpoils(state, additionalCards)
 
   return {
     ...state,
     phase: 'playing',
-    playerDeck: [...state.playerDeck, ...winnings],
+    playerWonPile: [...state.playerWonPile, ...winnings],
     playerWins: state.playerWins + 1,
-    tableCards: { player: [], computer: [] },
+    playerCard: null,
+    computerCard: null,
+    tableCards: EMPTY_TABLE,
     warHistory: [],
     roundCardsWon: winnings.length,
   }
 }
 
 /**
- * Computer wins the current round
+ * Computer wins the current round.
  */
 function computerWinsRound(state: GameState, additionalCards: Card[]): GameState {
-  const winnings = [
-    state.playerCard,
-    state.computerCard,
-    ...state.tableCards.player,
-    ...state.tableCards.computer,
-    ...additionalCards,
-  ].filter((c): c is Card => c !== null)
+  const winnings = collectRoundSpoils(state, additionalCards)
 
   return {
     ...state,
     phase: 'playing',
-    computerDeck: [...state.computerDeck, ...winnings],
+    computerWonPile: [...state.computerWonPile, ...winnings],
     computerWins: state.computerWins + 1,
-    tableCards: { player: [], computer: [] },
+    playerCard: null,
+    computerCard: null,
+    tableCards: EMPTY_TABLE,
     warHistory: [],
     roundCardsWon: winnings.length,
   }
 }
 
 /**
- * Finish the game and determine winner
+ * Finish the game and determine winner.
  */
 function finishGame(state: GameState): GameState {
-  const winner = state.playerDeck.length > 0 ? 'player' : 'computer'
+  const playerTotal = getOwnedCount(state, 'player')
+  const computerTotal = getOwnedCount(state, 'computer')
+  const winner = playerTotal >= computerTotal ? 'player' : 'computer'
+
   return {
     ...state,
     gameOver: true,
@@ -246,34 +356,43 @@ function finishGame(state: GameState): GameState {
 }
 
 /**
- * Check if game is over
+ * Check if game is over.
  */
 export function isGameOver(state: GameState): boolean {
-  return state.gameOver || state.playerDeck.length === 0 || state.computerDeck.length === 0
+  return (
+    state.gameOver || getOwnedCount(state, 'player') === 0 || getOwnedCount(state, 'computer') === 0
+  )
 }
 
 /**
- * Get the current winner (if game is over)
+ * Get the current winner (if game is over).
  */
 export function getWinner(state: GameState): 'player' | 'computer' | null {
-  if (!isGameOver(state)) return null
-  return state.winner ?? (state.playerDeck.length > state.computerDeck.length ? 'player' : 'computer')
+  if (!isGameOver(state)) {
+    return null
+  }
+
+  const playerTotal = getOwnedCount(state, 'player')
+  const computerTotal = getOwnedCount(state, 'computer')
+  return state.winner ?? (playerTotal >= computerTotal ? 'player' : 'computer')
 }
 
 /**
- * Reset the game to initial state
+ * Reset the game to initial state.
  */
-export function resetGame(state: GameState): GameState {
-  const fullDeck = createShuffledDeck()
+export function resetGame(): GameState {
+  const fullDeck = createDeck()
   const mid = Math.floor(fullDeck.length / 2)
 
   return {
     phase: 'playing',
     playerDeck: fullDeck.slice(0, mid),
     computerDeck: fullDeck.slice(mid),
+    playerWonPile: [],
+    computerWonPile: [],
     playerCard: null,
     computerCard: null,
-    tableCards: { player: [], computer: [] },
+    tableCards: EMPTY_TABLE,
     warHistory: [],
     roundCardsWon: 0,
     roundsPlayed: 0,
@@ -287,24 +406,8 @@ export function resetGame(state: GameState): GameState {
 }
 
 /**
- * Create and shuffle a standard deck
+ * Development invariant: total cards in game should always remain 52.
  */
-function createShuffledDeck(): Card[] {
-  const SUITS = ['hearts', 'diamonds', 'clubs', 'spades'] as const
-  const RANKS = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'] as const
-
-  const deck: Card[] = []
-  for (const suit of SUITS) {
-    for (const rank of RANKS) {
-      deck.push({ suit, rank })
-    }
-  }
-
-  // Shuffle
-  for (let i = deck.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[deck[i], deck[j]] = [deck[j], deck[i]]
-  }
-
-  return deck
+export function isCardConservationValid(state: GameState): boolean {
+  return getTotalCardCount(state) === 52
 }
