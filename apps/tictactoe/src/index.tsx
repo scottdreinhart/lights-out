@@ -10,6 +10,7 @@ import './styles.css'
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { animationsModule } from '@games/ui-utils'
 
 import { SoundProvider, ThemeProvider } from '@/app'
 import { ErrorBoundary } from '@/ui/atoms'
