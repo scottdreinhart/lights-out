@@ -1,0 +1,179 @@
+/* BetConfigForm.module.css — Blackjack bet configuration form styling */
+
+.form {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 2.75rem 2.5rem;
+  background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 100%);
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(220, 20, 20, 0.2), 0 20px 40px rgba(0, 0, 0, 0.6);
+  border: 2px solid var(--color-error, #dc1414);
+  position: relative;
+}
+
+.form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #dc1414, #ff6b6b, #dc1414);
+  opacity: 0.6;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 900;
+  margin: 0 0 0.2rem 0;
+  color: var(--color-error, #dc1414);
+  text-align: center;
+  text-shadow: 0 0 10px rgba(220, 20, 20, 0.3);
+  letter-spacing: 1.5px;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: var(--color-text-muted, #888);
+  text-align: center;
+  margin: 0 0 2.5rem 0;
+}
+
+.field {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text, #e0e0e0);
+  letter-spacing: 0.5px;
+}
+
+.input {
+  padding: 0.95rem 1.2rem;
+  border: 2px solid var(--color-error, #dc1414);
+  border-radius: 8px;
+  background: rgba(26, 26, 62, 0.8);
+  color: var(--color-text, #e0e0e0);
+  font-size: 1.05rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 0 10px rgba(220, 20, 20, 0.05);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-error, #dc1414);
+  box-shadow:
+    inset 0 0 10px rgba(220, 20, 20, 0.1),
+    0 0 0 4px rgba(220, 20, 20, 0.15);
+}
+
+.input.error {
+  border-color: var(--color-error, #ff6b6b);
+  box-shadow:
+    inset 0 0 10px rgba(255, 107, 107, 0.1),
+    0 0 0 4px rgba(255, 107, 107, 0.15);
+}
+
+.input::placeholder {
+  color: var(--color-text-muted, #666);
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.75rem;
+}
+
+.dealButton {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #dc1414, #ff6b6b);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 900;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(220, 20, 20, 0.4);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.dealButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 20, 20, 0.6);
+}
+
+.dealButton:active {
+  transform: translateY(0);
+}
+
+.cancelButton {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  background: transparent;
+  color: var(--color-error, #dc1414);
+  border: 2px solid var(--color-error, #dc1414);
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.5px;
+}
+
+.cancelButton:hover {
+  background: rgba(220, 20, 20, 0.1);
+  box-shadow: 0 0 10px rgba(220, 20, 20, 0.2);
+}
+
+.info {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--color-text-muted, #666);
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(220, 20, 20, 0.2);
+}
+
+/* Mobile responsive */
+@media (max-width: 599px) {
+  .form {
+    padding: 1.75rem 1.5rem;
+    margin: 0 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .dealButton,
+  .cancelButton {
+    width: 100%;
+  }
+}
+
+/* Accessibility: reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .input,
+  .dealButton,
+  .cancelButton {
+    transition: none;
+  }
+
+  .dealButton:hover {
+    transform: none;
+  }
+}

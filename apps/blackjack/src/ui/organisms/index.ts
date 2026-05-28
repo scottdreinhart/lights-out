@@ -3,6 +3,7 @@
  */
 
 export { App } from './App'
+export { BetConfigForm, type BetConfigFormProps } from './BetConfigForm'
 export { CountingPanel } from './CountingPanel'
 export { GameBoard } from './GameBoard'
 export { HistoryPanel } from './HistoryPanel'
