@@ -3,8 +3,8 @@
  */
 
 export { default as App } from './App'
-export { default as AppWithProviders } from './AppWithProviders'
+export { DeviceInfoScreen } from './DeviceInfoScreen'
 export { ErrorBoundary } from './ErrorBoundary'
 export { GameBoard } from './GameBoard'
+export { GameOptionsForm, type GameOptionsFormProps } from './GameOptionsForm'
 export { default as ShellApp } from './ShellApp'
-export { DeviceInfoScreen } from './DeviceInfoScreen'

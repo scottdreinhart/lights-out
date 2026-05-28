@@ -29,6 +29,9 @@
       "@/*": [
         "./src/*"
       ],
+      "@games/app-hook-utils": [
+        "../../packages/app-hook-utils/src"
+      ],
       "@games/ui-utils": [
         "../../packages/ui-utils/src"
       ],
@@ -46,7 +49,10 @@
       ],
       "@games/theme-context": [
         "../../packages/theme-context/src"
-      ]
+      ],
+      "@games/diagnostics-utils": [
+        "../../packages/diagnostics-utils/src"
+      ],
     }
   },
   "include": [

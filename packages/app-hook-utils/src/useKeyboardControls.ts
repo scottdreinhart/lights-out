@@ -1,5 +1,13 @@
 import { useEffect, useMemo } from 'react'
 
+import { FORM_TAGS } from './useKeyboardControls.constants'
+import {
+ 	isEnabled,
+ 	normalizeToken,
+ 	buildEventTokens,
+ 	isKeyBlocked,
+} from './useKeyboardControls.utils'
+
 type Enabled = boolean | (() => boolean)
 
 export type KeyboardPhase = 'keydown' | 'keyup'
@@ -14,18 +22,13 @@ export type KeyboardActionHandler = (input: KeyboardActionEvent) => void
 
 export interface KeyboardActionBinding {
 	action: string
-	keys: string[]
+	keys: readonly string[]
 	onTrigger: KeyboardActionHandler
 	enabled?: Enabled
 	preventDefault?: boolean
 	allowRepeat?: boolean
 	allowInInputs?: boolean
 	phase?: KeyboardPhase
-	/**
-	 * If true, this binding is blocked and will not trigger.
-	 * Useful for game-specific exceptions to global blockedKeys.
-	 * Default: false
-	 */
 	blocked?: boolean
 }
 
@@ -33,125 +36,101 @@ export interface UseKeyboardControlsOptions {
 	enabled?: Enabled
 	ignoreInputs?: boolean
 	target?: Document | HTMLElement
-	/**
-	 * Keys that should be blocked globally (preventDefault + skip all bindings).
-	 * Useful for cross-game standardization: games define once, ignore everywhere.
-	 *
-	 * Examples:
-	 * - ['Tab'] — block browser focus trap
-	 * - ['F1', 'F11'] — block browser help/fullscreen
-	 * - ['Alt+Tab'] — block OS window switcher on Windows
-	 *
-	 * Supports same token format as binding keys:
-	 * - 'KeyW' or 'w' for letter keys
-	 * - 'ArrowUp' or 'up' for arrow keys
-	 * - 'Enter', 'Space', 'Tab', 'Escape', etc.
-	 * - 'ctrl+s', 'alt+f4' for modifier combos
-	 *
-	 * Per-binding override: set binding.blocked = true to skip it despite not being in blockedKeys.
-	 * Inverse control: to allow a key despite it being blocked globally, set allowRepeat or enabled to false as escape hatch.
-	 */
-	blockedKeys?: string[]
+	blockedKeys?: readonly string[]
 }
 
-const FORM_TAGS = new Set(['INPUT', 'TEXTAREA', 'SELECT'])
-
-const isFormElement = (target: EventTarget | null): boolean => {
-	if (!(target instanceof HTMLElement)) {
-		return false
-	}
-
-	if (target.isContentEditable) {
-		return true
-	}
-
-	return FORM_TAGS.has(target.tagName)
+const getModifiers = (event: KeyboardEvent): string[] => {
+ 	const mods: string[] = []
+ 	if (event.ctrlKey || event.metaKey) {
+ 		mods.push('ctrl')
+ 	}
+ 	if (event.altKey) {
+ 		mods.push('alt')
+ 	}
+ 	if (event.shiftKey) {
+ 		mods.push('shift')
+ 	}
+ 	return mods
 }
 
-const isEnabled = (enabled: Enabled | undefined): boolean => {
-	if (enabled === undefined) {
-		return true
-	}
-	return typeof enabled === 'function' ? enabled() : enabled
+const getCodeAndKey = (event: KeyboardEvent) => {
+ 	const code = event.code.toLowerCase()
+ 	const keyRaw = event.key.toLowerCase()
+ 	const key = keyRaw === ' ' ? 'space' : keyRaw
+ 	return { code, key }
 }
 
-const normalizeToken = (token: string): string => token.trim().toLowerCase().replace(/\s+/g, '')
+const buildKeyAliases = (code: string, key: string): string[] => {
+ 	const aliases = new Set<string>()
 
-const buildEventTokens = (event: KeyboardEvent): string[] => {
-	const modifiers: string[] = []
+ 	if (code.startsWith('key') && code.length === 4) {
+ 		aliases.add(code.slice(3))
+ 	}
+ 	if (code.startsWith('digit') && code.length === 6) {
+ 		aliases.add(code.slice(5))
+ 	}
+ 	if (code.startsWith('numpad') && code.length === 7) {
+ 		aliases.add(code.slice(6))
+ 	}
 
-	if (event.ctrlKey || event.metaKey) {
-		modifiers.push('ctrl')
-	}
-	if (event.altKey) {
-		modifiers.push('alt')
-	}
-	if (event.shiftKey) {
-		modifiers.push('shift')
-	}
+ 	if (key === 'escape') {
+ 		aliases.add('esc')
+ 	}
+ 	if (key === 'arrowup') {
+ 		aliases.add('up')
+ 	}
+ 	if (key === 'arrowdown') {
+ 		aliases.add('down')
+ 	}
+ 	if (key === 'arrowleft') {
+ 		aliases.add('left')
+ 	}
+ 	if (key === 'arrowright') {
+ 		aliases.add('right')
+ 	}
 
-	const code = event.code.toLowerCase()
-	const key = event.key.toLowerCase() === ' ' ? 'space' : event.key.toLowerCase()
+ 	// WASD mapping
+ 	if (key === 'w') {
+ 		aliases.add('arrowup')
+ 		aliases.add('up')
+ 	}
+ 	if (key === 'a') {
+ 		aliases.add('arrowleft')
+ 		aliases.add('left')
+ 	}
+ 	if (key === 's') {
+ 		aliases.add('arrowdown')
+ 		aliases.add('down')
+ 	}
+ 	if (key === 'd') {
+ 		aliases.add('arrowright')
+ 		aliases.add('right')
+ 	}
 
-	const tokens = new Set<string>()
+ 	return [...aliases]
+}
 
-	const addTokenVariants = (base: string) => {
-		tokens.add(base)
-		if (modifiers.length > 0) {
-			tokens.add(`${modifiers.join('+')}+${base}`)
-		}
-	}
-
-	const keyAliases = new Set<string>()
-
-	if (code.startsWith('key') && code.length === 4) {
-		keyAliases.add(code.slice(3))
-	}
-	if (code.startsWith('digit') && code.length === 6) {
-		keyAliases.add(code.slice(5))
-	}
-	if (code.startsWith('numpad') && code.length === 7) {
-		keyAliases.add(code.slice(6))
-	}
-
-	if (key === 'escape') {
-		keyAliases.add('esc')
-	}
-	if (key === 'arrowup') {
-		keyAliases.add('up')
-	}
-	if (key === 'arrowdown') {
-		keyAliases.add('down')
-	}
-	if (key === 'arrowleft') {
-		keyAliases.add('left')
-	}
-	if (key === 'arrowright') {
-		keyAliases.add('right')
-	}
-
-	addTokenVariants(code)
-	addTokenVariants(key)
-	addTokenVariants(`key:${key}`)
-
-	for (const alias of keyAliases) {
-		addTokenVariants(alias)
-		addTokenVariants(`key:${alias}`)
-	}
-
-	return [...tokens]
+const addTokenVariants = (tokens: Set<string>, base: string, modifiers: string[]) => {
+ 	tokens.add(base)
+ 	if (modifiers.length > 0) {
+ 		tokens.add(`${modifiers.join('+')}+${base}`)
+ 	}
 }
 
 /**
  * Check if a key token is in the blockedKeys set.
  * Normalizes tokens for comparison.
  */
-const isKeyBlocked = (token: string, blockedKeys?: string[]): boolean => {
-	if (!blockedKeys || blockedKeys.length === 0) {
-		return false
-	}
-	const normalized = normalizeToken(token)
-	return blockedKeys.some((blocked) => normalizeToken(blocked) === normalized)
+const isFormElement = (target: EventTarget | null): boolean => {
+ 	if (!(target instanceof HTMLElement)) {
+ 		return false
+ 	}
+
+ 	if (target.isContentEditable) {
+ 		return true
+ 	}
+
+ 	return FORM_TAGS.has(target.tagName)
 }
 
 export function useKeyboardControls(
@@ -160,7 +139,7 @@ export function useKeyboardControls(
 ): void {
 	const host = target ?? document
 
-	const bindingMap = useMemo(() => {
+ 	const bindingMap = useMemo(() => {
 		const map = new Map<string, KeyboardActionBinding[]>()
 
 		for (const binding of bindings) {
@@ -179,92 +158,82 @@ export function useKeyboardControls(
 	}, [bindings])
 
 	useEffect(() => {
-		if (!isEnabled(enabled)) {
-			return
+		if (!isEnabled(enabled)) return
+
+		const checkGlobalBlocked = (tokens: string[]): boolean => {
+			return isKeyBlocked(tokens[0] ?? '', blockedKeys)
 		}
 
-		const handleKeyboardEvent = (phase: KeyboardPhase) => (rawEvent: Event) => {
-			if (!(rawEvent instanceof KeyboardEvent)) {
-				return
-			}
-
-			const event = rawEvent
-			const eventTokens = buildEventTokens(event)
-
-			// Check if any token is globally blocked
-			if (blockedKeys && blockedKeys.length > 0) {
-				for (const token of eventTokens) {
-					if (isKeyBlocked(token, blockedKeys)) {
-						event.preventDefault()
-						return
-					}
-				}
-			}
-
-			if (ignoreInputs && isFormElement(event.target)) {
-				const candidateBindings = eventTokens
-					.flatMap((token) => bindingMap.get(token) ?? [])
-					.filter((binding) => binding.allowInInputs)
-
+		const processInputBindings = (tokens: string[], phase: KeyboardPhase, evt: KeyboardEvent): boolean => {
+			for (const t of tokens) {
+				const candidateBindings = bindingMap.get(t) ?? []
 				for (const binding of candidateBindings) {
-					if (binding.blocked) {
-						continue
-					}
-					if ((binding.phase ?? 'keydown') !== phase) {
-						continue
-					}
-					if (!isEnabled(binding.enabled)) {
-						continue
-					}
-					if (event.repeat && !binding.allowRepeat) {
-						continue
-					}
-					if (binding.preventDefault ?? true) {
-						event.preventDefault()
-					}
-					binding.onTrigger({ action: binding.action, phase, event })
-					return
+					if (!binding.allowInInputs) continue
+					if (binding.blocked) continue
+					if ((binding.phase ?? 'keydown') !== phase) continue
+					if (!isEnabled(binding.enabled)) continue
+					if (evt.repeat && !binding.allowRepeat) continue
+					if (binding.preventDefault ?? true) evt.preventDefault()
+					binding.onTrigger({ action: binding.action, phase, event: evt })
+					return true
 				}
-
-				return
 			}
+			return false
+		}
 
-			for (const token of eventTokens) {
+		const processNormalBindings = (tokens: string[], phase: KeyboardPhase, evt: KeyboardEvent): boolean => {
+			for (const token of tokens) {
 				const matches = bindingMap.get(token)
-				if (!matches) {
-					continue
-				}
+				if (!matches) continue
 
 				for (const binding of matches) {
-					if (binding.blocked) {
-						continue
-					}
-					if ((binding.phase ?? 'keydown') !== phase) {
-						continue
-					}
-					if (!isEnabled(binding.enabled)) {
-						continue
-					}
-					if (event.repeat && !binding.allowRepeat) {
-						continue
-					}
-
-					if (binding.preventDefault ?? true) {
-						event.preventDefault()
-					}
-
-					binding.onTrigger({
-						action: binding.action,
-						phase,
-						event,
-					})
-					return
+					if (binding.blocked) continue
+					if ((binding.phase ?? 'keydown') !== phase) continue
+					if (!isEnabled(binding.enabled)) continue
+					if (evt.repeat && !binding.allowRepeat) continue
+					if (binding.preventDefault ?? true) evt.preventDefault()
+					binding.onTrigger({ action: binding.action, phase, event: evt })
+					return true
 				}
 			}
+			return false
 		}
 
-		const onKeyDown = handleKeyboardEvent('keydown')
-		const onKeyUp = handleKeyboardEvent('keyup')
+		const tryTriggerBindings = (
+			evt: KeyboardEvent,
+			phase: KeyboardPhase,
+			allowInputsOnly: boolean,
+		) => {
+			const tokens = buildEventTokens(evt)
+			if (tokens.length === 0) return false
+			if (checkGlobalBlocked(tokens, evt)) return true
+			if (allowInputsOnly) return processInputBindings(tokens, phase, evt)
+			return processNormalBindings(tokens, phase, evt)
+		}
+
+		const onKeyDown = (raw: Event) => {
+			if (!(raw instanceof KeyboardEvent)) {
+				return
+			}
+			const evt = raw
+			if (ignoreInputs && isFormElement(evt.target)) {
+				if (tryTriggerBindings(evt, 'keydown', true)) return
+				return
+			}
+			tryTriggerBindings(evt, 'keydown', false)
+		}
+
+		const onKeyUp = (raw: Event) => {
+			if (!(raw instanceof KeyboardEvent)) {
+				return
+			}
+			const evt = raw
+			if (ignoreInputs && isFormElement(evt.target)) {
+				if (tryTriggerBindings(evt, 'keyup', true)) return
+				return
+			}
+			tryTriggerBindings(evt, 'keyup', false)
+		}
 
 		host.addEventListener('keydown', onKeyDown)
 		host.addEventListener('keyup', onKeyUp)

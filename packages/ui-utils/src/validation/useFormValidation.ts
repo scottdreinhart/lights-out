@@ -15,7 +15,7 @@
 
 import { useState, useCallback, FormEvent } from 'react'
 import { validateValue, validateForm } from './schema'
-import type { ValidationRule, ValidationSchema, FormValidationState } from './types'
+import type { ValidationSchema, FormValidationState } from './types'
 
 export interface UseFormValidationOptions {
   validateOnChange?: boolean
