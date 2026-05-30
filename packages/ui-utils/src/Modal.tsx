@@ -1,4 +1,4 @@
-import React from 'react'
+import type { PropsWithChildren, ReactNode, RefObject } from 'react'
 import { useModalKeyboard, useModalDialog } from '@games/app-hook-utils'
 import styles from './Modal.module.css'
 
@@ -11,7 +11,7 @@ export const modalStyles = styles
 /**
  * Props for the Modal component wrapper
  */
-export interface ModalProps extends React.PropsWithChildren {
+export interface ModalProps extends PropsWithChildren {
   /** Whether the modal is currently open */
   isOpen: boolean
   /** Callback fired when the modal should close */
@@ -23,7 +23,7 @@ export interface ModalProps extends React.PropsWithChildren {
   /** Optional CSS class for the modal container */
   containerClassName?: string
   /** Modal content (children) */
-  children: React.ReactNode
+  children: ReactNode
 }
 
 /**
@@ -69,7 +69,7 @@ export function Modal({
   children
 }: ModalProps) {
   const { dialogRef, handleBackdropClick } = useModalDialog({ isOpen, onClose })
-  useModalKeyboard(dialogRef as React.RefObject<HTMLDialogElement>, onClose, isOpen)
+  useModalKeyboard(dialogRef as RefObject<HTMLDialogElement>, onClose, isOpen)
 
   return (
     <dialog

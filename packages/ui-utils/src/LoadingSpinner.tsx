@@ -5,7 +5,6 @@
  *   <LoadingSpinner size="medium" variant="default" message="Loading..." />
  */
 
-import type React from 'react'
 import styles from './LoadingSpinner.module.css'
 
 export interface LoadingSpinnerProps {

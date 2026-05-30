@@ -273,7 +273,7 @@ export function dealInitialHands(
  */
 export function processPlayerAction(gameState: GameState, action: GameAction): GameState {
   const player = gameState.players[0]
-  if (!player) return gameState
+  if (!player) {return gameState}
 
   switch (action) {
     case 'hit': {

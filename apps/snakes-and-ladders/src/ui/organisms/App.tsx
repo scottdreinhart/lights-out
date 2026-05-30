@@ -108,6 +108,7 @@ export function App() {
                 key={cell.number}
                 className="cell"
                 role="gridcell"
+                tabIndex={-1}
                 aria-label={`Square ${cell.number}`}
               >
                 <span className="cellNumber">{cell.number}</span>

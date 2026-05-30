@@ -35,7 +35,7 @@ export const useGame = () => {
   const canPlay = !state.gameOver
 
   const playRound = useCallback(() => {
-    if (state.gameOver) return
+    if (state.gameOver) {return}
 
     const humanDice = rollDice()
     const cpuDice = rollDice()
@@ -43,7 +43,7 @@ export const useGame = () => {
     const cpuSum = cpuDice.reduce((a, b) => a + b, 0)
 
     let message = ''
-    let wins = { ...state.wins }
+    const wins = { ...state.wins }
 
     if (humanSum > cpuSum) {
       wins.human += 1

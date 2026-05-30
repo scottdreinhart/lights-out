@@ -33,7 +33,7 @@ export function useGame() {
 
   const hold = useCallback(() => {
     setState((previous) => {
-      if (previous.gameOver || previous.turnScore <= 0) return previous
+      if (previous.gameOver || previous.turnScore <= 0) {return previous}
 
       const player = previous.currentPlayer
       const nextScore = previous.scores[player] + previous.turnScore
@@ -57,7 +57,7 @@ export function useGame() {
 
   const roll = useCallback(() => {
     setState((previous) => {
-      if (previous.gameOver) return previous
+      if (previous.gameOver) {return previous}
 
       const player = previous.currentPlayer
       const rollValue = rollDie()

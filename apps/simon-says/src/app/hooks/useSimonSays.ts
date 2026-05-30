@@ -28,7 +28,7 @@ export function useSimonSays(initialRules: Partial<SimonRuleConfig> = {}) {
   // Player makes a move
   const makeMove = useCallback(
     (color: SimonColor) => {
-      if (isPlayingSequence || gameState.gameOver) return
+      if (isPlayingSequence || gameState.gameOver) {return}
       const newState = playerMove(gameState, color, rules)
       setGameState(newState)
     },

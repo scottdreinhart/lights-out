@@ -42,8 +42,8 @@ export const isValidMove = (board: Board, from: Position, to: Position): boolean
   const size = board.length
 
   // Check bounds
-  if (from.row < 0 || from.row >= size || from.col < 0 || from.col >= size) return false
-  if (to.row < 0 || to.row >= size || to.col < 0 || to.col >= size) return false
+  if (from.row < 0 || from.row >= size || from.col < 0 || from.col >= size) {return false}
+  if (to.row < 0 || to.row >= size || to.col < 0 || to.col >= size) {return false}
 
   // Must move to adjacent cell
   const rowDiff = Math.abs(from.row - to.row)
@@ -82,10 +82,10 @@ export const isBoardSolved = (board: Board): boolean => {
     for (let col = 0; col < size; col++) {
       if (row === size - 1 && col === size - 1) {
         // Last position should be empty
-        if (board[row][col] !== 0) return false
+        if (board[row][col] !== 0) {return false}
       } else {
         // Other positions should have sequential numbers
-        if (board[row][col] !== expectedNumber) return false
+        if (board[row][col] !== expectedNumber) {return false}
         expectedNumber++
       }
     }
@@ -125,7 +125,7 @@ export const shuffleBoard = (board: Board, moves: number): Board => {
   for (let i = 0; i < moves; i++) {
     const validMoves = getValidMoves(currentBoard)
 
-    if (validMoves.length === 0) break
+    if (validMoves.length === 0) {break}
 
     // Choose random valid move
     const randomMove = validMoves[Math.floor(Math.random() * validMoves.length)]

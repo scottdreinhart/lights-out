@@ -16,7 +16,7 @@ interface DiceAreaProps {
 function getRollResultFeedback(
   rollResult: RollResult | null,
 ): { type?: 'success' | 'warning' | 'error'; text?: string } | undefined {
-  if (!rollResult) return undefined
+  if (!rollResult) {return undefined}
 
   if (rollResult.isBunco) {
     return { type: 'success', text: 'BUNCO!' }

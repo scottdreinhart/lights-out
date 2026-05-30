@@ -396,6 +396,16 @@ export default [
     },
   },
   {
+    files: ['apps/liars-dice/src/**/*.{ts,tsx}'],
+    rules: {
+      // liars-dice uses a scaffold pattern that currently triggers false-positive
+      // `boundaries/no-unknown` diagnostics for workspace package re-exports.
+      // Suppress unknown-element noise while preserving other architectural rules.
+      'boundaries/no-unknown': 'off',
+      'boundaries/no-unknown-files': 'off',
+    },
+  },
+  {
     files: ['apps/tamagotchi-engine/src/**/*.{ts,tsx}'],
     rules: {
       // Tamagotchi scaffold is new and still settling into the monorepo boundary map.

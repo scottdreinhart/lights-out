@@ -1,4 +1,3 @@
-import React from 'react'
 import { type InputAction, useGameInput } from '@games/app-hook-utils'
 
 export interface ControlButton {
@@ -13,14 +12,14 @@ export interface GameControlsProps {
   buttons?: ControlButton[]
 }
 
-export const GameControls: React.FC<GameControlsProps> = ({ 
-  onAction, 
+export function GameControls({
+  onAction,
   showTouchControls = true,
   buttons = [
     { action: 'ROLL', label: 'ROLL', variant: 'primary' },
-    { action: 'HOLD', label: 'HOLD', variant: 'secondary' }
-  ]
-}) => {
+    { action: 'HOLD', label: 'HOLD', variant: 'secondary' },
+  ],
+}: GameControlsProps) {
   // Bind keyboard/gamepad inputs
   useGameInput(onAction)
 
@@ -32,9 +31,9 @@ export const GameControls: React.FC<GameControlsProps> = ({
     <div className="game-controls touch-only">
       <div className="action-buttons">
         {buttons.map((btn) => (
-          <button 
+          <button
             key={btn.action}
-            onClick={() => onAction(btn.action)} 
+            onClick={() => onAction(btn.action)}
             className={`btn-${btn.variant || 'primary'}`}
           >
             {btn.label}

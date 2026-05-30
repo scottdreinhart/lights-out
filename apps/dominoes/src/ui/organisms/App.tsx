@@ -16,7 +16,7 @@ export function App() {
   }, [gameState.table])
 
   useEffect(() => {
-    if (phase !== 'playing' || isPlayerTurn || gameState.gameOver) return
+    if (phase !== 'playing' || isPlayerTurn || gameState.gameOver) {return}
     const timer = setTimeout(() => {
       cpuTurn()
     }, 700)

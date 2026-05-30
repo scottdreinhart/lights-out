@@ -191,7 +191,7 @@ export const useReversiApp = (): UseReversiAppReturn => {
   useGridNavigationInput(
     {
       onMove: (direction) => {
-        if (result.status !== 'playing') return
+        if (result.status !== 'playing') {return}
 
         setFocusedPosition((current) => ({
           row: Math.max(0, Math.min(BOARD_SIZE - 1, direction === 'up' ? current.row - 1 : direction === 'down' ? current.row + 1 : current.row)),

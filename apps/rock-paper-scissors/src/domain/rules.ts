@@ -76,14 +76,14 @@ export async function determineGameWinner(
   // Try WASM first
   const wasmResult = await rockPaperScissorsWasm.isGameOver(playerScore, cpuScore, bestOf)
   if (wasmResult !== null) {
-    if (playerScore > cpuScore) return 'player'
-    if (cpuScore > playerScore) return 'cpu'
+    if (playerScore > cpuScore) {return 'player'}
+    if (cpuScore > playerScore) {return 'cpu'}
     return null // This shouldn't happen if game is over
   }
 
   // JS fallback
   const winsNeeded = Math.floor(bestOf / 2) + 1
-  if (playerScore >= winsNeeded) return 'player'
-  if (cpuScore >= winsNeeded) return 'cpu'
+  if (playerScore >= winsNeeded) {return 'player'}
+  if (cpuScore >= winsNeeded) {return 'cpu'}
   return null
 }

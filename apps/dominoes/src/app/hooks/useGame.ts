@@ -12,7 +12,7 @@ type GameAction =
   | { type: 'RESET' }
 
 function getTableEnds(table: Domino[]): { left: number | null; right: number | null } {
-  if (table.length === 0) return { left: null, right: null }
+  if (table.length === 0) {return { left: null, right: null }}
   return { left: table[0].left, right: table[table.length - 1].right }
 }
 
@@ -23,7 +23,7 @@ function reducer(state: GameState, action: GameAction): GameState {
       return createGameState()
 
     case 'PLACE_TILE': {
-      if (state.currentPlayer !== 'player') return state
+      if (state.currentPlayer !== 'player') {return state}
       const { domino, side } = action
       const table = [...state.table]
 
@@ -55,7 +55,7 @@ function reducer(state: GameState, action: GameAction): GameState {
     }
 
     case 'DRAW_FROM_BONEYARD': {
-      if (state.boneyard.length === 0) return state
+      if (state.boneyard.length === 0) {return state}
       const [drawn, ...remaining] = state.boneyard
       return {
         ...state,
@@ -65,7 +65,7 @@ function reducer(state: GameState, action: GameAction): GameState {
     }
 
     case 'CPU_TURN': {
-      if (state.currentPlayer !== 'computer') return state
+      if (state.currentPlayer !== 'computer') {return state}
       const { left, right } = getTableEnds(state.table)
       const valid = getValidMoves(state.computerHand, left, right)
 

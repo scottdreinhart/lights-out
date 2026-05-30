@@ -76,7 +76,7 @@ export function useMinesweeperApp() {
   )
 
   const requestHint = useCallback(() => {
-    if (hintPending || disabled) return
+    if (hintPending || disabled) {return}
     setHintPending(true)
     for (let r = 0; r < game.rows; r++) {
       for (let c = 0; c < game.cols; c++) {
@@ -104,10 +104,10 @@ export function useMinesweeperApp() {
       onMove: (direction) => {
         setSelectedCell((current) => {
           const next = { ...current }
-          if (direction === 'up') next.row = Math.max(0, current.row - 1)
-          if (direction === 'down') next.row = Math.min(game.rows - 1, current.row + 1)
-          if (direction === 'left') next.col = Math.max(0, current.col - 1)
-          if (direction === 'right') next.col = Math.min(game.cols - 1, current.col + 1)
+          if (direction === 'up') {next.row = Math.max(0, current.row - 1)}
+          if (direction === 'down') {next.row = Math.min(game.rows - 1, current.row + 1)}
+          if (direction === 'left') {next.col = Math.max(0, current.col - 1)}
+          if (direction === 'right') {next.col = Math.min(game.cols - 1, current.col + 1)}
           return next
         })
       },

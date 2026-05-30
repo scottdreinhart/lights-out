@@ -114,11 +114,21 @@ export function getSpeedMultiplier(
 
   // Speed increases at thresholds: 5, 9, 13, 17, etc.
   let speedIncrease = 1
-  if (roundNumber >= 5) speedIncrease = 1.05
-  if (roundNumber >= 9) speedIncrease = 1.1
-  if (roundNumber >= 13) speedIncrease = 1.15
-  if (roundNumber >= 17) speedIncrease = 1.2
-  if (roundNumber >= 21) speedIncrease = 1.25
+  if (roundNumber >= 5) {
+    speedIncrease = 1.05
+  }
+  if (roundNumber >= 9) {
+    speedIncrease = 1.1
+  }
+  if (roundNumber >= 13) {
+    speedIncrease = 1.15
+  }
+  if (roundNumber >= 17) {
+    speedIncrease = 1.2
+  }
+  if (roundNumber >= 21) {
+    speedIncrease = 1.25
+  }
 
   return baseMultiplier * speedIncrease
 }

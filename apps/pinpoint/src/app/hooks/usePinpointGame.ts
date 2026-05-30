@@ -16,7 +16,7 @@ export const usePinpointGame = () => {
   const [hintGuess, setHintGuess] = useState<Guess | null>(null)
 
   const makePlayerGuess = useCallback(() => {
-    if (currentGuess.length !== gameState.codeLength) return
+    if (currentGuess.length !== gameState.codeLength) {return}
 
     try {
       const newState = makeGuess(gameState, currentGuess)
@@ -31,8 +31,8 @@ export const usePinpointGame = () => {
 
   const addPegToGuess = useCallback(
     (color: string) => {
-      if (currentGuess.length >= gameState.codeLength) return
-      if (!gameState.availableColors.includes(color as any)) return
+      if (currentGuess.length >= gameState.codeLength) {return}
+      if (!gameState.availableColors.includes(color as any)) {return}
 
       setCurrentGuess((prev) => [...prev, color as any])
     },
@@ -54,7 +54,7 @@ export const usePinpointGame = () => {
   }, [gameState])
 
   const makeAiGuess = useCallback(() => {
-    if (!isGameActive(gameState)) return
+    if (!isGameActive(gameState)) {return}
 
     const aiGuess = generateAiGuess(gameState)
     try {

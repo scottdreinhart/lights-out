@@ -79,7 +79,7 @@ export const useStrategy = ({
       dealerUpCard: Card,
       playerAction: GameAction,
     ): void => {
-      if (strategyMode === 'none') return
+      if (strategyMode === 'none') {return}
 
       if (strategyMode === 'basic' || strategyMode === 'learning') {
         basicStrategy.getRecommendation(

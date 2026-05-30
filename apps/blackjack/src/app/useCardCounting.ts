@@ -60,7 +60,7 @@ export const useCardCounting = ({
   // Record card in the count
   const recordCard = useCallback(
     (card: Card) => {
-      if (!enabled) return
+      if (!enabled) {return}
 
       cardsDealtRef.current += 1
       const newState = updateCountingState(

@@ -39,84 +39,6 @@ export interface UseKeyboardControlsOptions {
 	blockedKeys?: readonly string[]
 }
 
-const getModifiers = (event: KeyboardEvent): string[] => {
- 	const mods: string[] = []
- 	if (event.ctrlKey || event.metaKey) {
- 		mods.push('ctrl')
- 	}
- 	if (event.altKey) {
- 		mods.push('alt')
- 	}
- 	if (event.shiftKey) {
- 		mods.push('shift')
- 	}
- 	return mods
-}
-
-const getCodeAndKey = (event: KeyboardEvent) => {
- 	const code = event.code.toLowerCase()
- 	const keyRaw = event.key.toLowerCase()
- 	const key = keyRaw === ' ' ? 'space' : keyRaw
- 	return { code, key }
-}
-
-const buildKeyAliases = (code: string, key: string): string[] => {
- 	const aliases = new Set<string>()
-
- 	if (code.startsWith('key') && code.length === 4) {
- 		aliases.add(code.slice(3))
- 	}
- 	if (code.startsWith('digit') && code.length === 6) {
- 		aliases.add(code.slice(5))
- 	}
- 	if (code.startsWith('numpad') && code.length === 7) {
- 		aliases.add(code.slice(6))
- 	}
-
- 	if (key === 'escape') {
- 		aliases.add('esc')
- 	}
- 	if (key === 'arrowup') {
- 		aliases.add('up')
- 	}
- 	if (key === 'arrowdown') {
- 		aliases.add('down')
- 	}
- 	if (key === 'arrowleft') {
- 		aliases.add('left')
- 	}
- 	if (key === 'arrowright') {
- 		aliases.add('right')
- 	}
-
- 	// WASD mapping
- 	if (key === 'w') {
- 		aliases.add('arrowup')
- 		aliases.add('up')
- 	}
- 	if (key === 'a') {
- 		aliases.add('arrowleft')
- 		aliases.add('left')
- 	}
- 	if (key === 's') {
- 		aliases.add('arrowdown')
- 		aliases.add('down')
- 	}
- 	if (key === 'd') {
- 		aliases.add('arrowright')
- 		aliases.add('right')
- 	}
-
- 	return [...aliases]
-}
-
-const addTokenVariants = (tokens: Set<string>, base: string, modifiers: string[]) => {
- 	tokens.add(base)
- 	if (modifiers.length > 0) {
- 		tokens.add(`${modifiers.join('+')}+${base}`)
- 	}
-}
-
 /**
  * Check if a key token is in the blockedKeys set.
  * Normalizes tokens for comparison.
@@ -206,7 +128,7 @@ export function useKeyboardControls(
 		) => {
 			const tokens = buildEventTokens(evt)
 			if (tokens.length === 0) return false
-			if (checkGlobalBlocked(tokens, evt)) return true
+			if (checkGlobalBlocked(tokens)) return true
 			if (allowInputsOnly) return processInputBindings(tokens, phase, evt)
 			return processNormalBindings(tokens, phase, evt)
 		}

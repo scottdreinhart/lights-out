@@ -12,7 +12,7 @@ export function RulesModal({ isOpen, onClose }: RulesModalProps) {
 
   // Keyboard handlers: ESC to close
   useEffect(() => {
-    if (!isOpen) return
+    if (!isOpen) {return}
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -27,7 +27,7 @@ export function RulesModal({ isOpen, onClose }: RulesModalProps) {
 
   // Focus management: trap focus in modal, restore on close
   useEffect(() => {
-    if (!isOpen || !modalRef.current) return
+    if (!isOpen || !modalRef.current) {return}
 
     const previouslyFocused = document.activeElement as HTMLElement
 
@@ -47,7 +47,7 @@ export function RulesModal({ isOpen, onClose }: RulesModalProps) {
     }
   }, [isOpen])
 
-  if (!isOpen) return null
+  if (!isOpen) {return null}
 
   return createPortal(
     <div

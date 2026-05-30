@@ -44,7 +44,7 @@ export const useGame = () => {
 
   const placeBet = useCallback((side: BetSide) => {
     setState((s) => {
-      if (s.gameOver) return s
+      if (s.gameOver) {return s}
 
       const [a, b] = rollDice()
       const sum = a + b

@@ -25,7 +25,9 @@ const rollDice = (count: number): number[] =>
   Array.from({ length: count }, () => Math.floor(Math.random() * 6) + 1)
 
 const bestTwoSum = (values: number[]): number => {
-  if (values.length < 2) return 0
+  if (values.length < 2) {
+    return 0
+  }
   const [a, b] = [...values].sort((x, y) => y - x)
   return a + b
 }
@@ -99,7 +101,9 @@ export function useGame() {
 
   const playRound = useCallback(() => {
     setState((previous) => {
-      if (previous.gameOver) return previous
+      if (previous.gameOver) {
+        return previous
+      }
 
       const human = simulateTurn('human')
       const cpu = simulateTurn('cpu')

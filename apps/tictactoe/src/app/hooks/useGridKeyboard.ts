@@ -18,16 +18,16 @@ const useGridKeyboard = (
 
         switch (direction) {
           case 'up':
-            if (row > 0) newRow = row - 1
+            if (row > 0) {newRow = row - 1}
             break
           case 'down':
-            if (row < BOARD_SIZE - 1) newRow = row + 1
+            if (row < BOARD_SIZE - 1) {newRow = row + 1}
             break
           case 'left':
-            if (col > 0) newCol = col - 1
+            if (col > 0) {newCol = col - 1}
             break
           case 'right':
-            if (col < BOARD_SIZE - 1) newCol = col + 1
+            if (col < BOARD_SIZE - 1) {newCol = col + 1}
             break
         }
 

@@ -69,9 +69,9 @@ export const QueensBoard: React.FC<QueensBoardProps> = ({
     }
 
     let cellClassName = styles.cell
-    if (hasQueen) cellClassName += ` ${styles.queen}`
-    if (highlight?.type === 'hint') cellClassName += ` ${styles.hint}`
-    if (highlight?.type === 'conflict') cellClassName += ` ${styles.conflict}`
+    if (hasQueen) {cellClassName += ` ${styles.queen}`}
+    if (highlight?.type === 'hint') {cellClassName += ` ${styles.hint}`}
+    if (highlight?.type === 'conflict') {cellClassName += ` ${styles.conflict}`}
 
     return (
       <button

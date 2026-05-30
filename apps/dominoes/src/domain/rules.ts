@@ -46,7 +46,7 @@ export function createGameState(): GameState {
 
 /** Check if a domino can be placed at the given end of the table. */
 export function canPlace(domino: Domino, tableEnd: number | null): boolean {
-  if (tableEnd === null) return true
+  if (tableEnd === null) {return true}
   return domino.left === tableEnd || domino.right === tableEnd
 }
 

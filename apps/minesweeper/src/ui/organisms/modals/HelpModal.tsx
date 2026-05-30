@@ -17,7 +17,7 @@ export function HelpModal({ isOpen, onClose }: HelpModalProps) {
 
   // Keyboard handlers: ESC to close
   useEffect(() => {
-    if (!isOpen) return
+    if (!isOpen) {return}
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -32,7 +32,7 @@ export function HelpModal({ isOpen, onClose }: HelpModalProps) {
 
   // Focus management: trap focus in modal, restore on close
   useEffect(() => {
-    if (!isOpen || !modalRef.current) return
+    if (!isOpen || !modalRef.current) {return}
 
     const previouslyFocused = document.activeElement as HTMLElement
 
@@ -52,7 +52,7 @@ export function HelpModal({ isOpen, onClose }: HelpModalProps) {
     }
   }, [isOpen])
 
-  if (!isOpen) return null
+  if (!isOpen) {return null}
 
   const helpItems = [
     {

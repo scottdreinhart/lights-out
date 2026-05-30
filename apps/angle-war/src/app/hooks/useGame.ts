@@ -27,14 +27,6 @@ const INITIAL_CONTROLS: ControlState = {
   salvo: false,
 }
 
-const isTypingElement = (target: EventTarget | null): boolean => {
-  if (!(target instanceof HTMLElement)) {
-    return false
-  }
-  const tag = target.tagName
-  return tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || target.isContentEditable
-}
-
 export const useGame = (): UseGameResult => {
   const [state, setState] = useState<GameState>(() => createInitialState())
   const controlsRef = useRef<ControlState>(INITIAL_CONTROLS)

@@ -50,8 +50,8 @@ export const QueensGame: React.FC = () => {
   }
 
   const getStatusClass = () => {
-    if (gameState.isSolved) return styles.success
-    if (gameState.isComplete) return styles.error
+    if (gameState.isSolved) {return styles.success}
+    if (gameState.isComplete) {return styles.error}
     return styles.info
   }
 

@@ -82,7 +82,7 @@ export const useBankroll = (playerId: string, gameId: string) => {
    * Creates gaming session and sets up table configuration
    */
   const handleSelectTable = (variant: TableVariant, chipSet: number[]) => {
-    if (!bankroll) return
+    if (!bankroll) {return}
 
     // Create table configuration with game-specific settings
     const config = createTableConfig(gameId, variant as 'casual' | 'mid' | 'high-roller', {
@@ -184,7 +184,7 @@ export const useBankroll = (playerId: string, gameId: string) => {
    * End current gaming session and get final statistics
    */
   const endCurrentSession = () => {
-    if (!gameSession) return null
+    if (!gameSession) {return null}
 
     const completedSession = endSession(gameSession)
     const stats = getSessionStats(completedSession)

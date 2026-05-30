@@ -91,7 +91,7 @@ function createPuzzleFromSolution(solved: Board, clueCount: number): Board {
   // Randomly select cells to keep as clues
   let kept = 0
   for (const cell of allCells) {
-    if (kept >= clueCount) break
+    if (kept >= clueCount) {break}
     if (Math.random() < clueCount / allCells.length) {
       cellsToKeep.add(cell.id)
       kept++

@@ -37,7 +37,7 @@ export function useGame() {
 
   const rollCurrentPlayer = useCallback(() => {
     setState((previous) => {
-      if (previous.gameOver) return previous
+      if (previous.gameOver) {return previous}
 
       const roller = previous.activePlayer
       const challenger = previous.targetOwner

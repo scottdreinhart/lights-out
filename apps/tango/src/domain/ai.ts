@@ -25,7 +25,7 @@ export const isSolvable = (board: Board): boolean => {
   const size = board.length
 
   // For odd-sized boards, always solvable
-  if (size % 2 === 1) return true
+  if (size % 2 === 1) {return true}
 
   // For even-sized boards, check parity
   const parity = calculateParity(board)
@@ -33,7 +33,7 @@ export const isSolvable = (board: Board): boolean => {
 }
 
 export const solvePuzzleBFS = (board: Board): Position[] | null => {
-  if (!isSolvable(board)) return null
+  if (!isSolvable(board)) {return null}
 
   const size = board.length
   const solvedBoard = createSolvedBoard(size)
@@ -70,7 +70,7 @@ export const solvePuzzleBFS = (board: Board): Position[] | null => {
 }
 
 export const solvePuzzleAStar = (board: Board): Position[] | null => {
-  if (!isSolvable(board)) return null
+  if (!isSolvable(board)) {return null}
 
   const size = board.length
   const solvedBoard = createSolvedBoard(size)

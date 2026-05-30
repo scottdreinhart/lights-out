@@ -11,7 +11,7 @@ export function App() {
   const [view, setView] = useState<'loading' | 'menu' | 'game'>('loading')
 
   useEffect(() => {
-    if (view !== 'game' || state.gameOver || state.activePlayer !== 'cpu') return
+    if (view !== 'game' || state.gameOver || state.activePlayer !== 'cpu') {return}
     const timer = window.setTimeout(() => rollCurrentPlayer(), 900)
     return () => window.clearTimeout(timer)
   }, [rollCurrentPlayer, state.activePlayer, state.gameOver, view])

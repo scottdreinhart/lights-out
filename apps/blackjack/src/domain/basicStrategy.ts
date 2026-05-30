@@ -557,8 +557,8 @@ export const getSplitStrategyRecommendation = (
  * Normalize dealer up card to strategy table key
  */
 function getNormalizedDealerUpCard(rank: Rank): DealerUpCard {
-  if (rank === 'K' || rank === 'Q' || rank === 'J') return '10'
-  if (rank === 'A') return 'A'
+  if (rank === 'K' || rank === 'Q' || rank === 'J') {return '10'}
+  if (rank === 'A') {return 'A'}
   return rank as DealerUpCard
 }
 
@@ -566,7 +566,7 @@ function getNormalizedDealerUpCard(rank: Rank): DealerUpCard {
  * Normalize player rank to split strategy table key
  */
 function getNormalizedRank(rank: Rank): string {
-  if (rank === 'K' || rank === 'Q' || rank === 'J') return '10'
+  if (rank === 'K' || rank === 'Q' || rank === 'J') {return '10'}
   return rank
 }
 
@@ -638,10 +638,10 @@ function calculateExpectedValue(
   // Simplified EV calculation (not exact, but directional)
   const baseEV = 0.01 // Basic strategy has ~0.5% player advantage
 
-  if (action === 'double') return baseEV * 2 // Double pays 2x
-  if (action === 'stand' && playerValue >= 17) return baseEV // Safe
-  if (action === 'hit' && playerValue < 12) return baseEV * 1.5 // Good hit situation
-  if (action === 'split') return baseEV * 1.8 // Favorable split
+  if (action === 'double') {return baseEV * 2} // Double pays 2x
+  if (action === 'stand' && playerValue >= 17) {return baseEV} // Safe
+  if (action === 'hit' && playerValue < 12) {return baseEV * 1.5} // Good hit situation
+  if (action === 'split') {return baseEV * 1.8} // Favorable split
 
   return baseEV
 }
@@ -651,8 +651,8 @@ function calculateExpectedValue(
  */
 export const getStrategyAccuracyFeedback = (isCorrect: boolean, streak: number): string => {
   if (isCorrect) {
-    if (streak >= 10) return "🔥 Perfect! You've mastered basic strategy!"
-    if (streak >= 5) return "✅ Excellent! You're playing optimal strategy"
+    if (streak >= 10) {return "🔥 Perfect! You've mastered basic strategy!"}
+    if (streak >= 5) {return "✅ Excellent! You're playing optimal strategy"}
     return '👍 Correct basic strategy play'
   } else {
     return '❌ Not optimal. Review basic strategy for this situation'

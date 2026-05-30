@@ -28,7 +28,7 @@ function gameReducer(state: GameState, action: GameContextAction): GameState {
 
     case 'SET_BET': {
       const player = state.players[0]
-      if (!player) return state
+      if (!player) {return state}
       return {
         ...state,
         players: [

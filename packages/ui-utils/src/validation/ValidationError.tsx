@@ -5,7 +5,6 @@
  *   <ValidationError errors={['Email is required', 'Invalid format']} />
  */
 
-import type React from 'react'
 import styles from './validation.module.css'
 
 export interface ValidationErrorProps {

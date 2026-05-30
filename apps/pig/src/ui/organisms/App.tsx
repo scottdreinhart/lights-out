@@ -11,7 +11,7 @@ export function App() {
   const [view, setView] = useState<'loading' | 'menu' | 'game'>('loading')
 
   useEffect(() => {
-    if (view !== 'game' || state.gameOver || state.currentPlayer !== 'cpu') return
+    if (view !== 'game' || state.gameOver || state.currentPlayer !== 'cpu') {return}
     const timer = window.setTimeout(() => {
       if (cpuShouldHold) {
         hold()

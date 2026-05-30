@@ -32,6 +32,9 @@
       "@games/ui-utils": [
         "../../packages/ui-utils/src"
       ],
+      "@games/app-hook-utils": [
+        "../../packages/app-hook-utils/src"
+      ],
       "@games/domain-shared": [
         "../../packages/domain-shared/src"
       ],
@@ -46,7 +49,7 @@
       ],
       "@games/theme-context": [
         "../../packages/theme-context/src"
-      ]
+      ],
       "@games/diagnostics-utils": [
         "../../packages/diagnostics-utils/src"
       ],

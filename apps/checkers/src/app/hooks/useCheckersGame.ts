@@ -303,10 +303,10 @@ export const useCheckersGame = (): UseCheckersGameResultShape => {
   useGridNavigationInput(
     {
       onMove: (direction) => {
-        if (direction === 'up') moveKeyboardFocus(-1, 0)
-        if (direction === 'down') moveKeyboardFocus(1, 0)
-        if (direction === 'left') moveKeyboardFocus(0, -1)
-        if (direction === 'right') moveKeyboardFocus(0, 1)
+        if (direction === 'up') {moveKeyboardFocus(-1, 0)}
+        if (direction === 'down') {moveKeyboardFocus(1, 0)}
+        if (direction === 'left') {moveKeyboardFocus(0, -1)}
+        if (direction === 'right') {moveKeyboardFocus(0, 1)}
       },
       onSelect: handleKeyboardAction,
       onCancel: handleKeyboardCancel,

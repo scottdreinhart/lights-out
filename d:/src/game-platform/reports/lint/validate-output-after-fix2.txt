@@ -1,0 +1,532 @@
+
+> game-platform@1.0.0 validate /mnt/d/src/game-platform
+> pnpm validate:gated
+
+
+> game-platform@1.0.0 validate:gated /mnt/d/src/game-platform
+> node scripts/validate-gated.mjs
+
+[94m[1m🧪 quality gate runner start (3 gates; each gate is a top-level validation metric)[0m
+[95m
+[1/3] 📚 quality gate: test:names (2 more; gate scope = test:names)[0m
+undefined  🔍 test name gate start (segments are workspace/file batches of test files)...[0m
+undefined  Scope=., chunk=200, failFast=true, metric=test names[0m
+undefined
+  📚 [1/67] test-name segment for . (66 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 5[0m
+[93m  ✅ Passed: metric=test names for . [1/67][0m
+undefined
+  📚 [2/67] test-name segment for apps/angle-war (65 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 2[0m
+[93m  ✅ Passed: metric=test names for apps/angle-war [2/67][0m
+undefined
+  📚 [3/67] test-name segment for apps/arc-spin (64 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/arc-spin [3/67][0m
+undefined
+  📚 [4/67] test-name segment for apps/battleship (63 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/battleship [4/67][0m
+undefined
+  📚 [5/67] test-name segment for apps/beat-grid (62 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/beat-grid [5/67][0m
+undefined
+  📚 [6/67] test-name segment for apps/bingo (61 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/bingo [6/67][0m
+undefined
+  📚 [7/67] test-name segment for apps/bingo-30 (60 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 3[0m
+[93m  ✅ Passed: metric=test names for apps/bingo-30 [7/67][0m
+undefined
+  📚 [8/67] test-name segment for apps/bingo-80 (59 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/bingo-80 [8/67][0m
+undefined
+  📚 [9/67] test-name segment for apps/bingo-90 (58 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/bingo-90 [9/67][0m
+undefined
+  📚 [10/67] test-name segment for apps/bingo-blackout (57 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 3[0m
+[93m  ✅ Passed: metric=test names for apps/bingo-blackout [10/67][0m
+undefined
+  📚 [11/67] test-name segment for apps/bingo-bonus (56 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/bingo-bonus [11/67][0m
+undefined
+  📚 [12/67] test-name segment for apps/bingo-pattern (55 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/bingo-pattern [12/67][0m
+undefined
+  📚 [13/67] test-name segment for apps/bingo-progressive (54 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/bingo-progressive [13/67][0m
+undefined
+  📚 [14/67] test-name segment for apps/bingo-rush (53 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 4[0m
+[93m  ✅ Passed: metric=test names for apps/bingo-rush [14/67][0m
+undefined
+  📚 [15/67] test-name segment for apps/bingo-survival (52 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 2[0m
+[93m  ✅ Passed: metric=test names for apps/bingo-survival [15/67][0m
+undefined
+  📚 [16/67] test-name segment for apps/blackjack (51 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 4[0m
+[93m  ✅ Passed: metric=test names for apps/blackjack [16/67][0m
+undefined
+  📚 [17/67] test-name segment for apps/block-fall (50 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/block-fall [17/67][0m
+undefined
+  📚 [18/67] test-name segment for apps/bunco (49 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/bunco [18/67][0m
+undefined
+  📚 [19/67] test-name segment for apps/cee-lo (48 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/cee-lo [19/67][0m
+undefined
+  📚 [20/67] test-name segment for apps/checkers (47 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 4[0m
+[93m  ✅ Passed: metric=test names for apps/checkers [20/67][0m
+undefined
+  📚 [21/67] test-name segment for apps/chicago (46 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/chicago [21/67][0m
+undefined
+  📚 [22/67] test-name segment for apps/cho-han (45 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/cho-han [22/67][0m
+undefined
+  📚 [23/67] test-name segment for apps/circuit-maze (44 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 7[0m
+[93m  ✅ Passed: metric=test names for apps/circuit-maze [23/67][0m
+undefined
+  📚 [24/67] test-name segment for apps/connect-four (43 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 4[0m
+[93m  ✅ Passed: metric=test names for apps/connect-four [24/67][0m
+undefined
+  📚 [25/67] test-name segment for apps/crossclimb (42 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/crossclimb [25/67][0m
+undefined
+  📚 [26/67] test-name segment for apps/dash-lanes (41 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/dash-lanes [26/67][0m
+undefined
+  📚 [27/67] test-name segment for apps/dominoes (40 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/dominoes [27/67][0m
+undefined
+  📚 [28/67] test-name segment for apps/farkle (39 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/farkle [28/67][0m
+undefined
+  📚 [29/67] test-name segment for apps/go-fish (38 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/go-fish [29/67][0m
+undefined
+  📚 [30/67] test-name segment for apps/hangman (37 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/hangman [30/67][0m
+undefined
+  📚 [31/67] test-name segment for apps/liars-dice (36 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/liars-dice [31/67][0m
+undefined
+  📚 [32/67] test-name segment for apps/lights-out (35 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 2[0m
+[93m  ✅ Passed: metric=test names for apps/lights-out [32/67][0m
+undefined
+  📚 [33/67] test-name segment for apps/mancala (34 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 2[0m
+[93m  ✅ Passed: metric=test names for apps/mancala [33/67][0m
+undefined
+  📚 [34/67] test-name segment for apps/memory (33 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/memory [34/67][0m
+undefined
+  📚 [35/67] test-name segment for apps/memory-game (32 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/memory-game [35/67][0m
+undefined
+  📚 [36/67] test-name segment for apps/mexico (31 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/mexico [36/67][0m
+undefined
+  📚 [37/67] test-name segment for apps/minesweeper (30 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 5[0m
+[93m  ✅ Passed: metric=test names for apps/minesweeper [37/67][0m
+undefined
+  📚 [38/67] test-name segment for apps/mini-sudoku (29 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 3[0m
+[93m  ✅ Passed: metric=test names for apps/mini-sudoku [38/67][0m
+undefined
+  📚 [39/67] test-name segment for apps/monchola (28 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/monchola [39/67][0m
+undefined
+  📚 [40/67] test-name segment for apps/neon-hop (27 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/neon-hop [40/67][0m
+undefined
+  📚 [41/67] test-name segment for apps/nim (26 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 5[0m
+[93m  ✅ Passed: metric=test names for apps/nim [41/67][0m
+undefined
+  📚 [42/67] test-name segment for apps/pattern-bingo (25 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 3[0m
+[93m  ✅ Passed: metric=test names for apps/pattern-bingo [42/67][0m
+undefined
+  📚 [43/67] test-name segment for apps/pig (24 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/pig [43/67][0m
+undefined
+  📚 [44/67] test-name segment for apps/pinpoint (23 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/pinpoint [44/67][0m
+undefined
+  📚 [45/67] test-name segment for apps/power-bingo (22 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 3[0m
+[93m  ✅ Passed: metric=test names for apps/power-bingo [45/67][0m
+undefined
+  📚 [46/67] test-name segment for apps/pulse-burst (21 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/pulse-burst [46/67][0m
+undefined
+  📚 [47/67] test-name segment for apps/queens (20 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/queens [47/67][0m
+undefined
+  📚 [48/67] test-name segment for apps/reversi (19 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 3[0m
+[93m  ✅ Passed: metric=test names for apps/reversi [48/67][0m
+undefined
+  📚 [49/67] test-name segment for apps/rock-paper-scissors (18 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/rock-paper-scissors [49/67][0m
+undefined
+  📚 [50/67] test-name segment for apps/ship-captain-crew (17 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/ship-captain-crew [50/67][0m
+undefined
+  📚 [51/67] test-name segment for apps/shut-the-box (16 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/shut-the-box [51/67][0m
+undefined
+  📚 [52/67] test-name segment for apps/simon (15 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 2[0m
+[93m  ✅ Passed: metric=test names for apps/simon [52/67][0m
+undefined
+  📚 [53/67] test-name segment for apps/simon-says (14 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/simon-says [53/67][0m
+undefined
+  📚 [54/67] test-name segment for apps/sky-blitz (13 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/sky-blitz [54/67][0m
+undefined
+  📚 [55/67] test-name segment for apps/snake (12 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 2[0m
+[93m  ✅ Passed: metric=test names for apps/snake [55/67][0m
+undefined
+  📚 [56/67] test-name segment for apps/snakes-and-ladders (11 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/snakes-and-ladders [56/67][0m
+undefined
+  📚 [57/67] test-name segment for apps/speed-bingo (10 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 3[0m
+[93m  ✅ Passed: metric=test names for apps/speed-bingo [57/67][0m
+undefined
+  📚 [58/67] test-name segment for apps/sudoku (9 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 4[0m
+[93m  ✅ Passed: metric=test names for apps/sudoku [58/67][0m
+undefined
+  📚 [59/67] test-name segment for apps/tamagotchi-engine (8 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 11[0m
+[93m  ✅ Passed: metric=test names for apps/tamagotchi-engine [59/67][0m
+undefined
+  📚 [60/67] test-name segment for apps/tango (7 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/tango [60/67][0m
+undefined
+  📚 [61/67] test-name segment for apps/tictactoe (6 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 8[0m
+[93m  ✅ Passed: metric=test names for apps/tictactoe [61/67][0m
+undefined
+  📚 [62/67] test-name segment for apps/tower-rise (5 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 8[0m
+[93m  ✅ Passed: metric=test names for apps/tower-rise [62/67][0m
+undefined
+  📚 [63/67] test-name segment for apps/vector-assault (4 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/vector-assault [63/67][0m
+undefined
+  📚 [64/67] test-name segment for apps/war (3 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/war [64/67][0m
+undefined
+  📚 [65/67] test-name segment for apps/zip (2 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 2[0m
+[93m  ✅ Passed: metric=test names for apps/zip [65/67][0m
+undefined
+  📚 [66/67] test-name segment for packages/bingo-ui-components (1 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for packages/bingo-ui-components [66/67][0m
+undefined
+  📚 [67/67] test-name segment for packages/game-engine-factory (0 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for packages/game-engine-factory [67/67][0m
+undefined  ======================================================================[0m
+undefined  📚 Summary: 145 valid, 0 invalid (metric=test names)[0m
+undefined  ======================================================================[0m
+
+[92m  ✅ test name gate complete.[0m
+[92m✅ Passed: quality gate test:names (23008ms)[0m
+[95m
+[2/3] 📚 quality gate: apps:validate:gated (1 more; gate scope = apps:validate:gated)[0m
+undefined  🧪 workspace gate start: metric=validate:gated, scope=apps, workspaces=63 (each segment is one workspace package/app)[0m
+undefined
+  📚 [1/63] workspace segment: @games/angle-war (62 more; segment = one workspace package/app)[0m
+
+> @games/angle-war@1.0.0 validate:gated /mnt/d/src/game-platform/apps/angle-war
+> pnpm -C ../.. exec node scripts/validate-gated.mjs --nameScope=apps/angle-war/src --workspaceScope=apps/angle-war --testScope=apps/angle-war/src --buildScope=apps/angle-war -- --skip-build
+
+[94m[1m🧪 quality gate runner start (5 gates; each gate is a top-level validation metric)[0m
+[95m
+[1/5] 📚 quality gate: test:names (4 more; gate scope = test:names)[0m
+undefined  🔍 test name gate start (segments are workspace/file batches of test files)...[0m
+undefined  Scope=apps/angle-war/src, chunk=200, failFast=true, metric=test names[0m
+undefined
+  📚 [1/1] test-name segment for apps/angle-war (0 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 2[0m
+[93m  ✅ Passed: metric=test names for apps/angle-war [1/1][0m
+undefined  ======================================================================[0m
+undefined  📚 Summary: 2 valid, 0 invalid (metric=test names)[0m
+undefined  ======================================================================[0m
+
+[92m  ✅ test name gate complete.[0m
+[92m✅ Passed: quality gate test:names (53ms)[0m
+[95m
+[2/5] 📚 quality gate: lint (3 more; gate scope = lint)[0m
+undefined  🧪 workspace gate start: metric=lint, scope=apps/angle-war, workspaces=1 (each segment is one workspace package/app)[0m
+undefined
+  📚 [1/1] workspace segment: @games/angle-war (0 more; segment = one workspace package/app)[0m
+
+> @games/angle-war@1.0.0 lint /mnt/d/src/game-platform/apps/angle-war
+> pnpm exec eslint src/
+
+
+/mnt/d/src/game-platform/apps/angle-war/src/app/index.ts
+  1:25  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/angle-war/src/domain/collisions.ts
+  1:60  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/angle-war/src/domain/constants.ts
+  1:32  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/angle-war/src/domain/enemies.ts
+    7:8   warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+    8:59  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  111:13  warning  Generic Object Injection Sink                     security/detect-object-injection
+
+/mnt/d/src/game-platform/apps/angle-war/src/domain/index.ts
+  14:8   warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  15:31  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  16:68  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  17:33  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  18:86  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  29:8   warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/angle-war/src/domain/rules.ts
+    6:8   warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+   33:8   warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+   34:62  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+   35:81  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+   36:85  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+   37:74  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  272:31  warning  Function Call Object Injection Sink               security/detect-object-injection
+
+/mnt/d/src/game-platform/apps/angle-war/src/domain/trajectory.ts
+  8:8   warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  9:30  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/angle-war/src/domain/waves.ts
+  9:8  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/angle-war/src/index.tsx
+  1:1  warning  File does not match any element pattern  boundaries/no-unknown-files
+
+/mnt/d/src/game-platform/apps/angle-war/src/ui/organisms/index.ts
+  1:21  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+✖ 24 problems (0 errors, 24 warnings)
+
+[92m  ✅ Passed: workspace @games/angle-war [1/1] (29667ms)[0m
+undefined  ✅ workspace gate complete.[0m
+[92m✅ Passed: quality gate lint (29705ms)[0m
+[95m
+[3/5] 📚 quality gate: format:check (2 more; gate scope = format:check)[0m
+undefined  🧪 workspace gate start: metric=format:check, scope=apps/angle-war, workspaces=1 (each segment is one workspace package/app)[0m
+undefined
+  📚 [1/1] workspace segment: @games/angle-war (0 more; segment = one workspace package/app)[0m
+
+> @games/angle-war@1.0.0 format:check /mnt/d/src/game-platform/apps/angle-war
+> pnpm exec prettier --check src/
+
+Checking formatting...
+All matched files use Prettier code style!
+[92m  ✅ Passed: workspace @games/angle-war [1/1] (3259ms)[0m
+undefined  ✅ workspace gate complete.[0m
+[92m✅ Passed: quality gate format:check (3301ms)[0m
+[95m
+[4/5] 📚 quality gate: typecheck (1 more; gate scope = typecheck)[0m
+undefined  🧪 workspace gate start: metric=typecheck, scope=apps/angle-war, workspaces=1 (each segment is one workspace package/app)[0m
+undefined
+  📚 [1/1] workspace segment: @games/angle-war (0 more; segment = one workspace package/app)[0m
+
+> @games/angle-war@1.0.0 typecheck /mnt/d/src/game-platform/apps/angle-war
+> pnpm exec tsc
+
+[92m  ✅ Passed: workspace @games/angle-war [1/1] (3809ms)[0m
+undefined  ✅ workspace gate complete.[0m
+[92m✅ Passed: quality gate typecheck (3849ms)[0m
+[95m
+[5/5] 📚 quality gate: test:segmented (0 more; gate scope = test:segmented)[0m
+undefined  🧪 test runner start: workspace=apps/angle-war, scope=apps/angle-war/src, metrics=unit,integration,component,api, totalFiles=2, chunkSize=20 (segments are per-type file batches inside each workspace)[0m
+undefined
+  📚 metric: unit tests (2 files, 1 segments across 1 workspace(s); segment = one batch of that test type)[0m
+[93m
+    📚 [unit:1/1] metric: unit tests (0 more)[0m
+[93m    Files: 2[0m
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90m/mnt/d/src/game-platform/apps/angle-war[39m
+
+ [32m✓[39m src/domain/trajectory.unit.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/domain/simulation.unit.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+[2m   Start at [22m 09:58:58
+[2m   Duration [22m 5.30s[2m (transform 274ms, setup 0ms, import 390ms, tests 9ms, environment 8.63s)[22m
+
+[92m    ✅ Passed: unit tests [unit:1/1] (8150ms)[0m
+undefined
+  📚 metric: integration tests (0 files, 0 segments across 0 workspace(s); segment = one batch of that test type)[0m
+undefined  ⏳ No files found; skipping metric=integration.[0m
+undefined
+  📚 metric: component tests (0 files, 0 segments across 0 workspace(s); segment = one batch of that test type)[0m
+undefined  ⏳ No files found; skipping metric=component.[0m
+undefined
+  📚 metric: api tests (0 files, 0 segments across 0 workspace(s); segment = one batch of that test type)[0m
+undefined  ⏳ No files found; skipping metric=api.[0m
+
+✅ test runner complete.
+[92m✅ Passed: quality gate test:segmented (12624ms)[0m
+
+[94m[1m✅ quality gate runner complete.[0m
+[92m  ✅ Passed: workspace @games/angle-war [1/63] (50443ms)[0m
+undefined
+  📚 [2/63] workspace segment: @games/arc-spin (61 more; segment = one workspace package/app)[0m
+
+> @games/arc-spin@1.0.0 validate:gated /mnt/d/src/game-platform/apps/arc-spin
+> pnpm -C ../.. exec node scripts/validate-gated.mjs --nameScope=apps/arc-spin/src --workspaceScope=apps/arc-spin --testScope=apps/arc-spin/src --buildScope=apps/arc-spin -- --skip-build
+
+[94m[1m🧪 quality gate runner start (5 gates; each gate is a top-level validation metric)[0m
+[95m
+[1/5] 📚 quality gate: test:names (4 more; gate scope = test:names)[0m
+undefined  🔍 test name gate start (segments are workspace/file batches of test files)...[0m
+undefined  Scope=apps/arc-spin/src, chunk=200, failFast=true, metric=test names[0m
+undefined
+  📚 [1/1] test-name segment for apps/arc-spin (0 more; segment = a batch of test files within one workspace)[0m
+undefined  Files: 1[0m
+[93m  ✅ Passed: metric=test names for apps/arc-spin [1/1][0m
+undefined  ======================================================================[0m
+undefined  📚 Summary: 1 valid, 0 invalid (metric=test names)[0m
+undefined  ======================================================================[0m
+
+[92m  ✅ test name gate complete.[0m
+[92m✅ Passed: quality gate test:names (46ms)[0m
+[95m
+[2/5] 📚 quality gate: lint (3 more; gate scope = lint)[0m
+undefined  🧪 workspace gate start: metric=lint, scope=apps/arc-spin, workspaces=1 (each segment is one workspace package/app)[0m
+undefined
+  📚 [1/1] workspace segment: @games/arc-spin (0 more; segment = one workspace package/app)[0m
+
+> @games/arc-spin@1.0.0 lint /mnt/d/src/game-platform/apps/arc-spin
+> pnpm exec eslint src/
+
+
+/mnt/d/src/game-platform/apps/arc-spin/src/app/index.ts
+  1:33  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  2:25  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/arc-spin/src/domain/constants.ts
+  1:32  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/arc-spin/src/domain/index.ts
+  1:59  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  2:31  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  3:33  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  4:33  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  5:31  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  6:43  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/arc-spin/src/domain/rules.ts
+  1:48  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  2:32  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/arc-spin/src/domain/types.unit.test.ts
+  6:32  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/arc-spin/src/index.tsx
+  1:1  warning  File does not match any element pattern  boundaries/no-unknown-files
+
+/mnt/d/src/game-platform/apps/arc-spin/src/ui/organisms/index.ts
+  1:21  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+✖ 14 problems (0 errors, 14 warnings)
+
+[92m  ✅ Passed: workspace @games/arc-spin [1/1] (30755ms)[0m
+undefined  ✅ workspace gate complete.[0m
+[92m✅ Passed: quality gate lint (30795ms)[0m
+[95m
+[3/5] 📚 quality gate: format:check (2 more; gate scope = format:check)[0m
+undefined  🧪 workspace gate start: metric=format:check, scope=apps/arc-spin, workspaces=1 (each segment is one workspace package/app)[0m
+undefined
+  📚 [1/1] workspace segment: @games/arc-spin (0 more; segment = one workspace package/app)[0m
+
+> @games/arc-spin@1.0.0 format:check /mnt/d/src/game-platform/apps/arc-spin
+> pnpm exec prettier --check src/
+
+Checking formatting...
+All matched files use Prettier code style!
+[92m  ✅ Passed: workspace @games/arc-spin [1/1] (2865ms)[0m
+undefined  ✅ workspace gate complete.[0m
+[92m✅ Passed: quality gate format:check (2903ms)[0m
+[95m
+[4/5] 📚 quality gate: typecheck (1 more; gate scope = typecheck)[0m
+undefined  🧪 workspace gate start: metric=typecheck, scope=apps/arc-spin, workspaces=1 (each segment is one workspace package/app)[0m
+undefined
+  📚 [1/1] workspace segment: @games/arc-spin (0 more; segment = one workspace package/app)[0m
+
+> @games/arc-spin@1.0.0 typecheck /mnt/d/src/game-platform/apps/arc-spin
+> pnpm exec tsc
+
+src/app/hooks/useArcSpinAudio.ts(3,36): error TS2307: Cannot find module '@games/audio-engine' or its corresponding type declarations.
+src/domain/soundProfile.ts(1,41): error TS2307: Cannot find module '@games/audio-engine' or its corresponding type declarations.
+src/index.tsx(2,31): error TS2307: Cannot find module '@games/audio-engine' or its corresponding type declarations.
+tsconfig.json(50,7): error TS1005: ',' expected.
+../../packages/ui-utils/src/GameControls.tsx(1,48): error TS2307: Cannot find module '@games/app-hook-utils' or its corresponding type declarations.
+../../packages/ui-utils/src/Modal.tsx(2,50): error TS2307: Cannot find module '@games/app-hook-utils' or its corresponding type declarations.
+ ELIFECYCLE  Command failed with exit code 1.
+[91m  ❌ Failed: workspace @games/arc-spin [1/1] (3757ms)[0m
+[91m[1m❌ Failed: quality gate typecheck (3894ms)[0m
+ ELIFECYCLE  Command failed with exit code 1.
+[91m  ❌ Failed: workspace @games/arc-spin [2/63] (38516ms)[0m
+[91m[1m❌ Failed: quality gate apps:validate:gated (89042ms)[0m
+ ELIFECYCLE  Command failed with exit code 1.
+ ELIFECYCLE  Command failed with exit code 1.

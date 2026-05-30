@@ -36,13 +36,14 @@ export const SudokuBoard: React.FC<SudokuBoardProps> = ({
       {board.grid.map((row, rowIndex) => (
         <div key={`row-${String.fromCharCode(65 + rowIndex)}`} className={styles.row}>
           {row.map((cell, colIndex) => {
-            // eslint-disable-next-line no-object-injection
             const isCellEditable =
               rowIndex >= 0 &&
               rowIndex < 4 &&
               colIndex >= 0 &&
               colIndex < 4 &&
-              editableBoard.grid?.[rowIndex]?.[colIndex] !== 0
+              Array.isArray(editableBoard?.grid) &&
+              Array.isArray(editableBoard.grid[rowIndex]) &&
+              editableBoard.grid[rowIndex][colIndex] !== 0
             return (
               <SudokuCell
                 key={`cell-r${rowIndex}c${colIndex}`}

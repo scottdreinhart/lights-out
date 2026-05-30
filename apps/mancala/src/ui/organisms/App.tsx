@@ -132,9 +132,13 @@ export default function App() {
         <div
           className="modal-overlay"
           onClick={() => setShowRulesModal(false)}
+          onKeyDown={(e) => {
+            if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
+              setShowRulesModal(false)
+            }
+          }}
           role="dialog"
           aria-modal="true"
-          tabIndex={0}
           style={{
             position: 'fixed',
             top: 0,
@@ -164,6 +168,7 @@ export default function App() {
             <button
               className="modal-close"
               onClick={() => setShowRulesModal(false)}
+              aria-label="Close rules"
               style={{
                 position: 'absolute',
                 top: '1rem',
@@ -203,9 +208,13 @@ export default function App() {
         <div
           className="modal-overlay"
           onClick={() => setShowSettingsModal(false)}
+          onKeyDown={(e) => {
+            if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
+              setShowSettingsModal(false)
+            }
+          }}
           role="dialog"
           aria-modal="true"
-          tabIndex={0}
           style={{
             position: 'fixed',
             top: 0,
@@ -235,6 +244,7 @@ export default function App() {
             <button
               className="modal-close"
               onClick={() => setShowSettingsModal(false)}
+              aria-label="Close settings"
               style={{
                 position: 'absolute',
                 top: '1rem',
@@ -277,9 +287,13 @@ export default function App() {
         <div
           className="modal-overlay"
           onClick={() => setShowAboutModal(false)}
+          onKeyDown={(e) => {
+            if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
+              setShowAboutModal(false)
+            }
+          }}
           role="dialog"
           aria-modal="true"
-          tabIndex={0}
           style={{
             position: 'fixed',
             top: 0,
@@ -309,6 +323,7 @@ export default function App() {
             <button
               className="modal-close"
               onClick={() => setShowAboutModal(false)}
+              aria-label="Close about"
               style={{
                 position: 'absolute',
                 top: '1rem',

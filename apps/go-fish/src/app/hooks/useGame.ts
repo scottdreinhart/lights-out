@@ -40,7 +40,7 @@ function reducer(state: GameState, action: GameAction): GameState {
     }
 
     case 'CPU_TURN': {
-      if (state.currentPlayer !== 'computer' || state.computerHand.length === 0) return state
+      if (state.currentPlayer !== 'computer' || state.computerHand.length === 0) {return state}
 
       const rankCounts = new Map<CardRank, number>()
       for (const card of state.computerHand) {

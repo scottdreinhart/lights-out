@@ -24,9 +24,12 @@ export interface UseLoadingScreenState {
 export function useLoadingScreen(options: UseLoadingScreenOptions = {}) {
   const {
     initialMessage = 'Loading...',
-    _showSpinner = true,
-    _showProgress = false,
+    showSpinner = true,
+    showProgress = false,
   } = options
+
+  void showSpinner
+  void showProgress
 
   const [isLoading, setIsLoading] = useState(false)
   const [progress, setProgress] = useState(0)

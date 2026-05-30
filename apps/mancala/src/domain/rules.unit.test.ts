@@ -63,7 +63,7 @@ describe('isGameOver', () => {
     board[6] = 0
     board[13] = 0
     // Clear player 0 pits
-    for (let i = 0; i < 6; i++) board[i] = 0
+    for (let i = 0; i < 6; i++) {board[i] = 0}
     expect(isGameOver(board)).toBe(true)
   })
 
@@ -71,7 +71,7 @@ describe('isGameOver', () => {
     const board = Array(14).fill(4)
     board[6] = 0
     board[13] = 0
-    for (let i = 7; i < 13; i++) board[i] = 0
+    for (let i = 7; i < 13; i++) {board[i] = 0}
     expect(isGameOver(board)).toBe(true)
   })
 })
@@ -88,7 +88,7 @@ describe('whichSideIsEmpty', () => {
     const board = Array(14).fill(4)
     board[6] = 0
     board[13] = 0
-    for (let i = 0; i < 6; i++) board[i] = 0
+    for (let i = 0; i < 6; i++) {board[i] = 0}
     expect(whichSideIsEmpty(board)).toBe(0)
   })
 
@@ -96,7 +96,7 @@ describe('whichSideIsEmpty', () => {
     const board = Array(14).fill(4)
     board[6] = 0
     board[13] = 0
-    for (let i = 7; i < 13; i++) board[i] = 0
+    for (let i = 7; i < 13; i++) {board[i] = 0}
     expect(whichSideIsEmpty(board)).toBe(1)
   })
 })

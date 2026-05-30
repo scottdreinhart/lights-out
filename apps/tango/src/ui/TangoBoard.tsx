@@ -27,8 +27,8 @@ export const TangoBoard: React.FC<TangoBoardProps> = ({
       highlightedTile && highlightedTile.row === row && highlightedTile.col === col
 
     let className = styles.tile
-    if (isEmpty) className += ` ${styles.empty}`
-    if (isHighlighted) className += ` ${styles.highlighted}`
+    if (isEmpty) {className += ` ${styles.empty}`}
+    if (isHighlighted) {className += ` ${styles.highlighted}`}
 
     return (
       <div

@@ -10,7 +10,6 @@
  *   />
  */
 
-import type React from 'react'
 import styles from './LoadingOverlay.module.css'
 
 export interface LoadingOverlayProps {
