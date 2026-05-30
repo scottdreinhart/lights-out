@@ -40,7 +40,7 @@ export function ShipList({ board, label, owner }: ShipListProps) {
   })
 
   return (
-    <section className={styles.list} role="region" aria-labelledby={headingId}>
+    <section className={styles.list} aria-labelledby={headingId}>
       <h3 id={headingId} className={styles.heading}>
         {label}
       </h3>
