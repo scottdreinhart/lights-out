@@ -22,7 +22,7 @@ export function PlayerNameForm({
   onSubmit,
   onCancel,
 }: PlayerNameFormProps) {
-  const { values, errors, touched, handleSubmit, reset } = useFormValidation(
+  const { values, errors, touched, handleSubmit, reset, setValue, setTouched } = useFormValidation(
     { playerName: '', email: '' },
     {
       playerName: [
@@ -61,20 +61,11 @@ export function PlayerNameForm({
           onChange={(e) => {
             const input = e.target as HTMLInputElement
             const value = input.value
-            // Call setValue from the hook
-            const hook = useFormValidation(
-              values,
-              {
-                playerName: [ValidationSchema.required()],
-                email: [ValidationSchema.required()],
-              },
-              onSubmit,
-            )
-            hook.setValue('playerName', value)
+            setValue('playerName', value)
           }}
           onBlur={(e) => {
             const input = e.target as HTMLInputElement
-            // Note: In actual use, you'd use setTouched from hook
+            setTouched('playerName', true)
           }}
           className={`${styles.input} ${errors.playerName ? styles.error : ''}`}
           placeholder="Enter your player name"
@@ -94,7 +85,7 @@ export function PlayerNameForm({
           value={values.email}
           onChange={(e) => {
             const input = e.target as HTMLInputElement
-            // In actual use, you'd call setValue from hook
+            setValue('email', input.value)
           }}
           className={`${styles.input} ${errors.email ? styles.error : ''}`}
           placeholder="Enter your email"
