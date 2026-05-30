@@ -1,3 +1,81 @@
+## Governance Canonical Spec (Non-Lossy)
+
+Purpose: Produce a single, machine-actionable canonical governance specification that preserves every non-negotiable rule verbatim or by authoritative reference, and provides concrete enforcement/check commands and bundles.
+
+Authority & Sources
+- Primary authority: `AGENTS.md` (source of non-negotiable rules).
+- Supporting documents (indexed): all files under `.github/instructions/` and `docs/governance/`. Use originals as ground truth; this file is a canonical index and enforcement layer, not a replacement.
+
+Canonical Constants
+- PKG_MANAGER = "pnpm@10.31.0" (workspace root `packageManager`)
+- DEFAULT_SHELL = "bash" (Bash / POSIX required default)
+- VALIDATION_GATE = `pnpm validate` (full quality gate)
+
+Non-Negotiable Rules (authoritative reference)
+- Preserve the entire `AGENTS.md` as authoritative. Any rule marked in `AGENTS.md` as "Non-Negotiable" or under § 0 must be enforced exactly. See: [AGENTS.md](AGENTS.md)
+
+Rule Index (compact, unique IDs)
+- G-0001: PNPM_ONLY — Enforce pnpm as single package manager (source: AGENTS.md §2).
+- G-0002: DEFAULT_SHELL_BASH — Use Bash/POSIX as the default shell (source: AGENTS.md §5).
+- G-0003: VALIDATION_SELF_CORRECTION — Run `pnpm validate` and follow the Self-Correction Loop on failures (source: AGENTS.md §0.A).
+- G-0004: ARCHITECTURE_PRESERVE — Respect layer boundaries (Domain → App → UI) and avoid cross-layer shortcuts (AGENTS.md §3).
+- G-0005: NO_NEW_DEPENDENCIES — Do not add dependencies unless justified (AGENTS.md §0.9).
+- G-0006: MINIMAL_CHANGE — Make the smallest correct change set possible (AGENTS.md §0.3).
+
+Mapping to Source Files
+- For each rule above the canonical source is recorded: G-0001 → `AGENTS.md` (§2), G-0002 → `AGENTS.md` (§5), G-0003 → `AGENTS.md` (§0.A), G-0004 → `AGENTS.md` (§3), G-0005 → `AGENTS.md` (§0.9), G-0006 → `AGENTS.md` (§0.3).
+
+Enforcement Bundles (machine-actionable checks)
+- Bundle: CHECK_BASIC (fast):
+  - Commands: `pnpm --version`, `node -v`, `bash -c 'echo ok'`
+  - Expected: exit code 0 for each.
+- Bundle: CHECK_VALIDATION (full gate):
+  - Command: `pnpm validate`
+  - Success: exit code 0; otherwise follow Self-Correction Loop (inspect output, fix root cause, rerun).
+- Bundle: CHECK_STYLE (format/lint/type):
+  - Commands: `pnpm check`, `pnpm test`
+
+Machine-Actionable Validation Checklist
+1. Run `pnpm validate` at workspace root. Expect: exit 0.
+2. If it fails, capture failing commands and follow Self-Correction Loop: inspect logs, fix root cause, rerun.
+3. For package-level changes, run `pnpm --filter <pkg> validate` (use workspace filters).
+
+Self-Correction Loop (automatable)
+- Step 1: Run validation command (store stdout/stderr).
+- Step 2: If exit != 0, parse output for file paths, line numbers, error codes; create an issue/annotated report.
+- Step 3: Attempt minimal fix candidate(s) (lint fix, type fix, missing import).
+- Step 4: Re-run same command; repeat until green or human-in-the-loop required.
+
+Exceptions & Edge Cases
+- Any formal exception must be explicitly recorded in the source governance file and referenced here with a unique exception ID and justification. No implicit exceptions allowed.
+
+Traceability & Audit
+- Each enforcement run should store: timestamp, command, exit code, stdout/stderr, and commit hash. Use `reports/validation` for artifacts.
+
+How to Use This File
+- Read-only ground truth remains the original governance files. Use this spec for CI checks, local pre-submit validation, and as the canonical index for automation. Do not edit `AGENTS.md` from this file.
+
+Next Actions (recommended automation)
+- Add CI job step that runs `pnpm validate` and archives logs to `reports/validation/<run-id>`.
+- Implement a validator script `scripts/gov-validate.mjs` that runs the Bundles above and uploads results.
+
+References
+- `AGENTS.md` — canonical authority.
+- `.github/copilot-instructions.md` — Copilot runtime policy.
+- `.github/instructions/` — all instruction files (refer to originals for specific rule text).
+
+Appendix: Quick Commands
+```
+# Full gate (root)
+pnpm validate
+
+# Package-scoped
+pnpm --filter @games/monchola validate
+
+# Style/type checks
+pnpm check
+pnpm test
+```
 # Governance and Guardrails Canonical Non-Lossy Token-Efficient Specification
 
 **Version**: 1.0.0-canonical

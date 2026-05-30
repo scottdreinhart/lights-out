@@ -1,0 +1,53 @@
+# 🎮 App Feature Matrix
+
+Last Generated: 2026-04-17T08:16:16.105Z
+
+This matrix tracks implementation status across all 38 games.
+
+| Game | Keyboard ⌨️ | Accessibility ♿ | Focus 🎯 | Responsive 📱 | Theme 🎨 | Status |
+|------|----------|------------|--------|------------|-------|--------|
+| battleship | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ (♻️ Refactor) |
+| bingo | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| blackjack | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ (♻️ Refactor, 🐛 Fix) |
+| bunco | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| cee-lo | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| checkers | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| chicago | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| cho-han | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| connect-four | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| crossclimb | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| dominoes | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| farkle | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| go-fish | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| hangman | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| liars-dice | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| lights-out | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| mancala | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| memory-game | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| mexico | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| minesweeper | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| mini-sudoku | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| monchola | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| nim | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ (♻️ Refactor) |
+| pig | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| pinpoint | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| queens | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| reversi | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| rock-paper-scissors | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| ship-captain-crew | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| shut-the-box | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| simon-says | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| snake | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| snakes-and-ladders | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| sudoku | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| tango | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| tictactoe | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| war | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+| zip | ✅ | ✅ | ✅ | ✅ | ✅ | ✅  |
+
+## 📊 Summary
+
+- 🎮 Total Games: 38
+- ✅ Complete: 35
+- ⏳ In Progress: 3
+- 📅 Last Updated: 4/17/2026, 4:16:16 AM
