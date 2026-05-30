@@ -7,13 +7,13 @@ import type { PlatformApi } from '../../contracts'
 
 const browserHaptics = {
   async light() {
-    if (navigator.vibrate) navigator.vibrate(10)
+    if (navigator.vibrate) {navigator.vibrate(10)}
   },
   async medium() {
-    if (navigator.vibrate) navigator.vibrate(20)
+    if (navigator.vibrate) {navigator.vibrate(20)}
   },
   async heavy() {
-    if (navigator.vibrate) navigator.vibrate(50)
+    if (navigator.vibrate) {navigator.vibrate(50)}
   },
 }
 

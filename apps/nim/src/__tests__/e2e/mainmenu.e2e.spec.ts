@@ -139,7 +139,7 @@ test.describe('MainMenu Responsive Scaling', () => {
       // Verify page loads without errors
       const errors: string[] = []
       page.on('console', (msg) => {
-        if (msg.type() === 'error') errors.push(msg.text())
+        if (msg.type() === 'error') {errors.push(msg.text())}
       })
 
       // Wait a tick for rendering

@@ -46,7 +46,7 @@ export function useWasmParticles(
 
   // Animation loop
   useEffect(() => {
-    if (!isReady) return
+    if (!isReady) {return}
 
     const animate = () => {
       if (particleSystemRef.current) {

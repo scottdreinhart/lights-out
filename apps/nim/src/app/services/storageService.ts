@@ -44,7 +44,7 @@ export const storageService = {
    * Called after every move to ensure recovery on app suspension.
    */
   saveGameState(state: GameState): void {
-    if (!isLocalStorageAvailable()) return
+    if (!isLocalStorageAvailable()) {return}
     saveJson(KEYS.GAME_STATE, state)
   },
 
@@ -53,7 +53,7 @@ export const storageService = {
    * Returns null if no saved state (new game).
    */
   loadGameState(): GameState | null {
-    if (!isLocalStorageAvailable()) return null
+    if (!isLocalStorageAvailable()) {return null}
     return loadNullable<GameState>(KEYS.GAME_STATE)
   },
 
@@ -61,7 +61,7 @@ export const storageService = {
    * Clear saved game state (when starting fresh).
    */
   clearGameState(): void {
-    if (!isLocalStorageAvailable()) return
+    if (!isLocalStorageAvailable()) {return}
     removeKey(KEYS.GAME_STATE)
   },
 
@@ -70,7 +70,7 @@ export const storageService = {
    * Called after each game result.
    */
   saveGameStats(stats: GameStats): void {
-    if (!isLocalStorageAvailable()) return
+    if (!isLocalStorageAvailable()) {return}
     saveJson(KEYS.GAME_STATS, stats)
   },
 
@@ -79,7 +79,7 @@ export const storageService = {
    * Returns null if no stats yet.
    */
   loadGameStats(): GameStats | null {
-    if (!isLocalStorageAvailable()) return null
+    if (!isLocalStorageAvailable()) {return null}
     return loadNullable<GameStats>(KEYS.GAME_STATS)
   },
 
@@ -88,7 +88,7 @@ export const storageService = {
    * Called when theme preference changes.
    */
   saveThemeSettings(settings: ThemeSettings): void {
-    if (!isLocalStorageAvailable()) return
+    if (!isLocalStorageAvailable()) {return}
     saveJson(KEYS.THEME_SETTINGS, settings)
   },
 
@@ -97,7 +97,7 @@ export const storageService = {
    * Returns null if no settings saved (use defaults).
    */
   loadThemeSettings(): ThemeSettings | null {
-    if (!isLocalStorageAvailable()) return null
+    if (!isLocalStorageAvailable()) {return null}
     return loadNullable<ThemeSettings>(KEYS.THEME_SETTINGS)
   },
 
@@ -105,7 +105,7 @@ export const storageService = {
    * Enable/disable sound preference.
    */
   setSoundEnabled(enabled: boolean): void {
-    if (!isLocalStorageAvailable()) return
+    if (!isLocalStorageAvailable()) {return}
     saveJson(KEYS.SOUND_ENABLED, enabled)
   },
 
@@ -113,7 +113,7 @@ export const storageService = {
    * Check if sound is enabled (default: true).
    */
   isSoundEnabled(): boolean {
-    if (!isLocalStorageAvailable()) return true
+    if (!isLocalStorageAvailable()) {return true}
     return loadWithFallback<boolean>(KEYS.SOUND_ENABLED, true)
   },
 
@@ -121,7 +121,7 @@ export const storageService = {
    * Set language preference.
    */
   setLanguage(lang: 'en' | 'es'): void {
-    if (!isLocalStorageAvailable()) return
+    if (!isLocalStorageAvailable()) {return}
     saveJson(KEYS.LANGUAGE, lang)
   },
 
@@ -129,7 +129,7 @@ export const storageService = {
    * Get language preference (default: 'en').
    */
   getLanguage(): 'en' | 'es' {
-    if (!isLocalStorageAvailable()) return 'en'
+    if (!isLocalStorageAvailable()) {return 'en'}
     return loadWithFallback<'en' | 'es'>(KEYS.LANGUAGE, 'en')
   },
 
@@ -138,7 +138,7 @@ export const storageService = {
    * Called when user explicitly resets app.
    */
   clearAll(): void {
-    if (!isLocalStorageAvailable()) return
+    if (!isLocalStorageAvailable()) {return}
     Object.values(KEYS).forEach(key => removeKey(key))
   },
 

@@ -43,7 +43,7 @@ export const test = base.extend<ResponsiveTestFixtures>({
   testAtBreakpoint: async ({ page }, use) => {
     const testFn = async (breakpoint: ResponsiveBreakpoint) => {
       const bp = breakpoints[breakpoint]
-      if (!bp) throw new Error(`Unknown breakpoint: ${breakpoint}`)
+      if (!bp) {throw new Error(`Unknown breakpoint: ${breakpoint}`)}
       console.log(`Testing at ${bp.label}`)
       await page.setViewportSize({ width: bp.width, height: bp.height })
     }

@@ -22,7 +22,7 @@ export const DeviceInfoScreen = () => {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    if (!isCapacitor) return
+    if (!isCapacitor) {return}
 
     const loadDeviceInfo = async () => {
       setLoading(true)

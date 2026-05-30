@@ -31,7 +31,7 @@ export const useGamePersistence = (): GamePersistence => {
 
   // Electron IPC helpers (no-op if not Electron)
   const electronSave = useCallback(async (key: string, data: string) => {
-    if (!isElectron) return
+    if (!isElectron) {return}
     try {
       const ipc = (window as any).electron?.ipcRenderer
       if (ipc) {
@@ -44,7 +44,7 @@ export const useGamePersistence = (): GamePersistence => {
   }, [isElectron])
 
   const electronLoad = useCallback(async (key: string): Promise<string | null> => {
-    if (!isElectron) return null
+    if (!isElectron) {return null}
     try {
       const ipc = (window as any).electron?.ipcRenderer
       if (ipc) {
