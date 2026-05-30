@@ -49,19 +49,109 @@ export const useGame = (): UseGameResult => {
 
   const keyboardBindings = useMemo(
     () => [
-      { action: 'aim-up-down', keys: ['ArrowUp', 'KeyW'], phase: 'keydown' as const, onTrigger: () => { controlsRef.current = { ...controlsRef.current, aimUp: true } } },
-      { action: 'aim-up-up', keys: ['ArrowUp', 'KeyW'], phase: 'keyup' as const, onTrigger: () => { controlsRef.current = { ...controlsRef.current, aimUp: false } } },
-      { action: 'aim-down-down', keys: ['ArrowDown', 'KeyS'], phase: 'keydown' as const, onTrigger: () => { controlsRef.current = { ...controlsRef.current, aimDown: true } } },
-      { action: 'aim-down-up', keys: ['ArrowDown', 'KeyS'], phase: 'keyup' as const, onTrigger: () => { controlsRef.current = { ...controlsRef.current, aimDown: false } } },
-      { action: 'force-up-down', keys: ['ArrowRight', 'KeyD'], phase: 'keydown' as const, onTrigger: () => { controlsRef.current = { ...controlsRef.current, forceUp: true } } },
-      { action: 'force-up-up', keys: ['ArrowRight', 'KeyD'], phase: 'keyup' as const, onTrigger: () => { controlsRef.current = { ...controlsRef.current, forceUp: false } } },
-      { action: 'force-down-down', keys: ['ArrowLeft', 'KeyA'], phase: 'keydown' as const, onTrigger: () => { controlsRef.current = { ...controlsRef.current, forceDown: true } } },
-      { action: 'force-down-up', keys: ['ArrowLeft', 'KeyA'], phase: 'keyup' as const, onTrigger: () => { controlsRef.current = { ...controlsRef.current, forceDown: false } } },
-      { action: 'fire-down', keys: ['Space', 'KeyJ'], phase: 'keydown' as const, onTrigger: () => { controlsRef.current = { ...controlsRef.current, fire: true } } },
-      { action: 'fire-up', keys: ['Space', 'KeyJ'], phase: 'keyup' as const, onTrigger: () => { controlsRef.current = { ...controlsRef.current, fire: false } } },
-      { action: 'reaim', keys: ['KeyR'], onTrigger: () => { controlsRef.current = { ...controlsRef.current, reaim: true } } },
-      { action: 'salvo-down', keys: ['KeyF', 'KeyK'], phase: 'keydown' as const, onTrigger: () => { controlsRef.current = { ...controlsRef.current, salvo: true } } },
-      { action: 'salvo-up', keys: ['KeyF', 'KeyK'], phase: 'keyup' as const, onTrigger: () => { controlsRef.current = { ...controlsRef.current, salvo: false } } },
+      {
+        action: 'aim-up-down',
+        keys: ['ArrowUp', 'KeyW'],
+        phase: 'keydown' as const,
+        onTrigger: () => {
+          controlsRef.current = { ...controlsRef.current, aimUp: true }
+        },
+      },
+      {
+        action: 'aim-up-up',
+        keys: ['ArrowUp', 'KeyW'],
+        phase: 'keyup' as const,
+        onTrigger: () => {
+          controlsRef.current = { ...controlsRef.current, aimUp: false }
+        },
+      },
+      {
+        action: 'aim-down-down',
+        keys: ['ArrowDown', 'KeyS'],
+        phase: 'keydown' as const,
+        onTrigger: () => {
+          controlsRef.current = { ...controlsRef.current, aimDown: true }
+        },
+      },
+      {
+        action: 'aim-down-up',
+        keys: ['ArrowDown', 'KeyS'],
+        phase: 'keyup' as const,
+        onTrigger: () => {
+          controlsRef.current = { ...controlsRef.current, aimDown: false }
+        },
+      },
+      {
+        action: 'force-up-down',
+        keys: ['ArrowRight', 'KeyD'],
+        phase: 'keydown' as const,
+        onTrigger: () => {
+          controlsRef.current = { ...controlsRef.current, forceUp: true }
+        },
+      },
+      {
+        action: 'force-up-up',
+        keys: ['ArrowRight', 'KeyD'],
+        phase: 'keyup' as const,
+        onTrigger: () => {
+          controlsRef.current = { ...controlsRef.current, forceUp: false }
+        },
+      },
+      {
+        action: 'force-down-down',
+        keys: ['ArrowLeft', 'KeyA'],
+        phase: 'keydown' as const,
+        onTrigger: () => {
+          controlsRef.current = { ...controlsRef.current, forceDown: true }
+        },
+      },
+      {
+        action: 'force-down-up',
+        keys: ['ArrowLeft', 'KeyA'],
+        phase: 'keyup' as const,
+        onTrigger: () => {
+          controlsRef.current = { ...controlsRef.current, forceDown: false }
+        },
+      },
+      {
+        action: 'fire-down',
+        keys: ['Space', 'KeyJ'],
+        phase: 'keydown' as const,
+        onTrigger: () => {
+          controlsRef.current = { ...controlsRef.current, fire: true }
+        },
+      },
+      {
+        action: 'fire-up',
+        keys: ['Space', 'KeyJ'],
+        phase: 'keyup' as const,
+        onTrigger: () => {
+          controlsRef.current = { ...controlsRef.current, fire: false }
+        },
+      },
+      {
+        action: 'reaim',
+        keys: ['KeyR'],
+        onTrigger: () => {
+          controlsRef.current = { ...controlsRef.current, reaim: true }
+        },
+      },
+      {
+        action: 'salvo-down',
+        keys: ['KeyF', 'KeyK'],
+        phase: 'keydown' as const,
+        onTrigger: () => {
+          controlsRef.current = { ...controlsRef.current, salvo: true }
+        },
+      },
+      {
+        action: 'salvo-up',
+        keys: ['KeyF', 'KeyK'],
+        phase: 'keyup' as const,
+        onTrigger: () => {
+          controlsRef.current = { ...controlsRef.current, salvo: false }
+        },
+      },
       { action: 'reset', keys: ['Escape'], onTrigger: reset },
     ],
     [reset],
