@@ -26,7 +26,7 @@ export function toggleCell(board: Board, row: number, col: number): Board {
   const newBoard = board.map((r) => [...r])
 
   // Toggle the cell itself
-  // eslint-disable-next-line security/detect-object-injection
+  // eslint-disable-next-line security/detect-object-injection -- bounds-checked array access for grid toggling
   newBoard[row][col] = !newBoard[row][col]
 
   // Toggle neighbors: up, down, left, right
@@ -40,7 +40,7 @@ export function toggleCell(board: Board, row: number, col: number): Board {
   neighbors.forEach(({ row: r, col: c }) => {
     // Only toggle if neighbor is within bounds
     if (r >= 0 && r < GRID_SIZE && c >= 0 && c < GRID_SIZE) {
-      // eslint-disable-next-line security/detect-object-injection
+      // eslint-disable-next-line security/detect-object-injection -- bounds-checked array access for neighbor toggling
       newBoard[r][c] = !newBoard[r][c]
     }
   })

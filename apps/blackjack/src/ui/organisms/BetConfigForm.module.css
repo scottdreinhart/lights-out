@@ -6,7 +6,9 @@
   padding: 2.75rem 2.5rem;
   background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 100%);
   border-radius: 12px;
-  box-shadow: 0 0 30px rgba(220, 20, 20, 0.2), 0 20px 40px rgba(0, 0, 0, 0.6);
+  box-shadow:
+    0 0 30px rgba(220, 20, 20, 0.2),
+    0 20px 40px rgba(0, 0, 0, 0.6);
   border: 2px solid var(--color-error, #dc1414);
   position: relative;
 }

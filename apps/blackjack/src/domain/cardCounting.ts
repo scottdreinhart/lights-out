@@ -59,7 +59,9 @@ export const updateRunningCount = (currentCount: number, card: Card): number => 
  * Calculate true count (running count / decks remaining)
  */
 export const calculateTrueCount = (runningCount: number, decksRemaining: number): number => {
-  if (decksRemaining <= 0) {return 0}
+  if (decksRemaining <= 0) {
+    return 0
+  }
   return Math.round((runningCount / decksRemaining) * 100) / 100
 }
 
@@ -77,7 +79,9 @@ export const calculateAdvantage = (trueCount: number): number => {
  * Higher true count = increase bet
  */
 export const calculateBetMultiplier = (trueCount: number, minTC: number = 1): number => {
-  if (trueCount < minTC) {return 1} // Bet minimum when TC is low
+  if (trueCount < minTC) {
+    return 1
+  } // Bet minimum when TC is low
 
   // Linear scaling: TC=1 → 2x, TC=2 → 3x, TC=3 → 4x, etc.
   const rawMultiplier = Math.min(trueCount + 1, 10) // Cap at 10x
@@ -124,8 +128,12 @@ export const resetCountingState = (deckCount: number): CardCountingState => {
  */
 export const getCountValueDisplay = (card: Card): string => {
   const value = HI_LO_VALUES[card.rank]
-  if (value > 0) {return `+${value}`}
-  if (value < 0) {return `${value}`}
+  if (value > 0) {
+    return `+${value}`
+  }
+  if (value < 0) {
+    return `${value}`
+  }
   return '0'
 }
 

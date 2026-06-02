@@ -91,9 +91,7 @@ export function GameBoard({
                 label="Dealer"
                 status={gameState.dealer.status}
                 isDealing={phase === 'dealing'}
-                shouldFlipDealerCard={
-                  phase === 'settling' && gameState.dealer.hand.length > 1
-                }
+                shouldFlipDealerCard={phase === 'settling' && gameState.dealer.hand.length > 1}
                 value={
                   phase !== 'playing'
                     ? `Total: ${getHandValues(gameState.dealer.hand).soft || getHandValues(gameState.dealer.hand).hard}`
@@ -188,7 +186,8 @@ export function GameBoard({
                   <span className={styles.label}>Burned:</span>
                   <span className={styles.value}>
                     {(
-                      (gameState.discardPile.length / (gameState.discardPile.length + gameState.deck.length)) *
+                      (gameState.discardPile.length /
+                        (gameState.discardPile.length + gameState.deck.length)) *
                       100
                     ).toFixed(1)}
                     %

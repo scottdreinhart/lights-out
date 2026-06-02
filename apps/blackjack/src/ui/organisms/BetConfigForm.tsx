@@ -3,12 +3,7 @@
  * Demonstrates form validation in blackjack app
  */
 
-import React from 'react'
-import {
-  useFormValidation,
-  ValidationSchema,
-  ValidationError,
-} from '@games/ui-utils'
+import { useFormValidation, ValidationError, ValidationSchema } from '@games/ui-utils'
 import styles from './BetConfigForm.module.css'
 
 export interface BetConfigFormProps {
@@ -35,13 +30,10 @@ export function BetConfigForm({
       betAmount: [
         ValidationSchema.required('Bet amount is required'),
         ValidationSchema.numeric('Must be a number'),
-        ValidationSchema.custom(
-          (value) => {
-            const num = parseInt(value)
-            return num >= minBet && num <= maxBet
-          },
-          `Bet must be between ${minBet} and ${maxBet}`,
-        ),
+        ValidationSchema.custom((value) => {
+          const num = parseInt(value)
+          return num >= minBet && num <= maxBet
+        }, `Bet must be between ${minBet} and ${maxBet}`),
       ],
     },
     async (values) => {
@@ -67,9 +59,7 @@ export function BetConfigForm({
           placeholder="Your name"
           className={`${styles.input} ${errors.playerName ? styles.error : ''}`}
         />
-        {touched.playerName && errors.playerName && (
-          <ValidationError errors={errors.playerName} />
-        )}
+        {touched.playerName && errors.playerName && <ValidationError errors={errors.playerName} />}
       </div>
 
       <div className={styles.field}>
@@ -105,9 +95,7 @@ export function BetConfigForm({
         </button>
       </div>
 
-      <p className={styles.info}>
-        ✅ Form validation from @games/ui-utils (Phase 8.3)
-      </p>
+      <p className={styles.info}>✅ Form validation from @games/ui-utils (Phase 8.3)</p>
     </form>
   )
 }

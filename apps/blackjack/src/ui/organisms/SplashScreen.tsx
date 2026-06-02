@@ -11,10 +11,7 @@ export interface SplashScreenProps {
  * Welcome screen displayed on app load.
  * Shows game title, quick rules, and action buttons.
  */
-export function SplashScreen({
-  onPlayClick,
-  onHowToPlayClick,
-}: SplashScreenProps) {
+export function SplashScreen({ onPlayClick, onHowToPlayClick }: SplashScreenProps) {
   return (
     <div className={styles.splash}>
       <div className={styles.container}>

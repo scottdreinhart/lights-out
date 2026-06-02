@@ -3,8 +3,8 @@
  * Pure functions for game logic, independent of React/UI frameworks
  */
 
-import type { Card, GameAction, GameState, Hand, HandStatus, SettlementResult } from './types'
 import { RULES_VEGAS_STRIP } from './constants'
+import type { Card, GameAction, GameState, Hand, HandStatus, SettlementResult } from './types'
 
 // ┌─────────────────────────────────────────────────────────┐
 // │ HAND VALUE CALCULATION                                  │
@@ -273,7 +273,9 @@ export function dealInitialHands(
  */
 export function processPlayerAction(gameState: GameState, action: GameAction): GameState {
   const player = gameState.players[0]
-  if (!player) {return gameState}
+  if (!player) {
+    return gameState
+  }
 
   switch (action) {
     case 'hit': {

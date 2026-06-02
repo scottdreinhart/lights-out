@@ -269,6 +269,7 @@ const resolveProjectileEnemyCollisions = (
   for (const enemy of state.enemies) {
     let projectileIndex = -1
     for (let index = 0; index < remainingProjectiles.length; index += 1) {
+      // eslint-disable-next-line security/detect-object-injection -- controlled internal array access; typed Projectile[]
       if (projectileHitsEnemy(remainingProjectiles[index], enemy)) {
         projectileIndex = index
         break
@@ -281,7 +282,12 @@ const resolveProjectileEnemyCollisions = (
     }
 
     remainingProjectiles.splice(projectileIndex, 1)
-    scoreDelta += ENEMY_SCORE[enemy.kind]
+    scoreDelta +=
+      enemy.kind === 'skimmer'
+        ? ENEMY_SCORE.skimmer
+        : enemy.kind === 'floater'
+        ? ENEMY_SCORE.floater
+        : ENEMY_SCORE.abductor
 
     if (enemy.carryingObjectiveId !== null) {
       const rescued = objectives.find((objective) => objective.id === enemy.carryingObjectiveId)

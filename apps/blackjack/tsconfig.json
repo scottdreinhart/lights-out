@@ -17,7 +17,6 @@
     "isolatedModules": true,
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
     "types": ["vite/client"],
     "paths": {
       "@/*": ["./src/*"],

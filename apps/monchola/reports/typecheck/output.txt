@@ -1,4 +1,0 @@
-
-> @games/monchola@1.0.0 typecheck /mnt/c/Users/scott/lights-out/apps/monchola
-> pnpm exec tsc
-

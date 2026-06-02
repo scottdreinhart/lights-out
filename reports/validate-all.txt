@@ -284,7 +284,7 @@ undefined  📚 Summary: 145 valid, 0 invalid (metric=test names)[0m
 undefined  ======================================================================[0m
 
 [92m  ✅ test name gate complete.[0m
-[92m✅ Passed: quality gate test:names (22937ms)[0m
+[92m✅ Passed: quality gate test:names (27304ms)[0m
 [95m
 [2/3] 📚 quality gate: apps:validate:gated (1 more; gate scope = apps:validate:gated)[0m
 undefined  🧪 workspace gate start: metric=validate:gated, scope=apps, workspaces=63 (each segment is one workspace package/app)[0m
@@ -308,7 +308,7 @@ undefined  📚 Summary: 2 valid, 0 invalid (metric=test names)[0m
 undefined  ======================================================================[0m
 
 [92m  ✅ test name gate complete.[0m
-[92m✅ Passed: quality gate test:names (50ms)[0m
+[92m✅ Passed: quality gate test:names (68ms)[0m
 [95m
 [2/5] 📚 quality gate: lint (3 more; gate scope = lint)[0m
 undefined  🧪 workspace gate start: metric=lint, scope=apps/angle-war, workspaces=1 (each segment is one workspace package/app)[0m
@@ -319,55 +319,14 @@ undefined
 > pnpm exec eslint src/
 
 
-/mnt/d/src/game-platform/apps/angle-war/src/app/index.ts
-  1:25  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-
-/mnt/d/src/game-platform/apps/angle-war/src/domain/collisions.ts
-  1:60  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-
-/mnt/d/src/game-platform/apps/angle-war/src/domain/constants.ts
-  1:32  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-
-/mnt/d/src/game-platform/apps/angle-war/src/domain/enemies.ts
-    7:8   warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-    8:59  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-  111:13  warning  Generic Object Injection Sink                     security/detect-object-injection
-
-/mnt/d/src/game-platform/apps/angle-war/src/domain/index.ts
-  14:8   warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-  15:31  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-  16:68  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-  17:33  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-  18:86  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-  29:8   warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-
 /mnt/d/src/game-platform/apps/angle-war/src/domain/rules.ts
-    6:8   warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-   33:8   warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-   34:62  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-   35:81  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-   36:85  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-   37:74  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-  272:31  warning  Function Call Object Injection Sink               security/detect-object-injection
+  263:97  warning  Arrow function has a complexity of 9. Maximum allowed is 8  complexity
 
-/mnt/d/src/game-platform/apps/angle-war/src/domain/trajectory.ts
-  8:8   warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-  9:30  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+✖ 1 problem (0 errors, 1 warning)
 
-/mnt/d/src/game-platform/apps/angle-war/src/domain/waves.ts
-  9:8  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-
-/mnt/d/src/game-platform/apps/angle-war/src/index.tsx
-  1:1  warning  File does not match any element pattern  boundaries/no-unknown-files
-
-/mnt/d/src/game-platform/apps/angle-war/src/ui/organisms/index.ts
-  1:21  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-
-✖ 24 problems (0 errors, 24 warnings)
-
-[92m  ✅ Passed: workspace @games/angle-war [1/1] (28628ms)[0m
+[92m  ✅ Passed: workspace @games/angle-war [1/1] (34511ms)[0m
 undefined  ✅ workspace gate complete.[0m
-[92m✅ Passed: quality gate lint (28667ms)[0m
+[92m✅ Passed: quality gate lint (34566ms)[0m
 [95m
 [3/5] 📚 quality gate: format:check (2 more; gate scope = format:check)[0m
 undefined  🧪 workspace gate start: metric=format:check, scope=apps/angle-war, workspaces=1 (each segment is one workspace package/app)[0m
@@ -378,155 +337,14 @@ undefined
 > pnpm exec prettier --check src/
 
 Checking formatting...
-All matched files use Prettier code style!
-[92m  ✅ Passed: workspace @games/angle-war [1/1] (3281ms)[0m
-undefined  ✅ workspace gate complete.[0m
-[92m✅ Passed: quality gate format:check (3323ms)[0m
-[95m
-[4/5] 📚 quality gate: typecheck (1 more; gate scope = typecheck)[0m
-undefined  🧪 workspace gate start: metric=typecheck, scope=apps/angle-war, workspaces=1 (each segment is one workspace package/app)[0m
-undefined
-  📚 [1/1] workspace segment: @games/angle-war (0 more; segment = one workspace package/app)[0m
-
-> @games/angle-war@1.0.0 typecheck /mnt/d/src/game-platform/apps/angle-war
-> pnpm exec tsc
-
-[92m  ✅ Passed: workspace @games/angle-war [1/1] (4031ms)[0m
-undefined  ✅ workspace gate complete.[0m
-[92m✅ Passed: quality gate typecheck (4070ms)[0m
-[95m
-[5/5] 📚 quality gate: test:segmented (0 more; gate scope = test:segmented)[0m
-undefined  🧪 test runner start: workspace=apps/angle-war, scope=apps/angle-war/src, metrics=unit,integration,component,api, totalFiles=2, chunkSize=20 (segments are per-type file batches inside each workspace)[0m
-undefined
-  📚 metric: unit tests (2 files, 1 segments across 1 workspace(s); segment = one batch of that test type)[0m
-[93m
-    📚 [unit:1/1] metric: unit tests (0 more)[0m
-[93m    Files: 2[0m
-
-[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90m/mnt/d/src/game-platform/apps/angle-war[39m
-
- [32m✓[39m src/domain/trajectory.unit.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 2[2mms[22m[39m
- [32m✓[39m src/domain/simulation.unit.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 8[2mms[22m[39m
-
-[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
-[2m      Tests [22m [1m[32m4 passed[39m[22m[90m (4)[39m
-[2m   Start at [22m 09:55:16
-[2m   Duration [22m 5.09s[2m (transform 647ms, setup 0ms, import 761ms, tests 10ms, environment 8.24s)[22m
-
-[92m    ✅ Passed: unit tests [unit:1/1] (7771ms)[0m
-undefined
-  📚 metric: integration tests (0 files, 0 segments across 0 workspace(s); segment = one batch of that test type)[0m
-undefined  ⏳ No files found; skipping metric=integration.[0m
-undefined
-  📚 metric: component tests (0 files, 0 segments across 0 workspace(s); segment = one batch of that test type)[0m
-undefined  ⏳ No files found; skipping metric=component.[0m
-undefined
-  📚 metric: api tests (0 files, 0 segments across 0 workspace(s); segment = one batch of that test type)[0m
-undefined  ⏳ No files found; skipping metric=api.[0m
-
-✅ test runner complete.
-[92m✅ Passed: quality gate test:segmented (12180ms)[0m
-
-[94m[1m✅ quality gate runner complete.[0m
-[92m  ✅ Passed: workspace @games/angle-war [1/63] (49120ms)[0m
-undefined
-  📚 [2/63] workspace segment: @games/arc-spin (61 more; segment = one workspace package/app)[0m
-
-> @games/arc-spin@1.0.0 validate:gated /mnt/d/src/game-platform/apps/arc-spin
-> pnpm -C ../.. exec node scripts/validate-gated.mjs --nameScope=apps/arc-spin/src --workspaceScope=apps/arc-spin --testScope=apps/arc-spin/src --buildScope=apps/arc-spin -- --skip-build
-
-[94m[1m🧪 quality gate runner start (5 gates; each gate is a top-level validation metric)[0m
-[95m
-[1/5] 📚 quality gate: test:names (4 more; gate scope = test:names)[0m
-undefined  🔍 test name gate start (segments are workspace/file batches of test files)...[0m
-undefined  Scope=apps/arc-spin/src, chunk=200, failFast=true, metric=test names[0m
-undefined
-  📚 [1/1] test-name segment for apps/arc-spin (0 more; segment = a batch of test files within one workspace)[0m
-undefined  Files: 1[0m
-[93m  ✅ Passed: metric=test names for apps/arc-spin [1/1][0m
-undefined  ======================================================================[0m
-undefined  📚 Summary: 1 valid, 0 invalid (metric=test names)[0m
-undefined  ======================================================================[0m
-
-[92m  ✅ test name gate complete.[0m
-[92m✅ Passed: quality gate test:names (41ms)[0m
-[95m
-[2/5] 📚 quality gate: lint (3 more; gate scope = lint)[0m
-undefined  🧪 workspace gate start: metric=lint, scope=apps/arc-spin, workspaces=1 (each segment is one workspace package/app)[0m
-undefined
-  📚 [1/1] workspace segment: @games/arc-spin (0 more; segment = one workspace package/app)[0m
-
-> @games/arc-spin@1.0.0 lint /mnt/d/src/game-platform/apps/arc-spin
-> pnpm exec eslint src/
-
-
-/mnt/d/src/game-platform/apps/arc-spin/src/app/index.ts
-  1:33  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-  2:25  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-
-/mnt/d/src/game-platform/apps/arc-spin/src/domain/constants.ts
-  1:32  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-
-/mnt/d/src/game-platform/apps/arc-spin/src/domain/index.ts
-  1:59  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-  2:31  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-  3:33  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-  4:33  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-  5:31  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-  6:43  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-
-/mnt/d/src/game-platform/apps/arc-spin/src/domain/rules.ts
-  1:48  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-  2:32  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-
-/mnt/d/src/game-platform/apps/arc-spin/src/domain/types.unit.test.ts
-  6:32  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-
-/mnt/d/src/game-platform/apps/arc-spin/src/index.tsx
-  1:1  warning  File does not match any element pattern  boundaries/no-unknown-files
-
-/mnt/d/src/game-platform/apps/arc-spin/src/ui/organisms/index.ts
-  1:21  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
-
-✖ 14 problems (0 errors, 14 warnings)
-
-[92m  ✅ Passed: workspace @games/arc-spin [1/1] (28572ms)[0m
-undefined  ✅ workspace gate complete.[0m
-[92m✅ Passed: quality gate lint (28769ms)[0m
-[95m
-[3/5] 📚 quality gate: format:check (2 more; gate scope = format:check)[0m
-undefined  🧪 workspace gate start: metric=format:check, scope=apps/arc-spin, workspaces=1 (each segment is one workspace package/app)[0m
-undefined
-  📚 [1/1] workspace segment: @games/arc-spin (0 more; segment = one workspace package/app)[0m
-
-> @games/arc-spin@1.0.0 format:check /mnt/d/src/game-platform/apps/arc-spin
-> pnpm exec prettier --check src/
-
-Checking formatting...
-All matched files use Prettier code style!
-[92m  ✅ Passed: workspace @games/arc-spin [1/1] (2894ms)[0m
-undefined  ✅ workspace gate complete.[0m
-[92m✅ Passed: quality gate format:check (2932ms)[0m
-[95m
-[4/5] 📚 quality gate: typecheck (1 more; gate scope = typecheck)[0m
-undefined  🧪 workspace gate start: metric=typecheck, scope=apps/arc-spin, workspaces=1 (each segment is one workspace package/app)[0m
-undefined
-  📚 [1/1] workspace segment: @games/arc-spin (0 more; segment = one workspace package/app)[0m
-
-> @games/arc-spin@1.0.0 typecheck /mnt/d/src/game-platform/apps/arc-spin
-> pnpm exec tsc
-
-src/app/hooks/useArcSpinAudio.ts(3,36): error TS2307: Cannot find module '@games/audio-engine' or its corresponding type declarations.
-src/domain/soundProfile.ts(1,41): error TS2307: Cannot find module '@games/audio-engine' or its corresponding type declarations.
-src/index.tsx(2,31): error TS2307: Cannot find module '@games/audio-engine' or its corresponding type declarations.
-tsconfig.json(50,7): error TS1005: ',' expected.
-../../packages/ui-utils/src/GameControls.tsx(1,48): error TS2307: Cannot find module '@games/app-hook-utils' or its corresponding type declarations.
-../../packages/ui-utils/src/Modal.tsx(2,50): error TS2307: Cannot find module '@games/app-hook-utils' or its corresponding type declarations.
+[warn] src/domain/enemies.ts
+[warn] src/domain/rules.ts
+[warn] Code style issues found in 2 files. Run Prettier with --write to fix.
  ELIFECYCLE  Command failed with exit code 1.
-[91m  ❌ Failed: workspace @games/arc-spin [1/1] (4024ms)[0m
-[91m[1m❌ Failed: quality gate typecheck (4060ms)[0m
+[91m  ❌ Failed: workspace @games/angle-war [1/1] (3698ms)[0m
+[91m[1m❌ Failed: quality gate format:check (3739ms)[0m
  ELIFECYCLE  Command failed with exit code 1.
-[91m  ❌ Failed: workspace @games/arc-spin [2/63] (36636ms)[0m
-[91m[1m❌ Failed: quality gate apps:validate:gated (86075ms)[0m
+[91m  ❌ Failed: workspace @games/angle-war [1/63] (39366ms)[0m
+[91m[1m❌ Failed: quality gate apps:validate:gated (39496ms)[0m
  ELIFECYCLE  Command failed with exit code 1.
  ELIFECYCLE  Command failed with exit code 1.

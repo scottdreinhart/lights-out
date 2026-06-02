@@ -50,9 +50,12 @@
       "@games/theme-context": [
         "../../packages/theme-context/src"
       ],
+      "@games/ui-hooks": [
+        "../../packages/ui-hooks/src"
+      ],
       "@games/diagnostics-utils": [
         "../../packages/diagnostics-utils/src"
-      ],
+      ]
     }
   },
   "include": [

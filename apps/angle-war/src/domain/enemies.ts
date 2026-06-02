@@ -105,10 +105,11 @@ export const spawnEnemy = (
 
   const kind = kindPick.kind
   const horizontal = side.direction * speedScale.value
+  const radiusValue = kind === 'skimmer' ? ENEMY_RADIUS.skimmer : kind === 'floater' ? ENEMY_RADIUS.floater : ENEMY_RADIUS.abductor
   const enemy: Enemy = {
     id: nextEnemyId,
     kind,
-    radius: ENEMY_RADIUS[kind],
+    radius: radiusValue,
     driftPhase: drift.value,
     carryingObjectiveId: null,
     position: {

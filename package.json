@@ -68,6 +68,7 @@
     "governance:platform": "bash ci/platform-governance-check.sh",
     "fix": "pnpm lint:fix && pnpm format",
     "validate": "pnpm validate:gated",
+    "verify": "pnpm validate",
     "validate:classic": "pnpm test:names && pnpm check && pnpm build",
     "validate:gated": "node scripts/validate-gated.mjs",
     "clean": "pnpm exec rimraf apps/lights-out/dist apps/lights-out/release",

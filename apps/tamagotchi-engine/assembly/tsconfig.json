@@ -1,7 +1,6 @@
 {
   "extends": "assemblyscript/std/assembly.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "strict": true
   },
   "include": ["index.ts"]

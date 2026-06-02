@@ -1,9 +1,8 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "@games/bingo-core": ["../bingo-core/dist/index.js"],
+      "@games/bingo-core": ["./../bingo-core/dist/index.js"],
       "@games/bingo-ui-components": ["./dist/index.js"]
     },
     "outDir": "./dist",

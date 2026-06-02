@@ -1,5 +1,9 @@
 .container {
-  background: linear-gradient(135deg, var(--color-surface-elevated) 0%, var(--color-surface-sunken) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-surface-elevated) 0%,
+    var(--color-surface-sunken) 100%
+  );
   border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 1rem;

@@ -1,1 +1,0 @@
-export { CountingPanel } from './CountingPanel';

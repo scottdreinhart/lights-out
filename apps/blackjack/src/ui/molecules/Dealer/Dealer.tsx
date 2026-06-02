@@ -1,6 +1,6 @@
-import React from 'react'
 import { Card as CardType } from '@/domain'
 import { Card } from '@/ui/atoms'
+import React from 'react'
 import styles from './Dealer.module.css'
 
 export interface DealerProps {
@@ -34,11 +34,7 @@ export const Dealer = React.memo<DealerProps>(
     className = '',
   }) => {
     return (
-      <div
-        className={`${styles.root} ${className}`}
-        role="group"
-        aria-label={ariaLabel}
-      >
+      <div className={`${styles.root} ${className}`} role="group" aria-label={ariaLabel}>
         {/* Upcard: always visible */}
         <div className={styles.cardSlot}>
           <Card

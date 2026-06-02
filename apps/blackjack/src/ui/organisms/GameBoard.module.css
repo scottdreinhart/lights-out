@@ -128,8 +128,13 @@
 
 /* Custom dealingPulse (game-specific glowing effect) */
 @keyframes dealingPulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
-  50% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.6); }
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+  }
 }
 
 /* Settling phase - victory/defeat animations */
@@ -138,9 +143,15 @@
 }
 
 @keyframes settlingGlow {
-  0% { box-shadow: 0 0 0 rgba(0, 255, 0, 0); }
-  50% { box-shadow: 0 0 40px rgba(0, 255, 0, 0.4); }
-  100% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.2); }
+  0% {
+    box-shadow: 0 0 0 rgba(0, 255, 0, 0);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 255, 0, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+  }
 }
 
 /* Completed phase - final result styling */
@@ -149,13 +160,19 @@
 }
 
 @keyframes completedFade {
-  0% { opacity: 0.8; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Action panel animations */
 .actionPanel {
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .actionPanel.entering {
@@ -172,8 +189,13 @@
 }
 
 @keyframes statusPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 
 /* New round button entrance */
