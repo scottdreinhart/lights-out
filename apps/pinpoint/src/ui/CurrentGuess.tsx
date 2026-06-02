@@ -1,7 +1,7 @@
-import React from 'react'
 import type { Guess } from '@/domain'
-import { Peg } from './Peg'
+import React from 'react'
 import styles from './CurrentGuess.module.css'
+import { Peg } from './Peg'
 
 interface CurrentGuessProps {
   guess: Guess
@@ -14,7 +14,7 @@ export const CurrentGuess: React.FC<CurrentGuessProps> = ({
   guess,
   codeLength,
   onPegRemove,
-  className = ''
+  className = '',
 }) => {
   const handlePegClick = (index: number) => {
     onPegRemove(index)
@@ -33,7 +33,9 @@ export const CurrentGuess: React.FC<CurrentGuessProps> = ({
             key={index}
             color={color}
             onClick={color ? () => handlePegClick(index) : undefined}
-            ariaLabel={color ? `Remove ${color} peg at position ${index + 1}` : `Empty slot ${index + 1}`}
+            ariaLabel={
+              color ? `Remove ${color} peg at position ${index + 1}` : `Empty slot ${index + 1}`
+            }
           />
         )
       })}

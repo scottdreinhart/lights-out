@@ -62,7 +62,7 @@ Time: ~5 seconds | Files: Critical only
 
 ---
 
-### 📋 GATE 2: STANDARD (Pre-push) — ~15 seconds
+### 📚 GATE 2: STANDARD (Pre-push) — ~15 seconds
 
 **Purpose**: Normal validation before pushing to remote  
 **When**: Before `git push` to GitHub  
@@ -71,7 +71,7 @@ Time: ~5 seconds | Files: Critical only
 
 - 🔐 Security (`lint:type:security`)
 - 🏗️ Boundaries (`lint:type:boundaries`)
-- 📘 TypeScript (`lint:type:typescript`)
+- 📚 TypeScript (`lint:type:typescript`)
 - ⚛️ React (`lint:type:react`)
 
 **Command**:
@@ -90,11 +90,11 @@ bash scripts/quality-gates.sh standard
 QUALITY GATE 2: STANDARD (Pre-push)
 ═════════════════════════════════════════════
 
-📋 Running standard checks (critical + common rules)...
+📚 Running standard checks (critical + common rules)...
 
 🔐 Security... ✅
 🏗️  Boundaries... ✅
-📘 TypeScript... ✅
+📚 TypeScript... ✅
 ⚛️  React... ✅
 
 ✅ Standard gate passed
@@ -103,7 +103,7 @@ Time: ~15 seconds | Files: Core rules
 
 ---
 
-### 🔍 GATE 3: FULL (CI/CD) — ~30 seconds
+### 📚 GATE 3: FULL (CI/CD) — ~30 seconds
 
 **Purpose**: Comprehensive validation for deployment CI/CD  
 **When**: During CI/CD pipeline before merge to main  
@@ -112,11 +112,11 @@ Time: ~15 seconds | Files: Core rules
 
 - 🔐 Security
 - 🏗️ Boundaries
-- 📘 TypeScript
+- 📚 TypeScript
 - ⚛️ React
-- 🪝 Hooks
-- ♿ Accessibility
-- 🔧 Core
+- 🛠️ Hooks
+- 📚 Accessibility
+- 🛠️ Core
 
 **Command**:
 
@@ -134,15 +134,15 @@ bash scripts/quality-gates.sh full
 QUALITY GATE 3: FULL (CI/CD)
 ═════════════════════════════════════════════
 
-🔍 Running all standard checks...
+📚 Running all standard checks...
 
 🔐 Security... ✅
 🏗️  Boundaries... ✅
-📘 TypeScript... ✅
+📚 TypeScript... ✅
 ⚛️  React... ✅
-🪝 Hooks... ✅
-♿ Accessibility... ✅
-🔧 Core... ✅
+🛠️ Hooks... ✅
+📚 Accessibility... ✅
+🛠️ Core... ✅
 
 ✅ Full gate passed
 Time: ~30 seconds | Files: All rule types
@@ -150,7 +150,7 @@ Time: ~30 seconds | Files: All rule types
 
 ---
 
-### 🎯 GATE 4: STRICT (Release) — ~60 seconds
+### ✅ GATE 4: STRICT (Release) — ~60 seconds
 
 **Purpose**: Zero-tolerance validation for release builds  
 **When**: Before deploying to production  
@@ -161,11 +161,11 @@ _All 7 Type Checks_:
 
 - 🔐 Security
 - 🏗️ Boundaries
-- 📘 TypeScript
+- 📚 TypeScript
 - ⚛️ React
-- 🪝 Hooks
-- ♿ Accessibility
-- 🔧 Core
+- 🛠️ Hooks
+- 📚 Accessibility
+- 🛠️ Core
 
 _All 7 Scope Checks_:
 
@@ -193,11 +193,11 @@ bash scripts/quality-gates.sh strict
 QUALITY GATE 4: STRICT (Release)
 ═════════════════════════════════════════════
 
-🎯 Running all checks with zero tolerance...
+✅ Running all checks with zero tolerance...
 
 [All 7 Type Checks]... ✅
 
-🔄 Scope validation...
+⚙️ Scope validation...
   • App layer... ✅
   • Domain layer... ✅
   • UI layer... ✅

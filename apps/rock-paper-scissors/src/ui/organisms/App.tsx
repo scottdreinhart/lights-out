@@ -1,8 +1,8 @@
-import { useGame } from '@/app'
+import { useGame, useSoundContext, useThemeContext } from '@/app'
 import type { GameTier, Move } from '@/domain'
-import { DEFAULT_TIER } from '@/domain'
+import { COLORBLIND_MODES, COLOR_THEMES, DEFAULT_TIER, MODES } from '@/domain'
+import { initWasm } from '@/infrastructure'
 import { MoveButton, RoundResultDisplay, Score, TierSelector } from '@/ui/atoms'
-import { initWasm } from '@/wasm/ai-wasm'
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import { HamburgerMenu } from './HamburgerMenu'
@@ -15,6 +15,8 @@ export default function App() {
   const [selectedTier, setSelectedTier] = useState<GameTier>(DEFAULT_TIER)
   const [gameStarted, setGameStarted] = useState(false)
   const { gameState, makeMove: makeGameMove, newGame } = useGame()
+  const { settings, setColorTheme, setMode, setColorblind } = useThemeContext()
+  const { soundEnabled, toggleSound } = useSoundContext()
   const [isLoading, setIsLoading] = useState(false)
   const [selectedMove, setSelectedMove] = useState<Move | null>(null)
   const [wasmAvailable, setWasmAvailable] = useState(false)
@@ -76,8 +78,8 @@ export default function App() {
     const lockedCpuMove = cpuLockedMoveRef.current
 
     // Simulate CPU thinking time for better UX
-    setTimeout(() => {
-      makeGameMove(move, lockedCpuMove)
+    setTimeout(async () => {
+      await makeGameMove(move, lockedCpuMove)
       setIsLoading(false)
       setSelectedMove(null)
     }, CPU_DELAY_MS)
@@ -201,7 +203,6 @@ export default function App() {
         <p>Total rounds played: {gameState.rounds.length}</p>
       </footer>
 
-      {/* Placeholder modals - Phase 1: Extract to dedicated components */}
       {showRules && (
         <div
           className="modal-overlay"
@@ -211,7 +212,7 @@ export default function App() {
           aria-modal="true"
           tabIndex={0}
         >
-          <div className="modal-content">
+          <div className="modal-content" onClick={(event) => event.stopPropagation()}>
             <button className="modal-close" onClick={() => setShowRules(false)}>
               ✕
             </button>
@@ -231,12 +232,66 @@ export default function App() {
           aria-modal="true"
           tabIndex={0}
         >
-          <div className="modal-content">
+          <div className="modal-content" onClick={(event) => event.stopPropagation()}>
             <button className="modal-close" onClick={() => setShowSettings(false)}>
               ✕
             </button>
             <h2>Settings</h2>
-            <p>Sound and theme settings coming soon in Phase 1.</p>
+            <div className="settings-group">
+              <h3>Audio</h3>
+              <button
+                type="button"
+                className="control-button settings-button"
+                onClick={toggleSound}
+              >
+                Sound: {soundEnabled ? 'On' : 'Off'}
+              </button>
+            </div>
+            <div className="settings-group">
+              <h3>Theme</h3>
+              <label className="settings-label">
+                Color Theme
+                <select
+                  value={settings.colorTheme}
+                  className="settings-select"
+                  onChange={(event) => setColorTheme(event.target.value)}
+                >
+                  {COLOR_THEMES.map((theme) => (
+                    <option key={theme.id} value={theme.id}>
+                      {theme.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="settings-label">
+                Mode
+                <select
+                  value={settings.mode}
+                  className="settings-select"
+                  onChange={(event) => setMode(event.target.value)}
+                >
+                  {MODES.map((mode) => (
+                    <option key={mode} value={mode}>
+                      {mode[0].toUpperCase() + mode.slice(1)}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="settings-label">
+                Colorblind
+                <select
+                  value={settings.colorblind}
+                  className="settings-select"
+                  onChange={(event) => setColorblind(event.target.value)}
+                >
+                  {COLORBLIND_MODES.map((mode) => (
+                    <option key={mode.id} value={mode.id}>
+                      {mode.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
           </div>
         </div>
       )}
@@ -250,7 +305,7 @@ export default function App() {
           aria-modal="true"
           tabIndex={0}
         >
-          <div className="modal-content">
+          <div className="modal-content" onClick={(event) => event.stopPropagation()}>
             <button className="modal-close" onClick={() => setShowAbout(false)}>
               ✕
             </button>

@@ -12,9 +12,7 @@
     <meta name="author" content="Game Platform" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-
-    <!-- Theme color for mobile browsers -->
+<!-- Theme color for mobile browsers -->
     <meta name="theme-color" content="#3498db" />
 
     <!-- Open Graph meta tags -->
@@ -25,8 +23,10 @@
     />
     <meta property="og:type" content="website" />
 
-    <!-- Preload critical resources -->
-    <link rel="preload" href="/src/index.tsx" as="script" />
+    <!-- Preload module entry with matching fetch semantics -->
+    <link rel="modulepreload" href="/src/index.tsx" />
+      <link rel="icon" type="image/png" href="/company-logo.png" />
+    <link rel="apple-touch-icon" href="/company-logo.png" />
   </head>
   <body>
     <div id="root"></div>

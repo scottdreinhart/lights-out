@@ -46,7 +46,7 @@ const StarExplosion: React.FC<StarExplosionProps> = ({
 
   // CSS-based star generation (fallback)
   const stars = useMemo(() => {
-    if (!isActive) return []
+    if (!isActive) {return []}
 
     return Array.from({ length: CSS_STAR_COUNT }, (_, i) => {
       const angle = (i / CSS_STAR_COUNT) * Math.PI * 2

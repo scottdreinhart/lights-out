@@ -6,8 +6,12 @@ This folder contains active project documentation organized by topic.
 
 - [Developer Guide](DEVELOPER-GUIDE.md)
 - [Bundle Analysis](BUNDLE-ANALYSIS.md)
+- [Documentation Governance and Classification](DOCUMENTATION_GOVERNANCE.md)
 - [Lint Exemption Policy](linting/LINT-EXEMPTION-POLICY.md)
 - [Architecture Governance](../AGENTS.md)
+- [Architecture Overview (root)](../ARCHITECTURE.md)
+- [Architecture Contract (root)](../ARCHITECTURE_CONTRACT.md)
+- [Architecture Review Checklist (root)](../ARCHITECTURE_REVIEW_CHECKLIST.md)
 - [Project Readme](../README.md)
 
 ## Historical
@@ -30,7 +34,7 @@ This folder contains active project documentation organized by topic.
 - [Monorepo Architecture Plan](monorepo/MONOREPO-ARCHITECTURE-PLAN.md)
 - [Package Ownership](monorepo/PACKAGE-OWNERSHIP.md)
 - [Migration Plan](monorepo/MIGRATION-PLAN.md)
-- [Root vs App Duplicate Audit](monorepo/ROOT-APP-DUPLICATE-AUDIT.md)
+- [React Native Remediation Plan](monorepo/REACT-NATIVE-REMEDIATION-PLAN.md)
 - [Purge Safety Protocol](monorepo/PURGE-SAFETY-PROTOCOL.md)
 - [Purge Guard Manifest (2026-03-16)](monorepo/PURGE-GUARD-2026-03-16.csv)
 - [Purge Candidates (2026-03-16)](monorepo/PURGE-CANDIDATES-2026-03-16.md)
@@ -40,7 +44,11 @@ This folder contains active project documentation organized by topic.
 - [TicTacToe Readiness Matrix](monorepo/TICTACTOE-READINESS-MATRIX.md)
 - [PR1 TicTacToe Runbook](monorepo/PR1-TICTACTOE-RUNBOOK.md)
 - [TicTacToe Execution TODOs](monorepo/TICTACTOE-EXECUTION-TODOS.md)
-- [TicTacToe Code Merge Triage](monorepo/TICTACTOE-CODE-MERGE-TRIAGE.md)
+
+## Archived
+
+- [Root vs App Duplicate Audit](archive/monorepo/ROOT-APP-DUPLICATE-AUDIT.md)
+- [TicTacToe Code Merge Triage](archive/monorepo/TICTACTOE-CODE-MERGE-TRIAGE.md)
 
 ## Testing Standards
 

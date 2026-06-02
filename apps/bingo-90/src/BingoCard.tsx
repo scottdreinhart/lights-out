@@ -1,6 +1,5 @@
 import type { BingoCard as BingoCardType } from '@games/bingo-core'
 import { BoardGrid, Tile } from '@games/ui-board-core'
-import React from 'react'
 import styles from './BingoCard.module.css'
 
 interface BingoCardProps {
@@ -17,7 +16,9 @@ export const BingoCard: React.FC<BingoCardProps> = ({
   disabled = false,
 }) => {
   const handleTileClick = (row: number, col: number) => {
-    if (disabled) return
+    if (disabled) {
+      return
+    }
     const number = card[row][col]
     if (number && onNumberClick) {
       onNumberClick(number)

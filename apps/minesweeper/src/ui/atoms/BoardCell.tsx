@@ -3,7 +3,7 @@ import styles from './BoardCell.module.css'
 
 /**
  * Map cell game state to CSS module classes
- * 
+ *
  * Each cell state has a corresponding visual appearance
  */
 const cellStateStyles: Record<CellState, string> = {
@@ -14,7 +14,7 @@ const cellStateStyles: Record<CellState, string> = {
 
 /**
  * Map cell content to CSS module number classes
- * 
+ *
  * Uses standard minesweeper color coding for numbers 1-8
  */
 const numberStyles: Record<number, string> = {
@@ -96,7 +96,10 @@ export function BoardCell({
 
   // Add corner rounding for board edges
   if (cornerType) {
-    const cornerKey = `corner${cornerType.split('-').map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join('')}`
+    const cornerKey = `corner${cornerType
+      .split('-')
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join('')}`
     classes.push(styles[cornerKey as keyof typeof styles] || '')
   }
 

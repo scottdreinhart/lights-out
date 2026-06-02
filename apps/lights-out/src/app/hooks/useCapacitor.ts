@@ -1,5 +1,6 @@
-import type { AppState, PluginListenerHandle } from '@capacitor/app'
+import type { AppState } from '@capacitor/app'
 import { App } from '@capacitor/app'
+import type { PluginListenerHandle } from '@capacitor/core'
 import { Keyboard } from '@capacitor/keyboard'
 import { StatusBar, Style } from '@capacitor/status-bar'
 import { useEffect, useState } from 'react'

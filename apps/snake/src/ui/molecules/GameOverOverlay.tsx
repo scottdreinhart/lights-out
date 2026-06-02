@@ -2,8 +2,8 @@
  * GameOverOverlay — shown when a round ends.
  */
 
-import { MODE_LABELS } from '@/domain'
 import type { GameMode, RoundOutcome } from '@/domain'
+import { MODE_LABELS } from '@/domain'
 import styles from './Overlay.module.css'
 
 interface GameOverProps {

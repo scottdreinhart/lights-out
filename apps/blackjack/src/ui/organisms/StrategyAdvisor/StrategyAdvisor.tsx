@@ -25,7 +25,7 @@ export function StrategyAdvisor({
   sessionAccuracy,
   className,
 }: StrategyAdvisorProps) {
-  const responsive = useResponsiveState()
+  const _responsive = useResponsiveState()
 
   // Determine visibility based on mode
   const isVisible = strategyState.mode !== 'none'

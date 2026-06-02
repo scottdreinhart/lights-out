@@ -1,6 +1,8 @@
 # Compliance & Coverage Matrix
 
-This directory contains the **Platform × Game Coverage Matrix**, a comprehensive governance system that tracks deployment readiness across all 7 CSP games and 10 distribution platforms.
+This directory contains the **Platform × Game Coverage Matrix** and related compliance artifacts for **52 active game apps** (as of April 13, 2026).
+
+`matrix.json` is the active machine-readable source of truth updated April 13. Several companion reports in this directory are historical snapshots from March 31 and may reference outdated 44-game counts until regenerated.
 
 ## 📊 Dashboard
 
@@ -17,12 +19,13 @@ This opens an interactive HTML dashboard showing:
 - Known blockers with severity levels and resolutions
 - Platform-specific requirements and constraints
 - Game rule verification against canonical sources
+- Root-build bundle telemetry with per-file inventory
 
 ## 📁 Files
 
 ### `matrix.json`
 
-**Purpose**: Central source of truth for deployment status
+**Purpose**: Active source of truth for deployment status
 
 **Structure**:
 
@@ -117,6 +120,29 @@ This opens an interactive HTML dashboard showing:
 - Click cells for detailed requirements
 - Mobile-responsive design
 - No server required (loads JSON files)
+
+### `bundle-metrics.json`
+
+**Purpose**: Preserve full root-build bundle telemetry for every app.
+
+**Source**: Generated from `dist/` outputs by:
+
+```bash
+pnpm generate-bundle-metrics
+```
+
+or automatically after:
+
+```bash
+pnpm build:apps
+```
+
+**Contains**:
+
+- Per-app `totalBytes`, `jsBytes`, `cssBytes`, `assetBytes`
+- Full per-file inventory (`files[]`) so no bundle detail is lost
+- Largest-file ranking per app
+- Aggregate totals across the monorepo build
 
 ### `validate-matrix.mjs` (in `../scripts/`)
 
@@ -248,6 +274,9 @@ pnpm dashboard:serve
 
 # Validate matrix
 pnpm validate:matrix
+
+# Regenerate bundle telemetry for dashboard
+pnpm generate-bundle-metrics
 
 # Check specific platform blocker count
 grep -c '"platform": "discord"' blockers.json

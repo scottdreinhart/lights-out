@@ -1,0 +1,595 @@
+/* ZipGame.module.css */
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid rgb(121 170 255 / 26%);
+  border-radius: 18px;
+  background: rgb(11 19 35 / 90%);
+  box-shadow: 0 28px 70px rgb(0 0 0 / 45%);
+  font-family: var(--font-family, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
+  color: #eff4ff;
+  min-height: 100vh;
+  outline: none;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  margin: 0 0 0.25rem;
+  font-size: clamp(1.4rem, 2.2vw, 2.1rem);
+  font-weight: 700;
+  color: #f4f8ff;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 1rem;
+  color: #cad8f7;
+  font-weight: 400;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #eff4ff;
+}
+
+.select {
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(121, 170, 255, 0.26);
+  border-radius: 12px;
+  background: rgba(11, 19, 35, 0.9);
+  color: #eff4ff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #98c6ff;
+  box-shadow: 0 0 0 3px rgb(152 198 255 / 20%);
+}
+
+.status {
+  padding: 1rem 1.5rem;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid rgba(121, 170, 255, 0.18);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+.status.success {
+  background: rgba(37, 99, 76, 0.28);
+  color: #d6fff2;
+  border-color: rgba(113, 255, 214, 0.24);
+}
+
+.status.info {
+  background: rgba(33, 51, 89, 0.4);
+  color: #dce9ff;
+  border-color: rgba(121, 170, 255, 0.22);
+}
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.progressBar {
+  flex: 1;
+  height: 12px;
+  background: rgba(121, 170, 255, 0.12);
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.28);
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #3855a4, #71ffd6);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.progressText {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #eff4ff;
+  min-width: 80px;
+  text-align: right;
+}
+
+.stats {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem;
+  background: rgba(11, 19, 35, 0.86);
+  border: 1px solid rgba(121, 170, 255, 0.18);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
+  min-width: 80px;
+}
+
+.statLabel {
+  font-size: 0.8rem;
+  color: #cad8f7;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f4f8ff;
+}
+
+.engineBadge {
+  margin-top: 0.25rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+}
+
+.engineWasm {
+  color: #d6fff2;
+  background: rgba(37, 99, 76, 0.28);
+  border-color: rgba(113, 255, 214, 0.24);
+}
+
+.engineJs {
+  color: #f7d36b;
+  background: rgba(255, 200, 87, 0.12);
+  border-color: rgba(255, 200, 87, 0.24);
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(137, 179, 255, 0.4);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.2);
+}
+
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.button:focus {
+  outline: none;
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.18),
+    0 0 0 3px rgb(152 198 255 / 26%);
+}
+
+.button.primary {
+  background: linear-gradient(180deg, #3855a4, #223574);
+  color: #f4f8ff;
+}
+
+.button.primary:hover {
+  background: linear-gradient(180deg, #3f5fb5, #283e7a);
+}
+
+.button.secondary {
+  background: linear-gradient(180deg, #263654, #18233b);
+  color: #f4f8ff;
+}
+
+.button.secondary:hover {
+  background: linear-gradient(180deg, #304468, #1d2a46);
+}
+
+.button.danger {
+  background: linear-gradient(180deg, #8f2f3e, #732533);
+  color: #fff6f8;
+}
+
+.button.danger:hover {
+  background: linear-gradient(180deg, #a03a4a, #822a39);
+}
+
+.instructions {
+  background: rgba(11, 19, 35, 0.9);
+  padding: 1.5rem;
+  border-radius: 14px;
+  border: 1px solid rgba(121, 170, 255, 0.18);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  max-width: 600px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.instructions h3 {
+  margin: 0 0 1rem 0;
+  color: #f4f8ff;
+  font-size: 1.2rem;
+}
+
+.instructions ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.instructions li {
+  margin-bottom: 0.5rem;
+  color: #cad8f7;
+  line-height: 1.4;
+}
+
+.aiComparison {
+  width: 100%;
+  max-width: 640px;
+  padding: 1rem 1.25rem;
+}
+
+.aiComparisonTitle {
+  margin: 0 0 0.75rem;
+  color: var(--primary-color, #2c3e50);
+  font-size: 1.05rem;
+}
+
+.aiComparisonGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.aiComparisonCell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 12px;
+  background: rgba(5, 9, 18, 0.55);
+  border: 1px solid rgba(132, 171, 241, 0.22);
+  color: #eff4ff;
+}
+
+.aiComparisonLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #98c6ff;
+}
+
+.trailLegend {
+  width: 100%;
+  max-width: 640px;
+  padding: 0.75rem 1rem;
+  background: rgba(5, 9, 18, 0.55);
+  color: #eff4ff;
+  border: 1px solid rgba(132, 171, 241, 0.22);
+}
+
+.trailLegendTitle {
+  display: block;
+  margin-bottom: 0.55rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #98c6ff;
+}
+
+.trailLegendItems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.trailLegendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  color: #eff4ff;
+}
+
+.trailCountBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3.2rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  border: 1px solid transparent;
+}
+
+.trailCountBadgePulse {
+  animation: trailBadgePulse 900ms ease-in-out infinite alternate;
+}
+
+@keyframes trailBadgePulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(79, 70, 229, 0);
+  }
+  100% {
+    transform: scale(1.06);
+    box-shadow: 0 0 10px rgba(79, 70, 229, 0.22);
+  }
+}
+
+.trailCountBadgePlayer {
+  color: #dce9ff;
+  background: rgba(14, 165, 233, 0.18);
+  border-color: rgba(14, 165, 233, 0.36);
+}
+
+.trailCountBadgeAi {
+  color: #f4d9ff;
+  background: rgba(217, 70, 239, 0.18);
+  border-color: rgba(217, 70, 239, 0.36);
+}
+
+.trailCountBadgeShared {
+  color: #dbe3ff;
+  background: rgba(99, 102, 241, 0.18);
+  border-color: rgba(99, 102, 241, 0.36);
+}
+
+@media (prefers-color-scheme: dark) {
+  .trailLegend {
+    background: rgba(5, 9, 18, 0.55);
+    color: #eff4ff;
+    border-color: rgba(132, 171, 241, 0.22);
+  }
+
+  .trailLegendTitle {
+    color: #98c6ff;
+  }
+
+  .trailLegendItem {
+    color: #eff4ff;
+  }
+}
+
+@media (pointer: coarse) {
+  .button:hover {
+    transform: none;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+  }
+}
+
+.trailSwatch {
+  width: 0.95rem;
+  height: 0.95rem;
+  border-radius: 4px;
+  border: 1px solid rgba(15, 23, 42, 0.22);
+}
+
+.trailSwatchPlayer {
+  background: rgba(14, 165, 233, 0.55);
+}
+
+.trailSwatchAi {
+  background: rgba(217, 70, 239, 0.55);
+}
+
+.trailSwatchShared {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.5), rgba(217, 70, 239, 0.5));
+  border-color: rgba(79, 70, 229, 0.45);
+}
+
+/* Responsive Design */
+@media (max-width: 599px) {
+  .game {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .controls {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .stats {
+    gap: 1rem;
+  }
+
+  .stat {
+    padding: 0.5rem 0.75rem;
+    min-width: 60px;
+  }
+
+  .statValue {
+    font-size: 1.2rem;
+  }
+
+  .button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .instructions {
+    padding: 1rem;
+  }
+
+  .trailLegendItems {
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .aiComparisonGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .instructions ul {
+    padding-left: 1.25rem;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+  .game {
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .title {
+    font-size: 2.25rem;
+  }
+
+  .controls {
+    gap: 0.75rem;
+  }
+
+  .stats {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .game {
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .controls {
+    gap: 1rem;
+  }
+
+  .stats {
+    gap: 2.5rem;
+  }
+
+  .button {
+    padding: 0.8rem 1.75rem;
+  }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+  .button:hover {
+    transform: none;
+  }
+
+  .select:hover {
+    border-color: var(--border-color, #ddd);
+  }
+
+  .game {
+    min-height: 100vh;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .game {
+    background: var(--high-contrast-bg, #000);
+    color: var(--high-contrast-text, #fff);
+  }
+
+  .status.success {
+    background: var(--high-contrast-success, #000);
+    color: var(--high-contrast-success-text, #0f0);
+    border: 2px solid var(--high-contrast-success-text, #0f0);
+  }
+
+  .status.info {
+    background: var(--high-contrast-info, #000);
+    color: var(--high-contrast-info-text, #0ff);
+    border: 2px solid var(--high-contrast-info-text, #0ff);
+  }
+
+  .button {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+
+  .select {
+    transition: none;
+  }
+
+  .progressFill {
+    transition: none;
+  }
+
+  .button:hover {
+    transform: none;
+  }
+
+  .trailCountBadgePulse {
+    animation: none;
+  }
+}

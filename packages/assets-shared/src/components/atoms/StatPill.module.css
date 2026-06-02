@@ -1,0 +1,42 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem;
+  min-width: 5rem;
+  border-radius: 8px;
+  background: var(--stat-pill-bg, #fff);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.label {
+  font-size: 0.8rem;
+  color: var(--stat-pill-label, #666);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--stat-pill-value, #2c3e50);
+}
+
+.addon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 599px) {
+  .root {
+    min-width: 4.5rem;
+    padding: 0.65rem 0.85rem;
+  }
+
+  .value {
+    font-size: 1.2rem;
+  }
+}

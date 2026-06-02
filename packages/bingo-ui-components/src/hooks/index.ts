@@ -14,3 +14,7 @@
 
 // export { useBingoTheme } from './useBingoTheme'
 // export type { BingoTheme } from './useBingoTheme.types'
+
+// Placeholder export to make this a valid module
+export {}
+

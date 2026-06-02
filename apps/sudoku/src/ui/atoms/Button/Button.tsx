@@ -21,13 +21,20 @@ export const Button: React.FC<ButtonProps> = ({
   variant = 'primary',
   size = 'md',
   type = 'button',
+  className = '',
+  title,
+  'aria-label': ariaLabel,
+  'aria-pressed': ariaPressed,
 }) => {
   return (
     <button
       type={type}
-      className={`${styles.button} ${styles[variant]} ${styles[size]}`}
+      className={`${styles.button} ${styles[variant]} ${styles[size]} ${className}`.trim()}
       onClick={onClick}
       disabled={disabled}
+      title={title}
+      aria-label={ariaLabel}
+      aria-pressed={ariaPressed}
     >
       {children}
     </button>

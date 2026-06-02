@@ -25,17 +25,21 @@ export function createGame(bestOf: number = 3): GameState {
  * Play a single round and return the updated game state.
  * Optionally accepts a predefined cpuMove instead of determining one with AI.
  */
-export function playRound(gameState: GameState, playerMove: Move, cpuMove?: Move): GameState {
+export async function playRound(
+  gameState: GameState,
+  playerMove: Move,
+  cpuMove?: Move,
+): Promise<GameState> {
   // Don't allow moves if game is already over
   if (gameState.isGameOver) {
     return gameState
   }
 
   // Get CPU move: use provided move or determine with AI
-  const finalCpuMove = cpuMove ?? selectCPUMove(gameState.rounds)
+  const finalCpuMove = cpuMove ?? (await selectCPUMove(gameState.rounds))
 
   // Determine round outcome
-  const result = determineRoundWinner(playerMove, finalCpuMove)
+  const result = await determineRoundWinner(playerMove, finalCpuMove)
 
   // Create new round
   const newRound: Round = {
@@ -49,8 +53,8 @@ export function playRound(gameState: GameState, playerMove: Move, cpuMove?: Move
   const cpuScore = gameState.cpuScore + (result === 'loss' ? 1 : 0)
 
   // Check if game is over
-  const gameOver = isGameOver(playerScore, cpuScore, gameState.bestOf)
-  const gameWinner = determineGameWinner(playerScore, cpuScore, gameState.bestOf)
+  const gameOver = await isGameOver(playerScore, cpuScore, gameState.bestOf)
+  const gameWinner = await determineGameWinner(playerScore, cpuScore, gameState.bestOf)
 
   return {
     rounds: [...gameState.rounds, newRound],

@@ -240,6 +240,41 @@
   margin-bottom: 0;
 }
 
+.settings-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.settings-group h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #e0e0e0;
+}
+
+.settings-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: #a0a0c0;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.settings-select {
+  min-height: 44px;
+  border-radius: 8px;
+  border: 1px solid rgba(102, 126, 234, 0.5);
+  background: rgba(20, 24, 40, 0.85);
+  color: #e0e0e0;
+  padding: 0.5rem 0.75rem;
+}
+
+.settings-button {
+  width: 100%;
+}
+
 @media (max-width: 600px) {
   .app {
     padding: 1rem;

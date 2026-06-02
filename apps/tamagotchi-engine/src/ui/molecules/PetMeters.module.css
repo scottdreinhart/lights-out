@@ -1,0 +1,18 @@
+/* Sources: https://tamagotchi.fandom.com/wiki/Care */
+
+.root {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  padding: 0.5rem;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: rgba(12, 17, 31, 0.72);
+}
+
+@media (max-width: 600px) {
+  .root {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

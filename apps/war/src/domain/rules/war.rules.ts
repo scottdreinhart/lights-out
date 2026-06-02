@@ -88,10 +88,7 @@ export const RULE_VARIANTS = {
 /**
  * Determine number of face-down cards based on rule and card rank
  */
-export function getWarCardCount(
-  config: WarRuleConfig,
-  triggeringCardRank: string
-): number {
+export function getWarCardCount(config: WarRuleConfig, triggeringCardRank: string): number {
   if (config.warFaceDownCards === 'rank') {
     // Rank-based: rank value determines count (e.g., 8 = 8 face-down)
     const rankMap: Record<string, number> = {
@@ -104,10 +101,10 @@ export function getWarCardCount(
       '8': 8,
       '9': 9,
       '10': 10,
-      'J': 11,
-      'Q': 12,
-      'K': 13,
-      'A': 14,
+      J: 11,
+      Q: 12,
+      K: 13,
+      A: 14,
     }
     return rankMap[triggeringCardRank] || 3
   }

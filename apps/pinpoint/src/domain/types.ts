@@ -8,7 +8,7 @@ export type Guess = Code
 
 export type Feedback = {
   correctPosition: number // Black pegs - correct color and position
-  correctColor: number    // White pegs - correct color, wrong position
+  correctColor: number // White pegs - correct color, wrong position
 }
 
 export type GuessResult = {

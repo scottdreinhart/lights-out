@@ -1,0 +1,126 @@
+.root {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.compact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 120px;
+}
+
+.skillLevel {
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.rating {
+  font-size: 18px;
+  font-weight: 700;
+  opacity: 0.9;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.combinedRating {
+  font-size: 20px;
+  font-weight: 700;
+  opacity: 0.9;
+}
+
+.metrics {
+  display: flex;
+  gap: 12px;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.metricLabel {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+  margin-bottom: 2px;
+}
+
+.metricValue {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 599px) {
+  .compact {
+    min-width: 100px;
+  }
+
+  .skillLevel {
+    font-size: 14px;
+  }
+
+  .rating {
+    font-size: 16px;
+  }
+
+  .combinedRating {
+    font-size: 18px;
+  }
+
+  .metrics {
+    gap: 8px;
+  }
+
+  .metricLabel {
+    font-size: 9px;
+  }
+
+  .metricValue {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 900px) {
+  .compact {
+    min-width: 140px;
+  }
+
+  .skillLevel {
+    font-size: 18px;
+  }
+
+  .rating {
+    font-size: 20px;
+  }
+
+  .combinedRating {
+    font-size: 22px;
+  }
+
+  .metrics {
+    gap: 16px;
+  }
+
+  .metricLabel {
+    font-size: 11px;
+  }
+
+  .metricValue {
+    font-size: 16px;
+  }
+}

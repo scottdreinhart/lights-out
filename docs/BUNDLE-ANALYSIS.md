@@ -1,4 +1,4 @@
-# Bundle Analysis & Performance Profiling
+# ⚡ Bundle Analysis & Performance Profiling
 
 This guide explains how to analyze the bundle size, identify large dependencies, and optimize code splitting.
 

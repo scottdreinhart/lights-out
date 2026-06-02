@@ -4,48 +4,49 @@
  */
 
 export type {
-  CellType,
-  Position,
   Cell,
-  Maze,
-  Direction,
-  Move,
-  ZipState,
+  CellType,
   Difficulty,
+  Direction,
+  Maze,
   MazeConfig,
+  Move,
   PathNode,
+  Position,
   Solution,
+  ZipState,
 } from './types'
 
 export {
-  MAZE_SIZES,
-  ITEM_COUNTS,
-  MAZE_CONFIGS,
-  DIRECTIONS,
   CELL_COLORS,
   CELL_SYMBOLS,
-  MOVEMENT_COSTS,
   DEFAULT_DIFFICULTY,
+  DIRECTIONS,
+  ITEM_COUNTS,
+  MAZE_CONFIGS,
+  MAZE_SIZES,
+  MOVEMENT_COSTS,
+  getDirectionDelta,
 } from './constants'
 
 export {
   createEmptyMaze,
-  isValidPosition,
-  isPassable,
-  getValidMoves,
-  wouldCollectItem,
-  makeMove,
-  isMazeSolved,
-  generateMaze,
-  placeItems,
   createInitialState,
+  generateMaze,
+  getValidMoves,
+  isMazeSolved,
+  isPassable,
+  isValidPosition,
+  makeMove,
+  placeItems,
   resetGame,
+  wouldCollectItem,
 } from './rules'
 
 export {
-  findPathAStar,
   findOptimalPath,
+  findPathAStar,
+  generateSolvableMaze,
   getHintMove,
   isMazeSolvable,
-  generateSolvableMaze,
 } from './ai'

@@ -6,7 +6,7 @@
 
 ---
 
-## ⚡ Quick Start (Copy-Paste Commands)
+## 🚀 Quick Start (Copy-Paste Commands)
 
 ### Step 1: Create Directory Structure
 
@@ -49,7 +49,7 @@ war/
 
 ---
 
-## 📝 Step 2: Create All TypeScript Files
+## 📄 Step 2: Create All TypeScript Files
 
 ### Domain Layer (Framework-agnostic game logic)
 
@@ -161,7 +161,7 @@ export { Result } from './Result'
 **2O. `src/ui/organisms/Game.module.css`**
 
 ```bash
-# File content: See WAR_GAME_SCAFFOLD.md → "🔟 ui/organisms/Game.module.css"
+# File content: See WAR_GAME_SCAFFOLD.md → "✅ ui/organisms/Game.module.css"
 ```
 
 **2P. `src/ui/organisms/MainMenu.tsx`** (Create stub for now)
@@ -441,23 +441,23 @@ pnpm test
 
 ---
 
-## 📋 Checklist: Before Moving to Game 3
+## 📚 Checklist: Before Moving to Game 3
 
-- [ ] All 20+ files created ✅
-- [ ] `pnpm install` completes ✅
-- [ ] `pnpm dev` launches game at http://localhost:5173 ✅
-- [ ] Game displays "War" title ✅
-- [ ] "Draw Card" button visible ✅
-- [ ] Click "Draw Card" — shows two cards ✅
-- [ ] `pnpm validate` passes (lint + typecheck) ✅
-- [ ] 10+ unit tests written & passing ✅
-- [ ] 5+ component tests written & passing ✅
-- [ ] Responsive CSS works (test on mobile/tablet/desktop) ✅
-- [ ] WCAG AA accessibility verified ✅
+- [x] All 20+ files created ✅
+- [x] `pnpm install` completes ✅
+- [x] `pnpm dev` launches game at http://localhost:5173 ✅
+- [x] Game displays "War" title ✅
+- [x] "Draw Card" button visible ✅
+- [x] Click "Draw Card" — shows two cards ✅
+- [x] `pnpm validate` passes (lint + typecheck) ✅
+- [x] 10+ unit tests written & passing ✅
+- [x] 5+ component tests written & passing ✅
+- [x] Responsive CSS works (test on mobile/tablet/desktop) ✅
+- [x] WCAG AA accessibility verified ✅
 
 ---
 
-## 🎯 Key Differences from RPS
+## ✅ Key Differences from RPS
 
 | Aspect           | RPS                 | War                   |
 | ---------------- | ------------------- | --------------------- |
@@ -470,7 +470,7 @@ pnpm test
 
 ---
 
-## ✨ After War is Shipped
+## ⭐ After War is Shipped
 
 **Pattern is proven.** You now have:
 
@@ -493,7 +493,7 @@ pnpm test
 
 ---
 
-## 🤔 Common Questions
+## 📚 Common Questions
 
 **Q: Do I need to implement all atoms first?**  
 A: No. Create stubs (like PileCount), verify game runs, then polish.
@@ -509,7 +509,7 @@ A: Skip animations for now. Focus on playable MVP. Add later.
 
 ---
 
-## 🆘 Troubleshooting
+## ⚠️ Troubleshooting
 
 **Error: "Cannot find module '@/domain'"**
 
@@ -534,7 +534,7 @@ A: Skip animations for now. Focus on playable MVP. Add later.
 
 ---
 
-## 🎬 Next: RPS Completion OR Ship Immediately?
+## 📄 Next: RPS Completion OR Ship Immediately?
 
 After War is working:
 

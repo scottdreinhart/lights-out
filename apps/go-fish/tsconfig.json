@@ -54,6 +54,9 @@
       "@games/ai-framework": [
         "../../packages/ai-framework/src"
       ]
+      "@games/diagnostics-utils": [
+        "../../packages/diagnostics-utils/src"
+      ],
     }
   },
   "include": [

@@ -1,8 +1,9 @@
 # Tile System - Marketplace Compliance Constraint
 
 **Effective Date**: April 2, 2026  
-**Scope**: ALL games in the platform  
-**Authority**: Marketplace & App Store Requirements
+**Updated**: April 13, 2026  
+**Scope**: ALL 52 games in the platform  
+**Authority**: Marketplace & App Store Requirements + 52-App Platform Standard
 
 ## Requirement
 

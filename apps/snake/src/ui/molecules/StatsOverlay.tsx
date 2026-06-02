@@ -2,8 +2,8 @@
  * StatsOverlay — high scores and session statistics.
  */
 
-import { MODE_LABELS } from '@/domain'
 import type { GameMode, GameStats } from '@/domain'
+import { MODE_LABELS } from '@/domain'
 import styles from './Overlay.module.css'
 
 interface StatsOverlayProps {

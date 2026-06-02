@@ -66,11 +66,14 @@ const SPRITE_REGISTRY: Readonly<Record<string, ThemeSpriteSet>> = {
 }
 
 /** Get the sprite set for a theme (returns empty set if theme unknown) */
-export const getThemeSprites = (themeId: string): ThemeSpriteSet =>
-  SPRITE_REGISTRY[themeId] ?? { background: null }
+export const getThemeSprites = (themeId: string): ThemeSpriteSet => {
+  // eslint-disable-next-line security/detect-object-injection -- safe internal registry lookup; keys are controlled constants
+  return SPRITE_REGISTRY[themeId] ?? { background: null }
+}
 
 /** Get the background image as a CSS url() value, or 'none' */
 export const getBackgroundCssValue = (themeId: string): string => {
+  // eslint-disable-next-line security/detect-object-injection -- safe internal registry lookup; keys are controlled constants
   const sprite = SPRITE_REGISTRY[themeId]?.background
   return sprite ? `url('${sprite.src}')` : 'none'
 }

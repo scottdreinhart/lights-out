@@ -1,0 +1,5 @@
+export { GAME_META, INITIAL_STATE, PROGRESS_TARGET } from './constants'
+export type { GameMeta } from './constants'
+export { reduceGameState } from './rules'
+export type { GameAction } from './rules'
+export type { GamePhase, GameState } from './types'

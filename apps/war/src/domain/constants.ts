@@ -1,41 +1,19 @@
-import type { Card, CardRank, CardSuit, GameState } from './types'
-
-export const SUITS: readonly CardSuit[] = ['hearts', 'diamonds', 'clubs', 'spades']
-export const RANKS: readonly CardRank[] = [
-  'A',
-  '2',
-  '3',
-  '4',
-  '5',
-  '6',
-  '7',
-  '8',
-  '9',
-  '10',
-  'J',
-  'Q',
-  'K',
-]
+import type { Rank } from '@games/card-deck-core'
+import {
+  createDeck as createCardDeck,
+  shuffleDeck as shuffleCardDeck,
+  WAR_DECK,
+} from '@games/card-deck-core'
+import type { Card, GameState } from './types'
 
 export function createDeck(): Card[] {
-  const deck: Card[] = []
-  for (const suit of SUITS) {
-    for (const rank of RANKS) {
-      deck.push({ suit, rank })
-    }
-  }
-
-  // Shuffle deck
-  for (let i = deck.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[deck[i], deck[j]] = [deck[j], deck[i]]
-  }
-
-  return deck
+  const deck = createCardDeck(WAR_DECK)
+  const shuffled = shuffleCardDeck(deck)
+  return [...shuffled.remainingCards]
 }
 
-export function getRankValue(rank: CardRank): number {
-  const rankMap: Record<CardRank, number> = {
+export function getRankValue(rank: Rank): number {
+  const rankMap: Record<Rank, number> = {
     A: 14,
     K: 13,
     Q: 12,
@@ -49,6 +27,7 @@ export function getRankValue(rank: CardRank): number {
     '4': 4,
     '3': 3,
     '2': 2,
+    joker: 15,
   }
   return rankMap[rank]
 }
@@ -57,18 +36,22 @@ export function compareCards(card1: Card, card2: Card): 1 | 2 | 0 {
   const val1 = getRankValue(card1.rank)
   const val2 = getRankValue(card2.rank)
 
-  if (val1 > val2) return 1
-  if (val2 > val1) return 2
+  if (val1 > val2) {
+    return 1
+  }
+  if (val2 > val1) {
+    return 2
+  }
   return 0 // Tie
 }
 
 export function shuffleDeck(deck: Card[]): Card[] {
-  const shuffled = [...deck]
-  for (let i = shuffled.length - 1; i > 0; i--) {
+  const next = [...deck]
+  for (let i = next.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
-    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    ;[next[i], next[j]] = [next[j], next[i]]
   }
-  return shuffled
+  return next
 }
 
 export function createInitialGameState(): GameState {
@@ -79,6 +62,8 @@ export function createInitialGameState(): GameState {
     phase: 'playing',
     playerDeck: fullDeck.slice(0, mid),
     computerDeck: fullDeck.slice(mid),
+    playerWonPile: [],
+    computerWonPile: [],
     playerCard: null,
     computerCard: null,
     tableCards: {
@@ -114,10 +99,7 @@ export function hasEnoughCardsForWar(deck: Card[], warCardCount: number): boolea
 /**
  * Get cards to place in war (face-down cards)
  */
-export function getWarCards(
-  deck: Card[],
-  count: number
-): { cards: Card[]; remaining: Card[] } {
+export function getWarCards(deck: Card[], count: number): { cards: Card[]; remaining: Card[] } {
   const cards = deck.slice(0, Math.min(count, deck.length))
   const remaining = deck.slice(cards.length)
   return { cards, remaining }
@@ -126,9 +108,6 @@ export function getWarCards(
 /**
  * Calculate winner of a single round based on revealed cards
  */
-export function determineRoundWinner(
-  playerCard: Card,
-  computerCard: Card
-): 1 | 2 | 0 {
+export function determineRoundWinner(playerCard: Card, computerCard: Card): 1 | 2 | 0 {
   return compareCards(playerCard, computerCard)
 }

@@ -1,6 +1,6 @@
-# INPUT CONTROLS IMPLEMENTATION DIRECTIVE
+# 🎮 INPUT CONTROLS IMPLEMENTATION DIRECTIVE
 
-> **BASELINE**: Before implementing input controls, read `AGENTS.md` § 0 (Non-Negotiable Rules). Preserve existing behavior. Make minimal edits. Implement, don't suggest. Quality gates mandatory.
+> **BASELINE**: Before implementing input controls, read `AGENTS.md` § 0 (Non-Negotiable Rules) and § 19 (Input Controls). Preserve existing behavior. Make minimal edits. Implement, don't suggest. Quality gates mandatory.
 
 ---
 
@@ -325,6 +325,27 @@ Prefer one of:
 - explicit chat screen
 
 Do not assume long-form typing is comfortable on TV.
+
+### 7.6 Amazon Fire TV Remote and Controller Mapping (Mandatory)
+
+For Fire TV web app compatibility, the TV adapter must support Fire TV remote/game-controller keycodes:
+
+- Left: 37
+- Up: 38
+- Right: 39
+- Down: 40
+- Select (D-pad center / A / X / Y equivalent): 13
+- Back: 4
+- Play/Pause: 179
+- Rewind: 227
+- Fast Forward: 228
+
+Fire TV constraints:
+
+- Home, Menu, and Voice Search are not capturable in third-party apps.
+- Back must navigate app history/surfaces predictably and never trap users.
+- Play/Pause handling is mandatory for media apps and should pause gameplay/media when applicable.
+- Inputs are delivered only while app is in focus; resume logic must restore actionable focus.
 
 ---
 

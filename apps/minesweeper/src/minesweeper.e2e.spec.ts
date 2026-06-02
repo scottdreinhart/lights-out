@@ -1,3 +1,5 @@
+ 
+/* eslint-disable no-console */
 import { expect, test } from '@playwright/test'
 
 /**
@@ -175,7 +177,7 @@ test.describe('Minesweeper Tile Hover & Selection', () => {
     console.log('✅ Hint styling variables are properly set')
   })
 
-  test('Touch device: hover should not activate on coarse pointers', async ({ page, context }) => {
+  test('Touch device: hover should not activate on coarse pointers', async ({ context }) => {
     // Create a touch-enabled page context (simulating mobile)
     const mobileDevice = {
       userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_0 like Mac OS X)',

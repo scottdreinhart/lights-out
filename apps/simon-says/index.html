@@ -7,9 +7,13 @@
     <meta name="theme-color" content="#667eea" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1a1a2e" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
-    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
-    <link rel="manifest" href="/manifest.json" />
+<link rel="icon" type="image/png" href="/company-logo.png" />
+<link rel="apple-touch-icon" href="/company-logo.png" />
+<link rel="manifest" href="/manifest.json" />
     <title>Simon Says</title>
+
+    <!-- Preload module entry with matching fetch semantics -->
+    <link rel="modulepreload" href="/src/index.tsx" />
   </head>
   <body>
     <div id="root"></div>

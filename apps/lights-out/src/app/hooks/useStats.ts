@@ -3,7 +3,7 @@
  * Configured via shared factory with app-specific storage key.
  */
 
-import { createUseStatsHook } from '@games/app-hook-utils'
+import { createUseStatsHook } from '@games/ui-hooks'
 
 import { DEFAULT_STATS } from '@/domain'
 

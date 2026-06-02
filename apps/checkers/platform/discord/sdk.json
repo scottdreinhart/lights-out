@@ -1,0 +1,5 @@
+{
+  "app": "checkers",
+  "sdk": "discord-embedded-app",
+  "mode": "placeholder"
+}

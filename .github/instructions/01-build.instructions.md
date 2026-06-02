@@ -1,4 +1,4 @@
-# Build & Packaging Instructions
+# 🔨 Build & Packaging Instructions
 
 > **Scope**: Build scripts, packaging, shell/environment routing, output directories.
 > Subordinate to `AGENTS.md` §0 (Non-Negotiable Rules), §2 (pnpm-only), and §5 (shell routing).
@@ -55,8 +55,8 @@ Defined in `package.json` under the `"build"` key:
 
 | Field                | Value                        |
 | -------------------- | ---------------------------- |
-| `appId`              | `com.scottreinhart.nim`      |
-| `productName`        | `Nim`                        |
+| `appId`              | App-specific (per `apps/<game>/package.json` `build` key) |
+| `productName`        | App-specific (per app)                                     |
 | `directories.output` | `release`                    |
 | `files`              | `dist/**/*`, `electron/**/*` |
 | `win.target`         | `portable` (unsigned)        |
@@ -88,20 +88,21 @@ Defined in `package.json` under the `"build"` key:
 
 ## Quality Gate Scripts
 
-| Script              | Effect                                 |
-| ------------------- | -------------------------------------- |
-| `pnpm lint`         | ESLint check on `src/`                 |
-| `pnpm lint:fix`     | ESLint auto-fix on `src/`              |
-| `pnpm format`       | Prettier format `src/`                 |
-| `pnpm format:check` | Prettier check `src/` (no write)       |
-| `pnpm typecheck`    | `tsc --noEmit`                         |
-| `pnpm check`        | `lint` + `format:check` + `typecheck`  |
-| `pnpm fix`          | `lint:fix` + `format`                  |
+| Script              | Effect                                                                                                        |
+| ------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `pnpm lint`         | ESLint check on `src/`                                                                                        |
+| `pnpm lint:fix`     | ESLint auto-fix on `src/`                                                                                     |
+| `pnpm format`       | Prettier format `src/`                                                                                        |
+| `pnpm format:check` | Prettier check `src/` (no write)                                                                              |
+| `pnpm typecheck`    | `tsc --noEmit`                                                                                                |
+| `pnpm check`        | `lint` + `format:check` + `typecheck`                                                                         |
+| `pnpm fix`          | `lint:fix` + `format`                                                                                         |
 | `pnpm validate`     | `check` + `build` + Lighthouse audit (full pre-push gate, MUST pass ≥80 Lighthouse score for CSS performance) |
 
 Always run `pnpm validate` before pushing changes.
 
 **CSS Performance Validation** (Mandatory in `pnpm validate`):
+
 - Runs Lighthouse audit (target ≥90, minimum ≥80)
 - Validates Core Web Vitals: FCP <1.8s, LCP <2.5s, CLS <0.1
 - Verifies CSS critical path <50KB

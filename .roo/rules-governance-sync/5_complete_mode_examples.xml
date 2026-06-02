@@ -1,0 +1,54 @@
+<complete_examples>
+  <overview>
+    Example scenarios for the governance-sync mode. These examples show how to preserve architecture, scripts, aliases, and validation while keeping changes minimal and synchronized.
+  </overview>
+
+  <example name="governance_sync_recovery_plan">
+    <scenario>
+      The repository has been edited by multiple AI systems and there is concern that scripts, aliases, or governance guidance may have drifted.
+    </scenario>
+    <user_request>
+      Sync the repository governance and fix any drift without removing existing scripts or aliases.
+    </user_request>
+    <workflow>
+      <step number="1">
+        <description>Identify the affected governance surfaces</description>
+        <guidance>
+          Review the repository governance files, mode definitions, and any supporting instruction files related to the requested surface. Outcome: a short list of authoritative sources and affected artifacts.
+        </guidance>
+        <expected_outcome>Confirmed governance sources and the smallest affected set of files.</expected_outcome>
+      </step>
+
+      <step number="2">
+        <description>Check for damage before editing</description>
+        <guidance>
+          Verify whether scripts, aliases, config, or workflow guidance were removed or weakened. If damage is present, switch to recovery behavior and produce a restoration plan before editing. Outcome: the change is classified as safe or recovery-required.
+        </guidance>
+        <analysis>Determine whether the task is a preservation edit or a repair task.</analysis>
+      </step>
+
+      <step number="3">
+        <description>Apply the smallest synchronized update</description>
+        <guidance>
+          Update only the files needed to keep the mode and its guidance aligned. Prefer extending existing files over creating parallel replacements. Outcome: mode guidance remains synchronized without broad rewrites.
+        </guidance>
+      </step>
+
+      <step number="4">
+        <description>Validate the change narrowly</description>
+        <guidance>
+          Run the narrowest meaningful structural or policy check available for the touched artifacts. Outcome: the edit is confirmed without widening scope.
+        </guidance>
+      </step>
+    </workflow>
+
+    <completion>
+      Summarize what was preserved, what was synchronized, and whether any blockers remain.
+    </completion>
+
+    <key_takeaways>
+      <takeaway>Preservation comes before expansion.</takeaway>
+      <takeaway>Recovery is mandatory when governance drift is detected.</takeaway>
+    </key_takeaways>
+  </example>
+</complete_examples>

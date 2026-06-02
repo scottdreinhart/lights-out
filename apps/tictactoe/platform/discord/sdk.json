@@ -1,0 +1,5 @@
+{
+  "app": "tictactoe",
+  "sdk": "discord-embedded-app",
+  "mode": "placeholder"
+}

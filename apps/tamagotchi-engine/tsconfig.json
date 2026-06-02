@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      "@games/common": ["../../packages/common/src/index.ts"],
+      "@games/common/*": ["../../packages/common/src/*"],
+      "@games/assets-shared": ["../../packages/assets-shared/src/index.ts"],
+      "@games/assets-shared/*": ["../../packages/assets-shared/src/*"]
+      "@games/diagnostics-utils": [
+        "../../packages/diagnostics-utils/src"
+      ],
+    }
+  },
+  "include": ["src"]
+}

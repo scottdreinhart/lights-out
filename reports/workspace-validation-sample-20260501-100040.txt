@@ -1,0 +1,8 @@
+Sampled Workspace Validation Report
+Date: Fri May  1 10:00:40 EDT 2026
+
+LEGEND:
+  ✓ = PASS  |  ✗ = FAIL  |  ? = NOT RUN
+
+App                          | test:names | lint  | typecheck | test  | build
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

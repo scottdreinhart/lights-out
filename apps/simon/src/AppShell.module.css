@@ -2,20 +2,45 @@
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-    sans-serif;
-  color: white;
+  justify-content: flex-start;
+  background: var(--simon-shell-bg, linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%));
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: var(--simon-shell-text, #ffffff);
   min-height: 100vh;
-  padding: 16px;
+  padding: 12px 16px 16px;
+}
+
+.appHeader {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.appTitle {
+  margin: 0;
+  font-size: clamp(1.1rem, 4vw, 1.6rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--simon-shell-text, #ffffff);
+}
+
+.headerMenuArea {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .gameContainer {
   width: 100%;
   max-width: 600px;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,7 +55,7 @@
 }
 
 .resultsCard {
-  background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+  background: var(--simon-shell-panel, linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%));
   border-radius: 16px;
   padding: 40px 24px;
   text-align: center;
@@ -47,13 +72,13 @@
 .finalScore {
   font-size: 24px;
   font-weight: bold;
-  color: #667eea;
+  color: var(--simon-shell-accent, #667eea);
   margin: 0 0 12px 0;
 }
 
 .sequenceLength {
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--simon-shell-text-muted, rgba(255, 255, 255, 0.7));
   margin: 0 0 24px 0;
 }
 
@@ -66,8 +91,12 @@
 .primaryButton {
   all: unset;
   padding: 12px 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: linear-gradient(
+    135deg,
+    var(--simon-shell-accent, #667eea) 0%,
+    var(--simon-shell-accent-soft, #764ba2) 100%
+  );
+  color: var(--simon-shell-text, #fff);
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
@@ -80,16 +109,16 @@
   }
 
   &:focus-visible {
-    outline: 2px solid #667eea;
+    outline: 2px solid var(--simon-shell-accent, #667eea);
   }
 }
 
 .secondaryButton {
   all: unset;
   padding: 12px 24px;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: var(--simon-shell-surface, rgba(255, 255, 255, 0.1));
+  color: var(--simon-shell-text, #fff);
+  border: 2px solid var(--simon-shell-panel-border, rgba(255, 255, 255, 0.2));
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
@@ -97,16 +126,28 @@
   transition: all 200ms ease;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.3);
+    background: var(--simon-shell-surface-strong, rgba(255, 255, 255, 0.15));
+    border-color: var(--simon-shell-panel-border, rgba(255, 255, 255, 0.3));
   }
 
   &:focus-visible {
-    outline: 2px solid white;
+    outline: 2px solid var(--simon-shell-text, #fff);
   }
 }
 
 @media (max-width: 599px) {
+  .root {
+    padding: 8px 10px 14px;
+  }
+
+  .appHeader {
+    margin-bottom: 10px;
+  }
+
+  .appTitle {
+    font-size: clamp(1rem, 5vw, 1.25rem);
+  }
+
   .resultsCard {
     padding: 24px 16px;
 

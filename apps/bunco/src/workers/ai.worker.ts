@@ -1,5 +1,5 @@
-import { rollDice, scoreRoll } from '@/domain'
 import type { DieValue, RollResult } from '@/domain'
+import { rollDice, scoreRoll } from '@/domain'
 import type { WasmEngine } from '@/wasm/wasm-loader'
 import { loadWasmEngine } from '@/wasm/wasm-loader'
 

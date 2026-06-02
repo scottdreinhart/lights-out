@@ -1,4 +1,4 @@
-import { SplashScreen } from '@games/common/organisms'
+import { SplashScreen } from '@games/common'
 import styles from './Splash.module.css'
 
 export interface SplashProps {

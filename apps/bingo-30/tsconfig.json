@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "ignoreDeprecations": "6.0",
     "target": "ES2020",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
@@ -18,11 +17,13 @@
     "jsx": "react-jsx",
 
     /* Paths */
-    "baseUrl": ".",
     "paths": {
-      "@/app/*": ["src/app/*"],
-      "@/domain/*": ["src/domain/*"],
-      "@/ui/*": ["src/ui/*"]
+      "@/app": ["./src/app/index.ts"],
+      "@/app/*": ["./src/app/*"],
+      "@/domain": ["./src/domain/index.ts"],
+      "@/domain/*": ["./src/domain/*"],
+      "@/ui": ["./src/ui/index.ts"],
+      "@/ui/*": ["./src/ui/*"]
     },
 
     /* Strictness */
@@ -33,5 +34,5 @@
     "noImplicitAny": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src"],
+  "include": ["src"]
 }

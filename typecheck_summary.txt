@@ -1,0 +1,14 @@
+=== bingo-30 ===
+FAIL (11)
+=== bingo-rush ===
+FAIL (115)
+=== bingo-bonus ===
+FAIL (72)
+=== pattern-bingo ===
+FAIL (49)
+=== power-bingo ===
+FAIL (321)
+=== simon ===
+PASS
+=== memory ===
+PASS

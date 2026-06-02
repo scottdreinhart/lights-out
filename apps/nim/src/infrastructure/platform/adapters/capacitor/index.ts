@@ -12,7 +12,7 @@ const capacitorHaptics = {
       await Haptics.notification({ type: 'Light' as any })
     } catch {
       // Fallback: use browser vibration
-      if (navigator.vibrate) navigator.vibrate(10)
+      if (navigator.vibrate) {navigator.vibrate(10)}
     }
   },
   async medium() {
@@ -20,7 +20,7 @@ const capacitorHaptics = {
       const { Haptics } = await import('@capacitor/haptics')
       await Haptics.notification({ type: 'Medium' as any })
     } catch {
-      if (navigator.vibrate) navigator.vibrate(20)
+      if (navigator.vibrate) {navigator.vibrate(20)}
     }
   },
   async heavy() {
@@ -28,7 +28,7 @@ const capacitorHaptics = {
       const { Haptics } = await import('@capacitor/haptics')
       await Haptics.notification({ type: 'Heavy' as any })
     } catch {
-      if (navigator.vibrate) navigator.vibrate(50)
+      if (navigator.vibrate) {navigator.vibrate(50)}
     }
   },
 }

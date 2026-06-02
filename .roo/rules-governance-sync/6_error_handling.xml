@@ -1,0 +1,52 @@
+<error_handling>
+  <overview>
+    Guidance for handling governance drift, malformed configuration, and recovery-required states in the governance-sync mode.
+  </overview>
+
+  <common_issues>
+    <issue type="governance_drift">
+      <problem>Multiple governance sources disagree or have diverged.</problem>
+      <response>Preserve the stricter rule, identify the authoritative source, and synchronize the relevant files together.</response>
+    </issue>
+
+    <issue type="script_or_alias_damage">
+      <problem>A script, alias, or toolchain setting appears to have been removed or simplified.</problem>
+      <response>Stop feature work, inspect the diff, restore the removed behavior, and validate before proceeding.</response>
+    </issue>
+
+    <issue type="mode_configuration_error">
+      <problem>The mode definition is malformed or the supporting files are missing.</problem>
+      <response>Check .roomodes and the .roo/rules-[slug]/ directory, then repair the smallest broken artifact first.</response>
+    </issue>
+
+    <issue type="xml_structure_problem">
+      <problem>A supporting XML file is not well-formed.</problem>
+      <response>Fix the XML syntax, keep the content minimal, and re-validate the file before any broader change.</response>
+    </issue>
+  </common_issues>
+
+  <recovery_steps>
+    <step number="1">
+      <title>Stop and classify</title>
+      <description>Determine whether the issue is a harmless inconsistency or a true recovery case.</description>
+    </step>
+    <step number="2">
+      <title>Inspect the smallest surface</title>
+      <description>Read the affected mode file, supporting XML, or workspace policy file before editing.</description>
+    </step>
+    <step number="3">
+      <title>Repair the root cause</title>
+      <description>Restore missing behavior or fix the malformed structure without broad rewrites.</description>
+    </step>
+    <step number="4">
+      <title>Validate narrowly</title>
+      <description>Confirm the repaired artifact is structurally valid and that the mode registry remains synchronized.</description>
+    </step>
+  </recovery_steps>
+
+  <completion_criteria>
+    <criterion>Damage is repaired before any feature work resumes.</criterion>
+    <criterion>No scripts, aliases, or governance constraints were weakened.</criterion>
+    <criterion>The mode remains synchronized with its supporting files.</criterion>
+  </completion_criteria>
+</error_handling>

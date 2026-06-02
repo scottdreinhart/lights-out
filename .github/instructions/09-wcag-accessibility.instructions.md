@@ -1,6 +1,6 @@
-# WCAG 2.1 AA Accessibility Governance
+# ♿ WCAG 2.1 AA Accessibility Governance
 
-> **Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules) and § 23 (Accessibility Governance)
+> **Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules) and § 23 (Accessibility Governance)  
 > **BASELINE**: Before making accessibility changes, read `AGENTS.md` § 0. Preserve existing behavior and semantics. Minimal edits only.
 > **Scope**: Keyboard navigation, screen readers, semantic HTML, contrast
 

@@ -3,23 +3,19 @@
  * Pathfinding and solving algorithms for maze navigation
  */
 
+import { MOVEMENT_COSTS } from './constants'
+import { createInitialState, getValidMoves } from './rules'
 import type {
+  CellType,
+  Difficulty,
+  Direction,
   Maze,
-  Position,
+  Move,
   PathNode,
+  Position,
   Solution,
   ZipState,
-  Move,
-  Direction,
 } from './types'
-import {
-  getValidMoves,
-  wouldCollectItem,
-  isValidPosition,
-  isPassable,
-  createInitialState,
-} from './rules'
-import { DIRECTIONS, MOVEMENT_COSTS } from './constants'
 
 /**
  * Calculate Manhattan distance heuristic
@@ -31,9 +27,18 @@ const manhattanDistance = (a: Position, b: Position): number => {
 /**
  * Calculate movement cost between positions
  */
-const getMovementCost = (from: Position, to: Position, maze: Maze): number => {
+const MOVEMENT_COST_BY_CELL: Record<CellType, number> = {
+  empty: MOVEMENT_COSTS.empty,
+  wall: Number.MAX_SAFE_INTEGER,
+  start: MOVEMENT_COSTS.empty,
+  goal: MOVEMENT_COSTS.goal,
+  item: MOVEMENT_COSTS.item,
+  player: MOVEMENT_COSTS.empty,
+}
+
+const getMovementCost = (to: Position, maze: Maze): number => {
   const cell = maze[to.row][to.col]
-  return MOVEMENT_COSTS[cell.type] || MOVEMENT_COSTS.empty
+  return MOVEMENT_COST_BY_CELL[cell.type]
 }
 
 /**
@@ -43,7 +48,7 @@ export const findPathAStar = (
   start: Position,
   goal: Position,
   maze: Maze,
-  collectedItems: Position[] = []
+  _collectedItems: Position[] = [],
 ): Position[] => {
   const openSet: PathNode[] = []
   const closedSet: Set<string> = new Set()
@@ -63,7 +68,9 @@ export const findPathAStar = (
     const current = openSet.shift()!
 
     const posKey = `${current.position.row},${current.position.col}`
-    if (closedSet.has(posKey)) continue
+    if (closedSet.has(posKey)) {
+      continue
+    }
     closedSet.add(posKey)
 
     // Check if goal reached
@@ -77,16 +84,17 @@ export const findPathAStar = (
       const neighborPos = move.to
       const neighborKey = `${neighborPos.row},${neighborPos.col}`
 
-      if (closedSet.has(neighborKey)) continue
+      if (closedSet.has(neighborKey)) {
+        continue
+      }
 
-      const gScore = current.g + getMovementCost(current.position, neighborPos, maze)
+      const gScore = current.g + getMovementCost(neighborPos, maze)
       const hScore = manhattanDistance(neighborPos, goal)
       const fScore = gScore + hScore
 
       // Check if this path is better
-      const existingNode = openSet.find(node =>
-        node.position.row === neighborPos.row &&
-        node.position.col === neighborPos.col
+      const existingNode = openSet.find(
+        (node) => node.position.row === neighborPos.row && node.position.col === neighborPos.col,
       )
 
       if (!existingNode || gScore < existingNode.g) {
@@ -132,16 +140,19 @@ const reconstructPath = (node: PathNode): Position[] => {
 export const findOptimalPath = (state: ZipState): Solution | null => {
   const start = state.playerPosition
   const goal = state.goalPosition
-  const remainingItems = state.items.filter(item =>
-    !state.collectedItems.some(collected =>
-      collected.row === item.row && collected.col === item.col
-    )
+  const remainingItems = state.items.filter(
+    (item) =>
+      !state.collectedItems.some(
+        (collected) => collected.row === item.row && collected.col === item.col,
+      ),
   )
 
   if (remainingItems.length === 0) {
     // No items left, go directly to goal
     const path = findPathAStar(start, goal, state.maze, state.collectedItems)
-    if (path.length === 0) return null
+    if (path.length === 0) {
+      return null
+    }
 
     return {
       path,
@@ -154,8 +165,8 @@ export const findOptimalPath = (state: ZipState): Solution | null => {
   // Find best sequence to collect remaining items and reach goal
   // For simplicity, use nearest neighbor approach
   let currentPos = start
-  let totalPath: Position[] = [start]
-  let collectedSequence: Position[] = []
+  const totalPath: Position[] = [start]
+  const collectedSequence: Position[] = []
 
   while (remainingItems.length > 0) {
     let bestItem: Position | null = null
@@ -174,7 +185,9 @@ export const findOptimalPath = (state: ZipState): Solution | null => {
       }
     }
 
-    if (!bestItem || bestPath.length === 0) break
+    if (!bestItem || bestPath.length === 0) {
+      break
+    }
 
     // Add path to item (excluding starting position to avoid duplication)
     totalPath.push(...bestPath.slice(1))
@@ -182,8 +195,8 @@ export const findOptimalPath = (state: ZipState): Solution | null => {
     currentPos = bestItem
 
     // Remove collected item
-    const index = remainingItems.findIndex(item =>
-      item.row === bestItem!.row && item.col === bestItem!.col
+    const index = remainingItems.findIndex(
+      (item) => item.row === bestItem!.row && item.col === bestItem!.col,
     )
     remainingItems.splice(index, 1)
   }
@@ -194,7 +207,9 @@ export const findOptimalPath = (state: ZipState): Solution | null => {
     totalPath.push(...goalPath.slice(1))
   }
 
-  if (totalPath.length <= 1) return null
+  if (totalPath.length <= 1) {
+    return null
+  }
 
   return {
     path: totalPath,
@@ -218,10 +233,15 @@ const convertPathToMoves = (path: Position[]): Move[] => {
     const deltaCol = to.col - from.col
 
     let direction: Direction
-    if (deltaRow === -1) direction = 'up'
-    else if (deltaRow === 1) direction = 'down'
-    else if (deltaCol === -1) direction = 'left'
-    else direction = 'right'
+    if (deltaRow === -1) {
+      direction = 'up'
+    } else if (deltaRow === 1) {
+      direction = 'down'
+    } else if (deltaCol === -1) {
+      direction = 'left'
+    } else {
+      direction = 'right'
+    }
 
     moves.push({
       from,
@@ -239,7 +259,7 @@ const convertPathToMoves = (path: Position[]): Move[] => {
 const calculatePathCost = (path: Position[], maze: Maze): number => {
   let cost = 0
   for (let i = 0; i < path.length - 1; i++) {
-    cost += getMovementCost(path[i], path[i + 1], maze)
+    cost += getMovementCost(path[i + 1], maze)
   }
   return cost
 }
@@ -249,7 +269,9 @@ const calculatePathCost = (path: Position[], maze: Maze): number => {
  */
 export const getHintMove = (state: ZipState): Position | null => {
   const solution = findOptimalPath(state)
-  if (!solution || solution.path.length < 2) return null
+  if (!solution || solution.path.length < 2) {
+    return null
+  }
 
   return solution.path[1] // Next position after current
 }

@@ -10,12 +10,12 @@
 
 | Phase                    | Command                   | Duration | Exit If Failed? | Purpose              |
 | ------------------------ | ------------------------- | -------- | --------------- | -------------------- |
-| 💻 **Writing Code**      | `pnpm lint:gate:quick`    | 5s       | ✅ Yes          | Catch bugs early     |
-| 📝 **Before Commit**     | `pnpm lint:gate:standard` | 15s      | ✅ Yes          | Prevent bad commits  |
+| 📚 **Writing Code**      | `pnpm lint:gate:quick`    | 5s       | ✅ Yes          | Catch bugs early     |
+| 📄 **Before Commit**     | `pnpm lint:gate:standard` | 15s      | ✅ Yes          | Prevent bad commits  |
 | 🚀 **Before Push**       | `pnpm lint:gate:standard` | 15s      | ✅ Yes          | Prevent bad pushes   |
-| 🔄 **PR/MR Validation**  | `pnpm lint:gate:full`     | 30s      | ✅ Yes          | Auto-validate PRs    |
-| 🎯 **Release Prep**      | `pnpm lint:gate:strict`   | 60s      | ✅ Yes          | Zero-tolerance check |
-| 📦 **Production Deploy** | `pnpm lint:gate:strict`   | 60s      | ✅ Yes          | Final safety net     |
+| ⚙️ **PR/MR Validation**  | `pnpm lint:gate:full`     | 30s      | ✅ Yes          | Auto-validate PRs    |
+| ✅ **Release Prep**      | `pnpm lint:gate:strict`   | 60s      | ✅ Yes          | Zero-tolerance check |
+| 📁 **Production Deploy** | `pnpm lint:gate:strict`   | 60s      | ✅ Yes          | Final safety net     |
 
 ---
 
@@ -24,9 +24,9 @@
 ### Day-to-Day Development
 
 ```
-📝 Writing Code
+📄 Writing Code
     ↓
-🔍 pnpm lint:gate:quick         ← Fast feedback (5s)
+📚 pnpm lint:gate:quick         ← Fast feedback (5s)
     │
     ├─ ✅ Pass? Continue coding
     └─ ❌ Fail? Fix issues
@@ -34,7 +34,7 @@
 git add .
 git commit
     ↓
-📋 pnpm lint:gate:standard      ← Pre-push check (15s)
+📚 pnpm lint:gate:standard      ← Pre-push check (15s)
     │
     ├─ ✅ Pass? Ready to push
     └─ ❌ Fail? Fix before pushing
@@ -181,7 +181,7 @@ pnpm lint:fix                  # Auto-fix common issues
 
 ---
 
-### 📋 STANDARD Gate - "I'm ready to push"
+### 📚 STANDARD Gate - "I'm ready to push"
 
 **Scenarios**:
 
@@ -205,7 +205,7 @@ git push origin feature-branch
 
 ---
 
-### 🔍 FULL Gate - "Automated validation"
+### 📚 FULL Gate - "Automated validation"
 
 **Scenarios**:
 
@@ -229,7 +229,7 @@ git push origin feature-branch
 
 ---
 
-### 🎯 STRICT Gate - "Production release"
+### ✅ STRICT Gate - "Production release"
 
 **Scenarios**:
 
@@ -464,7 +464,7 @@ echo "✅ Pre-commit validation passed"
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-echo "📋 Running Standard Quality Gate..."
+echo "📚 Running Standard Quality Gate..."
 pnpm lint:gate:standard || exit 1
 
 echo "✅ Pre-push validation passed"

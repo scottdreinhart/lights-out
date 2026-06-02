@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
-import { useThemeContext, useSoundEffects } from '@/app'
+import { useSoundEffects, useThemeContext } from '@/app'
 import { COLOR_THEMES } from '@/domain'
+import { useEffect, useRef, useState } from 'react'
 import styles from './SettingsModal.module.css'
 
 export interface SettingsModalProps {

@@ -8,6 +8,16 @@ import { readFileSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
 import { execSync } from 'child_process'
 
+// ANSI color codes
+const COLORS = {
+  CYAN: '\x1b[96m',
+  GREEN: '\x1b[92m',
+  RED: '\x1b[91m',
+  YELLOW: '\x1b[93m',
+  RESET: '\x1b[0m',
+  BOLD: '\x1b[1m',
+}
+
 const PROJECT_ROOT = resolve(process.cwd())
 const APPS_DIR = resolve(PROJECT_ROOT, 'apps')
 

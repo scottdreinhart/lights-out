@@ -1,7 +1,7 @@
-# Architecture Governance: 07-Scale-Aware AI Orchestration
+# 🤖 Architecture Governance: 07-Scale-Aware AI Orchestration
 
-> **Scope**: Repository-wide pattern for all app projects (30+ apps)
-> **Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules); complements AGENTS.md and 01-build.instructions.md
+> **Scope**: Repository-wide pattern for all app projects (40+ apps)
+> **Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules) and § 18 (Scale-Aware AI); complements AGENTS.md and 01-build.instructions.md
 > **BASELINE**: Before orchestrating AI computation, read `AGENTS.md` § 0. Preserve three-tier decision tree. No lossy refactors. Quality gates mandatory.
 > **Stability**: Mature pattern (implemented in tictactoe, ready for all projects)
 
@@ -10,13 +10,16 @@
 ## 1. The Pattern: Scale-Aware Async AI
 
 ### Problem
+
 Games need efficient AI computation that:
+
 - Doesn't block the UI for simple cases
 - Gracefully scales to larger board sizes
 - Maintains consistency across projects
 - Provides fallback when advanced features unavailable
 
 ### Solution
+
 **Three-tier decision tree** for CPU move computation:
 
 ```
@@ -45,6 +48,7 @@ Games need efficient AI computation that:
 ### Required Files (all projects)
 
 #### `src/app/aiEngine.ts` (or `aiService.ts` for snake)
+
 ```typescript
 // SYNC PATH (main-thread, WASM-accelerated)
 export const computeAiMove = (
@@ -74,12 +78,14 @@ export const terminateAsyncAi = (): void
 ```
 
 #### `src/workers/ai.worker.ts`
+
 - Receives: `{ board, difficulty, ... }`
 - Loads WASM on worker startup
 - Sends back: `{ index, engine }`
 - Has JS fallback for all difficulties
 
 #### `src/app/useCpuPlayer.ts` (or equivalent hook)
+
 ```typescript
 // Decision: Should async be used?
 const USE_ASYNC = boardSize > 4 || searchDepth > 4
@@ -97,7 +103,9 @@ useEffect(() => {
 ### Testing Files
 
 #### `src/app/aiEngine.test.ts`
+
 Must validate:
+
 - ✅ Sync path: all difficulties, all board states
 - ✅ Async path: worker lifecycle, concurrent requests
 - ✅ Equivalence: sync and async produce same move
@@ -110,21 +118,21 @@ Must validate:
 
 ### Decision Rules
 
-| Item | Rule |
-|------|------|
-| **Default** | Use sync (computeAiMove) unless benchmarks show jank |
-| **Benchmark** | If decision time > 10ms, profile to determine if async helps |
-| **Thread** | WASM always preferred; JS as fallback only |
-| **Worker** | Overhead: ~5–10ms; gain: prevents 100ms+ blocking |
-| **Graceful Fallback** | Worker failure → sync (never crash) |
+| Item                  | Rule                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| **Default**           | Use sync (computeAiMove) unless benchmarks show jank         |
+| **Benchmark**         | If decision time > 10ms, profile to determine if async helps |
+| **Thread**            | WASM always preferred; JS as fallback only                   |
+| **Worker**            | Overhead: ~5–10ms; gain: prevents 100ms+ blocking            |
+| **Graceful Fallback** | Worker failure → sync (never crash)                          |
 
 ### Performance Targets
 
-| Path | Target | Tic-Tac-Toe | Larger Games |
-|------|--------|-------------|------|
-| Sync | <100ms | 3×3 minimax: <1ms ✅ | N/A |
-| Async | <500ms | Optional (unused) | 8×8+ minimax: 50–200ms |
-| Worker init | <20ms | (one-time) | (one-time) |
+| Path        | Target | Tic-Tac-Toe          | Larger Games           |
+| ----------- | ------ | -------------------- | ---------------------- |
+| Sync        | <100ms | 3×3 minimax: <1ms ✅ | N/A                    |
+| Async       | <500ms | Optional (unused)    | 8×8+ minimax: 50–200ms |
+| Worker init | <20ms  | (one-time)           | (one-time)             |
 
 ---
 
@@ -133,6 +141,7 @@ Must validate:
 ### File: `src/app/aiEngine.ts`
 
 **Key features:**
+
 - ✅ 4 WASM AI functions (easy/medium/hard/unbeatable)
 - ✅ Sync path: main-thread, <1ms for 3×3
 - ✅ Async path: optional worker, available for testing/future
@@ -140,6 +149,7 @@ Must validate:
 - ✅ Comprehensive tests: 30+ test cases
 
 **Architectural comments:**
+
 ```typescript
 // ARCHITECTURE:
 // - Sync mode (default): Main-thread WASM for small boards (<10ms decision time)
@@ -154,17 +164,20 @@ Must validate:
 ## 5. Applying to Other Projects
 
 ### Minimal Adoption (Safe for All)
+
 1. Keep existing AI sync path (e.g., `useGame()` or `computeAiMove()`)
 2. Add async variant alongside (e.g., `computeAiMoveAsync()`)
 3. Document decision: "Sync path suitable for X×X boards"
 4. Add tests validating both paths (30–40 min effort)
 
 **Projects ready:**
+
 - Snake (already has `aiService` with workers)
 - Grid puzzles, Minesweeper (simple heuristics, no worker needed)
 - Battleship, Farkle, Connect-four (have worker scaffolding)
 
 ### Advanced Adoption (Recommended)
+
 1. Refactor AI into `src/app/aiEngine.ts` (consistent naming)
 2. Implement three-tier decision tree
 3. Move AI logic to domain layer (pure functions)
@@ -176,6 +189,7 @@ Must validate:
 ## 6. Common Patterns
 
 ### Pattern A: Fixed Complexity (Tic-Tac-Toe)
+
 ```typescript
 // Complexity is known constant (3×3)
 // Profiling shows: minimax always <1ms
@@ -192,6 +206,7 @@ export const computeAiMoveAsync = (...): Promise<AiResult> => {
 ```
 
 ### Pattern B: Variable Complexity (Checkers, Battleship)
+
 ```typescript
 // Complexity depends on game state (board fill, pieces remaining, etc.)
 // Profile: early game fast, endgame slow
@@ -216,6 +231,7 @@ export const computeAiMoveAsync = (...): Promise<AiResult> => {
 ```
 
 ### Pattern C: Always Async (Deep Learning, MCTS)
+
 ```typescript
 // AI is inherently slow (neural net inference, MCTS sims)
 // Sync path would always block
@@ -246,6 +262,7 @@ export const computeAiMoveAsync = (...): Promise<AiResult> => {
 - [ ] Performance is acceptable on target devices (profile!)
 
 ### Test Template
+
 See `src/app/aiEngine.test.ts` in tictactoe for comprehensive suite.
 
 ---
@@ -255,8 +272,9 @@ See `src/app/aiEngine.test.ts` in tictactoe for comprehensive suite.
 Add to principal rules:
 
 > **AI Orchestration Rule**
-> 
+>
 > Every app project must implement both `computeAiMove` (sync) and `computeAiMoveAsync` (async):
+>
 > - Sync path must complete in <100ms
 > - Async path must complete in <500ms
 > - Both must produce identical results for deterministic AI
@@ -270,20 +288,24 @@ Add to principal rules:
 ## 9. Migration Path (for existing projects)
 
 ### Week 1: Documentation
+
 - [ ] Add architecture comment to `src/app/*Service.ts` or `useGame.ts`
 - [ ] Create this governance file in `.github/instructions/`
 
 ### Week 2: Async Implementation
+
 - [ ] Create `computeAiMoveAsync` that dispatches to worker
 - [ ] Export from `src/app/index.ts`
 - [ ] Verify worker loads without errors
 
 ### Week 3: Testing
+
 - [ ] Add `*AI.test.ts` or `*AI.integration.test.ts`
 - [ ] Verify both paths tested
 - [ ] Run `pnpm check` and `pnpm test` locally
 
 ### Week 4: Review & Rollout
+
 - [ ] Code review for architecture clarity
 - [ ] Verify no performance regression
 - [ ] Document in project README if AI is interesting

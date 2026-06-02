@@ -13,4 +13,3 @@ export {
   type SimonRuleConfig,
   type SimonRuleVariant,
 } from '@games/simon-engine'
-

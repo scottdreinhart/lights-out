@@ -1,20 +1,24 @@
-import { useWar, useResponsiveState } from '@/app'
+import { useWar } from '@/app'
 import { DEFAULT_RULES } from '@/domain'
+import { ActionBar, Button, StatPill, StatsBar } from '@games/assets-shared'
 import { useState } from 'react'
 import { Card } from '../atoms'
-import { RulesModal } from './RulesModal'
 import styles from './GameBoard.module.css'
+import { RulesModal } from './RulesModal'
 
 export function GameBoard() {
   const { state, nextRound, reset, isOver, winner } = useWar()
   const [showRules, setShowRules] = useState(false)
-  const responsive = useResponsiveState()
 
-  const playerDeckSize = state.playerDeck.length
-  const computerDeckSize = state.computerDeck.length
-  const totalCards = playerDeckSize + computerDeckSize
+  const playerDrawSize = state.playerDeck.length
+  const computerDrawSize = state.computerDeck.length
+  const playerCapturedSize = state.playerWonPile.length
+  const computerCapturedSize = state.computerWonPile.length
+  const playerTotal = playerDrawSize + playerCapturedSize
+  const computerTotal = computerDrawSize + computerCapturedSize
+  const totalCards = playerTotal + computerTotal
 
-  const gameProgress = totalCards > 0 ? ((52 - totalCards) / 52) * 100 : 0
+  const gameProgress = (playerTotal / 52) * 100
 
   return (
     <div className={styles.board}>
@@ -35,22 +39,38 @@ export function GameBoard() {
         {/* Deck Counts */}
         <div className={styles.deckInfo}>
           <div className={styles.deckSize}>
-            <span className={styles.label}>Your Pile</span>
-            <span className={styles.count}>{playerDeckSize}</span>
+            <span className={styles.label}>Your Total</span>
+            <span className={styles.count}>{playerTotal}</span>
+            <span className={styles.label}>
+              Draw {playerDrawSize} / Captured {playerCapturedSize}
+            </span>
           </div>
           <div className={styles.divider}>⚔️</div>
           <div className={styles.deckSize}>
-            <span className={styles.label}>Opponent Pile</span>
-            <span className={styles.count}>{computerDeckSize}</span>
+            <span className={styles.label}>Opponent Total</span>
+            <span className={styles.count}>{computerTotal}</span>
+            <span className={styles.label}>
+              Draw {computerDrawSize} / Captured {computerCapturedSize}
+            </span>
           </div>
         </div>
+
+        {/* Game Stats */}
+        <StatsBar className={styles.stats}>
+          <StatPill label="Rounds Played" value={state.roundsPlayed} />
+          <StatPill label="Wars" value={state.warsPlayed} />
+          <StatPill label="Cards in Play" value={state.roundCardsWon} />
+          <StatPill label="Cards Tracked" value={totalCards} />
+        </StatsBar>
 
         {/* Progress Bar */}
         <div className={styles.progressContainer}>
           <div className={styles.progressBar}>
             <div className={styles.progressFill} style={{ width: `${gameProgress}%` }} />
           </div>
-          <span className={styles.progressText}>{gameProgress.toFixed(0)}%</span>
+          <span className={styles.progressText}>
+            {playerTotal}/52 ({gameProgress.toFixed(0)}%)
+          </span>
         </div>
       </div>
 
@@ -64,15 +84,25 @@ export function GameBoard() {
               <div className={styles.warSequence}>
                 <div className={styles.faceDownCards}>
                   {state.tableCards.player.slice(0, -1).map((_, i) => (
-                    <div key={`fd-p-${i}`} className={styles.cardBack} />
+                    <Card key={`fd-p-${i}`} card={null} faceDown size="sm" />
                   ))}
                 </div>
                 <div className={styles.faceUpCard}>
-                  {state.playerCard && <Card card={state.playerCard} />}
+                  {state.playerCard ? (
+                    <Card card={state.playerCard} />
+                  ) : (
+                    <Card card={null} faceDown />
+                  )}
                 </div>
               </div>
             ) : (
-              state.playerCard && <Card card={state.playerCard} />
+              <>
+                {state.playerCard ? (
+                  <Card card={state.playerCard} />
+                ) : (
+                  <Card card={null} faceDown />
+                )}
+              </>
             )}
           </div>
         </div>
@@ -97,33 +127,27 @@ export function GameBoard() {
               <div className={styles.warSequence}>
                 <div className={styles.faceDownCards}>
                   {state.tableCards.computer.slice(0, -1).map((_, i) => (
-                    <div key={`fd-c-${i}`} className={styles.cardBack} />
+                    <Card key={`fd-c-${i}`} card={null} faceDown size="sm" />
                   ))}
                 </div>
                 <div className={styles.faceUpCard}>
-                  {state.computerCard && <Card card={state.computerCard} />}
+                  {state.computerCard ? (
+                    <Card card={state.computerCard} />
+                  ) : (
+                    <Card card={null} faceDown />
+                  )}
                 </div>
               </div>
             ) : (
-              state.computerCard && <Card card={state.computerCard} />
+              <>
+                {state.computerCard ? (
+                  <Card card={state.computerCard} />
+                ) : (
+                  <Card card={null} faceDown />
+                )}
+              </>
             )}
           </div>
-        </div>
-      </div>
-
-      {/* Game Stats */}
-      <div className={styles.stats}>
-        <div className={styles.stat}>
-          <span className={styles.label}>Rounds Played</span>
-          <span className={styles.value}>{state.roundsPlayed}</span>
-        </div>
-        <div className={styles.stat}>
-          <span className={styles.label}>Wars</span>
-          <span className={styles.value}>{state.warsPlayed}</span>
-        </div>
-        <div className={styles.stat}>
-          <span className={styles.label}>Cards in Play</span>
-          <span className={styles.value}>{state.roundCardsWon}</span>
         </div>
       </div>
 
@@ -140,28 +164,33 @@ export function GameBoard() {
               <p>Opponent Wins: {state.computerWins}</p>
               <p>Wars: {state.warsPlayed}</p>
             </div>
-            <button onClick={reset} className={styles.primaryButton}>
+            <Button onClick={reset} className={styles.primaryButton} variant="primary">
               Play Again
-            </button>
+            </Button>
           </div>
         </div>
       )}
 
       {/* Action Buttons */}
-      <div className={styles.actions}>
+      <ActionBar className={styles.actions}>
         {!isOver && (
-          <button
+          <Button
             onClick={nextRound}
             className={styles.primaryButton}
+            variant="primary"
             disabled={state.gameOver}
           >
             {state.phase === 'war' ? 'Continue War' : 'Draw Card'}
-          </button>
+          </Button>
         )}
-        <button onClick={() => setShowRules(true)} className={styles.secondaryButton}>
+        <Button
+          onClick={() => setShowRules(true)}
+          className={styles.secondaryButton}
+          variant="secondary"
+        >
           Rules
-        </button>
-      </div>
+        </Button>
+      </ActionBar>
 
       {/* Rules Modal */}
       <RulesModal

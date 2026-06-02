@@ -7,17 +7,17 @@
 
 // Shared infrastructure
 export {
-  useKeyboardControls,
-  useMediaQuery,
-  useWindowSize,
-  useResponsiveState,
-  useDeviceInfo,
-  useAppScreens,
-  useServiceLoader,
-  useOnlineStatus,
-  useLongPress,
-  usePerformanceMetrics,
   logWebVitals,
+  useAppScreens,
+  useDeviceInfo,
+  useKeyboardControls,
+  useLongPress,
+  useMediaQuery,
+  useOnlineStatus,
+  usePerformanceMetrics,
+  useResponsiveState,
+  useServiceLoader,
+  useWindowSize,
   type DeviceInfo,
   type DeviceType,
   type WindowSize,
@@ -25,14 +25,13 @@ export {
 
 // Local services
 export { isWasmActive } from './aiService'
+export { logCrash, getCrashLogs, clearCrashLogs, markFatalCrash, getFatalCrash, clearFatalCrash } from '@games/diagnostics-utils'
 export * from './haptics'
-export * from './crashLogger'
-export * from './storageService'
 export { SoundProvider, useSoundContext } from './SoundContext'
+export * from './storageService'
 export { ThemeProvider, useThemeContext } from './ThemeContext'
 
 // App-specific hooks
-export { useGame } from './useGame'
-export { useSoundEffects } from './useSoundEffects'
-export { useStats } from './useStats'
 export { useSwipe } from '@games/app-hook-utils'
+export * from './securityModules'
+export * from './hooks'

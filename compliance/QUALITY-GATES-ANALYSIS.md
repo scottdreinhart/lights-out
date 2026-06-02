@@ -1,8 +1,9 @@
-# Quality Gates Analysis - Compliance Metrics for 27 Games
+# Quality Gates Analysis - Compliance Metrics for 52 Games
 
 **Status**: ANALYSIS PHASE - Adding metrics beyond completion percentage  
 **Created**: 2026-03-31  
-**Based On**: Subagent code audit of all 27 existing games + 17 unstarted games
+**Updated**: 2026-04-13 (Current baseline reflects 52 active apps, not 27+17 snapshot)  
+**Based On**: March 31 subagent code audit baseline; April 13 app inventory (52 games)
 
 ---
 

@@ -3,4 +3,7 @@
  * React hooks and services
  */
 
-export { useCrossclimbGame } from './useCrossclimbGame'
+export * from './hooks'
+export * from './securityModules'
+// useGame is the canonical alias — crossclimb uses useCrossclimbGame internally
+export { useCrossclimbGame as useGame } from './hooks'

@@ -1,0 +1,23 @@
+{
+  "game_title": "Glass Dunes",
+  "genre_family": "endless_runner",
+  "scroll_direction": "horizontal_right",
+  "camera_mode": "side_view",
+  "lane_model": "terrain_physics",
+  "movement_model": "terrain_based",
+  "primary_input": "tap_hold",
+  "secondary_input": "trick_chain",
+  "core_pattern": "momentum + slope_flow + aerial_tricks",
+  "player_goal": "reach_distance_milestones",
+  "obstacle_model": "physics_hazards",
+  "collectible_model": "pickups",
+  "powerup_model": "score_multipliers",
+  "difficulty_curve": "phase_based",
+  "failure_condition": "single_hit",
+  "session_structure": "endless_with_missions",
+  "tone": "minimalist",
+  "world_theme": "crystal desert",
+  "reference_archetypes": ["Alto's Adventure", "Alto's Odyssey", "Tiny Wings"],
+  "must_have_systems": ["terrain_sampling", "momentum_tracking", "trick_scoring"],
+  "must_not_have_systems": ["3_lane", "grid_pathing", "combat"]
+}

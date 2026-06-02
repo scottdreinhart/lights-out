@@ -1,21 +1,22 @@
 /**
  * Draw Panel Component - Bingo App Adapter
  * Wraps the shared DrawPanel component and adapts it to the bingo app's interface.
- * 
+ *
  * This adapter bridges the bingo app's state management with the generic
  * shared DrawPanel component, maintaining backward compatibility while
  * leveraging the shared component's functionality.
  */
 
-import type { BingoCard, DrawResult } from '@games/bingo-core'
+import type { BingoCard } from '@games/bingo-domain'
 import { DrawPanel as SharedDrawPanel } from '@games/bingo-ui-components/organisms'
 import React, { useCallback, useMemo } from 'react'
 
 interface DrawPanelProps {
   currentNumber: number | null
   numbersDrawn: number
+  drawnNumbers?: number[]
   totalNumbers: number
-  onDraw: () => DrawResult | null
+  onDraw: () => void
   onReset: () => void
   disabled?: boolean
   winners?: string[]
@@ -25,46 +26,36 @@ interface DrawPanelProps {
 export const DrawPanel: React.FC<DrawPanelProps> = ({
   currentNumber,
   numbersDrawn,
+  drawnNumbers,
   totalNumbers,
   onDraw,
   onReset,
   disabled = false,
-  winners,
+  winners: _winners,
+  card,
 }) => {
   // Determine game state based on remaining numbers
   const remaining = totalNumbers - numbersDrawn
   const gameState =
     remaining === 0 ? ('won' as const) : disabled ? ('idle' as const) : ('playing' as const)
 
-  // Create a mock card for the shared component
-  // In a full implementation, this would accept the actual card
-  const mockCard: BingoCard = useMemo(
-    () => ({
-      numbers: [],
-      rows: [],
-      columns: [],
-      isWinner: () => false,
-      markNumber: () => {},
-      isMarked: () => false,
-    } as any),
-    [],
-  )
-
-  // Create drawn numbers array from current state
-  // In the actual app, this would come from gameState.drawnNumbers
-  // For now, we create a placeholder array
-  const drawnNumbers = useMemo(() => {
-    const nums: number[] = []
-    if (currentNumber !== null) {
-      nums.push(currentNumber)
+  const resolvedDrawnNumbers = useMemo(() => {
+    if (drawnNumbers && drawnNumbers.length > 0) {
+      return drawnNumbers
     }
-    return nums
-  }, [currentNumber])
+    if (currentNumber !== null) {
+      return [currentNumber]
+    }
+    return []
+  }, [drawnNumbers, currentNumber])
 
   // Wrap the onDraw callback with validation
   const handleDraw = useCallback(() => {
-    if (disabled || remaining === 0) return
-    const result = onDraw()
+    if (disabled || remaining === 0) {
+      return
+    }
+
+    onDraw()
     // Result is handled by the onDraw callback
   }, [disabled, remaining, onDraw])
 
@@ -75,8 +66,8 @@ export const DrawPanel: React.FC<DrawPanelProps> = ({
 
   return (
     <SharedDrawPanel
-      card={mockCard}
-      drawnNumbers={drawnNumbers}
+      card={card as BingoCard | undefined}
+      drawnNumbers={resolvedDrawnNumbers}
       gameState={gameState}
       onDraw={handleDraw}
       onReset={onReset}

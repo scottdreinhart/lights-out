@@ -1,5 +1,5 @@
-import { selectMove } from '@/domain'
 import type { GameState } from '@/domain'
+import { selectMove } from '@/domain'
 import { AI_WASM_BASE64 } from '@/wasm/ai-wasm'
 
 // ============================================================================

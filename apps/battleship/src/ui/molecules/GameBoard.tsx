@@ -2,8 +2,13 @@ import { memo, useMemo } from 'react'
 
 import type { Board } from '@/domain'
 
-import { BoardGrid, type BoardCell as BoardCellType, type Position } from '@games/ui-board-core'
 import { useResponsiveState } from '@games/app-hook-utils'
+import {
+  BoardGrid,
+  describePosition,
+  type BoardCell as BoardCellType,
+  type Position,
+} from '@games/ui-board-core'
 import styles from './GameBoard.module.css'
 
 interface GameBoardProps {
@@ -12,8 +17,8 @@ interface GameBoardProps {
   readonly onCellClick?: (row: number, col: number) => void
   readonly disabled?: boolean
   readonly label: string
-  readonly touchOptimized?: boolean
   readonly blinkingCells?: Set<string>
+  readonly keyboardFocus?: Position | null
 }
 
 /**
@@ -44,11 +49,28 @@ function getCellContent(state: string, showShip: boolean): string {
   }
 }
 
+function getCellDescription(state: string, showShip: boolean): string {
+  switch (state) {
+    case 'ship':
+      return showShip ? 'ship' : 'unrevealed'
+    case 'playerHit':
+    case 'cpuHit':
+      return 'hit'
+    case 'playerMiss':
+    case 'cpuMiss':
+      return 'miss'
+    default:
+      return 'empty'
+  }
+}
+
 /**
  * Check if a cell has been bombed (shot at)
  */
 function isBombed(state: string): boolean {
-  return state === 'playerHit' || state === 'playerMiss' || state === 'cpuHit' || state === 'cpuMiss'
+  return (
+    state === 'playerHit' || state === 'playerMiss' || state === 'cpuHit' || state === 'cpuMiss'
+  )
 }
 
 function GameBoardComponent({
@@ -57,8 +79,8 @@ function GameBoardComponent({
   onCellClick,
   disabled,
   label,
-  touchOptimized,
   blinkingCells,
+  keyboardFocus,
 }: GameBoardProps) {
   const responsive = useResponsiveState()
 
@@ -70,10 +92,17 @@ function GameBoardComponent({
         const cellState = board.grid[row]?.[col] || 'empty'
         const cellDisabled = isBombed(cellState)
         const isBlinking = blinkingCells?.has(`${row},${col}`)
+        const position = { row, col }
+        const cellDescription = getCellDescription(cellState, showShips)
 
         result.push({
-          position: { row, col },
-          ariaLabel: `Battleship cell ${row + 1}, ${col + 1}: ${cellState}`,
+          position,
+          ariaLabel: describePosition({
+            position,
+            content: cellDescription,
+            gameContext: label.toLowerCase(),
+            squareColor: false,
+          }),
           state: {
             disabled: cellDisabled || disabled,
             error: isBlinking,
@@ -101,6 +130,7 @@ function GameBoardComponent({
         rows={board.size}
         cols={board.size}
         cells={cells}
+        keyboardFocus={keyboardFocus}
         onCellClick={handleCellClick}
         ariaLabel={label}
         responsive={{

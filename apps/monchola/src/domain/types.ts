@@ -1,26 +1,48 @@
 /**
- * Central type definitions — pure domain types, no framework dependencies.
+ * Monchola — Domain Types
+ * Pure domain types with no framework dependencies.
  */
 
-// Add game-specific types here
-export {}
+export type Player = 'human' | 'cpu'
+export type GamePhase = 'idle' | 'playing' | 'game-over'
+export type CellOwner = 0 | 1 | 2 // 0=empty, 1=human, 2=cpu
 
-/** Shared theme types — identical across all games */
+export interface MoncholaBoard {
+  cells: CellOwner[]
+  size: number
+}
+
+export interface GameState {
+  phase: GamePhase
+  board: MoncholaBoard
+  currentPlayer: Player
+  humanScore: number
+  cpuScore: number
+  winner: Player | 'draw' | null
+  turnCount: number
+}
+
+export interface GameStats {
+  wins: number
+  losses: number
+  draws: number
+  gamesPlayed: number
+}
 
 export interface ColorTheme {
-  readonly id: string
-  readonly label: string
-  readonly accent: string
+  id: string
+  label: string
+  accent: string
 }
 
 export interface ColorblindMode {
-  readonly id: string
-  readonly label: string
-  readonly description?: string
+  id: string
+  label: string
+  description?: string
 }
 
 export interface ThemeSettings {
   colorTheme: string
-  mode: string
+  mode: 'system' | 'light' | 'dark'
   colorblind: string
 }

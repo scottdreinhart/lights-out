@@ -1,6 +1,6 @@
-import React from 'react'
-import { Button } from '@/ui/atoms'
 import { Difficulty } from '@/domain'
+import { Button } from '@/ui/atoms'
+import React from 'react'
 import styles from './DifficultySelector.module.css'
 
 interface DifficultySelectorProps {
@@ -10,7 +10,7 @@ interface DifficultySelectorProps {
 
 export const DifficultySelector: React.FC<DifficultySelectorProps> = ({
   difficulty,
-  onDifficultyChange
+  onDifficultyChange,
 }) => {
   return (
     <div className={styles.difficultyButtons}>

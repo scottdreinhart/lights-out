@@ -1,6 +1,6 @@
 /**
  * Storage Service — Persistent state via localStorage
- * 
+ *
  * Re-exports generic utilities from @games/storage-utils for consistency.
  * Provides: load, save, remove — all with error handling and type safety.
  */

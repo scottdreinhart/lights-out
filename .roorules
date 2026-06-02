@@ -1,0 +1,28 @@
+# Roo Code Global Operating Directives
+
+> **CRITICAL**: You are operating in a strict, architecture-first monorepo. You MUST prioritize existing tooling and workflows over inventing ad-hoc commands to prevent architectural drift and AI churn.
+
+## 1. Use package.json Scripts (MANDATORY)
+Do NOT run raw CLI commands (like `eslint`, `tsc`, or `vite`). You MUST use the pre-configured `pnpm` scripts in `package.json`.
+- **Always** inspect `package.json` scripts before starting work.
+- **Validation**: Use `pnpm check`, `pnpm validate`, or `pnpm validate:ws`.
+- **Testing**: Use `pnpm test`, `pnpm test:ws`, or `pnpm test:e2e`.
+- **Quality Gates**: Never claim completion without passing the relevant `pnpm` validation scripts.
+
+## 2. Skill & Workflow Orchestration (.github/*)
+You have lost context by relying on default AI behaviors. To regain workflow:
+- Read `.github/skills/README.md` to identify the correct Operational Workflow Bundle (1-8) before executing non-trivial tasks.
+- Consult `.github/instructions/*.md` for task-specific, scoped rules (e.g., `01-build.instructions.md`, `02-frontend.instructions.md`).
+
+## 3. Minimize AI Churn & Abstraction
+- **Reuse Before Creation**: Search `packages/` and `src/` for existing hooks, components, and patterns before creating new abstractions.
+- **Minimal Changes**: Make the smallest correct change set possible. Do not refactor outside the requested scope.
+- **No Parallel Workflows**: Do not create parallel automation or scripts. Use what is already defined.
+
+## 4. Governance
+If you are unsure of a pattern, read `AGENTS.md` § 0 (Non-Negotiable Rules). Your behavior MUST comply with these rules.
+
+## 5. Local Execution & Validation
+- **Work Locally**: All development, testing, and validation MUST be executed locally. Do not make assumptions about external environments.
+- **Local Tooling**: Use local workspace scripts (e.g., `pnpm dev`, `pnpm test:ws`) to spin up local servers (`localhost`) and verify your work.
+- **Verification**: Never claim a task is complete until it has been successfully run and verified in the local environment.

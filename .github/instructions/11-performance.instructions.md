@@ -1,6 +1,6 @@
-# Performance & Web Vitals Governance
+# ⚡ Performance & Web Vitals Governance
 
-> **Authority**: `AGENTS.md` § 0 (Non-Negotiable Rules) and § 25 (Performance Governance)
+> **Authority**: `AGENTS.md` § 0 (Non-Negotiable Rules) and § 25 (Performance Governance) + § 30 (CSS Performance)  
 > **BASELINE**: Before optimizing performance, read `AGENTS.md` § 0. Use profiling, not guesswork. Preserve behavior. Quality gates mandatory.
 > **Scope**: Performance budgets, Web Vitals targets, bundle analysis
 

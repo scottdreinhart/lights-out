@@ -1,4 +1,4 @@
-import type { Difficulty, GameConfig, Color } from './types'
+import type { Color, Difficulty, GameConfig } from './types'
 
 export const COLORS: Color[] = ['red', 'blue', 'green', 'yellow', 'purple', 'orange']
 
@@ -7,20 +7,20 @@ export const DIFFICULTY_CONFIGS: Record<Difficulty, GameConfig> = {
     codeLength: 4,
     numColors: 4,
     maxGuesses: 10,
-    difficulty: 'easy'
+    difficulty: 'easy',
   },
   medium: {
     codeLength: 5,
     numColors: 6,
     maxGuesses: 12,
-    difficulty: 'medium'
+    difficulty: 'medium',
   },
   hard: {
     codeLength: 6,
     numColors: 6,
     maxGuesses: 15,
-    difficulty: 'hard'
-  }
+    difficulty: 'hard',
+  },
 }
 
 export const COLOR_DISPLAY_NAMES: Record<Color, string> = {
@@ -29,7 +29,7 @@ export const COLOR_DISPLAY_NAMES: Record<Color, string> = {
   green: 'Green',
   yellow: 'Yellow',
   purple: 'Purple',
-  orange: 'Orange'
+  orange: 'Orange',
 }
 
 export const COLOR_HEX_CODES: Record<Color, string> = {
@@ -38,7 +38,7 @@ export const COLOR_HEX_CODES: Record<Color, string> = {
   green: '#28a745',
   yellow: '#ffc107',
   purple: '#6f42c1',
-  orange: '#fd7e14'
+  orange: '#fd7e14',
 }
 
 export const PEG_SIZE = 32

@@ -13,8 +13,8 @@
  * WASM-first: Worker prefers WASM bitboard (~10x faster), falls back to JS minimax.
  */
 
-import { selectMove as selectMoveJS } from '@/domain'
 import type { Board, Difficulty, Player } from '@/domain'
+import { selectMove as selectMoveJS } from '@/domain'
 
 export interface AiResult {
   move: number
@@ -77,11 +77,7 @@ export function terminateAsyncWorker(): void {
  * @param difficulty 'easy' | 'medium' | 'hard'
  * @returns AiResult with move, timing, and source
  */
-export function computeMove(
-  board: Board,
-  player: Player,
-  difficulty: Difficulty,
-): AiResult {
+export function computeMove(board: Board, player: Player, difficulty: Difficulty): AiResult {
   const startTime = performance.now()
   const move = selectMoveJS(board, player, difficulty)
   const duration = performance.now() - startTime
@@ -130,11 +126,13 @@ export async function computeMoveAsync(
   ensureAsyncWorkerReady()
 
   // Determine timeout based on difficulty
-  const timeout = timeoutMs ?? {
-    easy: 50,
-    medium: 120,
-    hard: 400,
-  }[difficulty]
+  const timeout =
+    timeoutMs ??
+    {
+      easy: 50,
+      medium: 120,
+      hard: 400,
+    }[difficulty]
 
   // If no worker available, fall back to sync
   if (!asyncWorker) {

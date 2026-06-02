@@ -2,6 +2,17 @@
 # Master Orchestration: Run All 4 Batches in Sequence
 # With error handling and progress tracking
 
+# ANSI color codes (standardized per SCRIPT-STANDARDS.md)
+readonly CYAN='\033[96m'
+readonly GREEN='\033[92m'
+readonly RED='\033[91m'
+readonly YELLOW='\033[93m'
+readonly BLUE='\033[94m'
+readonly WHITE='\033[97m'
+readonly GRAY='\033[90m'
+readonly RESET='\033[0m'
+readonly BOLD='\033[1m'
+
 set -e  # Exit on first error
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

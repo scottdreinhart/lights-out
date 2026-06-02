@@ -1,9 +1,11 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "ignoreDeprecations": "5.0",
     "paths": {
-      "@games/domain-shared": ["../domain-shared/src"]
+      "@games/ui-utils": ["../ui-utils/src"],
+      "@games/diagnostics-utils": ["../diagnostics-utils/src"],
+      "@games/domain-shared": ["../domain-shared/src"],
+      "@games/common": ["."]
     }
   },
   "include": ["src"],

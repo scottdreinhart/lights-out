@@ -1,6 +1,5 @@
 // Re-export shared domain constants from @games/domain-shared
 
-
 /**
  * Domain layer barrel export.
  * Re-exports all pure, framework-agnostic game logic.

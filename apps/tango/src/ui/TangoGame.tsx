@@ -3,6 +3,7 @@
  * Main Tango slide puzzle interface
  */
 
+import { ActionBar, Button, StatPill, StatsBar } from '@games/assets-shared'
 import React, { useState } from 'react'
 import { useTangoGame } from '../app'
 import type { Difficulty, Position } from '../domain'
@@ -64,13 +65,6 @@ export const TangoGame: React.FC = () => {
 
   return (
     <div className={styles.game}>
-      <header className={styles.header}>
-        <h1 className={styles.title}>Tango Slide Puzzle</h1>
-        <p className={styles.subtitle}>
-          Slide the tiles to arrange them in numerical order
-        </p>
-      </header>
-
       <div className={styles.controls}>
         <div className={styles.controlGroup}>
           <label className={styles.label} htmlFor="difficulty-select">
@@ -91,26 +85,14 @@ export const TangoGame: React.FC = () => {
       </div>
 
       <div className={`${styles.status} ${isSolved ? styles.success : styles.info}`}>
-        {isSolved
-          ? `🎉 Solved in ${formatTime(gameTime)} with ${moveCount} moves!`
-          : 'Slide tiles to arrange them in order (1, 2, 3, ..., empty space)'
-        }
+        {isSolved ? `🎉 Solved in ${formatTime(gameTime)} with ${moveCount} moves!` : null}
       </div>
 
-      <div className={styles.stats}>
-        <div className={styles.stat}>
-          <div className={styles.statLabel}>Moves</div>
-          <div className={styles.statValue}>{moveCount}</div>
-        </div>
-        <div className={styles.stat}>
-          <div className={styles.statLabel}>Time</div>
-          <div className={styles.statValue}>{formatTime(gameTime)}</div>
-        </div>
-        <div className={styles.stat}>
-          <div className={styles.statLabel}>Size</div>
-          <div className={styles.statValue}>{gameState.size}×{gameState.size}</div>
-        </div>
-      </div>
+      <StatsBar className={styles.stats}>
+        <StatPill label="Moves" value={moveCount} />
+        <StatPill label="Time" value={formatTime(gameTime)} />
+        <StatPill label="Size" value={`${gameState.size}×${gameState.size}`} />
+      </StatsBar>
 
       <TangoBoard
         board={gameState.board}
@@ -119,23 +101,43 @@ export const TangoGame: React.FC = () => {
         size={gameState.size}
       />
 
-      <div className={styles.controls}>
-        <button className={`${styles.button} ${styles.secondary}`} onClick={resetGame}>
+      <ActionBar className={styles.controls}>
+        <Button
+          className={`${styles.button} ${styles.secondary}`}
+          variant="secondary"
+          onClick={resetGame}
+        >
           Reset
-        </button>
-        <button className={`${styles.button} ${styles.primary}`} onClick={newPuzzle}>
+        </Button>
+        <Button
+          className={`${styles.button} ${styles.primary}`}
+          variant="primary"
+          onClick={newPuzzle}
+        >
           New Puzzle
-        </button>
-        <button className={`${styles.button} ${styles.secondary}`} onClick={handleHint}>
+        </Button>
+        <Button
+          className={`${styles.button} ${styles.secondary}`}
+          variant="secondary"
+          onClick={handleHint}
+        >
           Hint
-        </button>
-        <button className={`${styles.button} ${styles.secondary}`} onClick={solvePuzzle}>
+        </Button>
+        <Button
+          className={`${styles.button} ${styles.secondary}`}
+          variant="secondary"
+          onClick={solvePuzzle}
+        >
           Auto Move
-        </button>
-        <button className={`${styles.button} ${styles.danger}`} onClick={solveCompletely}>
+        </Button>
+        <Button
+          className={`${styles.button} ${styles.danger}`}
+          variant="danger"
+          onClick={solveCompletely}
+        >
           Solve All
-        </button>
-      </div>
+        </Button>
+      </ActionBar>
 
       <div className={styles.instructions}>
         <h3>How to Play:</h3>

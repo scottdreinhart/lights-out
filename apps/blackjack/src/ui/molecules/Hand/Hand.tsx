@@ -49,7 +49,17 @@ export interface HandProps {
  * Used for both player hands and dealer hand.
  */
 export const Hand = React.memo<HandProps>(
-  ({ hand, hideFirst = false, hideAll = false, value, label, status, className, isDealing = false, shouldFlipDealerCard = false }) => {
+  ({
+    hand,
+    hideFirst = false,
+    hideAll = false,
+    value,
+    label,
+    status,
+    className,
+    isDealing = false,
+    shouldFlipDealerCard = false,
+  }) => {
     // Handle both Hand object (with .cards property) and Card[] array
     const cards = Array.isArray(hand) ? hand : (hand?.cards ?? [])
 
@@ -77,9 +87,9 @@ export const Hand = React.memo<HandProps>(
 
               return (
                 <div key={card.id || index} className={styles.cardWrapper}>
-                  <Card 
-                    card={card} 
-                    hidden={hideAll || (hideFirst && index === 0)} 
+                  <Card
+                    card={card}
+                    hidden={hideAll || (hideFirst && index === 0)}
                     size="md"
                     animationState={animationState}
                     dealDelay={dealDelay}

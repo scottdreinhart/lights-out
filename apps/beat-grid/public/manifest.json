@@ -1,0 +1,16 @@
+{
+  "name": "Beat Grid Game",
+  "short_name": "Beat Grid",
+  "description": "Hit timing windows and sustain combo chains as beat density ramps upward.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#111827",
+  "background_color": "#0b1020",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}

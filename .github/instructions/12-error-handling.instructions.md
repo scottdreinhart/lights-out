@@ -1,6 +1,6 @@
-# Error Handling & Recovery Patterns
+# 🚨 Error Handling & Recovery Patterns
 
-> **Authority**: `AGENTS.md` § 0 (Non-Negotiable Rules) and § 26 (Error Handling Governance)
+> **Authority**: `AGENTS.md` § 0 (Non-Negotiable Rules) and § 26 (Error Handling Governance)  
 > **BASELINE**: Before removing error handling, read `AGENTS.md` § 0. No fake completion. Preserve fallback logic. Quality gates mandatory.
 > **Scope**: Error boundaries, recovery UI, error classification
 
@@ -13,7 +13,6 @@ Import and wrap your application with ErrorBoundary to catch rendering errors:
 ```tsx
 import { ErrorBoundary } from '@/ui/organisms'
 import { crashLogger } from '@/app'
-
 ;<ErrorBoundary
   onError={(error, info) => {
     crashLogger.error('React Error Boundary', error.message, {

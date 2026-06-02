@@ -1,0 +1,5 @@
+{
+  "app": "hangman",
+  "sdk": "discord-embedded-app",
+  "mode": "placeholder"
+}

@@ -47,12 +47,12 @@ export function solveNQueens(size: number): { solutions: Board[]; stats: Solutio
  */
 export function findFirstSolution(size: number): Board | null {
   function backtrack(board: Board, row: number): boolean {
-    if (row === size) return true
+    if (row === size) {return true}
 
     for (let col = 0; col < size; col++) {
       if (isValidPlacement(board, row, col)) {
         board[row] = col
-        if (backtrack(board, row + 1)) return true
+        if (backtrack(board, row + 1)) {return true}
         board[row] = -1 // Backtrack
       }
     }
@@ -85,7 +85,7 @@ export function isSolvable(board: Board): boolean {
           validMoves.push(col)
         }
       }
-      if (validMoves.length === 0) return false
+      if (validMoves.length === 0) {return false}
     }
   }
 
@@ -100,7 +100,7 @@ export function generatePuzzle(
   difficulty: 'easy' | 'medium' | 'hard' = 'medium',
 ): Board {
   const solution = findFirstSolution(size)
-  if (!solution) return createEmptyBoard(size)
+  if (!solution) {return createEmptyBoard(size)}
 
   // Copy solution
   const puzzle = [...solution]

@@ -1,0 +1,102 @@
+
+> @games/bingo-bonus@1.0.0 typecheck /mnt/d/src/game-platform/apps/bingo-bonus
+> pnpm type-check
+
+
+> @games/bingo-bonus@1.0.0 type-check /mnt/d/src/game-platform/apps/bingo-bonus
+> tsc --noEmit
+
+src/ui/index.ts(6,15): error TS2306: File '/mnt/d/src/game-platform/apps/bingo-bonus/src/ui/atoms/index.ts' is not a module.
+src/ui/index.ts(7,15): error TS2306: File '/mnt/d/src/game-platform/apps/bingo-bonus/src/ui/molecules/index.ts' is not a module.
+src/ui/organisms/App.tsx(3,3): error TS2305: Module '"@/ui/organisms"' has no exported member 'AboutModal'.
+src/ui/organisms/App.tsx(4,3): error TS2305: Module '"@/ui/organisms"' has no exported member 'BingoCard'.
+src/ui/organisms/App.tsx(5,3): error TS2305: Module '"@/ui/organisms"' has no exported member 'DrawPanel'.
+src/ui/organisms/App.tsx(6,3): error TS2305: Module '"@/ui/organisms"' has no exported member 'HamburgerMenu'.
+src/ui/organisms/App.tsx(7,3): error TS2305: Module '"@/ui/organisms"' has no exported member 'RulesModal'.
+src/ui/organisms/App.tsx(8,3): error TS2305: Module '"@/ui/organisms"' has no exported member 'SettingsModal'.
+src/ui/organisms/App.tsx(26,11): error TS2339: Property 'theme' does not exist on type 'UseThemeReturn'.
+src/ui/organisms/App.tsx(26,18): error TS2339: Property 'setTheme' does not exist on type 'UseThemeReturn'.
+src/ui/organisms/App.tsx(28,5): error TS2339: Property 'gameState' does not exist on type 'GameState & { handleCellClick: (row: number, col: number) => void; resetGame: () => void; }'.
+src/ui/organisms/App.tsx(29,5): error TS2339: Property 'drawSingleNumber' does not exist on type 'GameState & { handleCellClick: (row: number, col: number) => void; resetGame: () => void; }'.
+src/ui/organisms/App.tsx(30,5): error TS2339: Property 'handleReset' does not exist on type 'GameState & { handleCellClick: (row: number, col: number) => void; resetGame: () => void; }'.
+src/ui/organisms/App.tsx(31,5): error TS2339: Property 'handleNewGame' does not exist on type 'GameState & { handleCellClick: (row: number, col: number) => void; resetGame: () => void; }'.
+src/ui/organisms/App.tsx(32,5): error TS2339: Property 'getWinnerChecks' does not exist on type 'GameState & { handleCellClick: (row: number, col: number) => void; resetGame: () => void; }'.
+src/ui/organisms/App.tsx(33,5): error TS2339: Property 'getHintPositions' does not exist on type 'GameState & { handleCellClick: (row: number, col: number) => void; resetGame: () => void; }'.
+src/ui/organisms/App.tsx(34,15): error TS2554: Expected 0 arguments, but got 1.
+src/ui/organisms/App.tsx(168,35): error TS7006: Parameter 'card' implicitly has an 'any' type.
+src/ui/organisms/App.tsx(172,47): error TS7006: Parameter 'pattern' implicitly has an 'any' type.
+../../packages/bingo-core/src/app/hooks.ts(29,57): error TS2345: Argument of type '{ id: `${string}-${string}-${string}-${string}-${string}`; difficulty: Difficulty; cards: never[]; calledNumbers: never[]; gameStartTime: number; isGameActive: false; currentCallIndex: number; }' is not assignable to parameter of type 'GameState | (() => GameState)'.
+  Property 'stampingMode' is missing in type '{ id: `${string}-${string}-${string}-${string}-${string}`; difficulty: Difficulty; cards: never[]; calledNumbers: never[]; gameStartTime: number; isGameActive: false; currentCallIndex: number; }' but required in type 'GameState'.
+../../packages/bingo-core/src/app/hooks.ts(78,32): error TS6133: 'callInterval' is declared but its value is never read.
+../../packages/bingo-core/src/app/hooks.ts(170,26): error TS2532: Object is possibly 'undefined'.
+../../packages/bingo-core/src/app/hooks.ts(170,68): error TS18048: 'sum' is possibly 'undefined'.
+../../packages/bingo-core/src/app/hooks.ts(196,5): error TS2353: Object literal may only specify known properties, and 'totalAttempts' does not exist in type 'PlayerAccuracy | (() => PlayerAccuracy)'.
+../../packages/bingo-core/src/app/hooks.ts(204,42): error TS2345: Argument of type 'number' is not assignable to parameter of type 'StampAttempt'.
+../../packages/bingo-core/src/app/hooks.ts(208,7): error TS2353: Object literal may only specify known properties, and 'timestamp' does not exist in type 'StampAttempt'.
+../../packages/bingo-core/src/app/hooks.ts(210,46): error TS2551: Property 'WRONG_STAMP' does not exist on type '{ readonly wrongStamp: 10; readonly missedStamp: 5; }'. Did you mean 'wrongStamp'?
+../../packages/bingo-core/src/app/hooks.ts(216,17): error TS2345: Argument of type '(prev: PlayerAccuracy) => { totalAttempts: any; correctStamps: any; wrongStamps: any; missedStamps: any; totalPenalty: any; }' is not assignable to parameter of type 'SetStateAction<PlayerAccuracy>'.
+  Type '(prev: PlayerAccuracy) => { totalAttempts: any; correctStamps: any; wrongStamps: any; missedStamps: any; totalPenalty: any; }' is not assignable to type '(prevState: PlayerAccuracy) => PlayerAccuracy'.
+    Type '{ totalAttempts: any; correctStamps: any; wrongStamps: any; missedStamps: any; totalPenalty: any; }' is missing the following properties from type 'PlayerAccuracy': playerId, totalNumbersCalled, stampsMissed, stampErrors, accumulatedPenalty
+../../packages/bingo-core/src/app/hooks.ts(217,27): error TS2339: Property 'totalAttempts' does not exist on type 'PlayerAccuracy'.
+../../packages/bingo-core/src/app/hooks.ts(218,27): error TS2339: Property 'correctStamps' does not exist on type 'PlayerAccuracy'.
+../../packages/bingo-core/src/app/hooks.ts(219,25): error TS2339: Property 'wrongStamps' does not exist on type 'PlayerAccuracy'.
+../../packages/bingo-core/src/app/hooks.ts(220,26): error TS2339: Property 'missedStamps' does not exist on type 'PlayerAccuracy'.
+../../packages/bingo-core/src/app/hooks.ts(221,26): error TS2339: Property 'totalPenalty' does not exist on type 'PlayerAccuracy'.
+../../packages/bingo-core/src/app/hooks.ts(221,75): error TS2551: Property 'WRONG_STAMP' does not exist on type '{ readonly wrongStamp: 10; readonly missedStamp: 5; }'. Did you mean 'wrongStamp'?
+../../packages/bingo-core/src/app/hooks.ts(228,44): error TS2345: Argument of type 'number[]' is not assignable to parameter of type 'Card'.
+  Type 'number[]' is missing the following properties from type 'Card': id, playerId, grid, dimensions, markedAt
+../../packages/bingo-core/src/app/hooks.ts(233,26): error TS2339: Property 'totalPenalty' does not exist on type 'PlayerAccuracy'.
+../../packages/bingo-core/src/app/hooks.ts(233,41): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+../../packages/bingo-core/src/app/hooks.ts(233,74): error TS2551: Property 'MISSED_STAMP' does not exist on type '{ readonly wrongStamp: 10; readonly missedStamp: 5; }'. Did you mean 'missedStamp'?
+../../packages/bingo-core/src/app/hooks.ts(240,12): error TS2554: Expected 4 arguments, but got 1.
+../../packages/bingo-core/src/app/hooks.ts(246,7): error TS2353: Object literal may only specify known properties, and 'totalAttempts' does not exist in type 'SetStateAction<PlayerAccuracy>'.
+../../packages/bingo-core/src/app/hooks.ts(327,19): error TS2554: Expected 3 arguments, but got 2.
+../../packages/bingo-core/src/app/hooks.ts(366,63): error TS2345: Argument of type '{ speedScore: number; accuracyScore: number; combinedRating: number; }' is not assignable to parameter of type 'SpeedRating | (() => SpeedRating)'.
+  Type '{ speedScore: number; accuracyScore: number; combinedRating: number; }' is missing the following properties from type 'SpeedRating': timeToComplete, totalRoundTime
+../../packages/bingo-core/src/app/hooks.ts(374,20): error TS2554: Expected 4 arguments, but got 3.
+../../packages/bingo-core/src/app/hooks.ts(381,41): error TS2339: Property 'MAX' does not exist on type '{ readonly maxSpeedScore: 100; readonly maxAccuracyScore: 100; readonly maxCombinedRating: 100; }'.
+../../packages/bingo-core/src/app/hooks.ts(382,41): error TS2339: Property 'MAX' does not exist on type '{ readonly maxSpeedScore: 100; readonly maxAccuracyScore: 100; readonly maxCombinedRating: 100; }'.
+../../packages/bingo-core/src/app/hooks.ts(383,41): error TS2339: Property 'MAX' does not exist on type '{ readonly maxSpeedScore: 100; readonly maxAccuracyScore: 100; readonly maxCombinedRating: 100; }'.
+../../packages/bingo-core/src/domain/constants.ts(105,14): error TS2739: Type '{ difficulty: "medium"; difficultyConfig: DifficultyConfig; maxNumbers: number; cardDimensions: { rows: number; cols: number; }; bonusConfig: BonusConfig; freeCenterSpace: true; allowRepeats: false; }' is missing the following properties from type 'GameConfig': stampingMode, roundTimerConfig
+../../packages/bingo-core/src/ui/organisms/DrawPanel/DrawPanel.tsx(1,15): error TS2305: Module '"@games/bingo-core/domain"' has no exported member 'BingoCard'.
+../../src/app/hooks/index.ts(1,31): error TS2307: Cannot find module './useAppScreens' or its corresponding type declarations.
+../../src/app/hooks/index.ts(11,31): error TS2307: Cannot find module './useDeviceInfo' or its corresponding type declarations.
+../../src/app/hooks/index.ts(12,37): error TS2307: Cannot find module './useDropdownBehavior' or its corresponding type declarations.
+../../src/app/hooks/index.ts(21,37): error TS2307: Cannot find module './useKeyboardControls' or its corresponding type declarations.
+../../src/app/hooks/index.ts(22,30): error TS2307: Cannot find module './useLongPress' or its corresponding type declarations.
+../../src/app/hooks/index.ts(23,31): error TS2307: Cannot find module './useMediaQuery' or its corresponding type declarations.
+../../src/app/hooks/index.ts(24,33): error TS2307: Cannot find module './useOnlineStatus' or its corresponding type declarations.
+../../src/app/hooks/index.ts(25,53): error TS2307: Cannot find module './usePerformanceMetrics' or its corresponding type declarations.
+../../src/app/hooks/index.ts(26,36): error TS2307: Cannot find module './useResponsiveState' or its corresponding type declarations.
+../../src/app/hooks/index.ts(27,34): error TS2307: Cannot find module './useServiceLoader' or its corresponding type declarations.
+../../src/app/hooks/index.ts(32,31): error TS2307: Cannot find module './useWindowSize' or its corresponding type declarations.
+../../src/app/hooks/useGame.ts(8,57): error TS2345: Argument of type '() => { board: Promise<Board>; moves: number; isSolved: false; }' is not assignable to parameter of type 'GameState | (() => GameState)'.
+  Type '() => { board: Promise<Board>; moves: number; isSolved: false; }' is not assignable to type '() => GameState'.
+    Call signature return types '{ board: Promise<Board>; moves: number; isSolved: false; }' and 'GameState' are incompatible.
+      The types of 'board' are incompatible between these types.
+        Type 'Promise<Board>' is missing the following properties from type 'boolean[][]': length, pop, push, concat, and 28 more.
+../../src/app/hooks/useGame.ts(16,18): error TS2345: Argument of type '(prev: GameState) => GameState | { isSolved: Promise<boolean>; board: Board; moves: number; }' is not assignable to parameter of type 'SetStateAction<GameState>'.
+  Type '(prev: GameState) => GameState | { isSolved: Promise<boolean>; board: Board; moves: number; }' is not assignable to type '(prevState: GameState) => GameState'.
+    Type 'GameState | { isSolved: Promise<boolean>; board: Board; moves: number; }' is not assignable to type 'GameState'.
+      Type '{ isSolved: Promise<boolean>; board: Board; moves: number; }' is not assignable to type 'GameState'.
+        Types of property 'isSolved' are incompatible.
+          Type 'Promise<boolean>' is not assignable to type 'boolean'.
+../../src/app/hooks/useGame.ts(16,29): error TS2367: This comparison appears to be unintentional because the types 'boolean' and 'Promise<boolean>' have no overlap.
+../../src/app/hooks/useGame.ts(25,20): error TS2345: Argument of type '(prev: GameState) => { board: Promise<Board>; moves: number; isSolved: boolean; }' is not assignable to parameter of type 'SetStateAction<GameState>'.
+  Type '(prev: GameState) => { board: Promise<Board>; moves: number; isSolved: boolean; }' is not assignable to type '(prevState: GameState) => GameState'.
+    Call signature return types '{ board: Promise<Board>; moves: number; isSolved: boolean; }' and 'GameState' are incompatible.
+      The types of 'board' are incompatible between these types.
+        Type 'Promise<Board>' is missing the following properties from type 'boolean[][]': length, pop, push, concat, and 28 more.
+../../src/app/hooks/useGame.ts(36,7): error TS2740: Type 'Promise<Board>' is missing the following properties from type 'boolean[][]': length, pop, push, concat, and 28 more.
+../../src/app/hooks/useTheme.ts(3,52): error TS2307: Cannot find module '../../domain/layers.ts' or its corresponding type declarations.
+../../src/app/hooks/useTheme.ts(98,34): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'string | null'.
+../../src/domain/index.ts(11,15): error TS2307: Cannot find module './layers' or its corresponding type declarations.
+../../src/domain/index.ts(17,15): error TS2307: Cannot find module './responsive' or its corresponding type declarations.
+../../src/ui/atoms/index.ts(7,31): error TS2307: Cannot find module './ErrorBoundary' or its corresponding type declarations.
+../../src/ui/atoms/index.ts(8,34): error TS2307: Cannot find module './OfflineIndicator' or its corresponding type declarations.
+../../src/ui/atoms/index.ts(9,29): error TS2307: Cannot find module './SoundToggle' or its corresponding type declarations.
+../../src/ui/molecules/index.ts(6,31): error TS2307: Cannot find module './HamburgerMenu' or its corresponding type declarations.
+ ELIFECYCLE  Command failed with exit code 2.
+/mnt/d/src/game-platform/apps/bingo-bonus:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @games/bingo-bonus@1.0.0 typecheck: `pnpm type-check`
+Exit status 2

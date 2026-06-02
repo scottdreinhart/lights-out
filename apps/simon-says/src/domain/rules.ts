@@ -1,7 +1,13 @@
+import {
+  generateNextColor,
+  getFlashDuration,
+  getSpeedMultiplier,
+  isInputCorrect,
+  shouldEndGame,
+} from './constants'
 import type { SimonColor, SimonRuleConfig } from './rules/simon.rules'
-import type { SimonGameState } from './types'
-import { isInputCorrect, generateNextColor, getSpeedMultiplier, getFlashDuration, shouldEndGame } from './constants'
 import { getColorSequence } from './rules/simon.rules'
+import type { SimonGameState } from './types'
 
 /**
  * Start a new game
@@ -31,11 +37,15 @@ export function playDeviceSequence(
   }
 
   const colors = getColorSequence(rules.colorCount)
-  const speedMult = getSpeedMultiplier(rules.difficultyLevel, state.currentRound, rules.speedIncreaseEnabled)
+  const speedMult = getSpeedMultiplier(
+    rules.difficultyLevel,
+    state.currentRound,
+    rules.speedIncreaseEnabled,
+  )
   const flashDuration = getFlashDuration(500, speedMult)
 
   // Generate sequence for playback
-  const playbackSequence = state.sequence.map(color => ({
+  const playbackSequence = state.sequence.map((color) => ({
     color,
     duration: flashDuration,
   }))
@@ -59,7 +69,11 @@ export function playDeviceSequence(
 /**
  * Player makes a move
  */
-export function playerMove(state: SimonGameState, color: SimonColor, rules: SimonRuleConfig): SimonGameState {
+export function playerMove(
+  state: SimonGameState,
+  color: SimonColor,
+  rules: SimonRuleConfig,
+): SimonGameState {
   if (state.gameOver || state.phase !== 'playerTurn') {
     return state
   }
@@ -84,9 +98,9 @@ export function playerMove(state: SimonGameState, color: SimonColor, rules: Simo
       playersActive[state.currentPlayer - 1] = false
 
       // Check if only one player remains
-      const activePlayers = playersActive.filter(p => p).length
+      const activePlayers = playersActive.filter((p) => p).length
       if (activePlayers === 1) {
-        const winner = playersActive.findIndex(p => p) + 1
+        const winner = playersActive.findIndex((p) => p) + 1
         newState.winner = 'player'
         newState.message = `Player ${winner} wins!`
       } else {
@@ -142,7 +156,11 @@ export function playerMove(state: SimonGameState, color: SimonColor, rules: Simo
 /**
  * Player mode: player adds to sequence (not device)
  */
-export function playerAddsColor(state: SimonGameState, color: SimonColor, rules: SimonRuleConfig): SimonGameState {
+export function playerAddsColor(
+  state: SimonGameState,
+  color: SimonColor,
+  rules: SimonRuleConfig,
+): SimonGameState {
   if (state.gameOver || state.phase !== 'playerTurn') {
     return state
   }

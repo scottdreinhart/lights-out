@@ -21,7 +21,8 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "types": [
-      "vite/client"
+      "vite/client",
+      "vitest/globals"
     ],
     "paths": {
       "@/*": [
@@ -42,6 +43,9 @@
       "@games/common": [
         "../../packages/common/src"
       ],
+      "@games/assets-shared": [
+        "../../packages/assets-shared/src/index.ts"
+      ],
       "@games/storage-utils": [
         "../../packages/storage-utils/src"
       ],
@@ -53,7 +57,13 @@
       ],
       "@games/ai-framework": [
         "../../packages/ai-framework/src"
+      ],
+      "@games/card-deck-core": [
+        "../../packages/card-deck-core/src/index.ts"
       ]
+      "@games/diagnostics-utils": [
+        "../../packages/diagnostics-utils/src"
+      ],
     }
   },
   "include": [

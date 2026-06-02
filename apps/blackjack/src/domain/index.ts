@@ -9,9 +9,9 @@
 // └─────────────────────────────────────────────────────────┘
 
 export type {
+  BasicStrategyRecommendation,
   Card,
-  Rank,
-  Suit,
+  CardCountingState,
   Dealer,
   GameAction,
   GamePhase,
@@ -24,13 +24,13 @@ export type {
   HandValue,
   Player,
   PlayerStatistics,
+  Rank,
   SettlementResult,
-  UndoRedoState,
-  BasicStrategyRecommendation,
-  CardCountingState,
   StrategyHint,
   StrategyMode,
   StrategyState,
+  Suit,
+  UndoRedoState,
 } from './types'
 
 // ┌─────────────────────────────────────────────────────────┐

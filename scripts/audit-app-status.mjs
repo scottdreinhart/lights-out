@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Auto-detect app status across all 38+ apps
+ * Auto-detect app status across all discovered apps in /apps
  * Generates compliance/app-status.json based on actual repo state
  * 
  * Usage:
@@ -22,6 +22,17 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
 const APPS_DIR = path.join(ROOT, 'apps')
 
+// ANSI color codes
+const COLORS = {
+  CYAN: '\x1b[96m',
+  GREEN: '\x1b[92m',
+  RED: '\x1b[91m',
+  YELLOW: '\x1b[93m',
+  BLUE: '\x1b[94m',
+  RESET: '\x1b[0m',
+  BOLD: '\x1b[1m',
+}
+
 // Parse CLI args
 const args = process.argv.slice(2)
 const appsArg = args.find(a => a.startsWith('--apps='))?.split('=')[1]
@@ -30,11 +41,11 @@ const detailed = args.includes('--detailed')
 
 // Shared module imports to detect
 const SHARED_MODULES = {
-  validators: ['@/app/validators', 'src/app/validators'],
-  sanitizers: ['@/app/sanitizers', 'src/app/sanitizers'],
-  config: ['@/app/config', 'src/app/config'],
-  apiClient: ['@/app/api', 'src/app/api'],
-  logger: ['@/app/logger', 'src/app/logger'],
+  validators: ['@games/shared-validators', 'securityModules.validators'],
+  sanitizers: ['@games/shared-sanitizers', 'securityModules.sanitizers'],
+  config: ['@games/shared-config', 'securityModules.config'],
+  apiClient: ['@games/shared-api-client', 'securityModules.apiClient'],
+  logger: ['@games/shared-logger', 'logger'],
 }
 
 /**
@@ -49,7 +60,9 @@ function fileExists(appPath, ...segments) {
  */
 function readFile(appPath, ...segments) {
   try {
-    const fullPath = path.join(APPS_DIR, appPath, ...segments)
+    const fullPath = path.isAbsolute(appPath)
+      ? appPath
+      : path.join(APPS_DIR, appPath, ...segments)
     return fs.readFileSync(fullPath, 'utf-8')
   } catch {
     return null
@@ -235,7 +248,11 @@ function auditApp(appName) {
   // Infrastructure
   const infrastructure = {
     hasTsconfig: fileExists(appPath, 'tsconfig.json'),
-    hasViteConfig: fileExists(appPath, 'vite.config.js'),
+    hasViteConfig:
+      fileExists(appPath, 'vite.config.js') ||
+      fileExists(appPath, 'vite.config.ts') ||
+      fileExists(appPath, 'vite.config.mjs') ||
+      fileExists(appPath, 'vite.config.cjs'),
     hasIndexHtml: fileExists(appPath, 'index.html'),
     hasPublicFolder: fileExists(appPath, 'public'),
     hasPackageJson: fileExists(appPath, 'package.json'),
@@ -319,7 +336,7 @@ async function main() {
   // Get list of apps to audit
   const appNames = specificApps || fs.readdirSync(APPS_DIR).filter(name => {
     const full = path.join(APPS_DIR, name)
-    return fs.statSync(full).isDirectory() && name !== 'ui'
+    return fs.statSync(full).isDirectory() && name !== 'ui' && fileExists(name, 'package.json')
   })
 
   const apps = appNames.map(name => {

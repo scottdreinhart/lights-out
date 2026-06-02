@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-04-02T00:45:37.093Z",
+  "timestamp": "2026-04-17T10:51:40.730Z",
   "buildType": "production",
   "profiles": {
     "battleship": {
-      "timestamp": "2026-04-02T00:45:19.003Z",
-      "wasmSizeBytes": 3621,
+      "timestamp": "2026-04-17T10:51:29.466Z",
+      "wasmSizeBytes": 4413,
       "easy": {
         "timeMs": 0.01,
         "status": "GREEN"
@@ -19,7 +19,7 @@
       }
     },
     "bunco": {
-      "timestamp": "2026-04-02T00:45:19.766Z",
+      "timestamp": "2026-04-17T10:51:29.966Z",
       "wasmSizeBytes": 525,
       "easy": {
         "timeMs": 0.001,
@@ -35,7 +35,7 @@
       }
     },
     "cee-lo": {
-      "timestamp": "2026-04-02T00:45:20.454Z",
+      "timestamp": "2026-04-17T10:51:30.403Z",
       "wasmSizeBytes": 27,
       "easy": {
         "timeMs": 0.001,
@@ -51,7 +51,7 @@
       }
     },
     "checkers": {
-      "timestamp": "2026-04-02T00:45:21.364Z",
+      "timestamp": "2026-04-17T10:51:29.798Z",
       "wasmSizeBytes": 4569,
       "easy": {
         "timeMs": 0.04,
@@ -67,7 +67,7 @@
       }
     },
     "chicago": {
-      "timestamp": "2026-04-02T00:45:22.070Z",
+      "timestamp": "2026-04-17T10:51:30.229Z",
       "wasmSizeBytes": 27,
       "easy": {
         "timeMs": 0.001,
@@ -83,7 +83,7 @@
       }
     },
     "cho-han": {
-      "timestamp": "2026-04-02T00:45:22.739Z",
+      "timestamp": "2026-04-17T10:51:30.651Z",
       "wasmSizeBytes": 27,
       "easy": {
         "timeMs": 0.001,
@@ -99,7 +99,7 @@
       }
     },
     "connect-four": {
-      "timestamp": "2026-04-02T00:45:23.600Z",
+      "timestamp": "2026-04-17T10:51:31.263Z",
       "wasmSizeBytes": 3387,
       "easy": {
         "timeMs": 0.05,
@@ -115,7 +115,7 @@
       }
     },
     "farkle": {
-      "timestamp": "2026-04-02T00:45:24.283Z",
+      "timestamp": "2026-04-17T10:51:31.681Z",
       "wasmSizeBytes": 27,
       "easy": {
         "timeMs": 0.001,
@@ -131,7 +131,7 @@
       }
     },
     "hangman": {
-      "timestamp": "2026-04-02T00:45:24.954Z",
+      "timestamp": "2026-04-17T10:51:32.107Z",
       "wasmSizeBytes": 27,
       "easy": {
         "timeMs": 0.001,
@@ -147,7 +147,7 @@
       }
     },
     "liars-dice": {
-      "timestamp": "2026-04-02T00:45:25.653Z",
+      "timestamp": "2026-04-17T10:51:32.532Z",
       "wasmSizeBytes": 27,
       "easy": {
         "timeMs": 0.001,
@@ -163,7 +163,7 @@
       }
     },
     "lights-out": {
-      "timestamp": "2026-04-02T00:45:26.515Z",
+      "timestamp": "2026-04-17T10:51:33.087Z",
       "wasmSizeBytes": 2358,
       "easy": {
         "timeMs": 0.001,
@@ -179,7 +179,7 @@
       }
     },
     "mancala": {
-      "timestamp": "2026-04-02T00:45:27.335Z",
+      "timestamp": "2026-04-17T10:51:33.675Z",
       "wasmSizeBytes": 2181,
       "easy": {
         "timeMs": 0.02,
@@ -195,7 +195,7 @@
       }
     },
     "memory-game": {
-      "timestamp": "2026-04-02T00:45:28.019Z",
+      "timestamp": "2026-04-17T10:51:34.113Z",
       "wasmSizeBytes": 27,
       "easy": {
         "timeMs": 0.001,
@@ -211,7 +211,7 @@
       }
     },
     "mexico": {
-      "timestamp": "2026-04-02T00:45:28.743Z",
+      "timestamp": "2026-04-17T10:51:34.589Z",
       "wasmSizeBytes": 27,
       "easy": {
         "timeMs": 0.001,
@@ -227,7 +227,7 @@
       }
     },
     "minesweeper": {
-      "timestamp": "2026-04-02T00:45:29.539Z",
+      "timestamp": "2026-04-17T10:51:35.127Z",
       "wasmSizeBytes": 1359,
       "easy": {
         "timeMs": 0.03,
@@ -243,7 +243,7 @@
       }
     },
     "monchola": {
-      "timestamp": "2026-04-02T00:45:30.226Z",
+      "timestamp": "2026-04-17T10:51:35.560Z",
       "wasmSizeBytes": 27,
       "easy": {
         "timeMs": 0.001,
@@ -259,7 +259,7 @@
       }
     },
     "nim": {
-      "timestamp": "2026-04-02T00:45:31.029Z",
+      "timestamp": "2026-04-17T10:51:36.102Z",
       "wasmSizeBytes": 918,
       "easy": {
         "timeMs": 0.01,
@@ -275,7 +275,7 @@
       }
     },
     "pig": {
-      "timestamp": "2026-04-02T00:45:31.733Z",
+      "timestamp": "2026-04-17T10:51:36.537Z",
       "wasmSizeBytes": 27,
       "easy": {
         "timeMs": 0.001,
@@ -291,7 +291,7 @@
       }
     },
     "reversi": {
-      "timestamp": "2026-04-02T00:45:32.420Z",
+      "timestamp": "2026-04-17T10:51:36.961Z",
       "wasmSizeBytes": 27,
       "easy": {
         "timeMs": 0.4,
@@ -307,7 +307,7 @@
       }
     },
     "rock-paper-scissors": {
-      "timestamp": "2026-04-02T00:45:33.253Z",
+      "timestamp": "2026-04-17T10:51:37.503Z",
       "wasmSizeBytes": 1257,
       "easy": {
         "timeMs": 0.01,
@@ -323,7 +323,7 @@
       }
     },
     "ship-captain-crew": {
-      "timestamp": "2026-04-02T00:45:33.918Z",
+      "timestamp": "2026-04-17T10:51:37.939Z",
       "wasmSizeBytes": 27,
       "easy": {
         "timeMs": 0.001,
@@ -339,7 +339,7 @@
       }
     },
     "shut-the-box": {
-      "timestamp": "2026-04-02T00:45:34.705Z",
+      "timestamp": "2026-04-17T10:51:38.475Z",
       "wasmSizeBytes": 1101,
       "easy": {
         "timeMs": 0.001,
@@ -355,7 +355,7 @@
       }
     },
     "simon-says": {
-      "timestamp": "2026-04-02T00:45:35.418Z",
+      "timestamp": "2026-04-17T10:51:38.895Z",
       "wasmSizeBytes": 27,
       "easy": {
         "timeMs": 0.001,
@@ -371,7 +371,7 @@
       }
     },
     "snake": {
-      "timestamp": "2026-04-02T00:45:36.257Z",
+      "timestamp": "2026-04-17T10:51:39.527Z",
       "wasmSizeBytes": 2673,
       "easy": {
         "timeMs": 0.01,
@@ -387,7 +387,7 @@
       }
     },
     "tictactoe": {
-      "timestamp": "2026-04-02T00:45:37.093Z",
+      "timestamp": "2026-04-17T10:51:40.244Z",
       "wasmSizeBytes": 2487,
       "easy": {
         "timeMs": 0.02,
@@ -399,6 +399,22 @@
       },
       "hard": {
         "timeMs": 0.15,
+        "status": "GREEN"
+      }
+    },
+    "zip": {
+      "timestamp": "2026-04-17T10:51:40.729Z",
+      "wasmSizeBytes": 198,
+      "easy": {
+        "timeMs": 0.001,
+        "status": "GREEN"
+      },
+      "medium": {
+        "timeMs": 0.002,
+        "status": "GREEN"
+      },
+      "hard": {
+        "timeMs": 0.005,
         "status": "GREEN"
       }
     }

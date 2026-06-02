@@ -1,0 +1,83 @@
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 220px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--simon-shell-text-muted, rgba(255, 255, 255, 0.7));
+}
+
+.swatchRow,
+.modeRow,
+.colorblindRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.themeButton,
+.modeButton,
+.colorblindButton {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--simon-shell-text, #fff);
+  border: 1px solid var(--simon-shell-panel-border, rgba(255, 255, 255, 0.14));
+  background: var(--simon-shell-surface, rgba(255, 255, 255, 0.08));
+  transition:
+    transform 150ms ease,
+    background-color 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.themeButton:hover,
+.modeButton:hover,
+.colorblindButton:hover {
+  transform: translateY(-1px);
+}
+
+.themeButtonActive,
+.modeButtonActive,
+.colorblindButtonActive {
+  border-color: var(--simon-shell-accent, #667eea);
+  box-shadow: 0 0 0 1px var(--simon-shell-accent, #667eea);
+}
+
+.themeButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.themeSwatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  flex: none;
+}
+
+@media (pointer: coarse) {
+  .themeButton:hover,
+  .modeButton:hover,
+  .colorblindButton:hover {
+    transform: none;
+  }
+}

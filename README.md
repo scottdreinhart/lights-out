@@ -1,4 +1,4 @@
-# 💡 Lights Out
+# 💡 Game-Platform
 
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://github.com/facebook/react)
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)](https://github.com/vitejs/vite)
@@ -28,9 +28,11 @@ See [LICENSE](LICENSE) file for complete terms and conditions.
 
 [Project Structure](#project-structure) · [Getting Started](#getting-started) · [Tech Stack](#tech-stack) · [Contributing](#contributing) · [Portfolio Services](#portfolio-services) · [Future Game Ideas](#future-game-ideas)
 
+Agent/runtime quick context: [`ENVIRONMENT.md`](ENVIRONMENT.md) (subordinate to [`AGENTS.md`](AGENTS.md)).
+
 ## Project Structure
 
-**Monorepo with 25 game applications and 11 shared packages**
+**Monorepo with 52 app folders and 37 shared packages**
 
 ```
 lights-out/
@@ -49,7 +51,7 @@ lights-out/
 ├── .gitattributes                    # Git line endings and binary rules
 ├── .gitignore                        # Git ignore patterns
 │
-├── apps/                             # 25 game applications (monorepo structure)
+├── apps/                             # 52 app folders (games, variants, and shared UI shell)
 │   ├── battleship/                   # Battleship game
 │   ├── bunco/                        # Bunco dice/scoring game
 │   ├── cee-lo/                       # Cee-lo gambling game
@@ -76,7 +78,7 @@ lights-out/
 │   ├── snake/                        # Snake real-time survival game
 │   └── tictactoe/                    # Tic-Tac-Toe reference architecture
 │
-├── packages/                         # 11 shared libraries
+├── packages/                         # 37 shared libraries
 │   ├── app-hook-utils/               # Reusable React hooks for all games
 │   ├── assets-shared/                # Shared sprite sheets and game assets
 │   ├── common/                       # Common utilities (types, helpers)

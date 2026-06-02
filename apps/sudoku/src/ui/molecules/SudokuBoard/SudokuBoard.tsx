@@ -1,7 +1,5 @@
 import type { Board, Cell } from '@/domain'
 import { SudokuCell } from '@/ui/atoms'
-import { BoardGrid } from '@games/ui-board-core'
-import { useResponsiveState } from '@games/common'
 import React from 'react'
 import styles from './SudokuBoard.module.css'
 
@@ -24,8 +22,6 @@ export const SudokuBoard: React.FC<SudokuBoardProps> = ({
   highlightedCells = new Set(),
   invalidCells = new Set(),
 }) => {
-  const responsive = useResponsiveState()
-
   const isEditable = (row: number, col: number): boolean => {
     return editableBoard.grid[row][col] !== undefined
   }
@@ -34,15 +30,7 @@ export const SudokuBoard: React.FC<SudokuBoardProps> = ({
 
   return (
     <div className={styles.boardContainer}>
-      <BoardGrid
-        rows={9}
-        cols={9}
-        className={styles.sudokuBoard}
-        responsive={responsive}
-        onCellClick={(row, col) => {
-          onCellSelect?.(row, col)
-        }}
-      >
+      <div className={styles.sudokuBoard} role="grid" aria-label="Sudoku board">
         {board.grid.map((row: Cell[], rowIdx: number) =>
           row.map((_: Cell, colIdx: number) => {
             const cellKey = getCellKey(rowIdx, colIdx)
@@ -62,11 +50,21 @@ export const SudokuBoard: React.FC<SudokuBoardProps> = ({
                   isInvalid && styles.invalid,
                   !editable && styles.given,
                   // 3×3 box styling
-                  Math.floor(rowIdx / 3) % 2 === 0 && Math.floor(colIdx / 3) % 2 === 0 && styles.boxA,
-                  Math.floor(rowIdx / 3) % 2 === 0 && Math.floor(colIdx / 3) % 2 === 1 && styles.boxB,
-                  Math.floor(rowIdx / 3) % 2 === 1 && Math.floor(colIdx / 3) % 2 === 0 && styles.boxC,
-                  Math.floor(rowIdx / 3) % 2 === 1 && Math.floor(colIdx / 3) % 2 === 1 && styles.boxD,
-                ].filter(Boolean)}
+                  Math.floor(rowIdx / 3) % 2 === 0 &&
+                    Math.floor(colIdx / 3) % 2 === 0 &&
+                    styles.boxA,
+                  Math.floor(rowIdx / 3) % 2 === 0 &&
+                    Math.floor(colIdx / 3) % 2 === 1 &&
+                    styles.boxB,
+                  Math.floor(rowIdx / 3) % 2 === 1 &&
+                    Math.floor(colIdx / 3) % 2 === 0 &&
+                    styles.boxC,
+                  Math.floor(rowIdx / 3) % 2 === 1 &&
+                    Math.floor(colIdx / 3) % 2 === 1 &&
+                    styles.boxD,
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
                 data-row={rowIdx}
                 data-col={colIdx}
               >
@@ -77,14 +75,14 @@ export const SudokuBoard: React.FC<SudokuBoardProps> = ({
                   isSameNumber={isHighlighted}
                   isInvalid={isInvalid}
                   onClick={() => onCellSelect?.(rowIdx, colIdx)}
-                  onChange={(value) => onCellChange?.(rowIdx, colIdx, value)}
+                  onChange={(value: number | null) => onCellChange?.(rowIdx, colIdx, value as Cell)}
                   onSelect={() => onCellSelect?.(rowIdx, colIdx)}
                 />
               </div>
             )
           }),
         )}
-      </BoardGrid>
+      </div>
     </div>
   )
 }

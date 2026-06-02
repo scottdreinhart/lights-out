@@ -5,13 +5,15 @@
 .board {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 100%;
   padding: 1rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: transparent;
   font-family: sans-serif;
   gap: 1.5rem;
+  box-sizing: border-box;
 }
 
 /* Header Section */
@@ -19,10 +21,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.85rem;
   color: white;
   width: 100%;
-  max-width: 500px;
+  max-width: none;
 }
 
 .title {
@@ -128,12 +130,13 @@
   align-items: center;
   justify-content: space-around;
   gap: 1.5rem;
+  position: relative;
   width: 100%;
-  max-width: 700px;
+  max-width: none;
   padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
+  background: transparent;
+  border-radius: 0;
+  backdrop-filter: none;
   flex: 1;
   min-height: 300px;
 }
@@ -179,7 +182,7 @@
 .cardBack {
   width: 60px;
   height: 90px;
-  background: linear-gradient(135deg, #e91e63, #9c27b0);
+  background: linear-gradient(135deg, #3f51b5, #5c6bc0);
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -200,18 +203,25 @@
   gap: 1rem;
   color: white;
   text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .warLabel {
   font-size: 2rem;
   font-weight: bold;
-  color: #ff6b6b;
-  text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+  color: #ffd166;
+  text-shadow: 0 0 20px rgba(255, 209, 102, 0.5);
   animation: pulse 1s infinite;
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -231,7 +241,8 @@
   justify-content: center;
   color: white;
   width: 100%;
-  padding: 1rem;
+  padding: 0.25rem 0 0.5rem;
+  flex-wrap: wrap;
 }
 
 .stat {
@@ -332,14 +343,14 @@
 }
 
 .primaryButton {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: linear-gradient(135deg, #5b8def 0%, #4a6fd1 100%);
   color: white;
   min-width: 140px;
 }
 
 .primaryButton:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(245, 87, 108, 0.4);
+  box-shadow: 0 4px 20px rgba(74, 111, 209, 0.4);
 }
 
 .primaryButton:active:not(:disabled) {
@@ -385,8 +396,8 @@
   }
 
   .stats {
-    gap: 1rem;
-    padding: 0.75rem;
+    gap: 0.75rem;
+    padding: 0.15rem 0 0.35rem;
   }
 
   .stat .value {
@@ -413,6 +424,14 @@
     width: 50px;
     height: 75px;
   }
+
+  .centerStatus {
+    gap: 0.75rem;
+  }
+
+  .warLabel {
+    font-size: 1.5rem;
+  }
 }
 
 @media (max-width: 900px) {
@@ -430,7 +449,7 @@
 @media (pointer: coarse) {
   .primaryButton:hover,
   .secondaryButton:hover {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    background: linear-gradient(135deg, #5b8def 0%, #4a6fd1 100%);
   }
 
   .rulesButton:hover {
@@ -438,4 +457,3 @@
     transform: scale(1);
   }
 }
-

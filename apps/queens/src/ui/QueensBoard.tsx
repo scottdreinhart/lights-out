@@ -3,8 +3,8 @@
  * Visual representation of N-Queens chessboard using shared BoardGrid
  */
 
-import React from 'react'
 import { BoardGrid, type BoardCell } from '@games/ui-board-core'
+import React from 'react'
 import type { Board } from '../domain'
 import { BOARD_COLORS, QUEEN_COLORS } from '../domain'
 import styles from './QueensBoard.module.css'
@@ -69,9 +69,9 @@ export const QueensBoard: React.FC<QueensBoardProps> = ({
     }
 
     let cellClassName = styles.cell
-    if (hasQueen) cellClassName += ` ${styles.queen}`
-    if (highlight?.type === 'hint') cellClassName += ` ${styles.hint}`
-    if (highlight?.type === 'conflict') cellClassName += ` ${styles.conflict}`
+    if (hasQueen) {cellClassName += ` ${styles.queen}`}
+    if (highlight?.type === 'hint') {cellClassName += ` ${styles.hint}`}
+    if (highlight?.type === 'conflict') {cellClassName += ` ${styles.conflict}`}
 
     return (
       <button

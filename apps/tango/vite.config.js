@@ -1,22 +1,18 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { visualizer } from 'rollup-plugin-visualizer'
 import { resolve } from 'path'
+import { defineConfig } from 'vite'
+import {
+  createOptimizedBuild,
+  createOptimizedPlugins,
+  createOptimizedResolve,
+} from '../../scripts/vite/createOptimizedViteConfig.mjs'
 
 const __dirname = import.meta.dirname
 
 export default defineConfig({
   base: './',
-  plugins: [
-    react(),
-    visualizer({
-      filename: 'dist/bundle-report.html',
-      gzipSize: true,
-      brotliSize: true,
-      open: false,
-    }),
-  ],
+  plugins: createOptimizedPlugins(),
   resolve: {
+    ...createOptimizedResolve(),
     alias: {
       '@': resolve(__dirname, 'src'),
       '@/domain': resolve(__dirname, 'src/domain'),
@@ -24,36 +20,11 @@ export default defineConfig({
       '@/ui': resolve(__dirname, 'src/ui'),
     },
   },
-  build: {
-    target: 'es2020',
-    cssTarget: 'es2020',
-    modulePreload: { polyfill: false },
-    minify: 'esbuild',
-    cssMinify: true,
-    rollupOptions: {
-    external: [
-      '@capacitor/core',
-      '@capacitor/app',
-      '@capacitor/device',
-      '@capacitor/preferences',
-      '@capacitor/haptics',
-      '@capacitor/splash-screen',
-      '@capacitor/keyboard',
-    ],
-      output: {
-        manualChunks: {
-          react: ['react', 'react-dom'],
-        },
-      },
-    },
-  },
+
+  build: createOptimizedBuild(),
   server: {
     host: '0.0.0.0',
     port: 5173,
     strictPort: true,
-    hmr: {
-      host: 'localhost',
-      port: 5173,
-    },
   },
 })

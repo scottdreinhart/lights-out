@@ -1,0 +1,19 @@
+import { render, screen } from '@testing-library/react'
+import { describe, it, expect } from 'vitest'
+import { <%= componentName %> } from './<%= componentName %>'
+
+describe('<%= componentName %>', () => {
+  it('renders without crashing', () => {
+    const { container } = render(<<%= componentName %> />)
+    expect(container).toBeInTheDocument()
+  })
+
+  it('renders children', () => {
+    render(
+      <<%= componentName %>>
+        <div>Test content</div>
+      </<%= componentName %>>
+    )
+    expect(screen.getByText('Test content')).toBeInTheDocument()
+  })
+})

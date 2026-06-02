@@ -2,6 +2,17 @@
 
 # Script to consolidate domain-shared package across all 25 apps
 
+# ANSI color codes (standardized per SCRIPT-STANDARDS.md)
+readonly CYAN='\033[96m'
+readonly GREEN='\033[92m'
+readonly RED='\033[91m'
+readonly YELLOW='\033[93m'
+readonly BLUE='\033[94m'
+readonly WHITE='\033[97m'
+readonly GRAY='\033[90m'
+readonly RESET='\033[0m'
+readonly BOLD='\033[1m'
+
 APPS=(
   battleship bunco cee-lo checkers chicago cho-han connect-four farkle hangman
   liars-dice lights-out mancala memory-game mexico minesweeper monchola nim pig

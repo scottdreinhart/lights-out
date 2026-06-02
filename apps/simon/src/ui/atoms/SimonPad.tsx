@@ -9,21 +9,23 @@ interface SimonPadProps {
   disabled?: boolean
 }
 
-export function SimonPad({
+export const SimonPad = ({
   colors,
   onColorClick,
   activeColor,
   colorValues,
   disabled = false,
-}: SimonPadProps) {
+}: SimonPadProps) => {
   return (
     <div className={styles.padContainer} data-color-count={colors.length}>
       {colors.map((color) => (
         <button
           key={color}
-          className={`${styles.button} ${activeColor === color ? styles.active : ''} ${disabled ? styles.disabled : ''}`}
+          className={`${styles.button} ${activeColor === color ? styles.active : ''} ${
+            disabled ? styles.disabled : ''
+          }`}
           style={{
-            backgroundColor: colorValues[color],
+            backgroundColor: activeColor === color ? '#ffffff' : getColorValue(color, colorValues),
           }}
           onClick={() => !disabled && onColorClick(color)}
           disabled={disabled}
@@ -32,4 +34,25 @@ export function SimonPad({
       ))}
     </div>
   )
+}
+
+function getColorValue(color: SimonColor, colorValues: Record<SimonColor, string>): string {
+  switch (color) {
+    case 'red':
+      return colorValues.red
+    case 'green':
+      return colorValues.green
+    case 'yellow':
+      return colorValues.yellow
+    case 'blue':
+      return colorValues.blue
+    case 'orange':
+      return colorValues.orange
+    case 'purple':
+      return colorValues.purple
+    case 'cyan':
+      return colorValues.cyan
+    case 'pink':
+      return colorValues.pink
+  }
 }

@@ -47,6 +47,20 @@ export interface AppConfig {
 // ────────────────────────────────────────────────────────────────────────────
 
 let cachedConfig: AppConfig | null = null
+type EnvRecord = Record<string, string | undefined>
+
+function getRuntimeEnv(): EnvRecord {
+  if (typeof import.meta === 'object' && import.meta.env) {
+    return import.meta.env as EnvRecord
+  }
+
+  const runtime = globalThis as {
+    process?: {
+      env?: EnvRecord
+    }
+  }
+  return runtime.process?.env ?? {}
+}
 
 /**
  * Get validated application configuration
@@ -63,7 +77,7 @@ export function getConfig(): AppConfig {
   }
 
   // Load config from environment (browser: import.meta.env, server: process.env)
-  const env = typeof import.meta === 'object' && import.meta.env ? import.meta.env : (process.env as Record<string, string | undefined>)
+  const env = getRuntimeEnv()
 
   const config: AppConfig = {
     // App Identity - always available
@@ -153,7 +167,7 @@ export function getBooleanEnv(varName: string, defaultValue: boolean = false): b
     return defaultValue
   }
 
-  const env = typeof import.meta === 'object' && import.meta.env ? import.meta.env : (process.env as Record<string, string | undefined>)
+  const env = getRuntimeEnv()
   const value = env[varName]
 
   if (value === undefined) return defaultValue
@@ -177,7 +191,7 @@ export function getStringEnv(varName: string, defaultValue: string = ''): string
     return defaultValue
   }
 
-  const env = typeof import.meta === 'object' && import.meta.env ? import.meta.env : (process.env as Record<string, string | undefined>)
+  const env = getRuntimeEnv()
   return env[varName] ?? defaultValue
 }
 
@@ -198,7 +212,7 @@ export function getNumberEnv(varName: string, defaultValue: number = 0): number 
     return defaultValue
   }
 
-  const env = typeof import.meta === 'object' && import.meta.env ? import.meta.env : (process.env as Record<string, string | undefined>)
+  const env = getRuntimeEnv()
   const value = env[varName]
 
   if (value === undefined) return defaultValue
@@ -216,7 +230,8 @@ export function getNumberEnv(varName: string, defaultValue: number = 0): number 
  * @internal - Do not use in production code
  */
 export function resetConfigCache(): void {
-  if (process.env.NODE_ENV === 'test') {
+  const env = getRuntimeEnv()
+  if (env.NODE_ENV === 'test') {
     cachedConfig = null
   }
 }

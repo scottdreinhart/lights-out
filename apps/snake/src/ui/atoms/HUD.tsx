@@ -2,8 +2,8 @@
  * HUD — heads-up display showing score, best score, and active power-ups.
  */
 
-import { MODE_LABELS } from '@/domain'
 import type { GameMode, PlayerEntity } from '@/domain'
+import { MODE_LABELS } from '@/domain'
 import styles from './HUD.module.css'
 
 interface HUDProps {

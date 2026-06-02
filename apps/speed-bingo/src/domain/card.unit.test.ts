@@ -1,67 +1,42 @@
 import { describe, expect, it } from 'vitest'
+import { checkWinningPatterns, createBingoCard, createBingoCards, markNumber } from './card'
 
-/**
- * Unit tests for Bingo card generation and validation
- * Tests card creation, number validation, and card state
- */
-
-// Mock card type based on typical bingo structure
-interface BingoCard {
-  id: string
-  numbers: number[][]
-  drawnNumbers: Set<number>
-  isValid: boolean
-}
-
-describe('Bingo Card Generation', () => {
-  it('should generate a valid 5x5 bingo card with correct number ranges', () => {
-    // BINGO has columns: B (1-15), I (16-30), N (31-45), G (46-60), O (61-75)
-    const card: BingoCard = {
-      id: '1',
-      numbers: [
-        [1, 16, 31, 46, 61],
-        [2, 17, 32, 47, 62],
-        [3, 18, 33 /* FREE */, 48, 63],
-        [4, 19, 34, 49, 64],
-        [5, 20, 35, 50, 65],
-      ],
-      drawnNumbers: new Set(),
-      isValid: true,
-    }
-
-    expect(card.numbers).toHaveLength(5)
-    expect(card.numbers[0]).toHaveLength(5)
-    expect(card.isValid).toBe(true)
+describe('speed-bingo card logic', () => {
+  it('creates a 5x5 card with center free space', () => {
+    const card = createBingoCard()
+    expect(card.grid).toHaveLength(5)
+    expect(card.grid[0]).toHaveLength(5)
+    expect(card.grid[2][2].isFreeSpace).toBe(true)
+    expect(card.grid[2][2].marked).toBe(true)
   })
 
-  it('should allow marking numbers as drawn', () => {
-    const card: BingoCard = {
-      id: '1',
-      numbers: [[1], [2], [3], [4], [5]],
-      drawnNumbers: new Set(),
-      isValid: true,
+  it('generates cards with numbers in standard BINGO ranges', () => {
+    const card = createBingoCard()
+    for (let row = 0; row < 5; row++) {
+      expect(card.grid[row][0].number).toBeGreaterThanOrEqual(1)
+      expect(card.grid[row][0].number).toBeLessThanOrEqual(15)
+      expect(card.grid[row][1].number).toBeGreaterThanOrEqual(16)
+      expect(card.grid[row][1].number).toBeLessThanOrEqual(30)
+      expect(card.grid[row][3].number).toBeGreaterThanOrEqual(46)
+      expect(card.grid[row][3].number).toBeLessThanOrEqual(60)
+      expect(card.grid[row][4].number).toBeGreaterThanOrEqual(61)
+      expect(card.grid[row][4].number).toBeLessThanOrEqual(75)
     }
-
-    card.drawnNumbers.add(1)
-    card.drawnNumbers.add(2)
-
-    expect(card.drawnNumbers.has(1)).toBe(true)
-    expect(card.drawnNumbers.has(2)).toBe(true)
-    expect(card.drawnNumbers.has(3)).toBe(false)
   })
 
-  it('should validate that all numbers are unique within a card', () => {
-    const numbers = [
-      [1, 16, 31, 46, 61],
-      [2, 17, 32, 47, 62],
-      [3, 18, 0 /* FREE */, 48, 63],
-      [4, 19, 34, 49, 64],
-      [5, 20, 35, 50, 65],
-    ]
+  it('marks matching numbers and detects line winners', () => {
+    const card = createBingoCard()
+    const targetRowNumbers = card.grid[0]
+      .map((cell) => cell.number)
+      .filter((n): n is number => n !== null)
+    targetRowNumbers.forEach((number) => markNumber(card, number))
+    expect(checkWinningPatterns(card)).toContain('horizontal-top')
+  })
 
-    const allNumbers = numbers.flat().filter((n) => n !== 0)
-    const uniqueNumbers = new Set(allNumbers)
-
-    expect(uniqueNumbers.size).toBe(allNumbers.length)
+  it('creates multiple cards with unique ids', () => {
+    const cards = createBingoCards(3)
+    expect(cards).toHaveLength(3)
+    const ids = new Set(cards.map((card) => card.id))
+    expect(ids.size).toBe(3)
   })
 })

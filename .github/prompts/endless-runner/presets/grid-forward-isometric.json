@@ -1,0 +1,23 @@
+{
+  "game_title": "Cross Grid",
+  "genre_family": "endless_runner",
+  "scroll_direction": "vertical_forward",
+  "camera_mode": "isometric",
+  "lane_model": "grid_based",
+  "movement_model": "auto_pressure_forward",
+  "primary_input": "directional_buttons",
+  "secondary_input": "",
+  "core_pattern": "lane_crossing + timing + hazard_prediction",
+  "player_goal": "maximize_score",
+  "obstacle_model": "traffic_hazards",
+  "collectible_model": "pickups",
+  "powerup_model": "shield",
+  "difficulty_curve": "score_based",
+  "failure_condition": "single_hit",
+  "session_structure": "pure_endless",
+  "tone": "cute",
+  "world_theme": "busy voxel city",
+  "reference_archetypes": ["Crossy Road"],
+  "must_have_systems": ["grid_step", "traffic_scheduler", "lane_randomizer"],
+  "must_not_have_systems": ["side_scroll_platforming", "jump_arc", "free_camera"]
+}

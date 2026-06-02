@@ -3,7 +3,7 @@ import styles from './HamburgerMenu.module.css'
 
 export interface MenuItem {
   label: string
-  icon?: string | React.ReactNode
+  icon?: string
   action: () => void
 }
 
@@ -114,7 +114,7 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
                 >
                   {item.icon && (
                     <span className={styles.icon}>
-                      {typeof item.icon === 'string' ? item.icon : item.icon}
+                      {item.icon}
                     </span>
                   )}
                   {item.label}

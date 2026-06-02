@@ -33,12 +33,18 @@ const COLORS = {
 
 function resolveColor(el: HTMLCanvasElement, cssVar: string): string {
   const style = getComputedStyle(el)
-  const match = cssVar.match(/var\(([^,)]+)(?:,\s*([^)]+))?\)/)
-  if (!match) {
+  // Safely parse `var(--name, fallback)` without using a complex regex
+  const start = cssVar.indexOf('var(')
+  const end = cssVar.lastIndexOf(')')
+  if (start === -1 || end === -1 || end <= start + 4) {
     return cssVar
   }
-  const resolved = style.getPropertyValue(match[1]).trim()
-  return resolved || match[2] || cssVar
+  const inner = cssVar.substring(start + 4, end).trim()
+  const commaIndex = inner.indexOf(',')
+  const name = (commaIndex === -1 ? inner : inner.slice(0, commaIndex)).trim()
+  const fallback = commaIndex === -1 ? undefined : inner.slice(commaIndex + 1).trim()
+  const resolved = style.getPropertyValue(name).trim()
+  return resolved || fallback || cssVar
 }
 
 export function GameCanvas({ board, players, pickups, trails, cellSize }: GameCanvasProps) {

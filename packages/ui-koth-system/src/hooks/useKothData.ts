@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import type { KothEntry, UseKothDataConfig, UseKothDataResult } from './types'
+import type { KothEntry, UseKothDataConfig, UseKothDataResult } from '../types'
 
 /**
  * Hook to manage KotH (King of the Hill) ranking data
@@ -34,7 +34,7 @@ export function useKothData(config: UseKothDataConfig): UseKothDataResult {
   const calculateRanks = useCallback((items: KothEntry[]): KothEntry[] => {
     // Sort by score (descending), then by timestamp (ascending for tie-breaking)
     const sorted = [...items].sort((a, b) => {
-      if (b.score !== a.score) return b.score - a.score
+      if (b.score !== a.score) {return b.score - a.score}
       return a.timestamp - b.timestamp
     })
 
@@ -58,7 +58,7 @@ export function useKothData(config: UseKothDataConfig): UseKothDataResult {
 
       // Keep only top maxEntries by score (or by timestamp if tied)
       updatedEntries = updatedEntries.sort((a, b) => {
-        if (b.score !== a.score) return b.score - a.score
+        if (b.score !== a.score) {return b.score - a.score}
         return a.timestamp - b.timestamp
       })
 
@@ -83,7 +83,7 @@ export function useKothData(config: UseKothDataConfig): UseKothDataResult {
   // Get sorted entries, optionally limited
   const getEntries = useCallback(
     (limit?: number): KothEntry[] => {
-      if (limit) return entries.slice(0, limit)
+      if (limit) {return entries.slice(0, limit)}
       return entries
     },
     [entries],

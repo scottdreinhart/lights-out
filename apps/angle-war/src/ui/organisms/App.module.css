@@ -1,0 +1,248 @@
+.root {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(circle at 12% 12%, #162241 0%, #090e1b 52%, #06080f 100%);
+  color: #f6f8ff;
+}
+
+.card {
+  width: min(920px, 96vw);
+  border: 1px solid rgba(160, 193, 255, 0.3);
+  border-radius: 16px;
+  background: rgba(6, 11, 24, 0.88);
+  box-shadow: 0 24px 58px rgba(0, 0, 0, 0.42);
+  padding: 24px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: clamp(1.65rem, 2.2vw, 2.25rem);
+}
+
+.kicker {
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9bbcff;
+}
+
+.summary {
+  margin: 10px 0 0;
+  color: #d4e1ff;
+}
+
+.meters {
+  margin-top: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.meterRow {
+  display: grid;
+  gap: 6px;
+}
+
+.meterTrack {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.meterFillDanger,
+.meterFillFocus,
+.meterFillProgress {
+  height: 100%;
+  transition: width 180ms ease;
+}
+
+.meterFillDanger {
+  background: linear-gradient(90deg, #ffb079, #ff5c7a);
+}
+
+.meterFillFocus {
+  background: linear-gradient(90deg, #8df4dc, #49b6ff);
+}
+
+.meterFillProgress {
+  background: linear-gradient(90deg, #a2b2ff, #ddd6ff);
+}
+
+.arenaSection {
+  margin-top: 18px;
+}
+
+.arena {
+  width: 100%;
+  aspect-ratio: 10 / 7;
+  background: linear-gradient(180deg, #0f1830 0%, #0c1326 45%, #080d17 100%);
+  border: 1px solid rgba(160, 193, 255, 0.35);
+}
+
+.arenaFrame {
+  fill: transparent;
+  stroke: rgba(160, 193, 255, 0.25);
+  stroke-width: 1;
+}
+
+.ground {
+  stroke: rgba(147, 255, 212, 0.45);
+  stroke-width: 2;
+}
+
+.trajectory {
+  fill: none;
+  stroke: rgba(161, 213, 255, 0.7);
+  stroke-width: 1.5;
+  stroke-dasharray: 7 6;
+}
+
+.objectiveSafe {
+  fill: rgba(160, 255, 216, 0.95);
+  stroke: rgba(229, 255, 245, 0.95);
+  stroke-width: 1.5;
+}
+
+.objectiveCaptured {
+  fill: rgba(255, 201, 95, 0.95);
+  stroke: rgba(255, 235, 188, 0.9);
+  stroke-width: 1.5;
+}
+
+.objectiveLost {
+  fill: rgba(96, 99, 111, 0.9);
+  stroke: rgba(156, 162, 178, 0.85);
+  stroke-width: 1.5;
+}
+
+.enemySkimmer,
+.enemyFloater,
+.enemyAbductor {
+  fill: none;
+  stroke-width: 2;
+}
+
+.enemySkimmer {
+  stroke: #ff8892;
+}
+
+.enemyFloater {
+  stroke: #8ec4ff;
+}
+
+.enemyAbductor {
+  stroke: #ffd779;
+}
+
+.projectile {
+  fill: #f4fbff;
+  stroke: none;
+}
+
+.turretBase {
+  fill: rgba(194, 220, 255, 0.12);
+  stroke: rgba(229, 238, 255, 0.96);
+  stroke-width: 2;
+}
+
+.turretBarrel {
+  stroke: #f4fbff;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.arenaMeta {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #cfdbfb;
+}
+
+.stats {
+  margin: 18px 0 8px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.stats div {
+  border: 1px solid rgba(160, 193, 255, 0.24);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.stats dt {
+  font-size: 0.78rem;
+  color: #b6c8ef;
+}
+
+.stats dd {
+  margin: 4px 0 0;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.status {
+  margin: 10px 0 14px;
+  color: #d6e4ff;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.actions button,
+.reset {
+  min-height: 44px;
+  border-radius: 10px;
+  border: 1px solid rgba(160, 193, 255, 0.5);
+  background: linear-gradient(180deg, #273d73, #172445);
+  color: #f6f8ff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.actions button:hover,
+.reset:hover {
+  filter: brightness(1.07);
+}
+
+.reset {
+  margin-top: 12px;
+  width: 100%;
+}
+
+@media (max-width: 899px) {
+  .arenaMeta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 599px) {
+  .actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .meterFillDanger,
+  .meterFillFocus,
+  .meterFillProgress {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .actions button:hover,
+  .reset:hover {
+    filter: none !important;
+  }
+}

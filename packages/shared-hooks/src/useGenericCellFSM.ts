@@ -153,14 +153,7 @@ export const CellFSMConfigs = {
 export function useGenericCellFSM<T extends string = string>(
   config: CellFSMConfig<T>,
 ): CellFSMResult<T> {
-  // Create FSM on first call, reuse on subsequent renders
-  const fsmRef = React.useRef<CellFSMResult<T> | null>(null)
-
-  if (!fsmRef.current) {
-    fsmRef.current = createCellFSM(config)
-  }
-
-  return fsmRef.current
+  return createCellFSM(config)
 }
 
 // For convenience when using pre-built configs
@@ -170,5 +163,3 @@ export function usePrebuiltCellFSM<K extends keyof typeof CellFSMConfigs>(
   const config = CellFSMConfigs[configKey]
   return useGenericCellFSM(config as CellFSMConfig)
 }
-
-import React from 'react'

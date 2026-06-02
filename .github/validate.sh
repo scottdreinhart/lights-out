@@ -5,17 +5,24 @@
 
 set -e
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-NC='\033[0m' # No Color
+# ANSI color codes (standardized per SCRIPT-STANDARDS.md)
+readonly CYAN='\033[96m'
+readonly GREEN='\033[92m'
+readonly RED='\033[91m'
+readonly YELLOW='\033[93m'
+readonly BLUE='\033[94m'
+readonly WHITE='\033[97m'
+readonly GRAY='\033[90m'
+readonly MAGENTA='\033[95m'
+readonly RESET='\033[0m'
+readonly BOLD='\033[1m'
 
 failed=0
 passed=0
 
-echo "======================================"
-echo "🔍 Governance Validation Gate"
-echo "======================================"
+echo -e "${BLUE}═════════════════════════════════════${RESET}"
+echo -e "${BLUE}🔍 Governance Validation Gate${RESET}"
+echo -e "${BLUE}═════════════════════════════════════${RESET}"
 echo ""
 
 # Get list of all game projects
@@ -27,7 +34,7 @@ PROJECTS=(
 )
 
 # 1. Check governance files deployed
-echo "📁 Checking governance files..."
+echo -e "${CYAN}[1/4] 📁 Checking governance files...${RESET}"
 for proj in "${PROJECTS[@]}"; do
   parent_dir=$(dirname "$(pwd)")
   proj_path="$parent_dir/$proj"
@@ -35,54 +42,54 @@ for proj in "${PROJECTS[@]}"; do
   if [ -d "$proj_path/.github/instructions" ]; then
     gov_files=$(ls "$proj_path/.github/instructions"/*.md 2>/dev/null | wc -l)
     if [ "$gov_files" -ge 5 ]; then
-      echo "  ✅ $proj ($gov_files files)"
+      echo -e "  ${GREEN}✅ $proj ($gov_files files)${RESET}"
       ((passed++))
     else
-      echo "  ❌ $proj (only $gov_files files)"
+      echo -e "  ${RED}❌ $proj (only $gov_files files)${RESET}"
       ((failed++))
     fi
   else
-    echo "  ❌ $proj (missing .github/instructions)"
+    echo -e "  ${RED}❌ $proj (missing .github/instructions)${RESET}"
     ((failed++))
   fi
 done
 
 echo ""
-echo "📋 Checking README Governance sections..."
+echo -e "${CYAN}[2/4] 📋 Checking README Governance sections...${RESET}"
 for proj in "${PROJECTS[@]}"; do
   parent_dir=$(dirname "$(pwd)")
   proj_path="$parent_dir/$proj"
   
   if [ -f "$proj_path/README.md" ]; then
     if grep -q "## Governance Adoption" "$proj_path/README.md"; then
-      echo "  ✅ $proj"
+      echo -e "  ${GREEN}✅ $proj${RESET}"
       ((passed++))
     else
-      echo "  ❌ $proj (missing Governance Adoption section)"
+      echo -e "  ${RED}❌ $proj (missing Governance Adoption section)${RESET}"
       ((failed++))
     fi
   fi
 done
 
 echo ""
-echo "🔐 Checking ESLint Security Rules..."
+echo -e "${CYAN}[3/4] 🔐 Checking ESLint Security Rules...${RESET}"
 for proj in "${PROJECTS[@]}"; do
   parent_dir=$(dirname "$(pwd)")
   proj_path="$parent_dir/$proj"
   
   if [ -f "$proj_path/eslint.config.js" ]; then
     if grep -q "eslint-plugin-security\|security" "$proj_path/eslint.config.js"; then
-      echo "  ✅ $proj"
+      echo -e "  ${GREEN}✅ $proj${RESET}"
       ((passed++))
     else
-      echo "  ⚠️  $proj (security plugin not configured)"
+      echo -e "  ${YELLOW}⚠️  $proj (security plugin not configured)${RESET}"
       ((failed++))
     fi
   fi
 done
 
 echo ""
-echo "📦 Checking Governance Packages..."
+echo -e "${CYAN}[4/4] 📦 Checking Governance Packages...${RESET}"
 for proj in "${PROJECTS[@]}"; do
   parent_dir=$(dirname "$(pwd)")
   proj_path="$parent_dir/$proj"
@@ -92,28 +99,28 @@ for proj in "${PROJECTS[@]}"; do
     has_commitizen=$(grep -c "commitizen" "$proj_path/package.json" || echo 0)
     
     if [ "$has_security" -gt 0 ] && [ "$has_commitizen" -gt 0 ]; then
-      echo "  ✅ $proj"
+      echo -e "  ${GREEN}✅ $proj${RESET}"
       ((passed++))
     else
-      echo "  ❌ $proj (missing governance packages)"
+      echo -e "  ${RED}❌ $proj (missing governance packages)${RESET}"
       ((failed++))
     fi
   fi
 done
 
 echo ""
-echo "======================================"
-echo "📊 Validation Summary"
-echo "======================================"
-echo -e "Checks Passed: ${GREEN}$passed${NC}"
-echo -e "Checks Failed: ${RED}$failed${NC}"
+echo -e "${BLUE}═════════════════════════════════════${RESET}"
+echo -e "${BLUE}📊 Validation Summary${RESET}"
+echo -e "${BLUE}═════════════════════════════════════${RESET}"
+echo -e "${CYAN}Checks Passed: ${GREEN}$passed${RESET}"
+echo -e "${CYAN}Checks Failed: ${RED}$failed${RESET}"
 echo ""
 
 if [ "$failed" -eq 0 ]; then
-  echo -e "${GREEN}✅ All governance checks passed!${NC}"
+  echo -e "${GREEN}${BOLD}✅ All governance checks passed!${RESET}"
   exit 0
 else
-  echo -e "${RED}❌ Governance validation failed!${NC}"
+  echo -e "${RED}${BOLD}❌ Governance validation failed!${RESET}"
   echo "Fix issues above and re-run validation."
   exit 1
 fi

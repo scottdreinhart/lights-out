@@ -1,4 +1,4 @@
-# 🔍 Extraction & Merge-First Guidelines
+# 📚 Extraction & Merge-First Guidelines
 
 **Requirement**: When extracting to shared packages, always audit existing implementations, identify merge/refactor opportunities, and ensure zero loss of features and backward compatibility.
 
@@ -46,8 +46,8 @@ grep -r "HamburgerMenu\|Hamburger" apps/ --include="*.tsx" | cut -d: -f1 | sort 
 
 - ✅ Bingo has HamburgerMenu.tsx (the source)
 - ✅ Battleship may have similar menu component (check)
-- ❓ Any other apps with menu patterns? (search)
-- ❓ Existing shared-ui-components package? (check)
+- ⚠️ Any other apps with menu patterns? (search)
+- ⚠️ Existing shared-ui-components package? (check)
 
 ---
 
@@ -214,8 +214,8 @@ grep -r "^export.*function\|^export.*const" packages/*/src/ | sort | uniq -d
 
 - ✅ What hooks already exist in shared packages
 - ✅ What Bingo's useGame needs from each package
-- ❓ Are there overlapping functions? (deduplicate!)
-- ❓ Are there naming conflicts? (resolve!)
+- ⚠️ Are there overlapping functions? (deduplicate!)
+- ⚠️ Are there naming conflicts? (resolve!)
 
 ---
 
@@ -462,4 +462,4 @@ Extraction is done RIGHT when:
 
 ---
 
-**📌 PIN THIS**: Always audit, search, merge intelligently, preserve features, maintain compatibility. Do this BEFORE extracting, not after.
+**📁 PIN THIS**: Always audit, search, merge intelligently, preserve features, maintain compatibility. Do this BEFORE extracting, not after.

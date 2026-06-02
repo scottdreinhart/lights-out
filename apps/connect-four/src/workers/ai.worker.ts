@@ -9,8 +9,8 @@
  * Keeps UI at 60 FPS during deep AI searches.
  */
 
-import { selectMove as selectMoveJS } from '@/domain'
 import type { Board, Difficulty, Player } from '@/domain'
+import { selectMove as selectMoveJS } from '@/domain'
 import { AI_WASM_BASE64 } from '@/wasm/ai-wasm'
 
 interface AIRequest {

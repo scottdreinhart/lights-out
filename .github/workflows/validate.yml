@@ -54,6 +54,15 @@ jobs:
         run: pnpm test
         continue-on-error: false
 
+      - name: Rebuild strict feature matrix
+        run: pnpm exec node scripts/rebuild-feature-implementation-matrix.mjs
+
+      - name: Rebuild security adoption audit
+        run: pnpm exec node scripts/rollout-security-modules.mjs
+
+      - name: Enforce strict compliance thresholds
+        run: pnpm validate:feature-thresholds
+
   compliance-metrics:
     runs-on: ubuntu-latest
     timeout-minutes: 15

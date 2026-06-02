@@ -1,0 +1,16 @@
+{
+  "name": "Vector Assault Game",
+  "short_name": "Vector Assault",
+  "description": "Survive escalating arena waves with independent positioning and burst attacks.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#111827",
+  "background_color": "#0b1020",
+  "icons": [
+    {
+      "src": "/company-logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

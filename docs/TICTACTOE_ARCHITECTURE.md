@@ -6,7 +6,7 @@
 
 ---
 
-## 📐 Architecture Overview
+## ⚙️ Architecture Overview
 
 Tic-Tac-Toe is a minimal but complete CLEAN architecture implementation, serving as the reference model for all 30 games.
 
@@ -40,7 +40,7 @@ Reverse: Domain never imports React, App, or UI
 
 ---
 
-## 📂 Complete File Structure
+## 📁 Complete File Structure
 
 ```
 apps/tictactoe/
@@ -139,7 +139,7 @@ apps/tictactoe/
 
 ---
 
-## 🧠 Domain Layer (Pure Logic)
+## 📚 Domain Layer (Pure Logic)
 
 **Rule**: No React, no side effects, no framework imports. Testable without browser.
 
@@ -617,7 +617,7 @@ export const useTheme = () => {
 
 ---
 
-## 🎨 UI Layer (React Components)
+## ⚙️ UI Layer (React Components)
 
 **Rule**: Presentational only. All logic via props or hooks. No business logic.
 
@@ -871,7 +871,7 @@ test('should navigate with arrow keys', async ({ page }) => {
 
 ---
 
-## 📱 Responsive Design (5 Tiers)
+## 📄 Responsive Design (5 Tiers)
 
 Every component must work on all 5 device tiers:
 
@@ -948,7 +948,7 @@ P ............................ Pause
 
 ---
 
-## 🎯 Key Takeaways for Porting to Other Games
+## ✅ Key Takeaways for Porting to Other Games
 
 1. **Domain First**: Define types, then rules, then AI
 2. **Composition**: Build atoms, compose into molecules, then organisms

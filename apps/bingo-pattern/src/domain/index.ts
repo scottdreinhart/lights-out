@@ -1,16 +1,10 @@
-export type { GameState, Cell, Grid, PatternType } from './types'
 export {
-  generateCard,
-  markNumber,
-  getMarkedCells,
   checkPattern,
+  generateCard,
+  getMarkedCells,
   getWinningPatterns,
   hasWon,
+  markNumber,
 } from './card'
-export {
-  createGameState,
-  drawNumber,
-  resetGame,
-  newGame,
-  getHintPositions,
-} from './rules'
+export { createGameState, drawNumber, getHintPositions, newGame, resetGame } from './rules'
+export type { Cell, GameState, Grid, PatternType } from './types'

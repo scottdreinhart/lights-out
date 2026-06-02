@@ -29,7 +29,7 @@ export function CountingPanel({
   countingEnabled,
   className,
 }: CountingPanelProps) {
-  const responsive = useResponsiveState()
+  const _responsive = useResponsiveState()
 
   if (!countingEnabled || !countingState) {
     return null
@@ -155,9 +155,17 @@ function formatBetMultiplier(multiplier: number): string {
  * Determine advantage level for styling
  */
 function getAdvantageLevel(advantage: number): string {
-  if (advantage > 0.02) return 'strong'
-  if (advantage > 0.01) return 'good'
-  if (advantage > -0.01) return 'neutral'
-  if (advantage > -0.02) return 'slight'
+  if (advantage > 0.02) {
+    return 'strong'
+  }
+  if (advantage > 0.01) {
+    return 'good'
+  }
+  if (advantage > -0.01) {
+    return 'neutral'
+  }
+  if (advantage > -0.02) {
+    return 'slight'
+  }
   return 'disadvantage'
 }

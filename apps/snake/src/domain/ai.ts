@@ -52,11 +52,7 @@ function isCellDangerous(
   return occupied.has(posKey(pos))
 }
 
-function getOccupied(
-  run: RunState,
-  board: BoardConfig,
-  selfId?: string,
-): ReadonlySet<string> {
+function getOccupied(run: RunState, board: BoardConfig, selfId?: string): ReadonlySet<string> {
   const set = new Set<string>(run.trails)
   for (const p of run.players) {
     for (const seg of p.segments) {

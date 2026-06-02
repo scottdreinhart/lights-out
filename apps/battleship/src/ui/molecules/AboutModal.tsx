@@ -40,12 +40,7 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
         }}
         role="document"
       >
-        <button
-          type="button"
-          className={styles.closeBtn}
-          onClick={onClose}
-          aria-label="Close"
-        >
+        <button type="button" className={styles.closeBtn} onClick={onClose} aria-label="Close">
           ✕
         </button>
 

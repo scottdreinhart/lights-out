@@ -5,7 +5,7 @@
  * Framework-agnostic; used throughout domain and app layers.
  */
 
-import type { Card, Rank, Suit } from '@games/card-deck-core'
+import type { Card } from '@games/card-deck-core'
 
 // ┌─────────────────────────────────────────────────────────┐
 // │ CARD & DECK TYPES                                       │
@@ -221,6 +221,11 @@ export interface HandHistory {
   totalAmountWon: number
   totalAmountLost: number
   timestamp: Date
+  amounts: {
+    bet: number
+    payout: number
+  }
+  outcomes: string[]
 }
 
 export interface PlayerStatistics {
@@ -232,4 +237,8 @@ export interface PlayerStatistics {
   totalWinnings: number
   bestStreak: number // consecutive wins
   worstStreak: number // consecutive losses
+  gamesPlayed: number
+  wins: number
+  blackjacks: number
+  currentStreak: number
 }

@@ -120,10 +120,5 @@ export function App() {
   }
 
   // Game layout with table selection and bankroll management
-  return (
-    <GameLayout
-      playerId={playerId}
-      GameBoardComponent={GameBoardAdapter}
-    />
-  )
+  return <GameLayout playerId={playerId} GameBoardComponent={GameBoardAdapter} />
 }

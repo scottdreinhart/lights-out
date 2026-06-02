@@ -7,6 +7,7 @@
  *   2. If WASM is unavailable or fails, fall back to pure-JS AI.
  */
 
+import type { Tile } from '@/domain'
 import {
   bitmaskToTiles,
   boardToBitmask,
@@ -14,7 +15,6 @@ import {
   getBestMove as getBestMoveJS,
   getValidMoves,
 } from '@/domain'
-import type { Tile } from '@/domain'
 import { AI_WASM_BASE64 } from '@/wasm/ai-wasm'
 
 // ── WASM instance (nullable — set once on first use) ──────────────────────

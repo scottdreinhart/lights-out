@@ -1,7 +1,7 @@
 {
   "_comment": "WASM Regression Alerts Log - Phase 2 Regression Detection",
   "_description": "This file is automatically updated by scripts/check-wasm-regressions.js when regressions are detected. Each entry represents a comparison between baseline and current build profiles.",
-  "createdDate": "2026-04-01",
+  "createdDate": "2026-04-13",
   "alerts": [
     {
       "_example": "Example entry - shows the structure and fields",
@@ -10,7 +10,7 @@
       "baselineFile": "compliance/wasm-profiles-baseline.json",
       "baselineVersion": "v1.0.0",
       "currentFile": "compliance/wasm-profiles.json",
-      "totalAppsCompared": 25,
+      "totalAppsCompared": 52,
       "regressions": [
         {
           "app": "sudoku",
@@ -48,7 +48,7 @@
       "baselineVersion": "1.0.0",
       "buildNumber": 2,
       "summary": {
-        "totalApps": 25,
+        "totalApps": 52,
         "ok": 25,
         "investigate": 0,
         "fixRequired": 0
@@ -61,7 +61,7 @@
       "baselineVersion": "1.0.0",
       "buildNumber": 3,
       "summary": {
-        "totalApps": 25,
+        "totalApps": 52,
         "ok": 24,
         "investigate": 1,
         "fixRequired": 0
@@ -123,6 +123,19 @@
       "timestamp": "2026-04-02T02:32:35.818Z",
       "baselineVersion": "1.0.0",
       "buildNumber": 7,
+      "summary": {
+        "totalApps": 25,
+        "ok": 25,
+        "investigate": 0,
+        "fixRequired": 0
+      },
+      "regressions": [],
+      "acknowledged": false
+    },
+    {
+      "timestamp": "2026-04-17T10:52:03.879Z",
+      "baselineVersion": "1.0.0",
+      "buildNumber": 8,
       "summary": {
         "totalApps": 25,
         "ok": 25,

@@ -1,8 +1,9 @@
 # WASM Baseline Management Guide
 
-**Document Version**: 1.0  
+**Document Version**: 1.1  
 **Created**: April 1, 2026  
-**Last Updated**: April 1, 2026
+**Last Updated**: April 13, 2026  
+**Current Game Inventory**: 52 apps (updated from 27/44 baseline assumptions)
 
 ---
 

@@ -56,6 +56,59 @@
 }
 
 /**
+ * Colorblind-safe palettes
+ * WCAG AA compliant alternatives for colorblind accessibility
+ */
+
+/* Protanopia (Red-blind) - Uses blue, yellow, gray */
+:root.colorblind-protan {
+  --primary: #0173b2;          /* Blue */
+  --secondary: #ece133;         /* Yellow */
+  --bg-dark: #1a1a2e;
+  --bg-light: #f5f5f5;
+  --text-light: #e0e0e0;
+  --text-dark: #1a1a2e;
+  --win-highlight: #0cc5de;    /* Cyan */
+  --error: #de0000;             /* Red for errors (high contrast) */
+}
+
+/* Deuteranopia (Green-blind) - Uses blue, orange, gray */
+:root.colorblind-deutan {
+  --primary: #0173b2;          /* Blue */
+  --secondary: #de8f05;         /* Orange */
+  --bg-dark: #1a1a2e;
+  --bg-light: #f5f5f5;
+  --text-light: #e0e0e0;
+  --text-dark: #1a1a2e;
+  --win-highlight: #cc78bc;    /* Magenta */
+  --error: #e60049;             /* Red for errors (high contrast) */
+}
+
+/* Tritanopia (Blue-yellow blind) - Uses pink, cyan, gray */
+:root.colorblind-tritan {
+  --primary: #ee7733;           /* Orange-red */
+  --secondary: #0077bb;         /* Blue */
+  --bg-dark: #1a1a2e;
+  --bg-light: #f5f5f5;
+  --text-light: #e0e0e0;
+  --text-dark: #1a1a2e;
+  --win-highlight: #33bbee;    /* Cyan */
+  --error: #cc0000;             /* Red for errors (high contrast) */
+}
+
+/* Achromatopsia (Complete colorblindness) - Pure grayscale */
+:root.colorblind-achroma {
+  --primary: #555555;           /* Dark gray */
+  --secondary: #cccccc;         /* Light gray */
+  --bg-dark: #1a1a1a;
+  --bg-light: #f5f5f5;
+  --text-light: #ffffff;
+  --text-dark: #000000;
+  --win-highlight: #00ff00;    /* Bright green for contrast */
+  --error: #ff0000;             /* Bright red for errors */
+}
+
+/**
  * Reduced motion support
  * Respect user accessibility preferences
  */

@@ -56,7 +56,7 @@ export default function useTheme() {
     setSettings((s) => ({ ...s, mode, colorTheme: 'light' }))
   }, [])
 
-  const setColorblind = useCallback((cb: typeof settings.colorblind) => {
+  const setColorblind = useCallback((cb: ThemeSettings['colorblind']) => {
     setSettings((s) => ({ ...s, colorblind: cb }))
   }, [])
 

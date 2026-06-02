@@ -1,13 +1,10 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { App } from '@/ui'
 import '@/styles.css'
+import { App } from '@/ui'
+import ReactDOM from 'react-dom/client'
 
 const root = document.getElementById('root')
-if (!root) throw new Error('Root element not found')
+if (!root) {
+  throw new Error('Root element not found')
+}
 
-ReactDOM.createRoot(root).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+ReactDOM.createRoot(root).render(<App />)

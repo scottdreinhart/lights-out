@@ -1,0 +1,196 @@
+/* ShipPlacementForm.module.css — Battleship ship placement form styling */
+
+.form {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 2.75rem 2.5rem;
+  background: linear-gradient(165deg, #0f0f23 0%, #1a1a3a 50%, #12122a 100%);
+  border-radius: 12px;
+  box-shadow:
+    0 0 40px rgba(0, 150, 200, 0.15),
+    0 20px 40px rgba(0, 0, 0, 0.6);
+  border: 2px solid var(--color-primary, #00d9ff);
+  position: relative;
+  overflow: hidden;
+}
+
+.form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #00d9ff, #667eea, #00d9ff);
+  opacity: 0.5;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 900;
+  margin: 0 0 0.2rem 0;
+  color: var(--color-primary, #00d9ff);
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: var(--color-text-muted, #888);
+  text-align: center;
+  margin: 0 0 2.5rem 0;
+  font-style: italic;
+}
+
+.field {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text, #e0e0e0);
+  letter-spacing: 0.5px;
+}
+
+.input,
+.select {
+  padding: 0.9rem 1.1rem;
+  border: 2px solid var(--color-primary, #00d9ff);
+  border-radius: 8px;
+  background: rgba(26, 26, 62, 0.8);
+  color: var(--color-text, #e0e0e0);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 0 10px rgba(0, 217, 255, 0.05);
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--color-primary, #00d9ff);
+  box-shadow:
+    inset 0 0 10px rgba(0, 217, 255, 0.1),
+    0 0 0 4px rgba(0, 217, 255, 0.15);
+}
+
+.input.error,
+.select.error {
+  border-color: var(--color-error, #ff6b6b);
+  box-shadow:
+    inset 0 0 10px rgba(255, 107, 107, 0.05),
+    0 0 0 4px rgba(255, 107, 107, 0.1);
+}
+
+.input::placeholder {
+  color: var(--color-text-muted, #666);
+}
+
+.select {
+  cursor: pointer;
+}
+
+.select option {
+  background: var(--color-surface, #1a1a2e);
+  color: var(--color-text, #e0e0e0);
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.75rem;
+}
+
+.battleButton {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #00d9ff, #0099cc);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-weight: 900;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 217, 255, 0.4);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.battleButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 217, 255, 0.6);
+}
+
+.battleButton:active {
+  transform: translateY(0);
+}
+
+.cancelButton {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  background: transparent;
+  color: var(--color-primary, #00d9ff);
+  border: 2px solid var(--color-primary, #00d9ff);
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.5px;
+}
+
+.cancelButton:hover {
+  background: rgba(0, 217, 255, 0.1);
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0.2);
+}
+
+.info {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--color-text-muted, #666);
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 217, 255, 0.2);
+}
+
+/* Mobile responsive */
+@media (max-width: 599px) {
+  .form {
+    padding: 1.75rem 1.5rem;
+    margin: 0 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .battleButton,
+  .cancelButton {
+    width: 100%;
+  }
+}
+
+/* Accessibility: reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .input,
+  .select,
+  .battleButton,
+  .cancelButton {
+    transition: none;
+  }
+
+  .battleButton:hover {
+    transform: none;
+  }
+}

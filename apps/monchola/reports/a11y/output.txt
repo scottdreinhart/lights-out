@@ -1,1 +1,0 @@
-No dedicated a11y runner configured in @games/monchola yet

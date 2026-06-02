@@ -15,9 +15,9 @@
  *   veryHard  → WASM ply 6+, worker, ~2000ms
  */
 
-import { selectMove as selectMoveJS } from '@/domain'
 import type { Difficulty } from '@/domain'
-import { initWasm, selectBestMoveWasm } from '@/wasm/ai-wasm'
+import { selectMove as selectMoveJS } from '@/domain'
+import { initWasm, selectBestMoveWasm } from '@/wasm'
 
 export interface AiResult {
   pit: number | null
@@ -130,11 +130,15 @@ async function computeMoveWasmSync(
 
     ensureWasmReady()
       .then((ready) => {
-        if (timeout) {clearTimeout(timeout)}
+        if (timeout) {
+          clearTimeout(timeout)
+        }
         resolve(ready)
       })
       .catch((err) => {
-        if (timeout) {clearTimeout(timeout)}
+        if (timeout) {
+          clearTimeout(timeout)
+        }
         console.error('[computeMoveWasmSync] WASM ready error:', err)
         resolve(false)
       })
@@ -165,10 +169,14 @@ async function computeMoveWasmSync(
             ? selectBestMoveWasm(board, player, config.plyDepth)
             : selectMoveJS(board, player, difficulty)
 
-        if (computationTimeout) {clearTimeout(computationTimeout)}
+        if (computationTimeout) {
+          clearTimeout(computationTimeout)
+        }
         resolve(moveResult === -1 ? null : moveResult)
       } catch (err) {
-        if (computationTimeout) {clearTimeout(computationTimeout)}
+        if (computationTimeout) {
+          clearTimeout(computationTimeout)
+        }
         console.error('[AI] WASM computation error:', err)
         resolve(null)
       }

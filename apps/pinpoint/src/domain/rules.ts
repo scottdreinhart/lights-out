@@ -1,5 +1,5 @@
-import type { Code, Guess, Feedback, GameState, Difficulty, GuessResult } from './types'
-import { DIFFICULTY_CONFIGS, COLORS } from './constants'
+import { COLORS, DIFFICULTY_CONFIGS } from './constants'
+import type { Code, Difficulty, Feedback, GameState, Guess, GuessResult } from './types'
 
 export const generateSecretCode = (difficulty: Difficulty): Code => {
   const config = DIFFICULTY_CONFIGS[difficulty]
@@ -27,12 +27,12 @@ export const createInitialState = (difficulty: Difficulty): GameState => {
     difficulty,
     isGameWon: false,
     isGameLost: false,
-    availableColors
+    availableColors,
   }
 }
 
 export const isValidGuess = (guess: Guess, codeLength: number): boolean => {
-  return guess.length === codeLength && guess.every(peg => COLORS.includes(peg))
+  return guess.length === codeLength && guess.every((peg) => COLORS.includes(peg))
 }
 
 export const calculateFeedback = (guess: Guess, secretCode: Code): Feedback => {
@@ -88,7 +88,7 @@ export const makeGuess = (state: GameState, guess: Guess): GameState => {
     ...state,
     guesses: newGuesses,
     isGameWon,
-    isGameLost
+    isGameLost,
   }
 }
 
@@ -98,10 +98,6 @@ export const resetGame = (difficulty: Difficulty): GameState => {
 
 export const getRemainingGuesses = (state: GameState): number => {
   return state.maxGuesses - state.guesses.length
-}
-
-export const isGameActive = (state: GameState): boolean => {
-  return !state.isGameWon && !state.isGameLost
 }
 
 export const isGameActive = (state: GameState): boolean => {

@@ -6,5 +6,5 @@
  */
 
 export * from './atoms'
-export { App } from './organisms/App'
+export { App } from './organisms'
 export { default as AppWithProviders } from './organisms/AppWithProviders'

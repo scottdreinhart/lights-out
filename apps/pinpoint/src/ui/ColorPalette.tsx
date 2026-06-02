@@ -1,8 +1,8 @@
-import React from 'react'
 import type { Color } from '@/domain'
-import { Peg } from './Peg'
 import { COLOR_DISPLAY_NAMES } from '@/domain'
+import React from 'react'
 import styles from './ColorPalette.module.css'
+import { Peg } from './Peg'
 
 interface ColorPaletteProps {
   availableColors: Color[]
@@ -15,7 +15,7 @@ export const ColorPalette: React.FC<ColorPaletteProps> = ({
   availableColors,
   onColorSelect,
   disabled = false,
-  className = ''
+  className = '',
 }) => {
   const handleColorClick = (color: Color) => {
     if (!disabled) {

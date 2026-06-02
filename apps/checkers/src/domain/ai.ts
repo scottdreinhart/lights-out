@@ -10,8 +10,8 @@
  * - The app layer can route computeAiMoveAsync through a worker so the UI remains responsive.
  */
 
-import { minimax } from '@games/ai-framework'
 import type { GameAI } from '@games/ai-framework'
+import { minimax } from '@games/ai-framework'
 import { countKings, countPieces, getOpponent } from './board'
 import { applyMove, getLegalMoves, getWinner } from './rules'
 import type { Board, Move, Player } from './types'
@@ -107,7 +107,20 @@ export const chooseBestMove = (board: Board, player: Player): Move | null => {
     moveOrdering: true,
   })
 
-  return result.move ?? moves[0]
+  const candidate = result.move
+  if (
+    candidate &&
+    typeof candidate === 'object' &&
+    'from' in candidate &&
+    'to' in candidate &&
+    'path' in candidate &&
+    'captures' in candidate &&
+    'becomesKing' in candidate
+  ) {
+    return candidate as Move
+  }
+
+  return moves[0]
 }
 
 export const computeAiMove = chooseBestMove

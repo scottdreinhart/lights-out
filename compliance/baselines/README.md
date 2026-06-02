@@ -8,7 +8,8 @@ This directory (`compliance/baselines/`) stores historical snapshots of WASM per
 
 **File**: `v1.0.0-wasm-profiles-baseline.json` (created in parent directory)  
 **Release Date**: April 1, 2026  
-**Total Apps**: 25  
+**Baseline Scope**: 25 apps (April 1 snapshot)  
+**Updated Context**: April 13, 2026 - Platform now contains 52 total apps (52-app expansion in progress)  
 **Status**: 25 GREEN / 0 AMBER / 0 RED  
 **Performance Summary**:
 

@@ -32,7 +32,7 @@ export function GameBoard({
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
       const cell = board[row]?.[col]
-      if (!cell) continue
+      if (!cell) {continue}
 
       cells.push({
         position: { row, col },
@@ -66,10 +66,10 @@ export function GameBoard({
   const renderCell = (
     cell: SharedBoardCell,
     isSelected: boolean,
-    isFocused: boolean,
+    _isFocused: boolean,
   ): ReactNode => {
     const minesweeperCell = board[cell.position.row]?.[cell.position.col]
-    if (!minesweeperCell) return null
+    if (!minesweeperCell) {return null}
 
     // Determine which corner this cell is (if any)
     let cornerType: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | null = null

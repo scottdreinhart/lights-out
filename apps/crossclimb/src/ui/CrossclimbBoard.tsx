@@ -4,6 +4,7 @@
  */
 
 import React, { useEffect, useRef, useState } from 'react'
+import type { Graph, NodeId } from '../domain'
 import { EDGE_COLORS, EDGE_WIDTH, NODE_COLORS, NODE_RADIUS } from '../domain'
 import styles from './CrossclimbBoard.module.css'
 
@@ -46,10 +47,14 @@ export const CrossclimbBoard: React.FC<CrossclimbBoardProps> = ({
   // Draw the graph
   useEffect(() => {
     const canvas = canvasRef.current
-    if (!canvas) return
+    if (!canvas) {
+      return
+    }
 
     const ctx = canvas.getContext('2d')
-    if (!ctx) return
+    if (!ctx) {
+      return
+    }
 
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -74,7 +79,9 @@ export const CrossclimbBoard: React.FC<CrossclimbBoardProps> = ({
 
       // Check if edge is part of current path
       const isInPath = currentPath.some((nodeId, index) => {
-        if (index === 0) return false
+        if (index === 0) {
+          return false
+        }
         const prevNodeId = currentPath[index - 1]
         return (
           (nodeId === edge.from && prevNodeId === edge.to) ||
@@ -117,12 +124,18 @@ export const CrossclimbBoard: React.FC<CrossclimbBoardProps> = ({
       const canMove = canMoveToNode(node.id)
 
       // Determine node color
-      let fillColor = NODE_COLORS.normal
-      if (node.type === 'start') fillColor = NODE_COLORS.start
-      else if (node.type === 'end') fillColor = NODE_COLORS.end
-      else if (node.type === 'checkpoint') fillColor = NODE_COLORS.checkpoint
-      else if (isInPath) fillColor = NODE_COLORS.visited
-      else if (isCurrent) fillColor = NODE_COLORS.current
+      let fillColor: string = NODE_COLORS.normal
+      if (node.type === 'start') {
+        fillColor = NODE_COLORS.start
+      } else if (node.type === 'end') {
+        fillColor = NODE_COLORS.end
+      } else if (node.type === 'checkpoint') {
+        fillColor = NODE_COLORS.checkpoint
+      } else if (isCurrent) {
+        fillColor = NODE_COLORS.current
+      } else if (isInPath) {
+        fillColor = NODE_COLORS.visited
+      }
 
       // Draw node circle
       ctx.fillStyle = fillColor
@@ -174,7 +187,9 @@ export const CrossclimbBoard: React.FC<CrossclimbBoardProps> = ({
   }
 
   const drawPath = (ctx: CanvasRenderingContext2D, graph: Graph, currentPath: NodeId[]) => {
-    if (currentPath.length < 2) return
+    if (currentPath.length < 2) {
+      return
+    }
 
     ctx.strokeStyle = '#ff6b6b'
     ctx.lineWidth = 4
@@ -195,7 +210,9 @@ export const CrossclimbBoard: React.FC<CrossclimbBoardProps> = ({
 
   const handleCanvasClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current
-    if (!canvas) return
+    if (!canvas) {
+      return
+    }
 
     const rect = canvas.getBoundingClientRect()
     const x = event.clientX - rect.left

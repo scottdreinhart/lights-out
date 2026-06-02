@@ -103,10 +103,7 @@ export function markFatalCrash(error: unknown): void {
   }
   const message = error instanceof Error ? error.message : String(error)
   try {
-    sessionStorage.setItem(
-      FATAL_STORAGE_KEY,
-      JSON.stringify({ timestamp: Date.now(), message }),
-    )
+    sessionStorage.setItem(FATAL_STORAGE_KEY, JSON.stringify({ timestamp: Date.now(), message }))
   } catch {
     // no-op
   }

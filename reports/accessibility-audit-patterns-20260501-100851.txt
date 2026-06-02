@@ -1,0 +1,74 @@
+Accessibility Pattern Audit
+Generated: Fri May  1 10:08:51 EDT 2026
+
+Legend:
+  Pattern 1 (Modals): Semantic dialog elements (role='dialog' or <dialog>)
+  Pattern 2 (Announcements): aria-live regions for state updates
+  Pattern 3 (Reduced Motion): @media (prefers-reduced-motion) blocks
+  Pattern 4 (Inline Overlays - ANTIPATTERN): Non-semantic overlays needing refactoring
+
+angle-war | P1:✗ | P2:✗ | P3:✗ | Dialogs:0 | AriaLive:0 | ReducedMotion:0 | InlineOverlays:0
+arc-spin | P1:✗ | P2:✗ | P3:✗ | Dialogs:0 | AriaLive:0 | ReducedMotion:0 | InlineOverlays:0
+battleship | P1:✓ | P2:✗ | P3:✓ | Dialogs:5 | AriaLive:0 | ReducedMotion:6 | InlineOverlays:0
+beat-grid | P1:✗ | P2:✗ | P3:✗ | Dialogs:0 | AriaLive:0 | ReducedMotion:0 | InlineOverlays:0
+bingo | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:4 | InlineOverlays:0
+bingo-30 | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:1 | InlineOverlays:0
+bingo-80 | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:1 | InlineOverlays:0
+bingo-90 | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:1 | InlineOverlays:0
+bingo-blackout | P1:✓ | P2:✓ | P3:✓ | Dialogs:3 | AriaLive:1 | ReducedMotion:1 | InlineOverlays:0
+bingo-bonus | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:1 | InlineOverlays:0
+bingo-pattern | P1:✓ | P2:✓ | P3:✓ | Dialogs:3 | AriaLive:1 | ReducedMotion:2 | InlineOverlays:0
+bingo-progressive | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:1 | InlineOverlays:0
+bingo-rush | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:1 | InlineOverlays:0
+bingo-survival | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:1 | InlineOverlays:0
+blackjack | P1:✓ | P2:✓ | P3:✓ | Dialogs:3 | AriaLive:1 | ReducedMotion:8 | InlineOverlays:0
+block-fall | P1:✗ | P2:✗ | P3:✗ | Dialogs:0 | AriaLive:0 | ReducedMotion:0 | InlineOverlays:0
+bunco | P1:✓ | P2:✓ | P3:✓ | Dialogs:3 | AriaLive:3 | ReducedMotion:3 | InlineOverlays:0
+cee-lo | P1:✓ | P2:✓ | P3:✓ | Dialogs:3 | AriaLive:1 | ReducedMotion:3 | InlineOverlays:0
+checkers | P1:✓ | P2:✓ | P3:✓ | Dialogs:4 | AriaLive:5 | ReducedMotion:4 | InlineOverlays:0
+chicago | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:3 | InlineOverlays:0
+cho-han | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:3 | InlineOverlays:0
+circuit-maze | P1:✓ | P2:✓ | P3:✗ | Dialogs:1 | AriaLive:1 | ReducedMotion:0 | InlineOverlays:0
+connect-four | P1:✓ | P2:✓ | P3:✓ | Dialogs:3 | AriaLive:1 | ReducedMotion:4 | InlineOverlays:0
+crossclimb | P1:✓ | P2:✓ | P3:✓ | Dialogs:3 | AriaLive:1 | ReducedMotion:4 | InlineOverlays:0
+dash-lanes | P1:✗ | P2:✗ | P3:✗ | Dialogs:0 | AriaLive:0 | ReducedMotion:0 | InlineOverlays:0
+dominoes | P1:✓ | P2:✓ | P3:✓ | Dialogs:3 | AriaLive:1 | ReducedMotion:1 | InlineOverlays:0
+farkle | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:5 | InlineOverlays:0
+go-fish | P1:✓ | P2:✓ | P3:✓ | Dialogs:3 | AriaLive:1 | ReducedMotion:1 | InlineOverlays:0
+hangman | P1:✓ | P2:✓ | P3:✓ | Dialogs:3 | AriaLive:1 | ReducedMotion:2 | InlineOverlays:0
+liars-dice | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:3 | InlineOverlays:0
+lights-out | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:3 | InlineOverlays:1
+mancala | P1:✓ | P2:✓ | P3:✓ | Dialogs:6 | AriaLive:1 | ReducedMotion:2 | InlineOverlays:1
+memory | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:1 | InlineOverlays:0
+memory-game | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:2 | InlineOverlays:0
+mexico | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:3 | InlineOverlays:0
+minesweeper | P1:✓ | P2:✗ | P3:✓ | Dialogs:8 | AriaLive:0 | ReducedMotion:6 | InlineOverlays:0
+mini-sudoku | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:1 | InlineOverlays:0
+monchola | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:1 | InlineOverlays:0
+neon-hop | P1:✗ | P2:✗ | P3:✗ | Dialogs:0 | AriaLive:0 | ReducedMotion:0 | InlineOverlays:0
+nim | P1:✓ | P2:✓ | P3:✓ | Dialogs:3 | AriaLive:3 | ReducedMotion:10 | InlineOverlays:0
+pattern-bingo | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:1 | InlineOverlays:0
+pig | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:3 | InlineOverlays:0
+pinpoint | P1:✓ | P2:✓ | P3:✓ | Dialogs:3 | AriaLive:3 | ReducedMotion:5 | InlineOverlays:0
+power-bingo | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:1 | InlineOverlays:0
+pulse-burst | P1:✓ | P2:✗ | P3:✗ | Dialogs:1 | AriaLive:0 | ReducedMotion:0 | InlineOverlays:0
+queens | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:2 | InlineOverlays:0
+reversi | P1:✓ | P2:✓ | P3:✓ | Dialogs:6 | AriaLive:1 | ReducedMotion:2 | InlineOverlays:0
+rock-paper-scissors | P1:✓ | P2:✗ | P3:✓ | Dialogs:6 | AriaLive:0 | ReducedMotion:2 | InlineOverlays:0
+ship-captain-crew | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:3 | InlineOverlays:0
+shut-the-box | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:2 | InlineOverlays:0
+simon | P1:✓ | P2:✓ | P3:✓ | Dialogs:4 | AriaLive:1 | ReducedMotion:1 | InlineOverlays:0
+simon-says | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:2 | InlineOverlays:0
+sky-blitz | P1:✗ | P2:✗ | P3:✗ | Dialogs:0 | AriaLive:0 | ReducedMotion:0 | InlineOverlays:0
+snake | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:3 | InlineOverlays:0
+snakes-and-ladders | P1:✓ | P2:✓ | P3:✓ | Dialogs:3 | AriaLive:1 | ReducedMotion:1 | InlineOverlays:0
+speed-bingo | P1:✓ | P2:✓ | P3:✓ | Dialogs:3 | AriaLive:1 | ReducedMotion:1 | InlineOverlays:0
+sudoku | P1:✓ | P2:✗ | P3:✓ | Dialogs:6 | AriaLive:0 | ReducedMotion:2 | InlineOverlays:0
+tamagotchi-engine | P1:✗ | P2:✗ | P3:✗ | Dialogs:0 | AriaLive:0 | ReducedMotion:0 | InlineOverlays:0
+tango | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:1 | InlineOverlays:0
+tictactoe | P1:✓ | P2:✓ | P3:✓ | Dialogs:5 | AriaLive:1 | ReducedMotion:5 | InlineOverlays:0
+tower-rise | P1:✗ | P2:✗ | P3:✗ | Dialogs:0 | AriaLive:0 | ReducedMotion:0 | InlineOverlays:0
+ui | P1:✗ | P2:✗ | P3:✗ | Dialogs:0 | AriaLive:0 | ReducedMotion:0 | InlineOverlays:0
+vector-assault | P1:✗ | P2:✗ | P3:✗ | Dialogs:0 | AriaLive:0 | ReducedMotion:0 | InlineOverlays:0
+war | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:1 | InlineOverlays:0
+zip | P1:✓ | P2:✗ | P3:✓ | Dialogs:3 | AriaLive:0 | ReducedMotion:2 | InlineOverlays:0

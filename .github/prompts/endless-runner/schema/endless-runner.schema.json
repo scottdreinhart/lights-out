@@ -1,0 +1,253 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/scottdreinhart/game-platform/.github/prompts/endless-runner/schema/endless-runner.schema.json",
+  "title": "EndlessRunnerConfig",
+  "type": "object",
+  "required": [
+    "game_title",
+    "genre_family",
+    "scroll_direction",
+    "camera_mode",
+    "lane_model",
+    "movement_model",
+    "primary_input",
+    "core_pattern",
+    "player_goal",
+    "obstacle_model",
+    "collectible_model",
+    "powerup_model",
+    "difficulty_curve",
+    "failure_condition",
+    "session_structure",
+    "tone",
+    "world_theme",
+    "reference_archetypes",
+    "must_have_systems",
+    "must_not_have_systems"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "game_title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "genre_family": {
+      "const": "endless_runner"
+    },
+    "scroll_direction": {
+      "enum": [
+        "horizontal_right",
+        "horizontal_left",
+        "vertical_up",
+        "vertical_down",
+        "forward",
+        "backward",
+        "vertical_forward"
+      ]
+    },
+    "camera_mode": {
+      "enum": [
+        "side_view",
+        "top_down",
+        "isometric",
+        "third_person_behind",
+        "first_person",
+        "centered_follow",
+        "pseudo_3D_side"
+      ]
+    },
+    "lane_model": {
+      "enum": [
+        "3_lane",
+        "2_lane",
+        "grid_based",
+        "single_plane",
+        "free_movement",
+        "vertical_free_movement",
+        "terrain_physics",
+        "fixed_path",
+        "group_physics",
+        "animation_trigger"
+      ]
+    },
+    "movement_model": {
+      "enum": [
+        "auto_run",
+        "auto_forward",
+        "auto_pressure_forward",
+        "momentum_based",
+        "terrain_based",
+        "tap_flight",
+        "tilt_steer",
+        "swipe_lane_switch",
+        "physics_glide"
+      ]
+    },
+    "primary_input": {
+      "enum": [
+        "tap",
+        "tap_hold",
+        "swipe",
+        "tilt",
+        "directional_buttons",
+        "single_button_jump",
+        "hold_release"
+      ]
+    },
+    "secondary_input": {
+      "type": "string"
+    },
+    "core_pattern": {
+      "type": "string",
+      "minLength": 1
+    },
+    "player_goal": {
+      "enum": [
+        "survive_as_long_as_possible",
+        "maximize_score",
+        "collect_targets",
+        "reach_distance_milestones",
+        "defeat_chase_state"
+      ]
+    },
+    "obstacle_model": {
+      "oneOf": [
+        {
+          "enum": [
+            "static",
+            "moving",
+            "lane_blockers",
+            "physics_hazards",
+            "enemy_hazards",
+            "gap_hazards",
+            "traffic_hazards",
+            "pattern_sequences"
+          ]
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "static",
+              "moving",
+              "lane_blockers",
+              "physics_hazards",
+              "enemy_hazards",
+              "gap_hazards",
+              "traffic_hazards",
+              "pattern_sequences"
+            ]
+          }
+        }
+      ]
+    },
+    "collectible_model": {
+      "enum": [
+        "none",
+        "coins",
+        "pickups",
+        "score_multipliers",
+        "powerups",
+        "rescue_targets"
+      ]
+    },
+    "powerup_model": {
+      "oneOf": [
+        {
+          "enum": [
+            "none",
+            "shield",
+            "magnet",
+            "speed_boost",
+            "smash_mode",
+            "revive",
+            "weapon_mode",
+            "score_multipliers"
+          ]
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "none",
+              "shield",
+              "magnet",
+              "speed_boost",
+              "smash_mode",
+              "revive",
+              "weapon_mode",
+              "score_multipliers"
+            ]
+          }
+        }
+      ]
+    },
+    "difficulty_curve": {
+      "enum": [
+        "time_based",
+        "score_based",
+        "distance_based",
+        "phase_based",
+        "hybrid"
+      ]
+    },
+    "failure_condition": {
+      "enum": [
+        "single_hit",
+        "stamina_loss",
+        "fall_offscreen",
+        "collision_meter",
+        "swarm_depletion"
+      ]
+    },
+    "session_structure": {
+      "enum": [
+        "pure_endless",
+        "endless_with_missions",
+        "endless_with_boss_phases",
+        "endless_with_meta_unlocks"
+      ]
+    },
+    "tone": {
+      "enum": [
+        "arcade",
+        "cinematic",
+        "cute",
+        "cyberpunk",
+        "minimalist",
+        "retro",
+        "comedy",
+        "horror"
+      ]
+    },
+    "world_theme": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reference_archetypes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "must_have_systems": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "must_not_have_systems": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

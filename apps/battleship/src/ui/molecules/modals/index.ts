@@ -4,7 +4,9 @@
  * with Battleship-specific configuration and themes.
  */
 
-export { SettingsModal } from './SettingsModal'
 export { AboutModal } from './AboutModal'
-export type { SettingsModalProps } from './SettingsModal'
 export type { AboutModalProps } from './AboutModal'
+export { RulesModal } from './RulesModal'
+export type { RulesModalProps } from './RulesModal'
+export { SettingsModal } from './SettingsModal'
+export type { SettingsModalProps } from './SettingsModal'

@@ -1,7 +1,6 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "ignoreDeprecations": "5.0",
     "paths": {
       "@/*": [
         "./src/*"
@@ -18,6 +17,9 @@
       "@games/theme-context": [
         "../../packages/theme-context/src"
       ]
+      "@games/diagnostics-utils": [
+        "../../packages/diagnostics-utils/src"
+      ],
     }
   },
   "include": [

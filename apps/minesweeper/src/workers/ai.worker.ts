@@ -1,5 +1,5 @@
-import { AI_WASM_BASE64 } from '@/wasm/ai-wasm'
 import { findSafeCellIndexInEncodedCells } from '@/domain'
+import { AI_WASM_BASE64 } from '@/wasm/ai-wasm'
 
 interface WasmHintExports {
   setCell: (index: number, value: number) => void
@@ -35,18 +35,20 @@ async function ensureWorkerWasm(): Promise<WasmHintExports | null> {
     return null
   }
 
-  wasmReadyPromise ??= WebAssembly.instantiate(decodeBase64(AI_WASM_BASE64), {}).then((result) => {
-    const { instance } = result as unknown as WebAssembly.WebAssemblyInstantiatedSource
-    const exports = instance.exports as Partial<WasmHintExports>
-    if (typeof exports.setCell !== 'function' || typeof exports.findSafeCell !== 'function') {
-      return null
-    }
+  wasmReadyPromise ??= WebAssembly.instantiate(decodeBase64(AI_WASM_BASE64), {})
+    .then((result) => {
+      const { instance } = result as unknown as WebAssembly.WebAssemblyInstantiatedSource
+      const exports = instance.exports as Partial<WasmHintExports>
+      if (typeof exports.setCell !== 'function' || typeof exports.findSafeCell !== 'function') {
+        return null
+      }
 
-    return {
-      setCell: exports.setCell,
-      findSafeCell: exports.findSafeCell,
-    }
-  }).catch(() => null)
+      return {
+        setCell: exports.setCell,
+        findSafeCell: exports.findSafeCell,
+      }
+    })
+    .catch(() => null)
 
   return wasmReadyPromise
 }

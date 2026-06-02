@@ -1,0 +1,16 @@
+{
+  "name": "Dash-Lanes Game",
+  "short_name": "Dash-Lanes",
+  "description": "Maintain lane-read rhythm while obstacle cadence and speed pressure increase.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#111827",
+  "background_color": "#0b1020",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -7,3 +7,4 @@
 
 export * from './atoms'
 export { App } from './organisms/App'
+export { HamburgerMenu, ReversiBoardSection, ReversiDialogs } from './organisms/reversi'

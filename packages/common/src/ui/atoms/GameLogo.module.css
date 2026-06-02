@@ -17,6 +17,29 @@
   animation: iconBounce 1s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+.gameLogoIconPulse {
+  animation:
+    iconBounce 1s cubic-bezier(0.34, 1.56, 0.64, 1),
+    iconPulse 1.8s ease-in-out 1s infinite;
+}
+
+.gameLogoText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 420ms ease,
+    transform 420ms ease;
+}
+
+.gameLogoTextVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .gameLogoTitle {
   margin: 0;
   font-size: 2.75rem;
@@ -46,6 +69,17 @@
   }
 }
 
+@keyframes iconPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.06);
+  }
+}
+
 /* Responsive: compact viewports */
 @media (max-width: 600px) {
   .gameLogoContainer {
@@ -54,6 +88,10 @@
 
   .gameLogoIcon {
     font-size: 3.5rem;
+  }
+
+  .gameLogoText {
+    gap: 0.35rem;
   }
 
   .gameLogoTitle {
@@ -75,11 +113,24 @@
     font-size: 2.5rem;
   }
 
+  .gameLogoText {
+    gap: 0.25rem;
+  }
+
   .gameLogoTitle {
     font-size: 1.5rem;
   }
 
   .gameLogoSubtitle {
     font-size: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gameLogoIcon,
+  .gameLogoIconPulse,
+  .gameLogoText {
+    animation: none;
+    transition: none;
   }
 }

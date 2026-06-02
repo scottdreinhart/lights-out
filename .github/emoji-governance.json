@@ -1,0 +1,328 @@
+{
+    "version": "1.0.0",
+    "authority": "Gitmoji (https://gitmoji.dev/) + Conventional Commits",
+    "normalization": {
+        "rule_1": "One meaning per emoji (no overloading)",
+        "rule_2": "Emoji maps to exactly one Conventional Commit type",
+        "rule_3": "Core set = 20-25 recommended emojis",
+        "rule_4": "Extensions optional, documented, constrained"
+    },
+    "core_emojis": {
+        "✨": {
+            "type": "feat",
+            "meaning": "Introduce new features",
+            "category": "development",
+            "allowed": true,
+            "priority": "high",
+            "description": "New feature implementation, enhancement"
+        },
+        "🐛": {
+            "type": "fix",
+            "meaning": "Bug fix",
+            "category": "development",
+            "allowed": true,
+            "priority": "high",
+            "description": "Critical bug fixes, issue resolution"
+        },
+        "🚑": {
+            "type": "fix",
+            "meaning": "Critical hotfix",
+            "category": "development",
+            "allowed": true,
+            "priority": "high",
+            "description": "Production hotfix, security patch"
+        },
+        "♻️": {
+            "type": "refactor",
+            "meaning": "Code refactoring",
+            "category": "development",
+            "allowed": true,
+            "priority": "high",
+            "description": "Code structure reorganization without behavior change"
+        },
+        "⚡": {
+            "type": "perf",
+            "meaning": "Performance improvements",
+            "category": "development",
+            "allowed": true,
+            "priority": "high",
+            "description": "Speed optimization, memory reduction"
+        },
+        "🔥": {
+            "type": "chore",
+            "meaning": "Remove code/files",
+            "category": "development",
+            "allowed": true,
+            "priority": "medium",
+            "description": "Removing dead code, deprecated features, unused files"
+        },
+        "🎨": {
+            "type": "style",
+            "meaning": "Code structure/format",
+            "category": "development",
+            "allowed": true,
+            "priority": "medium",
+            "description": "Code formatting, style cleanup (not behavior change)"
+        },
+        "🚧": {
+            "type": "feat",
+            "meaning": "Work in progress",
+            "category": "development",
+            "allowed": true,
+            "priority": "medium",
+            "description": "Incomplete feature, checkpoint commit"
+        },
+        "📝": {
+            "type": "docs",
+            "meaning": "Documentation",
+            "category": "documentation",
+            "allowed": true,
+            "priority": "high",
+            "description": "Documentation updates, guides, README changes"
+        },
+        "📚": {
+            "type": "docs",
+            "meaning": "Knowledge base / reference",
+            "category": "documentation",
+            "allowed": true,
+            "priority": "high",
+            "description": "Reference documentation, knowledge base updates"
+        },
+        "✅": {
+            "type": "test",
+            "meaning": "Add/update tests",
+            "category": "testing",
+            "allowed": true,
+            "priority": "high",
+            "description": "Test additions, test updates, test coverage"
+        },
+        "🧪": {
+            "type": "test",
+            "meaning": "Experimental / testing",
+            "category": "testing",
+            "allowed": true,
+            "priority": "medium",
+            "description": "Experimental features, testing CI/CD, exploratory code"
+        },
+        "🚨": {
+            "type": "ci",
+            "meaning": "Fix CI/CD failures",
+            "category": "ci",
+            "allowed": true,
+            "priority": "high",
+            "description": "Fix lint warnings, CI pipeline issues"
+        },
+        "💚": {
+            "type": "ci",
+            "meaning": "Fix CI",
+            "category": "ci",
+            "allowed": true,
+            "priority": "high",
+            "description": "CI/CD job fixes, workflow corrections"
+        },
+        "⬆️": {
+            "type": "chore",
+            "meaning": "Upgrade dependency",
+            "category": "dependencies",
+            "allowed": true,
+            "priority": "medium",
+            "description": "Dependency version bump, upgrade"
+        },
+        "⬇️": {
+            "type": "chore",
+            "meaning": "Downgrade dependency",
+            "category": "dependencies",
+            "allowed": true,
+            "priority": "low",
+            "description": "Dependency version downgrade, revert"
+        },
+        "➕": {
+            "type": "chore",
+            "meaning": "Add dependency",
+            "category": "dependencies",
+            "allowed": true,
+            "priority": "medium",
+            "description": "Add new package, library, or dependency"
+        },
+        "➖": {
+            "type": "chore",
+            "meaning": "Remove dependency",
+            "category": "dependencies",
+            "allowed": true,
+            "priority": "medium",
+            "description": "Remove unused package, library, or dependency"
+        },
+        "🔐": {
+            "type": "security",
+            "meaning": "Security fix",
+            "category": "security",
+            "allowed": true,
+            "priority": "high",
+            "description": "Security vulnerability fix, auth fix, CVE patch"
+        },
+        "🌐": {
+            "type": "feat",
+            "meaning": "Internationalization/localization",
+            "category": "development",
+            "allowed": true,
+            "priority": "medium",
+            "description": "i18n/l10n implementation, language support"
+        },
+        "♿": {
+            "type": "feat",
+            "meaning": "Accessibility improvements",
+            "category": "development",
+            "allowed": true,
+            "priority": "high",
+            "description": "WCAG compliance, a11y enhancements"
+        },
+        "🎉": {
+            "type": "chore",
+            "meaning": "Initial commit / Release",
+            "category": "versioning",
+            "allowed": true,
+            "priority": "low",
+            "description": "Project initialization, major version release"
+        },
+        "🔖": {
+            "type": "chore",
+            "meaning": "Version tag",
+            "category": "versioning",
+            "allowed": true,
+            "priority": "low",
+            "description": "Version bump, release tag"
+        },
+        "🚀": {
+            "type": "chore",
+            "meaning": "Deployment",
+            "category": "deployment",
+            "allowed": true,
+            "priority": "high",
+            "description": "Production deployment, release to production"
+        }
+    },
+    "extended_emojis": {
+        "📦": {
+            "type": "build",
+            "meaning": "Package/build artifacts",
+            "category": "build",
+            "allowed": true,
+            "priority": "medium",
+            "description": "Build output, build configuration"
+        },
+        "🔧": {
+            "type": "build",
+            "meaning": "Config/tool changes",
+            "category": "build",
+            "allowed": true,
+            "priority": "medium",
+            "description": "Configuration file changes, tool setup"
+        },
+        "🔨": {
+            "type": "build",
+            "meaning": "Dev scripts",
+            "category": "build",
+            "allowed": true,
+            "priority": "medium",
+            "description": "Build scripts, development scripts"
+        },
+        "💄": {
+            "type": "style",
+            "meaning": "UI/cosmetic changes",
+            "category": "style",
+            "allowed": true,
+            "priority": "low",
+            "description": "UI tweaks, styling changes, cosmetic updates"
+        },
+        "📱": {
+            "type": "feat",
+            "meaning": "Responsive design",
+            "category": "development",
+            "allowed": true,
+            "priority": "medium",
+            "description": "Mobile responsive, mobile-first implementation"
+        },
+        "💫": {
+            "type": "feat",
+            "meaning": "Animations/transitions",
+            "category": "development",
+            "allowed": true,
+            "priority": "low",
+            "description": "Animation implementation, motion design"
+        },
+        "✏️": {
+            "type": "docs",
+            "meaning": "Fix typos",
+            "category": "documentation",
+            "allowed": true,
+            "priority": "low",
+            "description": "Typo fixes, grammar corrections"
+        },
+        "🔄": {
+            "type": "chore",
+            "meaning": "Merge/Rebase",
+            "category": "git",
+            "allowed": true,
+            "priority": "low",
+            "description": "Merge branches, rebase operations"
+        },
+        "⏪": {
+            "type": "chore",
+            "meaning": "Revert change",
+            "category": "git",
+            "allowed": true,
+            "priority": "medium",
+            "description": "Revert commit, undo change"
+        },
+        "📖": {
+            "type": "docs",
+            "meaning": "Reference/readability",
+            "category": "documentation",
+            "allowed": true,
+            "priority": "medium",
+            "description": "Reference documentation, API docs, how-to guides"
+        }
+    },
+    "validation_rules": {
+        "emoji_required": true,
+        "type_required": true,
+        "emoji_type_mapping": "emoji must map to corresponding type",
+        "no_overloading": "one emoji per commit type",
+        "scope_optional": true,
+        "message_lowercase": true,
+        "message_no_period": true,
+        "message_imperative": true
+    },
+    "commit_format": "emoji type(scope): message",
+    "examples": [
+        "✨ feat(auth): add refresh token rotation",
+        "🐛 fix(api): resolve race condition in caching",
+        "♻️ refactor(domain): isolate business logic",
+        "⚡ perf(ui): optimize render performance",
+        "📝 docs: update API documentation",
+        "✅ test(board): add unit tests for tile logic",
+        "🚀 chore(deploy): release v1.2.0",
+        "🔐 security: patch XSS vulnerability",
+        "📚 docs: add accessibility guidelines"
+    ],
+    "tool_integration": {
+        "commitlint": "Validate all commits against emoji + type mapping",
+        "commitizen": "cz-git adapter shows approved emojis in interactive prompt",
+        "changelog": "Auto-group commits by emoji category for release notes",
+        "git_hooks": "Husky integrates validation pre-commit and commit-msg"
+    },
+    "changelog_grouping": {
+        "✨🚧": "Features",
+        "🐛🚑": "Bug Fixes",
+        "♻️🎨": "Refactoring",
+        "⚡": "Performance",
+        "📝📚✏️📖": "Documentation",
+        "✅🧪": "Tests",
+        "🔐": "Security",
+        "🚨💚": "CI/CD",
+        "⬆️⬇️➕➖": "Dependencies",
+        "🌐♿": "Features & Accessibility",
+        "🎉🔖🚀": "Releases",
+        "🔥": "Removed"
+    }
+}

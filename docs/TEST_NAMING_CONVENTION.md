@@ -6,7 +6,7 @@
 
 ---
 
-## 🎯 The Rule
+## ✅ The Rule
 
 **Feature name comes FIRST. Test type comes AFTER.**
 
@@ -124,7 +124,7 @@ These will **fail** `pnpm test:names`:
 
 ---
 
-## 📍 Folder Organization
+## 📁 Folder Organization
 
 Choose one pattern and stick to it:
 
@@ -178,7 +178,7 @@ tests/
 
 ---
 
-## 🔍 Feature Name Guidelines
+## 📚 Feature Name Guidelines
 
 Feature names should be:
 
@@ -224,7 +224,7 @@ pnpm test:names:verbose # With details
 
 ---
 
-## ✋ Enforcement
+## 📚 Enforcement
 
 Naming is automatically enforced at multiple stages:
 
@@ -263,7 +263,7 @@ pnpm test:names:verbose # Shows detailed problems + suggestions
 
 ---
 
-## 🔧 Creating New Tests
+## 🛠️ Creating New Tests
 
 ### Step 1: Choose Test Type
 
@@ -319,7 +319,7 @@ pnpm test:watch        # Continuous mode
 
 ---
 
-## 📋 Checklist for Contributors
+## 📚 Checklist for Contributors
 
 Before committing test code:
 
@@ -328,16 +328,16 @@ Before committing test code:
 - [ ] Feature name is descriptive (not generic like `test`, `main`, `index`)`
 - [ ] File uses `.tsx` only if it renders JSX (components)
 - [ ] File uses `.ts` for all other tests
-- [ ] Vitest tests use `.test.ts(x)` extension ✅
-- [ ] Playwright tests use `.spec.ts(x)` extension ✅
-- [ ] Performance tests use `.perf.js`, `.load.js`, etc. ✅
+- [x] Vitest tests use `.test.ts(x)` extension ✅
+- [x] Playwright tests use `.spec.ts(x)` extension ✅
+- [x] Performance tests use `.perf.js`, `.load.js`, etc. ✅
 - [ ] Run `pnpm test:names` and confirm it passes
 - [ ] Run `pnpm test` locally and all tests pass
 - [ ] Commit message references Naming Convention if file was renamed
 
 ---
 
-## 🆘 Troubleshooting
+## ⚠️ Troubleshooting
 
 ### Error: "INVALID TEST NAME"
 
@@ -382,7 +382,7 @@ Before committing test code:
 
 ---
 
-## ❓ FAQ
+## ⚠️ FAQ
 
 **Q: Can I use different naming for different apps?**  
 A: No. This platform enforces a single naming standard across all 25+ apps. Consistency ensures tooling works everywhere.

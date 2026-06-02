@@ -3,6 +3,7 @@
  * Main N-Queens puzzle interface
  */
 
+import { ActionBar, Button, StatPill, StatsBar } from '@games/assets-shared'
 import React, { useState } from 'react'
 import { useQueensGame } from '../app'
 import type { Difficulty } from '../domain'
@@ -49,8 +50,8 @@ export const QueensGame: React.FC = () => {
   }
 
   const getStatusClass = () => {
-    if (gameState.isSolved) return styles.success
-    if (gameState.isComplete) return styles.error
+    if (gameState.isSolved) {return styles.success}
+    if (gameState.isComplete) {return styles.error}
     return styles.info
   }
 
@@ -90,24 +91,12 @@ export const QueensGame: React.FC = () => {
             : 'In Progress - place your queens'}
       </div>
 
-      <div className={styles.stats}>
-        <div className={styles.stat}>
-          <div className={styles.statLabel}>Moves</div>
-          <div className={styles.statValue}>{gameState.moveCount}</div>
-        </div>
-        <div className={styles.stat}>
-          <div className={styles.statLabel}>Mistakes</div>
-          <div className={styles.statValue}>{gameState.mistakes}</div>
-        </div>
-        <div className={styles.stat}>
-          <div className={styles.statLabel}>Hints</div>
-          <div className={styles.statValue}>{gameState.hintCount}</div>
-        </div>
-        <div className={styles.stat}>
-          <div className={styles.statLabel}>Conflicts</div>
-          <div className={styles.statValue}>{conflicts}</div>
-        </div>
-      </div>
+      <StatsBar className={styles.stats}>
+        <StatPill label="Moves" value={gameState.moveCount} />
+        <StatPill label="Mistakes" value={gameState.mistakes} />
+        <StatPill label="Hints" value={gameState.hintCount} />
+        <StatPill label="Conflicts" value={conflicts} />
+      </StatsBar>
 
       <QueensBoard
         board={gameState.board}
@@ -116,23 +105,36 @@ export const QueensGame: React.FC = () => {
         conflicts={conflicts}
       />
 
-      <div className={styles.controls}>
-        <button className={`${styles.button} ${styles.secondary}`} onClick={resetGame}>
+      <ActionBar className={styles.controls}>
+        <Button
+          className={`${styles.button} ${styles.secondary}`}
+          variant="secondary"
+          onClick={resetGame}
+        >
           Reset
-        </button>
-        <button
+        </Button>
+        <Button
           className={`${styles.button} ${styles.primary}`}
+          variant="primary"
           onClick={() => generateNewPuzzle('medium')}
         >
           New Puzzle
-        </button>
-        <button className={`${styles.button} ${styles.secondary}`} onClick={solvePuzzle}>
+        </Button>
+        <Button
+          className={`${styles.button} ${styles.secondary}`}
+          variant="secondary"
+          onClick={solvePuzzle}
+        >
           Solve
-        </button>
-        <button className={`${styles.button} ${styles.secondary}`} onClick={handleHint}>
+        </Button>
+        <Button
+          className={`${styles.button} ${styles.secondary}`}
+          variant="secondary"
+          onClick={handleHint}
+        >
           Hint
-        </button>
-      </div>
+        </Button>
+      </ActionBar>
 
       <div className={styles.instructions}>
         <h3>How to Play:</h3>

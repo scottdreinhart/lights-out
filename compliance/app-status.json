@@ -1,15 +1,15 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "generatedAt": "2026-04-05T11:16:33.454Z",
-    "totalApps": 1,
-    "auditedApps": 1
+    "generatedAt": "2026-04-19T07:57:26.184Z",
+    "totalApps": 61,
+    "auditedApps": 61
   },
   "apps": [
     {
-      "id": "blackjack",
-      "name": "Blackjack",
-      "path": "apps/blackjack",
+      "id": "angle-war",
+      "name": "Angle-war",
+      "path": "apps/angle-war",
       "maturityTier": "web-complete",
       "security": {
         "validators": false,
@@ -19,9 +19,784 @@
         "logger": false,
         "strictTypeScript": true,
         "noAnyEscapes": true,
+        "hasSecurityTests": false,
+        "auditClean": true,
+        "overallScore": 30
+      },
+      "testing": {
+        "hasSetupFile": false,
+        "hasVitestConfig": true,
+        "unitTestCount": 0,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 0,
+        "hasPlaywright": true
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": false,
+        "testingSetupComplete": false,
+        "sharedModulesAdopted": false,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": false,
+      "issues": [
+        {
+          "severity": "critical",
+          "category": "security",
+          "message": "Low security score: 30/100"
+        },
+        {
+          "severity": "high",
+          "category": "testing",
+          "message": "No tests found"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:56:06.390Z"
+    },
+    {
+      "id": "arc-spin",
+      "name": "Arc-spin",
+      "path": "apps/arc-spin",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": false,
+        "sanitizers": false,
+        "config": false,
+        "apiClient": false,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": false,
+        "auditClean": true,
+        "overallScore": 30
+      },
+      "testing": {
+        "hasSetupFile": false,
+        "hasVitestConfig": true,
+        "unitTestCount": 0,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 0,
+        "hasPlaywright": true
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": false,
+        "testingSetupComplete": false,
+        "sharedModulesAdopted": false,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": false,
+      "issues": [
+        {
+          "severity": "critical",
+          "category": "security",
+          "message": "Low security score: 30/100"
+        },
+        {
+          "severity": "high",
+          "category": "testing",
+          "message": "No tests found"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:56:07.044Z"
+    },
+    {
+      "id": "battleship",
+      "name": "Battleship",
+      "path": "apps/battleship",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
         "hasSecurityTests": true,
         "auditClean": true,
-        "overallScore": 45
+        "overallScore": 95
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:08.667Z"
+    },
+    {
+      "id": "beat-grid",
+      "name": "Beat-grid",
+      "path": "apps/beat-grid",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": false,
+        "sanitizers": false,
+        "config": false,
+        "apiClient": false,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": false,
+        "auditClean": true,
+        "overallScore": 30
+      },
+      "testing": {
+        "hasSetupFile": false,
+        "hasVitestConfig": true,
+        "unitTestCount": 0,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 0,
+        "hasPlaywright": true
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": false,
+        "testingSetupComplete": false,
+        "sharedModulesAdopted": false,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": false,
+      "issues": [
+        {
+          "severity": "critical",
+          "category": "security",
+          "message": "Low security score: 30/100"
+        },
+        {
+          "severity": "high",
+          "category": "testing",
+          "message": "No tests found"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:56:09.310Z"
+    },
+    {
+      "id": "bingo",
+      "name": "Bingo",
+      "path": "apps/bingo",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 85
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:10.377Z"
+    },
+    {
+      "id": "bingo-30",
+      "name": "Bingo-30",
+      "path": "apps/bingo-30",
+      "maturityTier": "template",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": false,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 70
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 2,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 3,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": false,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [
+        {
+          "severity": "medium",
+          "category": "governance",
+          "message": "TypeScript strict mode not enabled"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:56:11.220Z"
+    },
+    {
+      "id": "bingo-80",
+      "name": "Bingo-80",
+      "path": "apps/bingo-80",
+      "maturityTier": "template",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": false,
+        "noAnyEscapes": true,
+        "hasSecurityTests": false,
+        "auditClean": true,
+        "overallScore": 55
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 0,
+        "integrationTestCount": 1,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": false,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": false,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": false,
+      "issues": [
+        {
+          "severity": "medium",
+          "category": "governance",
+          "message": "TypeScript strict mode not enabled"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:56:12.059Z"
+    },
+    {
+      "id": "bingo-90",
+      "name": "Bingo-90",
+      "path": "apps/bingo-90",
+      "maturityTier": "template",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 85
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": false,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:12.883Z"
+    },
+    {
+      "id": "bingo-blackout",
+      "name": "Bingo-blackout",
+      "path": "apps/bingo-blackout",
+      "maturityTier": "template",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 85
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 2,
+        "integrationTestCount": 1,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 3,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": false,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:13.831Z"
+    },
+    {
+      "id": "bingo-bonus",
+      "name": "Bingo-bonus",
+      "path": "apps/bingo-bonus",
+      "maturityTier": "template",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": false,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 70
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": false,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [
+        {
+          "severity": "medium",
+          "category": "governance",
+          "message": "TypeScript strict mode not enabled"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:56:14.604Z"
+    },
+    {
+      "id": "bingo-pattern",
+      "name": "Bingo-pattern",
+      "path": "apps/bingo-pattern",
+      "maturityTier": "template",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": false,
+        "noAnyEscapes": true,
+        "hasSecurityTests": false,
+        "auditClean": true,
+        "overallScore": 55
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 0,
+        "integrationTestCount": 1,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": false,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": false,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": false,
+      "issues": [
+        {
+          "severity": "medium",
+          "category": "governance",
+          "message": "TypeScript strict mode not enabled"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:56:15.464Z"
+    },
+    {
+      "id": "bingo-progressive",
+      "name": "Bingo-progressive",
+      "path": "apps/bingo-progressive",
+      "maturityTier": "template",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": false,
+        "noAnyEscapes": true,
+        "hasSecurityTests": false,
+        "auditClean": true,
+        "overallScore": 55
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 0,
+        "integrationTestCount": 1,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": false,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": false,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": false,
+      "issues": [
+        {
+          "severity": "medium",
+          "category": "governance",
+          "message": "TypeScript strict mode not enabled"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:56:16.276Z"
+    },
+    {
+      "id": "bingo-rush",
+      "name": "Bingo-rush",
+      "path": "apps/bingo-rush",
+      "maturityTier": "template",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": false,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 70
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 3,
+        "integrationTestCount": 0,
+        "componentTestCount": 1,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 4,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": false,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [
+        {
+          "severity": "medium",
+          "category": "governance",
+          "message": "TypeScript strict mode not enabled"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:56:17.370Z"
+    },
+    {
+      "id": "bingo-survival",
+      "name": "Bingo-survival",
+      "path": "apps/bingo-survival",
+      "maturityTier": "template",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": false,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 70
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 1,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 2,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": false,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [
+        {
+          "severity": "medium",
+          "category": "governance",
+          "message": "TypeScript strict mode not enabled"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:56:18.439Z"
+    },
+    {
+      "id": "blackjack",
+      "name": "Blackjack",
+      "path": "apps/blackjack",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 85
       },
       "testing": {
         "hasSetupFile": true,
@@ -46,8 +821,58 @@
         "hasValidateScript": true
       },
       "promotionCriteria": {
-        "securityBaselineImplemented": false,
+        "securityBaselineImplemented": true,
         "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:20.593Z"
+    },
+    {
+      "id": "block-fall",
+      "name": "Block-fall",
+      "path": "apps/block-fall",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": false,
+        "sanitizers": false,
+        "config": false,
+        "apiClient": false,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": false,
+        "auditClean": true,
+        "overallScore": 30
+      },
+      "testing": {
+        "hasSetupFile": false,
+        "hasVitestConfig": true,
+        "unitTestCount": 0,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 0,
+        "hasPlaywright": true
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": false,
+        "testingSetupComplete": false,
         "sharedModulesAdopted": false,
         "qualityGatesPassing": true,
         "securityAuditPassing": true
@@ -57,36 +882,2409 @@
         {
           "severity": "critical",
           "category": "security",
-          "message": "Low security score: 45/100"
+          "message": "Low security score: 30/100"
+        },
+        {
+          "severity": "high",
+          "category": "testing",
+          "message": "No tests found"
         }
       ],
-      "lastAuditedAt": "2026-04-05T11:16:33.453Z"
+      "lastAuditedAt": "2026-04-19T07:56:21.249Z"
+    },
+    {
+      "id": "bunco",
+      "name": "Bunco",
+      "path": "apps/bunco",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 95
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:22.804Z"
+    },
+    {
+      "id": "cee-lo",
+      "name": "Cee-lo",
+      "path": "apps/cee-lo",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 95
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:24.201Z"
+    },
+    {
+      "id": "checkers",
+      "name": "Checkers",
+      "path": "apps/checkers",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 95
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 3,
+        "integrationTestCount": 2,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 5,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:26.064Z"
+    },
+    {
+      "id": "chicago",
+      "name": "Chicago",
+      "path": "apps/chicago",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 95
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:27.528Z"
+    },
+    {
+      "id": "cho-han",
+      "name": "Cho-han",
+      "path": "apps/cho-han",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 95
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:28.954Z"
+    },
+    {
+      "id": "circuit-maze",
+      "name": "Circuit-maze",
+      "path": "apps/circuit-maze",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": false,
+        "sanitizers": false,
+        "config": false,
+        "apiClient": false,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": false,
+        "auditClean": true,
+        "overallScore": 30
+      },
+      "testing": {
+        "hasSetupFile": false,
+        "hasVitestConfig": true,
+        "unitTestCount": 0,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 0,
+        "hasPlaywright": true
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": false,
+        "testingSetupComplete": false,
+        "sharedModulesAdopted": false,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": false,
+      "issues": [
+        {
+          "severity": "critical",
+          "category": "security",
+          "message": "Low security score: 30/100"
+        },
+        {
+          "severity": "high",
+          "category": "testing",
+          "message": "No tests found"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:56:29.659Z"
+    },
+    {
+      "id": "connect-four",
+      "name": "Connect-four",
+      "path": "apps/connect-four",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 85
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 4,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 4,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:31.441Z"
+    },
+    {
+      "id": "crossclimb",
+      "name": "Crossclimb",
+      "path": "apps/crossclimb",
+      "maturityTier": "template",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 85
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": false,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:32.229Z"
+    },
+    {
+      "id": "dash-lanes",
+      "name": "Dash-lanes",
+      "path": "apps/dash-lanes",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": false,
+        "sanitizers": false,
+        "config": false,
+        "apiClient": false,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": false,
+        "auditClean": true,
+        "overallScore": 30
+      },
+      "testing": {
+        "hasSetupFile": false,
+        "hasVitestConfig": true,
+        "unitTestCount": 0,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 0,
+        "hasPlaywright": true
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": false,
+        "testingSetupComplete": false,
+        "sharedModulesAdopted": false,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": false,
+      "issues": [
+        {
+          "severity": "critical",
+          "category": "security",
+          "message": "Low security score: 30/100"
+        },
+        {
+          "severity": "high",
+          "category": "testing",
+          "message": "No tests found"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:56:32.921Z"
+    },
+    {
+      "id": "dominoes",
+      "name": "Dominoes",
+      "path": "apps/dominoes",
+      "maturityTier": "template",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 85
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": false,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:33.785Z"
+    },
+    {
+      "id": "farkle",
+      "name": "Farkle",
+      "path": "apps/farkle",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 95
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:35.175Z"
+    },
+    {
+      "id": "go-fish",
+      "name": "Go-fish",
+      "path": "apps/go-fish",
+      "maturityTier": "template",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 85
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": false,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:35.977Z"
+    },
+    {
+      "id": "hangman",
+      "name": "Hangman",
+      "path": "apps/hangman",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 95
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:37.375Z"
+    },
+    {
+      "id": "liars-dice",
+      "name": "Liars-dice",
+      "path": "apps/liars-dice",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 95
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:38.773Z"
+    },
+    {
+      "id": "lights-out",
+      "name": "Lights-out",
+      "path": "apps/lights-out",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": false,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 80
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": true
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [
+        {
+          "severity": "medium",
+          "category": "governance",
+          "message": "TypeScript strict mode not enabled"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:56:41.280Z"
+    },
+    {
+      "id": "mancala",
+      "name": "Mancala",
+      "path": "apps/mancala",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 95
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 2,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 2,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:43.129Z"
+    },
+    {
+      "id": "memory-game",
+      "name": "Memory-game",
+      "path": "apps/memory-game",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 95
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:44.513Z"
+    },
+    {
+      "id": "mexico",
+      "name": "Mexico",
+      "path": "apps/mexico",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 95
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:45.923Z"
+    },
+    {
+      "id": "minesweeper",
+      "name": "Minesweeper",
+      "path": "apps/minesweeper",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 95
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 4,
+        "integrationTestCount": 2,
+        "componentTestCount": 0,
+        "e2eTestCount": 1,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 7,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:47.785Z"
+    },
+    {
+      "id": "mini-sudoku",
+      "name": "Mini-sudoku",
+      "path": "apps/mini-sudoku",
+      "maturityTier": "template",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": false,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 70
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 3,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 3,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": false,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [
+        {
+          "severity": "medium",
+          "category": "governance",
+          "message": "TypeScript strict mode not enabled"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:56:50.235Z"
+    },
+    {
+      "id": "monchola",
+      "name": "Monchola",
+      "path": "apps/monchola",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 85
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:52.425Z"
+    },
+    {
+      "id": "neon-hop",
+      "name": "Neon-hop",
+      "path": "apps/neon-hop",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": false,
+        "sanitizers": false,
+        "config": false,
+        "apiClient": false,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": false,
+        "auditClean": true,
+        "overallScore": 30
+      },
+      "testing": {
+        "hasSetupFile": false,
+        "hasVitestConfig": true,
+        "unitTestCount": 0,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 0,
+        "hasPlaywright": true
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": false,
+        "testingSetupComplete": false,
+        "sharedModulesAdopted": false,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": false,
+      "issues": [
+        {
+          "severity": "critical",
+          "category": "security",
+          "message": "Low security score: 30/100"
+        },
+        {
+          "severity": "high",
+          "category": "testing",
+          "message": "No tests found"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:56:53.116Z"
+    },
+    {
+      "id": "nim",
+      "name": "Nim",
+      "path": "apps/nim",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 95
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 3,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 2,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 5,
+        "hasPlaywright": true
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:56.552Z"
+    },
+    {
+      "id": "pattern-bingo",
+      "name": "Pattern-bingo",
+      "path": "apps/pattern-bingo",
+      "maturityTier": "template",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": false,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 70
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 2,
+        "integrationTestCount": 0,
+        "componentTestCount": 1,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 3,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": false,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [
+        {
+          "severity": "medium",
+          "category": "governance",
+          "message": "TypeScript strict mode not enabled"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:56:57.801Z"
+    },
+    {
+      "id": "pig",
+      "name": "Pig",
+      "path": "apps/pig",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 95
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:56:59.224Z"
+    },
+    {
+      "id": "pinpoint",
+      "name": "Pinpoint",
+      "path": "apps/pinpoint",
+      "maturityTier": "template",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": false,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 70
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": false,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": false,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [
+        {
+          "severity": "high",
+          "category": "infrastructure",
+          "message": "Missing tsconfig.json"
+        },
+        {
+          "severity": "medium",
+          "category": "governance",
+          "message": "TypeScript strict mode not enabled"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:57:00.261Z"
+    },
+    {
+      "id": "power-bingo",
+      "name": "Power-bingo",
+      "path": "apps/power-bingo",
+      "maturityTier": "template",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": false,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 70
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 2,
+        "integrationTestCount": 0,
+        "componentTestCount": 1,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 3,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": false,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [
+        {
+          "severity": "medium",
+          "category": "governance",
+          "message": "TypeScript strict mode not enabled"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:57:01.456Z"
+    },
+    {
+      "id": "queens",
+      "name": "Queens",
+      "path": "apps/queens",
+      "maturityTier": "template",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": false,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 70
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": false,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": false,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [
+        {
+          "severity": "high",
+          "category": "infrastructure",
+          "message": "Missing tsconfig.json"
+        },
+        {
+          "severity": "medium",
+          "category": "governance",
+          "message": "TypeScript strict mode not enabled"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:57:02.292Z"
+    },
+    {
+      "id": "reversi",
+      "name": "Reversi",
+      "path": "apps/reversi",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 95
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 2,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 2,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:57:03.698Z"
+    },
+    {
+      "id": "rock-paper-scissors",
+      "name": "Rock-paper-scissors",
+      "path": "apps/rock-paper-scissors",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 95
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:57:05.524Z"
+    },
+    {
+      "id": "ship-captain-crew",
+      "name": "Ship-captain-crew",
+      "path": "apps/ship-captain-crew",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 85
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:57:07.021Z"
+    },
+    {
+      "id": "shut-the-box",
+      "name": "Shut-the-box",
+      "path": "apps/shut-the-box",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 85
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:57:10.687Z"
+    },
+    {
+      "id": "simon",
+      "name": "Simon",
+      "path": "apps/simon",
+      "maturityTier": "template",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 85
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": false,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:57:12.338Z"
+    },
+    {
+      "id": "simon-says",
+      "name": "Simon-says",
+      "path": "apps/simon-says",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 95
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:57:13.909Z"
+    },
+    {
+      "id": "sky-blitz",
+      "name": "Sky-blitz",
+      "path": "apps/sky-blitz",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": false,
+        "sanitizers": false,
+        "config": false,
+        "apiClient": false,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": false,
+        "auditClean": true,
+        "overallScore": 30
+      },
+      "testing": {
+        "hasSetupFile": false,
+        "hasVitestConfig": true,
+        "unitTestCount": 0,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 0,
+        "hasPlaywright": true
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": false,
+        "testingSetupComplete": false,
+        "sharedModulesAdopted": false,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": false,
+      "issues": [
+        {
+          "severity": "critical",
+          "category": "security",
+          "message": "Low security score: 30/100"
+        },
+        {
+          "severity": "high",
+          "category": "testing",
+          "message": "No tests found"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:57:14.534Z"
+    },
+    {
+      "id": "snake",
+      "name": "Snake",
+      "path": "apps/snake",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 95
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 2,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 2,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:57:16.168Z"
+    },
+    {
+      "id": "snakes-and-ladders",
+      "name": "Snakes-and-ladders",
+      "path": "apps/snakes-and-ladders",
+      "maturityTier": "template",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 85
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": false,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:57:16.985Z"
+    },
+    {
+      "id": "speed-bingo",
+      "name": "Speed-bingo",
+      "path": "apps/speed-bingo",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 85
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 2,
+        "integrationTestCount": 1,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 3,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:57:17.941Z"
+    },
+    {
+      "id": "sudoku",
+      "name": "Sudoku",
+      "path": "apps/sudoku",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": false,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 70
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 2,
+        "integrationTestCount": 2,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 4,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [
+        {
+          "severity": "medium",
+          "category": "governance",
+          "message": "TypeScript strict mode not enabled"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:57:19.451Z"
+    },
+    {
+      "id": "tango",
+      "name": "Tango",
+      "path": "apps/tango",
+      "maturityTier": "template",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 85
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": false,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:57:20.389Z"
+    },
+    {
+      "id": "tictactoe",
+      "name": "Tictactoe",
+      "path": "apps/tictactoe",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": true,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 95
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 7,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 7,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:57:23.041Z"
+    },
+    {
+      "id": "tower-rise",
+      "name": "Tower-rise",
+      "path": "apps/tower-rise",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": false,
+        "sanitizers": false,
+        "config": false,
+        "apiClient": false,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": false,
+        "auditClean": true,
+        "overallScore": 30
+      },
+      "testing": {
+        "hasSetupFile": false,
+        "hasVitestConfig": true,
+        "unitTestCount": 0,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 0,
+        "hasPlaywright": true
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": false,
+        "testingSetupComplete": false,
+        "sharedModulesAdopted": false,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": false,
+      "issues": [
+        {
+          "severity": "critical",
+          "category": "security",
+          "message": "Low security score: 30/100"
+        },
+        {
+          "severity": "high",
+          "category": "testing",
+          "message": "No tests found"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:57:23.620Z"
+    },
+    {
+      "id": "vector-assault",
+      "name": "Vector-assault",
+      "path": "apps/vector-assault",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": false,
+        "sanitizers": false,
+        "config": false,
+        "apiClient": false,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": false,
+        "auditClean": true,
+        "overallScore": 30
+      },
+      "testing": {
+        "hasSetupFile": false,
+        "hasVitestConfig": true,
+        "unitTestCount": 0,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 0,
+        "hasPlaywright": true
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": true,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": false,
+        "testingSetupComplete": false,
+        "sharedModulesAdopted": false,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": false,
+      "issues": [
+        {
+          "severity": "critical",
+          "category": "security",
+          "message": "Low security score: 30/100"
+        },
+        {
+          "severity": "high",
+          "category": "testing",
+          "message": "No tests found"
+        }
+      ],
+      "lastAuditedAt": "2026-04-19T07:57:24.238Z"
+    },
+    {
+      "id": "war",
+      "name": "War",
+      "path": "apps/war",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 85
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 0,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 1,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:57:25.122Z"
+    },
+    {
+      "id": "zip",
+      "name": "Zip",
+      "path": "apps/zip",
+      "maturityTier": "web-complete",
+      "security": {
+        "validators": true,
+        "sanitizers": true,
+        "config": true,
+        "apiClient": true,
+        "logger": false,
+        "strictTypeScript": true,
+        "noAnyEscapes": true,
+        "hasSecurityTests": true,
+        "auditClean": true,
+        "overallScore": 85
+      },
+      "testing": {
+        "hasSetupFile": true,
+        "hasVitestConfig": true,
+        "unitTestCount": 1,
+        "integrationTestCount": 1,
+        "componentTestCount": 0,
+        "e2eTestCount": 0,
+        "a11yTestCount": 0,
+        "testNamingCompliant": true,
+        "totalTests": 2,
+        "hasPlaywright": false
+      },
+      "infrastructure": {
+        "hasTsconfig": true,
+        "hasViteConfig": true,
+        "hasIndexHtml": true,
+        "hasPublicFolder": true,
+        "hasPackageJson": true,
+        "hasEslintrc": false,
+        "hasHusky": false,
+        "hasValidateScript": true
+      },
+      "promotionCriteria": {
+        "securityBaselineImplemented": true,
+        "testingSetupComplete": true,
+        "sharedModulesAdopted": true,
+        "qualityGatesPassing": true,
+        "securityAuditPassing": true
+      },
+      "readyForPromotion": true,
+      "issues": [],
+      "lastAuditedAt": "2026-04-19T07:57:26.183Z"
     }
   ],
   "summary": {
     "byTier": {
-      "template": 0,
-      "webComplete": 1,
+      "template": 20,
+      "webComplete": 41,
       "platformComplete": 0,
       "productionReady": 0
     },
     "securityScore": {
-      "average": 45,
-      "min": 45,
-      "max": 45,
-      "criticalIssues": 1
+      "average": 75,
+      "min": 30,
+      "max": 95,
+      "criticalIssues": 10
     },
     "testingCoverage": {
-      "appsWithSetupFile": 1,
-      "appsWithTests": 1,
-      "appsWithSecurityTests": 1,
-      "appsWithE2E": 0,
+      "appsWithSetupFile": 51,
+      "appsWithTests": 51,
+      "appsWithSecurityTests": 48,
+      "appsWithE2E": 2,
       "testNamingCompliance": 100
     },
     "promotionReadiness": {
-      "readyForPromotion": 0,
+      "readyForPromotion": 48,
       "readyByTier": {
-        "webComplete": 0,
+        "webComplete": 31,
         "platformComplete": 0
       }
     }

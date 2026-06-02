@@ -49,10 +49,32 @@ async function initWasm(): Promise<WasmModule | null> {
   }
 }
 
+type WasmExportFn = (...args: number[]) => number
+
+function getNumericExport(wasm: WasmModule, exportName: string): WasmExportFn | null {
+  const candidate = (wasm.instance.exports as Record<string, unknown>)[exportName]
+  return typeof candidate === 'function' ? (candidate as WasmExportFn) : null
+}
+
+function toFlatBoard(board: boolean[][]): Uint8Array {
+  const flatBoard = new Uint8Array(board.length * (board[0]?.length ?? 0))
+  let offset = 0
+  for (const row of board) {
+    for (const value of row) {
+      flatBoard[offset++] = value ? 1 : 0
+    }
+  }
+  return flatBoard
+}
+
 /**
  * Rock-Paper-Scissors WASM operations
  */
 export const rockPaperScissorsWasm = {
+  async init(): Promise<boolean> {
+    return (await initWasm()) !== null
+  },
+
   /**
    * Get round winner using WASM (0=draw, 1=player win, 2=cpu win)
    */
@@ -61,10 +83,10 @@ export const rockPaperScissorsWasm = {
     if (!wasm) return null
 
     try {
-      // Call WASM function (placeholder - actual implementation depends on WASM exports)
-      const result = (wasm.instance.exports as any).getRoundWinner?.(playerMove, cpuMove)
-      return result ?? null
-    } catch (err) {
+      const getRoundWinnerExport = getNumericExport(wasm, 'getRoundWinner')
+      if (!getRoundWinnerExport) return null
+      return getRoundWinnerExport(playerMove, cpuMove)
+    } catch {
       console.debug('WASM round winner calculation failed')
       return null
     }
@@ -73,15 +95,18 @@ export const rockPaperScissorsWasm = {
   /**
    * Select CPU move using WASM
    */
-  async selectCPUMove(roundsData: number[]): Promise<number | null> {
+  async selectCPUMove(roundsData: number[], seed: number = Date.now()): Promise<number | null> {
     const wasm = await initWasm()
     if (!wasm) return null
 
     try {
-      // Call WASM function (placeholder - actual implementation depends on WASM exports)
-      const result = (wasm.instance.exports as any).selectCPUMove?.(roundsData)
-      return result ?? null
-    } catch (err) {
+      const selectCPUMoveExport = getNumericExport(wasm, 'selectCPUMove')
+      if (!selectCPUMoveExport || roundsData.length === 0) return null
+
+      // AssemblyScript array exports need loader-generated lifting that this generic adapter does not provide.
+      void seed
+      return null
+    } catch {
       console.debug('WASM CPU move selection failed')
       return null
     }
@@ -90,15 +115,15 @@ export const rockPaperScissorsWasm = {
   /**
    * Check if game is over using WASM
    */
-  async isGameOver(scores: number[], bestOf: number): Promise<boolean | null> {
+  async isGameOver(playerScore: number, cpuScore: number, bestOf: number): Promise<boolean | null> {
     const wasm = await initWasm()
     if (!wasm) return null
 
     try {
-      // Call WASM function (placeholder - actual implementation depends on WASM exports)
-      const result = (wasm.instance.exports as any).isGameOver?.(scores, bestOf)
-      return result ?? null
-    } catch (err) {
+      const isGameOverExport = getNumericExport(wasm, 'isGameOver')
+      if (!isGameOverExport) return null
+      return isGameOverExport(playerScore, cpuScore, bestOf) !== 0
+    } catch {
       console.debug('WASM game over check failed')
       return null
     }
@@ -109,6 +134,10 @@ export const rockPaperScissorsWasm = {
  * Lights-Out WASM operations
  */
 export const lightsOutWasm = {
+  async init(): Promise<boolean> {
+    return (await initWasm()) !== null
+  },
+
   /**
    * Create optimized board using WASM
    */
@@ -117,10 +146,12 @@ export const lightsOutWasm = {
     if (!wasm) return null
 
     try {
-      // Call WASM function (placeholder - actual implementation depends on WASM exports)
-      const result = (wasm.instance.exports as any).createBoard?.()
-      return result ?? null
-    } catch (err) {
+      const createBoardExport = getNumericExport(wasm, 'createBoard')
+      if (!createBoardExport) return null
+
+      // AssemblyScript array exports need loader-generated lifting that this generic adapter does not provide.
+      return null
+    } catch {
       console.debug('WASM board creation failed')
       return null
     }
@@ -134,10 +165,16 @@ export const lightsOutWasm = {
     if (!wasm) return null
 
     try {
-      // Call WASM function (placeholder - actual implementation depends on WASM exports)
-      const result = (wasm.instance.exports as any).toggleCell?.(board.flat(), row, col, 5)
-      return result ?? null
-    } catch (err) {
+      const toggleCellExport = getNumericExport(wasm, 'toggleCell')
+      if (!toggleCellExport) return null
+
+      // AssemblyScript array exports need loader-generated lifting that this generic adapter does not provide.
+      const flatBoard = toFlatBoard(board)
+      if (flatBoard.length === 0) return null
+      void row
+      void col
+      return null
+    } catch {
       console.debug('WASM cell toggle failed')
       return null
     }
@@ -151,10 +188,14 @@ export const lightsOutWasm = {
     if (!wasm) return null
 
     try {
-      // Call WASM function (placeholder - actual implementation depends on WASM exports)
-      const result = (wasm.instance.exports as any).isSolved?.(board.flat())
-      return result ?? null
-    } catch (err) {
+      const isSolvedExport = getNumericExport(wasm, 'isSolved')
+      if (!isSolvedExport) return null
+      const flatBoard = toFlatBoard(board)
+      if (flatBoard.length === 0) return null
+
+      // AssemblyScript array exports need loader-generated lifting that this generic adapter does not provide.
+      return null
+    } catch {
       console.debug('WASM solved check failed')
       return null
     }

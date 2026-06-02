@@ -3,21 +3,25 @@
  */
 
 import { useGame } from '@/app'
-import { BingoCard, DrawPanel } from '@/ui/organisms'
+import {
+  AboutModal,
+  BingoCard,
+  DrawPanel,
+  HamburgerMenu,
+  RulesModal,
+  SettingsModal,
+} from '@/ui/organisms'
 import { useState } from 'react'
 import './App.module.css'
 
 export function App() {
   const [cardCount, setCardCount] = useState(1)
   const [showHints, setShowHints] = useState(false)
-  const {
-    gameState,
-    drawSingleNumber,
-    handleReset,
-    handleNewGame,
-    getWinnerChecks,
-    getHintPositions,
-  } = useGame(cardCount)
+  const [showRules, setShowRules] = useState(false)
+  const [showSettings, setShowSettings] = useState(false)
+  const [showAbout, setShowAbout] = useState(false)
+  const { gameState, drawSingleNumber, handleReset, handleNewGame, getHintPositions } =
+    useGame(cardCount)
 
   const handleDraw = () => {
     drawSingleNumber()
@@ -38,6 +42,22 @@ export function App() {
 
   return (
     <div className="bingo-container">
+      <header
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: '1rem',
+          borderBottom: '1px solid #ccc',
+        }}
+      >
+        <h1>Bingo 80</h1>
+        <HamburgerMenu
+          onRules={() => setShowRules(true)}
+          onSettings={() => setShowSettings(true)}
+          onAbout={() => setShowAbout(true)}
+        />
+      </header>
       <div className="bingo-game">
         <div className="draw-panel-container">
           <DrawPanel
@@ -104,6 +124,36 @@ export function App() {
           ))}
         </div>
       </div>
+
+      <RulesModal
+        isOpen={showRules}
+        onClose={() => setShowRules(false)}
+        title="How to Play Bingo 80"
+        sections={[
+          {
+            heading: 'Objective',
+            content: (
+              <p>
+                Classic Swedish 80-ball bingo. Mark numbers from 1-80 as they are called to complete
+                patterns and win.
+              </p>
+            ),
+          },
+          {
+            heading: 'How to Play',
+            content: (
+              <ol>
+                <li>Cards are automatically generated with random numbers 1-80</li>
+                <li>Click "Draw" to select the next number</li>
+                <li>Mark numbers on your cards as they are drawn</li>
+                <li>Complete a winning pattern to win</li>
+              </ol>
+            ),
+          },
+        ]}
+      />
+      <SettingsModal isOpen={showSettings} onClose={() => setShowSettings(false)} />
+      <AboutModal isOpen={showAbout} onClose={() => setShowAbout(false)} />
     </div>
   )
 }

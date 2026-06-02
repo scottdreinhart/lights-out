@@ -31,6 +31,13 @@ export interface MoveResult {
   move: Move
 }
 
+export interface GameState {
+  board: Board
+  currentPlayer: Player
+  legalMoves: readonly Move[]
+  winner: Winner
+}
+
 export interface AiMoveRequest {
   type: 'compute-move'
   board: Board

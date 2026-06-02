@@ -1,4 +1,11 @@
-import { decodeHintIndex, encodeBoardForHint, findSafeCell, findSafeCellIndexInEncodedCells, type Board, type HintCell } from '@/domain'
+import {
+  decodeHintIndex,
+  encodeBoardForHint,
+  findSafeCell,
+  findSafeCellIndexInEncodedCells,
+  type Board,
+  type HintCell,
+} from '@/domain'
 import { ensureMinesweeperWasmReady, getMinesweeperWasmSync } from '@/wasm/minesweeper-wasm'
 
 export interface HintResult extends HintCell {
@@ -104,7 +111,9 @@ export async function computeAiMoveAsync(board: Board): Promise<HintResult | nul
 
   return new Promise((resolve) => {
     pendingRequests.set(id, (result) => {
-      resolve(result ?? mapIndexToHint(findSafeCellIndexInEncodedCells(encoded), request.cols, 'js'))
+      resolve(
+        result ?? mapIndexToHint(findSafeCellIndexInEncodedCells(encoded), request.cols, 'js'),
+      )
     })
     aiWorker.postMessage(request)
   })

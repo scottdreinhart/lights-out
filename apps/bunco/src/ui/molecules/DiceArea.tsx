@@ -13,8 +13,10 @@ interface DiceAreaProps {
 /**
  * Convert Bunco's RollResult to shared DiceArea feedback format
  */
-function getRollResultFeedback(rollResult: RollResult | null): { type?: 'success' | 'warning' | 'error'; text?: string } | undefined {
-  if (!rollResult) return undefined
+function getRollResultFeedback(
+  rollResult: RollResult | null,
+): { type?: 'success' | 'warning' | 'error'; text?: string } | undefined {
+  if (!rollResult) {return undefined}
 
   if (rollResult.isBunco) {
     return { type: 'success', text: 'BUNCO!' }
@@ -23,7 +25,10 @@ function getRollResultFeedback(rollResult: RollResult | null): { type?: 'success
     return { type: 'success', text: 'Mini Bunco! +5' }
   }
   if (rollResult.points > 0) {
-    return { type: 'success', text: `+${rollResult.points} point${rollResult.points > 1 ? 's' : ''}!` }
+    return {
+      type: 'success',
+      text: `+${rollResult.points} point${rollResult.points > 1 ? 's' : ''}!`,
+    }
   }
   return { type: 'error', text: 'No match' }
 }

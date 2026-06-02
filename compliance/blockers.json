@@ -2,7 +2,7 @@
     "metadata": {
         "version": "1.0.0",
         "description": "Known blockers preventing cells from completion. Track by severity: high=blocks deployment, medium=requires mitigation, low=nice to have",
-        "lastUpdated": "2026-03-31"
+        "lastUpdated": "2026-04-18"
     },
     "blockers": [
         {
@@ -40,7 +40,7 @@
             "game": "zip",
             "platform": "discord",
             "severity": "high",
-            "issue": "Path solver + graph algorithms will exceed Discord 10MB bundle limit",
+            "issue": "Path solver + graph algorithms require bundle monitoring; measured size is currently below Discord 10MB limit",
             "resolution": "Lazy-load solver, implement streaming solution validation, use worker-based computation",
             "status": "design-phase",
             "discoveredAt": "2026-03-31"
@@ -50,7 +50,7 @@
             "game": "zip",
             "platform": "telegram",
             "severity": "high",
-            "issue": "Path solver will likely exceed Telegram 8MB bundle limit",
+            "issue": "Path solver requires bundle monitoring; measured size is currently below Telegram 8MB limit",
             "resolution": "Aggressive tree-shaking, solver-only worker, minimal UI bundle",
             "status": "design-phase",
             "discoveredAt": "2026-03-31"
@@ -59,9 +59,9 @@
             "id": "crossclimb-dictionary-1",
             "game": "crossclimb",
             "platform": "web",
-            "severity": "high",
-            "issue": "Word ladder requires english dictionary; loading full dictionary into bundle is infeasible (500KB+)",
-            "resolution": "Use trie data structure, load dictionary dynamically, consider server-side validation option",
+            "severity": "medium",
+            "issue": "Word ladder requires dictionary strategy; large offline dictionaries should be compressed/partitioned to keep bundles efficient",
+            "resolution": "Use compressed trie/DAWG, split by word length/theme, ship offline core set, and optionally expand via online API",
             "status": "design-phase",
             "discoveredAt": "2026-03-31"
         },
@@ -137,12 +137,12 @@
         }
     ],
     "blockerSummary": {
-        "highSeverity": 5,
-        "mediumSeverity": 7,
+        "highSeverity": 6,
+        "mediumSeverity": 6,
         "lowSeverity": 1,
         "total": 13,
-        "blockedCells": 20,
-        "blockedPercentage": 28.6,
+        "blockedCells": 13,
+        "blockedPercentage": 2.5,
         "criticalPaths": [
             "zip: path solver NP-complete, bundle constraints on Discord/Telegram",
             "crossclimb: dictionary management and offline capability",

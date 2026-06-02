@@ -1,0 +1,66 @@
+You are generating a complete endless runner game specification and implementation prompt.
+
+Treat the following structured configuration as the authoritative source of truth. Do not reinterpret the game into another genre. Do not omit directional flow. Do not describe mechanics vaguely.
+
+CONFIG:
+{
+  "game_title": "{{GAME_TITLE}}",
+  "genre_family": "endless_runner",
+  "scroll_direction": "{{SCROLL_DIRECTION}}",
+  "camera_mode": "{{CAMERA_MODE}}",
+  "lane_model": "{{LANE_MODEL}}",
+  "movement_model": "{{MOVEMENT_MODEL}}",
+  "primary_input": "{{PRIMARY_INPUT}}",
+  "secondary_input": "{{SECONDARY_INPUT}}",
+  "core_pattern": "{{CORE_PATTERN}}",
+  "player_goal": "{{PLAYER_GOAL}}",
+  "obstacle_model": "{{OBSTACLE_MODEL}}",
+  "collectible_model": "{{COLLECTIBLE_MODEL}}",
+  "powerup_model": "{{POWERUP_MODEL}}",
+  "difficulty_curve": "{{DIFFICULTY_CURVE}}",
+  "failure_condition": "{{FAILURE_CONDITION}}",
+  "session_structure": "{{SESSION_STRUCTURE}}",
+  "tone": "{{TONE}}",
+  "world_theme": "{{WORLD_THEME}}",
+  "reference_archetypes": {{REFERENCE_ARCHETYPES}},
+  "must_have_systems": {{MUST_HAVE_SYSTEMS}},
+  "must_not_have_systems": {{MUST_NOT_HAVE_SYSTEMS}}
+}
+
+REQUIRED RULES:
+- Explicitly describe the directional flow of the game.
+- Explicitly describe how the world scrolls relative to the player.
+- Explicitly describe the camera perspective and what the player can see.
+- Explicitly describe whether movement is lane-based, free-movement, or terrain-based.
+- Explicitly describe the exact player inputs and what each input does.
+- Explicitly describe obstacle spawning, obstacle categories, and collision consequences.
+- Explicitly describe collectibles, score loop, and power-up behavior.
+- Explicitly describe how difficulty scales over time.
+- Explicitly describe the fail state and restart loop.
+- The output must be specific enough for implementation without guessing.
+
+ARCHITECTURE RULES:
+- React for HUD/UI only.
+- PixiJS + @pixi/react for rendering.
+- Custom fixed-timestep deterministic simulation in domain logic.
+- Zustand only for app/UI state.
+- Howler.js for audio if needed.
+- No gameplay logic in React components.
+- No vague "physics-based" wording unless config explicitly requires terrain physics.
+- Preserve CLEAN architecture: domain, app, ui, infrastructure.
+
+OUTPUT FORMAT:
+1. Game Identity
+2. Directional Flow
+3. Camera + Movement Model
+4. Player Controls
+5. Core Loop
+6. Obstacle Systems
+7. Collectibles + Power-Ups
+8. Difficulty Scaling
+9. Fail State
+10. Scoring Model
+11. Domain Systems Required
+12. Rendering Rules
+13. Anti-Patterns
+14. Copilot Build Prompt

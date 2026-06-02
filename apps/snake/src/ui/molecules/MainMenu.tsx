@@ -30,13 +30,31 @@ export function MainMenu({ onPlay, onSettings, onHelp, onStats }: MainMenuProps)
 
       {menuOpen && (
         <div className={styles.dropdownMenu}>
-          <button className={styles.dropdownItem} onClick={() => { setMenuOpen(false); onSettings() }}>
+          <button
+            className={styles.dropdownItem}
+            onClick={() => {
+              setMenuOpen(false)
+              onSettings()
+            }}
+          >
             Settings
           </button>
-          <button className={styles.dropdownItem} onClick={() => { setMenuOpen(false); onHelp() }}>
+          <button
+            className={styles.dropdownItem}
+            onClick={() => {
+              setMenuOpen(false)
+              onHelp()
+            }}
+          >
             How to Play
           </button>
-          <button className={styles.dropdownItem} onClick={() => { setMenuOpen(false); onStats() }}>
+          <button
+            className={styles.dropdownItem}
+            onClick={() => {
+              setMenuOpen(false)
+              onStats()
+            }}
+          >
             Stats
           </button>
         </div>

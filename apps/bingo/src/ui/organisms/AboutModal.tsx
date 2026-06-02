@@ -51,25 +51,23 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
     </p>
   )
 
-  // TODO: AUTHOR_NAME_TOKEN - Replace with actual creator name when available
-  // TODO: AUTHOR_BIO_TOKEN - Replace with actual creator bio when available
   const AUTHOR_CONTENT = (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       <div>
-        <div style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>
-          Created by [AUTHOR_NAME_TOKEN]
-        </div>
+        <div style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Created by Scott Reinhart</div>
         <p style={{ margin: 0, fontSize: '0.9rem', lineHeight: 1.5 }}>
-          [AUTHOR_BIO_TOKEN]
+          Independent game developer focused on accessible, cross-platform puzzle and strategy
+          experiences.
         </p>
       </div>
     </div>
   )
 
-  // TODO: RELATED_GAMES_TOKEN - Replace with actual game URLs when routing/navigation is determined
   const MORE_GAMES_CONTENT = (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-      <p style={{ margin: '0 0 0.5rem 0', fontSize: '0.9rem' }}>Explore more games from the Game Platform:</p>
+      <p style={{ margin: '0 0 0.5rem 0', fontSize: '0.9rem' }}>
+        Explore more games from the Game Platform:
+      </p>
       <div
         style={{
           display: 'grid',

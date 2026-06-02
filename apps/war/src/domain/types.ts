@@ -1,14 +1,11 @@
 /**
  * Domain types for War card game.
+ * Shares standard playing card definitions with card-deck-core package.
  */
 
-export type CardSuit = 'hearts' | 'diamonds' | 'clubs' | 'spades'
-export type CardRank = 'A' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | 'J' | 'Q' | 'K'
+import type { Card } from '@games/card-deck-core'
 
-export interface Card {
-  suit: CardSuit
-  rank: CardRank
-}
+export type { Card }
 
 export type GamePhase =
   | 'playing' // Normal play (both players reveal cards)
@@ -31,9 +28,13 @@ export interface GameState {
   // Current game phase
   phase: GamePhase
 
-  // Player decks (cards owned)
+  // Active draw piles (players draw from top)
   playerDeck: Card[]
   computerDeck: Card[]
+
+  // Captured piles (won cards, shuffled back into draw pile when draw pile is empty)
+  playerWonPile: Card[]
+  computerWonPile: Card[]
 
   // Cards currently being played
   playerCard: Card | null

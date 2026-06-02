@@ -1,0 +1,116 @@
+<governance_sync_workflow>
+  <mode_overview>
+    Roo governance synchronization mode for preserving architecture, scripts, aliases, validation, recovery, and workspace policy alignment without lossy refactors.
+  </mode_overview>
+
+  <core_mandates>
+    <mandate>Preserve existing architecture, scripts, aliases, tooling, and governance unless explicitly instructed.</mandate>
+    <mandate>Prefer minimal, lossless changes over rewrites or simplification.</mandate>
+    <mandate>Use TypeScript-first, pnpm-only, Vite-preserving, boundary-respecting workflows.</mandate>
+    <mandate>Restore damaged governance, aliases, config, or scripts before feature work when recovery is required.</mandate>
+  </core_mandates>
+
+  <governance_sync_pipeline>
+    <step number="1">
+      <title>Discover</title>
+      <description>Identify authoritative governance sources and the affected workspace surface.</description>
+      <sources>
+        <source>AGENTS.md</source>
+        <source>.github/copilot-instructions.md</source>
+        <source>.github/instructions/*</source>
+        <source>docs/governance/*</source>
+        <source>.roomodes and .roo/rules-[slug]/</source>
+      </sources>
+    </step>
+    <step number="2">
+      <title>Ingest</title>
+      <description>Load the smallest necessary governance set before editing.</description>
+    </step>
+    <step number="3">
+      <title>Normalize</title>
+      <description>Reconcile overlapping rules without weakening the strictest applicable constraint.</description>
+    </step>
+    <step number="4">
+      <title>Merge</title>
+      <description>Combine compatible guidance while preserving distinct obligations.</description>
+    </step>
+    <step number="5">
+      <title>Extend</title>
+      <description>Add only the minimum new guidance required to cover the current task.</description>
+    </step>
+    <step number="6">
+      <title>Propagate</title>
+      <description>Update the relevant mode and supporting instruction files together so they remain synchronized.</description>
+    </step>
+    <step number="7">
+      <title>Enforce</title>
+      <description>Validate that the resulting guidance still preserves architecture, tooling, aliases, and checks.</description>
+    </step>
+  </governance_sync_pipeline>
+
+  <architecture_and_code_quality>
+    <rule>Keep domain pure, app orchestration thin, UI presentation-only, and infrastructure behind contracts.</rule>
+    <rule>Use composition and decomposition instead of flattening or consolidating unrelated concerns.</rule>
+    <rule>Prefer reusable abstractions over duplicated logic or parallel implementations.</rule>
+    <rule>Avoid god components, hidden side effects, and cross-layer shortcuts.</rule>
+  </architecture_and_code_quality>
+
+  <package_and_alias_protection>
+    <rule>Do not remove, rename, or simplify package.json scripts unless explicitly instructed.</rule>
+    <rule>Do not replace pnpm workflows with npm, yarn, or ad hoc shell chains.</rule>
+    <rule>Do not remove path aliases or replace alias imports with deep relative paths.</rule>
+    <rule>Preserve workspace scripts, build scripts, validation scripts, and compliance scripts.</rule>
+  </package_and_alias_protection>
+
+  <typescript_vite_and_config_protection>
+    <rule>Preserve TypeScript-first source conventions and do not introduce unnecessary JavaScript source files.</rule>
+    <rule>Preserve Vite aliases, plugins, optimizeDeps, manualChunks, and build settings.</rule>
+    <rule>Preserve test, lint, boundary, and dependency-cruiser configuration unless the task explicitly requires a change.</rule>
+  </typescript_vite_and_config_protection>
+
+  <orchestration_phases>
+    <phase number="1" name="requirements_analysis">Define inputs, outputs, constraints, and edge cases.</phase>
+    <phase number="2" name="architectural_placement">Identify the correct layer or layers.</phase>
+    <phase number="3" name="abstraction_design">Define interfaces, contracts, and stable boundaries.</phase>
+    <phase number="4" name="decomposition">Break the work into small, independently testable tasks.</phase>
+    <phase number="5" name="reuse_and_dry_check">Reuse existing code and avoid duplication.</phase>
+    <phase number="6" name="implementation">Implement one task at a time, preserving boundaries.</phase>
+    <phase number="7" name="validation">Check structure, coupling, tests, and config preservation.</phase>
+    <phase number="8" name="test_strategy">Define or run the narrowest meaningful tests for the touched slice.</phase>
+  </orchestration_phases>
+
+  <recovery_mode>
+    <trigger>Use recovery mode when scripts, aliases, Vite settings, TypeScript conventions, or governance appear damaged.</trigger>
+    <actions>
+      <action>Stop feature work.</action>
+      <action>Inspect the diff.</action>
+      <action>Restore removed scripts, aliases, config, or governance first.</action>
+      <action>Produce a restoration plan before editing when damage is confirmed.</action>
+    </actions>
+  </recovery_mode>
+
+  <indexing_guidance>
+    <rule>Use embedding models for indexing and retrieval, not chat models.</rule>
+    <rule>Prefer compact chunks split on functions, classes, modules, and semantic boundaries.</rule>
+    <rule>Keep embedding dimensions aligned with the actual model output.</rule>
+  </indexing_guidance>
+
+  <validation_mindset>
+    <rule>Prefer deterministic checks over intuition.</rule>
+    <rule>Run the narrowest relevant compile, lint, or test gate after each substantive edit.</rule>
+    <rule>Do not claim completion when required checks fail.</rule>
+  </validation_mindset>
+
+  <output_expectations>
+    <item>State the targeted files or mode artifacts.</item>
+    <item>Summarize what behavior or governance is preserved.</item>
+    <item>List validation commands and any blockers.</item>
+  </output_expectations>
+
+  <completion_criteria>
+    <criterion>No governance rule is weakened.</criterion>
+    <criterion>No scripts or aliases are removed.</criterion>
+    <criterion>No architecture boundary is violated.</criterion>
+    <criterion>Workspace mode and supporting rules remain synchronized.</criterion>
+  </completion_criteria>
+</governance_sync_workflow>

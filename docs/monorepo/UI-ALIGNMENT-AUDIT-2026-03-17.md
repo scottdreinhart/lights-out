@@ -1,13 +1,17 @@
-# Cross-App UI Alignment Audit — 2026-03-17
+# Cross-App UI Alignment Audit — 2026-03-17 (ARCHIVED)
+
+**Created**: 2026-03-17  
+**Updated**: 2026-04-13  
+**Scope Updated**: Now covers 52 apps (was subset in March 17)  
 
 ## Scope
-Audit target: `apps/*/src/ui` across all app projects.
+Audit target: `apps/*/src/ui` across all 52 app projects.
 
 Goals evaluated:
-- Look/feel consistency signals (themes, menu/settings patterns)
+- Look/feel consistency signals (themes, menu/settings patterns) across 52 apps
 - Coding standards consistency (atomic structure, CSS module usage, barrel patterns)
 - Naming and semantic consistency (component names, tier placement)
-- Consolidation opportunities into shared packages (`packages/common` and related)
+- Consolidation opportunities into shared packages (37 packages: bingo-ui-components, shared-board-tile, button-system, ui-*, etc.)
 
 ## Method
 This audit used repository-wide filesystem and duplicate-content analysis:

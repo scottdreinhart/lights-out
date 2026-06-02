@@ -3,3 +3,4 @@
  */
 
 export { default as App } from './App'
+export { CheckersSurface } from './CheckersSurface'

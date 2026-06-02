@@ -3,7 +3,7 @@
  * Initializes Vitest environment with necessary test utilities
  */
 
-import { expect, afterEach, vi } from 'vitest'
+import { afterEach, vi } from 'vitest'
 
 // Mock window/DOM elements if needed
 beforeAll(() => {

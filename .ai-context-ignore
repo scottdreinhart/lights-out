@@ -1,0 +1,32 @@
+# AI context exclusion manifest
+#
+# Purpose: keep local AI tooling from glob-loading historical, generated, or
+# evidence-only Markdown into default prompts. This complements `.gitignore`;
+# tools that support custom ignore manifests should honor these patterns.
+
+.history/**
+docs/archive/**
+docs/evidence/**
+docs/reference/**
+node_modules/**
+dist/**
+build/**
+release/**
+playwright-report/**
+test-results/**
+coverage/**
+compliance/**
+
+# Evidence and generated report patterns
+**/*STATUS*.md
+**/*SUMMARY*.md
+**/*COMPLETE*.md
+**/*COMPLETION*.md
+**/*AUDIT*.md
+**/*PHASE*.md
+**/*WAVE*.md
+**/*REPORT*.md
+**/*DASHBOARD*.md
+**/*MATRIX*.md
+**/*ROADMAP*.md
+

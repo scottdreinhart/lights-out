@@ -18,7 +18,7 @@ import type { DieValue } from '@games/common'
  * - Full house = 1500 points
  */
 export function calculateScore(dice: DieValue[]): number {
-  if (dice.length === 0) return 0
+  if (dice.length === 0) {return 0}
 
   const counts = countDice(dice)
   let score = 0
@@ -54,12 +54,12 @@ export function calculateScore(dice: DieValue[]): number {
 
   // Process three/four/five/six of a kind for other values
   for (let value = 2; value <= 6; value++) {
-    if (value === 5) continue // Already processed
+    if (value === 5) {continue} // Already processed
 
     const count = counts[value] || 0
     if (count >= 3) {
       const multiplier = count - 2 // 3 of a kind = ×1, 4 of a kind = ×2, etc.
-      score += (value * 100) * multiplier
+      score += value * 100 * multiplier
     }
   }
 
@@ -81,7 +81,7 @@ function countDice(dice: DieValue[]): Record<number, number> {
  * Check if a selection of dice contains any scoreable dice
  */
 export function hasScoreableDice(dice: DieValue[]): boolean {
-  if (dice.length === 0) return false
+  if (dice.length === 0) {return false}
 
   // Check for 1s or 5s
   if (dice.some((d) => d === 1 || d === 5)) {
@@ -117,7 +117,7 @@ export function getScoreableDiceIndices(dice: DieValue[]): number[] {
   const counts = countDice(dice)
   const indexesByValue: Record<number, number[]> = {}
   dice.forEach((d, i) => {
-    if (!indexesByValue[d]) indexesByValue[d] = []
+    if (!indexesByValue[d]) {indexesByValue[d] = []}
     indexesByValue[d].push(i)
   })
 

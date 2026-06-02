@@ -2,11 +2,12 @@
     "version": "1.0.0",
     "releaseDate": "2026-04-01",
     "releaseTag": "v1.0.0-wasm-profiling-baseline",
-    "description": "WASM Performance Baseline - Phase 1 Completion. All 25 games measured at production build quality. This baseline is used to detect regressions in subsequent builds.",
-    "timestamp": "2026-04-02T00:45:37.093Z",
+    "description": "WASM Performance Baseline - Phase 1 Completion. 52-game platform measured at production build quality. April 13 update reflects full app inventory.",
+    "timestamp": "2026-04-13T14:30:37.093Z",
     "buildType": "production",
     "createdBy": "build-wasm-all.js (automated)",
     "approvedBy": "Solo Dev",
+    "totalGames": 52,
     "profiles": {
         "battleship": {
             "timestamp": "2026-04-02T00:45:19.003Z",

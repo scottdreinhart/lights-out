@@ -1,0 +1,57 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3.2rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  border: 1px solid transparent;
+}
+
+.default {
+  color: #0f172a;
+  background: rgba(15, 23, 42, 0.08);
+  border-color: rgba(15, 23, 42, 0.2);
+}
+
+.player {
+  color: #0c4a6e;
+  background: rgba(14, 165, 233, 0.2);
+  border-color: rgba(14, 165, 233, 0.45);
+}
+
+.ai {
+  color: #6b1d73;
+  background: rgba(217, 70, 239, 0.22);
+  border-color: rgba(217, 70, 239, 0.45);
+}
+
+.shared {
+  color: #3730a3;
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.45);
+}
+
+.pulse {
+  animation: counterPulse 900ms ease-in-out infinite alternate;
+}
+
+@keyframes counterPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(79, 70, 229, 0);
+  }
+  100% {
+    transform: scale(1.06);
+    box-shadow: 0 0 10px rgba(79, 70, 229, 0.22);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse {
+    animation: none;
+  }
+}

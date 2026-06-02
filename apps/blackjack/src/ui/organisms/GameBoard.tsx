@@ -75,11 +75,10 @@ export function GameBoard({
           </div>
         )}
 
-        {/* Playing phase */}
-        {(phase === 'dealing' ||
+        {/* Playing phase - show game table when betting, dealing, playing, or settling */}
+        {(phase === 'betting' ||
+          phase === 'dealing' ||
           phase === 'playing' ||
-          phase === 'dealer-turn' ||
-          phase === 'settlement' ||
           phase === 'settling' ||
           phase === 'completed') && (
           <div className={`${styles.gameTable} ${styles[phase] || ''}`}>
@@ -92,9 +91,7 @@ export function GameBoard({
                 label="Dealer"
                 status={gameState.dealer.status}
                 isDealing={phase === 'dealing'}
-                shouldFlipDealerCard={
-                  phase === 'settling' && gameState.dealer.hand.cards.length > 1
-                }
+                shouldFlipDealerCard={phase === 'settling' && gameState.dealer.hand.length > 1}
                 value={
                   phase !== 'playing'
                     ? `Total: ${getHandValues(gameState.dealer.hand).soft || getHandValues(gameState.dealer.hand).hard}`
@@ -161,7 +158,6 @@ export function GameBoard({
         {(phase === 'betting' ||
           phase === 'dealing' ||
           phase === 'playing' ||
-          phase === 'dealer-turn' ||
           phase === 'settling' ||
           phase === 'completed') && (
           <div className={styles.cardTracking}>
@@ -190,7 +186,8 @@ export function GameBoard({
                   <span className={styles.label}>Burned:</span>
                   <span className={styles.value}>
                     {(
-                      (gameState.discardPile.length / (gameState.discardPile.length + gameState.deck.length)) *
+                      (gameState.discardPile.length /
+                        (gameState.discardPile.length + gameState.deck.length)) *
                       100
                     ).toFixed(1)}
                     %

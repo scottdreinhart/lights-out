@@ -44,14 +44,14 @@
   opacity: 0.6;
 }
 
-.tile[data-state="selected"] {
+.tile[data-state='selected'] {
   background: #28a745;
   color: white;
   border-color: #28a745;
   box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.3);
 }
 
-.tile[data-state="selected"]:hover:not(:disabled) {
+.tile[data-state='selected']:hover:not(:disabled) {
   background: #218838;
   border-color: #218838;
   box-shadow: 0 0 0 3px rgba(33, 136, 56, 0.3);

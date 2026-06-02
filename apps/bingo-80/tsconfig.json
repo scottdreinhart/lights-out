@@ -1,6 +1,6 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "ignoreDeprecations": "6.0",
     "target": "ES2020",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
@@ -20,10 +20,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
+    ,
+      "@games/bingo-ui-components": ["../../packages/bingo-ui-components/src/index.ts"],
+      "@games/bingo-ui-components/*": ["../../packages/bingo-ui-components/src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src"]
 }

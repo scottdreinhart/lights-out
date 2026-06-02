@@ -21,7 +21,8 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "types": [
-      "vite/client"
+      "vite/client",
+      "vitest/globals"
     ],
     "paths": {
       "@/*": [
@@ -54,6 +55,9 @@
       "@games/ai-framework": [
         "../../packages/ai-framework/src"
       ]
+      "@games/diagnostics-utils": [
+        "../../packages/diagnostics-utils/src"
+      ],
     }
   },
   "include": [

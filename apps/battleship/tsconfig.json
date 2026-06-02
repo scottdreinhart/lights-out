@@ -50,6 +50,27 @@
       ],
       "@games/theme-context": [
         "../../packages/theme-context/src"
+      ],
+      "@games/app-hook-utils": [
+        "../../packages/app-hook-utils/src"
+      ],
+      "@games/app-hook-utils/*": [
+        "../../packages/app-hook-utils/src/*"
+      ],
+      "@games/diagnostics-utils": [
+        "../../packages/diagnostics-utils/src"
+      ],
+      "@games/ui-board-core": [
+        "../../packages/ui-board-core/src/index.ts"
+      ],
+      "@games/ui-board-core/*": [
+        "../../packages/ui-board-core/src/*"
+      ],
+      "@games/assets-shared": [
+        "../../packages/assets-shared/src"
+      ],
+      "@games/assets-shared/*": [
+        "../../packages/assets-shared/src/*"
       ]
     }
   },

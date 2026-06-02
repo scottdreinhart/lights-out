@@ -1,13 +1,13 @@
 export {
   createGameState,
   drawNumber,
-  resetGame,
-  getWinners,
-  getLevel,
+  getHints,
   getJackpot,
-  getHints
+  getLevel,
+  getWinners,
+  resetGame,
 } from './rules'
 
-export { createBingoCards, markNumber, isWinner } from './card'
+export { createBingoCards, isWinner, markNumber } from './card'
 
-export type { Card, GameState, DrawResult } from './types'
+export type { Card, DrawResult, GameState } from './types'

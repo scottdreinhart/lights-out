@@ -1,10 +1,14 @@
-# Contributing Tests — Quick Start
+# ✅ Contributing Tests — Quick Start
+
+**Authority**: AGENTS.md § 28 (Testing Governance & Standards)  
+**Date**: April 2026  
+**Status**: ✅ Standard Reference
 
 **TL;DR**: Name your test file `<feature>.<type>.test.ts` (or `.spec.ts` for Playwright), add it to the right folder, and run `pnpm test`.
 
 ---
 
-## 📋 Test Types & Frameworks
+## 📚 Test Types & Frameworks
 
 | Type            | Framework        | Extension              | When                          | Location                          |
 | --------------- | ---------------- | ---------------------- | ----------------------------- | --------------------------------- |
@@ -159,7 +163,7 @@ pnpm test:a11y              # A11y tests only
 
 ---
 
-## 🎯 Naming Rules (STRICT)
+## ✅ Naming Rules (STRICT)
 
 **Feature name first, type second.**
 
@@ -193,7 +197,7 @@ pnpm test:names:verbose      # Show details
 
 ---
 
-## 📂 Folder Placement
+## 📁 Folder Placement
 
 **Pick ONE pattern for your project:**
 
@@ -225,7 +229,7 @@ tests/
 
 ---
 
-## 🔄 Running Tests
+## ⚙️ Running Tests
 
 ### All Tests
 
@@ -257,7 +261,7 @@ pnpm validate              # lint + typecheck + test:names + test:ci
 
 ---
 
-## ✋ Pre-Commit Checks
+## 📚 Pre-Commit Checks
 
 Before pushing, run:
 
@@ -303,7 +307,7 @@ test('user workflow', async ({ page }) => {
 
 ---
 
-## 🆘 Help
+## ⚠️ Help
 
 **Test file not running?**  
 → Check filename matches pattern: `<feature>.<type>.test.ts` or `.spec.ts`  

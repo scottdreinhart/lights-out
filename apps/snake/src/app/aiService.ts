@@ -4,9 +4,8 @@
  * the worker or WASM is unavailable.
  */
 
-import type { Difficulty, Direction, ModeConfig, RunState } from '@/domain'
+import type { BoardConfig, Difficulty, Direction, ModeConfig, RunState } from '@/domain'
 import { applyAIMoves as jsApplyAIMoves } from '@/domain'
-import type { BoardConfig } from '@/domain'
 
 // ─── Direction mapping ──────────────────────────────────────
 

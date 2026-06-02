@@ -9,6 +9,16 @@ import glob from 'glob'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
+// ANSI color codes
+const COLORS = {
+  CYAN: '\x1b[96m',
+  GREEN: '\x1b[92m',
+  RED: '\x1b[91m',
+  YELLOW: '\x1b[93m',
+  RESET: '\x1b[0m',
+  BOLD: '\x1b[1m',
+}
+
 const globSync = glob.globSync
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))

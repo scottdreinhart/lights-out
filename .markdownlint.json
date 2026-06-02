@@ -1,0 +1,39 @@
+{
+    "config": {
+        "MD003": {
+            "style": "consistent"
+        },
+        "MD004": {
+            "style": "consistent"
+        },
+        "MD007": {
+            "indent": 2
+        },
+        "MD013": {
+            "line_length": 120
+        },
+        "MD024": false,
+        "MD025": false,
+        "MD033": false,
+        "MD040": false,
+        "MD041": false
+    },
+    "ignorePatterns": [
+        {
+            "glob": "node_modules/**"
+        },
+        {
+            "glob": "dist/**"
+        },
+        {
+            "glob": ".next/**"
+        },
+        {
+            "glob": "generated/**"
+        }
+    ],
+    "customRules": [],
+    "extends": [
+        "markdownlint:recommended"
+    ]
+}

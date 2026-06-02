@@ -1,0 +1,138 @@
+export interface SimonThemePalette {
+  backgroundStart: string
+  backgroundEnd: string
+  panel: string
+  panelBorder: string
+  text: string
+  textMuted: string
+  accent: string
+  accentSoft: string
+  surface: string
+  surfaceStrong: string
+  padBase: string
+  padBorder: string
+  padShadow: string
+}
+
+export const SIMON_THEME_PRESETS: Record<string, SimonThemePalette> = {
+  'chiba-city': {
+    backgroundStart: '#071f28',
+    backgroundEnd: '#0a1626',
+    panel: 'rgba(7, 19, 28, 0.78)',
+    panelBorder: 'rgba(0, 255, 120, 0.16)',
+    text: '#f3fff7',
+    textMuted: 'rgba(243, 255, 247, 0.72)',
+    accent: '#00ff88',
+    accentSoft: '#00d8ff',
+    surface: 'rgba(255, 255, 255, 0.08)',
+    surfaceStrong: 'rgba(255, 255, 255, 0.14)',
+    padBase: '#101010',
+    padBorder: 'rgba(255, 255, 255, 0.08)',
+    padShadow: '0 4px 14px rgba(0, 0, 0, 0.36)',
+  },
+  'neon-core': {
+    backgroundStart: '#1a1a2e',
+    backgroundEnd: '#0f3460',
+    panel: 'rgba(16, 18, 34, 0.76)',
+    panelBorder: 'rgba(102, 126, 234, 0.16)',
+    text: '#ffffff',
+    textMuted: 'rgba(255, 255, 255, 0.72)',
+    accent: '#667eea',
+    accentSoft: '#764ba2',
+    surface: 'rgba(255, 255, 255, 0.08)',
+    surfaceStrong: 'rgba(255, 255, 255, 0.14)',
+    padBase: '#101010',
+    padBorder: 'rgba(255, 255, 255, 0.08)',
+    padShadow: '0 4px 14px rgba(0, 0, 0, 0.36)',
+  },
+  'neon-arcade': {
+    backgroundStart: '#04131f',
+    backgroundEnd: '#071b2d',
+    panel: 'rgba(6, 18, 28, 0.8)',
+    panelBorder: 'rgba(14, 165, 233, 0.18)',
+    text: '#effbff',
+    textMuted: 'rgba(239, 251, 255, 0.72)',
+    accent: '#0ea5e9',
+    accentSoft: '#22d3ee',
+    surface: 'rgba(255, 255, 255, 0.08)',
+    surfaceStrong: 'rgba(255, 255, 255, 0.14)',
+    padBase: '#0f1013',
+    padBorder: 'rgba(255, 255, 255, 0.08)',
+    padShadow: '0 4px 14px rgba(0, 0, 0, 0.36)',
+  },
+  'night-district': {
+    backgroundStart: '#1b120d',
+    backgroundEnd: '#0f1729',
+    panel: 'rgba(26, 17, 13, 0.8)',
+    panelBorder: 'rgba(249, 115, 22, 0.18)',
+    text: '#fff7ef',
+    textMuted: 'rgba(255, 247, 239, 0.72)',
+    accent: '#f97316',
+    accentSoft: '#fb7185',
+    surface: 'rgba(255, 255, 255, 0.08)',
+    surfaceStrong: 'rgba(255, 255, 255, 0.14)',
+    padBase: '#111111',
+    padBorder: 'rgba(255, 255, 255, 0.08)',
+    padShadow: '0 4px 14px rgba(0, 0, 0, 0.36)',
+  },
+  gridline: {
+    backgroundStart: '#061a0f',
+    backgroundEnd: '#0b1d17',
+    panel: 'rgba(7, 24, 17, 0.8)',
+    panelBorder: 'rgba(34, 197, 94, 0.18)',
+    text: '#f1fff6',
+    textMuted: 'rgba(241, 255, 246, 0.72)',
+    accent: '#22c55e',
+    accentSoft: '#14b8a6',
+    surface: 'rgba(255, 255, 255, 0.08)',
+    surfaceStrong: 'rgba(255, 255, 255, 0.14)',
+    padBase: '#101010',
+    padBorder: 'rgba(255, 255, 255, 0.08)',
+    padShadow: '0 4px 14px rgba(0, 0, 0, 0.36)',
+  },
+  vaporwave: {
+    backgroundStart: '#1a1033',
+    backgroundEnd: '#33104d',
+    panel: 'rgba(34, 14, 57, 0.8)',
+    panelBorder: 'rgba(244, 63, 94, 0.18)',
+    text: '#fff5fb',
+    textMuted: 'rgba(255, 245, 251, 0.72)',
+    accent: '#f43f5e',
+    accentSoft: '#c084fc',
+    surface: 'rgba(255, 255, 255, 0.08)',
+    surfaceStrong: 'rgba(255, 255, 255, 0.14)',
+    padBase: '#111010',
+    padBorder: 'rgba(255, 255, 255, 0.08)',
+    padShadow: '0 4px 14px rgba(0, 0, 0, 0.36)',
+  },
+  synthwave: {
+    backgroundStart: '#17122a',
+    backgroundEnd: '#28153f',
+    panel: 'rgba(30, 18, 50, 0.8)',
+    panelBorder: 'rgba(167, 139, 250, 0.18)',
+    text: '#faf7ff',
+    textMuted: 'rgba(250, 247, 255, 0.72)',
+    accent: '#a78bfa',
+    accentSoft: '#f472b6',
+    surface: 'rgba(255, 255, 255, 0.08)',
+    surfaceStrong: 'rgba(255, 255, 255, 0.14)',
+    padBase: '#101010',
+    padBorder: 'rgba(255, 255, 255, 0.08)',
+    padShadow: '0 4px 14px rgba(0, 0, 0, 0.36)',
+  },
+  'high-contrast': {
+    backgroundStart: '#050505',
+    backgroundEnd: '#121212',
+    panel: 'rgba(0, 0, 0, 0.86)',
+    panelBorder: 'rgba(255, 204, 0, 0.28)',
+    text: '#ffffff',
+    textMuted: 'rgba(255, 255, 255, 0.8)',
+    accent: '#ffcc00',
+    accentSoft: '#ffffff',
+    surface: 'rgba(255, 255, 255, 0.1)',
+    surfaceStrong: 'rgba(255, 255, 255, 0.18)',
+    padBase: '#000000',
+    padBorder: 'rgba(255, 255, 255, 0.12)',
+    padShadow: '0 0 0 1px rgba(255, 255, 255, 0.24)',
+  },
+}

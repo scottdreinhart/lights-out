@@ -5,7 +5,7 @@ import styles from './KothPodium.module.css'
  * Podium display for top 3 KotH entries with medals
  * Shows first, second, third place with visual hierarchy
  */
-export function KothPodium({ first, second, third, accentColor = '#0087be' }: KothPodiumProps) {
+export function KothPodium({ first, second, third }: KothPodiumProps) {
   return (
     <div className={styles.podium}>
       {/* Second place (left) */}

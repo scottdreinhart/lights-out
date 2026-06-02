@@ -9,6 +9,10 @@
       "types": "./src/index.ts"
     }
   },
+  "dependencies": {
+    "@games/shared-config": "workspace:*",
+    "@games/shared-validators": "workspace:*"
+  },
   "devDependencies": {
     "typescript": "5.9.3"
   }

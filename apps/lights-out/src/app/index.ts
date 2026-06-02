@@ -1,4 +1,6 @@
 export * from './hooks'
+export type { UseLightsOutAppReturn } from './hooks/useLightsOutApp'
+export * from './securityModules'
 export * from './services'
 export { SoundProvider, useSoundContext } from './SoundContext'
 export { ThemeProvider, useThemeContext } from './ThemeContext'

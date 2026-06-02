@@ -1,0 +1,338 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "description": "Canonical platform inspection requirements used for compliance matrix generation.",
+    "notes": [
+      "Platform key 'twitch' maps to Twitch Extensions.",
+      "Requirements are evaluated per app from package scripts, metadata, and file structure."
+    ]
+  },
+  "platforms": {
+    "web": {
+      "displayName": "Web",
+      "requirements": [
+        {
+          "id": "web-build-script",
+          "label": "Build script present",
+          "type": "scriptExists",
+          "value": "build"
+        },
+        {
+          "id": "web-dev-script",
+          "label": "Dev script present",
+          "type": "scriptExists",
+          "value": "dev"
+        },
+        {
+          "id": "web-index-html",
+          "label": "index.html present",
+          "type": "fileExists",
+          "value": "index.html"
+        },
+        {
+          "id": "web-entrypoint",
+          "label": "App entrypoint present",
+          "type": "oneOfFiles",
+          "values": ["src/index.tsx", "src/main.tsx"]
+        },
+        {
+          "id": "web-vite-config",
+          "label": "Vite config present",
+          "type": "oneOfFiles",
+          "values": ["vite.config.ts", "vite.config.js", "vite.config.mjs", "vite.config.cjs"]
+        },
+        {
+          "id": "web-keyboard-wasd-arrows",
+          "label": "Keyboard support includes WASD + Arrow keys",
+          "type": "sourcePatternAll",
+          "values": ["KeyW|KeyA|KeyS|KeyD|\\bWASD\\b", "ArrowUp|ArrowDown|ArrowLeft|ArrowRight"]
+        }
+      ]
+    },
+    "electron": {
+      "displayName": "Electron",
+      "requirements": [
+        {
+          "id": "electron-script-family",
+          "label": "Electron scripts present",
+          "type": "scriptContains",
+          "value": "electron:"
+        },
+        {
+          "id": "electron-main",
+          "label": "electron/main.js present",
+          "type": "fileExists",
+          "value": "electron/main.js"
+        },
+        {
+          "id": "electron-preload",
+          "label": "electron/preload.js present",
+          "type": "fileExists",
+          "value": "electron/preload.js"
+        },
+        {
+          "id": "electron-build-appid",
+          "label": "package.json build.appId defined",
+          "type": "packageFieldExists",
+          "value": "build.appId"
+        },
+        {
+          "id": "electron-build-product",
+          "label": "package.json build.productName defined",
+          "type": "packageFieldExists",
+          "value": "build.productName"
+        },
+        {
+          "id": "electron-keyboard-wasd-arrows",
+          "label": "Keyboard support includes WASD + Arrow keys",
+          "type": "sourcePatternAll",
+          "values": ["KeyW|KeyA|KeyS|KeyD|\\bWASD\\b", "ArrowUp|ArrowDown|ArrowLeft|ArrowRight"]
+        }
+      ]
+    },
+    "ios": {
+      "displayName": "iOS",
+      "requirements": [
+        {
+          "id": "ios-capacitor-config",
+          "label": "capacitor.config.ts present",
+          "type": "fileExists",
+          "value": "capacitor.config.ts"
+        },
+        {
+          "id": "ios-init-script",
+          "label": "cap:init:ios script present",
+          "type": "scriptExists",
+          "value": "cap:init:ios"
+        },
+        {
+          "id": "ios-open-script",
+          "label": "cap:open:ios script present",
+          "type": "scriptExists",
+          "value": "cap:open:ios"
+        },
+        {
+          "id": "ios-run-script",
+          "label": "cap:run:ios script present",
+          "type": "scriptExists",
+          "value": "cap:run:ios"
+        },
+        {
+          "id": "ios-keyboard-wasd-arrows",
+          "label": "Keyboard support includes WASD + Arrow keys",
+          "type": "sourcePatternAll",
+          "values": ["KeyW|KeyA|KeyS|KeyD|\\bWASD\\b", "ArrowUp|ArrowDown|ArrowLeft|ArrowRight"]
+        }
+      ]
+    },
+    "android": {
+      "displayName": "Android",
+      "requirements": [
+        {
+          "id": "android-capacitor-config",
+          "label": "capacitor.config.ts present",
+          "type": "fileExists",
+          "value": "capacitor.config.ts"
+        },
+        {
+          "id": "android-init-script",
+          "label": "cap:init:android script present",
+          "type": "scriptExists",
+          "value": "cap:init:android"
+        },
+        {
+          "id": "android-open-script",
+          "label": "cap:open:android script present",
+          "type": "scriptExists",
+          "value": "cap:open:android"
+        },
+        {
+          "id": "android-run-script",
+          "label": "cap:run:android script present",
+          "type": "scriptExists",
+          "value": "cap:run:android"
+        },
+        {
+          "id": "android-keyboard-wasd-arrows",
+          "label": "Keyboard support includes WASD + Arrow keys",
+          "type": "sourcePatternAll",
+          "values": ["KeyW|KeyA|KeyS|KeyD|\\bWASD\\b", "ArrowUp|ArrowDown|ArrowLeft|ArrowRight"]
+        }
+      ]
+    },
+    "meta": {
+      "displayName": "Meta Instant Games",
+      "requirements": [
+        {
+          "id": "meta-build-script",
+          "label": "meta build script present",
+          "type": "scriptContains",
+          "value": "meta"
+        },
+        {
+          "id": "meta-manifest",
+          "label": "Meta platform manifest present",
+          "type": "oneOfFiles",
+          "values": ["platform/meta/manifest.json", "platform/meta/instant-games.json"]
+        },
+        {
+          "id": "meta-assets",
+          "label": "Meta platform assets folder present",
+          "type": "folderExists",
+          "value": "platform/meta/assets"
+        },
+        {
+          "id": "meta-keyboard-wasd-arrows",
+          "label": "Keyboard support includes WASD + Arrow keys",
+          "type": "sourcePatternAll",
+          "values": ["KeyW|KeyA|KeyS|KeyD|\\bWASD\\b", "ArrowUp|ArrowDown|ArrowLeft|ArrowRight"]
+        }
+      ]
+    },
+    "twitch": {
+      "displayName": "Twitch Extensions",
+      "requirements": [
+        {
+          "id": "twitch-build-script",
+          "label": "twitch build/deploy script present",
+          "type": "scriptContains",
+          "value": "twitch"
+        },
+        {
+          "id": "twitch-metadata",
+          "label": "twitch metadata file present",
+          "type": "oneOfFiles",
+          "values": ["platform/twitch/metadata.json", "platform/twitch/extensions.json"]
+        },
+        {
+          "id": "twitch-package-manifest",
+          "label": "twitch packaging manifest present",
+          "type": "oneOfFiles",
+          "values": ["platform/twitch/manifest.json", "platform/twitch/release.json"]
+        },
+        {
+          "id": "twitch-keyboard-wasd-arrows",
+          "label": "Keyboard support includes WASD + Arrow keys",
+          "type": "sourcePatternAll",
+          "values": ["KeyW|KeyA|KeyS|KeyD|\\bWASD\\b", "ArrowUp|ArrowDown|ArrowLeft|ArrowRight"]
+        }
+      ]
+    },
+    "crazygames": {
+      "displayName": "CrazyGames",
+      "requirements": [
+        {
+          "id": "crazygames-script",
+          "label": "crazygames script present",
+          "type": "scriptContains",
+          "value": "crazygames"
+        },
+        {
+          "id": "crazygames-manifest",
+          "label": "CrazyGames manifest present",
+          "type": "oneOfFiles",
+          "values": ["platform/crazygames/manifest.json", "platform/crazygames/game.json"]
+        },
+        {
+          "id": "crazygames-sdk",
+          "label": "CrazyGames SDK integration marker",
+          "type": "oneOfFiles",
+          "values": ["platform/crazygames/sdk.json", "platform/crazygames/sdk-integration.json"]
+        },
+        {
+          "id": "crazygames-keyboard-wasd-arrows",
+          "label": "Keyboard support includes WASD + Arrow keys",
+          "type": "sourcePatternAll",
+          "values": ["KeyW|KeyA|KeyS|KeyD|\\bWASD\\b", "ArrowUp|ArrowDown|ArrowLeft|ArrowRight"]
+        }
+      ]
+    },
+    "discord": {
+      "displayName": "Discord Activities",
+      "requirements": [
+        {
+          "id": "discord-script",
+          "label": "discord script present",
+          "type": "scriptContains",
+          "value": "discord"
+        },
+        {
+          "id": "discord-manifest",
+          "label": "Discord activity manifest present",
+          "type": "oneOfFiles",
+          "values": ["platform/discord/activity.json", "platform/discord/manifest.json"]
+        },
+        {
+          "id": "discord-sdk",
+          "label": "Discord SDK integration marker",
+          "type": "oneOfFiles",
+          "values": ["platform/discord/sdk.json", "platform/discord/sdk-integration.json"]
+        },
+        {
+          "id": "discord-keyboard-wasd-arrows",
+          "label": "Keyboard support includes WASD + Arrow keys",
+          "type": "sourcePatternAll",
+          "values": ["KeyW|KeyA|KeyS|KeyD|\\bWASD\\b", "ArrowUp|ArrowDown|ArrowLeft|ArrowRight"]
+        }
+      ]
+    },
+    "telegram": {
+      "displayName": "Telegram Mini Apps",
+      "requirements": [
+        {
+          "id": "telegram-script",
+          "label": "telegram script present",
+          "type": "scriptContains",
+          "value": "telegram"
+        },
+        {
+          "id": "telegram-manifest",
+          "label": "Telegram Mini App manifest present",
+          "type": "oneOfFiles",
+          "values": ["platform/telegram/manifest.json", "platform/telegram/miniapp.json"]
+        },
+        {
+          "id": "telegram-sdk",
+          "label": "Telegram SDK integration marker",
+          "type": "oneOfFiles",
+          "values": ["platform/telegram/sdk.json", "platform/telegram/sdk-integration.json"]
+        },
+        {
+          "id": "telegram-keyboard-wasd-arrows",
+          "label": "Keyboard support includes WASD + Arrow keys",
+          "type": "sourcePatternAll",
+          "values": ["KeyW|KeyA|KeyS|KeyD|\\bWASD\\b", "ArrowUp|ArrowDown|ArrowLeft|ArrowRight"]
+        }
+      ]
+    },
+    "steam": {
+      "displayName": "Steam",
+      "requirements": [
+        {
+          "id": "steam-script",
+          "label": "steam build/deploy script present",
+          "type": "scriptContains",
+          "value": "steam"
+        },
+        {
+          "id": "steam-manifest",
+          "label": "Steam manifest present",
+          "type": "oneOfFiles",
+          "values": ["platform/steam/manifest.json", "platform/steam/app_build.vdf"]
+        },
+        {
+          "id": "steam-metadata",
+          "label": "Steam metadata file present",
+          "type": "oneOfFiles",
+          "values": ["platform/steam/store.json", "platform/steam/store-metadata.json"]
+        },
+        {
+          "id": "steam-keyboard-wasd-arrows",
+          "label": "Keyboard support includes WASD + Arrow keys",
+          "type": "sourcePatternAll",
+          "values": ["KeyW|KeyA|KeyS|KeyD|\\bWASD\\b", "ArrowUp|ArrowDown|ArrowLeft|ArrowRight"]
+        }
+      ]
+    }
+  }
+}

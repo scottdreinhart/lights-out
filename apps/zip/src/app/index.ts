@@ -3,4 +3,16 @@
  * Public API for Zip game hooks and services
  */
 
-export { useZipGame } from './useZipGame'
+export * from './hooks'
+// useGame is the canonical alias — zip uses useZipGame internally
+export {
+  ensureWasmReady,
+  findOptimalPathAi,
+  findOptimalPathAsync,
+  generateSolvableMazeAi,
+  generateSolvableMazeAsync,
+  getHintMoveAi,
+  getHintMoveAsync,
+  terminateAsyncAi,
+} from './aiEngine'
+export * from './securityModules'

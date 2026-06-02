@@ -16,7 +16,9 @@ export const getCellId = (row: number, col: number): string => `r${row}c${col}`
  */
 export const parseCellId = (id: string): { row: number; col: number } => {
   const match = /r(\d)c(\d)/.exec(id)
-  if (!match) {throw new Error(`Invalid cell ID: ${id}`)}
+  if (!match) {
+    throw new Error(`Invalid cell ID: ${id}`)
+  }
   return { row: Number.parseInt(match[1], 10), col: Number.parseInt(match[2], 10) }
 }
 

@@ -1,7 +1,8 @@
 import { useGame, useGameEvents, useSoundContext } from '@/app'
+import { SplashScreen } from '@/ui'
 import { DiceArea, HamburgerMenu } from '@/ui/molecules'
 import { useResponsiveState } from '@games/app-hook-utils'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export default function App() {
   const responsive = useResponsiveState()
@@ -9,11 +10,6 @@ export default function App() {
   const { soundEnabled, toggleSound } = useSoundContext()
   const { state, roll, nextRound, newGame } = useGame(callbacks)
   const [view, setView] = useState<'loading' | 'menu' | 'game' | 'rules'>('loading')
-
-  useEffect(() => {
-    const timer = setTimeout(() => setView('menu'), 2500)
-    return () => clearTimeout(timer)
-  }, [])
 
   // --- Responsive layout values (derived once, consumed by JSX) ---
   const compact = responsive.compactViewport
@@ -30,25 +26,7 @@ export default function App() {
 
   // ===== LOADING =====
   if (view === 'loading') {
-    return (
-      <div className="bunco-splash" aria-label="Bunco splash screen">
-        <div className="bunco-splash__orb" aria-hidden="true" />
-        <div className="bunco-splash__grid" aria-hidden="true" />
-        <div className="bunco-splash__content">
-          <div className="bunco-splash__badge pulsing-logo">
-            <span className="bunco-splash__emoji">🎲</span>
-          </div>
-          <p className="bunco-splash__eyebrow">Dice. Rounds. Buncos.</p>
-          <h1 className="bunco-splash__title">Bunco</h1>
-          <p className="bunco-splash__subtitle">Setting the table for six fast rounds.</p>
-          <div className="bunco-splash__loading" aria-hidden="true">
-            <span className="bunco-splash__dot" />
-            <span className="bunco-splash__dot" />
-            <span className="bunco-splash__dot" />
-          </div>
-        </div>
-      </div>
-    )
+    return <SplashScreen onComplete={() => setView('menu')} minimumDuration={2500} title="BUNCO" />
   }
 
   // ===== MENU =====
@@ -616,3 +594,5 @@ export default function App() {
     </div>
   )
 }
+
+export { App }

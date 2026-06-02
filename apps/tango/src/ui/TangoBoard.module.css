@@ -1,0 +1,52 @@
+.board {
+  --board-size: 4;
+  display: grid;
+  grid-template-columns: repeat(var(--board-size), minmax(0, 1fr));
+  gap: 8px;
+  width: min(92vw, 640px);
+  background: rgba(255, 255, 255, 0.12);
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.tile {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #1e2a44;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 120ms ease;
+}
+
+.tile:hover {
+  transform: translateY(-1px);
+}
+
+.tile:focus-visible {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+.empty {
+  background: rgba(255, 255, 255, 0.22);
+  cursor: default;
+}
+
+.highlighted {
+  box-shadow: 0 0 0 3px rgba(255, 196, 0, 0.85) inset;
+}
+
+.tileNumber {
+  font-size: clamp(1rem, 2.5vw, 1.6rem);
+  font-weight: 700;
+}
+
+@media (pointer: coarse) {
+  .tile:hover {
+    transform: none;
+  }
+}

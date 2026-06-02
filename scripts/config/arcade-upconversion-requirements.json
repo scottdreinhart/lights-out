@@ -1,0 +1,41 @@
+{
+  "phase": "requirements-v1",
+  "requirements": [
+    {
+      "id": "REQ-ARC-001",
+      "label": "Domain arcade profile is exported",
+      "phase": "scaffold",
+      "passCondition": "App exports ARCADE_MODE_ENABLED and ARCADE_CONVERSION_PROFILE from src/domain/arcade.ts and re-exports via src/domain/index.ts."
+    },
+    {
+      "id": "REQ-ARC-002",
+      "label": "Arcade runtime loop is implemented",
+      "phase": "runtime",
+      "passCondition": "App includes an arcade loop with timer pressure and deterministic fail/continue state transitions."
+    },
+    {
+      "id": "REQ-ARC-003",
+      "label": "Arcade HUD and session feedback are wired",
+      "phase": "ui",
+      "passCondition": "UI surfaces score/combo/time HUD and end-of-run summary with restart and replay actions."
+    },
+    {
+      "id": "REQ-ARC-004",
+      "label": "Fast-path controls are mapped",
+      "phase": "input",
+      "passCondition": "Arcade mode supports keyboard navigation and action mappings (WASD plus arrow keys) without breaking existing controls."
+    },
+    {
+      "id": "REQ-ARC-005",
+      "label": "Quality gates pass for conversion",
+      "phase": "quality",
+      "passCondition": "Converted app passes pnpm check, pnpm test, and pnpm validate with no new architecture or compliance violations."
+    },
+    {
+      "id": "REQ-ARC-006",
+      "label": "Conversion is production-ready",
+      "phase": "conversion",
+      "passCondition": "All arcade conversion requirements are PASS and app status is marked converted."
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+
+> @games/pattern-bingo@1.0.0 lint /mnt/d/src/game-platform/apps/pattern-bingo
+> eslint src/ --fix
+
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/__tests__/setup.ts
+  5:1  warning  File does not match any element pattern  boundaries/no-unknown-files
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/app/hooks.ts
+    7:53  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  261:28  warning  Variable Assigned to Object Injection Sink        security/detect-object-injection
+  302:12  warning  Generic Object Injection Sink                     security/detect-object-injection
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/app/hooks.unit.test.ts
+  8:37  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/app/index.ts
+   8:15  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+   9:37  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  10:67  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  11:15  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/app/useGame.ts
+  5:48  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/domain/constants.const.unit.test.ts
+  7:8  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/domain/constants.ts
+  119:10  warning  Generic Object Injection Sink  security/detect-object-injection
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/domain/index.ts
+  8:15  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/index.tsx
+  1:1  warning  File does not match any element pattern  boundaries/no-unknown-files
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/setup-tests.ts
+  4:1   warning  File does not match any element pattern   boundaries/no-unknown-files
+  9:29  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/setup.ts
+  5:1  warning  File does not match any element pattern  boundaries/no-unknown-files
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/ui/atoms/MultiplierIndicator/index.ts
+  1:48  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/ui/atoms/PatternHighlighter/PatternHighlighter.tsx
+  21:12  warning  Generic Object Injection Sink  security/detect-object-injection
+  32:12  warning  Generic Object Injection Sink  security/detect-object-injection
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/ui/atoms/PatternHighlighter/index.ts
+  1:47  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/ui/atoms/PatternList/PatternList.tsx
+  21:12  warning  Generic Object Injection Sink  security/detect-object-injection
+  32:12  warning  Generic Object Injection Sink  security/detect-object-injection
+  61:46  warning  Generic Object Injection Sink  security/detect-object-injection
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/ui/atoms/PatternList/index.ts
+  1:29  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/ui/atoms/atoms.component.test.tsx
+  10:37  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  11:36  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  12:29  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/ui/atoms/index.ts
+  2:37  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  3:36  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  4:29  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/ui/organisms/index.ts
+  17:21  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/ui/organisms/platform/AppHeader.tsx
+  3:48  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/ui/organisms/platform/FeatureShell.tsx
+  2:28  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  3:27  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  5:28  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  6:31  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+/mnt/d/src/game-platform/apps/pattern-bingo/src/ui/organisms/platform/index.ts
+  1:50  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  2:48  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  3:54  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  4:73  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  5:50  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+  6:56  warning  Dependencies to unknown elements are not allowed  boundaries/no-unknown
+
+✖ 43 problems (0 errors, 43 warnings)
+

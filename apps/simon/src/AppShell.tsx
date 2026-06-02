@@ -1,113 +1,64 @@
-import { useSimonGame } from '@/app'
-import { GameBoard, RulesModal } from '@/ui/organisms'
-import { useCallback, useEffect, useState } from 'react'
+import { SoundProvider, ThemeProvider, useSimonGame } from '@/app'
+import { SimonThemeMenu } from '@/ui/molecules'
+import { GameBoard } from '@/ui/organisms'
+import { SplashScreen } from '@games/common'
+import { useState } from 'react'
 import styles from './AppShell.module.css'
 
-type GameScreen = 'home' | 'playing' | 'results'
-
-export function AppShell() {
-  const [screen, setScreen] = useState<GameScreen>('home')
-  const [selectedVariant, setSelectedVariant] = useState('classic')
-  const [showRules, setShowRules] = useState(false)
+export const AppShell = () => {
+  const [view, setView] = useState<'loading' | 'game'>('loading')
 
   const {
-    gameState,
+    state,
+    uiState,
     rules,
-    status,
-    score,
-    difficulty,
-    inputEnabled,
-    colorSequence,
-    userSequence,
-    simonIndex,
-    userIndex,
-    actions,
-  } = useSimonGame(selectedVariant)
+    beginGame,
+    playSequence,
+    makeMove,
+    reset,
+    toggleRules,
+    closeRules,
+    setDifficulty,
+  } = useSimonGame()
 
-  const handleStartGame = useCallback((variant: string) => {
-    setSelectedVariant(variant)
-    setScreen('playing')
-  }, [])
-
-  const handlePlayAgain = useCallback(() => {
-    actions.reset()
-    setScreen('home')
-  }, [actions])
-
-  const handleQuit = useCallback(() => {
-    setScreen('home')
-    actions.reset()
-  }, [actions])
-
-  const handleColorClick = useCallback(
-    (colorIndex: number) => {
-      if (inputEnabled && gameState) {
-        actions.makeMove(colorIndex)
-      }
-    },
-    [inputEnabled, gameState, actions],
-  )
-
-  useEffect(() => {
-    if (status === 'won' || status === 'lost') {
-      setScreen('results')
-    }
-  }, [status])
+  if (view === 'loading') {
+    return (
+      <SoundProvider>
+        <ThemeProvider>
+          <div className={styles.root}>
+            <SplashScreen onComplete={() => setView('game')} minimumDuration={1500} title="SIMON" />
+          </div>
+        </ThemeProvider>
+      </SoundProvider>
+    )
+  }
 
   return (
-    <div className={styles.root}>
-      {screen === 'home' && (
-        <MainMenu onStartGame={handleStartGame} onShowRules={() => setShowRules(true)} />
-      )}
-
-      {screen === 'playing' && gameState && (
-        <div className={styles.gameContainer}>
-          <GameBoard
-            colorCount={rules.colorCount}
-            currentSequence={colorSequence}
-            userSequence={userSequence}
-            simonIndex={simonIndex}
-            userIndex={userIndex}
-            inputEnabled={inputEnabled}
-            onColorClick={handleColorClick}
-            status={status}
-            score={score}
-            difficulty={difficulty}
-            onQuit={handleQuit}
-          />
-        </div>
-      )}
-
-      {screen === 'results' && gameState && (
-        <div className={styles.resultsContainer}>
-          <div className={styles.resultsCard}>
-            <h2>{status === 'won' ? 'You Won!' : 'Game Over'}</h2>
-            <p className={styles.finalScore}>Score: {score}</p>
-            <p className={styles.sequenceLength}>Sequence Length: {colorSequence.length}</p>
-            <div className={styles.resultsActions}>
-              <button className={styles.primaryButton} onClick={() => setScreen('home')}>
-                Menu
-              </button>
-              <button
-                className={styles.secondaryButton}
-                onClick={() => {
-                  actions.reset()
-                  setScreen('playing')
-                }}
-              >
-                Play Again
-              </button>
+    <SoundProvider>
+      <ThemeProvider>
+        <div className={styles.root}>
+          <header className={styles.appHeader}>
+            <h1 className={styles.appTitle}>Simon</h1>
+            <div className={styles.headerMenuArea}>
+              <SimonThemeMenu />
             </div>
+          </header>
+          <div className={styles.gameContainer}>
+            <GameBoard
+              state={state}
+              rules={rules}
+              showRules={uiState.showRules}
+              onColorClick={makeMove}
+              onStart={beginGame}
+              onPlaySequence={playSequence}
+              onReset={reset}
+              onToggleRules={toggleRules}
+              onCloseRules={closeRules}
+              onDifficultyChange={setDifficulty}
+            />
           </div>
         </div>
-      )}
-
-      <RulesModal
-        isOpen={showRules}
-        onClose={() => setShowRules(false)}
-        rules={rules}
-        variant={selectedVariant}
-      />
-    </div>
+      </ThemeProvider>
+    </SoundProvider>
   )
 }

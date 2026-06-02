@@ -26,6 +26,8 @@ export {
   type ResponsiveState,
 } from './responsive'
 
+export { secureRandomInt, secureShuffle } from './random'
+
 export {
   LAYER_Z,
   getLayerStack,

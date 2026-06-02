@@ -9,6 +9,7 @@ const rootDir = path.resolve(__dirname, '..')
 const complianceDir = path.join(rootDir, 'compliance')
 const appsDir = path.join(rootDir, 'apps')
 const matrixFile = path.join(complianceDir, 'matrix.json')
+const appStatusFile = path.join(complianceDir, 'app-status.json')
 
 // Parse CLI flags
 const args = process.argv.slice(2)
@@ -18,14 +19,16 @@ const flags = {
   verbose: args.includes('--verbose'),
 }
 
-// Color codes
-const colors = {
-  reset: '\x1b[0m',
-  green: '\x1b[32m',
-  red: '\x1b[31m',
-  yellow: '\x1b[33m',
-  blue: '\x1b[34m',
-  cyan: '\x1b[36m',
+// ANSI color codes
+const COLORS = {
+  CYAN: '\x1b[96m',
+  GREEN: '\x1b[92m',
+  RED: '\x1b[91m',
+  YELLOW: '\x1b[93m',
+  BLUE: '\x1b[94m',
+  WHITE: '\x1b[97m',
+  RESET: '\x1b[0m',
+  BOLD: '\x1b[1m',
 }
 
 const symbols = {
@@ -39,15 +42,123 @@ const symbols = {
 let issues = []
 let warnings = []
 
+function normalizeMatrixInput(raw) {
+  if (raw && typeof raw === 'object' && raw.summary && raw.apps) {
+    return raw
+  }
+
+  const isPlatformMatrix =
+    raw &&
+    typeof raw === 'object' &&
+    raw.metadata &&
+    Array.isArray(raw.games) &&
+    raw.matrix &&
+    typeof raw.matrix === 'object'
+
+  if (!isPlatformMatrix) {
+    return raw
+  }
+
+  const timestamp = raw.metadata.lastUpdated || raw.metadata.generatedAt || new Date().toISOString()
+  const gameNames = Array.isArray(raw.games) ? raw.games : Object.keys(raw.matrix || {})
+
+  const apps = Object.fromEntries(
+    gameNames.map((game) => {
+      const platformCells = raw.matrix?.[game]
+      const statuses = platformCells ? Object.values(platformCells).map((cell) => cell?.status) : []
+      const status =
+        statuses.includes('completed') ||
+        statuses.includes('complete') ||
+        statuses.includes('ready') ||
+        statuses.includes('passed')
+          ? 'passed'
+          : statuses.includes('failed') || statuses.includes('blocked')
+            ? 'failed'
+            : statuses.includes('partial') ||
+                statuses.includes('in-progress') ||
+                statuses.includes('pending')
+            ? 'pending'
+            : 'skipped'
+
+      return [game, { status, timestamp }]
+    }),
+  )
+
+  const statusCounts = Object.values(apps).reduce(
+    (acc, app) => {
+      acc[app.status] = (acc[app.status] || 0) + 1
+      return acc
+    },
+    { passed: 0, fixed: 0 },
+  )
+
+  return {
+    lastUpdated: timestamp,
+    summary: {
+      total: Object.keys(apps).length,
+      passed: statusCounts.passed || 0,
+      fixed: statusCounts.fixed || 0,
+    },
+    apps,
+  }
+}
+
+function normalizeAppStatusInput(raw) {
+  const isAppStatus =
+    raw &&
+    typeof raw === 'object' &&
+    Array.isArray(raw.apps) &&
+    raw.metadata &&
+    typeof raw.summary === 'object'
+
+  if (!isAppStatus) {
+    return raw
+  }
+
+  const apps = Object.fromEntries(
+    raw.apps.map((app) => {
+      const hasCriticalIssue = Array.isArray(app.issues)
+        ? app.issues.some((issue) => issue?.severity === 'critical')
+        : false
+
+      const status = app.readyForPromotion ? 'passed' : hasCriticalIssue ? 'failed' : 'pending'
+      return [app.id, { status, timestamp: app.lastAuditedAt || raw.metadata.generatedAt }]
+    }),
+  )
+
+  const counts = Object.values(apps).reduce(
+    (acc, app) => {
+      acc[app.status] = (acc[app.status] || 0) + 1
+      return acc
+    },
+    { passed: 0, fixed: 0 },
+  )
+
+  return {
+    lastUpdated: raw.metadata.generatedAt || new Date().toISOString(),
+    summary: {
+      total: Object.keys(apps).length,
+      passed: counts.passed || 0,
+      fixed: counts.fixed || 0,
+    },
+    apps,
+  }
+}
+
 async function validateComplianceMatrix() {
   console.log(`\n${colors.cyan}🔍 Compliance Matrix Validation${colors.reset}`)
   console.log('='.repeat(70) + '\n')
 
   let matrix
   try {
-    const data = await fs.readFile(matrixFile, 'utf-8')
-    matrix = JSON.parse(data)
-    console.log(`${symbols.pass} Loaded: ${matrixFile}\n`)
+    const sourceFile = (await fs
+      .access(appStatusFile)
+      .then(() => appStatusFile)
+      .catch(() => matrixFile))
+    const data = await fs.readFile(sourceFile, 'utf-8')
+    const parsed = JSON.parse(data)
+    matrix = normalizeAppStatusInput(normalizeMatrixInput(parsed))
+    console.log(`${symbols.pass} Loaded: ${sourceFile}\n`)
   } catch (error) {
     console.log(`${symbols.fail} Failed to load matrix: ${error.message}`)
     process.exit(1)
@@ -126,6 +237,10 @@ function validateConsistency(matrix) {
       console.log(`   • ${st.padEnd(10)} ${cnt.toString().padStart(2)} (${pct}%)`)
     })
 
+  if ((statusCounts.skipped || 0) === appCount && appCount > 0) {
+    issues.push('All compliance entries are skipped; canonical compliance state is not actionable')
+  }
+
   if (matrix.summary) {
     const issues_local = []
     if (matrix.summary.total !== appCount)
@@ -184,8 +299,23 @@ async function validateReferentialIntegrity(matrix) {
     return
   }
 
-  const validApps = appDirs.filter((n) => n !== 'ui').sort()
-  const matrixApps = Object.keys(matrix.apps || {}).sort()
+  const validApps = (
+    await Promise.all(
+      appDirs
+        .filter((n) => n !== 'ui')
+        .map(async (name) => {
+          try {
+            await fs.access(path.join(appsDir, name, 'package.json'))
+            return name
+          } catch {
+            return null
+          }
+        }),
+    )
+  )
+    .filter(Boolean)
+    .sort()
+  const matrixApps = Object.keys(matrix.apps || {}).filter((n) => n !== 'ui').sort()
 
   const missing = validApps.filter((a) => !matrixApps.includes(a))
   const extra = matrixApps.filter((a) => !validApps.includes(a))

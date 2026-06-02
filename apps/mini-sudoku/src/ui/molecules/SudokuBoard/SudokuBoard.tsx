@@ -22,8 +22,11 @@ export const SudokuBoard: React.FC<SudokuBoardProps> = ({
     if (row < 0 || row >= 4 || col < 0 || col >= 4) {
       return false
     }
-    // eslint-disable-next-line no-object-injection
-    return editableBoard.grid?.[row]?.[col] !== undefined
+    const grid = editableBoard?.grid
+    if (!Array.isArray(grid)) {return false}
+    const rowArr = grid[row]
+    if (!Array.isArray(rowArr)) {return false}
+    return rowArr[col] !== undefined
   }
 
   return (
@@ -35,8 +38,9 @@ export const SudokuBoard: React.FC<SudokuBoardProps> = ({
               if (rowIdx < 0 || rowIdx >= 4 || colIdx < 0 || colIdx >= 4) {
                 return null
               }
-              // eslint-disable-next-line no-object-injection
-              const cell = board.grid?.[rowIdx]?.[colIdx] ?? 0
+              const grid = board?.grid
+              const rowArr = Array.isArray(grid) ? grid[rowIdx] : undefined
+              const cell = Array.isArray(rowArr) ? rowArr[colIdx] ?? 0 : 0
               return (
                 <SudokuCell
                   key={`cell-r${rowIdx}c${colIdx}`}

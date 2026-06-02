@@ -1,0 +1,71 @@
+.hud {
+  display: grid;
+  gap: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.status {
+  margin: 0;
+  color: #d4e2fd;
+  font-size: 0.92rem;
+}
+
+.tierSelectorLabel {
+  display: grid;
+  gap: 6px;
+  color: #d4e2fd;
+  font-size: 0.9rem;
+}
+
+.tierLabelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.tierSelector {
+  min-height: 44px;
+  border-radius: 10px;
+  border: 1px solid rgb(137 179 255 / 40%);
+  background: rgb(19 30 54 / 92%);
+  color: #eff4ff;
+  padding: 0 10px;
+  font-weight: 600;
+}
+
+.wasmBadge,
+.jsBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 24px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.wasmBadge {
+  color: #c4ffdb;
+  border: 1px solid rgb(113 232 165 / 65%);
+  background: rgb(15 62 39 / 75%);
+}
+
+.jsBadge {
+  color: #ffe7b6;
+  border: 1px solid rgb(255 197 87 / 55%);
+  background: rgb(79 53 10 / 70%);
+}
+
+@media (max-width: 599px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

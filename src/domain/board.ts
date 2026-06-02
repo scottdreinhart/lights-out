@@ -83,7 +83,7 @@ export async function isSolved(board: Board): Promise<boolean> {
  * Call this once at app startup for best performance
  */
 export async function initBoardWasm(): Promise<void> {
-  await initWasm()
+  await lightsOutWasm.init()
 }
 
 /**

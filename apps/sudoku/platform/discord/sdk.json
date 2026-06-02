@@ -1,0 +1,5 @@
+{
+  "app": "sudoku",
+  "sdk": "discord-embedded-app",
+  "mode": "placeholder"
+}

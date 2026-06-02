@@ -6,7 +6,7 @@
  */
 
 import type { Difficulty } from '@/domain'
-import { initWasm, selectBestMoveIterativeWasm, selectBestMoveWasm } from '@/wasm/ai-wasm'
+import { initWasm, selectBestMoveIterativeWasm, selectBestMoveWasm } from '@/wasm'
 
 interface WorkerRequest {
   board: number[]

@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react'
-import { useKeyboardControls } from '@games/app-hook-utils'
+import { createGridNavigationKeyboardBindings, useKeyboardControls } from '@games/app-hook-utils'
 
 export interface Position {
   row: number
@@ -88,7 +88,9 @@ export function useKeyboardBoardNavigation({
    */
   const moveFocus = useCallback(
     (deltaRow: number, deltaCol: number) => {
-      if (!enabled) return
+      if (!enabled) {
+        return
+      }
 
       const currentRow = keyboardFocus?.row ?? -1
       const currentCol = keyboardFocus?.col ?? -1
@@ -113,34 +115,9 @@ export function useKeyboardBoardNavigation({
     [keyboardFocus, rows, cols, enabled, onFocusChange, onNavigate, wrapAround],
   )
 
-  /**
-   * Keyboard bindings for grid navigation
-   */
   const keyboardBindings = useMemo(
-    () => [
-      // Navigation: Arrow keys
-      { action: 'up', keys: ['ArrowUp'], onTrigger: () => moveFocus(-1, 0) },
-      { action: 'down', keys: ['ArrowDown'], onTrigger: () => moveFocus(1, 0) },
-      { action: 'left', keys: ['ArrowLeft'], onTrigger: () => moveFocus(0, -1) },
-      { action: 'right', keys: ['ArrowRight'], onTrigger: () => moveFocus(0, 1) },
-
-      // Navigation: WASD (alternative)
-      { action: 'up-w', keys: ['KeyW'], onTrigger: () => moveFocus(-1, 0) },
-      { action: 'down-s', keys: ['KeyS'], onTrigger: () => moveFocus(1, 0) },
-      { action: 'left-a', keys: ['KeyA'], onTrigger: () => moveFocus(0, -1) },
-      { action: 'right-d', keys: ['KeyD'], onTrigger: () => moveFocus(0, 1) },
-
-      // Action: Select/Confirm
-      ...(onAction
-        ? [{ action: 'confirm', keys: ['Space', 'Enter'], onTrigger: onAction }]
-        : []),
-
-      // Action: Cancel/Deselect
-      ...(onCancel
-        ? [{ action: 'cancel', keys: ['Escape', 'KeyQ'], onTrigger: onCancel }]
-        : []),
-    ],
-    [moveFocus, onAction, onCancel],
+    () => createGridNavigationKeyboardBindings(moveFocus, onAction, onCancel, { enabled }),
+    [enabled, moveFocus, onAction, onCancel],
   )
 
   // Register keyboard bindings

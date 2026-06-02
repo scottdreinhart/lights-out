@@ -1,0 +1,5 @@
+{
+  "app": "rock-paper-scissors",
+  "sdk": "discord-embedded-app",
+  "mode": "placeholder"
+}

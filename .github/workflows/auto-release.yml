@@ -1,0 +1,213 @@
+name: 🚀 Automatic Release & Changelog
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      version_bump:
+        description: 'Version bump type'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
+
+jobs:
+  check-version:
+    name: Check if version needs update
+    runs-on: ubuntu-latest
+    outputs:
+      should_release: ${{ steps.check.outputs.should_release }}
+      current_version: ${{ steps.check.outputs.current_version }}
+    steps:
+      - name: 📖 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🔍 Check for version-triggering commits
+        id: check
+        run: |
+          echo "🔍 Checking commit history for release triggers..."
+          
+          # Get latest tag
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "Latest tag: $LATEST_TAG"
+          
+          # Get commits since last tag
+          COMMITS_SINCE_TAG=$(git rev-list $LATEST_TAG..HEAD --count 2>/dev/null || echo "0")
+          echo "Commits since $LATEST_TAG: $COMMITS_SINCE_TAG"
+          
+          # Check if commits contain version-triggering types
+          HAS_FEAT=$(git log $LATEST_TAG..HEAD --oneline 2>/dev/null | grep -c "feat:" || true)
+          HAS_FIX=$(git log $LATEST_TAG..HEAD --oneline 2>/dev/null | grep -c "fix:" || true)
+          HAS_BREAKING=$(git log $LATEST_TAG..HEAD --oneline 2>/dev/null | grep -c "BREAKING CHANGE" || true)
+          
+          echo "  ✨ Features: $HAS_FEAT"
+          echo "  🐛 Fixes: $HAS_FIX"
+          echo "  🚨 Breaking: $HAS_BREAKING"
+          
+          if [[ $COMMITS_SINCE_TAG -gt 0 && ($HAS_FEAT -gt 0 || $HAS_FIX -gt 0 || $HAS_BREAKING -gt 0) ]]; then
+            echo "should_release=true" >> $GITHUB_OUTPUT
+            echo "🚀 Release triggered: commits with feat/fix/breaking changes"
+          else
+            echo "should_release=false" >> $GITHUB_OUTPUT
+            echo "⏳ No release-triggering commits since $LATEST_TAG"
+          fi
+          
+          # Extract current version
+          VERSION=$(grep '"version"' package.json | head -1 | sed 's/.*"version": "\([^"]*\)".*/\1/')
+          echo "current_version=$VERSION" >> $GITHUB_OUTPUT
+
+  create-release:
+    name: Create GitHub Release
+    needs: check-version
+    runs-on: ubuntu-latest
+    if: needs.check-version.outputs.should_release == 'true'
+    steps:
+      - name: 📖 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🛠️ Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.14.0'
+
+      - name: 📦 Install dependencies
+        run: |
+          pnpm install --frozen-lockfile
+
+      - name: 🚀 Run standard-version
+        run: |
+          echo "🔄 Generating new version and changelog..."
+          
+          # Determine version bump
+          if [[ "${{ github.event.inputs.version_bump }}" != "" ]]; then
+            BUMP=${{ github.event.inputs.version_bump }}
+          else
+            BUMP="auto"  # standard-version auto-detects based on commits
+          fi
+          
+          echo "Version bump type: $BUMP"
+          pnpm exec standard-version --release-as $BUMP
+          
+          echo "✅ Version and CHANGELOG.md updated"
+
+      - name: 📋 Extract release notes
+        id: extract
+        run: |
+          echo "📖 Extracting release notes from CHANGELOG.md..."
+          
+          # Read first release section (up to next ## or EOF)
+          RELEASE_NOTES=$(sed -n '/^## \[/,/^## \[/p' CHANGELOG.md | head -n -1)
+          
+          # Escape for GitHub Actions
+          RELEASE_NOTES="${RELEASE_NOTES//'%'/'%25'}"
+          RELEASE_NOTES="${RELEASE_NOTES//$'\n'/'%0A'}"
+          RELEASE_NOTES="${RELEASE_NOTES//$'\r'/'%0D'}"
+          
+          echo "release_notes<<EOF" >> $GITHUB_OUTPUT
+          echo "$RELEASE_NOTES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+          # Extract version
+          VERSION=$(grep '"version"' package.json | head -1 | sed 's/.*"version": "\([^"]*\)".*/\1/')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          
+          echo "📊 Release version: $VERSION"
+
+      - name: 🔐 Configure git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: 💾 Commit version bump
+        run: |
+          echo "💾 Committing version bump..."
+          git add package.json pnpm-lock.yaml CHANGELOG.md
+          git commit -m "chore(release): v${{ steps.extract.outputs.version }}" || true
+
+      - name: 🏷️ Create git tag
+        run: |
+          echo "🏷️ Creating git tag..."
+          git tag -a "v${{ steps.extract.outputs.version }}" -m "Release v${{ steps.extract.outputs.version }}"
+          git push origin "v${{ steps.extract.outputs.version }}" || true
+
+      - name: 📤 Push commits
+        run: |
+          echo "📤 Pushing commits to main..."
+          git push origin main || true
+
+      - name: 🚀 Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            CHANGELOG.md
+            docs/RELEASE_NOTES.md
+          tag_name: v${{ steps.extract.outputs.version }}
+          release_name: Release v${{ steps.extract.outputs.version }}
+          body: |
+            # 🚀 Version ${{ steps.extract.outputs.version }}
+            
+            ${{ steps.extract.outputs.release_notes }}
+            
+            ---
+            
+            **📚 Full Documentation**: See [docs/RELEASE_NOTES.md](docs/RELEASE_NOTES.md)  
+            **📖 Changelog**: See [CHANGELOG.md](CHANGELOG.md)  
+            **🔄 Migration Guide**: See [docs/MIGRATIONS.md](docs/MIGRATIONS.md)  
+            **🔐 Security**: See [docs/SECURITY-CHANGES.md](docs/SECURITY-CHANGES.md)  
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ✅ Release created successfully
+        run: |
+          echo "✅ Release v${{ steps.extract.outputs.version }} created successfully!"
+          echo ""
+          echo "📊 Release Details:"
+          echo "  Tag: v${{ steps.extract.outputs.version }}"
+          echo "  Changelog: Updated"
+          echo "  GitHub Release: Created"
+          echo "  Artifacts: CHANGELOG.md, RELEASE_NOTES.md"
+
+  post-release:
+    name: Post-Release Tasks
+    needs: [check-version, create-release]
+    runs-on: ubuntu-latest
+    if: needs.check-version.outputs.should_release == 'true'
+    steps:
+      - name: 📖 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 📧 Notify on release
+        run: |
+          echo "📧 Release notification would be sent here"
+          echo ""
+          echo "What was released:"
+          echo "  ✅ Version: ${{ needs.check-version.outputs.current_version }}"
+          echo "  📝 Changelog: CHANGELOG.md updated"
+          echo "  🎯 GitHub Release: Created with artifacts"
+          echo "  📚 Docs: RELEASE_NOTES.md included"
+
+  skip-release:
+    name: No Release Needed
+    needs: check-version
+    runs-on: ubuntu-latest
+    if: needs.check-version.outputs.should_release == 'false'
+    steps:
+      - name: ℹ️ Explain why release was skipped
+        run: |
+          echo "ℹ️ No release created"
+          echo ""
+          echo "Reason: No release-triggering commits since last tag"
+          echo "  • No 'feat' commits found"
+          echo "  • No 'fix' commits found"
+          echo "  • No 'BREAKING CHANGE' found"
+          echo ""
+          echo "Next commit with feat/fix/breaking will trigger release"

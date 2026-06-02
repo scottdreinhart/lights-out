@@ -1,5 +1,7 @@
 # TicTacToe Monorepo Readiness Matrix
 
+**Historical Note** (April 13, 2026): This matrix documents March work for Tictactoe absorption into monorepo. The platform has now expanded to 52 total games. Tictactoe is one of two primary development apps (with lights-out). This file serves as reference for similar patterns applied to other games since March.
+
 ## Purpose
 
 Translate the `tictactoe` source repo state into concrete monorepo execution tasks for PR #1.

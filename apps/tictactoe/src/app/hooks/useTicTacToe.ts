@@ -1,0 +1,1 @@
+export { useTicTacToe } from '../useTicTacToe'

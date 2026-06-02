@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Shared hooks, components, and assets for all games",
   "type": "module",
+  "sideEffects": false,
   "exports": {
     ".": {
       "import": "./src/index.ts",

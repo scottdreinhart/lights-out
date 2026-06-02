@@ -4,10 +4,8 @@
  */
 
 import { useSoundContext, useThemeContext } from '@/app'
-import { BOARD_SIZES, DIFFICULTY_LABELS, MODE_LABELS } from '@/domain'
-import type { ColorTheme } from '@/domain'
-import { COLOR_THEMES } from '@/domain'
-import type { Difficulty, GameMode } from '@/domain'
+import type { ColorTheme, Difficulty, GameMode } from '@/domain'
+import { BOARD_SIZES, COLOR_THEMES, DIFFICULTY_LABELS, MODE_LABELS } from '@/domain'
 import styles from './Overlay.module.css'
 
 const MODES: GameMode[] = ['hybrid', 'classic', 'tron']

@@ -1,8 +1,15 @@
-export default function App() {
-  return (
-    <div className="app">
-      <h1>Reversi</h1>
-      <p>Place discs to flip opponent pieces; most discs wins (Othello)</p>
-    </div>
-  )
+import { useReversiApp } from '@/app'
+
+import { ReversiSurface } from './ReversiSurface'
+
+export function App() {
+  return <ReversiComposer />
 }
+
+function ReversiComposer() {
+  const game = useReversiApp()
+
+  return <ReversiSurface game={game} />
+}
+
+export default App

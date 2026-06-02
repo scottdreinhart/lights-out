@@ -1,10 +1,15 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
 import path from 'path'
+import { defineConfig } from 'vite'
+import {
+  createOptimizedBuild,
+  createOptimizedPlugins,
+  createOptimizedResolve,
+} from '../../scripts/vite/createOptimizedViteConfig.mjs'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: createOptimizedPlugins(),
   resolve: {
+    ...createOptimizedResolve(),
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
@@ -13,19 +18,5 @@ export default defineConfig({
     port: 5174,
     strictPort: false,
   },
-  build: {
-    outDir: 'dist',
-    
-  rollupOptions: {
-    external: [
-      '@capacitor/core',
-      '@capacitor/app',
-      '@capacitor/device',
-      '@capacitor/preferences',
-      '@capacitor/haptics',
-      '@capacitor/splash-screen',
-      '@capacitor/keyboard',
-    ],
-  },sourcemap: false,
-  },
+  build: createOptimizedBuild(),
 })

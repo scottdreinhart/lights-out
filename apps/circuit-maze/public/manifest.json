@@ -1,0 +1,16 @@
+{
+  "name": "Circuit Maze Game",
+  "short_name": "Circuit Maze",
+  "description": "Collect all nodes in a hostile grid while pressure rises from roaming sentinels.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#111827",
+  "background_color": "#0b1020",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}

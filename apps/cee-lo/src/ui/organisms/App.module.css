@@ -1,0 +1,129 @@
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--theme-bg, #0a0a0a);
+  color: var(--theme-fg, #e0e0e0);
+  padding-left: max(8px, env(safe-area-inset-left));
+  padding-right: max(8px, env(safe-area-inset-right));
+  padding-bottom: max(8px, env(safe-area-inset-bottom));
+}
+
+.appHeader {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: max(0.75rem, env(safe-area-inset-top)) 1rem 0.75rem;
+  gap: clamp(0.5rem, 1vw, 1rem);
+  background: linear-gradient(
+    135deg,
+    var(--theme-primary, #667eea) 0%,
+    var(--theme-secondary, #764ba2) 100%
+  );
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+  z-index: 300;
+}
+
+.headerTitle {
+  flex: 1;
+  margin: 0;
+  font-size: clamp(1.05rem, 3.8vw, 2rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.1;
+  color: var(--theme-bg, #0a0a0a);
+}
+
+.headerRight {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.appContent {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.5rem, 2vh, 1rem) clamp(0.5rem, 2vw, 1rem);
+  gap: 0.95rem;
+}
+
+.gameTable {
+  width: 100%;
+  max-width: 760px;
+  display: grid;
+  gap: 0.95rem;
+}
+
+.diceSection {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.diceRow {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.rowLabel {
+  margin: 0;
+  font-weight: 700;
+}
+
+.footerMessage {
+  margin: 0;
+  font-weight: 700;
+  text-align: center;
+}
+
+.notificationPortal {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  pointer-events: none;
+}
+
+.notificationStage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.notificationBackdrop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: min(540px, calc(100vw - 2rem));
+  min-height: 150px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12), transparent 50%),
+    linear-gradient(135deg, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.24));
+  backdrop-filter: blur(2px);
+  opacity: 0.95;
+}
+
+@media (max-width: 640px) {
+  .appHeader {
+    padding: max(0.6rem, env(safe-area-inset-top)) 0.75rem 0.6rem;
+  }
+
+  .headerTitle {
+    font-size: 1.05rem;
+  }
+}

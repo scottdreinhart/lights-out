@@ -19,7 +19,10 @@ export async function determineRoundWinner(playerMove: Move, cpuMove: Move): Pro
   const moveMap: Record<Move, number> = { rock: 0, paper: 1, scissors: 2 }
   const resultMap = ['draw' as RoundResult, 'win' as RoundResult, 'loss' as RoundResult]
 
-  const wasmResult = await rockPaperScissorsWasm.getRoundWinner(moveMap[playerMove], moveMap[cpuMove])
+  const wasmResult = await rockPaperScissorsWasm.getRoundWinner(
+    moveMap[playerMove],
+    moveMap[cpuMove],
+  )
   if (wasmResult !== null && wasmResult >= 0 && wasmResult < 3) {
     return resultMap[wasmResult]
   }
@@ -45,9 +48,13 @@ export async function determineRoundWinner(playerMove: Move, cpuMove: Move): Pro
  * A player needs to win > (bestOf / 2) rounds.
  * Uses WASM if available for better performance.
  */
-export async function isGameOver(playerScore: number, cpuScore: number, bestOf: number): Promise<boolean> {
+export async function isGameOver(
+  playerScore: number,
+  cpuScore: number,
+  bestOf: number,
+): Promise<boolean> {
   // Try WASM first
-  const wasmResult = await rockPaperScissorsWasm.isGameOver([playerScore, cpuScore], bestOf)
+  const wasmResult = await rockPaperScissorsWasm.isGameOver(playerScore, cpuScore, bestOf)
   if (wasmResult !== null) {
     return wasmResult
   }
@@ -67,33 +74,16 @@ export async function determineGameWinner(
   bestOf: number,
 ): Promise<'player' | 'cpu' | null> {
   // Try WASM first
-  const wasmResult = await rockPaperScissorsWasm.isGameOver([playerScore, cpuScore], bestOf)
+  const wasmResult = await rockPaperScissorsWasm.isGameOver(playerScore, cpuScore, bestOf)
   if (wasmResult !== null) {
-    if (playerScore > cpuScore) return 'player'
-    if (cpuScore > playerScore) return 'cpu'
+    if (playerScore > cpuScore) {return 'player'}
+    if (cpuScore > playerScore) {return 'cpu'}
     return null // This shouldn't happen if game is over
   }
 
   // JS fallback
   const winsNeeded = Math.floor(bestOf / 2) + 1
-  if (playerScore >= winsNeeded) return 'player'
-  if (cpuScore >= winsNeeded) return 'cpu'
+  if (playerScore >= winsNeeded) {return 'player'}
+  if (cpuScore >= winsNeeded) {return 'cpu'}
   return null
-}
-      return wasmResult
-    }
-  } catch (err) {
-    console.debug('WASM game-winner determination failed, using JS fallback')
-  }
-
-  // JS fallback
-  if (!isGameOver(playerScore, cpuScore, bestOf)) {
-    return null
-  }
-
-  if (playerScore > cpuScore) {
-    return 'player'
-  }
-
-  return 'cpu'
 }

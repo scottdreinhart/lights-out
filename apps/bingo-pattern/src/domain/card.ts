@@ -1,4 +1,5 @@
-import type { Grid, Cell, PatternType } from './types'
+import { BINGO_COLUMNS } from './constants'
+import type { Cell, Grid, PatternType } from './types'
 
 /**
  * Generate a random bingo card for Pattern Bingo
@@ -6,19 +7,34 @@ import type { Grid, Cell, PatternType } from './types'
  */
 export const generateCard = (): Grid => {
   const columns = {
-    B: Array.from({ length: 15 }, (_, i) => i + 1),
-    I: Array.from({ length: 15 }, (_, i) => i + 16),
-    N: Array.from({ length: 15 }, (_, i) => i + 31),
-    G: Array.from({ length: 15 }, (_, i) => i + 46),
-    O: Array.from({ length: 15 }, (_, i) => i + 61),
+    B: Array.from(
+      { length: BINGO_COLUMNS.B.max - BINGO_COLUMNS.B.min + 1 },
+      (_, i) => BINGO_COLUMNS.B.min + i,
+    ),
+    I: Array.from(
+      { length: BINGO_COLUMNS.I.max - BINGO_COLUMNS.I.min + 1 },
+      (_, i) => BINGO_COLUMNS.I.min + i,
+    ),
+    N: Array.from(
+      { length: BINGO_COLUMNS.N.max - BINGO_COLUMNS.N.min + 1 },
+      (_, i) => BINGO_COLUMNS.N.min + i,
+    ),
+    G: Array.from(
+      { length: BINGO_COLUMNS.G.max - BINGO_COLUMNS.G.min + 1 },
+      (_, i) => BINGO_COLUMNS.G.min + i,
+    ),
+    O: Array.from(
+      { length: BINGO_COLUMNS.O.max - BINGO_COLUMNS.O.min + 1 },
+      (_, i) => BINGO_COLUMNS.O.min + i,
+    ),
   }
 
   // Shuffle each column
   const shuffle = (arr: number[]) => {
     const shuffled = [...arr]
     for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
     }
     return shuffled
   }
@@ -47,9 +63,7 @@ export const generateCard = (): Grid => {
  */
 export const markNumber = (card: Grid, number: number): Grid => {
   return card.map((row) =>
-    row.map((cell) =>
-      cell.number === number ? { ...cell, marked: true } : cell,
-    ),
+    row.map((cell) => (cell.number === number ? { ...cell, marked: true } : cell)),
   )
 }
 
@@ -193,7 +207,13 @@ export const checkPattern = (card: Grid, pattern: PatternType): boolean => {
 
   // Check main diagonal (top-left to bottom-right)
   if (pattern === 'diagonalMain') {
-    const diagCells = [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4]]
+    const diagCells = [
+      [0, 0],
+      [1, 1],
+      [2, 2],
+      [3, 3],
+      [4, 4],
+    ]
     if (diagCells.every((c) => markedSet.has(`${c[0]},${c[1]}`))) {
       return true
     }
@@ -202,7 +222,13 @@ export const checkPattern = (card: Grid, pattern: PatternType): boolean => {
 
   // Check anti-diagonal (top-right to bottom-left)
   if (pattern === 'diagonalAnti') {
-    const diagCells = [[0, 4], [1, 3], [2, 2], [3, 1], [4, 0]]
+    const diagCells = [
+      [0, 4],
+      [1, 3],
+      [2, 2],
+      [3, 1],
+      [4, 0],
+    ]
     if (diagCells.every((c) => markedSet.has(`${c[0]},${c[1]}`))) {
       return true
     }

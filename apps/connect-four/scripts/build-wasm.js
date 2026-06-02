@@ -22,16 +22,11 @@ mkdirSync('src/wasm', { recursive: true })
 console.log('Compiling AssemblyScript → WASM...')
 
 const isDebug = process.argv.includes('--debug')
-const ascFlags = isDebug
-  ? '--debug --runtime stub'
-  : '--optimize --runtime stub --noAssert'
+const ascFlags = isDebug ? '--debug --runtime stub' : '--optimize --runtime stub --noAssert'
 
 const asc = resolve('node_modules/.bin/asc')
 
-execSync(
-  `${asc} assembly/index.ts --outFile build/ai.wasm ${ascFlags}`,
-  { stdio: 'inherit' },
-)
+execSync(`${asc} assembly/index.ts --outFile build/ai.wasm ${ascFlags}`, { stdio: 'inherit' })
 
 // ── 3. Encode WASM binary → base64 TypeScript module ──────────────────────
 const wasm = readFileSync('build/ai.wasm')
@@ -51,6 +46,4 @@ writeFileSync(
   ].join('\n'),
 )
 
-console.log(
-  `✓ WASM AI engine: ${sizeBytes} bytes (${sizeKB} KB) → src/wasm/ai-wasm.ts`,
-)
+console.log(`✓ WASM AI engine: ${sizeBytes} bytes (${sizeKB} KB) → src/wasm/ai-wasm.ts`)

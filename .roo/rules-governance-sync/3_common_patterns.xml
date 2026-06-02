@@ -1,0 +1,55 @@
+<common_patterns>
+  <overview>
+    Reusable patterns for governance-sync tasks. These patterns focus on preserving architecture, packaging, aliases, and validation while keeping edits minimal and synchronized.
+  </overview>
+
+  <pattern name="preserve_first_review">
+    <description>Use when checking a repository surface for drift before editing.</description>
+    <steps>
+      <step>Read the smallest authoritative governance set that applies to the task.</step>
+      <step>Identify the affected files, scripts, aliases, and config surfaces.</step>
+      <step>Decide whether the change is safe or recovery-required.</step>
+      <step>Prefer the strictest applicable rule when sources overlap.</step>
+    </steps>
+  </pattern>
+
+  <pattern name="recovery_first_response">
+    <description>Use when damage is detected in scripts, aliases, config, or governance.</description>
+    <steps>
+      <step>Stop feature work immediately.</step>
+      <step>Inspect the diff or changed artifacts.</step>
+      <step>Restore the removed or weakened behavior first.</step>
+      <step>Validate the repaired surface before continuing.</step>
+    </steps>
+  </pattern>
+
+  <pattern name="minimal_synchronized_update">
+    <description>Use when a governance change needs to stay aligned across mode and support files.</description>
+    <steps>
+      <step>Update only the smallest set of mode artifacts needed.</step>
+      <step>Keep the workspace mode and the supporting XML guidance consistent.</step>
+      <step>Avoid duplicating rules across multiple files unless a small summary is needed in the mode registry.</step>
+      <step>Confirm that the final guidance still preserves architecture and tooling protections.</step>
+    </steps>
+  </pattern>
+
+  <pattern name="narrow_validation">
+    <description>Use after edits to check the touched surface without widening scope.</description>
+    <checks>
+      <check>XML files are well-formed.</check>
+      <check>The mode slug is unique in .roomodes.</check>
+      <check>The new guidance file exists in the expected numbered directory.</check>
+      <check>No scripts, aliases, or constraints were removed.</check>
+    </checks>
+  </pattern>
+
+  <pattern name="communication_contract">
+    <description>Use when reporting progress or completion.</description>
+    <rules>
+      <rule>State what changed.</rule>
+      <rule>State what was preserved.</rule>
+      <rule>State what was validated.</rule>
+      <rule>State any blockers plainly.</rule>
+    </rules>
+  </pattern>
+</common_patterns>

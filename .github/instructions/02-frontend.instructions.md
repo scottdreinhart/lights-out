@@ -1,4 +1,4 @@
-# Frontend Instructions — React / Vite / UI
+# 🎉 Frontend Instructions — React / Vite / UI
 
 > **Scope**: Frontend stack, CLEAN architecture layers, component hierarchy, styling, linting, formatting, and type checking.
 > Subordinate to `AGENTS.md` §0 (Non-Negotiable Rules), §3 (architecture), and §4 (path discipline).
@@ -101,6 +101,7 @@ ThemeProvider > SoundProvider > ErrorBoundary > App
 See AGENTS.md § 30 and `.github/instructions/20-css-performance-rendering-optimization.instructions.md` for complete enforcement.
 
 **13 Super Prompts** enforce CSS optimization:
+
 1. CRP respect (HTML → CSS blocked → JS → Paint)
 2. Render-blocking CSS minimization
 3. Critical CSS strategy (inline <14KB above-fold; defer non-critical)
@@ -116,6 +117,7 @@ See AGENTS.md § 30 and `.github/instructions/20-css-performance-rendering-optim
 13. Core Web Vitals (FCP <1.8s, LCP <2.5s, CLS <0.1)
 
 **Mandatory Enforcement**:
+
 - Lighthouse score ≥90 (target) or ≥80 (minimum)
 - LCP ≤2.5s, FCP <1.8s, CLS <0.1
 - CSS critical path <50KB
@@ -126,14 +128,16 @@ See AGENTS.md § 30 and `.github/instructions/20-css-performance-rendering-optim
 - Font loading optimized (font-display: swap, not blocking text)
 
 **Quality Gate** (`pnpm validate`):
+
 - Runs Lighthouse audit
 - Validates Core Web Vitals thresholds
 - Fails if Lighthouse <80 or metrics exceed thresholds
 
 **Before committing CSS changes**:
+
 ```bash
 # 1. Run local Lighthouse
-npx lighthouse <url> --view
+pnpm test:lighthouse
 
 # 2. Open DevTools
 #    - Network: Verify critical.css downloads first

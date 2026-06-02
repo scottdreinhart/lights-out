@@ -8,7 +8,7 @@ interface CompletionDisplayProps {
 
 export const CompletionDisplay: React.FC<CompletionDisplayProps> = ({
   isComplete,
-  elapsedTime
+  elapsedTime,
 }) => {
   const formatTime = (seconds: number): string => {
     const mins = Math.floor(seconds / 60)

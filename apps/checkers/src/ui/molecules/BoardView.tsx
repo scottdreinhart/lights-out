@@ -1,4 +1,3 @@
-import type { ReactNode } from 'react'
 import type { ResponsiveContentDensity } from '@/app'
 import {
   getPieceAt,
@@ -9,6 +8,7 @@ import {
   type Position,
 } from '@/domain'
 import { BoardGrid, type BoardCell } from '@games/ui-board-core'
+import type { ReactNode } from 'react'
 
 import styles from './BoardView.module.css'
 
@@ -38,7 +38,8 @@ const describeSquare = (
   const piece = getPieceAt(board, position)
   const selectable = legalMoves.some((move) => positionsEqual(move.from, position))
   const selectedLabel = selected && positionsEqual(selected, position) ? ', selected' : ''
-  const focusedLabel = keyboardFocus && positionsEqual(keyboardFocus, position) ? ', keyboard focus' : ''
+  const focusedLabel =
+    keyboardFocus && positionsEqual(keyboardFocus, position) ? ', keyboard focus' : ''
 
   if (!isPlayableSquare(position.row, position.col)) {
     return `Light square ${position.row + 1}, ${position.col + 1}${focusedLabel}`
@@ -88,7 +89,6 @@ export function BoardView({
             (move) => positionsEqual(move.from, selected) && positionsEqual(move.to, position),
           )
         : false
-      const isSelectable = legalMoves.some((move) => positionsEqual(move.from, position))
       const isLastFrom = lastMove ? positionsEqual(lastMove.from, position) : false
       const isLastTo = lastMove ? positionsEqual(lastMove.to, position) : false
 

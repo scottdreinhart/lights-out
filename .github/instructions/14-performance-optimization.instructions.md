@@ -1,9 +1,9 @@
-# § 14. Performance Optimization Governance
+# 🎯️ § 14. Performance Optimization Governance
 
-> **Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules) and § 25 (Performance Governance)
+> **Authority**: Subordinate to `AGENTS.md` § 0 (Non-Negotiable Rules), § 25 (Performance), and § 30 (CSS Performance)  
 > **BASELINE**: Before optimizing, read `AGENTS.md` § 0. Profile first, not guesswork. Preserve behavior. Quality gates mandatory.
 
-This section documents proven performance optimization patterns for the Nim project and its sibling applications. These are binding guardrails, not suggestions.
+This section documents proven performance optimization patterns for the game-platform monorepo and all its game applications. These are binding guardrails, not suggestions.
 
 ## Hook Consolidation Policy
 

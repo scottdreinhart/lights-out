@@ -10,8 +10,9 @@ body {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -73,7 +74,7 @@ body {
 .bet-buttons button {
   padding: 10px 20px;
   font-size: 1.1rem;
-  background: #4CAF50;
+  background: #4caf50;
   color: white;
   border: none;
   border-radius: 8px;
@@ -151,21 +152,21 @@ body {
 }
 
 .action-buttons button:first-child {
-  background: #2196F3;
+  background: #2196f3;
   color: white;
 }
 
 .action-buttons button:first-child:hover {
-  background: #1976D2;
+  background: #1976d2;
 }
 
 .action-buttons button:last-child {
-  background: #FF9800;
+  background: #ff9800;
   color: white;
 }
 
 .action-buttons button:last-child:hover {
-  background: #F57C00;
+  background: #f57c00;
 }
 
 /* Results */
@@ -186,7 +187,7 @@ body {
 .results button {
   padding: 10px 20px;
   font-size: 1.1rem;
-  background: #4CAF50;
+  background: #4caf50;
   color: white;
   border: none;
   border-radius: 8px;
@@ -217,7 +218,7 @@ body {
 .help-screen button {
   padding: 10px 20px;
   font-size: 1.1rem;
-  background: #2196F3;
+  background: #2196f3;
   color: white;
   border: none;
   border-radius: 8px;
@@ -226,7 +227,7 @@ body {
 }
 
 .help-screen button:hover {
-  background: #1976D2;
+  background: #1976d2;
 }
 
 /* Dealer Turn Animation */
@@ -238,9 +239,4 @@ body {
 .dealer-turn p {
   font-size: 1.2rem;
   animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
 }

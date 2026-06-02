@@ -4,8 +4,23 @@
 # Validates input-controls governance (see .github/instructions/08-input-controls.instructions.md):
 #   1. No raw document/window key listeners in src/ui/ (must go through useKeyboardControls)
 #   2. useKeyboardControls must not be re-implemented inside src/ui/ (belongs in src/app/)
+#
+# Usage: bash check-input-controls.sh
+#
+# Exit codes:
+#   0 = All checks passed
+#   1 = Violations found
 
 set -euo pipefail
+
+# ANSI color codes (standardized per SCRIPT-STANDARDS.md)
+readonly CYAN='\033[96m'
+readonly GREEN='\033[92m'
+readonly RED='\033[91m'
+readonly YELLOW='\033[93m'
+readonly BLUE='\033[94m'
+readonly RESET='\033[0m'
+readonly BOLD='\033[1m'
 
 VIOLATIONS=0
 SRC_UI="src/ui"

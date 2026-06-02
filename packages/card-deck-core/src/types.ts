@@ -109,7 +109,7 @@ export interface Deck {
   readonly cards: Card[] // All cards in deck
   dealtCards: Card[] // Cards that have been dealt/removed from play
   remainingCards: Card[] // Cards still available to deal
-  readonly burnCards: Card[] // Cards burned in shoe (sometimes dealt from deck cut but not used)
+  burnCards: Card[] // Cards burned in shoe (sometimes dealt from deck cut but not used)
   penetration: number // % of deck dealt (0.0 to 1.0)
 }
 

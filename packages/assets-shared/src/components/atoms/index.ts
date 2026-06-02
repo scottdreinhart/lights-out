@@ -1,3 +1,7 @@
 export { Button, type ButtonProps } from './Button'
 export { Icon, type IconProps } from './Icon'
 export { Card, type CardProps } from './Card'
+export { StatPill, type StatPillProps } from './StatPill'
+export { CounterBadge, type CounterBadgeProps } from './CounterBadge'
+export { TimerDisplay, type TimerDisplayProps } from './TimerDisplay'
+export { RatingDisplay, type RatingDisplayMetric, type RatingDisplayProps } from './RatingDisplay'

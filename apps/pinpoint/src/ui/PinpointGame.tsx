@@ -1,8 +1,8 @@
-import React from 'react'
 import { usePinpointGame } from '@/app'
-import { GuessRow } from './GuessRow'
+import React from 'react'
 import { ColorPalette } from './ColorPalette'
 import { CurrentGuess } from './CurrentGuess'
+import { GuessRow } from './GuessRow'
 import styles from './PinpointGame.module.css'
 
 export const PinpointGame: React.FC = () => {
@@ -21,7 +21,7 @@ export const PinpointGame: React.FC = () => {
     resetCurrentGame,
     isGameActive,
     canMakeGuess,
-    remainingGuesses
+    remainingGuesses,
   } = usePinpointGame()
 
   const handleColorSelect = (color: string) => {
@@ -67,10 +67,7 @@ export const PinpointGame: React.FC = () => {
       <div className={styles.gameBoard}>
         <div className={styles.guessHistory}>
           {gameState.guesses.map((guessResult, index) => (
-            <GuessRow
-              key={index}
-              guessResult={guessResult}
-            />
+            <GuessRow key={index} guessResult={guessResult} />
           ))}
         </div>
 
@@ -180,8 +177,8 @@ export const PinpointGame: React.FC = () => {
 
       <div className={styles.instructions}>
         <p>
-          Crack the secret code! Choose colors and submit guesses.
-          Black pegs = correct color and position, white pegs = correct color only.
+          Crack the secret code! Choose colors and submit guesses. Black pegs = correct color and
+          position, white pegs = correct color only.
         </p>
       </div>
     </div>

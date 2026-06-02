@@ -64,7 +64,7 @@ export function createInitialGameState(rules: SimonRuleConfig): SimonGameState {
     // Multiplayer
     currentPlayer: 1,
     playersActive: Array(playerCount).fill(true),
-    playerScores: Object.fromEntries(Array.from({ length: playerCount }, (_, i) => [i + 1, 0])),
+    playerScores: createPlayerScores(playerCount),
 
     // UI
     activeColor: null,
@@ -95,30 +95,23 @@ export function getSpeedMultiplier(
     return 1
   }
 
-  // Baseline speed per difficulty
-  let baseMultiplier = 1
-  switch (difficultyLevel) {
-    case 1:
-      baseMultiplier = 0.8 // Slow
-      break
-    case 2:
-      baseMultiplier = 1.0 // Normal
-      break
-    case 3:
-      baseMultiplier = 1.2 // Fast
-      break
-    case 4:
-      baseMultiplier = 1.5 // Very fast
-      break
-  }
+  const baseMultiplierByDifficulty = {
+    1: 0.8,
+    2: 1.0,
+    3: 1.2,
+    4: 1.5,
+  } as const
 
-  // Speed increases at thresholds: 5, 9, 13, 17, etc.
-  let speedIncrease = 1
-  if (roundNumber >= 5) speedIncrease = 1.05
-  if (roundNumber >= 9) speedIncrease = 1.1
-  if (roundNumber >= 13) speedIncrease = 1.15
-  if (roundNumber >= 17) speedIncrease = 1.2
-  if (roundNumber >= 21) speedIncrease = 1.25
+  const speedThresholds = [
+    [21, 1.25],
+    [17, 1.2],
+    [13, 1.15],
+    [9, 1.1],
+    [5, 1.05],
+  ] as const
+
+  const speedIncrease = speedThresholds.find(([threshold]) => roundNumber >= threshold)?.[1] ?? 1
+  const baseMultiplier = baseMultiplierByDifficulty[difficultyLevel]
 
   return baseMultiplier * speedIncrease
 }
@@ -172,4 +165,17 @@ export function getPlaybackDelay(
   // Total time: flash + pause = baseDelay / speedMultiplier + flashDuration
   const pauseTime = baseDelayMs / speedMultiplier - flashDuration
   return Math.max(50, pauseTime)
+}
+
+function createPlayerScores(playerCount: number): Record<number, number> {
+  if (playerCount === 1) {
+    return { 1: 0 }
+  }
+
+  return {
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+  }
 }

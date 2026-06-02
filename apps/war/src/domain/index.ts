@@ -3,33 +3,31 @@
  */
 
 // Types
-export type { Card, CardSuit, CardRank, GameState, GamePhase, WarSequence } from './types'
+export type { Card, GamePhase, GameState, WarSequence } from './types'
 
 // Rules and game logic
-export { playRound, isGameOver, getWinner, resetGame } from './rules'
+export { getWinner, isGameOver, playRound, resetGame } from './rules'
 export {
-  type WarRuleConfig,
   DEFAULT_RULES,
   RULE_VARIANTS,
+  describeRules,
   getWarCardCount,
   validateRules,
-  describeRules,
+  type WarRuleConfig,
 } from './rules/war.rules'
 
 // Rules text
-export { RULES_TEXT, getRulesText, RULE_DESCRIPTIONS } from './rules/war.rules.text'
+export { RULES_TEXT, RULE_DESCRIPTIONS, getRulesText } from './rules/war.rules.text'
 
 // Constants and utilities
 export {
-  SUITS,
-  RANKS,
-  createDeck,
-  getRankValue,
   compareCards,
-  shuffleDeck,
+  createDeck,
   createInitialGameState,
-  getDeckSize,
-  hasEnoughCardsForWar,
-  getWarCards,
   determineRoundWinner,
+  getDeckSize,
+  getRankValue,
+  getWarCards,
+  hasEnoughCardsForWar,
+  shuffleDeck,
 } from './constants'

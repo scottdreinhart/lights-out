@@ -1,6 +1,10 @@
-# CI/CD Pipeline & Validation Gates
+# 🔄 CI/CD Pipeline & Validation Gates
 
-This document describes how to set up automated validation gates for governance compliance across the 25 app projects.
+**Authority**: AGENTS.md § 20 (Build & Deployment) · § 0.A (Runtime Validation & Self-Correction)  
+**Date**: April 2026  
+**Status**: ✅ Operational
+
+This document describes how to set up automated validation gates for governance compliance across the 40+ app projects.
 
 ## Overview
 
@@ -31,6 +35,7 @@ pnpm validate  # check + build
 ```
 
 This ensures:
+
 - ✅ `pnpm lint` passes (no ESLint security rule violations)
 - ✅ `pnpm format:check` passes (consistent formatting)
 - ✅ `pnpm typecheck` passes (no TypeScript errors)
@@ -50,39 +55,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '24'
-      
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 10
-      
+
       - name: Install dependencies
         run: pnpm install
-      
+
       - name: Lint
         run: pnpm lint
-      
+
       - name: Format check
         run: pnpm format:check
-      
+
       - name: Type check
         run: pnpm typecheck
-      
+
       - name: Build
         run: pnpm build
-      
+
       - name: Test
-        run: pnpm test --run || true  # Optional, don't fail if tests are minimal
+        run: pnpm test --run || true # Optional, don't fail if tests are minimal
 ```
 
 ### Security Checks
 
 ESLint security rules automatically check for:
+
 - ✅ XSS vulnerabilities (`no-unsafe-html`)
 - ✅ Unsafe regexes (`no-unsafe-regex`)
 - ✅ Missing crypto verification (`no-unsanitized-eval`)
@@ -113,6 +119,7 @@ grep "eslint-plugin-security" eslint.config.js
 ### Merge Requirements
 
 Configure repository settings to require:
+
 1. ✅ All CI checks pass (lint, format, typecheck, build)
 2. ✅ PR review approval
 3. ✅ No unresolved conversations
@@ -138,16 +145,16 @@ Require branches to be up to date before merging: Yes
 
 ### Local Quality Gates
 
-| Command | Purpose | Used When |
-|---------|---------|-----------|
-| `pnpm lint` | Check for violations | Before commit |
-| `pnpm lint:fix` | Auto-fix violations | Part of `pnpm fix` |
-| `pnpm format` | Format code | Part of `pnpm fix` |
-| `pnpm format:check` | Check formatting | Pre-push gate |
-| `pnpm typecheck` | Type validation | Pre-push gate |
-| `pnpm check` | All three checks | Manual quality gate |
-| `pnpm fix` | Auto-fix lint + format | Part of pre-commit |
-| `pnpm validate` | Full gate (check + build) | Pre-push gate |
+| Command             | Purpose                   | Used When           |
+| ------------------- | ------------------------- | ------------------- |
+| `pnpm lint`         | Check for violations      | Before commit       |
+| `pnpm lint:fix`     | Auto-fix violations       | Part of `pnpm fix`  |
+| `pnpm format`       | Format code               | Part of `pnpm fix`  |
+| `pnpm format:check` | Check formatting          | Pre-push gate       |
+| `pnpm typecheck`    | Type validation           | Pre-push gate       |
+| `pnpm check`        | All three checks          | Manual quality gate |
+| `pnpm fix`          | Auto-fix lint + format    | Part of pre-commit  |
+| `pnpm validate`     | Full gate (check + build) | Pre-push gate       |
 
 ### Typical Workflow
 

@@ -5,6 +5,17 @@
 #   1. No raw document/window key listeners in src/ui/ (must go through useKeyboardControls)
 #   2. useKeyboardControls must not be re-implemented inside src/ui/ (belongs in src/app/)
 
+# ANSI color codes (standardized per SCRIPT-STANDARDS.md)
+readonly CYAN='\033[96m'
+readonly GREEN='\033[92m'
+readonly RED='\033[91m'
+readonly YELLOW='\033[93m'
+readonly BLUE='\033[94m'
+readonly WHITE='\033[97m'
+readonly GRAY='\033[90m'
+readonly RESET='\033[0m'
+readonly BOLD='\033[1m'
+
 set -euo pipefail
 
 VIOLATIONS=0

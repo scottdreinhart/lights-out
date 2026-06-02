@@ -625,7 +625,7 @@ function calculateExpectedValue(context: StrategyContext, action: StrategyAction
   // For now, return a rough estimate based on common blackjack EV tables
 
   const { handValue, dealerUpCard } = context
-  const dealerValue =
+  const _dealerValue =
     dealerUpCard.rank === 'A' ? 11 : dealerUpCard.rank === '10' ? 10 : parseInt(dealerUpCard.rank)
 
   // Rough EV impact (positive = good, negative = bad)
@@ -685,15 +685,27 @@ export function getCountingState(runningCount: number, decksRemaining: number): 
 
   // Bet spread based on true count
   let betSpread = 1
-  if (trueCount >= 2) betSpread = 2
-  if (trueCount >= 3) betSpread = 4
-  if (trueCount >= 4) betSpread = 8
-  if (trueCount >= 5) betSpread = 16
+  if (trueCount >= 2) {
+    betSpread = 2
+  }
+  if (trueCount >= 3) {
+    betSpread = 4
+  }
+  if (trueCount >= 4) {
+    betSpread = 8
+  }
+  if (trueCount >= 5) {
+    betSpread = 16
+  }
 
   // Determine advantage
   let advantage: 'player' | 'dealer' | 'neutral' = 'neutral'
-  if (trueCount >= 1) advantage = 'player'
-  if (trueCount <= -1) advantage = 'dealer'
+  if (trueCount >= 1) {
+    advantage = 'player'
+  }
+  if (trueCount <= -1) {
+    advantage = 'dealer'
+  }
 
   return {
     runningCount,
@@ -765,12 +777,22 @@ export function getSplitStrategyRecommendation(
  * Get feedback on strategy accuracy
  */
 export function getStrategyAccuracyFeedback(isCorrect: boolean, correctStreak: number): string {
-  if (!isCorrect) return '❌ Not optimal play'
+  if (!isCorrect) {
+    return '❌ Not optimal play'
+  }
 
-  if (correctStreak >= 100) return '🏆 Perfect strategy!!'
-  if (correctStreak >= 50) return '⭐ Excellent strategy knowledge!'
-  if (correctStreak >= 20) return '✅ Great decision!'
-  if (correctStreak >= 10) return '👍 Perfect play!'
+  if (correctStreak >= 100) {
+    return '🏆 Perfect strategy!!'
+  }
+  if (correctStreak >= 50) {
+    return '⭐ Excellent strategy knowledge!'
+  }
+  if (correctStreak >= 20) {
+    return '✅ Great decision!'
+  }
+  if (correctStreak >= 10) {
+    return '👍 Perfect play!'
+  }
   return '✅ Good decision'
 }
 
@@ -831,12 +853,19 @@ export function getBetSizingStrategy(
 ): { minBet: number; suggestedBet: number; maxBet: number } {
   let multiplier = 1
 
-  if (trueCount >= 5) multiplier = Math.min(16, Math.max(1, trueCount * 2))
-  else if (trueCount >= 4) multiplier = 8
-  else if (trueCount >= 3) multiplier = 4
-  else if (trueCount >= 2) multiplier = 2
-  else if (trueCount >= 1) multiplier = 1.5
-  else if (trueCount <= -2) multiplier = 0.5
+  if (trueCount >= 5) {
+    multiplier = Math.min(16, Math.max(1, trueCount * 2))
+  } else if (trueCount >= 4) {
+    multiplier = 8
+  } else if (trueCount >= 3) {
+    multiplier = 4
+  } else if (trueCount >= 2) {
+    multiplier = 2
+  } else if (trueCount >= 1) {
+    multiplier = 1.5
+  } else if (trueCount <= -2) {
+    multiplier = 0.5
+  }
 
   const suggestedBet = Math.min(maxBet, Math.max(minBet, minBet * multiplier))
 
@@ -850,11 +879,19 @@ export function getBetSizingStrategy(
 /**
  * Get counting difficulty level based on metrics
  */
-export function getCountingDifficulty(trueCount: number, accuracy: number): string {
-  if (accuracy < 50) return 'Very Hard'
-  if (accuracy < 70) return 'Hard'
-  if (accuracy < 85) return 'Medium'
-  if (accuracy < 95) return 'Easy'
+export function getCountingDifficulty(_trueCount: number, accuracy: number): string {
+  if (accuracy < 50) {
+    return 'Very Hard'
+  }
+  if (accuracy < 70) {
+    return 'Hard'
+  }
+  if (accuracy < 85) {
+    return 'Medium'
+  }
+  if (accuracy < 95) {
+    return 'Easy'
+  }
   return 'Very Easy'
 }
 
@@ -862,10 +899,18 @@ export function getCountingDifficulty(trueCount: number, accuracy: number): stri
  * Get counting strategy advice based on true count
  */
 export function getCountingStrategyAdvice(trueCount: number): string {
-  if (trueCount >= 4) return '🔴 Strong player advantage - Increase bet!'
-  if (trueCount >= 2) return '🟡 Slight player advantage - Increase bet moderately'
-  if (trueCount >= 0) return '⚪ Neutral count - Play normal bet'
-  if (trueCount >= -2) return '🔵 Slight dealer advantage - Reduce bet'
+  if (trueCount >= 4) {
+    return '🔴 Strong player advantage - Increase bet!'
+  }
+  if (trueCount >= 2) {
+    return '🟡 Slight player advantage - Increase bet moderately'
+  }
+  if (trueCount >= 0) {
+    return '⚪ Neutral count - Play normal bet'
+  }
+  if (trueCount >= -2) {
+    return '🔵 Slight dealer advantage - Reduce bet'
+  }
   return '🔴 Strong dealer advantage - Back off until reshuffle'
 }
 
@@ -903,8 +948,11 @@ export function updateCountingState(
 
   // Calculate bet multiplier
   let betMultiplier = 1
-  if (trueCount >= 1) betMultiplier = Math.min(8, Math.max(1, 1 + trueCount / 2))
-  else if (trueCount <= -1) betMultiplier = Math.max(0.5, 1 + trueCount / 3)
+  if (trueCount >= 1) {
+    betMultiplier = Math.min(8, Math.max(1, 1 + trueCount / 2))
+  } else if (trueCount <= -1) {
+    betMultiplier = Math.max(0.5, 1 + trueCount / 3)
+  }
 
   return {
     runningCount,

@@ -3,7 +3,7 @@
  * Game configuration and constants
  */
 
-import type { Difficulty, MazeConfig } from './types'
+import type { Difficulty, Direction, MazeConfig, Position } from './types'
 
 export const MAZE_SIZES = {
   easy: { width: 8, height: 6 },
@@ -51,7 +51,7 @@ export const DIRECTIONS: Record<Direction, Position> = {
 
 export const CELL_COLORS = {
   empty: '#ffffff',
-  wall: '#333333',
+  wall: '#334155',
   start: '#4caf50',
   goal: '#f44336',
   item: '#ff9800',
@@ -60,7 +60,7 @@ export const CELL_COLORS = {
 
 export const CELL_SYMBOLS = {
   empty: '',
-  wall: '█',
+  wall: '',
   start: 'S',
   goal: 'G',
   item: '★',
@@ -72,5 +72,18 @@ export const MOVEMENT_COSTS = {
   item: 2, // Bonus for collecting items
   goal: 1,
 } as const
+
+export const getDirectionDelta = (direction: Direction): Position => {
+  switch (direction) {
+    case 'up':
+      return { row: -1, col: 0 }
+    case 'down':
+      return { row: 1, col: 0 }
+    case 'left':
+      return { row: 0, col: -1 }
+    case 'right':
+      return { row: 0, col: 1 }
+  }
+}
 
 export const DEFAULT_DIFFICULTY: Difficulty = 'medium'

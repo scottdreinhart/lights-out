@@ -1,14 +1,14 @@
-# Tasks 5-11: CSP Puzzle Games Implementation Plan
+# 🗂️ Tasks 5-11: CSP Puzzle Games Implementation Plan
 
 **Date**: March 31, 2026  
-**Status**: 🎯 READY FOR EXECUTION  
+**Status**: ✅ READY FOR EXECUTION  
 **Scope**: Create 7 CSP puzzle games (Tasks 5-11)  
 **Integration**: Unified CSP solver + CQRS infrastructure (Task 4)  
 **Foundation**: Completed CSP core + propagation + generator + workers + CQRS
 
 ---
 
-## 📊 Audit Findings Summary
+## ⭐ Audit Findings Summary
 
 ### Current Portfolio (26 Games)
 
@@ -22,13 +22,13 @@
 
 | Task   | Game            | Type       | Status    | Priority               |
 | ------ | --------------- | ---------- | --------- | ---------------------- |
-| **5**  | **Mini Sudoku** | CSP Puzzle | ❌ Create | 🔴 Critical (simplest) |
-| **6**  | **Queens**      | CSP Puzzle | ❌ Create | 🟠 High                |
-| **7**  | **Tango**       | CSP Puzzle | ❌ Create | 🟠 High                |
-| **8**  | **Zip**         | CSP Puzzle | ❌ Create | 🟠 High                |
-| **9**  | **Crossclimb**  | CSP Puzzle | ❌ Create | 🟠 High                |
-| **10** | **Pinpoint**    | CSP Puzzle | ❌ Create | 🟠 High                |
-| **11** | **Patches**     | CSP Puzzle | ❌ Create | 🟠 High                |
+| **5**  | **Mini Sudoku** | CSP Puzzle | ❌ Create | ❌ Critical (simplest) |
+| **6**  | **Queens**      | CSP Puzzle | ❌ Create | ⚠️ High                |
+| **7**  | **Tango**       | CSP Puzzle | ❌ Create | ⚠️ High                |
+| **8**  | **Zip**         | CSP Puzzle | ❌ Create | ⚠️ High                |
+| **9**  | **Crossclimb**  | CSP Puzzle | ❌ Create | ⚠️ High                |
+| **10** | **Pinpoint**    | CSP Puzzle | ❌ Create | ⚠️ High                |
+| **11** | **Patches**     | CSP Puzzle | ❌ Create | ⚠️ High                |
 
 ---
 
@@ -110,7 +110,7 @@ apps/mini-sudoku/
 
 ---
 
-## 🔄 Game Implementation Workflow
+## ⚙️ Game Implementation Workflow
 
 ### For Each Game (Task X):
 
@@ -203,7 +203,7 @@ apps/mini-sudoku/
 
 ---
 
-## 📋 Task Breakdown: 5-11
+## 📚 Task Breakdown: 5-11
 
 ### **Task 5: Mini Sudoku (4×4, 2×2 boxes)**
 
@@ -357,7 +357,7 @@ apps/mini-sudoku/
 
 ---
 
-## 🎯 CQRS Integration Pattern
+## ✅ CQRS Integration Pattern
 
 **All 7 games use shared CQRS infrastructure from Task 4:**
 
@@ -402,17 +402,17 @@ queryBus.register('GET_CELL_CANDIDATES', (state, query) => {
 
 ---
 
-## 📊 Estimated Timeline
+## ⭐ Estimated Timeline
 
 | Task      | Game        | Days        | Effort         | Complexity |
 | --------- | ----------- | ----------- | -------------- | ---------- |
-| 5         | Mini Sudoku | 5           | 📍 Low         | ⭐⭐       |
-| 6         | Queens      | 5           | 📍 Medium      | ⭐⭐⭐     |
-| 7         | Tango       | 5           | 📍 Medium      | ⭐⭐⭐     |
-| 8         | Zip         | 6           | 📍 Medium-High | ⭐⭐⭐⭐   |
-| 9         | Crossclimb  | 6           | 📍 Medium-High | ⭐⭐⭐⭐   |
-| 10        | Pinpoint    | 5           | 📍 Medium      | ⭐⭐⭐     |
-| 11        | Patches     | 6           | 📍 Medium-High | ⭐⭐⭐⭐   |
+| 5         | Mini Sudoku | 5           | 📁 Low         | ⭐⭐       |
+| 6         | Queens      | 5           | 📁 Medium      | ⭐⭐⭐     |
+| 7         | Tango       | 5           | 📁 Medium      | ⭐⭐⭐     |
+| 8         | Zip         | 6           | 📁 Medium-High | ⭐⭐⭐⭐   |
+| 9         | Crossclimb  | 6           | 📁 Medium-High | ⭐⭐⭐⭐   |
+| 10        | Pinpoint    | 5           | 📁 Medium      | ⭐⭐⭐     |
+| 11        | Patches     | 6           | 📁 Medium-High | ⭐⭐⭐⭐   |
 | **TOTAL** | **7 Games** | **38 days** | **~240 hours** | **Medium** |
 
 **With queue-driven continuous delivery**: Estimate 2-3 weeks elapsed time (parallel execution).
@@ -445,7 +445,7 @@ queryBus.register('GET_CELL_CANDIDATES', (state, query) => {
 
 ---
 
-## 🔧 Dependencies Resolved
+## 🛠️ Dependencies Resolved
 
 ✅ **Task 4 (CQRS)**: CommandBus, QueryBus, event infrastructure  
 ✅ **Task 3 (Workers)**: Async solver/generator offloading  
@@ -457,7 +457,7 @@ queryBus.register('GET_CELL_CANDIDATES', (state, query) => {
 
 ---
 
-## 📝 Starting Point: Task 5
+## 📄 Starting Point: Task 5
 
 **First game: Mini Sudoku (simplest, most similar to existing Sudoku)**
 
@@ -495,7 +495,7 @@ cp apps/sudoku/vite.config.js apps/mini-sudoku/
 
 ---
 
-## 🎯 Ready to Execute
+## ✅ Ready to Execute
 
 **Proceed with Task 5 (Mini Sudoku)** at queue pace.
 

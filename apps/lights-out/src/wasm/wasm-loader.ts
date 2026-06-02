@@ -15,10 +15,7 @@ async function initWasm(): Promise<WasmModule> {
   }
 
   const binaryString = atob(AI_WASM_BASE64)
-  const bytes = new Uint8Array(binaryString.length)
-  for (let i = 0; i < binaryString.length; i++) {
-    bytes[i] = binaryString.charCodeAt(i)
-  }
+  const bytes = Uint8Array.from(binaryString, (character) => character.charCodeAt(0))
 
   const memory = new WebAssembly.Memory({ initial: 256, maximum: 512 })
 
@@ -82,13 +79,13 @@ export async function wasmCountLightsOn(board: Uint8Array): Promise<number> {
  * Convert 2D boolean array to flat Uint8Array for WASM
  */
 export function boardToWasm(board: boolean[][]): Uint8Array {
-  const result = new Uint8Array(25)
-  for (let row = 0; row < 5; row++) {
-    for (let col = 0; col < 5; col++) {
-      result[row * 5 + col] = board[row][col] ? 1 : 0
+  const flatBoard: number[] = []
+  for (const row of board) {
+    for (const cell of row) {
+      flatBoard.push(cell ? 1 : 0)
     }
   }
-  return result
+  return Uint8Array.from(flatBoard)
 }
 
 /**

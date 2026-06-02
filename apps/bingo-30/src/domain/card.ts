@@ -3,11 +3,8 @@
  * Generates 3x3 cards with numbers 1-25.
  */
 
+import { ALL_NUMBERS, GRID_SIZE } from './constants'
 import type { BingoCard } from './types'
-
-const GRID_SIZE = 3
-const MAX_NUMBER = 25
-const ALL_NUMBERS = Array.from({ length: MAX_NUMBER }, (_, i) => i + 1)
 
 /**
  * Generate a single mini bingo card (3x3 grid with numbers 1-25)

@@ -1,22 +1,18 @@
-import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
-import { visualizer } from 'rollup-plugin-visualizer'
 import { defineConfig } from 'vite'
+import {
+  createOptimizedBuild,
+  createOptimizedPlugins,
+  createOptimizedResolve,
+} from '../../scripts/vite/createOptimizedViteConfig.mjs'
 
 const __dirname = import.meta.dirname
 
 export default defineConfig({
   base: './',
-  plugins: [
-    react(),
-    visualizer({
-      filename: 'dist/bundle-report.html',
-      gzipSize: true,
-      brotliSize: true,
-      open: false,
-    }),
-  ],
+  plugins: createOptimizedPlugins(),
   resolve: {
+    ...createOptimizedResolve(),
     alias: {
       '@': resolve(__dirname, 'src'),
       '@/domain': resolve(__dirname, 'src/domain'),
@@ -35,29 +31,5 @@ export default defineConfig({
       '@games/theme-contract': resolve(__dirname, '../../packages/theme-contract/src'),
     },
   },
-  build: {
-    target: 'es2020',
-    cssTarget: 'es2020',
-    modulePreload: { polyfill: false },
-    minify: 'esbuild',
-    cssMinify: true,
-    rollupOptions: {
-    external: [
-      '@capacitor/core',
-      '@capacitor/app',
-      '@capacitor/device',
-      '@capacitor/preferences',
-      '@capacitor/haptics',
-      '@capacitor/splash-screen',
-      '@capacitor/keyboard',
-    ],
-output: {
-        manualChunks: (id) => {
-          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
-            return 'react'
-          }
-        },
-      },
-    },
-  },
+  build: createOptimizedBuild(),
 })

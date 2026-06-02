@@ -1,10 +1,5 @@
 /**
- * Test setup file for @games/crossclimb
- * Initializes Vitest environment with necessary test utilities
+ * Test setup placeholder for @games/crossclimb.
+ * This app currently has no Vitest runtime setup requirements.
  */
-
-import { expect, afterEach, vi } from 'vitest'
-
-afterEach(() => {
-  vi.clearAllMocks()
-})
+export {}

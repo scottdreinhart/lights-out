@@ -1,0 +1,21 @@
+<governance_sync_decision_guidance>
+  <decision_rules>
+    <rule>Use recovery mode immediately when scripts, aliases, Vite settings, or governance appear damaged.</rule>
+    <rule>Do not continue feature work until damage is repaired or explicitly waived.</rule>
+    <rule>When uncertain, preserve existing behavior and ask for clarification only if the ambiguity blocks a safe edit.</rule>
+    <rule>Do not simplify configuration, tooling, or governance merely because it appears verbose.</rule>
+    <rule>Prefer the smallest non-destructive fix for path, case, alias, and entrypoint errors. Do not delete folders to resolve a wiring problem unless the folder is proven unused and the removal is explicitly requested or test-verified.</rule>
+  </decision_rules>
+
+  <boundary_guidance>
+    <rule>Keep governance updates separate from feature changes unless the user explicitly asks to merge them.</rule>
+    <rule>Prefer updating the smallest number of files that can keep the mode consistent.</rule>
+    <rule>Do not introduce new top-level structure when existing mode files can carry the change.</rule>
+  </boundary_guidance>
+
+  <validation_guidance>
+    <rule>Validate XML well-formedness for supporting files.</rule>
+    <rule>Verify the mode slug remains unique in .roomodes.</rule>
+    <rule>Confirm the supporting directory contains the mode’s workflow and guardrail files.</rule>
+  </validation_guidance>
+</governance_sync_decision_guidance>

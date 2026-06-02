@@ -4,9 +4,8 @@
  */
 
 import { createBingoCards, isWinner, markNumber } from './card'
+import { ALL_NUMBERS } from './constants'
 import type { DrawResult, GameState } from './types'
-
-const ALL_NUMBERS = Array.from({ length: 80 }, (_, i) => i + 1)
 
 /**
  * Initialize a new Swedish Bingo game
@@ -40,7 +39,7 @@ export function drawNumber(state: GameState): DrawResult | null {
   const markedCards = markNumber(state.cards, number)
   const newWinners: string[] = []
 
-  markedCards.forEach((card, idx) => {
+  markedCards.forEach((card) => {
     if (!state.winners.includes(card.id) && isWinner(card)) {
       newWinners.push(card.id)
     }
@@ -77,7 +76,9 @@ export function getWinners(state: GameState): string[] {
  * Get hint positions for the last drawn number
  */
 export function getHints(state: GameState): number[] {
-  if (!state.currentDrawn) return []
+  if (!state.currentDrawn) {
+    return []
+  }
   const positions: number[] = []
   state.cards.forEach((card) => {
     card.squares.forEach((square, idx) => {

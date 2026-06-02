@@ -1,16 +1,5 @@
 /**
- * Test setup file for @games/zip
- * Initializes Vitest environment with necessary test utilities
+ * Test setup placeholder for @games/zip.
+ * This app currently has no Vitest runtime setup requirements.
  */
-
-import { expect, afterEach, vi } from 'vitest'
-
-// Mock window/DOM elements if needed
-beforeAll(() => {
-  // Setup any global test fixtures
-})
-
-afterEach(() => {
-  // Clean up after each test
-  vi.clearAllMocks()
-})
+export {}

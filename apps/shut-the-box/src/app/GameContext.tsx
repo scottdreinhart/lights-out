@@ -1,15 +1,15 @@
+import type { GameAction, GameState, Tile } from '@/domain'
 import {
   applyMove,
   calculateScore,
   canRollOneDie,
   createBoard,
+  determineWinner,
   getValidMoves,
   isBoardShut,
   setDiceSum,
   toggleTileSelection,
-  determineWinner,
 } from '@/domain'
-import type { GameAction, GameState, Tile } from '@/domain'
 import { createContext, useContext, useReducer, type ReactNode } from 'react'
 
 const GameContext = createContext<

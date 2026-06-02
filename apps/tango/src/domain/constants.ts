@@ -6,10 +6,10 @@
 import type { Difficulty, PuzzleConfig } from './types'
 
 export const BOARD_SIZES = {
-  easy: 3,    // 3x3 board
-  medium: 4,  // 4x4 board
-  hard: 5,    // 5x5 board
-  expert: 6,  // 6x6 board
+  easy: 3, // 3x3 board
+  medium: 4, // 4x4 board
+  hard: 5, // 5x5 board
+  expert: 6, // 6x6 board
 } as const
 
 export const DEFAULT_SIZE = BOARD_SIZES.medium

@@ -57,6 +57,9 @@
       "@games/common": [
         "../../packages/common/src"
       ]
+      "@games/diagnostics-utils": [
+        "../../packages/diagnostics-utils/src"
+      ],
     }
   },
   "include": [

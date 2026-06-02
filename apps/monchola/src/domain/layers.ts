@@ -36,7 +36,7 @@ export const getLayerStack = (_colorTheme: string): LayerStack => {
 export const layerStackToCssVars = (stack: LayerStack): Record<string, string> => {
   const vars: Record<string, string> = {}
   for (const [key, value] of Object.entries(stack)) {
-    // eslint-disable-next-line security/detect-object-injection
+    // eslint-disable-next-line security/detect-object-injection -- controlled keys from layer stack, safe to stringify for CSS vars
     vars[key] = String(value)
   }
   return vars
